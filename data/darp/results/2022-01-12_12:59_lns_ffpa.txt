@@ -1,0 +1,3 @@
+lns_ffpa
+run 1 / 2 with seed = 1656592874:  	Time: 1.891 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 3624 	Unique solutions found: 2088  	#choice: 8552 	#fail: 3247 	#sols : 3624 	completed : true 
+run 2 / 2 with seed = 882132660:  	Time: 2.062 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 3528 	Unique solutions found: 1824  	#choice: 9510 	#fail: 4113 	#sols : 3528 	completed : true 

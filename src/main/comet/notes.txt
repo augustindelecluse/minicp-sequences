@@ -1,0 +1,74 @@
+insertionObjChange
+
+insertionObjChange: array of [request] -> {vehicle -> {critical node -> {non critical node -> cost increase}}}
+
+Plusieurs noeuds non critiques peuvent être assignés pour un noeud critique (plusieurs ncvi pour un seul cvi)
+
+l.770 -> la route a été insérée pour le véhicule v. Pour chaque requête restante r, le changement de coût sur l'objectif est ajusté pour le cas où r emploie v
+
+Au fur et à mesure de la recherche, si une route ne peut plus être insérée pour un véhicule pour une paire de noeuds critiques-non critiques, elle est retirée
+
+l.385 -> Le dictionnaire doit absolument avoir été update avant pour pouvoir récupérer correctement le nombre possible d'insertions
+Contient une triple boucle forall pour récupérer tous les points d'insertions possibles
+
+Notes sur forbidMove()
+	
+	Appelé si makeMove fail (instruction: try<cp> darpCP.makeMove(); | darpCP.forbidMove();)
+	
+	branchingStack: dict de {depth -> branchingChoice}: contient le choix de branchement fait à chaque depth dans la recherche
+	
+	
+	void forbidMove() {
+		if (numFails > maxFails) { // critère d'arrêt si trop d'iterations n'ont pas marché
+			solver.fail();
+		}
+		//cout << "forbidMove" << endl;
+		depth := depth+1; // récupère la depth de makeMove, pour pouvoir l'employer avec le dico branchingStack
+
+		//cout << 0 << endl;
+		if(branchingStack.getSize() == 0 && failChoice == null) { // le tout premier appel à makeMove a fail lors de la recherche: instance insolvable
+			solver.fail();
+		}
+		if (branchingStack.getSize() > 0) { // il y a eu au moins un appel de makeMove qui n'a pas raté lors de la recherche
+			int index = branchingStack.getKeys().getUp();
+			//cout << "i: " << index << " " << depth << endl;
+			//assert(index <= depth);
+			BranchingChoice temp = branchingStack{index}; // recupère le branchement essayé à la plus grande profondeur
+			if (failChoice == null) { // pas de précédent failChoice précisé. Condition toujours vraie (failChoice est toujours null au début et à la fin de la fonction)
+				if (index < depth) solver.fail(); // le branchement enregistré n'est pas aussi profond que la depth
+				failChoice = temp;
+				failChoiceDepth = 0;
+				branchingStack.remove(index);
+			}
+			//assert(failChoice != null);
+			//assert(branchingStack.getSize() == 0 || branchingStack.getKeys().getUp() <= depth);
+			if (index == depth) {
+				cSuccToForbiddenSet[failChoice.request, failChoice.cvSucc].insert(failChoice.ncvSucc);
+				forall (i in customersLeft) {
+					if (insertionObjChange[i].hasKey(temp.vehicle)) {
+						insertionObjChange[i].remove(temp.vehicle);
+					}
+					setInsertionCost(i, temp.vehicle);
+				}
+			}
+		}
+		//assert(failChoice != null);
+
+		int request = failChoice.request; //recupère les caractéristiques du branchement qui a été essayé
+		int cvi = failChoice.cvSucc;
+		int ncvi = failChoice.ncvSucc;
+		int cvv = getCriticalVertex(request);
+		int ncv = getCorrespondingVertex(cvv);
+		int v = failChoice.vehicle;
+		failChoice = null; // reset failChoice
+		failChoiceDepth = 0; // reset la depth de failChoice
+
+		trail{set{int}} forbiddenSet = cSuccToForbiddenSet[request, cvi]; // recupère tous les points d'insertions qui ont été essayés pour le noeud critique
+		//cout << "forbid for " << request << ", " << cvi << ": " << ncvi << endl;
+		forbiddenSet.insert(ncvi); // rajoute ces points d'insertions dans un set interdit
+		numFails++;  // incrémente le nombre d'échecs
+		//cout << "endForbidMove" << endl;
+	}
+	
+
+

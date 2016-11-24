@@ -1,0 +1,1447 @@
+
+// Dial-a-ride problem
+
+import cotfd;
+
+include "DarpInstance";
+include "Tools";
+include "RestartStrategy";
+
+tuple BranchingChoice {int request; int cvSucc; int ncvSucc; float change; int vehicle; }
+tuple IntFloat { int first; float second; }
+
+class DarpSolution {
+	int [] succ;
+	int [] pred;
+	int [] servingVehicle;
+	DarpSolution(DarpCP darpCP) {
+		//assert(bound(darpCP.getServingVehicle()));
+
+		succ = new int[i in darpCP.getSucc().getRange()] = darpCP.getSucc()[i];
+		pred = new int[i in darpCP.getPred().getRange()] = darpCP.getPred()[i];
+		servingVehicle = new int[i in darpCP.getServingVehicle().getRange()] = darpCP.getServingVehicle()[i].getValue();
+		forall (i in succ.getRange()) {
+			//assert(succ[pred[i]] == i);
+			//assert(pred[succ[i]] == i);
+		}
+	}
+	int [] getSucc() {
+		return succ;
+	}
+	int [] getPred() {
+		return pred;
+	}
+	int [] getServingVehicle() {
+		return servingVehicle;
+	}
+}
+
+class DarpCP {
+	
+	// Variables related to the implementatoin
+	Solver<CP> solver;
+	DarpMap darpMap;
+	bool constraintsPosted;
+	bool done;
+
+	// Parameters to the problem
+	int numVars;
+	int numRequests;
+	int vehicleCapacity;
+	int numVehicles;
+	int maxRideTime;
+	int timeHorizon;
+
+	// Ranges
+	range numVarsRange;
+	range numRequestsRange;
+	range pickupRange;
+	range deliveryRange;
+	range beginDepotRange;
+	range endDepotRange;
+	range numVehiclesRange;
+	range customerVertexRange;
+	range succRange;
+	set{int} predRange;
+
+	// Variables necessary for posting constraints
+	float [,] travelTimeMatrix;
+	int [] vertexLoadChange;
+	int [] timeWindowStart;
+	int [] timeWindowEnd;
+
+	// Variables related to modelling
+	var<CP>{float} [] servingTime;
+	var<CP>{int} [] servingVehicle;
+	trail{int} [] succ;
+	trail{int} [] pred;
+	trail{int} [] capacityLeftInRoute;
+	float [] servingDuration;
+
+	trail{set{int}} [,] cSuccToForbiddenSet;
+	dict{int->dict{int->dict{int->float}}} [] insertionObjChange; // Dict goes from vehicle->{cvi->{ncvi -> objChange}}
+	dict{int->BranchingChoice} branchingStack;
+	trail{set{int}} customersLeft;
+	UniformDistribution udist;
+	BranchingChoice failChoice;
+	int failChoiceDepth;
+	trail{int} currReq;
+	trail{bool} chooseVar;
+	trail{int} depth;
+	int numFails;
+	int maxFails;
+	int maxInsertionsToExplore;
+	bool endFail;
+	int numFailsCvv;
+	int numFailsNcv;
+	int numFailsDist;
+	int numFailsCapacity;
+	int numOptIterations;
+	int maxInsertionsHighLevel;
+	stack{int} insertionsExplored;
+
+	int [] numTimesChosen;
+	int totalChosen;
+
+	float bestSolutionObjective;
+	DarpSolution bestSolution;
+
+	UniformDistribution timeWindowUdist;
+	UniformDistribution mainDist;
+	bool optPhase;
+
+	// Statistics
+	int successNumAvgOver;
+	int failureNumAvgOver;
+	float successAvg;
+	float failureAvg;
+	float successSumOfSq;
+	float failureSumOfSq;
+
+	DarpCP(Solver<CP> _solver, DarpMap _darp, int _maxInsertionsHighLevel) {
+		solver = _solver;
+		darpMap = _darp;
+		constraintsPosted = false;
+		optPhase = false;
+		chooseVar = new trail{bool}(solver, false) := true;
+		currReq = new trail{int}(solver, false) := -1;
+		depth = new trail{int}(solver, false) := 0;
+		udist = new UniformDistribution(1..System.getMAXINT());
+		customersLeft = new trail{set{int}}(solver, false);
+		bestSolutionObjective = System.getMAXINT();
+		timeWindowUdist = new UniformDistribution(1..timeHorizon);
+		mainDist = new UniformDistribution(1..1000);
+		insertionsExplored = new stack{int}();
+		numFails = 0;
+		maxFails = 100000;
+		failChoice = null;
+		failChoiceDepth = 0;
+		endFail = false;
+		numFailsCvv = 0;
+		numFailsNcv = 0;
+		numFailsDist = 0;
+		numFailsCapacity = 0;
+		numOptIterations = 0;
+		maxInsertionsHighLevel = _maxInsertionsHighLevel;
+
+		successNumAvgOver = 0;
+		failureNumAvgOver = 0;
+		successAvg = 0.;
+		failureAvg = 0.;
+		successSumOfSq = 0.;
+		failureSumOfSq = 0.;
+
+		numRequests = darpMap.getNumRequests();
+		numVehicles = darpMap.getNumVehicles();
+		vehicleCapacity = darpMap.getVehicleCapacity();
+		maxRideTime = darpMap.getMaxRideTime();
+		numVars = 2*numRequests+2*numVehicles;
+		timeHorizon = darpMap.getTimeHorizon();
+
+		numVarsRange = 1..numVars;
+		numRequestsRange = 1..numRequests;
+		pickupRange = 1..numRequests;
+		deliveryRange = numRequests+1..2*numRequests;
+		beginDepotRange = 2*numRequests+1..numVars-numVehicles;
+		endDepotRange = numVars-numVehicles+1..numVars;
+		numVehiclesRange = 1..numVehicles;
+		customerVertexRange = 1..2*numRequests;
+		succRange = 1..numVars-numVehicles;
+		predRange = new set{int}();
+		forall (i in customerVertexRange) {
+			predRange.insert(i);
+		}
+		forall (i in endDepotRange) {
+			predRange.insert(i);
+		}
+
+		branchingStack = new dict{int->BranchingChoice}();
+		numTimesChosen = new int[numRequestsRange];
+		totalChosen = 0;
+
+		travelTimeMatrix = new float[i in numVarsRange, j in numVarsRange] = darpMap.getTravelTime(i, j);
+		vertexLoadChange = new int[i in numVarsRange] = 0;
+		timeWindowStart = new int[numVarsRange];
+		timeWindowEnd = new int[numVarsRange];
+		forall (i in customerVertexRange) {
+			timeWindowStart[i] = darpMap.getTimeWindowStart()[i];
+			timeWindowEnd[i] = darpMap.getTimeWindowEnd()[i];
+		}
+		forall (i in beginDepotRange) {
+			timeWindowStart[i] = darpMap.getBeginTimeWindowStart();
+			timeWindowEnd[i] = darpMap.getBeginTimeWindowEnd();
+		}
+		forall (i in endDepotRange) {
+			timeWindowStart[i] = darpMap.getEndTimeWindowStart();
+			timeWindowEnd[i] = darpMap.getEndTimeWindowEnd();
+		}
+
+		// Read this from file
+		forall (i in numVarsRange) {
+			if (i <= 2*numRequests) {
+				vertexLoadChange[i] = darpMap.getLoadChange()[i];
+			}
+			else {
+				vertexLoadChange[i] = 0;
+			}
+		}
+
+		// Variables related to modelling
+		servingTime = new var<CP>{float}[numVarsRange];
+		servingVehicle = new var<CP>{int}[numVarsRange];
+		servingDuration = new float[1..numVars-numVehicles] = 0.;
+		succ = new trail{int}[i in 1..numVars] = new trail{int}(solver, false); 
+		pred = new trail{int}[i in 1..numVars] = new trail{int}(solver, false);
+		capacityLeftInRoute = new trail{int}[numVarsRange] = new trail{int}(solver, false); 
+		forall (i in numVarsRange) {
+			capacityLeftInRoute[i] := vehicleCapacity;
+		}
+
+		cSuccToForbiddenSet = new trail{set{int}}[numRequestsRange, numVarsRange] = new trail{set{int}}(solver, false);
+		insertionObjChange = new dict{int->dict{int->dict{int->float}}}[numRequestsRange] = new dict{int->dict{int->dict{int->float}}}();
+		initCpVars();
+		//cout << "Instance created" << endl;
+	}
+
+	void initCpVars() {
+		// Pickup vertices
+		forall (i in pickupRange) {
+			servingDuration[i] = darpMap.getServingDuration()[i];
+			servingVehicle[i] = new var<CP>{int}(solver, numVehiclesRange);
+			succ[i] := i;
+			pred[i] := i;
+		}
+
+		// Delivery Vertices
+		forall (i in deliveryRange) {
+			servingDuration[i] = darpMap.getServingDuration()[i];
+			servingVehicle[i] = new var<CP>{int}(solver, numVehiclesRange);
+			succ[i] := i;
+			pred[i] := i;
+		}
+
+		// Start Depot Vertices
+		forall (i in beginDepotRange) {
+			succ[i] := getEndDepot(getVehicleOfDepot(i));
+			pred[i] := succ[i];
+			int v = getVehicleOfDepot(i);
+			servingVehicle[i] = new var<CP>{int}(solver, v..v);
+		}
+
+		// End Depot Vertices
+		forall (i in endDepotRange) {
+			succ[i] := getBeginDepot(getVehicleOfDepot(i));
+			pred[i] := succ[i];
+			int v = getVehicleOfDepot(i);
+			servingVehicle[i] = new var<CP>{int}(solver, v..v);
+		}
+
+		forall (i in numVarsRange) {
+			servingTime[i] = new var<CP>{float}(solver, timeWindowStart[i], timeWindowEnd[i]);
+		}
+		
+		done = false;
+	}
+
+	void postPrecedence() {
+		forall (i in numRequestsRange) {
+			solver.post(servingTime[i] <= servingTime[numRequests+i]-travelTimeMatrix[i, i+numRequests]-servingDuration[i], onBounds);
+		}
+		forall (i in numVehiclesRange) {
+			solver.post(servingTime[getEndDepot(i)]-servingTime[getBeginDepot(i)] <= timeHorizon, onBounds);
+		}
+		//cout << "Posted Precedence Constraints" << endl;
+	}
+	void postRideTime() {
+		forall (i in numRequestsRange) {
+			solver.post(servingTime[numRequests+i] - (servingTime[i] + servingDuration[i]) <= maxRideTime,onBounds);
+		}
+		//cout << "Posted Ride Time" << endl;
+	}
+	void postConstraints() 
+	{
+		if (constraintsPosted) {
+			return;
+		}
+		constraintsPosted = true;
+		forall (i in numRequestsRange) {
+			solver.post(servingVehicle[i] == servingVehicle[i+numRequests]);
+		}
+		postPrecedence();
+		postRideTime();
+		//cout << "Finished Posting Constraints" << endl;
+	}
+
+	void updateCapacityLeftInRoute(int v, int start) {
+		//assert(isVehicle(v));
+		int begin = getBeginDepot(v);
+		int end = getEndDepot(v);
+		if (start == -1) {
+			start = succ[begin];
+		}
+		//assert(capacityLeftInRoute[begin] == vehicleCapacity);
+		//assert(capacityLeftInRoute[end] == vehicleCapacity);
+		int capacity = capacityLeftInRoute[(int)pred[start]];
+
+		//assert (succ[start] != start);
+		//assert (pred[start] != start);
+		while (start != end) {
+			//assert(isPickup(start) || isDelivery(start));
+			capacity -= vertexLoadChange[start];
+			capacityLeftInRoute[start] := capacity;
+			start = succ[start];
+		}
+		//assert(capacity >= vehicleCapacity-1);
+		//assert(OkCapacityLeftInRoute(v));
+	}
+
+	bool insertVertexIntoRoute(int i, int j) {
+		//assert(servingVehicle[j].bound());
+		//cout << i << " " << j << endl;
+		//cout << getArrivalTime(i, j) << ", " << servingTime[j] << endl;
+		//solver.post(getArrivalTime(i, j) <= servingTime[j]);
+		//solver.post(getArrivalTime(pred[j], i) <= servingTime[i]);
+		
+		//assert(!isEndDepot(i));
+		//assert(!isEndDepot(pred[j]));
+		if (!solver.tryPost(getArrivalTime(i, j) <= servingTime[j]) ||
+				!solver.tryPost(getArrivalTime(pred[j], i) <= servingTime[i])) {
+			return false;
+		}
+		// */
+		//cout << "insertion: " << i << " -> " << j << endl;
+		//cout << "before - " << routeToString(servingVehicle[j].getValue()) << endl;
+		succ[i] := j;
+		pred[i] := pred[j];
+		succ[(int)pred[i]] := i;
+		pred[j] := i;
+		//cout << "after - " << routeToString(servingVehicle[j].getValue()) << endl;
+		//assert(OkSuccPred());
+		return true;
+	}
+
+	BranchingChoice getBestBranchingDecision(int request) {
+		queue{BranchingChoice} branchingQueue();
+		//cout << "getInsertionCost" << endl;
+		int cvv = getCriticalVertex(request);
+		int ncv = getCorrespondingVertex(cvv);
+
+		Integer bestCvi(-1);
+		Integer bestNcvi(-1);
+		Float bestChange(-System.getMAXINT());
+
+		forall (v in 1..numVehicles) {
+			if (!insertionObjChange[request].hasKey(v) || !servingVehicle[request].memberOf(v)) {
+				solver.post(servingVehicle[request] != v);
+				continue;
+			}
+
+			forall (cvi in insertionObjChange[request]{v}.getKeys()) {
+				//assert(servingVehicle[cvi].bound());
+				forall (ncvi in insertionObjChange[request]{v}{cvi}.getKeys()) {
+					if (insertionObjChange[request]{v}{cvi}{ncvi} > bestChange) {
+						bestChange := insertionObjChange[request]{v}{cvi}{ncvi};
+						bestCvi := cvi;
+						bestNcvi := ncvi;
+						branchingQueue.reset();
+						branchingQueue.enqueueFront(new BranchingChoice(request, cvi, ncvi, bestChange, servingVehicle[cvi].getValue()));
+					}
+					else if (insertionObjChange[request]{v}{cvi}{ncvi} == bestChange) {
+						branchingQueue.enqueueFront(new BranchingChoice(request, cvi, ncvi, bestChange, servingVehicle[cvi].getValue()));
+					}
+				}
+			}
+		}
+		//assert(branchingQueue.getSize() > 0);
+		int n = udist.get(branchingQueue.getSize());
+		BranchingChoice bc;
+		forall (i in 1..n) {
+			bc = branchingQueue.dequeueFront();
+		}
+		return bc;
+		//cout << "endGetInsertionCost" << endl;
+	}
+
+	set{BranchingChoice} getInsertionCost(int request, Integer numChoices) {
+		set{BranchingChoice} branchingQueue();
+		numChoices := 0;
+		//cout << "getInsertionCost" << endl;
+		int cvv = getCriticalVertex(request);
+		int ncv = getCorrespondingVertex(cvv);
+
+		Integer bestCvi(-1);
+		Integer bestNcvi(-1);
+		Float bestChange(-System.getMAXINT());
+
+		forall (v in 1..numVehicles) {
+			if (!insertionObjChange[request].hasKey(v) || !servingVehicle[request].memberOf(v)) {
+				solver.post(servingVehicle[request] != v);
+				continue;
+			}
+
+			forall (cvi in insertionObjChange[request]{v}.getKeys()) {
+				//assert(servingVehicle[cvi].bound());
+				forall (ncvi in insertionObjChange[request]{v}{cvi}.getKeys()) {
+					numChoices := numChoices+1;
+					if (insertionObjChange[request]{v}{cvi}{ncvi} > bestChange) {
+						bestChange := insertionObjChange[request]{v}{cvi}{ncvi};
+						bestCvi := cvi;
+						bestNcvi := ncvi;
+						branchingQueue.reset();
+						branchingQueue.insert(new BranchingChoice(request, cvi, ncvi, bestChange, servingVehicle[cvi].getValue()));
+					}
+					else if (insertionObjChange[request]{v}{cvi}{ncvi} == bestChange) {
+						branchingQueue.insert(new BranchingChoice(request, cvi, ncvi, bestChange, servingVehicle[cvi].getValue()));
+					}
+				}
+			}
+		}
+		//assert(numChoices > 0);
+		//assert(servingVehicle[(int)bestCvi].bound());
+		return branchingQueue;
+		//cout << "endGetInsertionCost" << endl;
+	}
+
+	void setInsertionCost(int request, int v) {
+		//cout << "setInsertionCost" << endl;
+		int cvv = getCriticalVertex(request);
+		int ncv = getCorrespondingVertex(cvv);
+
+		int begin = getBeginDepot(v);
+		int end = getEndDepot(v);
+		int start = succ[begin]; 
+		while (start != end && servingTime[start].getMax()-servingDuration[cvv]-getTravelTime(cvv, start) < servingTime[cvv].getMin()) {
+			start = succ[start];
+		}
+		//assert(!isEndDepot(pred[start]));
+		while (start != begin && getArrivalTimeValue(pred[start], cvv, true) <= servingTime[cvv].getMax()) {
+			//assert(isInRoute(start));
+			//assert(start != cvv);
+			setBestServingTimeFail(request, v, start);
+			if (start == end) {
+				break;
+			}
+			//assert(!isEndDepot(pred[start]));
+			start = succ[start];
+		}
+		//cout << "endGetInsertionCost" << endl;
+	}
+
+	void addToInsertionObjChange(int request, int v, int cvi, int ncvi, float change) {
+		if (!insertionObjChange[request].hasKey(v)) {
+			insertionObjChange[request]{v} = new dict{int->dict{int->float}}();
+		}
+		if (!insertionObjChange[request]{v}.hasKey(cvi)) {
+			insertionObjChange[request]{v}{cvi} = new dict{int->float}();
+		}
+		insertionObjChange[request]{v}{cvi}{ncvi} = change;
+	}
+
+	void setBestServingTimeFail(int request, int v, int start) {
+		int begin = getBeginDepot(v);
+		int end = getEndDepot(v);
+		int cvv = getCriticalVertex(request);
+		int ncv = getCorrespondingVertex(cvv);
+		//assert(!isEndDepot(pred[start]));
+		float cvvMinServingTime = max(getArrivalTimeValue(pred[start], cvv, true), timeWindowStart[cvv]);
+		float cvvMaxServingTime = min(servingTime[start].getMax()-getTravelTime(start, cvv)-servingDuration[cvv], timeWindowEnd[cvv]);
+		if (cvvMaxServingTime < cvvMinServingTime) {
+			return;
+		}
+		float changeCvv = servingTime[start].getMax()-(getArrivalTimeValue(pred[start], cvv, true)+servingDuration[cvv]+getTravelTime(cvv, start));
+		if (changeCvv < 0) {
+			return;
+		}
+
+		changeCvv -= 80.*(getTravelTime(cvv, start)+getTravelTime((int)pred[start], cvv)-getTravelTime((int)pred[start], start));
+		trail{set{int}} forbiddenSet = cSuccToForbiddenSet[request,start];
+		float changeNcv = 0;
+
+		//assert(succ[start] != start);
+		//assert(pred[start] != start);
+		//assert(start != cvv);
+		//assert(isCustomerVertex(start) || isEndDepot(start));
+		succ[cvv] := start;
+		pred[cvv] := pred[start];
+		succ[(int)pred[cvv]] := cvv;
+		pred[start] := cvv;
+
+		int index;
+		int p;
+		if (isPickup(cvv)) {
+			index = start;
+			//assert(succ[index] != index);
+			//assert(pred[index] != index);
+			p = cvv;
+			float minRideTime;
+			float ncvMinServingTime;
+			float ncvMaxServingTime;
+			while (index != begin) {
+				//assert(!isEndDepot(pred[index]));
+				if (p == cvv) {
+					minRideTime = getTravelTime(cvv, ncv);
+				}
+				else {
+					minRideTime = servingTime[p].getMin()+servingDuration[p]+getTravelTime(p, ncv)-(cvvMaxServingTime+servingDuration[cvv]);
+				}
+				if (minRideTime > maxRideTime) {
+					break;
+				}
+				ncvMinServingTime = max(getArrivalTimeValue(p, ncv, true), timeWindowStart[ncv]);
+				ncvMaxServingTime = min(servingTime[index].getMax()-getTravelTime(index, ncv)-servingDuration[ncv], timeWindowEnd[ncv]);
+				if (ncvMaxServingTime < ncvMinServingTime) {
+					p = index;
+					index = succ[index];
+					continue;
+				}
+				changeNcv = servingTime[index].getMax()-(getArrivalTimeValue(pred[index], ncv, true)+servingDuration[ncv]+getTravelTime(ncv, index));
+				if (forbiddenSet.contains(index) || changeNcv < 0) {
+					p = index;
+					index = succ[index];
+					continue;
+				}
+				changeNcv -= 80.*(getTravelTime(ncv, index)+getTravelTime(pred[index], ncv)-getTravelTime(pred[index], index));
+
+				addToInsertionObjChange(request, v, start, index, changeCvv+changeNcv);
+
+				if (capacityLeftInRoute[index] < vertexLoadChange[cvv]) {
+					break;
+				}
+				p = index;
+				index = succ[index];
+			}
+		}
+		else {
+			p = pred[cvv];
+			index = cvv;
+			float minRideTime; 
+			float ncvMinServingTime;
+			float ncvMaxServingTime;
+			while (index != begin && capacityLeftInRoute[index] >= vertexLoadChange[ncv]) {
+				if (index == cvv) {
+					minRideTime = getTravelTime(ncv, cvv);
+				}
+				else {
+					minRideTime = cvvMinServingTime-(getArrivalTimeValue(p, ncv, false)+servingDuration[ncv]);
+				}
+				if (minRideTime > maxRideTime) {
+					break;
+				}
+				ncvMinServingTime = max(getArrivalTimeValue(p, ncv, true), timeWindowStart[ncv]);
+				ncvMaxServingTime = min(servingTime[index].getMax()-getTravelTime(index, ncv)-servingDuration[ncv], timeWindowEnd[ncv]);
+				if (ncvMaxServingTime < ncvMinServingTime) {
+					index = p;
+					p = pred[p];
+					continue;
+				}
+				//assert(!isEndDepot(pred[index]));
+				changeNcv = servingTime[index].getMax()-(getArrivalTimeValue(pred[index], ncv, true)+servingDuration[ncv]+getTravelTime(ncv, index));
+				if (forbiddenSet.contains(index) || changeNcv < 0) {
+					index = p;
+					p = pred[p];
+					continue;
+				}
+				changeNcv -= 80*(getTravelTime(ncv, index)+getTravelTime((int)pred[index], ncv)-getTravelTime((int)pred[index], index));
+
+				addToInsertionObjChange(request, v, start, index, changeCvv+changeNcv);
+
+				index = p;
+				p = pred[p];
+			}
+		}
+
+		succ[(int)pred[cvv]] := succ[cvv];
+		pred[(int)succ[cvv]] := pred[cvv];
+		succ[cvv] := cvv;
+		pred[cvv] := cvv;
+	}
+
+	int getMedian(set{int} s) {
+		int sz = s.getSize();
+		if (sz % 2 == 0) {
+			return (s.atRank(sz/2)+s.atRank(sz/2+1))/2;
+		}
+		else {
+			return s.atRank(sz/2);
+		}
+	}
+
+	BranchingChoice getMinVehicleMinDomainLeastConstrained() {
+		int bestRequest=-1;
+		int bestCvi=-1;
+		int bestNcvi=-1;
+		float bestChange=-1;
+
+		Float tempChange(-1);
+		Integer tempCvi(-1);
+		Integer tempNcvi(-1);
+
+		//cout << chooseVar << endl;
+		if (chooseVar) {
+			int minChoices = System.getMAXINT();
+			int minVehicles = numVehicles+1;
+			queue{BranchingChoice} bQueue();
+			bestChange = -System.getMAXINT();
+			forall (i in customersLeft) {
+				float tempChange = -System.getMAXINT();
+				//assert(isPickup(i));
+				Integer numChoices(0);
+				set{BranchingChoice} branchingQueue = getInsertionCost(i, numChoices); 
+				//assert(numChoices > 0);
+
+				/*
+				forall (j in branchingQueue) {
+					if (j.change > tempChange) {
+						tempChange = j.change;
+					}
+				}
+				*/
+
+				if (servingVehicle[i].getSize() < minVehicles) {
+					minVehicles = servingVehicle[i].getSize();
+
+					bQueue.reset();
+					forall (j in branchingQueue) {
+						bQueue.enqueueFront(j);
+					}
+				}
+				else if (servingVehicle[i].getSize() == minVehicles && numChoices < minChoices) {
+					minChoices = numChoices;
+
+					bQueue.reset();
+					forall (j in branchingQueue) {
+						bQueue.enqueueFront(j);
+					}
+				}
+				else if (servingVehicle[i].getSize() == minVehicles && numChoices == minChoices && tempChange >= bestChange) {
+					forall (j in branchingQueue) {
+						bQueue.enqueueFront(j);
+					}
+				}
+			}
+
+			//assert(bQueue.getSize() > 0);
+			chooseVar := false;
+			//assert(bQueue.getSize() > 0);
+			int n = udist.get(bQueue.getSize());
+			forall (i in 1..n) {
+				currReq := bQueue.dequeueFront().request;
+			}
+			insertionsExplored.push(0);
+			return new BranchingChoice(-1, -1, -1, -1, -1);
+		}
+		else {
+			if (bestSolution != null && insertionsExplored.top() == maxInsertionsToExplore) {
+				insertionsExplored.pop();
+				solver.fail();
+			}
+			//assert(isPickup(currReq));
+			BranchingChoice bc = getBestBranchingDecision(currReq); 
+			int temp = insertionsExplored.pop();
+			insertionsExplored.push(temp+1);
+			//assert(bc.request != -1);
+			//assert(bc.cvSucc != -1);
+			//assert(bc.ncvSucc != -1);
+			bestRequest = bc.request;
+			bestChange = bc.change;
+			bestCvi = bc.cvSucc;
+			bestNcvi = bc.ncvSucc;
+
+			chooseVar := true;
+			//cout << bestRequest << ", " << chooseVar << endl;
+		}
+
+		// Means no moves found so backtrack
+		//assert(bestRequest != -1);
+		//assert(isPickup(bestRequest));
+		//assert(isCustomerVertex(bestCvi) || isEndDepot(bestCvi));
+		//assert(isCustomerVertex(bestNcvi) || isEndDepot(bestNcvi));
+		//assert(servingVehicle[bestCvi].bound());
+
+		return new BranchingChoice(bestRequest, bestCvi, bestNcvi, 0, servingVehicle[bestCvi].getValue()); 
+	}
+
+	void makeMove() {
+		//cout << solver.getNFail() << ", " << depth << endl;
+		depth := depth+1;
+		//cout << "makeMove " << depth << endl;
+		//cout << routesToString() << endl;
+
+		if (depth == 1) {
+			insertionsExplored.reset();
+			forall (i in customersLeft) {
+				insertionObjChange[i] = new dict{int->dict{int->dict{int->float}}}();
+				forall (v in numVehiclesRange) {
+					setInsertionCost(i, v);
+				}
+			}
+			forall (i in branchingStack.getKeys()) {
+				branchingStack.remove(i);
+			}
+			maxInsertionsToExplore = maxInsertionsHighLevel;
+		}
+		
+		if (numFails > maxFails) {
+			solver.fail();
+		}
+
+		forall (i in numVehiclesRange) {
+			updateCapacityLeftInRoute(i, -1);
+		}
+		//assert(isPositive(capacityLeftInRoute));
+
+		BranchingChoice bc = getMinVehicleMinDomainLeastConstrained();
+
+		//assert(bc != null);
+		if (bc.request == -1) {
+			return;
+		}
+		int request = bc.request;
+		int cvSucc = bc.cvSucc;
+		int ncvSucc = bc.ncvSucc;
+		branchingStack{(int)depth} = bc;
+
+		int cvv = getCriticalVertex(request);
+		int ncv = getCorrespondingVertex(cvv);
+		//assert(cvv != ncv);
+
+		//cout << "insertion for " << request << ": " << cvv << " -> " << cvSucc << ", " << ncv << " -> " << ncvSucc << endl;
+		//assert(servingVehicle[cvSucc].bound());
+		if (!solver.tryPost(servingVehicle[request] == servingVehicle[cvSucc])) {
+			solver.fail();
+		}
+		//assert(servingVehicle[ncvSucc].bound());
+		//assert(servingVehicle[ncvSucc].getValue() == servingVehicle[cvSucc].getValue());
+		if (!insertVertexIntoRoute(cvv, cvSucc)) {
+			if (optPhase) {
+				numFailsCvv++;
+			}
+			solver.fail();
+		}
+		if (!insertVertexIntoRoute(ncv, ncvSucc)) {
+			endFail = true;
+			if (optPhase) {
+				numFailsNcv++;
+			}
+			solver.fail();
+		}
+
+		updateCapacityLeftInRoute(servingVehicle[request].getValue(), request);
+		if (!isPositive(capacityLeftInRoute)) {
+			endFail = true;
+			if (optPhase) {
+				numFailsCapacity++;
+			}
+			solver.fail();
+		}
+		//assert(isPositive(capacityLeftInRoute));
+		
+		if (bestSolution != null) {
+			//assert(optPhase);
+			if (getDistanceObjective() >= getBestSolutionObjective()) { 
+				numFailsDist++;
+				//solver.fail();
+			}
+		}
+
+		customersLeft.delete(request);
+		int v = servingVehicle[cvSucc].getValue();
+
+		forall (i in customersLeft) {
+			if (insertionObjChange[i].hasKey(v)) {
+				insertionObjChange[i].remove(v);
+			}
+			setInsertionCost(i, v);
+		}
+		//cout << "endMakeMove" << endl;
+	}
+
+	void forbidMove() {
+		if (numFails > maxFails) {
+			solver.fail();
+		}
+		//cout << "forbidMove" << endl;
+		depth := depth+1;
+
+		//cout << 0 << endl;
+		if(branchingStack.getSize() == 0 && failChoice == null) {
+			solver.fail();
+		}
+		if (branchingStack.getSize() > 0) {
+			int index = branchingStack.getKeys().getUp();
+			//cout << "i: " << index << " " << depth << endl;
+			//assert(index <= depth);
+			BranchingChoice temp = branchingStack{index};
+			if (failChoice == null) {
+				if (index < depth) solver.fail();
+				failChoice = temp;
+				failChoiceDepth = 0;
+				branchingStack.remove(index);
+			}
+			//assert(failChoice != null);
+			//assert(branchingStack.getSize() == 0 || branchingStack.getKeys().getUp() <= depth);
+			if (index == depth) {
+				cSuccToForbiddenSet[failChoice.request, failChoice.cvSucc].insert(failChoice.ncvSucc);
+				forall (i in customersLeft) {
+					if (insertionObjChange[i].hasKey(temp.vehicle)) {
+						insertionObjChange[i].remove(temp.vehicle);
+					}
+					setInsertionCost(i, temp.vehicle);
+				}
+			}
+		}
+		//assert(failChoice != null);
+
+		int request = failChoice.request;
+		int cvi = failChoice.cvSucc;
+		int ncvi = failChoice.ncvSucc;
+		int cvv = getCriticalVertex(request);
+		int ncv = getCorrespondingVertex(cvv);
+		int v = failChoice.vehicle;
+		failChoice = null;
+		failChoiceDepth = 0;
+
+		trail{set{int}} forbiddenSet = cSuccToForbiddenSet[request, cvi];
+		//cout << "forbid for " << request << ", " << cvi << ": " << ncvi << endl;
+		forbiddenSet.insert(ncvi);
+		numFails++;
+		//cout << "endForbidMove" << endl;
+	}
+
+	bool overlap(int i, int j) {
+		if (timeWindowStart[i] >= timeWindowEnd[j] || timeWindowEnd[i] <= timeWindowStart[j]) {
+			return false;
+		}
+		return true;
+	}
+
+	float getRelatedness(DarpSolution s, int i, int j, int k) 
+	{
+		int [] succ = s.getSucc();
+		int [] pred = s.getPred();
+		//assert(isPickup(i));
+		//assert(isPickup(j));
+		int iCritical = getCriticalVertex(i);
+		int jCritical = getCriticalVertex(j);
+		int iNonCritical = getCorrespondingVertex(iCritical);
+		int jNonCritical = getCorrespondingVertex(jCritical);
+		//int sameVehicleFactor = s.getServingVehicle()[i] == s.getServingVehicle()[j]?1:k;
+		float timesChosenFactor = totalChosen == 0. ? 0. : (1.*((float)numTimesChosen[j]/(float)totalChosen));
+		return 1/(getTravelTime(iCritical, jCritical) + getTravelTime(iNonCritical, jNonCritical)+timesChosenFactor);
+	}
+
+	float getRelatedness(DarpSolution s, set{int} relaxedCustomers, int j, int k) {
+		float temp = 0;
+		forall (i in relaxedCustomers) {
+			temp += getRelatedness(s, i, j, k);
+		}
+		return temp/relaxedCustomers.getSize();
+	}
+
+	set{int} selectCustomersOnCauses(DarpSolution s, int numCustomersToRelax) {
+		dict{int->set{int}} graph;
+		set{int} fixedCustomers = collect(i in 1..numRequests)(i);
+		set{int} relaxedCustomers();
+		select(c in numRequestsRange) {
+			relaxedCustomers.insert(c);
+			fixedCustomers.delete(c);
+		}
+		return relaxedCustomers;
+	}
+
+	set{int} selectCustomersOnRelatedness(DarpSolution s, int numCustomersToRelax, int D) {
+		set{int} fixedCustomers = collect(i in 1..numRequests)(i);
+		set{int} relaxedCustomers();
+		select(c in numRequestsRange) {
+			relaxedCustomers.insert(c);
+			fixedCustomers.delete(c);
+		}
+		//UniformDistribution udist(1..numRequests);
+
+		forall (i in 2..numCustomersToRelax) {
+			select (selectedCustomer in fixedCustomers) {
+				numTimesChosen[selectedCustomer]++;
+				totalChosen++;
+				relaxedCustomers.insert(selectedCustomer);
+				fixedCustomers.delete(selectedCustomer);
+			}
+		}
+		//assert(relaxedCustomers.getSize() == numCustomersToRelax);
+		return relaxedCustomers;
+	}
+
+	set{int} selectCustomersOnTimeWindows(DarpSolution s, int numCustomersToRelax, int D) {
+		int time = mainDist.get(500);
+		set{int} relaxedCustomers();
+		for (int i=1; i<numRequests && relaxedCustomers.getSize() < numCustomersToRelax; ++i) {
+			int cvv = getCriticalVertex(i);
+			if (timeWindowStart[cvv] >= time && timeWindowStart[cvv] <= time+D) {
+				relaxedCustomers.insert(i);
+			}
+		}
+		return relaxedCustomers;
+	}
+
+	expr<CP>{float} getArrivalTime(int vertex, int successor) {
+		//assert(isCustomerVertex(vertex) || isBeginDepot(vertex));
+		float dist = (travelTimeMatrix[vertex, successor]);
+		if (isBeginDepot(vertex)) {
+			return servingTime[vertex]+dist;
+		}
+		else {
+			return servingTime[vertex]+servingDuration[vertex]+dist;
+		}
+	}
+
+	float getArrivalTimeValue(int vertex, int successor, bool getMin) {
+		//assert(isCustomerVertex(vertex) || isBeginDepot(vertex));
+		if (isBeginDepot(vertex)) {
+			if (getMin) {
+				return servingTime[vertex].getMin()+(travelTimeMatrix[vertex, successor]);
+			}
+			else {
+				return servingTime[vertex].getMax()+(travelTimeMatrix[vertex, successor]);
+			}
+		}
+		if (getMin) {
+			return servingTime[vertex].getMin()+servingDuration[vertex]+(travelTimeMatrix[vertex, successor]);
+		}
+		else {
+			return servingTime[vertex].getMax()+servingDuration[vertex]+(travelTimeMatrix[vertex, successor]);
+		}
+	}
+
+	float getDistanceObjective() {
+		float routeLength = 0;
+		forall (v in numVehiclesRange) {
+			int begin = getBeginDepot(v);
+			int end = getEndDepot(v);
+			int i = begin;
+			while (i != end) {
+				routeLength += travelTimeMatrix[i, (int)succ[i]];
+				i = succ[i];
+			}
+		}
+		return routeLength;
+	}
+
+	float getDistanceObjective(DarpSolution s) {
+		float routeLength = 0;
+		int [] solSucc = s.getSucc();
+		forall (v in numVehiclesRange) {
+			int begin = getBeginDepot(v);
+			int end = getEndDepot(v);
+			int i = begin;
+			//assert(solSucc[i] != i);
+			while (i != end) {
+				//assert(solSucc[i] != i);
+				routeLength += travelTimeMatrix[i, solSucc[i]];
+				i = solSucc[i];
+			}
+		}
+		return routeLength;
+	}
+
+	// Getters 
+	int getVehicleOfDepot(int i) {
+		//assert(isDepot(i));
+		if (i <= numVars-numVehicles) {
+			return i-2*numRequests;
+		}
+		else {
+			return i-(2*numRequests+numVehicles);
+		}
+	}
+	int getCorrespondingPickup(int i) {
+		//assert(isDelivery(i));
+		return i-numRequests;
+	}
+	int getCorrespondingDelivery(int i) {
+		//assert(isPickup(i));
+		return i+numRequests;
+	}
+	int getCorrespondingVertex(int i) {
+		//assert(isCustomerVertex(i));
+		if (isPickup(i)) {
+			return getCorrespondingDelivery(i);
+		}
+		else {
+			return getCorrespondingPickup(i);
+		}
+	}
+	int getPickup(int i) {
+		//assert(isCustomerVertex(i));
+		if (isPickup(i)) {
+			return i;
+		}
+		else {
+			return i-numRequests;
+		}
+	}
+	int getCriticalVertex(int request) {
+		//assert(isPickup(request));
+		if (timeWindowStart[request] > 0 || timeWindowEnd[request] < timeHorizon) {
+			return request;
+		}
+		else {
+			//assert(timeWindowStart[getCorrespondingDelivery(request)] > 0 || timeWindowEnd[getCorrespondingDelivery(request)] < timeHorizon);
+			return getCorrespondingDelivery(request);
+		}
+	}
+	int getBeginDepot(int i) { assert(isVehicle(i)); return 2*numRequests+i; }
+	int getEndDepot(int i) { assert(isVehicle(i)); return numVars-numVehicles+i; }
+
+	// Variable getters
+	bool getDone() { return done; }
+	int getNumVars() { return numVars; }
+	var<CP>{int} [] getServingVehicle() { return servingVehicle; }
+	var<CP>{float} [] getServingTime() { return servingTime; }
+	float [] getServingDuration() { return servingDuration; }
+	trail{int} [] getSucc() { return succ; }
+	trail{int} [] getPred() { return pred; }
+	trail{int} [] getCapacityLeftInRoute() { return capacityLeftInRoute; }
+	int getNumRequests() { return numRequests; }
+	int getNumVehicles() { return numVehicles; }
+	int getVehicleCapacity() { return vehicleCapacity; }
+	int getMaxRideTime() { return maxRideTime; }
+	float [,] getTravelTimeMatrix() { return travelTimeMatrix; }
+	float getTravelTime(int i, int j) { return (travelTimeMatrix[i, j]); }
+	float getBestSolutionObjective() { return bestSolutionObjective; }
+	DarpSolution getBestSolution() { return bestSolution; }
+	Solver<CP> getSolver() { return solver; }
+	DarpMap getDarpMap() { return darpMap; }
+	trail{int} getDepth() { return depth; }
+	int getNumFails() { return numFails; }
+	int getMaxFails() { return maxFails; }
+	int getNumOptIterations() { return numOptIterations; }
+	int getNumFailsCvv() { return numFailsCvv; }
+	int getNumFailsNcv() { return numFailsNcv; }
+	int getNumFailsCapacity() { return numFailsCapacity; }
+	int getNumFailsDist() { return numFailsDist; }
+
+	bool isVehicle(int i) { assert(i >= 1); return i <= numVehicles; }
+	bool isDepot(int i) { assert(i >= 1); assert(i <= numVars); return i > 2*numRequests; }
+	bool isPickup(int i) { assert(i >= 1); assert(i <= numVars); return i<=numRequests; }
+	bool isDelivery(int i) { assert(i >= 1); assert(i <= numVars); return i>numRequests && i<=2*numRequests; }
+	bool isCustomerVertex(int i) { assert(i >= 1); assert(i <= numVars); return i<=2*numRequests; }
+	bool isCriticalVertex(int vertex) { assert(isCustomerVertex(vertex)); return timeWindowStart[vertex] > 0 || timeWindowEnd[vertex] < 1440; }
+	bool isBeginDepot(int i) { assert(i >= 1); assert(i <= numVars); return i > 2*numRequests && i <= numVars-numVehicles; }
+	bool isEndDepot(int i) { assert(i >= 1); assert(i <= numVars); return i > numVars-numVehicles; }
+	bool getOptPhase() { return optPhase; }
+	trail{set{int}} getCustomersLeft() { return customersLeft; }
+
+	// Setters
+	void resetNumOptIterations() { numOptIterations = 0; }
+	void incNumOptIterations() { numOptIterations++; }
+	void setDone(bool value) { done = value; }
+	void setDepth(int v) { depth := v; }
+	void resetNumFails() { numFails = 0; }
+	void setMaxFails(int value) { maxFails = value; }
+	void setMaxInsertions(int v) { maxInsertionsToExplore = v; }
+	void setBestSolution(DarpSolution s) {
+		bestSolution = s;
+		bestSolutionObjective = getDistanceObjective(s);
+	}
+	void setOptPhase(bool v) { optPhase = v; }
+	
+	// Property Checkers
+	bool OkCapacityLeftInRoute(int v) {
+		int begin = getBeginDepot(v);
+		int end = getEndDepot(v);
+		int start = succ[begin];
+		int capacity = vehicleCapacity;
+		while (start != end) {
+			//assert(isPickup(start) || isDelivery(start));
+			capacity -= vertexLoadChange[start];
+			if (capacity != capacityLeftInRoute[start]) {
+				return false;
+			}
+			start = succ[start];
+		}
+		return true;
+	}
+
+	bool OkCapacityLeftInRoute() {
+		forall (v in numVehiclesRange) {
+			int begin = getBeginDepot(v);
+			int end = getEndDepot(v);
+			int start = succ[begin];
+			int capacity = vehicleCapacity;
+			while (start != end) {
+				//assert(isPickup(start) || isDelivery(start));
+				capacity -= vertexLoadChange[start];
+				if (capacity != capacityLeftInRoute[start]) {
+					return false;
+				}
+				start = succ[start];
+			}
+		}
+		return true;
+	}
+
+	bool OkSuccPred() {
+		forall (i in numVarsRange) {
+			if (pred[(int)succ[i]] != i) {
+				cout << "fail 1: " << i << ", " << succ[i] << ", " << pred[(int)succ[i]] << endl;
+				return false;
+			}
+			if (succ[(int)pred[i]] != i) {
+				cout << "fail 2: " << i << ", " << pred[i] << ", " << succ[(int)pred[i]] << endl;
+				return false;
+			}
+		}
+		forall (i in numVehiclesRange) {
+			if (pred[getBeginDepot(i)] != getEndDepot(i)) {
+				return false;
+			}
+			if (succ[getEndDepot(i)] != getBeginDepot(i)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool isInRoute(int i) {
+		var<CP>{int} sv = servingVehicle[i];
+		//assert(sv.bound());
+		//assert(succ[i] != i);
+		//assert(pred[i] != i);
+		int begin = getBeginDepot(sv.getValue());
+		int end = getBeginDepot(sv.getValue());
+		int j = succ[begin];
+		bool encountered = false;
+		while (j != end) {
+			if (j == i) {
+				return true;
+			}
+			j = succ[j];
+		}
+		return false;
+	}
+
+	bool OkSolution() {
+		forall (v in numVehiclesRange) {
+			trail{int} [] succ = getSucc();
+			int begin = getBeginDepot(v);
+			int end = getEndDepot(v);
+			int i=succ[begin];
+			while (i != end) {
+				if (servingTime[i].getValue()+servingDuration[i]+getTravelTime(i, succ[i]) > servingTime[(int)succ[i]].getValue()) 
+				{
+					return false;
+				}
+				i = succ[i];
+			}
+		}
+		forall (i in 1..numRequests) {
+			if (servingTime[i+numRequests].getValue()-(servingTime[i].getValue()+servingDuration[i]) > maxRideTime) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	string routeServingTimesToString() {
+		string s = "";
+		forall (v in numVehiclesRange) {
+			trail{int} [] succ = getSucc();
+			int begin = getBeginDepot(v);
+			int end = getEndDepot(v);
+			int i=begin;
+			while (true) {
+				s += "(" + IntToString(i) + ", " + FloatToString(servingTime[i].getMin()) + ") -> ";
+				if (i == end) { break; }
+				i = succ[i];
+			}
+			if (v < numVehiclesRange.getUp()) {
+				s += "\n";
+			}
+		}
+		return s;
+	}
+
+	string routeToString(int v) {
+		//assert(isVehicle(v));
+		int i = getBeginDepot(v);
+		int end = getEndDepot(v);
+		string s = "";
+		s += IntToString(v) + ": ";
+		while (true) {
+			s += IntToString(i);
+			if (i == end) {
+				break;
+			}
+			s += " -> ";
+			i = succ[i];
+		}
+		return s;
+	}
+
+	string routesToString() {
+		string s = "";
+		forall (v in numVehiclesRange) {
+			s += routeToString(v);
+			if (v != numVehiclesRange.getUp()) {
+				s += "\n";
+			}
+		}
+		return s;
+	}
+}
+
+function float lnsSolve(DarpCP darpCP, int timeLimit, int failFactor, int rangeLength, int D, int numIterationsPerNeighborhood) 
+{
+	Solver<CP> cp = darpCP.getSolver();
+	//cp.setSearchController(BDSController(cp));
+
+	int numRequests = darpCP.getNumRequests();
+	int numVehicles = darpCP.getNumVehicles();
+	int numVars = darpCP.getNumVars();
+
+	trail{set{int}} customersLeft = darpCP.getCustomersLeft();
+	trail{int} [] succ = darpCP.getSucc();
+	trail{int} [] pred = darpCP.getPred();
+	var<CP>{float} [] servingTime = darpCP.getServingTime();
+	var<CP>{int} [] servingVehicle = darpCP.getServingVehicle();
+	float [] servingDuration = darpCP.getServingDuration();
+	RestartStrategy rs;
+	float minObj = System.getMAXINT();
+	float minminObj = System.getMAXINT();
+	UniformDistribution udist(1..1000);
+	int lastBestIteration = 0;
+	int numIterations = 0;
+	DarpSolution bestSol;
+
+	int numPrinted = 1;
+	int startTime = System.getCPUTime();
+	for (int k=2; k<=numRequests/2-rangeLength; ++k) {
+		if (k == numRequests/2-rangeLength) {
+			k = 2;
+		}
+		if ((System.getCPUTime()-startTime)/1000 > timeLimit) {
+			break;
+		}
+		for (int n=k; n<k+rangeLength; ++n) {
+			if ((System.getCPUTime()-startTime)/1000 > timeLimit) {
+				break;
+			}
+			darpCP.resetNumFails();
+			//darpCP.setMaxFails(n*failFactor*100);
+			darpCP.setMaxFails(System.getMAXINT());
+			forall (i in 1..numIterationsPerNeighborhood) {
+				if (!cp.isFeasible()) {
+					break;
+				}
+				if ((System.getCPUTime()-startTime)/1000 > timeLimit) {
+					break;
+				}
+				if ((System.getCPUTime()-startTime)/1000 >= numPrinted*60 && cp.getSolution() != null) {
+					//cout << "obj " << numPrinted << " " << minminObj << endl;
+					numPrinted++;
+					break;
+				}
+				if (darpCP.getNumFails() > darpCP.getMaxFails()) {
+					break;
+				}
+				forall (i in 1..numRequests) {
+					customersLeft.insert(i);
+				}
+				solve<cp> {
+					darpCP.postConstraints();
+					darpCP.setDepth(0);
+					if (darpCP.getBestSolutionObjective() < System.getMAXINT()) {
+						darpCP.incNumOptIterations();
+						DarpSolution s = darpCP.getBestSolution();
+						//assert(s != null);
+						with atomic(cp) {
+							set{int} relaxedCustomers = darpCP.selectCustomersOnRelatedness(s, n, D);
+							//cout << "n: " << n << endl;
+							int pickup;
+							int delivery;
+							int [] solSucc = all(i in s.getSucc().getRange())(s.getSucc()[i]);
+							int [] solPred = all(i in s.getPred().getRange())(s.getPred()[i]);
+							int [] solServingVehicle = s.getServingVehicle();
+							customersLeft.reset();
+							forall (r in relaxedCustomers) {
+								solPred[solSucc[r]] = solPred[r];
+								solSucc[solPred[r]] = solSucc[r];
+								solPred[solSucc[r+numRequests]] = solPred[r+numRequests];
+								solSucc[solPred[r+numRequests]] = solSucc[r+numRequests];
+								solSucc[r] = r;
+								solPred[r] = r;
+								solSucc[r+numRequests] = r+numRequests;
+								solPred[r+numRequests] = r+numRequests;
+								succ[r] := r;
+								pred[r] := r;
+								succ[r+numRequests] := r+numRequests;
+								pred[r+numRequests] := r+numRequests;
+								customersLeft.insert(r);
+							}
+							forall (v in 1..numVehicles) {
+								int begin = darpCP.getBeginDepot(v);
+								int end = darpCP.getEndDepot(v);
+								int i = begin;
+								while (i != end) {
+									//assert(solSucc[solPred[i]] == i);
+									//assert(solPred[solSucc[i]] == i);
+									succ[i] := solSucc[i];
+									pred[i] := solPred[i];
+
+									if (!darpCP.isBeginDepot(i)) {
+										cp.post(darpCP.getArrivalTime(solPred[i], i) <= servingTime[i]);
+									}
+									if (!darpCP.isEndDepot(i)) {
+										cp.post(darpCP.getArrivalTime(i, solSucc[i]) <= servingTime[solSucc[i]]);
+									}
+									cp.post(servingVehicle[i] == solServingVehicle[i]);
+									i = solSucc[i];
+								}
+								pred[end] := solPred[i];
+								darpCP.updateCapacityLeftInRoute(v, -1);
+							}
+							//assert(darpCP.OkSuccPred());
+						}
+					}
+					else {
+						//assert(!darpCP.getOptPhase());
+						i = 1;
+						darpCP.resetNumOptIterations();
+						darpCP.setMaxFails(max(1000, darpCP.getNumVehicles()*200));
+					}
+					//rs.setInit();
+				}
+				using {
+					//cout << "Start: " << endl;
+					++numIterations;
+					while (customersLeft.getSize() > 0) {
+						try<cp> darpCP.makeMove(); | darpCP.forbidMove();
+					}
+					forall (i in succ.getRange()) {
+						//assert(succ[i] != i);
+					}
+					float temp = darpCP.getDistanceObjective();
+					if (temp < minObj || udist.get(100) <= D) {
+						minObj = temp;
+						//cout << "newObj: " << minObj << endl;
+						if (temp < minminObj) {
+							minminObj = temp;
+							lastBestIteration = numIterations;
+							bestSol = new DarpSolution(darpCP);
+						}
+					}
+					else {
+						cp.exit();
+					}
+					darpCP.setBestSolution(new DarpSolution(darpCP));
+					forall (i in 1..darpCP.getNumVehicles()) {
+						darpCP.updateCapacityLeftInRoute(i, -1);
+					}
+					if (/*!darpCP.OkSolution() || */!cp.isFeasible()) {
+						cout << "!!!!" << false << endl;
+						//assert(false);
+					}
+					//cout << darpCP.getCapacityLeftInRoute() << endl;
+					
+					//assert(isPositive(darpCP.getCapacityLeftInRoute()));
+					int cnt = 0;
+					forall (v in 1..numVehicles) {
+						int index = darpCP.getBeginDepot(v);
+						while (index != darpCP.getEndDepot(v)) {
+							++cnt;
+							float a = servingTime[index].getMin()+servingDuration[index]+darpCP.getTravelTime(index, succ[index]);
+							float b = servingTime[(int)succ[index]].getMin();
+							//assert(a < b || abs(a-b) <= 0.001);
+							index = darpCP.getSucc()[index];
+						}
+						++cnt;
+						//assert(index == darpCP.getEndDepot(v));
+					}
+					//assert(cnt == numVars);
+					// */
+					//cout << darpCP.routeServingTimesToString() << endl;
+					//cout << "routeLength: " << darpCP.getDistanceObjective() << endl;
+				}
+				onRestart {
+					cp.exit();
+					if (!rs.restart()) {
+						cp.exit();
+					}
+				}
+				if (cp.getSolution() != null) {
+					if (!darpCP.getOptPhase()) {
+						//cout << "initObj: " << minObj << endl;
+					}
+					darpCP.setOptPhase(true);
+					darpCP.setMaxFails(n*10*100);
+					//cout << "NumFails: " << cp.getNFail() << ", " << minObj << ", " << darpCP.getBestSolutionObjective() << endl;
+				}
+			}
+		}
+	}
+	if (cp.getSolution() != null) {
+		//cout << "finalObj: " << minminObj << endl;
+		return minminObj;
+	}
+	else {
+		//cout << "finalObj: -1" << endl;
+		return -1.;
+	}
+	//cout << "feasible: " << cp.isFeasible() << endl;
+	//cout << "numFailsCvv: " << darpCP.getNumFailsCvv() << endl;
+	//cout << "numFailsNcv: " << darpCP.getNumFailsNcv() << endl;
+	//cout << "numFailsDist: " << darpCP.getNumFailsDist() << endl;
+	//cout << "numFailsCapacity: " << darpCP.getNumFailsCapacity() << endl;
+}
+
+if (System.argc() < 10)
+{
+	cout << "Usage: comet <filename> <time limit> <max allowed fail factor> <range length> <maxInsertionsHighLevel> <D> <numIterationsPerNeighborhood> <numRepeats> -r" << endl;
+	System.exit(1);
+}
+string inputFile = System.getArgs()[2];
+int timeLimit = System.getArgs()[3].toInt();
+int failFactor = System.getArgs()[4].toInt(); // normal is 10
+int rangeLength = System.getArgs()[5].toInt();
+int maxInsertionsHighLevel = System.getArgs()[6].toInt(); // normal is 4
+int D = System.getArgs()[7].toInt();
+int numIterationsPerNeighborhood = System.getArgs()[8].toInt();
+int numRepeats = System.getArgs()[9].toInt();
+
+cout << "Input File: " << inputFile << endl;
+cout << "Time Limit: " << timeLimit << endl;
+cout << "Args array: " << System.getArgs() << endl;
+
+EuclideanDarp darpMap(inputFile);
+cout << "numRequests: " << darpMap.getNumRequests() << endl;
+cout << "numVehicles: " << darpMap.getNumVehicles() << endl;
+
+float obj = System.getMAXINT();
+forall (i in 1..numRepeats) {
+	Solver<CP> cp();
+	DarpCP darpCP(cp, darpMap, maxInsertionsHighLevel);
+	float a = lnsSolve(darpCP, timeLimit, failFactor, rangeLength, D, numIterationsPerNeighborhood);
+	if (a != -1. && a < obj) {
+		obj = a;
+	}
+}
+cout << "finalObj: " << obj << endl;

@@ -1,0 +1,2057 @@
+{
+  "version" : "0.3",
+  "id" : 1769376238,
+  "name" : "PTP-RAND-3_96_5_96",
+  "coordType" : "Eucl",
+  "sameVehicleBackward" : false,
+  "maxWaitTime" : "00h30",
+  "places" : [ {
+    "id" : 0,
+    "lat" : -2.9537414007094775,
+    "long" : 6.485737373803469,
+    "category" : 0
+  }, {
+    "id" : 1,
+    "lat" : 6.7314370088024535,
+    "long" : 3.1490123406054535,
+    "category" : 0
+  }, {
+    "id" : 2,
+    "lat" : -4.930124807223469,
+    "long" : 7.21506975322765,
+    "category" : 0
+  }, {
+    "id" : 3,
+    "lat" : -8.97420473578334,
+    "long" : 0.6480196872987651,
+    "category" : 0
+  }, {
+    "id" : 4,
+    "lat" : -5.711463119904168,
+    "long" : 1.717717362775193,
+    "category" : 0
+  }, {
+    "id" : 5,
+    "lat" : -7.1691432568524425,
+    "long" : 2.9257868334738535,
+    "category" : 0
+  }, {
+    "id" : 6,
+    "lat" : 1.8583644894864315,
+    "long" : -3.6308154088262543,
+    "category" : 0
+  }, {
+    "id" : 7,
+    "lat" : 2.995542378102727,
+    "long" : -5.025490099293971,
+    "category" : 0
+  }, {
+    "id" : 8,
+    "lat" : 1.7022185635368052,
+    "long" : 4.702919445115972,
+    "category" : 0
+  }, {
+    "id" : 9,
+    "lat" : 5.658942353834579,
+    "long" : 1.77219934822101,
+    "category" : 0
+  }, {
+    "id" : 10,
+    "lat" : 4.42437725901682,
+    "long" : -3.684203203039339,
+    "category" : 0
+  }, {
+    "id" : 11,
+    "lat" : 3.0443083129183943,
+    "long" : 5.2254016564047365,
+    "category" : 0
+  }, {
+    "id" : 12,
+    "lat" : 2.5087283442874364,
+    "long" : -4.593834980381861,
+    "category" : 0
+  }, {
+    "id" : 13,
+    "lat" : -6.976990066191142,
+    "long" : 1.7671583362928913,
+    "category" : 0
+  }, {
+    "id" : 14,
+    "lat" : 2.62761300330449,
+    "long" : -4.174407527012914,
+    "category" : 0
+  }, {
+    "id" : 15,
+    "lat" : -0.3120328391292574,
+    "long" : 0.9913057051421499,
+    "category" : 0
+  }, {
+    "id" : 16,
+    "lat" : 0.4402034888434034,
+    "long" : -9.329490678626819,
+    "category" : 0
+  }, {
+    "id" : 17,
+    "lat" : -3.7624054159265925,
+    "long" : -5.814926638083976,
+    "category" : 0
+  }, {
+    "id" : 18,
+    "lat" : -0.938535996218426,
+    "long" : -9.199540009664593,
+    "category" : 0
+  }, {
+    "id" : 19,
+    "lat" : -7.914372940593727,
+    "long" : -4.126853798984001,
+    "category" : 0
+  }, {
+    "id" : 20,
+    "lat" : 0.5998379073870915,
+    "long" : -2.0625927639395774,
+    "category" : 0
+  }, {
+    "id" : 21,
+    "lat" : -2.782817942779785,
+    "long" : 8.786823183851116,
+    "category" : 0
+  }, {
+    "id" : 22,
+    "lat" : 0.8403094808626512,
+    "long" : 5.6073852079381,
+    "category" : 0
+  }, {
+    "id" : 23,
+    "lat" : -4.38814358094317,
+    "long" : -6.809334402946031,
+    "category" : 0
+  }, {
+    "id" : 24,
+    "lat" : -3.7437613797779608,
+    "long" : -1.7551822498130445,
+    "category" : 0
+  }, {
+    "id" : 25,
+    "lat" : 0.43976480220780856,
+    "long" : 1.558365589723804,
+    "category" : 0
+  }, {
+    "id" : 26,
+    "lat" : 4.340686534226384,
+    "long" : 2.108196468524714,
+    "category" : 0
+  }, {
+    "id" : 27,
+    "lat" : 8.09113336608161,
+    "long" : -4.568050856075197,
+    "category" : 0
+  }, {
+    "id" : 28,
+    "lat" : 1.2953008831919672,
+    "long" : 8.608798733150813,
+    "category" : 0
+  }, {
+    "id" : 29,
+    "lat" : 2.841579747332995,
+    "long" : -2.0063680617405457,
+    "category" : 0
+  }, {
+    "id" : 30,
+    "lat" : -3.178764778600103,
+    "long" : -4.395569073614028,
+    "category" : 0
+  }, {
+    "id" : 31,
+    "lat" : -3.7416231213705946,
+    "long" : 4.755182972122627,
+    "category" : 0
+  }, {
+    "id" : 32,
+    "lat" : 7.3422788947804305,
+    "long" : -4.285755951561171,
+    "category" : 0
+  }, {
+    "id" : 33,
+    "lat" : 3.015081104576697,
+    "long" : 8.915594554352978,
+    "category" : 0
+  }, {
+    "id" : 34,
+    "lat" : 2.9725282316448127,
+    "long" : 2.2543182078182826,
+    "category" : 0
+  }, {
+    "id" : 35,
+    "lat" : 1.73064242742809,
+    "long" : 4.998502699278201,
+    "category" : 0
+  }, {
+    "id" : 36,
+    "lat" : 2.7135843973258065,
+    "long" : -9.521262283070934,
+    "category" : 0
+  }, {
+    "id" : 37,
+    "lat" : 4.558982519084789,
+    "long" : 5.603110100806583,
+    "category" : 0
+  }, {
+    "id" : 38,
+    "lat" : 4.296666515449952,
+    "long" : -1.8884919999078036,
+    "category" : 0
+  }, {
+    "id" : 39,
+    "lat" : -6.685490022441172,
+    "long" : -3.103755594532387,
+    "category" : 0
+  }, {
+    "id" : 40,
+    "lat" : -6.545700960175454,
+    "long" : 0.13116464883426235,
+    "category" : 0
+  }, {
+    "id" : 41,
+    "lat" : 4.03895232909927,
+    "long" : -5.78237383242314,
+    "category" : 0
+  }, {
+    "id" : 42,
+    "lat" : 4.903559626026579,
+    "long" : 8.530406468049112,
+    "category" : 0
+  }, {
+    "id" : 43,
+    "lat" : 9.142041043206476,
+    "long" : -3.9680542479782077,
+    "category" : 0
+  }, {
+    "id" : 44,
+    "lat" : -3.3500531634408315,
+    "long" : 7.287479515475451,
+    "category" : 0
+  }, {
+    "id" : 45,
+    "lat" : 8.68639641804019,
+    "long" : 0.1610979313221764,
+    "category" : 0
+  }, {
+    "id" : 46,
+    "lat" : -6.94305263213977,
+    "long" : 4.212946700287295,
+    "category" : 0
+  }, {
+    "id" : 47,
+    "lat" : 2.642762574895601,
+    "long" : 5.382139320165787,
+    "category" : 0
+  }, {
+    "id" : 48,
+    "lat" : -8.381088606737103,
+    "long" : -3.7460930163861548,
+    "category" : 0
+  }, {
+    "id" : 49,
+    "lat" : 8.451760565098834,
+    "long" : 4.669956667540911,
+    "category" : 0
+  }, {
+    "id" : 50,
+    "lat" : -7.75483221924752,
+    "long" : 2.9238950627677442,
+    "category" : 0
+  }, {
+    "id" : 51,
+    "lat" : -9.664225814854632,
+    "long" : -0.47650302162701014,
+    "category" : 0
+  }, {
+    "id" : 52,
+    "lat" : 3.742787399586953,
+    "long" : -8.977896377154273,
+    "category" : 0
+  }, {
+    "id" : 53,
+    "lat" : -6.770175741781975,
+    "long" : -1.6391413927360072,
+    "category" : 0
+  }, {
+    "id" : 54,
+    "lat" : 3.2125610967922675,
+    "long" : 2.574922357268806,
+    "category" : 0
+  }, {
+    "id" : 55,
+    "lat" : -7.817650442387763,
+    "long" : -5.662387567081759,
+    "category" : 0
+  }, {
+    "id" : 56,
+    "lat" : 8.843511700335371,
+    "long" : 0.6965026556213174,
+    "category" : 0
+  }, {
+    "id" : 57,
+    "lat" : -8.616980008085047,
+    "long" : -2.9352141032875565,
+    "category" : 0
+  }, {
+    "id" : 58,
+    "lat" : -0.6494382281548999,
+    "long" : -3.0846303825602477,
+    "category" : 0
+  }, {
+    "id" : 59,
+    "lat" : -6.5928979611084575,
+    "long" : -5.634404077806879,
+    "category" : 0
+  }, {
+    "id" : 60,
+    "lat" : -1.6266686951766884,
+    "long" : -8.797250897310754,
+    "category" : 0
+  }, {
+    "id" : 61,
+    "lat" : 8.702218992402678,
+    "long" : 3.601751104053424,
+    "category" : 0
+  }, {
+    "id" : 62,
+    "lat" : 1.7397816486239188,
+    "long" : 6.565406816946264,
+    "category" : 0
+  }, {
+    "id" : 63,
+    "lat" : 8.460168864244107,
+    "long" : 0.7432966621760874,
+    "category" : 0
+  }, {
+    "id" : 64,
+    "lat" : 5.995722694742781,
+    "long" : -6.248832301252973,
+    "category" : 0
+  }, {
+    "id" : 65,
+    "lat" : 4.383936126319052,
+    "long" : 6.943073851182815,
+    "category" : 0
+  }, {
+    "id" : 66,
+    "lat" : -0.29052358975736736,
+    "long" : -1.3939810988067052,
+    "category" : 0
+  }, {
+    "id" : 67,
+    "lat" : -6.42350874874382,
+    "long" : 7.61540217308246,
+    "category" : 0
+  }, {
+    "id" : 68,
+    "lat" : 3.1297627640587082,
+    "long" : -4.6082422628887265,
+    "category" : 0
+  }, {
+    "id" : 69,
+    "lat" : 6.6448483495092985,
+    "long" : 5.876858197502253,
+    "category" : 0
+  }, {
+    "id" : 70,
+    "lat" : -6.325970200399849,
+    "long" : 5.622358859621501,
+    "category" : 0
+  }, {
+    "id" : 71,
+    "lat" : -7.746819306705509,
+    "long" : 2.3414068977623312,
+    "category" : 0
+  }, {
+    "id" : 72,
+    "lat" : 2.133740404769325,
+    "long" : -7.258125529969923,
+    "category" : 0
+  }, {
+    "id" : 73,
+    "lat" : -8.862983574163136,
+    "long" : -3.895692923793304,
+    "category" : 0
+  }, {
+    "id" : 74,
+    "lat" : -9.245595084538301,
+    "long" : -0.6413385709347333,
+    "category" : 0
+  }, {
+    "id" : 75,
+    "lat" : -5.360821592334718,
+    "long" : -0.26086907889693056,
+    "category" : 0
+  }, {
+    "id" : 76,
+    "lat" : -8.66035729402289,
+    "long" : 1.929670736979811,
+    "category" : 0
+  }, {
+    "id" : 77,
+    "lat" : -4.792190261877322,
+    "long" : -8.22530199484024,
+    "category" : 0
+  }, {
+    "id" : 78,
+    "lat" : -6.009789773915249,
+    "long" : 4.486950523979279,
+    "category" : 0
+  }, {
+    "id" : 79,
+    "lat" : -1.4270370921828586,
+    "long" : 6.704614200592395,
+    "category" : 0
+  }, {
+    "id" : 80,
+    "lat" : 9.110220182248561,
+    "long" : -2.9312236420157536,
+    "category" : 0
+  }, {
+    "id" : 81,
+    "lat" : 1.4752259906162883,
+    "long" : 7.228124398303686,
+    "category" : 0
+  }, {
+    "id" : 82,
+    "lat" : -3.3164254912280247,
+    "long" : 0.5926532780526022,
+    "category" : 0
+  }, {
+    "id" : 83,
+    "lat" : -2.951697083008578,
+    "long" : 9.50790538637566,
+    "category" : 0
+  }, {
+    "id" : 84,
+    "lat" : 5.251408076609516,
+    "long" : 7.236834329104817,
+    "category" : 0
+  }, {
+    "id" : 85,
+    "lat" : 7.336602598746881,
+    "long" : 4.022802942125113,
+    "category" : 0
+  }, {
+    "id" : 86,
+    "lat" : -4.40784506960688,
+    "long" : -1.3131085468421595,
+    "category" : 0
+  }, {
+    "id" : 87,
+    "lat" : -8.266597095152486,
+    "long" : -3.11014229440459,
+    "category" : 0
+  }, {
+    "id" : 88,
+    "lat" : 0.8912499350329152,
+    "long" : -1.0408279222349883,
+    "category" : 0
+  }, {
+    "id" : 89,
+    "lat" : -3.333715927416543,
+    "long" : 3.0712250014744793,
+    "category" : 0
+  }, {
+    "id" : 90,
+    "lat" : -2.001568982862972,
+    "long" : 4.850925895184001,
+    "category" : 0
+  }, {
+    "id" : 91,
+    "lat" : -8.540304809141237,
+    "long" : 2.5012402043059163,
+    "category" : 0
+  }, {
+    "id" : 92,
+    "lat" : 0.5195992330856671,
+    "long" : -8.686546476375971,
+    "category" : 0
+  }, {
+    "id" : 93,
+    "lat" : -2.743503458788666,
+    "long" : 4.684510794981661,
+    "category" : 0
+  }, {
+    "id" : 94,
+    "lat" : -4.293590443465764,
+    "long" : 2.664829284674185,
+    "category" : 0
+  }, {
+    "id" : 95,
+    "lat" : -0.013639157795388672,
+    "long" : -6.051499344928624,
+    "category" : 0
+  }, {
+    "id" : 96,
+    "lat" : -1.4008575058191564,
+    "long" : -4.646843335199854,
+    "category" : 1
+  }, {
+    "id" : 97,
+    "lat" : -1.4425150866825311,
+    "long" : -2.60708081915496,
+    "category" : 1
+  }, {
+    "id" : 98,
+    "lat" : -3.3026496649684813,
+    "long" : -7.311137740719074,
+    "category" : 1
+  }, {
+    "id" : 99,
+    "lat" : 2.1050954346107376,
+    "long" : -8.731843924614944,
+    "category" : 1
+  }, {
+    "id" : 100,
+    "lat" : 4.7423784410182535,
+    "long" : 5.549747724939744,
+    "category" : 1
+  }, {
+    "id" : 101,
+    "lat" : 1.4780524591652526,
+    "long" : -0.07972558194468123,
+    "category" : 2
+  }, {
+    "id" : 102,
+    "lat" : -2.962244877501678,
+    "long" : 3.1606542467039804,
+    "category" : 2
+  }, {
+    "id" : 103,
+    "lat" : -5.130548384779836,
+    "long" : -2.776558317708299,
+    "category" : 2
+  }, {
+    "id" : 104,
+    "lat" : 7.309163024536657,
+    "long" : -3.2382951642420537,
+    "category" : 2
+  }, {
+    "id" : 105,
+    "lat" : -2.006258129689383,
+    "long" : 1.060996189965234,
+    "category" : 2
+  }, {
+    "id" : 106,
+    "lat" : 3.919207029911397,
+    "long" : 2.073125475356828,
+    "category" : 2
+  }, {
+    "id" : 107,
+    "lat" : 8.991256855123082,
+    "long" : -2.7169880124927994,
+    "category" : 2
+  }, {
+    "id" : 108,
+    "lat" : 7.929589030179002,
+    "long" : -4.803448961710368,
+    "category" : 2
+  }, {
+    "id" : 109,
+    "lat" : -5.110497771269244,
+    "long" : -4.882468578596039,
+    "category" : 2
+  }, {
+    "id" : 110,
+    "lat" : -2.6804092451810653,
+    "long" : 1.9400381591655518,
+    "category" : 2
+  }, {
+    "id" : 111,
+    "lat" : -7.28796771337197,
+    "long" : 0.720258665516036,
+    "category" : 2
+  }, {
+    "id" : 112,
+    "lat" : -4.045457425551663,
+    "long" : -8.646938659149264,
+    "category" : 2
+  }, {
+    "id" : 113,
+    "lat" : -7.49527699527525,
+    "long" : 3.5692998417454076,
+    "category" : 2
+  }, {
+    "id" : 114,
+    "lat" : -5.650018772870337,
+    "long" : -6.684771694183094,
+    "category" : 2
+  }, {
+    "id" : 115,
+    "lat" : 6.848575651122181,
+    "long" : -6.454556184622133,
+    "category" : 2
+  }, {
+    "id" : 116,
+    "lat" : -7.367426512631016,
+    "long" : -3.0444532142752205,
+    "category" : 2
+  }, {
+    "id" : 117,
+    "lat" : 4.443843509637331,
+    "long" : 8.383237399243692,
+    "category" : 2
+  }, {
+    "id" : 118,
+    "lat" : -8.870021249296935,
+    "long" : 1.1200537833233981,
+    "category" : 2
+  }, {
+    "id" : 119,
+    "lat" : 8.526080015258541,
+    "long" : 0.8521145562864069,
+    "category" : 2
+  }, {
+    "id" : 120,
+    "lat" : -4.439297412374708,
+    "long" : -7.550057821868081,
+    "category" : 2
+  }, {
+    "id" : 121,
+    "lat" : -1.7166564082253988,
+    "long" : -2.2690868512657176,
+    "category" : 2
+  }, {
+    "id" : 122,
+    "lat" : 0.951957144102199,
+    "long" : -7.559454079699762,
+    "category" : 2
+  }, {
+    "id" : 123,
+    "lat" : -6.99842065537506,
+    "long" : -2.7678594757831894,
+    "category" : 2
+  }, {
+    "id" : 124,
+    "lat" : -1.1060840344996126,
+    "long" : 3.4549296725119865,
+    "category" : 2
+  }, {
+    "id" : 125,
+    "lat" : -3.9254625322437975,
+    "long" : 5.105384686861864,
+    "category" : 2
+  }, {
+    "id" : 126,
+    "lat" : -6.221918363008236,
+    "long" : -6.678707081869502,
+    "category" : 2
+  }, {
+    "id" : 127,
+    "lat" : -1.817653342805389,
+    "long" : 8.336374525678677,
+    "category" : 2
+  }, {
+    "id" : 128,
+    "lat" : 4.75318283807816,
+    "long" : 1.5697802440829896,
+    "category" : 2
+  }, {
+    "id" : 129,
+    "lat" : -4.823840303485257,
+    "long" : -4.951853249989861,
+    "category" : 2
+  }, {
+    "id" : 130,
+    "lat" : -0.8059040539404179,
+    "long" : -3.669882331701938,
+    "category" : 2
+  }, {
+    "id" : 131,
+    "lat" : 3.0412926630859087,
+    "long" : 4.227565000928709,
+    "category" : 2
+  }, {
+    "id" : 132,
+    "lat" : 6.084401205848059,
+    "long" : -3.7759842574395446,
+    "category" : 2
+  }, {
+    "id" : 133,
+    "lat" : -5.719083578325703,
+    "long" : 7.671472173656141,
+    "category" : 2
+  }, {
+    "id" : 134,
+    "lat" : 7.361210617653774,
+    "long" : -4.3493466114408275,
+    "category" : 2
+  }, {
+    "id" : 135,
+    "lat" : -1.4188709802230144,
+    "long" : -4.0287443215996115,
+    "category" : 2
+  }, {
+    "id" : 136,
+    "lat" : -5.8150989954765056,
+    "long" : -1.7275560513026362,
+    "category" : 2
+  }, {
+    "id" : 137,
+    "lat" : -8.908355662232939,
+    "long" : -0.5602528483046716,
+    "category" : 2
+  }, {
+    "id" : 138,
+    "lat" : -2.256035273620393,
+    "long" : -4.385980620084241,
+    "category" : 2
+  }, {
+    "id" : 139,
+    "lat" : 5.954707190421235,
+    "long" : 0.2168832228886386,
+    "category" : 2
+  }, {
+    "id" : 140,
+    "lat" : 6.28865916001079,
+    "long" : -0.8002377051186129,
+    "category" : 2
+  }, {
+    "id" : 141,
+    "lat" : -3.8528726991618703,
+    "long" : -9.038294507675007,
+    "category" : 2
+  }, {
+    "id" : 142,
+    "lat" : 4.836264616617121,
+    "long" : -4.707486192737521,
+    "category" : 2
+  }, {
+    "id" : 143,
+    "lat" : -3.6084996270659135,
+    "long" : 3.82729979638741,
+    "category" : 2
+  }, {
+    "id" : 144,
+    "lat" : 8.038790545653361,
+    "long" : -3.44250321512273,
+    "category" : 2
+  }, {
+    "id" : 145,
+    "lat" : 5.928989621028373,
+    "long" : -6.5536163896875195,
+    "category" : 2
+  }, {
+    "id" : 146,
+    "lat" : 5.3845378519391405,
+    "long" : -1.3502312698537253,
+    "category" : 2
+  }, {
+    "id" : 147,
+    "lat" : 0.8066489506045352,
+    "long" : 4.460819317086349,
+    "category" : 2
+  }, {
+    "id" : 148,
+    "lat" : -5.253708794019711,
+    "long" : -1.455566167228752,
+    "category" : 2
+  }, {
+    "id" : 149,
+    "lat" : -8.947661872769952,
+    "long" : -3.758086101071926,
+    "category" : 2
+  }, {
+    "id" : 150,
+    "lat" : -0.13211188948022953,
+    "long" : -3.883093153880359,
+    "category" : 2
+  }, {
+    "id" : 151,
+    "lat" : 0.2819075581282725,
+    "long" : 3.091006731543348,
+    "category" : 2
+  }, {
+    "id" : 152,
+    "lat" : 3.8423747683385616,
+    "long" : -7.7742405032657835,
+    "category" : 2
+  }, {
+    "id" : 153,
+    "lat" : 5.02126050971945,
+    "long" : -8.182259984897671,
+    "category" : 2
+  }, {
+    "id" : 154,
+    "lat" : 2.7472259223130364,
+    "long" : 2.9265062930634977,
+    "category" : 2
+  }, {
+    "id" : 155,
+    "lat" : -5.821911816334704,
+    "long" : 4.476529250773734,
+    "category" : 2
+  }, {
+    "id" : 156,
+    "lat" : 6.497870841746795,
+    "long" : 3.706935305737189,
+    "category" : 2
+  }, {
+    "id" : 157,
+    "lat" : -9.425361965033478,
+    "long" : 3.134764789456978,
+    "category" : 2
+  }, {
+    "id" : 158,
+    "lat" : 8.557640214444785,
+    "long" : -4.47354761268786,
+    "category" : 2
+  }, {
+    "id" : 159,
+    "lat" : 6.51668816898445,
+    "long" : 1.531306122710557,
+    "category" : 2
+  }, {
+    "id" : 160,
+    "lat" : 1.1327668087026734,
+    "long" : -1.6198597618440524,
+    "category" : 2
+  }, {
+    "id" : 161,
+    "lat" : 9.536611119071662,
+    "long" : -2.6077409483545817,
+    "category" : 2
+  }, {
+    "id" : 162,
+    "lat" : 1.2982683005027804,
+    "long" : -0.5205152882708876,
+    "category" : 2
+  }, {
+    "id" : 163,
+    "lat" : 0.8033004645469742,
+    "long" : 3.825851474598872,
+    "category" : 2
+  }, {
+    "id" : 164,
+    "lat" : 0.1830758246042809,
+    "long" : 5.433741016006563,
+    "category" : 2
+  }, {
+    "id" : 165,
+    "lat" : 8.973789220817718,
+    "long" : -3.5589423611743345,
+    "category" : 2
+  }, {
+    "id" : 166,
+    "lat" : -6.583857202446787,
+    "long" : 1.8768204408816564,
+    "category" : 2
+  }, {
+    "id" : 167,
+    "lat" : 0.9087171094555369,
+    "long" : -2.312192389381889,
+    "category" : 2
+  }, {
+    "id" : 168,
+    "lat" : -4.491030815627026,
+    "long" : 3.643397414226261,
+    "category" : 2
+  }, {
+    "id" : 169,
+    "lat" : 0.8727628800693573,
+    "long" : 9.802001365485276,
+    "category" : 2
+  }, {
+    "id" : 170,
+    "lat" : -4.66701103339037,
+    "long" : 1.8573182545944036,
+    "category" : 2
+  }, {
+    "id" : 171,
+    "lat" : 1.5825311850373722,
+    "long" : -3.0556031128328316,
+    "category" : 2
+  }, {
+    "id" : 172,
+    "lat" : -5.13373426400756,
+    "long" : 7.650429610524345,
+    "category" : 2
+  }, {
+    "id" : 173,
+    "lat" : 5.038424133060184,
+    "long" : 8.612930661611546,
+    "category" : 2
+  }, {
+    "id" : 174,
+    "lat" : 7.800883993587859,
+    "long" : -2.203902537777252,
+    "category" : 2
+  }, {
+    "id" : 175,
+    "lat" : -1.9314705440178226,
+    "long" : 7.915168279515234,
+    "category" : 2
+  }, {
+    "id" : 176,
+    "lat" : 2.350829966335971,
+    "long" : -6.818456637867542,
+    "category" : 2
+  }, {
+    "id" : 177,
+    "lat" : -5.504291955822092,
+    "long" : 1.9140859797402643,
+    "category" : 2
+  }, {
+    "id" : 178,
+    "lat" : -1.6998909487832579,
+    "long" : -5.074325884371115,
+    "category" : 2
+  }, {
+    "id" : 179,
+    "lat" : -5.814112804257244,
+    "long" : 2.4153732495074296,
+    "category" : 2
+  }, {
+    "id" : 180,
+    "lat" : 1.6226212716956017,
+    "long" : -3.071321015223793,
+    "category" : 2
+  }, {
+    "id" : 181,
+    "lat" : 4.022064695246345,
+    "long" : -8.935903391796506,
+    "category" : 2
+  }, {
+    "id" : 182,
+    "lat" : 3.6601147347345417,
+    "long" : 9.092389519923184,
+    "category" : 2
+  }, {
+    "id" : 183,
+    "lat" : 9.886378725251351,
+    "long" : 0.29147760794400257,
+    "category" : 2
+  }, {
+    "id" : 184,
+    "lat" : 2.54292906007329,
+    "long" : 6.424768462686352,
+    "category" : 2
+  }, {
+    "id" : 185,
+    "lat" : 2.3615050992494453,
+    "long" : 6.928499195916464,
+    "category" : 2
+  }, {
+    "id" : 186,
+    "lat" : 4.1452571974585215,
+    "long" : -3.2014916352716773,
+    "category" : 2
+  }, {
+    "id" : 187,
+    "lat" : -1.773109727449378,
+    "long" : 5.641965143255187,
+    "category" : 2
+  }, {
+    "id" : 188,
+    "lat" : -0.027252171288511002,
+    "long" : -1.6598893226698843,
+    "category" : 2
+  }, {
+    "id" : 189,
+    "lat" : 0.9355094612518,
+    "long" : -8.479156511572322,
+    "category" : 2
+  }, {
+    "id" : 190,
+    "lat" : 4.743448286364968,
+    "long" : 3.5336343430049157,
+    "category" : 2
+  }, {
+    "id" : 191,
+    "lat" : 5.177962641976538,
+    "long" : -6.785825397000423,
+    "category" : 2
+  }, {
+    "id" : 192,
+    "lat" : 1.0716860135029873,
+    "long" : 6.6507032636503824,
+    "category" : 2
+  }, {
+    "id" : 193,
+    "lat" : -5.41830230581214,
+    "long" : -1.344943329091877,
+    "category" : 2
+  }, {
+    "id" : 194,
+    "lat" : 0.35919203559663626,
+    "long" : -7.386947617443855,
+    "category" : 2
+  }, {
+    "id" : 195,
+    "lat" : -1.0484927669028565,
+    "long" : 6.67641733107074,
+    "category" : 2
+  }, {
+    "id" : 196,
+    "lat" : -2.4701930914093495,
+    "long" : -2.3105733138854347,
+    "category" : 2
+  }, {
+    "id" : 197,
+    "lat" : 5.677497006527196,
+    "long" : 4.382339517323165,
+    "category" : 2
+  }, {
+    "id" : 198,
+    "lat" : 1.2968930305391988,
+    "long" : -1.6760334534389703,
+    "category" : 2
+  }, {
+    "id" : 199,
+    "lat" : 0.8967040016994313,
+    "long" : 2.8561407378792993,
+    "category" : 2
+  }, {
+    "id" : 200,
+    "lat" : -1.2294865492905878,
+    "long" : 5.790914191241144,
+    "category" : 2
+  }, {
+    "id" : 201,
+    "lat" : 5.318765532217156,
+    "long" : -3.5481339111493484,
+    "category" : 2
+  }, {
+    "id" : 202,
+    "lat" : 3.5253673298210177,
+    "long" : 2.323940339292273,
+    "category" : 2
+  }, {
+    "id" : 203,
+    "lat" : -0.28998576021506994,
+    "long" : -2.045699146825731,
+    "category" : 2
+  }, {
+    "id" : 204,
+    "lat" : -3.607338161173861,
+    "long" : -5.107792035108203,
+    "category" : 2
+  }, {
+    "id" : 205,
+    "lat" : -1.2855964984212553,
+    "long" : 7.308871146094897,
+    "category" : 2
+  }, {
+    "id" : 206,
+    "lat" : -0.7708871513089555,
+    "long" : -6.817447538930437,
+    "category" : 2
+  }, {
+    "id" : 207,
+    "lat" : 6.905756853243961,
+    "long" : -3.8195918647245146,
+    "category" : 2
+  }, {
+    "id" : 208,
+    "lat" : 4.4098348236467775,
+    "long" : 1.3702430569447486,
+    "category" : 2
+  }, {
+    "id" : 209,
+    "lat" : -2.3694182337935397,
+    "long" : -8.968373098440786,
+    "category" : 2
+  } ],
+  "vehicles" : [ {
+    "id" : 210,
+    "canTake" : [ 0 ],
+    "start" : 96,
+    "end" : 96,
+    "capacity" : 4,
+    "availability" : [ "07h00:16h00", "17h00:20h00" ]
+  }, {
+    "id" : 211,
+    "canTake" : [ 1, 2 ],
+    "start" : 97,
+    "end" : 97,
+    "capacity" : 4,
+    "availability" : [ "07h00:17h00" ]
+  }, {
+    "id" : 212,
+    "canTake" : [ 1 ],
+    "start" : 98,
+    "end" : 98,
+    "capacity" : 5,
+    "availability" : [ "07h00:08h00", "12h00:20h00" ]
+  }, {
+    "id" : 213,
+    "canTake" : [ 0 ],
+    "start" : 99,
+    "end" : 99,
+    "capacity" : 4,
+    "availability" : [ "07h00:14h00", "18h00:20h00" ]
+  }, {
+    "id" : 214,
+    "canTake" : [ 2 ],
+    "start" : 100,
+    "end" : 100,
+    "capacity" : 5,
+    "availability" : [ "07h00:13h00", "17h00:20h00" ]
+  } ],
+  "patients" : [ {
+    "id" : 215,
+    "category" : 0,
+    "load" : 2,
+    "start" : 101,
+    "destination" : 0,
+    "end" : 101,
+    "rdvTime" : "12h31",
+    "rdvDuration" : "01h05",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 216,
+    "category" : 2,
+    "load" : 2,
+    "start" : 102,
+    "destination" : 1,
+    "end" : 102,
+    "rdvTime" : "10h24",
+    "rdvDuration" : "01h52",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 217,
+    "category" : 2,
+    "load" : 2,
+    "start" : 103,
+    "destination" : 2,
+    "end" : 103,
+    "rdvTime" : "09h03",
+    "rdvDuration" : "02h28",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 218,
+    "category" : 2,
+    "load" : 1,
+    "start" : 104,
+    "destination" : 3,
+    "end" : 104,
+    "rdvTime" : "10h45",
+    "rdvDuration" : "02h48",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 219,
+    "category" : 1,
+    "load" : 2,
+    "start" : 105,
+    "destination" : 4,
+    "end" : -1,
+    "rdvTime" : "11h36",
+    "rdvDuration" : "01h51",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 220,
+    "category" : 2,
+    "load" : 1,
+    "start" : 106,
+    "destination" : 5,
+    "end" : -1,
+    "rdvTime" : "14h40",
+    "rdvDuration" : "01h57",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 221,
+    "category" : 0,
+    "load" : 3,
+    "start" : 107,
+    "destination" : 6,
+    "end" : 107,
+    "rdvTime" : "09h08",
+    "rdvDuration" : "02h01",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 222,
+    "category" : 1,
+    "load" : 3,
+    "start" : 108,
+    "destination" : 7,
+    "end" : 108,
+    "rdvTime" : "08h33",
+    "rdvDuration" : "00h44",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 223,
+    "category" : 0,
+    "load" : 3,
+    "start" : 109,
+    "destination" : 8,
+    "end" : 109,
+    "rdvTime" : "09h48",
+    "rdvDuration" : "01h26",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 224,
+    "category" : 1,
+    "load" : 1,
+    "start" : 110,
+    "destination" : 9,
+    "end" : 111,
+    "rdvTime" : "14h58",
+    "rdvDuration" : "01h45",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 225,
+    "category" : 2,
+    "load" : 1,
+    "start" : 112,
+    "destination" : 10,
+    "end" : 112,
+    "rdvTime" : "12h43",
+    "rdvDuration" : "00h44",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 226,
+    "category" : 2,
+    "load" : 1,
+    "start" : -1,
+    "destination" : 11,
+    "end" : 113,
+    "rdvTime" : "11h14",
+    "rdvDuration" : "00h36",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 227,
+    "category" : 1,
+    "load" : 3,
+    "start" : 114,
+    "destination" : 12,
+    "end" : 114,
+    "rdvTime" : "13h24",
+    "rdvDuration" : "02h04",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 228,
+    "category" : 1,
+    "load" : 3,
+    "start" : 115,
+    "destination" : 13,
+    "end" : 115,
+    "rdvTime" : "12h28",
+    "rdvDuration" : "01h08",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 229,
+    "category" : 1,
+    "load" : 2,
+    "start" : 116,
+    "destination" : 14,
+    "end" : -1,
+    "rdvTime" : "09h37",
+    "rdvDuration" : "02h59",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 230,
+    "category" : 0,
+    "load" : 1,
+    "start" : 117,
+    "destination" : 15,
+    "end" : -1,
+    "rdvTime" : "11h57",
+    "rdvDuration" : "00h35",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 231,
+    "category" : 0,
+    "load" : 3,
+    "start" : 118,
+    "destination" : 16,
+    "end" : 118,
+    "rdvTime" : "15h23",
+    "rdvDuration" : "00h30",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 232,
+    "category" : 2,
+    "load" : 3,
+    "start" : 119,
+    "destination" : 17,
+    "end" : 119,
+    "rdvTime" : "14h19",
+    "rdvDuration" : "02h38",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 233,
+    "category" : 0,
+    "load" : 2,
+    "start" : 120,
+    "destination" : 18,
+    "end" : 121,
+    "rdvTime" : "12h10",
+    "rdvDuration" : "00h36",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 234,
+    "category" : 0,
+    "load" : 3,
+    "start" : 122,
+    "destination" : 19,
+    "end" : 122,
+    "rdvTime" : "09h54",
+    "rdvDuration" : "01h38",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 235,
+    "category" : 0,
+    "load" : 3,
+    "start" : 123,
+    "destination" : 20,
+    "end" : 123,
+    "rdvTime" : "10h00",
+    "rdvDuration" : "00h20",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 236,
+    "category" : 1,
+    "load" : 2,
+    "start" : 124,
+    "destination" : 21,
+    "end" : 125,
+    "rdvTime" : "10h38",
+    "rdvDuration" : "02h36",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 237,
+    "category" : 1,
+    "load" : 3,
+    "start" : 126,
+    "destination" : 22,
+    "end" : 126,
+    "rdvTime" : "14h27",
+    "rdvDuration" : "00h49",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 238,
+    "category" : 2,
+    "load" : 3,
+    "start" : 127,
+    "destination" : 23,
+    "end" : 127,
+    "rdvTime" : "12h49",
+    "rdvDuration" : "00h24",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 239,
+    "category" : 0,
+    "load" : 1,
+    "start" : 128,
+    "destination" : 24,
+    "end" : 128,
+    "rdvTime" : "13h43",
+    "rdvDuration" : "02h50",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 240,
+    "category" : 0,
+    "load" : 2,
+    "start" : 129,
+    "destination" : 25,
+    "end" : 129,
+    "rdvTime" : "12h33",
+    "rdvDuration" : "01h57",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 241,
+    "category" : 0,
+    "load" : 3,
+    "start" : -1,
+    "destination" : 26,
+    "end" : 130,
+    "rdvTime" : "13h22",
+    "rdvDuration" : "01h23",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 242,
+    "category" : 1,
+    "load" : 3,
+    "start" : -1,
+    "destination" : 27,
+    "end" : 131,
+    "rdvTime" : "14h45",
+    "rdvDuration" : "01h28",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 243,
+    "category" : 2,
+    "load" : 1,
+    "start" : 132,
+    "destination" : 28,
+    "end" : 132,
+    "rdvTime" : "15h42",
+    "rdvDuration" : "02h54",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 244,
+    "category" : 2,
+    "load" : 3,
+    "start" : 133,
+    "destination" : 29,
+    "end" : 133,
+    "rdvTime" : "12h16",
+    "rdvDuration" : "01h58",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 245,
+    "category" : 2,
+    "load" : 2,
+    "start" : 134,
+    "destination" : 30,
+    "end" : 134,
+    "rdvTime" : "15h53",
+    "rdvDuration" : "02h10",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 246,
+    "category" : 2,
+    "load" : 1,
+    "start" : 135,
+    "destination" : 31,
+    "end" : 136,
+    "rdvTime" : "12h17",
+    "rdvDuration" : "01h43",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 247,
+    "category" : 2,
+    "load" : 3,
+    "start" : 137,
+    "destination" : 32,
+    "end" : -1,
+    "rdvTime" : "08h00",
+    "rdvDuration" : "00h57",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 248,
+    "category" : 2,
+    "load" : 3,
+    "start" : 138,
+    "destination" : 33,
+    "end" : 138,
+    "rdvTime" : "13h20",
+    "rdvDuration" : "01h03",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 249,
+    "category" : 1,
+    "load" : 3,
+    "start" : -1,
+    "destination" : 34,
+    "end" : 139,
+    "rdvTime" : "10h06",
+    "rdvDuration" : "01h20",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 250,
+    "category" : 2,
+    "load" : 3,
+    "start" : 140,
+    "destination" : 35,
+    "end" : 140,
+    "rdvTime" : "08h33",
+    "rdvDuration" : "02h37",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 251,
+    "category" : 0,
+    "load" : 1,
+    "start" : 141,
+    "destination" : 36,
+    "end" : 141,
+    "rdvTime" : "14h49",
+    "rdvDuration" : "02h55",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 252,
+    "category" : 2,
+    "load" : 2,
+    "start" : 142,
+    "destination" : 37,
+    "end" : 142,
+    "rdvTime" : "15h06",
+    "rdvDuration" : "01h55",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 253,
+    "category" : 2,
+    "load" : 1,
+    "start" : 143,
+    "destination" : 38,
+    "end" : 143,
+    "rdvTime" : "08h11",
+    "rdvDuration" : "00h21",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 254,
+    "category" : 0,
+    "load" : 3,
+    "start" : 144,
+    "destination" : 39,
+    "end" : 144,
+    "rdvTime" : "14h47",
+    "rdvDuration" : "01h08",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 255,
+    "category" : 0,
+    "load" : 3,
+    "start" : 145,
+    "destination" : 40,
+    "end" : 145,
+    "rdvTime" : "10h25",
+    "rdvDuration" : "00h26",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 256,
+    "category" : 2,
+    "load" : 3,
+    "start" : 146,
+    "destination" : 41,
+    "end" : 147,
+    "rdvTime" : "15h59",
+    "rdvDuration" : "01h37",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 257,
+    "category" : 0,
+    "load" : 2,
+    "start" : 148,
+    "destination" : 42,
+    "end" : 148,
+    "rdvTime" : "10h05",
+    "rdvDuration" : "00h54",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 258,
+    "category" : 0,
+    "load" : 2,
+    "start" : -1,
+    "destination" : 43,
+    "end" : 149,
+    "rdvTime" : "13h33",
+    "rdvDuration" : "02h13",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 259,
+    "category" : 1,
+    "load" : 2,
+    "start" : 150,
+    "destination" : 44,
+    "end" : 150,
+    "rdvTime" : "10h17",
+    "rdvDuration" : "02h54",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 260,
+    "category" : 1,
+    "load" : 1,
+    "start" : 151,
+    "destination" : 45,
+    "end" : 151,
+    "rdvTime" : "09h13",
+    "rdvDuration" : "02h07",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 261,
+    "category" : 1,
+    "load" : 3,
+    "start" : 152,
+    "destination" : 46,
+    "end" : 152,
+    "rdvTime" : "14h37",
+    "rdvDuration" : "00h48",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 262,
+    "category" : 1,
+    "load" : 2,
+    "start" : 153,
+    "destination" : 47,
+    "end" : 153,
+    "rdvTime" : "15h41",
+    "rdvDuration" : "01h45",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 263,
+    "category" : 0,
+    "load" : 1,
+    "start" : 154,
+    "destination" : 48,
+    "end" : 154,
+    "rdvTime" : "09h28",
+    "rdvDuration" : "00h36",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 264,
+    "category" : 0,
+    "load" : 1,
+    "start" : 155,
+    "destination" : 49,
+    "end" : 155,
+    "rdvTime" : "09h34",
+    "rdvDuration" : "02h30",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 265,
+    "category" : 2,
+    "load" : 1,
+    "start" : 156,
+    "destination" : 50,
+    "end" : 156,
+    "rdvTime" : "13h58",
+    "rdvDuration" : "01h09",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 266,
+    "category" : 0,
+    "load" : 2,
+    "start" : 157,
+    "destination" : 51,
+    "end" : 157,
+    "rdvTime" : "08h50",
+    "rdvDuration" : "00h26",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 267,
+    "category" : 0,
+    "load" : 3,
+    "start" : 158,
+    "destination" : 52,
+    "end" : 158,
+    "rdvTime" : "09h07",
+    "rdvDuration" : "00h25",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 268,
+    "category" : 0,
+    "load" : 1,
+    "start" : 159,
+    "destination" : 53,
+    "end" : 159,
+    "rdvTime" : "10h01",
+    "rdvDuration" : "01h30",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 269,
+    "category" : 0,
+    "load" : 3,
+    "start" : 160,
+    "destination" : 54,
+    "end" : 160,
+    "rdvTime" : "11h20",
+    "rdvDuration" : "01h24",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 270,
+    "category" : 2,
+    "load" : 3,
+    "start" : 161,
+    "destination" : 55,
+    "end" : 161,
+    "rdvTime" : "10h56",
+    "rdvDuration" : "00h46",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 271,
+    "category" : 1,
+    "load" : 1,
+    "start" : 162,
+    "destination" : 56,
+    "end" : 162,
+    "rdvTime" : "14h03",
+    "rdvDuration" : "00h53",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 272,
+    "category" : 0,
+    "load" : 3,
+    "start" : 163,
+    "destination" : 57,
+    "end" : 163,
+    "rdvTime" : "09h17",
+    "rdvDuration" : "00h53",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 273,
+    "category" : 0,
+    "load" : 2,
+    "start" : -1,
+    "destination" : 58,
+    "end" : 164,
+    "rdvTime" : "11h15",
+    "rdvDuration" : "00h29",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 274,
+    "category" : 2,
+    "load" : 1,
+    "start" : 165,
+    "destination" : 59,
+    "end" : 165,
+    "rdvTime" : "08h43",
+    "rdvDuration" : "01h59",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 275,
+    "category" : 0,
+    "load" : 1,
+    "start" : 166,
+    "destination" : 60,
+    "end" : 166,
+    "rdvTime" : "13h22",
+    "rdvDuration" : "02h22",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 276,
+    "category" : 0,
+    "load" : 2,
+    "start" : 167,
+    "destination" : 61,
+    "end" : 167,
+    "rdvTime" : "11h48",
+    "rdvDuration" : "01h27",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 277,
+    "category" : 2,
+    "load" : 2,
+    "start" : 168,
+    "destination" : 62,
+    "end" : 168,
+    "rdvTime" : "08h44",
+    "rdvDuration" : "01h31",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 278,
+    "category" : 2,
+    "load" : 3,
+    "start" : 169,
+    "destination" : 63,
+    "end" : 169,
+    "rdvTime" : "11h33",
+    "rdvDuration" : "01h35",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 279,
+    "category" : 0,
+    "load" : 2,
+    "start" : -1,
+    "destination" : 64,
+    "end" : 170,
+    "rdvTime" : "12h26",
+    "rdvDuration" : "02h56",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 280,
+    "category" : 0,
+    "load" : 3,
+    "start" : 171,
+    "destination" : 65,
+    "end" : 172,
+    "rdvTime" : "15h55",
+    "rdvDuration" : "00h33",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 281,
+    "category" : 0,
+    "load" : 3,
+    "start" : 173,
+    "destination" : 66,
+    "end" : 173,
+    "rdvTime" : "13h53",
+    "rdvDuration" : "00h26",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 282,
+    "category" : 2,
+    "load" : 3,
+    "start" : 174,
+    "destination" : 67,
+    "end" : 174,
+    "rdvTime" : "11h07",
+    "rdvDuration" : "01h58",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 283,
+    "category" : 2,
+    "load" : 3,
+    "start" : 175,
+    "destination" : 68,
+    "end" : 175,
+    "rdvTime" : "08h21",
+    "rdvDuration" : "02h59",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 284,
+    "category" : 2,
+    "load" : 1,
+    "start" : 176,
+    "destination" : 69,
+    "end" : 177,
+    "rdvTime" : "09h19",
+    "rdvDuration" : "01h01",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 285,
+    "category" : 2,
+    "load" : 2,
+    "start" : 178,
+    "destination" : 70,
+    "end" : 178,
+    "rdvTime" : "08h59",
+    "rdvDuration" : "01h37",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 286,
+    "category" : 2,
+    "load" : 1,
+    "start" : 179,
+    "destination" : 71,
+    "end" : 179,
+    "rdvTime" : "08h40",
+    "rdvDuration" : "02h58",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 287,
+    "category" : 0,
+    "load" : 2,
+    "start" : 180,
+    "destination" : 72,
+    "end" : 180,
+    "rdvTime" : "10h18",
+    "rdvDuration" : "01h33",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 288,
+    "category" : 1,
+    "load" : 2,
+    "start" : 181,
+    "destination" : 73,
+    "end" : 181,
+    "rdvTime" : "12h28",
+    "rdvDuration" : "02h25",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 289,
+    "category" : 2,
+    "load" : 2,
+    "start" : 182,
+    "destination" : 74,
+    "end" : 182,
+    "rdvTime" : "13h58",
+    "rdvDuration" : "00h50",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 290,
+    "category" : 0,
+    "load" : 1,
+    "start" : 183,
+    "destination" : 75,
+    "end" : 183,
+    "rdvTime" : "13h08",
+    "rdvDuration" : "00h32",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 291,
+    "category" : 1,
+    "load" : 2,
+    "start" : 184,
+    "destination" : 76,
+    "end" : 184,
+    "rdvTime" : "14h10",
+    "rdvDuration" : "02h09",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 292,
+    "category" : 0,
+    "load" : 1,
+    "start" : 185,
+    "destination" : 77,
+    "end" : 186,
+    "rdvTime" : "13h58",
+    "rdvDuration" : "01h59",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 293,
+    "category" : 0,
+    "load" : 2,
+    "start" : 187,
+    "destination" : 78,
+    "end" : 187,
+    "rdvTime" : "08h22",
+    "rdvDuration" : "02h17",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 294,
+    "category" : 1,
+    "load" : 1,
+    "start" : 188,
+    "destination" : 79,
+    "end" : 188,
+    "rdvTime" : "13h55",
+    "rdvDuration" : "02h38",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 295,
+    "category" : 1,
+    "load" : 3,
+    "start" : 189,
+    "destination" : 80,
+    "end" : 189,
+    "rdvTime" : "09h54",
+    "rdvDuration" : "01h43",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 296,
+    "category" : 2,
+    "load" : 1,
+    "start" : 190,
+    "destination" : 81,
+    "end" : 190,
+    "rdvTime" : "15h33",
+    "rdvDuration" : "01h58",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 297,
+    "category" : 1,
+    "load" : 3,
+    "start" : 191,
+    "destination" : 82,
+    "end" : 191,
+    "rdvTime" : "14h17",
+    "rdvDuration" : "01h33",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 298,
+    "category" : 2,
+    "load" : 3,
+    "start" : 192,
+    "destination" : 83,
+    "end" : 192,
+    "rdvTime" : "08h19",
+    "rdvDuration" : "00h32",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 299,
+    "category" : 0,
+    "load" : 3,
+    "start" : 193,
+    "destination" : 84,
+    "end" : 194,
+    "rdvTime" : "14h26",
+    "rdvDuration" : "00h24",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 300,
+    "category" : 1,
+    "load" : 3,
+    "start" : 195,
+    "destination" : 85,
+    "end" : 196,
+    "rdvTime" : "13h35",
+    "rdvDuration" : "01h57",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 301,
+    "category" : 1,
+    "load" : 1,
+    "start" : 197,
+    "destination" : 86,
+    "end" : 197,
+    "rdvTime" : "11h55",
+    "rdvDuration" : "01h04",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 302,
+    "category" : 2,
+    "load" : 1,
+    "start" : 198,
+    "destination" : 87,
+    "end" : 198,
+    "rdvTime" : "15h26",
+    "rdvDuration" : "01h23",
+    "srvDuration" : "00h04"
+  }, {
+    "id" : 303,
+    "category" : 0,
+    "load" : 3,
+    "start" : 199,
+    "destination" : 88,
+    "end" : 200,
+    "rdvTime" : "13h46",
+    "rdvDuration" : "01h26",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 304,
+    "category" : 1,
+    "load" : 1,
+    "start" : 201,
+    "destination" : 89,
+    "end" : 201,
+    "rdvTime" : "08h54",
+    "rdvDuration" : "01h42",
+    "srvDuration" : "00h05"
+  }, {
+    "id" : 305,
+    "category" : 2,
+    "load" : 3,
+    "start" : 202,
+    "destination" : 90,
+    "end" : 203,
+    "rdvTime" : "10h56",
+    "rdvDuration" : "02h08",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 306,
+    "category" : 2,
+    "load" : 3,
+    "start" : -1,
+    "destination" : 91,
+    "end" : 204,
+    "rdvTime" : "15h22",
+    "rdvDuration" : "01h36",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 307,
+    "category" : 2,
+    "load" : 1,
+    "start" : 205,
+    "destination" : 92,
+    "end" : 205,
+    "rdvTime" : "10h29",
+    "rdvDuration" : "00h56",
+    "srvDuration" : "00h03"
+  }, {
+    "id" : 308,
+    "category" : 1,
+    "load" : 3,
+    "start" : 206,
+    "destination" : 93,
+    "end" : 207,
+    "rdvTime" : "08h38",
+    "rdvDuration" : "00h18",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 309,
+    "category" : 1,
+    "load" : 1,
+    "start" : -1,
+    "destination" : 94,
+    "end" : 208,
+    "rdvTime" : "14h06",
+    "rdvDuration" : "02h33",
+    "srvDuration" : "00h02"
+  }, {
+    "id" : 310,
+    "category" : 2,
+    "load" : 3,
+    "start" : 209,
+    "destination" : 95,
+    "end" : 209,
+    "rdvTime" : "09h26",
+    "rdvDuration" : "00h34",
+    "srvDuration" : "00h03"
+  } ],
+  "distMatrix" : [ [ 0, 10, 2, 8, 6, 6, 11, 13, 5, 10, 13, 6, 12, 6, 12, 6, 16, 12, 16, 12, 9, 2, 4, 13, 8, 6, 9, 16, 5, 10, 11, 2, 15, 6, 7, 5, 17, 8, 11, 10, 7, 14, 8, 16, 1, 13, 5, 6, 12, 12, 6, 10, 17, 9, 7, 13, 13, 11, 10, 13, 15, 12, 5, 13, 16, 7, 8, 4, 13, 10, 3, 6, 15, 12, 10, 7, 7, 15, 4, 2, 15, 4, 6, 3, 8, 11, 8, 11, 8, 3, 2, 7, 16, 2, 4, 13, 11, 9, 14, 16, 8, 8, 3, 10, 14, 6, 8, 15, 16, 12, 5, 7, 15, 5, 13, 16, 11, 8, 8, 13, 14, 9, 15, 10, 4, 2, 14, 2, 9, 12, 10, 6, 14, 3, 15, 11, 9, 9, 11, 11, 12, 16, 14, 3, 15, 16, 11, 4, 8, 12, 11, 5, 16, 17, 7, 4, 10, 7, 16, 11, 9, 15, 8, 5, 3, 16, 6, 10, 3, 5, 5, 11, 2, 8, 14, 2, 14, 5, 12, 5, 11, 17, 7, 14, 5, 5, 12, 1, 9, 15, 8, 16, 4, 8, 14, 2, 9, 9, 9, 5, 2, 13, 8, 9, 12, 2, 13, 14, 9, 15 ], [ 10, 0, 12, 16, 13, 14, 8, 9, 5, 2, 7, 4, 9, 14, 8, 7, 14, 14, 15, 16, 8, 11, 6, 15, 12, 6, 3, 8, 8, 6, 12, 11, 7, 7, 4, 5, 13, 3, 6, 15, 14, 9, 6, 8, 11, 4, 14, 5, 17, 2, 14, 17, 12, 14, 4, 17, 3, 17, 10, 16, 15, 2, 6, 3, 9, 4, 8, 14, 9, 3, 13, 15, 11, 17, 16, 13, 15, 16, 13, 9, 7, 7, 10, 12, 4, 1, 12, 16, 7, 10, 9, 15, 13, 10, 11, 11, 11, 10, 14, 13, 3, 6, 10, 13, 6, 9, 3, 6, 8, 14, 9, 14, 16, 14, 16, 10, 15, 6, 16, 3, 15, 10, 12, 15, 8, 11, 16, 10, 3, 14, 10, 4, 7, 13, 8, 11, 13, 16, 12, 3, 4, 16, 8, 10, 7, 10, 5, 6, 13, 17, 10, 6, 11, 11, 4, 13, 1, 16, 8, 2, 7, 6, 7, 6, 7, 7, 13, 8, 11, 9, 11, 8, 13, 6, 5, 10, 11, 12, 12, 13, 8, 12, 7, 4, 5, 6, 7, 9, 8, 13, 2, 10, 7, 13, 12, 9, 11, 2, 7, 6, 8, 7, 3, 9, 13, 9, 12, 7, 3, 15 ], [ 2, 12, 0, 8, 6, 5, 13, 15, 7, 12, 14, 8, 14, 6, 14, 8, 17, 13, 17, 12, 11, 3, 6, 14, 9, 8, 11, 18, 6, 12, 12, 3, 17, 8, 9, 7, 18, 10, 13, 10, 7, 16, 10, 18, 2, 15, 4, 8, 11, 14, 5, 9, 18, 9, 9, 13, 15, 11, 11, 13, 16, 14, 7, 15, 17, 9, 10, 2, 14, 12, 2, 6, 16, 12, 9, 7, 6, 15, 3, 4, 17, 6, 7, 3, 10, 13, 9, 11, 10, 4, 4, 6, 17, 3, 5, 14, 12, 10, 15, 17, 10, 10, 5, 10, 16, 7, 10, 17, 18, 12, 6, 7, 16, 4, 14, 18, 11, 9, 7, 15, 15, 10, 16, 10, 5, 2, 14, 3, 11, 12, 12, 9, 16, 1, 17, 12, 9, 9, 12, 13, 14, 16, 15, 4, 17, 18, 13, 6, 9, 12, 12, 7, 17, 18, 9, 3, 12, 6, 18, 13, 11, 17, 10, 7, 5, 18, 6, 11, 4, 6, 5, 12, 0, 10, 16, 3, 16, 5, 13, 5, 12, 18, 9, 16, 8, 7, 14, 4, 10, 17, 10, 17, 6, 9, 16, 4, 10, 11, 11, 7, 4, 15, 10, 10, 12, 4, 15, 16, 11, 16 ], [ 8, 16, 8, 0, 3, 3, 12, 13, 11, 15, 14, 13, 13, 2, 13, 9, 14, 8, 13, 5, 10, 10, 11, 9, 6, 9, 13, 18, 13, 12, 8, 7, 17, 15, 12, 12, 15, 14, 14, 4, 2, 15, 16, 19, 9, 18, 4, 13, 4, 18, 3, 1, 16, 3, 12, 6, 18, 4, 9, 7, 12, 18, 12, 17, 16, 15, 9, 7, 13, 16, 6, 2, 14, 5, 1, 4, 1, 10, 5, 10, 18, 12, 6, 11, 16, 17, 5, 4, 10, 6, 8, 2, 13, 7, 5, 11, 9, 8, 10, 15, 15, 10, 7, 5, 17, 7, 13, 18, 18, 7, 6, 2, 11, 3, 8, 17, 4, 15, 0, 18, 9, 8, 13, 4, 8, 7, 8, 11, 14, 7, 9, 13, 16, 8, 17, 9, 4, 1, 8, 15, 15, 11, 15, 6, 17, 17, 14, 10, 4, 4, 10, 10, 15, 17, 12, 5, 16, 3, 18, 16, 10, 19, 10, 10, 10, 18, 3, 10, 5, 13, 4, 11, 8, 16, 17, 10, 14, 4, 9, 4, 11, 16, 15, 19, 13, 13, 14, 9, 9, 13, 14, 16, 12, 4, 12, 10, 7, 15, 11, 10, 9, 15, 13, 9, 8, 10, 11, 16, 13, 12 ], [ 6, 13, 6, 3, 0, 2, 9, 11, 8, 11, 11, 9, 10, 1, 10, 5, 13, 8, 12, 6, 7, 8, 8, 9, 4, 6, 10, 15, 10, 9, 7, 4, 14, 11, 9, 8, 14, 11, 11, 5, 2, 12, 13, 16, 6, 14, 3, 9, 6, 14, 2, 5, 14, 4, 9, 8, 15, 5, 7, 7, 11, 15, 9, 14, 14, 11, 6, 6, 11, 13, 4, 2, 12, 6, 4, 2, 3, 10, 3, 7, 16, 9, 3, 8, 12, 13, 3, 5, 7, 3, 5, 3, 12, 4, 2, 10, 8, 6, 9, 13, 11, 7, 3, 5, 14, 4, 10, 15, 15, 7, 3, 2, 10, 3, 8, 15, 5, 12, 3, 14, 9, 6, 11, 5, 5, 4, 8, 8, 10, 7, 7, 9, 13, 6, 14, 7, 3, 4, 7, 12, 12, 11, 12, 3, 15, 14, 12, 7, 3, 6, 8, 6, 13, 15, 9, 3, 12, 4, 16, 12, 8, 16, 7, 7, 7, 16, 1, 8, 2, 10, 1, 9, 6, 13, 14, 7, 12, 0, 8, 1, 9, 14, 12, 16, 10, 10, 11, 6, 7, 12, 11, 14, 8, 3, 11, 7, 5, 12, 8, 7, 6, 12, 9, 7, 7, 7, 10, 14, 10, 11 ], [ 6, 14, 5, 3, 2, 0, 11, 13, 9, 13, 13, 10, 12, 1, 12, 7, 14, 9, 14, 7, 9, 7, 8, 10, 6, 8, 12, 17, 10, 11, 8, 4, 16, 12, 10, 9, 16, 12, 12, 6, 3, 14, 13, 18, 6, 16, 1, 10, 7, 16, 1, 4, 16, 5, 10, 9, 16, 6, 9, 9, 13, 16, 10, 16, 16, 12, 8, 5, 13, 14, 3, 1, 14, 7, 4, 4, 2, 11, 2, 7, 17, 10, 5, 8, 13, 15, 5, 6, 9, 4, 6, 1, 14, 5, 3, 11, 10, 8, 11, 15, 12, 9, 4, 6, 16, 5, 11, 17, 17, 8, 5, 2, 12, 1, 10, 17, 6, 13, 2, 16, 11, 8, 13, 6, 6, 4, 10, 8, 12, 8, 9, 10, 15, 5, 16, 9, 5, 4, 9, 13, 14, 12, 14, 4, 16, 16, 13, 8, 5, 7, 10, 7, 15, 16, 10, 2, 14, 2, 17, 14, 9, 18, 9, 8, 8, 17, 1, 10, 3, 11, 3, 11, 5, 13, 16, 7, 14, 2, 10, 1, 11, 16, 12, 17, 10, 10, 13, 6, 8, 14, 12, 16, 9, 5, 13, 7, 7, 13, 10, 8, 7, 14, 11, 8, 9, 7, 12, 16, 12, 13 ], [ 11, 8, 13, 12, 9, 11, 0, 2, 8, 7, 3, 9, 1, 10, 1, 5, 6, 6, 6, 10, 2, 13, 9, 7, 6, 5, 6, 6, 12, 2, 5, 10, 6, 13, 6, 9, 6, 10, 3, 9, 9, 3, 13, 7, 12, 8, 12, 9, 10, 11, 12, 12, 6, 9, 6, 10, 8, 10, 3, 9, 6, 10, 10, 8, 5, 11, 3, 14, 2, 11, 12, 11, 4, 11, 11, 8, 12, 8, 11, 11, 7, 11, 7, 14, 11, 9, 7, 10, 3, 8, 9, 12, 5, 10, 9, 3, 3, 3, 6, 5, 10, 4, 8, 7, 5, 6, 6, 7, 6, 7, 7, 10, 8, 12, 8, 6, 9, 12, 12, 8, 7, 4, 4, 9, 8, 10, 9, 13, 6, 7, 3, 8, 4, 14, 6, 3, 8, 11, 4, 6, 5, 8, 3, 9, 6, 5, 4, 8, 7, 11, 2, 7, 5, 6, 7, 11, 9, 13, 7, 7, 2, 8, 3, 8, 9, 7, 10, 2, 10, 13, 9, 1, 13, 13, 6, 12, 3, 9, 4, 10, 1, 6, 13, 9, 10, 11, 2, 10, 3, 5, 8, 5, 10, 8, 4, 11, 5, 9, 2, 7, 10, 3, 6, 3, 6, 11, 4, 5, 6, 7 ], [ 13, 9, 15, 13, 11, 13, 2, 0, 10, 7, 2, 10, 1, 12, 1, 7, 5, 7, 6, 11, 4, 15, 11, 8, 7, 7, 7, 5, 14, 3, 6, 12, 4, 14, 7, 10, 5, 11, 3, 10, 11, 1, 14, 6, 14, 8, 14, 10, 11, 11, 13, 13, 4, 10, 8, 11, 8, 12, 4, 10, 6, 10, 12, 8, 3, 12, 5, 16, 0, 11, 14, 13, 2, 12, 13, 10, 14, 8, 13, 13, 6, 12, 8, 16, 12, 10, 8, 11, 5, 10, 11, 14, 4, 11, 11, 3, 4, 5, 7, 4, 11, 5, 10, 8, 5, 8, 7, 6, 5, 8, 9, 12, 8, 14, 9, 4, 11, 13, 13, 8, 8, 5, 3, 10, 9, 12, 9, 14, 7, 8, 4, 9, 3, 15, 4, 5, 9, 13, 5, 6, 5, 8, 2, 11, 5, 3, 4, 10, 9, 12, 3, 9, 3, 4, 8, 13, 9, 15, 6, 7, 4, 7, 5, 9, 11, 6, 12, 3, 11, 15, 10, 2, 15, 14, 6, 14, 2, 11, 5, 12, 2, 4, 14, 9, 11, 12, 2, 12, 5, 4, 9, 3, 12, 9, 4, 12, 6, 10, 4, 8, 12, 3, 7, 4, 7, 13, 4, 4, 7, 7 ], [ 5, 5, 7, 11, 8, 9, 8, 10, 0, 5, 9, 1, 9, 9, 9, 4, 14, 12, 14, 13, 7, 6, 1, 13, 8, 3, 4, 11, 4, 7, 10, 5, 11, 4, 3, 0, 14, 3, 7, 11, 9, 11, 5, 11, 6, 8, 9, 1, 13, 7, 10, 12, 14, 11, 3, 14, 8, 13, 8, 13, 14, 7, 2, 8, 12, 3, 6, 9, 9, 5, 8, 10, 12, 14, 12, 9, 11, 14, 8, 4, 11, 3, 6, 7, 4, 6, 9, 13, 6, 5, 4, 10, 13, 4, 6, 11, 10, 8, 13, 13, 3, 5, 5, 10, 10, 5, 3, 10, 11, 12, 5, 10, 15, 9, 14, 12, 12, 5, 11, 8, 14, 8, 12, 11, 3, 6, 14, 5, 4, 12, 9, 1, 10, 8, 11, 9, 10, 12, 10, 6, 7, 15, 10, 5, 10, 12, 7, 1, 9, 14, 9, 2, 13, 13, 2, 8, 5, 11, 11, 6, 6, 11, 5, 1, 2, 11, 9, 7, 6, 5, 7, 8, 7, 5, 9, 5, 12, 8, 10, 8, 8, 14, 5, 9, 2, 2, 8, 4, 7, 13, 3, 12, 2, 9, 12, 3, 8, 4, 6, 2, 3, 9, 3, 7, 11, 4, 12, 10, 4, 14 ], [ 10, 2, 12, 15, 11, 13, 7, 7, 5, 0, 6, 4, 7, 13, 7, 6, 12, 12, 13, 15, 6, 11, 6, 13, 10, 5, 1, 7, 8, 5, 11, 10, 6, 8, 3, 5, 12, 4, 4, 13, 12, 8, 7, 7, 11, 3, 13, 5, 15, 4, 13, 15, 11, 13, 3, 15, 3, 15, 8, 14, 13, 4, 6, 3, 8, 5, 7, 13, 7, 4, 13, 13, 10, 16, 15, 11, 14, 14, 12, 9, 6, 7, 9, 12, 5, 3, 11, 15, 6, 9, 8, 14, 12, 9, 10, 10, 10, 8, 13, 11, 4, 5, 9, 12, 5, 8, 2, 6, 7, 13, 8, 13, 14, 13, 14, 8, 14, 7, 15, 3, 14, 8, 10, 13, 7, 10, 15, 10, 1, 12, 8, 4, 6, 13, 6, 9, 12, 15, 10, 2, 3, 14, 7, 9, 6, 8, 3, 6, 11, 16, 8, 6, 10, 10, 3, 12, 2, 15, 7, 1, 6, 6, 5, 5, 7, 6, 12, 6, 10, 9, 10, 6, 12, 7, 5, 10, 9, 11, 10, 11, 6, 11, 8, 4, 6, 6, 5, 8, 7, 11, 2, 9, 7, 12, 11, 8, 9, 3, 6, 5, 8, 5, 2, 7, 12, 9, 11, 6, 1, 13 ], [ 13, 7, 14, 14, 11, 13, 3, 2, 9, 6, 0, 9, 2, 13, 2, 7, 7, 8, 8, 12, 4, 14, 10, 9, 8, 7, 6, 4, 13, 2, 8, 12, 3, 13, 6, 9, 6, 9, 2, 11, 12, 2, 12, 5, 13, 6, 14, 9, 13, 9, 14, 14, 5, 11, 6, 12, 6, 13, 5, 11, 8, 8, 11, 6, 3, 11, 5, 16, 2, 10, 14, 14, 4, 13, 14, 10, 14, 10, 13, 12, 5, 11, 9, 15, 11, 8, 9, 13, 4, 10, 11, 14, 6, 11, 11, 5, 6, 6, 9, 6, 9, 5, 10, 10, 3, 8, 6, 5, 4, 10, 9, 13, 10, 14, 11, 4, 12, 12, 14, 6, 10, 6, 5, 11, 9, 12, 11, 14, 5, 9, 5, 8, 2, 15, 3, 6, 10, 14, 7, 4, 3, 10, 1, 11, 4, 3, 3, 9, 10, 13, 5, 8, 4, 5, 7, 13, 8, 15, 4, 6, 4, 5, 4, 8, 10, 5, 12, 4, 12, 14, 11, 3, 15, 12, 4, 13, 4, 11, 6, 12, 3, 5, 13, 7, 10, 11, 1, 11, 5, 6, 7, 3, 11, 10, 5, 12, 7, 8, 4, 7, 11, 1, 6, 5, 8, 12, 6, 2, 5, 9 ], [ 6, 4, 8, 13, 9, 10, 9, 10, 1, 4, 9, 0, 10, 11, 9, 5, 15, 13, 15, 14, 8, 7, 2, 14, 10, 4, 3, 11, 4, 7, 11, 7, 10, 4, 3, 1, 15, 2, 7, 13, 11, 11, 4, 11, 7, 8, 10, 0, 15, 5, 11, 14, 14, 12, 3, 15, 7, 14, 9, 15, 15, 6, 2, 7, 12, 2, 7, 10, 10, 4, 9, 11, 13, 15, 14, 10, 12, 16, 9, 5, 10, 3, 8, 7, 3, 4, 10, 14, 7, 7, 5, 12, 14, 6, 8, 12, 11, 9, 14, 14, 2, 6, 6, 11, 9, 7, 3, 10, 11, 13, 7, 11, 16, 11, 15, 12, 13, 3, 13, 7, 15, 9, 13, 13, 5, 7, 15, 6, 4, 13, 10, 1, 10, 9, 11, 10, 11, 13, 11, 6, 7, 16, 10, 7, 10, 12, 7, 2, 11, 15, 10, 3, 13, 14, 2, 9, 4, 13, 11, 5, 7, 10, 6, 3, 3, 11, 10, 8, 8, 5, 8, 8, 9, 4, 9, 6, 12, 9, 11, 9, 8, 14, 4, 8, 1, 2, 8, 5, 8, 14, 2, 12, 2, 11, 13, 4, 9, 3, 7, 3, 4, 9, 3, 8, 12, 5, 13, 10, 4, 15 ], [ 12, 9, 14, 13, 10, 12, 1, 1, 9, 7, 2, 10, 0, 11, 0, 6, 5, 6, 6, 10, 3, 14, 10, 7, 7, 6, 7, 6, 13, 3, 6, 11, 5, 14, 7, 10, 5, 10, 3, 9, 10, 2, 13, 7, 13, 8, 13, 10, 11, 11, 13, 13, 5, 10, 7, 10, 8, 11, 4, 9, 6, 10, 11, 8, 4, 12, 4, 15, 1, 11, 14, 12, 3, 11, 12, 9, 13, 8, 12, 12, 7, 12, 8, 15, 12, 10, 8, 11, 4, 10, 10, 13, 5, 11, 10, 3, 4, 4, 6, 4, 10, 5, 9, 8, 5, 7, 7, 7, 5, 8, 8, 11, 8, 13, 8, 5, 10, 13, 13, 8, 8, 5, 3, 10, 9, 12, 9, 14, 7, 7, 3, 9, 4, 15, 5, 4, 9, 12, 5, 6, 5, 8, 2, 10, 6, 4, 4, 9, 8, 11, 3, 8, 3, 4, 8, 12, 9, 14, 6, 7, 3, 7, 4, 9, 10, 7, 11, 3, 11, 14, 10, 2, 14, 13, 6, 13, 2, 10, 4, 11, 2, 5, 14, 9, 11, 12, 2, 11, 4, 4, 8, 3, 11, 9, 4, 12, 5, 10, 3, 8, 11, 3, 7, 4, 6, 12, 4, 4, 6, 7 ], [ 6, 14, 6, 2, 1, 1, 10, 12, 9, 13, 13, 11, 11, 0, 11, 7, 13, 8, 13, 6, 8, 8, 9, 9, 5, 7, 11, 16, 11, 11, 7, 4, 16, 12, 10, 9, 15, 12, 12, 5, 2, 13, 14, 17, 7, 16, 2, 10, 6, 16, 1, 4, 15, 3, 10, 7, 16, 5, 8, 7, 12, 16, 10, 15, 15, 12, 7, 6, 12, 14, 4, 1, 13, 6, 3, 3, 2, 10, 3, 7, 17, 10, 4, 9, 13, 14, 4, 5, 8, 4, 6, 2, 13, 5, 3, 10, 8, 7, 10, 14, 12, 9, 4, 5, 15, 5, 11, 17, 16, 7, 4, 1, 11, 2, 9, 16, 5, 13, 2, 16, 10, 7, 12, 5, 6, 5, 8, 8, 12, 7, 8, 10, 14, 6, 16, 8, 4, 3, 8, 13, 14, 11, 13, 4, 16, 15, 13, 8, 4, 6, 9, 7, 14, 16, 10, 3, 14, 3, 17, 13, 9, 17, 9, 8, 8, 17, 0, 9, 3, 11, 2, 10, 6, 14, 15, 8, 13, 1, 9, 1, 10, 15, 13, 17, 11, 11, 12, 6, 8, 13, 12, 15, 9, 3, 12, 8, 6, 13, 9, 8, 7, 13, 11, 8, 8, 8, 11, 15, 11, 12 ], [ 12, 8, 14, 13, 10, 12, 1, 1, 9, 7, 2, 9, 0, 11, 0, 6, 6, 7, 6, 11, 3, 14, 10, 7, 7, 6, 7, 5, 13, 2, 6, 11, 5, 13, 6, 9, 5, 10, 3, 9, 10, 2, 13, 7, 13, 7, 13, 10, 11, 11, 13, 13, 5, 10, 7, 11, 8, 11, 3, 9, 6, 10, 11, 8, 4, 11, 4, 15, 1, 11, 13, 12, 3, 11, 12, 9, 13, 8, 12, 12, 7, 11, 8, 15, 12, 9, 8, 11, 4, 9, 10, 13, 5, 10, 10, 3, 4, 4, 7, 5, 10, 4, 9, 8, 5, 7, 6, 7, 5, 8, 8, 11, 8, 13, 9, 5, 10, 13, 13, 8, 8, 5, 4, 10, 8, 11, 9, 13, 6, 7, 3, 8, 3, 14, 5, 4, 9, 12, 5, 6, 5, 8, 2, 10, 5, 4, 4, 9, 8, 12, 3, 8, 4, 5, 7, 12, 9, 14, 6, 7, 3, 7, 4, 8, 10, 6, 11, 3, 11, 14, 9, 2, 14, 13, 6, 13, 3, 10, 4, 11, 1, 5, 13, 9, 11, 11, 2, 11, 4, 5, 8, 4, 11, 9, 4, 11, 5, 9, 3, 7, 11, 3, 7, 4, 6, 12, 4, 4, 6, 7 ], [ 6, 7, 8, 9, 5, 7, 5, 7, 4, 6, 7, 5, 6, 7, 6, 0, 10, 8, 10, 9, 3, 8, 5, 9, 4, 1, 5, 10, 8, 4, 6, 5, 9, 9, 4, 4, 11, 7, 5, 8, 6, 8, 9, 11, 7, 9, 7, 5, 9, 10, 8, 9, 11, 7, 4, 10, 9, 9, 4, 9, 10, 9, 6, 9, 10, 8, 2, 9, 7, 9, 8, 8, 9, 10, 9, 5, 8, 10, 7, 6, 10, 6, 3, 9, 8, 8, 5, 9, 2, 4, 4, 8, 10, 4, 4, 7, 6, 4, 9, 10, 7, 2, 3, 6, 9, 2, 4, 10, 10, 8, 3, 7, 10, 8, 9, 10, 8, 9, 9, 9, 9, 4, 9, 8, 3, 5, 10, 7, 5, 7, 5, 5, 8, 9, 9, 5, 6, 9, 6, 6, 7, 11, 8, 4, 9, 10, 6, 4, 6, 10, 5, 2, 10, 11, 4, 7, 7, 9, 10, 7, 3, 10, 2, 3, 4, 10, 6, 4, 5, 9, 4, 4, 8, 9, 9, 7, 8, 5, 6, 6, 4, 11, 9, 10, 6, 7, 6, 5, 3, 10, 6, 10, 6, 6, 8, 6, 4, 7, 3, 2, 5, 7, 4, 3, 7, 6, 8, 9, 5, 10 ], [ 16, 14, 17, 14, 13, 14, 6, 5, 14, 12, 7, 15, 5, 13, 6, 10, 0, 5, 1, 10, 7, 18, 15, 5, 9, 11, 12, 9, 18, 8, 6, 15, 9, 18, 12, 14, 2, 15, 8, 9, 12, 5, 18, 10, 17, 13, 15, 15, 10, 16, 15, 13, 3, 11, 12, 9, 13, 11, 6, 8, 2, 15, 16, 13, 6, 17, 8, 18, 5, 16, 16, 14, 3, 11, 13, 11, 14, 5, 15, 16, 11, 17, 11, 19, 17, 15, 9, 11, 8, 13, 14, 15, 1, 14, 13, 3, 5, 7, 4, 2, 15, 9, 13, 9, 9, 11, 12, 11, 9, 7, 12, 13, 5, 15, 7, 7, 10, 18, 14, 13, 5, 7, 2, 10, 13, 15, 7, 18, 12, 7, 6, 14, 8, 18, 9, 6, 10, 13, 6, 11, 10, 4, 6, 14, 10, 6, 9, 14, 10, 11, 5, 12, 4, 5, 12, 15, 14, 16, 9, 12, 8, 11, 9, 13, 15, 10, 13, 7, 14, 19, 12, 6, 18, 19, 10, 17, 3, 13, 5, 13, 6, 4, 19, 13, 16, 16, 7, 15, 8, 1, 14, 5, 16, 10, 2, 16, 8, 15, 8, 12, 15, 8, 12, 7, 6, 17, 3, 8, 11, 3 ], [ 12, 14, 13, 8, 8, 9, 6, 7, 12, 12, 8, 13, 6, 8, 7, 8, 5, 0, 4, 4, 6, 15, 12, 1, 4, 8, 11, 12, 15, 8, 2, 11, 11, 16, 11, 12, 7, 14, 9, 4, 7, 8, 17, 13, 13, 14, 11, 13, 5, 16, 10, 8, 8, 5, 11, 4, 14, 6, 4, 3, 4, 16, 14, 14, 10, 15, 6, 14, 7, 16, 12, 9, 6, 5, 8, 6, 9, 3, 11, 13, 13, 14, 6, 15, 16, 15, 5, 5, 7, 9, 11, 10, 5, 11, 8, 4, 3, 4, 2, 7, 14, 8, 9, 3, 11, 7, 11, 13, 12, 2, 8, 7, 3, 10, 2, 11, 5, 16, 9, 14, 2, 4, 5, 4, 10, 11, 3, 14, 11, 1, 4, 12, 10, 14, 11, 3, 5, 7, 2, 11, 11, 3, 9, 10, 12, 10, 10, 11, 5, 6, 4, 10, 8, 9, 11, 10, 14, 11, 12, 13, 6, 14, 7, 11, 12, 13, 8, 6, 9, 16, 8, 6, 14, 17, 12, 14, 6, 8, 2, 8, 6, 8, 17, 15, 14, 14, 8, 12, 6, 5, 13, 9, 13, 5, 4, 13, 4, 14, 7, 10, 12, 9, 11, 5, 1, 13, 3, 11, 11, 3 ], [ 16, 15, 17, 13, 12, 14, 6, 6, 14, 13, 8, 15, 6, 13, 6, 10, 1, 4, 0, 9, 7, 18, 15, 4, 8, 11, 12, 10, 18, 8, 5, 14, 10, 19, 12, 14, 4, 16, 9, 8, 11, 6, 19, 11, 17, 13, 15, 15, 9, 17, 14, 12, 5, 10, 12, 8, 14, 10, 6, 7, 1, 16, 16, 14, 8, 17, 8, 18, 6, 17, 16, 13, 4, 10, 12, 10, 14, 4, 15, 16, 12, 17, 10, 19, 18, 16, 9, 10, 8, 13, 14, 14, 2, 14, 12, 3, 5, 7, 3, 3, 16, 9, 13, 8, 10, 10, 12, 12, 10, 6, 11, 12, 3, 14, 5, 8, 9, 18, 13, 14, 4, 7, 3, 9, 13, 15, 6, 18, 12, 6, 6, 14, 9, 18, 10, 5, 9, 12, 5, 12, 11, 3, 7, 13, 11, 7, 10, 14, 9, 10, 5, 12, 5, 6, 13, 15, 15, 15, 11, 13, 8, 12, 9, 13, 15, 11, 12, 7, 13, 19, 12, 7, 17, 19, 11, 17, 4, 12, 4, 13, 7, 5, 19, 14, 16, 16, 8, 15, 8, 2, 14, 7, 16, 9, 2, 16, 7, 15, 8, 12, 15, 8, 12, 7, 5, 17, 2, 10, 12, 1 ], [ 12, 16, 12, 5, 6, 7, 10, 11, 13, 15, 12, 14, 10, 6, 11, 9, 10, 4, 9, 0, 9, 14, 13, 4, 5, 10, 14, 16, 16, 11, 5, 10, 15, 17, 13, 13, 12, 16, 12, 2, 4, 12, 18, 17, 12, 17, 8, 14, 1, 19, 7, 4, 13, 3, 13, 2, 17, 1, 7, 2, 8, 18, 14, 17, 14, 17, 8, 12, 11, 18, 10, 6, 11, 1, 4, 5, 6, 5, 9, 13, 17, 15, 7, 15, 17, 17, 4, 1, 9, 9, 11, 7, 10, 10, 8, 8, 7, 7, 6, 11, 16, 10, 9, 3, 15, 8, 13, 17, 16, 3, 8, 5, 6, 8, 3, 15, 1, 18, 5, 17, 5, 6, 10, 2, 10, 10, 3, 14, 14, 3, 7, 14, 14, 12, 15, 6, 3, 4, 6, 15, 15, 6, 13, 9, 16, 14, 14, 12, 4, 1, 8, 11, 12, 14, 13, 9, 16, 7, 16, 16, 9, 18, 10, 12, 13, 17, 6, 9, 8, 16, 7, 10, 12, 18, 16, 13, 11, 7, 6, 7, 10, 13, 18, 18, 15, 15, 12, 12, 8, 10, 15, 13, 14, 4, 9, 13, 6, 16, 10, 11, 12, 13, 13, 8, 4, 13, 8, 15, 13, 7 ], [ 9, 8, 11, 10, 7, 9, 2, 4, 7, 6, 4, 8, 3, 8, 3, 3, 7, 6, 7, 9, 0, 11, 8, 7, 4, 4, 6, 8, 11, 2, 4, 8, 7, 11, 5, 7, 8, 9, 4, 7, 7, 5, 11, 9, 10, 8, 10, 8, 9, 10, 10, 10, 8, 7, 5, 9, 9, 9, 2, 8, 7, 10, 9, 8, 7, 10, 1, 12, 4, 10, 10, 9, 5, 10, 10, 6, 10, 8, 9, 9, 9, 9, 5, 12, 10, 9, 5, 9, 1, 6, 7, 10, 7, 8, 7, 4, 3, 2, 7, 7, 9, 2, 6, 6, 7, 4, 5, 8, 8, 6, 5, 8, 8, 10, 8, 8, 8, 11, 10, 8, 7, 2, 6, 8, 6, 8, 8, 11, 6, 6, 2, 7, 6, 12, 7, 3, 6, 10, 4, 6, 6, 8, 5, 7, 8, 7, 5, 7, 6, 10, 2, 5, 7, 8, 5, 9, 8, 11, 8, 7, 1, 9, 2, 6, 8, 9, 8, 0, 8, 12, 7, 1, 11, 12, 7, 10, 5, 7, 4, 8, 1, 8, 12, 10, 9, 9, 4, 8, 1, 6, 7, 7, 9, 6, 5, 9, 3, 8, 1, 5, 8, 5, 5, 1, 5, 10, 5, 7, 5, 8 ], [ 2, 11, 3, 10, 8, 7, 13, 15, 6, 11, 14, 7, 14, 8, 14, 8, 18, 15, 18, 14, 11, 0, 5, 16, 11, 8, 10, 17, 4, 12, 13, 4, 17, 6, 9, 6, 19, 8, 13, 13, 9, 16, 8, 17, 2, 14, 6, 6, 14, 12, 8, 12, 19, 11, 9, 15, 14, 13, 12, 15, 18, 13, 5, 14, 17, 7, 10, 4, 15, 10, 5, 8, 17, 14, 11, 9, 9, 17, 5, 2, 17, 5, 8, 1, 8, 11, 10, 13, 10, 6, 4, 9, 18, 4, 6, 15, 14, 11, 16, 18, 8, 10, 6, 12, 16, 8, 9, 16, 17, 14, 7, 9, 17, 7, 16, 18, 13, 7, 10, 14, 16, 11, 17, 12, 6, 4, 16, 1, 10, 14, 13, 7, 15, 3, 17, 13, 11, 11, 13, 12, 13, 18, 15, 5, 16, 18, 13, 6, 11, 14, 13, 6, 18, 19, 8, 5, 11, 9, 17, 12, 11, 17, 10, 6, 4, 17, 8, 12, 5, 4, 7, 13, 3, 8, 15, 1, 16, 7, 14, 7, 13, 19, 6, 15, 6, 5, 14, 3, 11, 18, 9, 17, 4, 10, 16, 3, 11, 10, 11, 7, 3, 15, 9, 11, 14, 2, 16, 16, 10, 18 ], [ 4, 6, 6, 11, 8, 8, 9, 11, 1, 6, 10, 2, 10, 9, 10, 5, 15, 12, 15, 13, 8, 5, 0, 13, 9, 4, 5, 12, 3, 8, 11, 5, 12, 4, 4, 1, 15, 4, 8, 12, 9, 12, 5, 13, 5, 10, 8, 2, 13, 8, 9, 12, 15, 11, 4, 14, 9, 13, 9, 13, 15, 8, 1, 9, 13, 4, 7, 8, 10, 6, 7, 9, 13, 14, 12, 9, 10, 15, 7, 3, 12, 2, 7, 5, 5, 7, 9, 13, 7, 5, 3, 10, 14, 4, 6, 12, 10, 9, 14, 14, 4, 6, 5, 10, 11, 5, 5, 12, 13, 12, 5, 9, 15, 9, 14, 13, 12, 5, 11, 9, 14, 8, 13, 11, 3, 5, 14, 4, 6, 12, 9, 3, 11, 7, 12, 10, 10, 12, 10, 7, 8, 15, 11, 5, 12, 13, 8, 1, 9, 14, 10, 3, 14, 14, 3, 7, 6, 11, 13, 7, 7, 12, 6, 2, 1, 12, 8, 8, 6, 4, 7, 9, 6, 5, 10, 4, 13, 7, 11, 7, 9, 15, 4, 10, 2, 2, 9, 3, 7, 14, 4, 13, 1, 9, 13, 2, 9, 5, 7, 3, 2, 10, 4, 8, 12, 3, 13, 11, 6, 15 ], [ 13, 15, 14, 9, 9, 10, 7, 8, 13, 13, 9, 14, 7, 9, 7, 9, 5, 1, 4, 4, 7, 16, 13, 0, 5, 10, 12, 13, 16, 9, 3, 12, 12, 17, 12, 13, 8, 15, 10, 4, 7, 8, 18, 14, 14, 15, 11, 14, 5, 17, 10, 8, 8, 6, 12, 4, 15, 6, 5, 2, 3, 17, 15, 15, 10, 16, 7, 15, 8, 17, 13, 10, 7, 5, 8, 7, 10, 1, 11, 14, 14, 15, 7, 16, 17, 16, 5, 5, 8, 10, 12, 10, 5, 12, 9, 4, 4, 5, 1, 7, 15, 9, 10, 4, 12, 8, 12, 14, 12, 2, 9, 8, 2, 11, 1, 11, 5, 18, 9, 15, 1, 5, 5, 5, 11, 12, 2, 15, 12, 2, 5, 13, 11, 15, 12, 4, 5, 8, 3, 13, 12, 2, 9, 11, 13, 10, 11, 12, 5, 5, 5, 11, 8, 10, 12, 11, 15, 11, 13, 14, 8, 15, 8, 12, 13, 14, 9, 7, 10, 17, 9, 7, 14, 18, 13, 15, 7, 9, 3, 9, 7, 9, 18, 16, 15, 15, 9, 13, 7, 6, 14, 10, 15, 6, 5, 14, 5, 15, 8, 11, 13, 10, 12, 6, 2, 14, 4, 12, 12, 3 ], [ 8, 12, 9, 6, 4, 6, 6, 7, 8, 10, 8, 10, 7, 5, 7, 4, 9, 4, 8, 5, 4, 11, 9, 5, 0, 5, 9, 12, 12, 7, 3, 7, 11, 13, 8, 9, 10, 11, 8, 3, 3, 9, 13, 13, 9, 13, 7, 10, 5, 14, 6, 6, 10, 3, 8, 6, 13, 5, 3, 5, 7, 14, 10, 12, 11, 12, 3, 10, 7, 13, 8, 6, 8, 6, 6, 2, 6, 7, 7, 9, 13, 10, 2, 11, 13, 12, 1, 5, 5, 5, 7, 6, 8, 7, 4, 6, 4, 2, 6, 9, 11, 5, 5, 2, 11, 3, 9, 13, 12, 3, 4, 4, 7, 7, 5, 12, 4, 13, 6, 13, 6, 2, 7, 3, 6, 7, 6, 10, 9, 3, 4, 9, 10, 10, 11, 3, 2, 5, 3, 10, 10, 7, 9, 6, 12, 11, 9, 8, 2, 6, 4, 6, 10, 11, 8, 7, 12, 7, 13, 11, 5, 13, 5, 7, 8, 13, 5, 5, 5, 12, 4, 5, 10, 14, 12, 10, 8, 4, 4, 5, 6, 11, 13, 14, 10, 11, 8, 8, 4, 8, 10, 10, 10, 2, 7, 9, 1, 11, 5, 7, 8, 9, 8, 3, 3, 9, 6, 11, 9, 7 ], [ 6, 6, 8, 9, 6, 8, 5, 7, 3, 5, 7, 4, 6, 7, 6, 1, 11, 8, 11, 10, 4, 8, 4, 10, 5, 0, 4, 10, 7, 4, 7, 5, 9, 8, 3, 4, 11, 6, 5, 9, 7, 8, 8, 10, 7, 8, 8, 4, 10, 9, 8, 10, 11, 8, 3, 11, 8, 10, 5, 10, 11, 9, 5, 8, 10, 7, 3, 9, 7, 8, 8, 8, 9, 11, 10, 6, 9, 11, 7, 5, 10, 6, 4, 9, 7, 7, 6, 10, 3, 4, 4, 9, 10, 4, 5, 8, 6, 5, 10, 10, 6, 2, 4, 7, 8, 2, 4, 10, 10, 9, 3, 8, 11, 8, 10, 10, 9, 8, 9, 8, 10, 4, 9, 9, 2, 6, 11, 7, 4, 8, 5, 4, 8, 9, 9, 6, 7, 10, 7, 6, 6, 11, 8, 5, 9, 10, 6, 3, 6, 11, 5, 2, 10, 11, 3, 7, 6, 10, 10, 6, 3, 10, 2, 2, 4, 10, 7, 4, 5, 8, 5, 5, 8, 8, 8, 7, 9, 6, 7, 6, 5, 11, 8, 10, 5, 6, 6, 5, 3, 10, 5, 10, 5, 7, 9, 5, 5, 6, 3, 1, 5, 7, 3, 4, 8, 6, 8, 8, 4, 11 ], [ 9, 3, 11, 13, 10, 12, 6, 7, 4, 1, 6, 3, 7, 11, 7, 5, 12, 11, 12, 14, 6, 10, 5, 12, 9, 4, 0, 8, 7, 4, 10, 9, 7, 7, 1, 4, 12, 4, 4, 12, 11, 8, 6, 8, 9, 5, 11, 4, 14, 5, 12, 14, 11, 12, 1, 14, 5, 14, 7, 13, 12, 5, 5, 4, 9, 5, 6, 12, 7, 4, 11, 12, 10, 15, 14, 10, 13, 14, 11, 7, 7, 6, 8, 10, 5, 4, 9, 14, 5, 8, 7, 13, 11, 8, 9, 9, 9, 7, 12, 11, 3, 4, 7, 11, 6, 6, 0, 7, 8, 12, 7, 12, 14, 12, 13, 9, 13, 6, 13, 4, 13, 7, 10, 12, 6, 9, 14, 9, 1, 12, 8, 2, 6, 11, 7, 8, 11, 14, 9, 2, 4, 14, 7, 8, 7, 9, 4, 4, 10, 15, 7, 4, 10, 10, 2, 10, 3, 14, 8, 2, 5, 7, 4, 4, 5, 7, 11, 6, 9, 8, 9, 6, 11, 7, 6, 9, 9, 10, 9, 10, 6, 11, 7, 6, 5, 5, 5, 7, 6, 11, 1, 9, 6, 10, 10, 7, 8, 3, 5, 4, 7, 6, 1, 6, 11, 8, 10, 6, 1, 13 ], [ 16, 8, 18, 18, 15, 17, 6, 5, 11, 7, 4, 11, 6, 16, 5, 10, 9, 12, 10, 16, 8, 17, 12, 13, 12, 10, 8, 0, 15, 6, 11, 15, 1, 14, 9, 11, 7, 11, 5, 15, 15, 4, 13, 1, 16, 5, 17, 11, 16, 9, 18, 18, 6, 15, 9, 16, 5, 17, 9, 15, 11, 8, 13, 5, 3, 12, 9, 19, 5, 11, 18, 17, 7, 17, 18, 14, 18, 13, 17, 15, 2, 14, 13, 18, 12, 9, 13, 16, 8, 14, 14, 18, 9, 14, 14, 8, 9, 10, 12, 7, 11, 8, 13, 13, 2, 12, 8, 2, 0, 13, 13, 16, 13, 18, 14, 2, 16, 13, 18, 5, 13, 10, 8, 15, 12, 15, 14, 16, 7, 13, 9, 10, 2, 18, 1, 10, 14, 17, 10, 5, 4, 13, 3, 14, 1, 3, 4, 12, 14, 17, 8, 11, 5, 5, 9, 17, 8, 19, 0, 6, 8, 2, 8, 11, 13, 1, 16, 8, 15, 16, 14, 7, 18, 14, 2, 16, 6, 15, 10, 16, 7, 6, 14, 5, 12, 13, 4, 14, 9, 8, 9, 4, 13, 14, 8, 14, 11, 9, 7, 10, 14, 3, 8, 9, 12, 15, 9, 1, 7, 11 ], [ 5, 8, 6, 13, 10, 10, 12, 14, 4, 8, 13, 4, 13, 11, 13, 8, 18, 15, 18, 16, 11, 4, 3, 16, 12, 7, 7, 15, 0, 11, 14, 6, 14, 2, 7, 4, 18, 4, 11, 14, 12, 15, 4, 15, 5, 11, 9, 3, 16, 8, 11, 14, 18, 13, 6, 17, 11, 15, 12, 16, 18, 9, 2, 11, 16, 4, 10, 8, 13, 6, 8, 11, 16, 16, 14, 11, 12, 18, 8, 3, 14, 1, 9, 4, 4, 8, 11, 15, 10, 7, 5, 12, 17, 6, 8, 15, 14, 12, 17, 17, 5, 9, 7, 13, 13, 8, 7, 14, 15, 15, 8, 12, 18, 10, 17, 16, 15, 3, 13, 11, 17, 11, 16, 14, 6, 6, 17, 3, 8, 15, 12, 5, 13, 7, 14, 13, 13, 14, 13, 10, 11, 18, 14, 7, 14, 16, 11, 4, 12, 16, 13, 6, 17, 17, 6, 8, 7, 12, 15, 9, 10, 14, 9, 5, 3, 14, 10, 11, 8, 1, 9, 12, 7, 4, 13, 3, 15, 10, 14, 9, 12, 18, 2, 12, 3, 2, 12, 4, 10, 17, 6, 16, 2, 12, 16, 3, 12, 6, 10, 6, 4, 13, 7, 11, 15, 3, 16, 14, 8, 18 ], [ 10, 6, 12, 12, 9, 11, 2, 3, 7, 5, 2, 7, 3, 11, 2, 4, 8, 8, 8, 11, 2, 12, 8, 9, 7, 4, 4, 6, 11, 0, 6, 9, 5, 11, 4, 7, 8, 8, 1, 10, 10, 4, 11, 7, 11, 6, 12, 7, 11, 9, 12, 13, 7, 10, 5, 11, 7, 11, 4, 10, 8, 8, 9, 6, 5, 9, 3, 13, 3, 9, 12, 11, 5, 12, 12, 8, 12, 10, 11, 10, 6, 9, 7, 13, 10, 8, 7, 11, 2, 8, 8, 12, 7, 9, 9, 5, 5, 4, 8, 7, 8, 2, 8, 8, 5, 6, 4, 6, 6, 8, 7, 10, 10, 12, 10, 6, 10, 11, 12, 6, 9, 5, 6, 10, 7, 10, 10, 11, 4, 8, 4, 6, 4, 13, 5, 5, 9, 12, 6, 4, 4, 10, 3, 9, 5, 5, 3, 7, 8, 12, 4, 6, 6, 7, 5, 11, 7, 13, 6, 5, 2, 7, 2, 6, 8, 6, 10, 2, 9, 12, 8, 2, 13, 11, 5, 11, 5, 9, 5, 10, 2, 7, 11, 7, 8, 9, 2, 9, 3, 7, 6, 5, 9, 8, 6, 10, 5, 7, 2, 5, 9, 3, 4, 3, 7, 10, 6, 4, 4, 9 ], [ 11, 12, 12, 8, 7, 8, 5, 6, 10, 11, 8, 11, 6, 7, 6, 6, 6, 2, 5, 5, 4, 13, 11, 3, 3, 7, 10, 11, 14, 6, 0, 9, 11, 15, 9, 11, 8, 13, 8, 4, 6, 7, 15, 12, 12, 13, 9, 11, 5, 15, 9, 8, 8, 5, 9, 5, 13, 6, 3, 4, 5, 14, 12, 13, 9, 14, 4, 12, 6, 14, 11, 8, 6, 6, 7, 5, 8, 4, 9, 11, 12, 13, 5, 14, 14, 13, 3, 5, 5, 7, 9, 9, 6, 9, 7, 4, 2, 2, 3, 7, 13, 6, 8, 3, 11, 6, 10, 12, 11, 2, 6, 7, 4, 9, 3, 10, 4, 15, 8, 13, 3, 3, 5, 4, 8, 10, 4, 13, 10, 2, 2, 11, 9, 12, 11, 2, 4, 7, 1, 10, 10, 5, 8, 8, 11, 9, 9, 10, 4, 6, 3, 8, 8, 9, 9, 9, 13, 10, 12, 11, 5, 13, 6, 9, 10, 12, 7, 5, 8, 15, 6, 5, 12, 15, 11, 12, 6, 7, 2, 7, 5, 9, 15, 14, 12, 13, 7, 10, 4, 6, 11, 9, 12, 4, 5, 11, 2, 12, 5, 8, 10, 9, 9, 4, 1, 12, 3, 10, 10, 5 ], [ 2, 11, 3, 7, 4, 4, 10, 12, 5, 10, 12, 7, 11, 4, 11, 5, 15, 11, 14, 10, 8, 4, 5, 12, 7, 5, 9, 15, 6, 9, 9, 0, 14, 8, 7, 5, 16, 8, 10, 8, 5, 13, 9, 16, 3, 13, 3, 6, 10, 12, 4, 8, 16, 7, 7, 11, 13, 9, 8, 11, 14, 12, 6, 13, 15, 8, 7, 4, 12, 10, 3, 5, 13, 10, 8, 5, 6, 13, 2, 3, 15, 6, 4, 5, 9, 11, 6, 9, 7, 2, 2, 5, 14, 1, 2, 11, 10, 8, 12, 15, 9, 7, 2, 8, 14, 4, 8, 15, 15, 10, 3, 5, 13, 4, 12, 15, 9, 9, 6, 13, 12, 7, 13, 8, 3, 0, 12, 4, 9, 10, 9, 7, 13, 4, 14, 9, 7, 7, 9, 11, 11, 14, 13, 1, 14, 15, 11, 5, 6, 10, 9, 4, 15, 16, 7, 2, 10, 6, 15, 11, 8, 15, 7, 5, 4, 15, 4, 8, 1, 7, 3, 9, 3, 10, 13, 4, 13, 3, 10, 3, 9, 16, 9, 14, 7, 6, 11, 2, 7, 14, 9, 15, 5, 6, 13, 3, 7, 9, 8, 5, 3, 12, 8, 8, 10, 4, 12, 14, 9, 14 ], [ 15, 7, 17, 17, 14, 16, 6, 4, 11, 6, 3, 10, 5, 16, 5, 9, 9, 11, 10, 15, 7, 17, 12, 12, 11, 9, 7, 1, 14, 5, 11, 14, 0, 14, 8, 11, 7, 10, 4, 14, 15, 4, 13, 2, 16, 5, 17, 11, 16, 9, 17, 17, 6, 14, 8, 15, 5, 16, 8, 14, 10, 8, 12, 5, 2, 12, 8, 18, 4, 10, 17, 16, 6, 16, 17, 13, 17, 13, 16, 14, 2, 13, 12, 17, 12, 8, 12, 16, 7, 13, 13, 17, 8, 13, 14, 8, 9, 9, 11, 7, 10, 7, 13, 13, 1, 11, 7, 2, 1, 12, 12, 15, 12, 17, 13, 2, 15, 13, 17, 5, 12, 9, 7, 14, 11, 15, 14, 16, 6, 12, 8, 10, 1, 18, 0, 9, 13, 17, 10, 5, 4, 12, 3, 14, 1, 3, 4, 11, 13, 16, 7, 10, 5, 5, 9, 16, 8, 18, 1, 6, 7, 3, 7, 10, 12, 2, 15, 7, 14, 16, 13, 6, 17, 13, 2, 15, 6, 14, 9, 15, 6, 6, 14, 5, 12, 12, 3, 13, 8, 8, 8, 3, 13, 13, 8, 14, 10, 9, 7, 10, 13, 2, 8, 8, 11, 14, 8, 1, 6, 11 ], [ 6, 7, 8, 15, 11, 12, 13, 14, 4, 8, 13, 4, 14, 12, 13, 9, 18, 16, 19, 17, 11, 6, 4, 17, 13, 8, 7, 14, 2, 11, 15, 8, 14, 0, 7, 4, 18, 4, 11, 15, 13, 15, 2, 14, 7, 10, 11, 4, 17, 7, 12, 16, 18, 14, 6, 18, 10, 17, 13, 17, 18, 8, 3, 10, 15, 2, 11, 10, 14, 5, 10, 13, 16, 17, 16, 12, 14, 19, 10, 5, 13, 2, 10, 6, 3, 7, 13, 16, 10, 9, 6, 13, 18, 7, 10, 15, 14, 12, 17, 18, 4, 9, 8, 14, 13, 9, 7, 13, 15, 16, 9, 13, 19, 12, 18, 16, 16, 2, 14, 10, 18, 12, 17, 15, 7, 8, 18, 5, 8, 16, 13, 5, 13, 9, 14, 14, 14, 15, 14, 9, 10, 19, 14, 8, 13, 16, 11, 5, 13, 17, 13, 6, 17, 17, 6, 10, 6, 14, 14, 8, 11, 13, 10, 6, 4, 14, 12, 11, 9, 2, 10, 12, 8, 2, 12, 5, 16, 11, 15, 11, 12, 18, 1, 11, 3, 2, 12, 6, 11, 18, 6, 16, 3, 13, 17, 5, 12, 5, 11, 6, 5, 13, 7, 11, 16, 5, 16, 13, 8, 19 ], [ 7, 4, 9, 12, 9, 10, 6, 7, 3, 3, 6, 3, 7, 10, 6, 4, 12, 11, 12, 13, 5, 9, 4, 12, 8, 3, 1, 9, 7, 4, 9, 7, 8, 7, 0, 3, 12, 4, 4, 11, 10, 8, 7, 9, 8, 6, 10, 3, 13, 6, 11, 13, 11, 10, 0, 13, 6, 13, 6, 12, 12, 6, 4, 6, 9, 5, 5, 11, 7, 5, 10, 11, 10, 13, 13, 9, 12, 13, 9, 6, 8, 5, 7, 9, 5, 5, 8, 12, 4, 6, 6, 12, 11, 6, 7, 9, 8, 7, 11, 11, 4, 3, 6, 10, 7, 5, 1, 8, 9, 11, 6, 10, 13, 11, 12, 10, 12, 6, 12, 6, 12, 7, 10, 11, 4, 7, 13, 8, 2, 11, 7, 2, 7, 10, 8, 8, 10, 12, 8, 4, 5, 13, 7, 7, 8, 9, 4, 3, 9, 13, 7, 3, 10, 11, 1, 9, 4, 12, 9, 4, 4, 8, 3, 3, 4, 8, 10, 5, 8, 8, 8, 5, 10, 7, 7, 7, 9, 8, 9, 9, 5, 11, 7, 7, 4, 5, 6, 6, 5, 11, 2, 9, 5, 9, 10, 6, 7, 3, 4, 2, 5, 6, 1, 5, 10, 7, 10, 7, 2, 12 ], [ 5, 5, 7, 12, 8, 9, 9, 10, 0, 5, 9, 1, 10, 9, 9, 4, 14, 12, 14, 13, 7, 6, 1, 13, 9, 4, 4, 11, 4, 7, 11, 5, 11, 4, 3, 0, 15, 3, 7, 12, 10, 11, 5, 12, 6, 8, 9, 1, 13, 7, 10, 13, 14, 11, 3, 14, 8, 13, 8, 14, 14, 7, 2, 8, 12, 3, 7, 9, 10, 5, 8, 10, 12, 14, 12, 9, 11, 15, 8, 4, 11, 2, 7, 7, 4, 6, 9, 13, 6, 5, 4, 11, 14, 4, 6, 11, 10, 8, 13, 14, 3, 5, 5, 10, 10, 5, 4, 11, 12, 12, 5, 10, 15, 9, 14, 13, 12, 4, 11, 8, 14, 8, 13, 12, 3, 6, 14, 5, 5, 12, 9, 2, 10, 8, 11, 10, 10, 12, 10, 6, 7, 15, 10, 5, 11, 12, 7, 1, 10, 14, 9, 2, 13, 14, 2, 8, 5, 11, 12, 6, 7, 11, 6, 1, 2, 11, 9, 7, 6, 5, 7, 8, 7, 5, 9, 5, 12, 8, 11, 8, 8, 14, 5, 9, 2, 2, 9, 4, 7, 14, 3, 12, 2, 10, 12, 3, 8, 4, 7, 2, 3, 9, 3, 7, 11, 4, 12, 10, 5, 15 ], [ 17, 13, 18, 15, 14, 16, 6, 5, 14, 12, 6, 15, 5, 15, 5, 11, 2, 7, 4, 12, 8, 19, 15, 8, 10, 11, 12, 7, 18, 8, 8, 16, 7, 18, 12, 15, 0, 15, 8, 11, 13, 4, 18, 8, 18, 11, 17, 15, 13, 15, 16, 15, 1, 12, 12, 11, 12, 13, 7, 10, 4, 14, 16, 12, 5, 17, 9, 19, 5, 16, 18, 16, 2, 13, 15, 12, 16, 8, 17, 17, 9, 17, 12, 20, 17, 14, 11, 13, 9, 14, 15, 16, 2, 15, 14, 4, 6, 8, 6, 1, 15, 10, 14, 10, 8, 12, 12, 9, 7, 9, 13, 14, 7, 17, 9, 5, 12, 18, 16, 12, 7, 8, 3, 12, 14, 16, 9, 18, 11, 9, 7, 14, 7, 19, 7, 7, 12, 15, 7, 10, 9, 7, 5, 15, 8, 4, 9, 14, 11, 13, 6, 13, 2, 3, 12, 16, 14, 18, 8, 12, 8, 10, 9, 13, 15, 9, 15, 7, 15, 19, 14, 7, 19, 18, 9, 18, 3, 14, 6, 15, 7, 1, 19, 12, 16, 16, 6, 16, 8, 2, 13, 4, 16, 12, 3, 17, 9, 14, 8, 13, 16, 7, 12, 8, 8, 17, 4, 7, 11, 5 ], [ 8, 3, 10, 14, 11, 12, 10, 11, 3, 4, 9, 2, 10, 12, 10, 7, 15, 14, 16, 16, 9, 8, 4, 15, 11, 6, 4, 11, 4, 8, 13, 8, 10, 4, 4, 3, 15, 0, 7, 14, 12, 11, 3, 11, 8, 7, 12, 2, 16, 4, 13, 15, 15, 13, 3, 17, 7, 16, 10, 16, 16, 5, 3, 6, 12, 1, 9, 11, 10, 2, 11, 13, 13, 16, 15, 12, 14, 17, 11, 6, 10, 3, 9, 8, 2, 3, 11, 16, 8, 8, 7, 13, 15, 7, 9, 13, 12, 10, 15, 15, 0, 6, 8, 13, 9, 8, 4, 9, 11, 14, 8, 13, 17, 12, 16, 12, 15, 3, 14, 6, 16, 10, 14, 14, 6, 8, 16, 7, 4, 14, 11, 2, 10, 10, 10, 11, 13, 15, 12, 6, 7, 17, 10, 8, 10, 12, 7, 4, 12, 16, 11, 5, 13, 14, 3, 10, 3, 14, 11, 5, 8, 10, 7, 4, 4, 10, 12, 9, 9, 6, 10, 9, 10, 3, 8, 7, 13, 11, 12, 11, 9, 15, 4, 8, 2, 3, 9, 6, 9, 15, 2, 12, 4, 12, 14, 6, 11, 2, 8, 5, 6, 9, 3, 9, 13, 6, 14, 10, 4, 16 ], [ 11, 6, 13, 14, 11, 12, 3, 3, 7, 4, 2, 7, 3, 12, 3, 5, 8, 9, 9, 12, 4, 13, 8, 10, 8, 5, 4, 5, 11, 1, 8, 10, 4, 11, 4, 7, 8, 7, 0, 11, 11, 4, 10, 5, 12, 5, 13, 7, 13, 8, 13, 14, 7, 11, 5, 13, 5, 13, 5, 12, 9, 7, 9, 5, 5, 9, 5, 14, 3, 8, 13, 13, 6, 13, 14, 10, 14, 11, 12, 10, 5, 10, 8, 14, 9, 7, 9, 13, 4, 9, 9, 14, 8, 10, 10, 6, 6, 6, 9, 7, 7, 3, 9, 9, 3, 7, 4, 5, 5, 10, 8, 12, 11, 13, 11, 5, 12, 10, 14, 5, 10, 6, 7, 11, 8, 11, 12, 12, 3, 10, 5, 6, 3, 14, 4, 6, 10, 13, 7, 3, 2, 11, 3, 10, 4, 5, 1, 7, 10, 13, 5, 6, 6, 6, 5, 12, 6, 15, 5, 4, 3, 5, 3, 7, 8, 5, 12, 3, 10, 12, 10, 3, 13, 11, 4, 12, 5, 11, 7, 11, 3, 7, 11, 6, 8, 9, 1, 10, 4, 7, 5, 5, 9, 10, 7, 10, 7, 6, 3, 6, 9, 2, 4, 5, 9, 11, 7, 3, 3, 10 ], [ 10, 15, 10, 4, 5, 6, 9, 10, 11, 13, 11, 13, 9, 5, 9, 8, 9, 4, 8, 2, 7, 13, 12, 4, 3, 9, 12, 15, 14, 10, 4, 8, 14, 15, 11, 12, 11, 14, 11, 0, 3, 11, 16, 16, 11, 16, 7, 13, 2, 17, 6, 4, 12, 1, 11, 3, 16, 2, 6, 3, 8, 17, 13, 16, 13, 15, 7, 11, 10, 16, 9, 6, 10, 2, 4, 3, 5, 5, 8, 11, 16, 13, 5, 13, 16, 16, 3, 2, 8, 7, 9, 6, 9, 9, 6, 7, 6, 5, 5, 10, 14, 9, 7, 2, 14, 6, 12, 16, 15, 2, 6, 4, 6, 7, 4, 14, 1, 16, 5, 16, 5, 5, 9, 0, 9, 9, 4, 12, 12, 3, 6, 12, 13, 11, 14, 5, 2, 3, 5, 13, 13, 7, 12, 8, 15, 13, 12, 11, 2, 2, 7, 9, 12, 13, 11, 8, 15, 7, 15, 14, 8, 16, 8, 10, 11, 16, 5, 8, 7, 15, 5, 8, 11, 17, 15, 12, 10, 5, 5, 6, 8, 12, 16, 17, 13, 14, 11, 10, 7, 9, 13, 12, 12, 2, 8, 11, 4, 14, 8, 10, 10, 12, 12, 6, 4, 12, 7, 14, 12, 7 ], [ 7, 14, 7, 2, 2, 3, 9, 11, 9, 12, 12, 11, 10, 2, 10, 6, 12, 7, 11, 4, 7, 9, 9, 7, 3, 7, 11, 15, 12, 10, 6, 5, 15, 13, 10, 10, 13, 12, 11, 3, 0, 12, 14, 16, 8, 15, 4, 11, 4, 16, 3, 3, 14, 2, 10, 6, 15, 4, 7, 6, 10, 16, 10, 15, 14, 13, 6, 7, 11, 14, 5, 3, 11, 5, 3, 1, 3, 9, 4, 8, 16, 11, 3, 10, 14, 14, 3, 4, 8, 4, 7, 3, 11, 6, 3, 9, 7, 6, 8, 12, 13, 8, 5, 3, 14, 5, 11, 16, 15, 5, 4, 1, 9, 4, 7, 15, 3, 14, 3, 15, 8, 5, 11, 3, 6, 6, 7, 9, 11, 5, 7, 10, 13, 8, 15, 7, 2, 2, 6, 13, 13, 10, 12, 5, 15, 14, 12, 9, 2, 5, 8, 7, 13, 14, 10, 4, 14, 4, 16, 13, 8, 16, 8, 8, 9, 16, 2, 8, 4, 12, 3, 9, 8, 14, 15, 9, 11, 2, 7, 2, 9, 14, 14, 16, 11, 11, 11, 7, 7, 11, 12, 14, 10, 2, 10, 9, 5, 13, 8, 8, 8, 12, 10, 7, 6, 9, 9, 14, 11, 10 ], [ 14, 9, 16, 15, 12, 14, 3, 1, 11, 8, 2, 11, 2, 13, 2, 8, 5, 8, 6, 12, 5, 16, 12, 8, 9, 8, 8, 4, 15, 4, 7, 13, 4, 15, 8, 11, 4, 11, 4, 11, 12, 0, 14, 5, 15, 8, 15, 11, 13, 11, 15, 15, 3, 12, 8, 12, 8, 13, 5, 11, 6, 10, 13, 8, 2, 13, 6, 17, 1, 12, 15, 14, 2, 13, 14, 11, 15, 9, 14, 14, 6, 13, 10, 17, 13, 10, 10, 13, 6, 12, 12, 15, 5, 12, 12, 4, 6, 6, 7, 4, 11, 6, 11, 10, 4, 9, 8, 6, 4, 9, 10, 13, 9, 15, 10, 3, 12, 14, 15, 8, 9, 7, 4, 11, 11, 13, 10, 15, 7, 9, 5, 10, 3, 17, 4, 6, 11, 14, 6, 6, 5, 9, 1, 12, 5, 2, 5, 11, 10, 13, 5, 10, 2, 3, 9, 14, 10, 16, 5, 8, 5, 6, 6, 10, 12, 5, 13, 5, 13, 16, 12, 4, 16, 14, 5, 15, 2, 12, 6, 13, 4, 3, 15, 8, 12, 13, 3, 13, 6, 4, 9, 2, 13, 10, 4, 13, 7, 10, 5, 9, 13, 3, 8, 6, 8, 14, 5, 3, 7, 7 ], [ 8, 6, 10, 16, 13, 13, 13, 14, 5, 7, 12, 4, 13, 14, 13, 9, 18, 17, 19, 18, 11, 8, 5, 18, 13, 8, 6, 13, 4, 11, 15, 9, 13, 2, 7, 5, 18, 3, 10, 16, 14, 14, 0, 13, 8, 9, 13, 4, 18, 5, 14, 17, 18, 15, 6, 19, 9, 18, 13, 18, 19, 6, 4, 9, 15, 2, 11, 11, 13, 3, 12, 14, 16, 19, 17, 14, 15, 19, 12, 7, 12, 4, 11, 8, 1, 5, 14, 18, 10, 10, 8, 15, 18, 9, 11, 15, 15, 13, 18, 17, 3, 9, 10, 15, 12, 10, 7, 12, 14, 17, 10, 14, 19, 13, 19, 15, 17, 0, 16, 8, 19, 13, 17, 16, 8, 9, 19, 7, 7, 17, 13, 5, 12, 11, 13, 14, 15, 17, 15, 8, 9, 20, 13, 10, 12, 15, 10, 6, 14, 19, 13, 7, 16, 17, 6, 11, 5, 15, 14, 7, 11, 12, 10, 6, 6, 13, 13, 12, 11, 4, 12, 12, 10, 0, 11, 7, 16, 12, 15, 12, 12, 17, 1, 10, 3, 3, 12, 7, 11, 17, 5, 15, 4, 14, 17, 6, 13, 4, 11, 7, 7, 12, 6, 12, 16, 6, 16, 13, 7, 19 ], [ 16, 8, 18, 19, 16, 18, 7, 6, 11, 7, 5, 11, 7, 17, 7, 11, 10, 13, 11, 17, 9, 17, 13, 14, 13, 10, 8, 1, 15, 7, 12, 16, 2, 14, 9, 12, 8, 11, 5, 16, 16, 5, 13, 0, 17, 4, 18, 11, 18, 9, 18, 19, 7, 16, 9, 17, 5, 18, 10, 16, 12, 8, 13, 5, 4, 12, 10, 19, 6, 10, 18, 18, 8, 18, 19, 15, 19, 15, 17, 15, 1, 14, 13, 18, 12, 8, 14, 17, 9, 14, 14, 19, 10, 15, 15, 9, 11, 11, 13, 8, 10, 9, 14, 14, 2, 12, 8, 1, 1, 14, 13, 17, 14, 18, 15, 3, 17, 13, 19, 5, 14, 11, 9, 16, 13, 16, 16, 16, 7, 14, 10, 10, 3, 19, 2, 11, 15, 18, 11, 5, 4, 14, 4, 15, 1, 4, 5, 12, 15, 18, 9, 11, 7, 6, 9, 17, 8, 20, 1, 6, 8, 1, 9, 11, 13, 0, 17, 8, 16, 16, 15, 8, 18, 13, 2, 16, 7, 16, 11, 16, 8, 7, 14, 4, 12, 13, 5, 15, 9, 9, 9, 5, 13, 15, 9, 15, 12, 9, 8, 11, 14, 4, 8, 10, 13, 15, 10, 2, 7, 13 ], [ 1, 11, 2, 9, 6, 6, 12, 14, 6, 11, 13, 7, 13, 7, 13, 7, 17, 13, 17, 12, 10, 2, 5, 14, 9, 7, 9, 16, 5, 11, 12, 3, 16, 7, 8, 6, 18, 8, 12, 11, 8, 15, 8, 17, 0, 14, 5, 6, 12, 12, 6, 10, 18, 10, 8, 14, 14, 11, 11, 13, 16, 13, 5, 14, 16, 8, 9, 3, 14, 10, 3, 7, 16, 12, 10, 8, 8, 16, 4, 2, 16, 5, 7, 2, 9, 11, 9, 12, 9, 4, 3, 7, 16, 3, 5, 14, 12, 10, 15, 17, 8, 9, 4, 10, 15, 6, 9, 16, 17, 12, 5, 8, 16, 6, 14, 17, 11, 8, 8, 14, 15, 10, 15, 11, 4, 2, 14, 2, 10, 12, 11, 7, 15, 2, 16, 11, 9, 10, 12, 12, 13, 16, 15, 3, 16, 17, 12, 5, 9, 12, 12, 6, 17, 18, 7, 4, 10, 7, 17, 11, 10, 16, 9, 5, 4, 16, 6, 11, 4, 5, 6, 11, 2, 8, 15, 2, 15, 6, 12, 5, 11, 18, 7, 15, 6, 6, 13, 2, 10, 16, 9, 16, 4, 9, 15, 2, 10, 9, 10, 6, 3, 14, 8, 10, 12, 2, 14, 15, 10, 16 ], [ 13, 4, 15, 18, 14, 16, 8, 8, 8, 3, 6, 8, 8, 16, 7, 9, 13, 14, 13, 17, 8, 14, 10, 15, 13, 8, 5, 5, 11, 6, 13, 13, 5, 10, 6, 8, 11, 7, 5, 16, 15, 8, 9, 4, 14, 0, 16, 8, 18, 5, 17, 18, 10, 16, 6, 18, 1, 18, 10, 16, 14, 3, 9, 1, 7, 8, 9, 17, 7, 6, 16, 17, 10, 18, 18, 14, 17, 16, 15, 12, 3, 10, 12, 15, 8, 4, 13, 17, 8, 12, 12, 17, 12, 12, 13, 11, 11, 11, 14, 11, 7, 7, 12, 14, 4, 11, 5, 3, 5, 15, 12, 16, 15, 17, 16, 7, 16, 9, 18, 1, 15, 11, 11, 16, 10, 14, 16, 13, 4, 14, 10, 7, 5, 16, 5, 11, 15, 18, 12, 3, 3, 16, 6, 13, 4, 7, 4, 9, 14, 18, 10, 9, 9, 9, 7, 15, 4, 18, 5, 3, 8, 3, 7, 9, 10, 4, 15, 8, 14, 12, 13, 8, 16, 9, 3, 13, 9, 14, 12, 15, 8, 10, 10, 1, 9, 9, 6, 12, 9, 12, 5, 8, 10, 14, 11, 12, 11, 5, 8, 8, 11, 5, 6, 9, 13, 12, 12, 4, 4, 14 ], [ 5, 14, 4, 4, 3, 1, 12, 14, 9, 13, 14, 10, 13, 2, 13, 7, 15, 11, 15, 8, 10, 6, 8, 11, 7, 8, 11, 17, 9, 12, 9, 3, 17, 11, 10, 9, 17, 12, 13, 7, 4, 15, 13, 18, 5, 16, 0, 10, 8, 15, 2, 5, 17, 6, 10, 10, 16, 7, 10, 10, 14, 16, 9, 16, 17, 12, 9, 3, 13, 14, 2, 2, 15, 8, 5, 5, 3, 13, 1, 6, 18, 9, 5, 7, 13, 14, 6, 7, 9, 4, 5, 2, 15, 4, 3, 12, 10, 9, 12, 16, 12, 9, 4, 7, 16, 6, 11, 17, 17, 9, 5, 4, 13, 1, 11, 17, 7, 12, 4, 16, 12, 8, 14, 7, 6, 3, 11, 7, 12, 9, 10, 10, 15, 4, 17, 10, 6, 5, 10, 14, 14, 14, 15, 3, 17, 17, 14, 8, 6, 8, 11, 7, 16, 17, 10, 1, 13, 3, 18, 14, 10, 18, 10, 8, 7, 18, 2, 10, 3, 10, 3, 11, 4, 13, 16, 6, 14, 3, 11, 2, 11, 17, 12, 17, 10, 10, 13, 5, 9, 15, 12, 16, 8, 6, 14, 6, 8, 13, 10, 8, 6, 15, 11, 9, 10, 6, 13, 16, 12, 14 ], [ 6, 5, 8, 13, 9, 10, 9, 10, 1, 5, 9, 0, 10, 10, 10, 5, 15, 13, 15, 14, 8, 6, 2, 14, 10, 4, 4, 11, 3, 7, 11, 6, 11, 4, 3, 1, 15, 2, 7, 13, 11, 11, 4, 11, 6, 8, 10, 0, 14, 6, 11, 14, 14, 12, 3, 15, 8, 14, 9, 14, 15, 6, 1, 7, 12, 2, 7, 9, 10, 4, 9, 11, 13, 15, 13, 10, 12, 16, 9, 4, 11, 2, 8, 7, 3, 5, 10, 14, 7, 6, 5, 12, 14, 5, 7, 12, 11, 9, 14, 14, 2, 6, 6, 11, 10, 6, 4, 10, 11, 13, 6, 11, 16, 10, 15, 13, 13, 4, 12, 7, 15, 9, 13, 13, 4, 7, 15, 5, 4, 13, 10, 1, 10, 9, 11, 10, 11, 13, 11, 6, 7, 16, 10, 6, 10, 12, 7, 2, 10, 15, 10, 3, 13, 14, 2, 9, 4, 12, 11, 5, 7, 11, 6, 2, 2, 11, 10, 8, 7, 5, 8, 9, 8, 4, 9, 5, 12, 9, 11, 9, 9, 14, 4, 9, 1, 2, 9, 4, 8, 14, 3, 12, 2, 10, 13, 4, 9, 3, 7, 3, 4, 9, 3, 8, 12, 4, 13, 10, 4, 15 ], [ 12, 17, 11, 4, 6, 7, 10, 11, 13, 15, 13, 15, 11, 6, 11, 9, 10, 5, 9, 1, 9, 14, 13, 5, 5, 10, 14, 16, 16, 11, 5, 10, 16, 17, 13, 13, 13, 16, 13, 2, 4, 13, 18, 18, 12, 18, 8, 14, 0, 19, 7, 4, 13, 3, 13, 2, 18, 1, 8, 3, 8, 19, 14, 17, 15, 17, 8, 12, 12, 18, 10, 6, 11, 1, 3, 5, 6, 6, 9, 13, 18, 15, 7, 14, 18, 18, 5, 1, 10, 8, 11, 6, 10, 10, 8, 9, 7, 7, 6, 12, 16, 11, 9, 3, 16, 8, 14, 17, 16, 3, 8, 5, 7, 7, 4, 15, 1, 18, 5, 18, 5, 7, 10, 2, 10, 10, 4, 14, 14, 4, 8, 14, 14, 12, 16, 7, 3, 3, 6, 15, 15, 7, 13, 9, 16, 15, 14, 12, 4, 1, 8, 11, 13, 14, 13, 9, 17, 7, 17, 16, 10, 18, 10, 12, 13, 17, 6, 9, 8, 16, 7, 10, 12, 18, 16, 13, 11, 6, 7, 7, 10, 13, 18, 19, 15, 15, 13, 11, 9, 10, 15, 14, 14, 4, 9, 13, 6, 16, 10, 11, 12, 14, 13, 8, 5, 13, 8, 15, 14, 8 ], [ 12, 2, 14, 18, 14, 16, 11, 11, 7, 4, 9, 5, 11, 16, 11, 10, 16, 16, 17, 19, 10, 12, 8, 17, 14, 9, 5, 9, 8, 9, 15, 12, 9, 7, 6, 7, 15, 4, 8, 17, 16, 11, 5, 9, 12, 5, 15, 6, 19, 0, 16, 19, 14, 16, 6, 19, 4, 19, 12, 18, 17, 1, 7, 4, 11, 5, 11, 15, 11, 2, 15, 16, 13, 19, 18, 15, 17, 18, 14, 10, 8, 7, 12, 12, 4, 1, 14, 18, 9, 12, 10, 17, 16, 11, 13, 14, 14, 12, 17, 15, 4, 8, 12, 15, 8, 11, 5, 7, 9, 17, 11, 16, 18, 16, 18, 11, 18, 5, 18, 4, 18, 12, 14, 17, 10, 12, 19, 11, 5, 16, 12, 5, 9, 14, 9, 13, 16, 18, 14, 5, 6, 18, 10, 12, 8, 12, 7, 8, 15, 19, 12, 8, 13, 13, 6, 14, 2, 18, 9, 4, 10, 7, 9, 8, 8, 8, 15, 10, 13, 9, 13, 10, 14, 5, 7, 11, 13, 14, 14, 14, 10, 14, 7, 5, 6, 6, 9, 10, 11, 15, 4, 12, 8, 15, 15, 10, 13, 3, 10, 8, 10, 9, 5, 11, 16, 10, 15, 9, 5, 17 ], [ 6, 14, 5, 3, 2, 1, 12, 13, 10, 13, 14, 11, 13, 1, 13, 8, 15, 10, 14, 7, 10, 8, 9, 10, 6, 8, 12, 18, 11, 12, 9, 4, 17, 12, 11, 10, 16, 13, 13, 6, 3, 15, 14, 18, 6, 17, 2, 11, 7, 16, 0, 4, 17, 5, 11, 9, 17, 6, 9, 9, 13, 16, 10, 16, 17, 13, 9, 5, 13, 15, 3, 1, 14, 7, 4, 4, 1, 12, 2, 7, 18, 10, 5, 8, 14, 15, 5, 6, 10, 4, 6, 1, 14, 5, 3, 12, 10, 8, 11, 15, 13, 10, 5, 6, 16, 6, 12, 18, 17, 8, 5, 2, 12, 1, 10, 17, 6, 13, 2, 16, 11, 8, 14, 6, 7, 4, 10, 8, 13, 8, 10, 11, 15, 5, 17, 9, 5, 4, 9, 14, 15, 13, 15, 4, 17, 17, 14, 9, 5, 7, 10, 8, 16, 17, 11, 2, 14, 2, 18, 14, 10, 18, 10, 9, 8, 18, 2, 10, 3, 11, 3, 11, 5, 14, 16, 8, 14, 2, 10, 2, 11, 17, 13, 18, 11, 11, 13, 7, 9, 14, 13, 16, 10, 5, 13, 8, 7, 14, 10, 9, 7, 15, 11, 9, 9, 8, 12, 16, 12, 13 ], [ 10, 17, 9, 1, 5, 4, 12, 13, 12, 15, 14, 14, 13, 4, 13, 9, 13, 8, 12, 4, 10, 12, 12, 8, 6, 10, 14, 18, 14, 13, 8, 8, 17, 16, 13, 13, 15, 15, 14, 4, 3, 15, 17, 19, 10, 18, 5, 14, 4, 19, 4, 0, 16, 3, 13, 6, 19, 3, 9, 6, 12, 19, 13, 18, 17, 16, 9, 9, 13, 18, 7, 3, 14, 4, 0, 4, 3, 9, 6, 11, 19, 14, 6, 12, 17, 18, 5, 3, 11, 7, 9, 3, 13, 9, 6, 11, 9, 8, 9, 14, 16, 11, 8, 5, 17, 8, 14, 19, 18, 6, 7, 3, 10, 5, 7, 18, 3, 17, 2, 18, 9, 8, 13, 4, 9, 8, 7, 12, 15, 7, 9, 14, 16, 9, 17, 9, 4, 1, 8, 16, 16, 10, 15, 7, 18, 17, 15, 12, 5, 3, 10, 11, 15, 17, 13, 6, 17, 4, 19, 16, 11, 19, 11, 11, 11, 19, 4, 11, 7, 15, 6, 12, 9, 17, 18, 11, 14, 5, 9, 5, 12, 16, 16, 20, 14, 14, 14, 10, 10, 13, 15, 16, 13, 4, 12, 11, 7, 16, 11, 11, 11, 15, 13, 10, 8, 11, 11, 17, 14, 11 ], [ 17, 12, 18, 16, 14, 16, 6, 4, 14, 11, 5, 14, 5, 15, 5, 11, 3, 8, 5, 13, 8, 19, 15, 8, 10, 11, 11, 6, 18, 7, 8, 16, 6, 18, 11, 14, 1, 15, 7, 12, 14, 3, 18, 7, 18, 10, 17, 14, 13, 14, 17, 16, 0, 13, 12, 12, 11, 14, 7, 11, 5, 14, 16, 11, 4, 16, 9, 19, 4, 15, 18, 16, 2, 14, 15, 13, 17, 9, 17, 17, 8, 16, 12, 20, 16, 13, 11, 13, 8, 14, 15, 17, 3, 15, 14, 5, 7, 8, 7, 2, 15, 9, 14, 11, 7, 12, 11, 8, 6, 10, 13, 15, 8, 17, 10, 4, 13, 17, 16, 11, 8, 9, 3, 12, 13, 16, 10, 18, 11, 9, 7, 13, 6, 19, 6, 7, 12, 15, 8, 9, 9, 8, 4, 15, 7, 3, 8, 14, 12, 14, 6, 13, 1, 2, 12, 17, 13, 18, 7, 11, 8, 9, 9, 13, 15, 8, 15, 7, 15, 19, 14, 6, 19, 18, 8, 18, 3, 14, 7, 15, 6, 0, 18, 11, 15, 16, 6, 16, 8, 3, 13, 3, 16, 12, 4, 16, 9, 13, 8, 12, 16, 6, 11, 8, 8, 17, 5, 6, 10, 6 ], [ 9, 14, 9, 3, 4, 5, 9, 10, 11, 13, 11, 12, 10, 3, 10, 7, 11, 5, 10, 3, 7, 11, 11, 6, 3, 8, 12, 15, 13, 10, 5, 7, 14, 14, 10, 11, 12, 13, 11, 1, 2, 12, 15, 16, 10, 16, 6, 12, 3, 16, 5, 3, 13, 0, 11, 4, 16, 2, 6, 4, 9, 16, 12, 15, 14, 14, 6, 9, 10, 15, 7, 4, 11, 3, 3, 2, 4, 7, 6, 10, 16, 12, 4, 12, 15, 15, 2, 2, 8, 6, 8, 5, 10, 7, 5, 8, 6, 5, 7, 11, 14, 8, 6, 2, 14, 5, 11, 16, 15, 4, 5, 2, 8, 5, 5, 14, 2, 15, 3, 15, 6, 5, 10, 1, 8, 7, 5, 11, 12, 4, 6, 11, 13, 9, 14, 6, 1, 2, 5, 13, 13, 8, 12, 6, 15, 14, 12, 10, 2, 3, 7, 8, 12, 13, 11, 6, 14, 5, 16, 14, 8, 16, 8, 9, 10, 16, 4, 8, 6, 14, 4, 8, 9, 16, 15, 11, 10, 4, 6, 4, 9, 13, 15, 17, 12, 13, 11, 9, 7, 10, 13, 13, 11, 1, 9, 10, 4, 14, 8, 9, 9, 12, 11, 6, 5, 10, 8, 14, 12, 9 ], [ 7, 4, 9, 12, 9, 10, 6, 8, 3, 3, 6, 3, 7, 10, 7, 4, 12, 11, 12, 13, 5, 9, 4, 12, 8, 3, 1, 9, 6, 5, 9, 7, 8, 6, 0, 3, 12, 3, 5, 11, 10, 8, 6, 9, 8, 6, 10, 3, 13, 6, 11, 13, 12, 11, 0, 14, 6, 13, 7, 13, 12, 6, 4, 6, 9, 5, 5, 11, 7, 5, 10, 11, 10, 14, 13, 9, 12, 13, 9, 6, 8, 5, 7, 9, 5, 4, 9, 13, 4, 7, 6, 12, 12, 6, 8, 9, 9, 7, 12, 11, 3, 3, 6, 10, 7, 5, 1, 8, 9, 11, 6, 11, 13, 11, 13, 10, 12, 6, 12, 6, 13, 7, 10, 12, 4, 8, 13, 8, 2, 11, 7, 2, 7, 10, 8, 8, 10, 13, 9, 4, 5, 14, 7, 7, 8, 10, 4, 3, 9, 14, 7, 3, 10, 11, 1, 9, 3, 13, 9, 3, 5, 8, 4, 3, 4, 8, 10, 5, 8, 8, 8, 6, 10, 6, 7, 7, 9, 9, 9, 9, 6, 12, 7, 7, 4, 4, 6, 6, 5, 11, 2, 10, 5, 9, 10, 6, 7, 3, 5, 2, 5, 6, 0, 6, 10, 7, 10, 7, 2, 13 ], [ 13, 17, 13, 6, 8, 9, 10, 11, 14, 15, 12, 15, 10, 7, 11, 10, 9, 4, 8, 2, 9, 15, 14, 4, 6, 11, 14, 16, 17, 11, 5, 11, 15, 18, 13, 14, 11, 17, 13, 3, 6, 12, 19, 17, 14, 18, 10, 15, 2, 19, 9, 6, 12, 4, 14, 0, 18, 3, 8, 1, 7, 19, 16, 17, 14, 18, 9, 13, 11, 19, 11, 8, 10, 2, 5, 6, 8, 4, 10, 14, 17, 16, 8, 16, 18, 18, 6, 3, 10, 10, 12, 8, 9, 12, 9, 8, 6, 7, 5, 10, 17, 11, 10, 4, 15, 9, 14, 17, 16, 3, 9, 6, 5, 9, 2, 15, 3, 19, 7, 18, 4, 7, 9, 3, 11, 11, 2, 15, 15, 3, 7, 15, 14, 13, 15, 7, 4, 5, 6, 15, 15, 5, 13, 10, 16, 14, 14, 13, 5, 2, 8, 12, 12, 13, 14, 10, 17, 9, 16, 16, 10, 18, 10, 13, 14, 17, 8, 9, 10, 18, 8, 10, 14, 19, 16, 15, 10, 8, 6, 8, 10, 12, 19, 19, 16, 16, 12, 13, 9, 9, 16, 13, 15, 5, 8, 14, 6, 17, 10, 12, 13, 13, 14, 8, 4, 15, 7, 15, 14, 6 ], [ 13, 3, 15, 18, 15, 16, 8, 8, 8, 3, 6, 7, 8, 16, 8, 9, 13, 14, 14, 17, 9, 14, 9, 15, 13, 8, 5, 5, 11, 7, 13, 13, 5, 10, 6, 8, 12, 7, 5, 16, 15, 8, 9, 5, 14, 1, 16, 8, 18, 4, 17, 19, 11, 16, 6, 18, 0, 18, 10, 17, 14, 3, 9, 0, 8, 8, 9, 17, 8, 6, 16, 17, 10, 18, 18, 14, 18, 16, 15, 12, 4, 10, 12, 15, 7, 4, 13, 18, 8, 12, 12, 17, 13, 12, 13, 11, 12, 11, 15, 12, 6, 7, 12, 14, 4, 11, 5, 3, 6, 15, 12, 16, 16, 17, 16, 7, 17, 9, 18, 0, 16, 11, 11, 16, 10, 14, 17, 13, 4, 15, 11, 7, 5, 16, 5, 11, 15, 18, 12, 3, 3, 16, 7, 13, 4, 8, 4, 9, 14, 18, 10, 9, 10, 10, 6, 15, 4, 18, 5, 2, 8, 3, 8, 9, 10, 4, 15, 8, 14, 12, 14, 8, 16, 9, 3, 13, 10, 14, 12, 15, 8, 11, 10, 1, 9, 9, 6, 12, 9, 12, 5, 8, 10, 14, 12, 12, 12, 5, 8, 8, 11, 6, 6, 10, 14, 12, 12, 5, 4, 15 ], [ 11, 17, 11, 4, 5, 6, 10, 12, 13, 15, 13, 14, 11, 5, 11, 9, 11, 6, 10, 1, 9, 13, 13, 6, 5, 10, 14, 17, 15, 11, 6, 9, 16, 17, 13, 13, 13, 16, 13, 2, 4, 13, 18, 18, 11, 18, 7, 14, 1, 19, 6, 3, 14, 2, 13, 3, 18, 0, 8, 3, 9, 19, 14, 17, 15, 16, 8, 11, 12, 18, 9, 5, 12, 1, 2, 4, 5, 7, 8, 12, 18, 14, 6, 14, 17, 17, 5, 0, 10, 8, 10, 5, 11, 10, 7, 9, 7, 7, 7, 12, 16, 10, 8, 3, 16, 8, 13, 18, 17, 4, 8, 4, 7, 7, 5, 16, 1, 17, 4, 18, 6, 7, 11, 2, 10, 9, 4, 13, 14, 4, 8, 14, 15, 11, 16, 7, 3, 2, 7, 15, 15, 8, 14, 8, 17, 15, 14, 12, 4, 1, 9, 11, 13, 15, 13, 8, 17, 6, 17, 16, 10, 18, 10, 12, 12, 18, 5, 10, 8, 16, 6, 10, 11, 18, 16, 13, 12, 6, 7, 6, 10, 14, 17, 19, 15, 15, 13, 11, 9, 11, 15, 14, 14, 4, 10, 12, 6, 16, 10, 11, 11, 14, 13, 8, 5, 13, 9, 16, 14, 9 ], [ 10, 10, 11, 9, 7, 9, 3, 4, 8, 8, 5, 9, 4, 8, 3, 4, 6, 4, 6, 7, 2, 12, 9, 5, 3, 5, 7, 9, 12, 4, 3, 8, 8, 13, 6, 8, 7, 10, 5, 6, 7, 5, 13, 10, 11, 10, 10, 9, 8, 12, 9, 9, 7, 6, 7, 8, 10, 8, 0, 6, 6, 11, 10, 10, 7, 11, 2, 12, 4, 12, 10, 9, 5, 8, 9, 5, 9, 7, 9, 10, 10, 11, 5, 13, 12, 11, 4, 8, 3, 7, 8, 10, 6, 8, 7, 3, 2, 1, 5, 6, 10, 4, 7, 4, 8, 4, 7, 10, 9, 5, 5, 8, 7, 10, 6, 8, 7, 13, 9, 10, 6, 1, 5, 6, 7, 9, 7, 11, 7, 5, 1, 8, 7, 12, 8, 1, 5, 9, 2, 7, 7, 7, 6, 8, 9, 7, 6, 8, 5, 8, 1, 6, 6, 8, 7, 9, 10, 11, 9, 9, 2, 10, 3, 7, 9, 10, 8, 2, 8, 13, 6, 2, 12, 13, 8, 11, 5, 7, 2, 8, 2, 7, 13, 11, 10, 10, 5, 9, 2, 6, 9, 7, 10, 5, 4, 10, 2, 10, 2, 6, 9, 6, 7, 1, 4, 10, 4, 8, 7, 6 ], [ 13, 16, 13, 7, 7, 9, 9, 10, 13, 14, 11, 15, 9, 7, 9, 9, 8, 3, 7, 2, 8, 15, 13, 2, 5, 10, 13, 15, 16, 10, 4, 11, 14, 17, 12, 14, 10, 16, 12, 3, 6, 11, 18, 16, 13, 16, 10, 14, 3, 18, 9, 6, 11, 4, 13, 1, 17, 3, 6, 0, 6, 18, 15, 16, 13, 17, 8, 13, 10, 18, 11, 8, 9, 3, 6, 6, 8, 3, 10, 13, 16, 15, 7, 16, 17, 17, 5, 3, 9, 9, 11, 8, 8, 11, 9, 7, 5, 6, 4, 9, 16, 10, 10, 3, 14, 8, 13, 16, 15, 2, 9, 6, 4, 9, 1, 13, 3, 18, 7, 16, 3, 6, 8, 3, 11, 11, 1, 15, 13, 2, 6, 14, 13, 13, 14, 5, 4, 6, 5, 14, 14, 4, 11, 10, 15, 13, 13, 13, 4, 3, 7, 11, 11, 12, 13, 10, 16, 9, 15, 15, 9, 16, 9, 12, 13, 16, 8, 8, 10, 17, 8, 9, 13, 18, 15, 14, 9, 8, 5, 8, 9, 11, 18, 18, 15, 15, 11, 12, 8, 8, 15, 12, 14, 4, 7, 14, 5, 16, 9, 11, 13, 12, 13, 7, 3, 14, 6, 14, 13, 5 ], [ 15, 15, 16, 12, 11, 13, 6, 6, 14, 13, 8, 15, 6, 12, 6, 10, 2, 4, 1, 8, 7, 18, 15, 3, 7, 11, 12, 11, 18, 8, 5, 14, 10, 18, 12, 14, 4, 16, 9, 8, 10, 6, 19, 12, 16, 14, 14, 15, 8, 17, 13, 12, 5, 9, 12, 7, 14, 9, 6, 6, 0, 16, 16, 14, 8, 17, 8, 17, 6, 17, 15, 13, 4, 9, 11, 9, 13, 3, 14, 16, 12, 16, 10, 18, 17, 16, 8, 9, 8, 12, 14, 13, 2, 14, 12, 3, 4, 6, 2, 4, 16, 9, 12, 7, 11, 10, 12, 12, 10, 5, 11, 11, 2, 14, 5, 9, 8, 18, 12, 14, 3, 7, 3, 8, 12, 14, 5, 17, 12, 5, 5, 14, 9, 17, 10, 5, 8, 11, 4, 12, 11, 2, 8, 13, 11, 8, 10, 13, 8, 9, 5, 12, 6, 7, 13, 14, 15, 14, 11, 13, 8, 13, 9, 13, 14, 12, 12, 7, 13, 19, 11, 7, 17, 19, 12, 17, 4, 11, 4, 12, 7, 6, 19, 15, 16, 16, 8, 14, 7, 3, 14, 7, 16, 8, 2, 15, 7, 15, 8, 12, 15, 9, 12, 7, 4, 16, 2, 10, 12, 1 ], [ 12, 2, 14, 18, 15, 16, 10, 10, 7, 4, 8, 6, 10, 16, 10, 9, 15, 16, 16, 18, 10, 13, 8, 17, 14, 9, 5, 8, 9, 8, 14, 12, 8, 8, 6, 7, 14, 5, 7, 17, 16, 10, 6, 8, 13, 3, 16, 6, 19, 1, 16, 19, 14, 16, 6, 19, 3, 19, 11, 18, 16, 0, 8, 3, 10, 5, 10, 16, 10, 3, 15, 16, 13, 19, 18, 15, 17, 18, 15, 11, 7, 8, 12, 13, 5, 1, 14, 18, 9, 12, 11, 17, 15, 11, 13, 13, 13, 12, 16, 14, 4, 8, 12, 15, 7, 11, 5, 6, 8, 16, 12, 16, 18, 16, 18, 10, 17, 6, 18, 3, 17, 12, 14, 17, 10, 13, 18, 12, 4, 16, 12, 6, 8, 15, 8, 13, 15, 18, 14, 4, 5, 18, 9, 12, 7, 11, 6, 8, 15, 19, 12, 8, 12, 12, 6, 15, 2, 18, 8, 3, 9, 6, 8, 8, 9, 7, 15, 10, 13, 10, 13, 10, 14, 6, 6, 11, 12, 14, 14, 15, 10, 13, 7, 4, 7, 7, 8, 11, 10, 14, 4, 11, 8, 15, 14, 10, 13, 3, 9, 8, 10, 8, 5, 11, 15, 11, 14, 8, 5, 17 ], [ 5, 6, 7, 12, 9, 10, 10, 12, 2, 6, 11, 2, 11, 10, 11, 6, 16, 14, 16, 14, 9, 5, 1, 15, 10, 5, 5, 13, 2, 9, 12, 6, 12, 3, 4, 2, 16, 3, 9, 13, 10, 13, 4, 13, 5, 9, 9, 1, 14, 7, 10, 13, 16, 12, 4, 16, 9, 14, 10, 15, 16, 8, 0, 9, 14, 3, 8, 8, 11, 5, 8, 10, 14, 15, 13, 10, 11, 16, 8, 3, 12, 1, 8, 6, 4, 6, 10, 14, 8, 6, 4, 11, 15, 5, 7, 13, 12, 10, 15, 15, 3, 7, 6, 12, 11, 7, 5, 12, 13, 13, 6, 11, 16, 10, 15, 14, 13, 3, 12, 9, 15, 9, 14, 13, 4, 6, 15, 4, 6, 13, 11, 3, 11, 8, 12, 11, 11, 13, 12, 8, 9, 17, 12, 6, 12, 14, 9, 2, 11, 15, 11, 4, 14, 15, 4, 8, 6, 12, 13, 7, 8, 12, 7, 3, 2, 12, 10, 9, 7, 3, 8, 10, 7, 4, 11, 4, 13, 9, 12, 9, 10, 16, 3, 10, 1, 1, 10, 4, 8, 15, 4, 14, 1, 11, 14, 3, 10, 5, 8, 4, 3, 11, 5, 9, 13, 3, 14, 12, 6, 16 ], [ 13, 3, 15, 17, 14, 16, 8, 8, 8, 3, 6, 7, 8, 15, 8, 9, 13, 14, 14, 17, 8, 14, 9, 15, 12, 8, 4, 5, 11, 6, 13, 13, 5, 10, 6, 8, 12, 6, 5, 16, 15, 8, 9, 5, 14, 1, 16, 7, 17, 4, 16, 18, 11, 15, 6, 17, 0, 17, 10, 16, 14, 3, 9, 0, 7, 7, 9, 16, 8, 5, 16, 16, 10, 18, 18, 14, 17, 16, 15, 12, 4, 10, 12, 14, 7, 3, 13, 17, 8, 12, 11, 17, 12, 12, 13, 11, 11, 10, 14, 11, 6, 7, 12, 14, 4, 10, 5, 4, 6, 15, 11, 16, 16, 16, 16, 7, 16, 9, 17, 0, 15, 11, 11, 16, 10, 13, 16, 13, 4, 14, 10, 6, 5, 16, 5, 11, 14, 17, 12, 3, 3, 16, 7, 12, 4, 8, 4, 9, 14, 18, 10, 9, 10, 10, 6, 15, 4, 18, 5, 2, 8, 4, 7, 8, 10, 4, 15, 8, 13, 12, 13, 8, 15, 9, 3, 13, 10, 14, 12, 14, 8, 11, 10, 1, 8, 9, 6, 11, 9, 12, 5, 8, 9, 14, 11, 11, 11, 5, 8, 8, 11, 5, 5, 9, 13, 12, 12, 5, 4, 15 ], [ 16, 9, 17, 16, 14, 16, 5, 3, 12, 8, 3, 12, 4, 15, 4, 10, 6, 10, 8, 14, 7, 17, 13, 10, 11, 10, 9, 3, 16, 5, 9, 15, 2, 15, 9, 12, 5, 12, 5, 13, 14, 2, 15, 4, 16, 7, 17, 12, 15, 11, 17, 17, 4, 14, 9, 14, 8, 15, 7, 13, 8, 10, 14, 7, 0, 13, 8, 19, 3, 12, 17, 16, 4, 15, 16, 13, 17, 11, 16, 15, 5, 14, 12, 18, 14, 10, 12, 15, 7, 13, 14, 17, 6, 14, 14, 6, 8, 8, 9, 5, 12, 8, 13, 12, 3, 11, 9, 5, 2, 11, 12, 15, 10, 17, 12, 1, 14, 15, 17, 8, 11, 9, 5, 13, 12, 15, 12, 17, 8, 11, 7, 11, 2, 18, 2, 8, 13, 16, 8, 6, 5, 10, 2, 14, 3, 0, 5, 12, 12, 15, 7, 11, 3, 2, 10, 16, 10, 18, 3, 8, 7, 5, 7, 11, 13, 4, 15, 6, 14, 17, 13, 5, 18, 15, 4, 16, 4, 14, 8, 15, 5, 3, 16, 8, 13, 14, 4, 14, 8, 6, 10, 1, 14, 12, 6, 15, 9, 11, 7, 10, 14, 3, 9, 8, 10, 15, 7, 3, 8, 9 ], [ 7, 4, 9, 15, 11, 12, 11, 12, 3, 5, 11, 2, 12, 12, 11, 8, 17, 15, 17, 17, 10, 7, 4, 16, 12, 7, 5, 12, 4, 9, 14, 8, 12, 2, 5, 3, 17, 1, 9, 15, 13, 13, 2, 12, 8, 8, 12, 2, 17, 5, 13, 16, 16, 14, 5, 18, 8, 16, 11, 17, 17, 5, 3, 7, 13, 0, 10, 11, 12, 2, 11, 13, 14, 17, 16, 12, 14, 18, 11, 6, 11, 3, 10, 8, 1, 4, 12, 16, 9, 9, 7, 14, 16, 7, 10, 14, 13, 11, 16, 16, 1, 8, 8, 14, 11, 9, 5, 11, 12, 15, 9, 13, 18, 12, 17, 14, 15, 1, 14, 7, 17, 11, 15, 15, 7, 9, 17, 6, 5, 15, 12, 3, 11, 10, 12, 12, 13, 15, 13, 7, 8, 18, 12, 9, 11, 14, 8, 4, 13, 17, 12, 6, 15, 15, 4, 10, 4, 14, 12, 6, 9, 11, 8, 5, 4, 11, 12, 10, 9, 5, 10, 10, 10, 2, 10, 6, 14, 11, 13, 11, 10, 16, 2, 9, 2, 2, 10, 6, 10, 16, 3, 14, 3, 13, 15, 5, 12, 3, 9, 5, 6, 11, 5, 10, 14, 6, 15, 11, 6, 17 ], [ 8, 8, 10, 9, 6, 8, 3, 5, 6, 7, 5, 7, 4, 7, 4, 2, 8, 6, 8, 8, 1, 10, 7, 7, 3, 3, 6, 9, 10, 3, 4, 7, 8, 11, 5, 7, 9, 9, 5, 7, 6, 6, 11, 10, 9, 9, 9, 7, 8, 11, 9, 9, 9, 6, 5, 9, 9, 8, 2, 8, 8, 10, 8, 9, 8, 10, 0, 11, 5, 10, 9, 8, 6, 9, 9, 5, 9, 8, 8, 8, 10, 9, 4, 11, 10, 9, 4, 8, 1, 5, 6, 9, 7, 7, 6, 5, 3, 2, 7, 8, 9, 2, 5, 5, 8, 3, 5, 9, 9, 6, 4, 7, 8, 9, 8, 9, 7, 11, 9, 9, 7, 2, 6, 7, 5, 7, 8, 10, 6, 6, 2, 7, 7, 11, 8, 3, 6, 9, 4, 6, 7, 8, 6, 6, 9, 8, 6, 6, 5, 9, 2, 5, 8, 9, 5, 8, 8, 10, 9, 7, 1, 10, 2, 5, 7, 10, 7, 2, 7, 11, 5, 3, 10, 11, 8, 9, 6, 6, 4, 7, 3, 9, 11, 10, 8, 9, 5, 7, 0, 7, 7, 8, 8, 5, 6, 8, 2, 8, 2, 4, 7, 6, 5, 1, 5, 9, 5, 8, 5, 8 ], [ 4, 14, 2, 7, 6, 5, 14, 16, 9, 13, 16, 10, 15, 6, 15, 9, 18, 14, 18, 12, 12, 4, 8, 15, 10, 9, 12, 19, 8, 13, 12, 4, 18, 10, 11, 9, 19, 11, 14, 11, 7, 17, 11, 19, 3, 17, 3, 9, 12, 15, 5, 9, 19, 9, 11, 13, 17, 11, 12, 13, 17, 16, 8, 16, 19, 11, 11, 0, 16, 13, 2, 5, 17, 12, 9, 8, 6, 16, 3, 5, 19, 8, 8, 4, 12, 14, 9, 11, 11, 5, 5, 6, 18, 5, 5, 15, 13, 11, 15, 18, 11, 11, 6, 10, 18, 8, 12, 19, 19, 13, 7, 7, 16, 4, 14, 19, 11, 11, 7, 16, 15, 11, 17, 10, 7, 4, 14, 5, 13, 13, 13, 10, 17, 1, 18, 13, 9, 9, 13, 14, 15, 17, 17, 5, 18, 19, 15, 8, 9, 12, 13, 8, 18, 20, 10, 3, 13, 5, 19, 14, 12, 19, 11, 8, 7, 19, 6, 12, 4, 8, 6, 13, 1, 12, 17, 5, 17, 6, 14, 5, 13, 20, 10, 18, 9, 9, 15, 5, 11, 18, 12, 18, 8, 9, 16, 5, 11, 13, 12, 9, 6, 16, 11, 11, 13, 5, 16, 18, 13, 17 ], [ 13, 9, 14, 13, 11, 13, 2, 0, 9, 7, 2, 10, 1, 12, 1, 7, 5, 7, 6, 11, 4, 15, 10, 8, 7, 7, 7, 5, 13, 3, 6, 12, 4, 14, 7, 10, 5, 10, 3, 10, 11, 1, 13, 6, 14, 7, 13, 10, 12, 11, 13, 13, 4, 10, 7, 11, 8, 12, 4, 10, 6, 10, 11, 8, 3, 12, 5, 16, 0, 11, 14, 13, 3, 12, 13, 10, 13, 9, 13, 12, 6, 12, 8, 15, 12, 10, 8, 11, 4, 10, 11, 14, 5, 11, 10, 3, 5, 5, 7, 4, 10, 5, 10, 8, 4, 8, 7, 6, 5, 8, 9, 12, 8, 13, 9, 4, 11, 13, 13, 8, 8, 5, 4, 10, 9, 12, 10, 14, 6, 8, 4, 9, 3, 15, 4, 5, 9, 13, 5, 6, 5, 8, 2, 11, 5, 3, 4, 9, 9, 12, 3, 8, 3, 4, 8, 13, 9, 15, 5, 7, 4, 7, 4, 9, 10, 6, 12, 3, 11, 15, 10, 2, 15, 13, 5, 14, 2, 11, 5, 11, 2, 4, 14, 8, 11, 12, 2, 11, 4, 4, 8, 3, 11, 9, 4, 12, 6, 9, 3, 8, 11, 2, 7, 4, 7, 13, 4, 4, 6, 7 ], [ 10, 3, 12, 16, 13, 14, 11, 11, 5, 4, 10, 4, 11, 14, 11, 9, 16, 16, 17, 18, 10, 10, 6, 17, 13, 8, 4, 11, 6, 9, 14, 10, 10, 5, 5, 5, 16, 2, 8, 16, 14, 12, 3, 10, 10, 6, 14, 4, 18, 2, 15, 18, 15, 15, 5, 19, 6, 18, 12, 18, 17, 3, 5, 5, 12, 2, 10, 13, 11, 0, 13, 15, 14, 18, 17, 13, 16, 18, 13, 8, 9, 5, 11, 10, 2, 2, 13, 17, 9, 10, 9, 16, 16, 9, 11, 14, 13, 12, 17, 15, 2, 8, 10, 15, 9, 10, 5, 9, 11, 16, 10, 15, 18, 14, 18, 12, 17, 3, 16, 5, 17, 12, 15, 16, 8, 11, 18, 9, 5, 16, 12, 4, 10, 12, 10, 13, 15, 17, 14, 6, 7, 18, 11, 10, 9, 12, 7, 6, 14, 18, 12, 7, 14, 14, 5, 13, 2, 16, 11, 4, 9, 9, 8, 6, 6, 10, 14, 10, 11, 7, 12, 10, 12, 3, 8, 9, 13, 13, 14, 13, 10, 15, 4, 6, 4, 4, 9, 8, 10, 15, 3, 13, 6, 14, 15, 8, 12, 2, 9, 6, 8, 10, 5, 11, 15, 8, 15, 10, 5, 17 ], [ 3, 13, 2, 6, 4, 3, 12, 14, 8, 13, 14, 9, 14, 4, 13, 8, 16, 12, 16, 10, 10, 5, 7, 13, 8, 8, 11, 18, 8, 12, 11, 3, 17, 10, 10, 8, 18, 11, 13, 9, 5, 15, 12, 18, 3, 16, 2, 9, 10, 15, 3, 7, 18, 7, 10, 11, 16, 9, 10, 11, 15, 15, 8, 16, 17, 11, 9, 2, 14, 13, 0, 4, 15, 10, 7, 6, 4, 14, 1, 5, 18, 8, 6, 5, 12, 14, 7, 9, 10, 4, 4, 4, 16, 4, 4, 13, 11, 10, 13, 17, 11, 10, 4, 8, 16, 6, 11, 17, 18, 11, 5, 5, 14, 2, 12, 18, 9, 11, 5, 16, 13, 9, 15, 8, 6, 2, 12, 5, 12, 11, 11, 9, 16, 2, 17, 11, 7, 7, 11, 13, 14, 15, 15, 3, 17, 17, 14, 7, 7, 10, 11, 7, 17, 18, 9, 1, 13, 4, 18, 13, 10, 18, 10, 7, 7, 18, 4, 11, 3, 8, 4, 12, 2, 12, 16, 5, 15, 4, 12, 3, 12, 18, 11, 17, 9, 9, 14, 5, 10, 16, 11, 17, 7, 7, 15, 5, 9, 12, 11, 8, 5, 15, 10, 10, 11, 5, 14, 16, 12, 15 ], [ 6, 15, 6, 2, 2, 1, 11, 13, 10, 13, 14, 11, 12, 1, 12, 8, 14, 9, 13, 6, 9, 8, 9, 10, 6, 8, 12, 17, 11, 11, 8, 5, 16, 13, 11, 10, 16, 13, 13, 6, 3, 14, 14, 18, 7, 17, 2, 11, 6, 16, 1, 3, 16, 4, 11, 8, 17, 5, 9, 8, 13, 16, 10, 16, 16, 13, 8, 5, 13, 15, 4, 0, 14, 6, 3, 4, 1, 11, 3, 8, 18, 10, 5, 9, 14, 15, 5, 5, 9, 4, 6, 1, 14, 6, 3, 11, 9, 8, 11, 15, 13, 10, 5, 6, 16, 6, 12, 17, 17, 8, 5, 2, 12, 1, 9, 17, 5, 14, 2, 16, 10, 8, 13, 5, 7, 5, 9, 8, 13, 8, 9, 11, 15, 6, 17, 9, 5, 3, 9, 14, 14, 12, 14, 4, 17, 16, 14, 9, 5, 6, 10, 8, 15, 17, 11, 3, 14, 2, 18, 14, 10, 18, 9, 9, 9, 18, 1, 10, 4, 11, 3, 11, 6, 14, 16, 8, 14, 2, 10, 2, 11, 16, 13, 18, 11, 11, 13, 7, 9, 14, 13, 16, 10, 4, 13, 8, 7, 14, 10, 9, 7, 14, 11, 9, 9, 8, 12, 16, 12, 13 ], [ 15, 11, 16, 14, 12, 14, 4, 2, 12, 10, 4, 13, 3, 13, 3, 9, 3, 6, 4, 11, 5, 17, 13, 7, 8, 9, 10, 7, 16, 5, 6, 13, 6, 16, 10, 12, 2, 13, 6, 10, 11, 2, 16, 8, 16, 10, 15, 13, 11, 13, 14, 14, 2, 11, 10, 10, 10, 12, 5, 9, 4, 13, 14, 10, 4, 14, 6, 17, 3, 14, 15, 14, 0, 11, 13, 10, 14, 7, 14, 14, 8, 15, 10, 18, 15, 12, 9, 11, 6, 12, 13, 14, 2, 13, 12, 2, 4, 6, 5, 1, 13, 7, 12, 9, 7, 9, 10, 8, 6, 8, 10, 12, 6, 14, 8, 5, 10, 16, 14, 10, 7, 6, 1, 10, 11, 14, 8, 16, 9, 7, 5, 12, 5, 17, 6, 5, 10, 13, 5, 8, 8, 6, 4, 12, 7, 4, 7, 12, 9, 12, 4, 11, 2, 3, 10, 14, 12, 16, 7, 10, 6, 9, 7, 11, 13, 8, 13, 5, 13, 17, 11, 4, 17, 16, 8, 16, 0, 12, 4, 13, 4, 3, 16, 11, 14, 14, 5, 13, 6, 2, 11, 3, 14, 10, 2, 14, 7, 12, 6, 10, 13, 5, 10, 6, 6, 15, 3, 6, 9, 5 ], [ 12, 17, 12, 5, 6, 7, 11, 12, 14, 16, 13, 15, 11, 6, 11, 10, 11, 5, 10, 1, 10, 14, 14, 5, 6, 11, 15, 17, 16, 12, 6, 10, 16, 17, 13, 14, 13, 16, 13, 2, 5, 13, 19, 18, 12, 18, 8, 15, 1, 19, 7, 4, 14, 3, 14, 2, 18, 1, 8, 3, 9, 19, 15, 18, 15, 17, 9, 12, 12, 18, 10, 6, 11, 0, 3, 5, 6, 6, 9, 13, 18, 15, 7, 15, 18, 18, 5, 1, 10, 9, 11, 6, 11, 11, 8, 9, 7, 8, 7, 12, 17, 11, 9, 4, 16, 8, 14, 18, 17, 4, 9, 5, 7, 8, 4, 16, 2, 18, 5, 18, 6, 7, 10, 2, 11, 10, 4, 14, 15, 4, 8, 14, 15, 12, 16, 7, 4, 3, 7, 15, 15, 7, 14, 9, 17, 15, 14, 13, 4, 0, 9, 12, 13, 15, 13, 9, 17, 7, 17, 16, 10, 18, 11, 12, 13, 18, 6, 10, 9, 17, 7, 10, 12, 19, 17, 14, 12, 7, 7, 7, 11, 14, 18, 19, 15, 16, 13, 12, 9, 11, 16, 14, 14, 4, 10, 13, 7, 17, 10, 12, 12, 14, 14, 9, 5, 14, 9, 16, 14, 8 ], [ 10, 16, 9, 1, 4, 4, 11, 13, 12, 15, 14, 14, 12, 3, 12, 9, 13, 8, 12, 4, 10, 11, 12, 8, 6, 10, 14, 18, 14, 12, 7, 8, 17, 16, 13, 12, 15, 15, 14, 4, 3, 14, 17, 19, 10, 18, 5, 13, 3, 18, 4, 0, 15, 3, 13, 5, 18, 2, 9, 6, 11, 18, 13, 18, 16, 16, 9, 9, 13, 17, 7, 3, 13, 3, 0, 4, 3, 9, 6, 11, 18, 13, 6, 12, 16, 17, 5, 3, 10, 7, 9, 3, 13, 8, 6, 11, 9, 8, 9, 14, 15, 11, 7, 5, 17, 7, 13, 18, 18, 6, 7, 2, 10, 5, 7, 17, 3, 16, 2, 18, 8, 8, 12, 3, 9, 8, 7, 12, 14, 6, 9, 13, 16, 9, 17, 9, 4, 0, 8, 15, 16, 10, 15, 7, 18, 16, 15, 11, 4, 3, 10, 10, 15, 16, 13, 6, 16, 4, 18, 16, 10, 19, 11, 11, 11, 18, 4, 10, 6, 15, 5, 11, 9, 17, 17, 11, 13, 5, 9, 5, 11, 16, 16, 19, 14, 14, 14, 10, 9, 13, 15, 16, 13, 4, 12, 11, 7, 16, 11, 11, 10, 15, 13, 9, 7, 11, 10, 16, 14, 11 ], [ 7, 13, 7, 4, 2, 4, 8, 10, 9, 11, 10, 10, 9, 3, 9, 5, 11, 6, 10, 5, 6, 9, 9, 7, 2, 6, 10, 14, 11, 8, 5, 5, 13, 12, 9, 9, 12, 12, 10, 3, 1, 11, 14, 15, 8, 14, 5, 10, 5, 15, 4, 4, 13, 2, 9, 6, 14, 4, 5, 6, 9, 15, 10, 14, 13, 12, 5, 8, 10, 13, 6, 4, 10, 5, 4, 0, 4, 8, 5, 8, 15, 10, 2, 10, 13, 13, 1, 4, 6, 4, 6, 4, 10, 6, 3, 8, 6, 5, 7, 11, 12, 7, 4, 3, 13, 4, 10, 15, 14, 5, 3, 2, 8, 4, 6, 14, 3, 13, 4, 14, 7, 4, 10, 3, 6, 6, 6, 9, 10, 5, 6, 10, 12, 8, 13, 5, 2, 4, 5, 11, 12, 9, 11, 4, 14, 13, 11, 8, 1, 5, 6, 7, 12, 13, 9, 5, 13, 5, 15, 12, 7, 15, 7, 7, 8, 15, 2, 7, 4, 12, 2, 7, 8, 14, 13, 9, 10, 2, 6, 3, 8, 13, 13, 15, 10, 11, 10, 7, 6, 10, 11, 12, 9, 1, 9, 8, 4, 12, 7, 7, 7, 11, 9, 5, 5, 9, 8, 13, 10, 9 ], [ 7, 15, 6, 1, 3, 2, 12, 14, 11, 14, 14, 12, 13, 2, 13, 8, 14, 9, 14, 6, 10, 9, 10, 10, 6, 9, 13, 18, 12, 12, 8, 6, 17, 14, 12, 11, 16, 14, 14, 5, 3, 15, 15, 19, 8, 17, 3, 12, 6, 17, 1, 3, 17, 4, 12, 8, 18, 5, 9, 8, 13, 17, 11, 17, 17, 14, 9, 6, 13, 16, 4, 1, 14, 6, 3, 4, 0, 11, 4, 9, 18, 11, 6, 9, 15, 16, 5, 5, 10, 5, 7, 1, 14, 7, 4, 12, 10, 9, 11, 15, 14, 10, 6, 6, 17, 7, 13, 18, 18, 8, 6, 2, 12, 2, 9, 18, 5, 15, 1, 17, 10, 8, 14, 5, 8, 6, 9, 9, 13, 8, 10, 12, 16, 6, 17, 9, 5, 3, 9, 15, 15, 12, 15, 5, 18, 17, 14, 10, 5, 6, 10, 9, 16, 17, 11, 4, 15, 1, 18, 15, 10, 19, 10, 10, 10, 18, 2, 10, 5, 12, 4, 11, 7, 15, 17, 9, 14, 3, 10, 3, 11, 17, 14, 19, 12, 12, 14, 8, 9, 14, 13, 16, 11, 5, 13, 9, 8, 15, 11, 10, 8, 15, 12, 9, 9, 9, 12, 17, 13, 13 ], [ 15, 16, 15, 10, 10, 11, 8, 8, 14, 14, 10, 16, 8, 10, 8, 10, 5, 3, 4, 5, 8, 17, 15, 1, 7, 11, 14, 13, 18, 10, 4, 13, 13, 19, 13, 15, 8, 17, 11, 5, 9, 9, 19, 15, 16, 16, 13, 16, 6, 18, 12, 9, 9, 7, 13, 4, 16, 7, 7, 3, 3, 18, 16, 16, 11, 18, 8, 16, 9, 18, 14, 11, 7, 6, 9, 8, 11, 0, 13, 15, 15, 17, 9, 18, 18, 17, 7, 6, 9, 11, 13, 11, 5, 13, 11, 5, 5, 7, 2, 7, 17, 10, 12, 5, 13, 10, 13, 15, 13, 3, 10, 9, 1, 12, 2, 12, 6, 19, 10, 16, 1, 7, 6, 6, 12, 13, 2, 17, 14, 3, 6, 15, 12, 16, 13, 5, 7, 9, 5, 14, 13, 1, 10, 12, 14, 11, 12, 14, 7, 6, 6, 12, 9, 10, 13, 13, 16, 12, 14, 15, 9, 15, 10, 13, 15, 15, 10, 8, 12, 19, 10, 8, 16, 19, 14, 16, 7, 10, 4, 11, 8, 9, 19, 17, 16, 17, 10, 14, 8, 6, 15, 10, 16, 7, 5, 15, 6, 16, 9, 12, 14, 11, 13, 8, 3, 16, 4, 13, 13, 3 ], [ 4, 13, 3, 5, 3, 2, 11, 13, 8, 12, 13, 9, 12, 3, 12, 7, 15, 11, 15, 9, 9, 5, 7, 11, 7, 7, 11, 17, 8, 11, 9, 2, 16, 10, 9, 8, 17, 11, 12, 8, 4, 14, 12, 17, 4, 15, 1, 9, 9, 14, 2, 6, 17, 6, 9, 10, 15, 8, 9, 10, 14, 15, 8, 15, 16, 11, 8, 3, 13, 13, 1, 3, 14, 9, 6, 5, 4, 13, 0, 5, 17, 8, 5, 6, 12, 13, 6, 8, 9, 3, 4, 3, 15, 3, 3, 12, 10, 8, 12, 16, 11, 9, 3, 7, 15, 5, 10, 17, 17, 9, 4, 4, 13, 2, 11, 17, 8, 11, 4, 15, 12, 8, 14, 7, 5, 2, 11, 6, 11, 10, 10, 9, 15, 3, 16, 10, 6, 6, 10, 13, 13, 14, 14, 2, 16, 16, 13, 7, 6, 9, 10, 6, 16, 17, 9, 0, 13, 4, 17, 13, 9, 17, 9, 7, 6, 17, 3, 10, 2, 9, 3, 11, 3, 12, 15, 5, 14, 3, 10, 2, 11, 17, 11, 16, 9, 9, 13, 4, 9, 15, 11, 16, 7, 6, 13, 5, 8, 12, 10, 7, 5, 14, 10, 9, 10, 6, 12, 15, 11, 14 ], [ 2, 9, 4, 10, 7, 7, 11, 13, 4, 9, 12, 5, 12, 7, 12, 6, 16, 13, 16, 13, 9, 2, 3, 14, 9, 5, 7, 15, 3, 10, 11, 3, 14, 5, 6, 4, 17, 6, 10, 11, 8, 14, 7, 15, 2, 12, 6, 4, 13, 10, 7, 11, 17, 10, 6, 14, 12, 12, 10, 13, 16, 11, 3, 12, 15, 6, 8, 5, 12, 8, 5, 8, 14, 13, 11, 8, 9, 15, 5, 0, 14, 3, 6, 3, 7, 9, 9, 12, 8, 4, 2, 8, 16, 2, 5, 13, 11, 9, 14, 16, 6, 7, 4, 10, 13, 6, 7, 14, 15, 12, 5, 8, 16, 7, 14, 16, 11, 6, 9, 12, 15, 9, 14, 11, 3, 3, 14, 2, 8, 12, 10, 5, 13, 4, 14, 11, 10, 10, 11, 10, 11, 16, 13, 4, 14, 15, 11, 3, 9, 13, 11, 4, 15, 16, 6, 5, 8, 9, 15, 9, 9, 14, 8, 4, 2, 15, 7, 9, 4, 4, 6, 10, 4, 7, 13, 1, 14, 6, 12, 6, 10, 17, 6, 13, 4, 4, 11, 1, 8, 15, 7, 15, 2, 9, 14, 0, 9, 7, 9, 4, 1, 12, 7, 9, 12, 1, 14, 13, 8, 16 ], [ 15, 7, 17, 18, 16, 17, 7, 6, 11, 6, 5, 10, 7, 17, 7, 10, 11, 13, 12, 17, 9, 17, 12, 14, 13, 10, 7, 2, 14, 6, 12, 15, 2, 13, 8, 11, 9, 10, 5, 16, 16, 6, 12, 1, 16, 3, 18, 11, 18, 8, 18, 19, 8, 16, 8, 17, 4, 18, 10, 16, 12, 7, 12, 4, 5, 11, 10, 19, 6, 9, 18, 18, 8, 18, 18, 15, 18, 15, 17, 14, 0, 13, 13, 17, 11, 7, 14, 17, 8, 14, 14, 18, 10, 14, 15, 10, 11, 11, 13, 9, 10, 8, 14, 14, 2, 12, 7, 0, 2, 14, 13, 17, 14, 18, 15, 4, 16, 12, 18, 4, 14, 11, 9, 16, 12, 15, 16, 16, 6, 14, 10, 9, 3, 18, 2, 11, 15, 18, 11, 4, 4, 14, 5, 14, 1, 5, 4, 11, 14, 18, 9, 11, 7, 7, 9, 17, 7, 20, 2, 5, 8, 1, 8, 11, 12, 1, 16, 8, 15, 15, 15, 8, 18, 12, 1, 15, 8, 15, 11, 16, 7, 8, 13, 3, 11, 12, 5, 14, 9, 10, 8, 6, 13, 15, 10, 14, 12, 8, 8, 10, 14, 4, 8, 9, 13, 15, 11, 2, 6, 13 ], [ 4, 7, 6, 12, 9, 10, 11, 12, 3, 7, 11, 3, 12, 10, 11, 6, 17, 14, 17, 15, 9, 5, 2, 15, 10, 6, 6, 14, 1, 9, 13, 6, 13, 2, 5, 2, 17, 3, 10, 13, 11, 13, 4, 14, 5, 10, 9, 2, 15, 7, 10, 14, 16, 12, 5, 16, 10, 14, 11, 15, 16, 8, 1, 10, 14, 3, 9, 8, 12, 5, 8, 10, 15, 15, 13, 10, 11, 17, 8, 3, 13, 0, 8, 5, 4, 7, 10, 14, 8, 6, 4, 11, 16, 5, 7, 13, 12, 10, 15, 16, 4, 7, 6, 12, 12, 7, 6, 12, 14, 14, 7, 11, 17, 10, 16, 15, 14, 3, 12, 10, 16, 10, 15, 13, 5, 6, 16, 3, 7, 14, 11, 3, 12, 7, 13, 12, 12, 13, 12, 8, 9, 17, 12, 6, 13, 14, 9, 3, 11, 15, 11, 4, 15, 16, 4, 8, 6, 12, 14, 8, 9, 13, 8, 3, 2, 13, 10, 10, 7, 3, 8, 10, 7, 4, 11, 3, 14, 9, 13, 9, 10, 16, 3, 11, 1, 1, 11, 4, 9, 16, 5, 14, 1, 11, 15, 3, 10, 5, 9, 4, 3, 11, 5, 9, 13, 3, 14, 12, 7, 17 ], [ 6, 10, 7, 6, 3, 5, 7, 8, 6, 9, 9, 8, 8, 4, 8, 3, 11, 6, 10, 7, 5, 8, 7, 7, 2, 4, 8, 13, 9, 7, 5, 4, 12, 10, 7, 7, 12, 9, 8, 5, 3, 10, 11, 13, 7, 12, 5, 8, 7, 12, 5, 6, 12, 4, 7, 8, 12, 6, 5, 7, 10, 12, 8, 12, 12, 10, 4, 8, 8, 11, 6, 5, 10, 7, 6, 2, 6, 9, 5, 6, 13, 8, 0, 9, 11, 11, 2, 6, 5, 2, 4, 6, 10, 4, 2, 7, 6, 4, 8, 11, 9, 5, 3, 4, 11, 1, 7, 13, 12, 6, 1, 4, 9, 5, 8, 12, 5, 11, 6, 12, 8, 3, 9, 5, 4, 5, 8, 8, 8, 6, 5, 7, 10, 7, 12, 5, 3, 6, 5, 9, 10, 10, 10, 3, 12, 12, 9, 6, 3, 7, 5, 4, 11, 12, 6, 5, 10, 7, 13, 10, 5, 13, 5, 5, 6, 13, 4, 5, 3, 10, 2, 6, 7, 12, 11, 7, 9, 3, 6, 3, 6, 12, 11, 13, 8, 9, 8, 5, 4, 10, 9, 11, 7, 3, 9, 6, 3, 10, 5, 5, 6, 10, 7, 4, 6, 7, 8, 11, 8, 10 ], [ 3, 12, 3, 11, 8, 8, 14, 16, 7, 12, 15, 7, 15, 9, 15, 9, 19, 15, 19, 15, 12, 1, 5, 16, 11, 9, 10, 18, 4, 13, 14, 5, 17, 6, 9, 7, 20, 8, 14, 13, 10, 17, 8, 18, 2, 15, 7, 7, 14, 12, 8, 12, 20, 12, 9, 16, 15, 14, 13, 16, 18, 13, 6, 14, 18, 8, 11, 4, 15, 10, 5, 9, 18, 15, 12, 10, 9, 18, 6, 3, 17, 5, 9, 0, 9, 12, 11, 14, 11, 6, 5, 9, 19, 5, 7, 16, 14, 12, 17, 19, 9, 11, 6, 12, 16, 8, 10, 17, 18, 15, 8, 10, 18, 7, 16, 19, 13, 7, 10, 14, 17, 12, 18, 13, 6, 5, 17, 2, 11, 15, 13, 8, 16, 3, 17, 14, 12, 12, 14, 13, 14, 19, 16, 6, 17, 18, 14, 6, 11, 15, 14, 7, 19, 19, 9, 6, 11, 9, 18, 12, 12, 17, 11, 7, 5, 18, 8, 12, 6, 4, 8, 13, 3, 8, 16, 2, 17, 8, 15, 8, 13, 20, 7, 16, 6, 6, 15, 4, 12, 18, 10, 18, 5, 11, 17, 3, 12, 10, 12, 8, 4, 15, 10, 12, 15, 3, 16, 17, 11, 18 ], [ 8, 4, 10, 16, 12, 13, 11, 12, 4, 5, 11, 3, 12, 13, 12, 8, 17, 16, 18, 17, 10, 8, 5, 17, 13, 7, 5, 12, 4, 10, 14, 9, 12, 3, 5, 4, 17, 2, 9, 16, 14, 13, 1, 12, 9, 8, 13, 3, 18, 4, 14, 17, 16, 15, 5, 18, 7, 17, 12, 17, 17, 5, 4, 7, 14, 1, 10, 12, 12, 2, 12, 14, 15, 18, 16, 13, 15, 18, 12, 7, 11, 4, 11, 9, 0, 4, 13, 17, 9, 10, 8, 15, 17, 8, 11, 14, 14, 12, 17, 16, 2, 8, 9, 14, 11, 10, 5, 11, 12, 16, 10, 14, 18, 13, 18, 14, 16, 1, 15, 7, 18, 12, 15, 16, 7, 9, 18, 7, 6, 16, 12, 4, 11, 11, 12, 13, 14, 16, 14, 7, 8, 19, 12, 9, 11, 14, 9, 5, 14, 18, 12, 6, 15, 15, 5, 11, 4, 15, 12, 6, 10, 11, 9, 6, 5, 11, 13, 10, 10, 5, 11, 11, 10, 1, 10, 7, 14, 12, 14, 12, 11, 16, 2, 8, 3, 3, 10, 7, 10, 16, 4, 14, 4, 14, 15, 6, 12, 3, 10, 6, 7, 11, 5, 11, 15, 7, 15, 11, 6, 18 ], [ 11, 1, 13, 17, 13, 15, 9, 10, 6, 3, 8, 4, 10, 14, 9, 8, 15, 15, 16, 17, 9, 11, 7, 16, 12, 7, 4, 9, 8, 8, 13, 11, 8, 7, 5, 6, 14, 3, 7, 16, 14, 10, 5, 8, 11, 4, 14, 5, 18, 1, 15, 18, 13, 15, 4, 18, 4, 17, 11, 17, 16, 1, 6, 3, 10, 4, 9, 14, 10, 2, 14, 15, 12, 18, 17, 13, 16, 17, 13, 9, 7, 7, 11, 12, 4, 0, 13, 17, 8, 11, 9, 16, 14, 10, 12, 12, 12, 11, 16, 14, 3, 7, 10, 14, 7, 10, 4, 7, 9, 15, 10, 15, 17, 15, 17, 10, 16, 5, 16, 3, 17, 11, 13, 16, 8, 11, 17, 10, 4, 15, 11, 4, 8, 14, 8, 12, 14, 17, 13, 4, 5, 17, 9, 11, 7, 11, 6, 7, 14, 18, 11, 7, 12, 12, 5, 13, 1, 17, 9, 3, 8, 7, 8, 7, 7, 8, 14, 9, 12, 9, 12, 9, 13, 5, 6, 10, 12, 13, 13, 13, 9, 13, 6, 5, 5, 6, 8, 9, 9, 14, 3, 11, 7, 14, 13, 9, 12, 2, 8, 7, 9, 8, 4, 10, 14, 9, 14, 8, 4, 16 ], [ 8, 12, 9, 5, 3, 5, 7, 8, 9, 11, 9, 10, 8, 4, 8, 5, 9, 5, 9, 4, 5, 10, 9, 5, 1, 6, 9, 13, 11, 7, 3, 6, 12, 13, 8, 9, 11, 11, 9, 3, 3, 10, 14, 14, 9, 13, 6, 10, 5, 14, 5, 5, 11, 2, 9, 6, 13, 5, 4, 5, 8, 14, 10, 13, 12, 12, 4, 9, 8, 13, 7, 5, 9, 5, 5, 1, 5, 7, 6, 9, 14, 10, 2, 11, 13, 13, 0, 4, 5, 5, 7, 6, 9, 6, 4, 6, 4, 3, 6, 10, 11, 6, 5, 2, 12, 3, 9, 13, 13, 4, 4, 4, 7, 6, 6, 12, 3, 13, 5, 13, 6, 3, 8, 3, 6, 6, 6, 10, 10, 4, 4, 9, 11, 9, 12, 4, 1, 5, 4, 10, 11, 8, 10, 5, 13, 12, 10, 8, 1, 5, 5, 6, 10, 12, 8, 6, 12, 7, 13, 11, 6, 14, 6, 7, 8, 14, 4, 5, 5, 12, 3, 6, 9, 14, 12, 10, 9, 3, 5, 4, 6, 11, 13, 14, 10, 11, 9, 7, 4, 9, 10, 11, 10, 1, 8, 9, 2, 12, 6, 7, 8, 10, 9, 4, 4, 9, 7, 12, 9, 8 ], [ 11, 16, 11, 4, 5, 6, 10, 11, 13, 15, 13, 14, 11, 5, 11, 9, 11, 5, 10, 1, 9, 13, 13, 5, 5, 10, 14, 16, 15, 11, 5, 9, 16, 16, 12, 13, 13, 16, 13, 2, 4, 13, 18, 17, 12, 17, 7, 14, 1, 18, 6, 3, 13, 2, 13, 3, 18, 0, 8, 3, 9, 18, 14, 17, 15, 16, 8, 11, 11, 17, 9, 5, 11, 1, 3, 4, 5, 6, 8, 12, 17, 14, 6, 14, 17, 17, 4, 0, 9, 8, 10, 6, 10, 10, 7, 9, 7, 7, 7, 12, 16, 10, 8, 3, 16, 8, 13, 17, 16, 4, 8, 4, 7, 7, 4, 15, 1, 17, 4, 17, 6, 7, 10, 1, 10, 9, 4, 13, 14, 4, 7, 13, 14, 11, 16, 7, 3, 3, 6, 15, 15, 7, 13, 8, 16, 15, 14, 12, 3, 1, 8, 11, 13, 14, 13, 8, 16, 6, 17, 15, 10, 18, 10, 11, 12, 17, 5, 9, 8, 16, 6, 10, 11, 18, 16, 13, 11, 6, 7, 6, 10, 14, 17, 18, 14, 15, 12, 11, 8, 11, 15, 14, 14, 3, 10, 12, 6, 16, 10, 11, 11, 14, 13, 8, 5, 13, 8, 15, 13, 8 ], [ 8, 7, 10, 10, 7, 9, 3, 5, 6, 6, 4, 7, 4, 8, 4, 2, 8, 7, 8, 9, 1, 10, 7, 8, 5, 3, 5, 8, 10, 2, 5, 7, 7, 10, 4, 6, 9, 8, 4, 8, 8, 6, 10, 9, 9, 8, 9, 7, 10, 9, 10, 11, 8, 8, 4, 10, 8, 10, 3, 9, 8, 9, 8, 8, 7, 9, 1, 11, 4, 9, 10, 9, 6, 10, 10, 6, 10, 9, 9, 8, 8, 8, 5, 11, 9, 8, 5, 9, 0, 6, 7, 10, 8, 7, 6, 5, 4, 3, 8, 8, 8, 1, 6, 6, 7, 4, 4, 8, 8, 7, 5, 8, 9, 10, 9, 8, 8, 10, 10, 8, 8, 3, 7, 8, 5, 8, 9, 10, 5, 7, 3, 6, 6, 11, 7, 4, 7, 10, 5, 5, 5, 9, 5, 7, 8, 7, 5, 6, 6, 10, 3, 4, 7, 8, 4, 9, 7, 11, 8, 6, 1, 9, 1, 5, 7, 8, 8, 1, 7, 11, 6, 2, 11, 11, 7, 9, 6, 7, 5, 8, 2, 8, 11, 9, 8, 8, 4, 7, 1, 7, 6, 7, 8, 6, 6, 8, 4, 7, 1, 4, 7, 5, 4, 2, 6, 9, 6, 7, 4, 9 ], [ 3, 10, 4, 6, 3, 4, 8, 10, 5, 9, 10, 7, 10, 4, 9, 4, 13, 9, 13, 9, 6, 6, 5, 10, 5, 4, 8, 14, 7, 8, 7, 2, 13, 9, 6, 5, 14, 8, 9, 7, 4, 12, 10, 14, 4, 12, 4, 6, 8, 12, 4, 7, 14, 6, 7, 10, 12, 8, 7, 9, 12, 12, 6, 12, 13, 9, 5, 5, 10, 10, 4, 4, 12, 9, 7, 4, 5, 11, 3, 4, 14, 6, 2, 6, 10, 11, 5, 8, 6, 0, 2, 5, 12, 2, 1, 10, 8, 6, 10, 13, 8, 6, 0, 6, 12, 2, 7, 14, 14, 8, 1, 5, 12, 4, 10, 14, 7, 9, 6, 12, 11, 6, 11, 7, 2, 2, 10, 5, 8, 8, 7, 6, 12, 5, 13, 7, 5, 7, 8, 10, 10, 12, 11, 1, 13, 13, 10, 4, 5, 9, 8, 4, 13, 14, 6, 3, 10, 6, 14, 10, 6, 14, 6, 4, 4, 14, 3, 7, 1, 8, 2, 8, 5, 10, 12, 5, 11, 2, 8, 3, 8, 14, 9, 14, 7, 7, 10, 3, 6, 12, 8, 13, 6, 5, 11, 4, 5, 9, 7, 4, 3, 11, 7, 6, 8, 5, 10, 12, 8, 12 ], [ 2, 9, 4, 8, 5, 6, 9, 11, 4, 8, 11, 5, 10, 6, 10, 4, 14, 11, 14, 11, 7, 4, 3, 12, 7, 4, 7, 14, 5, 8, 9, 2, 13, 6, 6, 4, 15, 7, 9, 9, 7, 12, 8, 14, 3, 12, 5, 5, 11, 10, 6, 9, 15, 8, 6, 12, 12, 10, 8, 11, 14, 11, 4, 11, 14, 7, 6, 5, 11, 9, 4, 6, 13, 11, 9, 6, 7, 13, 4, 2, 14, 4, 4, 5, 8, 9, 7, 10, 7, 2, 0, 7, 14, 1, 3, 11, 10, 7, 12, 14, 7, 6, 2, 8, 12, 4, 7, 13, 14, 10, 3, 7, 14, 6, 12, 14, 10, 7, 8, 11, 13, 7, 13, 9, 2, 2, 12, 3, 8, 10, 9, 5, 12, 5, 13, 9, 8, 9, 9, 9, 10, 14, 12, 2, 13, 14, 10, 3, 7, 11, 9, 3, 14, 15, 5, 4, 9, 8, 14, 9, 7, 14, 6, 3, 2, 14, 5, 8, 3, 6, 4, 9, 4, 8, 12, 3, 12, 5, 10, 5, 9, 15, 7, 13, 5, 5, 10, 1, 7, 14, 7, 14, 4, 7, 12, 2, 7, 8, 7, 4, 1, 11, 6, 7, 10, 3, 12, 12, 7, 14 ], [ 7, 15, 6, 2, 3, 1, 12, 14, 10, 14, 14, 12, 13, 2, 13, 8, 15, 10, 14, 7, 10, 9, 10, 10, 6, 9, 13, 18, 12, 12, 9, 5, 17, 13, 12, 11, 16, 13, 14, 6, 3, 15, 15, 19, 7, 17, 2, 12, 6, 17, 1, 3, 17, 5, 12, 8, 17, 5, 10, 8, 13, 17, 11, 17, 17, 14, 9, 6, 14, 16, 4, 1, 14, 6, 3, 4, 1, 11, 3, 8, 18, 11, 6, 9, 15, 16, 6, 6, 10, 5, 7, 0, 14, 6, 4, 12, 10, 9, 11, 15, 14, 10, 6, 6, 17, 7, 12, 18, 18, 8, 6, 2, 12, 1, 10, 18, 6, 14, 1, 17, 11, 8, 14, 5, 7, 5, 9, 9, 13, 8, 10, 12, 16, 6, 17, 10, 5, 3, 9, 15, 15, 12, 15, 5, 18, 17, 14, 10, 5, 6, 11, 9, 16, 17, 11, 3, 15, 1, 18, 15, 11, 19, 10, 9, 9, 19, 2, 11, 4, 12, 4, 12, 6, 15, 17, 9, 14, 3, 10, 3, 12, 17, 14, 19, 12, 12, 14, 7, 9, 15, 13, 17, 10, 5, 13, 9, 8, 14, 11, 9, 8, 15, 12, 9, 9, 9, 12, 17, 13, 13 ], [ 16, 13, 17, 13, 12, 14, 5, 4, 13, 12, 6, 14, 5, 13, 5, 10, 1, 5, 2, 10, 7, 18, 14, 5, 8, 10, 11, 9, 17, 7, 6, 14, 8, 18, 11, 14, 2, 15, 8, 9, 11, 5, 18, 10, 16, 12, 15, 14, 10, 16, 14, 13, 3, 10, 12, 9, 13, 11, 6, 8, 2, 15, 15, 12, 6, 16, 7, 18, 5, 16, 16, 14, 2, 11, 13, 10, 14, 5, 15, 16, 10, 16, 10, 19, 17, 14, 9, 10, 8, 12, 14, 14, 0, 14, 12, 3, 4, 6, 4, 2, 15, 9, 12, 8, 9, 10, 11, 10, 8, 7, 11, 12, 5, 15, 6, 7, 10, 18, 14, 12, 5, 7, 1, 10, 12, 14, 7, 17, 11, 7, 5, 13, 7, 18, 8, 5, 9, 12, 5, 10, 10, 4, 6, 13, 9, 6, 9, 13, 9, 11, 5, 12, 3, 5, 12, 15, 14, 15, 9, 12, 7, 11, 8, 13, 14, 10, 13, 6, 13, 18, 12, 6, 17, 18, 10, 17, 3, 12, 4, 13, 6, 4, 18, 13, 15, 16, 7, 15, 7, 0, 13, 5, 15, 9, 1, 15, 7, 14, 7, 12, 15, 7, 11, 7, 5, 16, 2, 8, 11, 3 ], [ 2, 10, 3, 7, 4, 5, 10, 11, 4, 9, 11, 6, 11, 5, 10, 4, 14, 11, 14, 10, 8, 4, 4, 12, 7, 4, 8, 14, 6, 9, 9, 1, 13, 7, 6, 4, 15, 7, 10, 9, 6, 12, 9, 15, 3, 12, 4, 5, 10, 11, 5, 9, 15, 7, 6, 12, 12, 10, 8, 11, 14, 11, 5, 12, 14, 7, 7, 5, 11, 9, 4, 6, 13, 11, 8, 6, 7, 13, 3, 2, 14, 5, 4, 5, 8, 10, 6, 10, 7, 2, 1, 6, 14, 0, 3, 11, 9, 7, 12, 14, 8, 6, 2, 8, 13, 4, 7, 14, 14, 10, 3, 6, 13, 5, 12, 15, 9, 8, 7, 12, 12, 7, 13, 9, 2, 1, 12, 4, 8, 10, 9, 6, 12, 4, 14, 9, 7, 8, 9, 10, 11, 14, 12, 1, 14, 14, 10, 4, 7, 10, 9, 3, 14, 15, 6, 3, 9, 7, 15, 10, 7, 14, 7, 4, 3, 14, 5, 8, 2, 6, 3, 9, 4, 9, 13, 3, 13, 4, 10, 4, 9, 15, 8, 13, 6, 6, 10, 1, 7, 14, 8, 14, 4, 7, 12, 3, 7, 8, 8, 4, 2, 12, 7, 7, 10, 3, 12, 13, 8, 14 ], [ 4, 11, 5, 5, 2, 3, 9, 11, 6, 10, 11, 8, 10, 3, 10, 4, 13, 8, 12, 8, 7, 6, 6, 9, 4, 5, 9, 14, 8, 9, 7, 2, 14, 10, 7, 6, 14, 9, 10, 6, 3, 12, 11, 15, 5, 13, 3, 7, 8, 13, 3, 6, 14, 5, 8, 9, 13, 7, 7, 9, 12, 13, 7, 13, 14, 10, 6, 5, 10, 11, 4, 3, 12, 8, 6, 3, 4, 11, 3, 5, 15, 7, 2, 7, 11, 12, 4, 7, 6, 1, 3, 4, 12, 3, 0, 10, 8, 6, 10, 13, 9, 6, 1, 6, 13, 3, 8, 14, 14, 8, 2, 4, 11, 3, 9, 14, 6, 10, 5, 13, 10, 6, 11, 6, 3, 2, 10, 6, 9, 8, 7, 7, 12, 5, 14, 7, 5, 6, 7, 11, 11, 12, 12, 1, 14, 14, 10, 5, 4, 8, 8, 5, 13, 14, 7, 2, 11, 5, 15, 11, 7, 15, 6, 5, 5, 15, 2, 7, 1, 9, 1, 8, 5, 11, 13, 6, 12, 1, 8, 2, 8, 14, 10, 14, 8, 8, 10, 4, 6, 12, 9, 13, 7, 4, 11, 5, 5, 10, 7, 5, 4, 11, 8, 6, 8, 6, 10, 13, 9, 12 ], [ 13, 11, 14, 11, 10, 11, 3, 3, 11, 10, 5, 12, 3, 10, 3, 7, 3, 4, 3, 8, 4, 15, 12, 4, 6, 8, 9, 8, 15, 5, 4, 11, 8, 15, 9, 11, 4, 13, 6, 7, 9, 4, 15, 9, 14, 11, 12, 12, 9, 14, 12, 11, 5, 8, 9, 8, 11, 9, 3, 7, 3, 13, 13, 11, 6, 14, 5, 15, 3, 14, 13, 11, 2, 9, 11, 8, 12, 5, 12, 13, 10, 13, 7, 16, 14, 12, 6, 9, 5, 10, 11, 12, 3, 11, 10, 0, 2, 4, 4, 3, 13, 6, 10, 6, 8, 7, 9, 10, 8, 5, 8, 10, 5, 12, 6, 7, 8, 15, 11, 11, 5, 4, 2, 8, 10, 12, 6, 15, 9, 5, 3, 11, 7, 15, 8, 2, 7, 10, 3, 9, 8, 5, 5, 11, 8, 6, 7, 11, 7, 9, 2, 9, 4, 5, 9, 12, 12, 13, 9, 10, 5, 10, 6, 10, 11, 9, 10, 4, 11, 16, 9, 3, 15, 16, 9, 14, 2, 10, 2, 10, 3, 5, 16, 12, 13, 13, 5, 12, 4, 3, 11, 5, 13, 7, 1, 13, 4, 12, 5, 9, 12, 6, 9, 4, 4, 13, 1, 7, 9, 4 ], [ 11, 11, 12, 9, 8, 10, 3, 4, 10, 10, 6, 11, 4, 8, 4, 6, 5, 3, 5, 7, 3, 14, 10, 4, 4, 6, 9, 9, 14, 5, 2, 10, 9, 14, 8, 10, 6, 12, 6, 6, 7, 6, 15, 11, 12, 11, 10, 11, 7, 14, 10, 9, 7, 6, 9, 6, 12, 7, 2, 5, 4, 13, 12, 11, 8, 13, 3, 13, 5, 13, 11, 9, 4, 7, 9, 6, 10, 5, 10, 11, 11, 12, 6, 14, 14, 12, 4, 7, 4, 8, 10, 10, 4, 9, 8, 2, 0, 2, 3, 5, 12, 5, 8, 4, 9, 6, 9, 11, 9, 4, 7, 8, 5, 10, 5, 8, 6, 14, 9, 11, 4, 2, 4, 6, 8, 10, 5, 13, 9, 3, 1, 10, 8, 13, 9, 1, 5, 9, 1, 9, 9, 5, 6, 9, 10, 8, 8, 9, 5, 8, 1, 8, 6, 7, 9, 10, 11, 11, 10, 10, 4, 11, 5, 9, 10, 10, 8, 3, 9, 15, 7, 3, 13, 15, 10, 13, 4, 8, 1, 8, 3, 7, 15, 12, 12, 12, 6, 10, 3, 4, 10, 7, 12, 5, 3, 11, 3, 11, 4, 8, 10, 7, 9, 3, 2, 12, 2, 8, 8, 4 ], [ 9, 10, 10, 8, 6, 8, 3, 5, 8, 8, 6, 9, 4, 7, 4, 4, 7, 4, 7, 7, 2, 11, 9, 5, 2, 5, 7, 10, 12, 4, 2, 8, 9, 12, 7, 8, 8, 10, 6, 5, 6, 6, 13, 11, 10, 11, 9, 9, 7, 12, 8, 8, 8, 5, 7, 7, 11, 7, 1, 6, 6, 12, 10, 10, 8, 11, 2, 11, 5, 12, 10, 8, 6, 8, 8, 5, 9, 7, 8, 9, 11, 10, 4, 12, 12, 11, 3, 7, 3, 6, 7, 9, 6, 7, 6, 4, 2, 0, 5, 7, 10, 4, 6, 4, 9, 4, 7, 10, 10, 4, 5, 7, 7, 9, 6, 9, 6, 12, 8, 11, 6, 0, 6, 6, 6, 8, 6, 11, 7, 4, 1, 8, 8, 11, 9, 1, 4, 8, 2, 8, 8, 7, 7, 7, 10, 8, 7, 7, 4, 8, 2, 6, 7, 9, 7, 8, 10, 10, 10, 9, 3, 11, 3, 7, 8, 10, 7, 2, 7, 13, 6, 3, 11, 13, 9, 11, 6, 6, 2, 7, 3, 8, 13, 12, 10, 10, 6, 8, 2, 6, 9, 8, 10, 4, 5, 9, 1, 10, 3, 6, 8, 7, 7, 1, 3, 10, 4, 8, 7, 6 ], [ 14, 14, 15, 10, 9, 11, 6, 7, 13, 13, 9, 14, 6, 10, 7, 9, 4, 2, 3, 6, 7, 16, 14, 1, 6, 10, 12, 12, 17, 8, 3, 12, 11, 17, 11, 13, 6, 15, 9, 5, 8, 7, 18, 13, 15, 14, 12, 14, 6, 17, 11, 9, 7, 7, 12, 5, 15, 7, 5, 4, 2, 16, 15, 14, 9, 16, 7, 15, 7, 17, 13, 11, 5, 7, 9, 7, 11, 2, 12, 14, 13, 15, 8, 17, 17, 16, 6, 7, 8, 10, 12, 11, 4, 12, 10, 4, 3, 5, 0, 6, 15, 9, 10, 5, 11, 8, 12, 13, 12, 3, 9, 9, 2, 12, 2, 10, 6, 18, 10, 14, 1, 5, 4, 6, 11, 12, 3, 16, 12, 3, 4, 13, 10, 15, 11, 4, 6, 9, 3, 12, 12, 2, 9, 11, 12, 9, 11, 12, 6, 7, 5, 11, 7, 8, 12, 12, 15, 12, 12, 13, 7, 14, 8, 12, 13, 13, 10, 7, 11, 18, 9, 6, 15, 18, 12, 15, 6, 9, 3, 10, 6, 8, 18, 15, 15, 15, 9, 13, 7, 4, 14, 8, 15, 6, 4, 14, 5, 15, 7, 11, 13, 9, 12, 6, 2, 15, 3, 11, 12, 2 ], [ 16, 13, 17, 15, 13, 15, 5, 4, 13, 11, 6, 14, 4, 14, 5, 10, 2, 7, 3, 11, 7, 18, 14, 7, 9, 10, 11, 7, 17, 7, 7, 15, 7, 18, 11, 14, 1, 15, 7, 10, 12, 4, 17, 8, 17, 11, 16, 14, 12, 15, 15, 14, 2, 11, 11, 10, 12, 12, 6, 9, 4, 14, 15, 11, 5, 16, 8, 18, 4, 15, 17, 15, 1, 12, 14, 11, 15, 7, 16, 16, 9, 16, 11, 19, 16, 14, 10, 12, 8, 13, 14, 15, 2, 14, 13, 3, 5, 7, 6, 0, 15, 9, 13, 9, 8, 11, 11, 9, 7, 8, 12, 13, 6, 16, 8, 5, 11, 17, 15, 12, 7, 8, 2, 11, 13, 15, 9, 18, 11, 8, 6, 13, 6, 18, 7, 6, 11, 14, 6, 10, 9, 6, 5, 14, 8, 4, 8, 13, 10, 12, 5, 12, 2, 3, 12, 15, 13, 17, 8, 11, 7, 10, 8, 13, 14, 9, 14, 7, 14, 19, 13, 6, 18, 18, 9, 17, 2, 13, 5, 14, 6, 2, 18, 12, 15, 16, 6, 15, 7, 1, 13, 4, 15, 11, 2, 16, 8, 14, 7, 12, 15, 6, 11, 7, 7, 16, 3, 7, 10, 4 ], [ 8, 3, 10, 15, 11, 12, 10, 11, 3, 4, 9, 2, 10, 12, 10, 7, 15, 14, 16, 16, 9, 8, 4, 15, 11, 6, 3, 11, 5, 8, 13, 9, 10, 4, 4, 3, 15, 0, 7, 14, 13, 11, 3, 10, 8, 7, 12, 2, 16, 4, 13, 16, 15, 14, 3, 17, 6, 16, 10, 16, 16, 4, 3, 6, 12, 1, 9, 11, 10, 2, 11, 13, 13, 17, 15, 12, 14, 17, 11, 6, 10, 4, 9, 9, 2, 3, 11, 16, 8, 8, 7, 14, 15, 8, 9, 13, 12, 10, 15, 15, 0, 7, 8, 13, 9, 8, 4, 9, 11, 14, 8, 13, 17, 12, 16, 12, 15, 3, 14, 6, 16, 10, 14, 14, 6, 9, 16, 7, 4, 14, 11, 2, 9, 11, 10, 11, 13, 15, 12, 5, 7, 17, 10, 9, 10, 12, 7, 4, 12, 17, 11, 5, 13, 14, 3, 11, 3, 14, 11, 4, 8, 9, 7, 4, 5, 10, 12, 9, 9, 6, 10, 9, 10, 3, 8, 7, 13, 11, 12, 11, 9, 15, 4, 7, 2, 3, 9, 7, 9, 15, 2, 12, 4, 12, 14, 6, 11, 1, 8, 5, 6, 9, 3, 9, 14, 6, 14, 10, 4, 16 ], [ 8, 6, 10, 10, 7, 9, 4, 5, 5, 5, 5, 6, 5, 9, 4, 2, 9, 8, 9, 10, 2, 10, 6, 9, 5, 2, 4, 8, 9, 2, 6, 7, 7, 9, 3, 5, 10, 6, 3, 9, 8, 6, 9, 9, 9, 7, 9, 6, 11, 8, 10, 11, 9, 8, 3, 11, 7, 10, 4, 10, 9, 8, 7, 7, 8, 8, 2, 11, 5, 8, 10, 10, 7, 11, 11, 7, 10, 10, 9, 7, 8, 7, 5, 11, 8, 7, 6, 10, 1, 6, 6, 10, 9, 6, 6, 6, 5, 4, 9, 9, 7, 0, 5, 7, 7, 4, 3, 8, 8, 8, 5, 9, 10, 10, 10, 8, 9, 9, 10, 7, 10, 4, 7, 9, 4, 7, 10, 9, 4, 8, 4, 5, 6, 11, 7, 5, 7, 10, 6, 4, 5, 10, 6, 6, 7, 8, 4, 5, 7, 11, 4, 3, 8, 9, 3, 9, 6, 11, 8, 5, 2, 8, 0, 4, 6, 8, 8, 2, 7, 10, 6, 3, 10, 9, 7, 9, 7, 7, 6, 8, 3, 9, 9, 8, 7, 7, 4, 7, 2, 8, 5, 8, 7, 7, 7, 7, 5, 6, 2, 3, 6, 5, 3, 3, 7, 8, 7, 7, 3, 10 ], [ 3, 10, 5, 7, 3, 4, 8, 10, 5, 9, 10, 6, 9, 4, 9, 3, 13, 9, 13, 9, 6, 6, 5, 10, 5, 4, 7, 13, 7, 8, 8, 2, 13, 8, 6, 5, 14, 8, 9, 7, 5, 11, 10, 14, 4, 12, 4, 6, 9, 12, 5, 8, 14, 6, 6, 10, 12, 8, 7, 10, 12, 12, 6, 12, 13, 8, 5, 6, 10, 10, 4, 5, 12, 9, 7, 4, 6, 12, 3, 4, 14, 6, 3, 6, 9, 10, 5, 8, 6, 0, 2, 6, 12, 2, 1, 10, 8, 6, 10, 13, 8, 5, 0, 6, 12, 2, 7, 13, 13, 8, 1, 5, 12, 5, 10, 14, 8, 9, 6, 12, 11, 6, 11, 7, 2, 2, 10, 5, 8, 8, 7, 6, 11, 5, 13, 7, 6, 7, 8, 9, 10, 12, 11, 1, 13, 13, 9, 4, 5, 9, 8, 3, 13, 14, 6, 3, 9, 6, 14, 10, 6, 14, 6, 4, 4, 14, 4, 7, 2, 8, 2, 8, 5, 10, 12, 5, 11, 3, 8, 3, 8, 14, 9, 13, 6, 7, 10, 3, 6, 12, 8, 13, 5, 5, 11, 4, 5, 9, 6, 4, 3, 11, 7, 6, 8, 4, 10, 12, 8, 12 ], [ 10, 13, 10, 5, 5, 6, 7, 8, 10, 12, 10, 11, 8, 5, 8, 6, 9, 3, 8, 3, 6, 12, 10, 4, 2, 7, 11, 13, 13, 8, 3, 8, 13, 14, 10, 10, 10, 13, 9, 2, 3, 10, 15, 14, 10, 14, 7, 11, 3, 15, 6, 5, 11, 2, 10, 4, 14, 3, 4, 3, 7, 15, 12, 14, 12, 14, 5, 10, 8, 15, 8, 6, 9, 4, 5, 3, 6, 5, 7, 10, 14, 12, 4, 12, 14, 14, 2, 3, 6, 6, 8, 6, 8, 8, 6, 6, 4, 4, 5, 9, 13, 7, 6, 0, 12, 5, 10, 14, 13, 2, 5, 4, 6, 7, 4, 13, 2, 15, 5, 14, 5, 3, 8, 2, 7, 8, 4, 12, 11, 2, 4, 11, 11, 10, 13, 4, 1, 4, 3, 11, 12, 6, 10, 7, 13, 12, 11, 9, 1, 4, 5, 8, 10, 12, 10, 7, 13, 7, 14, 12, 6, 15, 7, 9, 10, 14, 5, 6, 6, 14, 5, 7, 10, 15, 13, 11, 9, 5, 4, 5, 7, 11, 15, 15, 12, 12, 9, 9, 5, 8, 12, 11, 11, 1, 7, 10, 3, 13, 7, 8, 9, 10, 10, 5, 3, 11, 6, 12, 10, 7 ], [ 14, 6, 16, 17, 14, 16, 5, 5, 10, 5, 3, 9, 5, 15, 5, 9, 9, 11, 10, 15, 7, 16, 11, 12, 11, 8, 6, 2, 13, 5, 11, 14, 1, 13, 7, 10, 8, 9, 3, 14, 14, 4, 12, 2, 15, 4, 16, 10, 16, 8, 16, 17, 7, 14, 7, 15, 4, 16, 8, 14, 11, 7, 11, 4, 3, 11, 8, 18, 4, 9, 16, 16, 7, 16, 17, 13, 17, 13, 15, 13, 2, 12, 11, 16, 11, 7, 12, 16, 7, 12, 12, 17, 9, 13, 13, 8, 9, 9, 11, 8, 9, 7, 12, 12, 0, 10, 6, 2, 2, 13, 11, 15, 13, 16, 13, 3, 15, 12, 17, 4, 13, 9, 8, 14, 11, 14, 14, 15, 5, 12, 8, 9, 1, 17, 1, 9, 13, 16, 10, 4, 3, 13, 3, 13, 1, 4, 3, 10, 13, 16, 7, 9, 6, 5, 8, 15, 7, 18, 2, 5, 6, 2, 7, 10, 11, 2, 15, 6, 14, 15, 13, 6, 17, 12, 1, 14, 6, 14, 9, 14, 6, 7, 13, 4, 11, 11, 3, 13, 8, 8, 7, 4, 12, 13, 8, 13, 10, 8, 6, 9, 12, 2, 7, 8, 11, 14, 9, 1, 5, 11 ], [ 6, 9, 7, 7, 4, 5, 6, 8, 5, 8, 8, 7, 7, 5, 7, 2, 11, 7, 10, 8, 4, 8, 5, 8, 3, 2, 6, 12, 8, 6, 6, 4, 11, 9, 5, 5, 12, 8, 7, 6, 5, 9, 10, 12, 6, 11, 6, 6, 8, 11, 6, 8, 12, 5, 5, 9, 11, 8, 4, 8, 10, 11, 7, 10, 11, 9, 3, 8, 8, 10, 6, 6, 9, 8, 7, 4, 7, 10, 5, 6, 12, 7, 1, 8, 10, 10, 3, 8, 4, 2, 4, 7, 10, 4, 3, 7, 6, 4, 8, 11, 8, 4, 2, 5, 10, 0, 6, 12, 12, 7, 1, 5, 10, 6, 9, 12, 7, 10, 7, 11, 9, 3, 9, 6, 3, 4, 9, 7, 7, 7, 5, 6, 9, 8, 11, 5, 5, 7, 5, 8, 9, 10, 9, 3, 11, 11, 8, 4, 4, 8, 5, 3, 11, 12, 5, 5, 9, 8, 12, 9, 4, 12, 4, 4, 5, 12, 5, 4, 4, 9, 3, 5, 7, 10, 10, 7, 9, 4, 6, 4, 5, 12, 10, 12, 7, 7, 7, 5, 3, 10, 7, 11, 6, 4, 9, 6, 3, 8, 4, 3, 5, 9, 6, 4, 6, 6, 8, 10, 6, 10 ], [ 8, 3, 10, 13, 10, 11, 6, 7, 3, 2, 6, 3, 7, 11, 6, 4, 12, 11, 12, 13, 5, 9, 5, 12, 9, 4, 0, 8, 7, 4, 10, 8, 7, 7, 1, 4, 12, 4, 4, 12, 11, 8, 7, 8, 9, 5, 11, 4, 14, 5, 12, 14, 11, 11, 1, 14, 5, 13, 7, 13, 12, 5, 5, 5, 9, 5, 5, 12, 7, 5, 11, 12, 10, 14, 13, 10, 13, 13, 10, 7, 7, 6, 7, 10, 5, 4, 9, 13, 4, 7, 7, 12, 11, 7, 8, 9, 9, 7, 12, 11, 4, 3, 7, 10, 6, 6, 0, 7, 8, 11, 7, 11, 13, 12, 13, 9, 12, 6, 13, 5, 13, 7, 10, 12, 5, 8, 13, 8, 1, 11, 7, 2, 6, 11, 7, 8, 10, 13, 9, 3, 4, 14, 7, 8, 7, 9, 4, 4, 10, 14, 7, 4, 10, 10, 1, 10, 3, 13, 8, 3, 5, 7, 4, 4, 5, 8, 11, 5, 9, 8, 9, 6, 11, 7, 6, 8, 9, 9, 9, 10, 6, 11, 7, 6, 5, 5, 5, 7, 5, 11, 2, 9, 5, 10, 10, 7, 8, 3, 5, 3, 6, 6, 0, 6, 10, 7, 10, 7, 1, 13 ], [ 15, 6, 17, 18, 15, 17, 7, 6, 10, 6, 5, 10, 7, 17, 7, 10, 11, 13, 12, 17, 8, 16, 12, 14, 13, 10, 7, 2, 14, 6, 12, 15, 2, 13, 8, 11, 9, 9, 5, 16, 16, 6, 12, 1, 16, 3, 17, 10, 17, 7, 18, 19, 8, 16, 8, 17, 3, 18, 10, 16, 12, 6, 12, 4, 5, 11, 9, 19, 6, 9, 17, 17, 8, 18, 18, 15, 18, 15, 17, 14, 0, 12, 13, 17, 11, 7, 13, 17, 8, 14, 13, 18, 10, 14, 14, 10, 11, 10, 13, 9, 9, 8, 13, 14, 2, 12, 7, 0, 2, 14, 13, 17, 14, 18, 15, 4, 16, 12, 18, 4, 14, 11, 9, 16, 12, 15, 16, 15, 6, 14, 10, 9, 3, 18, 2, 10, 15, 18, 11, 4, 3, 14, 5, 14, 1, 5, 4, 11, 14, 18, 9, 10, 7, 7, 8, 16, 7, 19, 2, 5, 8, 1, 8, 10, 12, 1, 16, 8, 15, 15, 14, 7, 18, 12, 1, 15, 8, 15, 11, 16, 7, 8, 13, 3, 11, 12, 5, 14, 9, 10, 8, 6, 12, 14, 10, 14, 11, 8, 8, 10, 13, 4, 7, 9, 13, 14, 11, 2, 6, 13 ], [ 16, 8, 18, 18, 15, 17, 6, 5, 11, 7, 4, 11, 5, 16, 5, 10, 9, 12, 10, 16, 8, 17, 13, 12, 12, 10, 8, 0, 15, 6, 11, 15, 1, 15, 9, 12, 7, 11, 5, 15, 15, 4, 14, 1, 17, 5, 17, 11, 16, 9, 17, 18, 6, 15, 9, 16, 6, 17, 9, 15, 10, 8, 13, 6, 2, 12, 9, 19, 5, 11, 18, 17, 6, 17, 18, 14, 18, 13, 17, 15, 2, 14, 12, 18, 12, 9, 13, 16, 8, 14, 14, 18, 8, 14, 14, 8, 9, 10, 12, 7, 11, 8, 13, 13, 2, 12, 8, 2, 0, 13, 13, 16, 13, 18, 14, 2, 15, 14, 18, 6, 13, 10, 8, 15, 12, 15, 14, 16, 7, 13, 9, 10, 2, 18, 1, 9, 14, 17, 10, 5, 4, 13, 3, 14, 1, 3, 4, 12, 14, 17, 8, 11, 5, 4, 9, 17, 9, 19, 1, 6, 8, 3, 8, 11, 13, 2, 16, 7, 15, 16, 14, 7, 18, 14, 3, 16, 6, 15, 10, 16, 7, 6, 15, 5, 12, 13, 4, 14, 9, 8, 9, 3, 13, 14, 8, 15, 11, 9, 7, 10, 14, 3, 8, 9, 12, 15, 9, 1, 7, 11 ], [ 12, 14, 12, 7, 7, 8, 7, 8, 12, 13, 10, 13, 8, 7, 8, 8, 7, 2, 6, 3, 6, 14, 12, 2, 3, 9, 12, 13, 15, 8, 2, 10, 12, 16, 11, 12, 9, 14, 10, 2, 5, 9, 17, 14, 12, 15, 9, 13, 3, 17, 8, 6, 10, 4, 11, 3, 15, 4, 5, 2, 5, 16, 13, 15, 11, 15, 6, 13, 8, 16, 11, 8, 8, 4, 6, 5, 8, 3, 9, 12, 14, 14, 6, 15, 16, 15, 4, 4, 7, 8, 10, 8, 7, 10, 8, 5, 4, 4, 3, 8, 14, 8, 8, 2, 13, 7, 11, 14, 13, 0, 7, 6, 4, 9, 2, 12, 3, 16, 7, 15, 3, 4, 7, 3, 9, 10, 2, 14, 12, 0, 4, 12, 11, 13, 12, 4, 3, 6, 3, 12, 12, 4, 10, 9, 13, 11, 11, 11, 3, 4, 5, 10, 9, 11, 11, 9, 14, 9, 14, 13, 7, 15, 8, 11, 12, 14, 7, 7, 9, 16, 7, 7, 13, 17, 13, 13, 8, 7, 3, 7, 7, 10, 16, 16, 14, 14, 9, 11, 6, 7, 13, 10, 13, 4, 6, 12, 4, 14, 7, 10, 11, 11, 11, 6, 2, 13, 5, 12, 11, 5 ], [ 5, 9, 6, 6, 3, 5, 7, 9, 5, 8, 9, 7, 8, 4, 8, 3, 12, 8, 11, 8, 5, 7, 5, 9, 4, 3, 7, 13, 8, 7, 6, 3, 12, 9, 6, 5, 13, 8, 8, 6, 4, 10, 10, 13, 5, 12, 5, 6, 8, 11, 5, 7, 13, 5, 6, 9, 12, 8, 5, 9, 11, 12, 6, 11, 12, 9, 4, 7, 9, 10, 5, 5, 10, 9, 7, 3, 6, 10, 4, 5, 13, 7, 1, 8, 10, 10, 4, 8, 5, 1, 3, 6, 11, 3, 2, 8, 7, 5, 9, 12, 8, 5, 1, 5, 11, 1, 7, 13, 13, 7, 0, 5, 11, 5, 9, 13, 7, 10, 6, 11, 10, 4, 10, 6, 2, 3, 9, 6, 7, 7, 6, 6, 10, 6, 12, 6, 5, 7, 6, 9, 9, 11, 10, 2, 12, 12, 9, 4, 4, 8, 6, 3, 12, 13, 6, 4, 9, 7, 13, 9, 5, 13, 5, 4, 5, 13, 4, 6, 2, 9, 2, 7, 6, 10, 11, 6, 10, 3, 7, 3, 7, 13, 10, 13, 7, 7, 9, 4, 4, 11, 8, 12, 6, 4, 10, 5, 4, 9, 5, 4, 4, 10, 6, 5, 7, 6, 9, 11, 7, 11 ], [ 7, 14, 7, 2, 2, 2, 10, 12, 10, 13, 13, 11, 11, 1, 11, 7, 13, 7, 12, 5, 8, 9, 9, 8, 4, 8, 12, 16, 12, 10, 7, 5, 15, 13, 10, 10, 14, 13, 12, 4, 1, 13, 14, 17, 8, 16, 4, 11, 5, 16, 2, 3, 15, 2, 11, 6, 16, 4, 8, 6, 11, 16, 11, 16, 15, 13, 7, 7, 12, 15, 5, 2, 12, 5, 2, 2, 2, 9, 4, 8, 17, 11, 4, 10, 14, 15, 4, 4, 8, 5, 7, 2, 12, 6, 4, 10, 8, 7, 9, 13, 13, 9, 5, 4, 15, 5, 11, 17, 16, 6, 5, 0, 10, 3, 8, 16, 4, 14, 2, 16, 9, 6, 12, 4, 7, 6, 7, 9, 12, 6, 8, 11, 14, 7, 16, 8, 3, 2, 7, 13, 14, 10, 13, 5, 16, 15, 13, 9, 3, 5, 9, 8, 14, 15, 10, 4, 14, 3, 17, 14, 9, 17, 9, 9, 9, 17, 1, 9, 4, 12, 3, 10, 7, 15, 15, 9, 12, 2, 8, 2, 10, 15, 14, 17, 11, 11, 12, 7, 8, 12, 12, 15, 10, 3, 11, 9, 6, 13, 9, 8, 8, 13, 11, 8, 7, 9, 10, 15, 12, 11 ], [ 15, 16, 16, 11, 10, 12, 8, 8, 15, 14, 10, 16, 8, 11, 8, 10, 5, 3, 3, 6, 8, 17, 15, 2, 7, 11, 14, 13, 18, 10, 4, 13, 12, 19, 13, 15, 7, 17, 11, 6, 9, 9, 19, 14, 16, 15, 13, 16, 7, 18, 12, 10, 8, 8, 13, 5, 16, 7, 7, 4, 2, 18, 16, 16, 10, 18, 8, 16, 8, 18, 14, 12, 6, 7, 10, 8, 12, 1, 13, 16, 14, 17, 9, 18, 18, 17, 7, 7, 9, 12, 14, 12, 5, 13, 11, 5, 5, 7, 2, 6, 17, 10, 12, 6, 13, 10, 13, 14, 13, 4, 11, 10, 0, 13, 3, 11, 7, 19, 11, 16, 1, 7, 5, 7, 12, 14, 3, 17, 13, 4, 6, 15, 11, 16, 12, 5, 7, 9, 5, 13, 13, 0, 10, 12, 13, 10, 12, 14, 7, 7, 6, 13, 8, 9, 13, 13, 16, 13, 13, 15, 9, 15, 10, 13, 15, 14, 11, 8, 12, 19, 11, 8, 16, 20, 13, 17, 7, 11, 4, 11, 8, 8, 19, 17, 16, 17, 10, 14, 8, 5, 15, 9, 16, 7, 5, 16, 7, 16, 9, 13, 15, 11, 13, 8, 4, 16, 4, 12, 13, 2 ], [ 5, 14, 4, 3, 3, 1, 12, 14, 9, 13, 14, 11, 13, 2, 13, 8, 15, 10, 14, 8, 10, 7, 9, 11, 7, 8, 12, 18, 10, 12, 9, 4, 17, 12, 11, 9, 17, 12, 13, 7, 4, 15, 13, 18, 6, 17, 1, 10, 7, 16, 1, 5, 17, 5, 11, 9, 17, 7, 10, 9, 14, 16, 10, 16, 17, 12, 9, 4, 13, 14, 2, 1, 14, 8, 5, 4, 2, 12, 2, 7, 18, 10, 5, 7, 13, 15, 6, 7, 10, 4, 6, 1, 15, 5, 3, 12, 10, 9, 12, 16, 12, 10, 5, 7, 16, 6, 12, 18, 18, 9, 5, 3, 13, 0, 10, 17, 7, 13, 3, 16, 12, 8, 14, 6, 6, 4, 10, 7, 12, 9, 10, 11, 15, 4, 17, 10, 6, 4, 10, 14, 14, 13, 15, 4, 17, 17, 14, 8, 6, 7, 10, 8, 16, 17, 10, 2, 14, 2, 18, 14, 10, 18, 10, 8, 8, 18, 2, 10, 3, 10, 3, 11, 5, 14, 16, 7, 14, 3, 10, 2, 11, 17, 12, 18, 10, 10, 13, 6, 9, 15, 12, 16, 9, 5, 13, 7, 8, 13, 10, 8, 7, 15, 11, 9, 10, 7, 12, 16, 12, 14 ], [ 13, 16, 14, 8, 8, 10, 8, 9, 14, 14, 11, 15, 8, 9, 9, 9, 7, 2, 5, 3, 8, 16, 14, 1, 5, 10, 13, 14, 17, 10, 3, 12, 13, 18, 12, 14, 9, 16, 11, 4, 7, 10, 19, 15, 14, 16, 11, 15, 4, 18, 10, 7, 10, 5, 13, 2, 16, 5, 6, 1, 5, 18, 15, 16, 12, 17, 8, 14, 9, 18, 12, 9, 8, 4, 7, 6, 9, 2, 11, 14, 15, 16, 8, 16, 18, 17, 6, 4, 9, 10, 12, 10, 6, 12, 9, 6, 5, 6, 2, 8, 16, 10, 10, 4, 13, 9, 13, 15, 14, 2, 9, 8, 3, 10, 0, 13, 4, 18, 8, 16, 1, 6, 7, 4, 11, 12, 1, 16, 13, 2, 6, 14, 12, 14, 13, 5, 5, 7, 4, 14, 13, 3, 11, 11, 14, 12, 12, 13, 5, 4, 6, 11, 10, 11, 13, 11, 16, 11, 14, 15, 8, 16, 9, 12, 13, 15, 9, 8, 10, 18, 9, 8, 14, 19, 14, 15, 8, 9, 4, 9, 8, 10, 18, 17, 15, 16, 10, 13, 8, 7, 15, 11, 15, 5, 6, 14, 5, 16, 9, 12, 13, 11, 13, 7, 3, 15, 5, 13, 13, 4 ], [ 16, 10, 18, 17, 15, 17, 6, 4, 12, 8, 4, 12, 5, 16, 5, 10, 7, 11, 8, 15, 8, 18, 13, 11, 12, 10, 9, 2, 16, 6, 10, 15, 2, 16, 10, 13, 5, 12, 5, 14, 15, 3, 15, 3, 17, 7, 17, 13, 15, 11, 17, 18, 4, 14, 10, 15, 7, 16, 8, 13, 9, 10, 14, 7, 1, 14, 9, 19, 4, 12, 18, 17, 5, 16, 17, 14, 18, 12, 17, 16, 4, 15, 12, 19, 14, 10, 12, 15, 8, 14, 14, 18, 7, 15, 14, 7, 8, 9, 10, 5, 12, 8, 14, 13, 3, 12, 9, 4, 2, 12, 13, 16, 11, 17, 13, 0, 15, 15, 17, 7, 11, 10, 6, 14, 13, 16, 13, 17, 8, 12, 8, 11, 3, 19, 2, 9, 14, 17, 9, 7, 6, 11, 3, 15, 3, 1, 5, 12, 13, 16, 7, 12, 3, 3, 10, 17, 10, 19, 3, 8, 7, 5, 8, 12, 14, 4, 16, 7, 15, 17, 14, 6, 19, 15, 4, 17, 5, 15, 9, 15, 6, 4, 16, 7, 14, 14, 4, 15, 8, 6, 10, 2, 14, 13, 7, 15, 10, 11, 7, 11, 15, 3, 9, 8, 11, 16, 8, 3, 8, 10 ], [ 11, 15, 11, 4, 5, 6, 9, 11, 12, 14, 12, 13, 10, 5, 10, 8, 10, 5, 9, 1, 8, 13, 12, 5, 4, 9, 13, 16, 15, 10, 4, 9, 15, 16, 12, 12, 12, 15, 12, 1, 3, 12, 17, 17, 11, 16, 7, 13, 1, 18, 6, 3, 13, 2, 12, 3, 17, 1, 7, 3, 8, 17, 13, 16, 14, 15, 7, 11, 11, 17, 9, 5, 10, 2, 3, 3, 5, 6, 8, 11, 16, 14, 5, 13, 16, 16, 3, 1, 8, 7, 10, 6, 10, 9, 6, 8, 6, 6, 6, 11, 15, 9, 8, 2, 15, 7, 12, 16, 15, 3, 7, 4, 7, 7, 4, 15, 0, 16, 4, 16, 5, 6, 9, 0, 9, 9, 4, 13, 13, 3, 7, 13, 13, 11, 15, 6, 2, 3, 5, 14, 14, 7, 12, 8, 15, 14, 13, 11, 3, 2, 7, 10, 12, 13, 12, 8, 15, 7, 16, 15, 9, 17, 9, 11, 11, 16, 5, 8, 7, 15, 6, 9, 11, 17, 15, 12, 10, 5, 6, 6, 9, 13, 16, 18, 14, 14, 12, 10, 7, 10, 14, 13, 13, 3, 9, 12, 5, 15, 9, 10, 11, 13, 12, 7, 4, 12, 8, 14, 13, 8 ], [ 8, 6, 9, 15, 12, 13, 12, 13, 5, 7, 12, 3, 13, 13, 13, 9, 18, 16, 18, 18, 11, 7, 5, 18, 13, 8, 6, 13, 3, 11, 15, 9, 13, 2, 6, 4, 18, 3, 10, 16, 14, 14, 0, 13, 8, 9, 12, 4, 18, 5, 13, 17, 17, 15, 6, 19, 9, 17, 13, 18, 18, 6, 3, 9, 15, 1, 11, 11, 13, 3, 11, 14, 16, 18, 16, 13, 15, 19, 11, 6, 12, 3, 11, 7, 1, 5, 13, 17, 10, 9, 7, 14, 18, 8, 10, 15, 14, 12, 18, 17, 3, 9, 9, 15, 12, 10, 6, 12, 14, 16, 10, 14, 19, 13, 18, 15, 16, 0, 15, 9, 18, 12, 16, 16, 7, 9, 18, 6, 7, 16, 13, 4, 12, 10, 13, 14, 14, 16, 14, 8, 9, 19, 13, 9, 12, 15, 10, 5, 14, 18, 13, 7, 16, 17, 6, 11, 5, 15, 13, 7, 11, 12, 9, 6, 5, 13, 13, 11, 10, 4, 11, 12, 10, 1, 11, 6, 15, 12, 15, 12, 12, 17, 1, 10, 3, 3, 12, 7, 11, 17, 5, 15, 4, 14, 16, 6, 13, 4, 11, 7, 6, 12, 6, 11, 16, 6, 16, 12, 7, 19 ], [ 8, 16, 7, 0, 3, 2, 12, 13, 11, 15, 14, 13, 13, 2, 13, 9, 14, 9, 13, 5, 10, 10, 11, 9, 6, 9, 13, 18, 13, 12, 8, 6, 17, 14, 12, 11, 16, 14, 14, 5, 3, 15, 16, 19, 8, 18, 4, 12, 5, 18, 2, 2, 16, 3, 12, 7, 18, 4, 9, 7, 12, 18, 12, 17, 17, 14, 9, 7, 13, 16, 5, 2, 14, 5, 2, 4, 1, 10, 4, 9, 18, 12, 6, 10, 15, 16, 5, 4, 10, 6, 8, 1, 14, 7, 5, 11, 9, 8, 10, 15, 14, 10, 6, 5, 17, 7, 13, 18, 18, 7, 6, 2, 11, 3, 8, 17, 4, 15, 0, 17, 10, 8, 13, 4, 8, 6, 8, 10, 14, 7, 9, 12, 16, 7, 17, 9, 4, 2, 9, 15, 15, 11, 15, 6, 18, 17, 14, 10, 4, 5, 10, 9, 16, 17, 12, 5, 16, 2, 18, 15, 10, 19, 10, 10, 10, 18, 2, 10, 5, 13, 4, 11, 8, 16, 17, 10, 14, 3, 9, 3, 11, 16, 15, 19, 13, 13, 14, 8, 9, 14, 14, 16, 11, 4, 13, 10, 7, 15, 11, 10, 9, 15, 12, 9, 8, 10, 11, 17, 13, 12 ], [ 13, 3, 15, 18, 14, 16, 8, 8, 8, 3, 6, 7, 8, 16, 8, 9, 13, 14, 14, 17, 8, 14, 9, 15, 13, 8, 4, 5, 11, 6, 13, 13, 5, 10, 6, 8, 12, 6, 5, 16, 15, 8, 8, 5, 14, 1, 16, 7, 18, 4, 16, 18, 11, 15, 6, 18, 0, 18, 10, 16, 14, 3, 9, 0, 8, 7, 9, 16, 8, 5, 16, 16, 10, 18, 18, 14, 17, 16, 15, 12, 4, 10, 12, 14, 7, 3, 13, 17, 8, 12, 11, 17, 12, 12, 13, 11, 11, 11, 14, 12, 6, 7, 12, 14, 4, 11, 5, 4, 6, 15, 11, 16, 16, 16, 16, 7, 16, 9, 17, 0, 15, 11, 11, 16, 10, 13, 17, 13, 4, 15, 10, 6, 5, 16, 5, 11, 15, 17, 12, 3, 3, 16, 7, 12, 4, 8, 4, 9, 14, 18, 10, 9, 10, 10, 6, 15, 4, 18, 5, 2, 8, 4, 7, 8, 10, 4, 15, 8, 13, 12, 13, 8, 15, 9, 3, 13, 10, 14, 12, 14, 8, 11, 10, 1, 8, 9, 6, 11, 9, 12, 5, 8, 9, 14, 12, 11, 11, 5, 8, 8, 11, 5, 5, 9, 14, 12, 12, 5, 4, 15 ], [ 14, 15, 15, 9, 9, 11, 7, 8, 14, 14, 10, 15, 8, 10, 8, 9, 5, 2, 4, 5, 7, 16, 14, 1, 6, 10, 13, 13, 17, 9, 3, 12, 12, 18, 12, 14, 7, 16, 10, 5, 8, 9, 19, 14, 15, 15, 12, 15, 5, 18, 11, 9, 8, 6, 13, 4, 16, 6, 6, 3, 3, 17, 15, 15, 11, 17, 7, 15, 8, 17, 13, 10, 7, 6, 8, 7, 10, 1, 12, 15, 14, 16, 8, 17, 18, 17, 6, 6, 8, 11, 13, 11, 5, 12, 10, 5, 4, 6, 1, 7, 16, 10, 11, 5, 13, 9, 13, 14, 13, 3, 10, 9, 1, 12, 1, 11, 5, 18, 10, 15, 0, 6, 5, 5, 11, 13, 2, 16, 13, 3, 5, 14, 11, 15, 12, 5, 6, 8, 4, 13, 13, 2, 10, 11, 13, 10, 12, 13, 6, 6, 6, 12, 8, 9, 13, 12, 16, 12, 13, 14, 8, 15, 9, 13, 14, 14, 10, 7, 11, 18, 9, 8, 15, 19, 13, 16, 7, 10, 4, 10, 8, 9, 19, 16, 16, 16, 10, 13, 7, 5, 14, 10, 15, 6, 5, 15, 6, 16, 8, 12, 14, 11, 13, 7, 3, 15, 4, 12, 13, 3 ], [ 9, 10, 10, 8, 6, 8, 4, 5, 8, 8, 6, 9, 5, 7, 5, 4, 7, 4, 7, 6, 2, 11, 8, 5, 2, 4, 7, 10, 11, 5, 3, 7, 9, 12, 7, 8, 8, 10, 6, 5, 5, 7, 13, 11, 10, 11, 8, 9, 7, 12, 8, 8, 9, 5, 7, 7, 11, 7, 1, 6, 7, 12, 9, 11, 9, 11, 2, 11, 5, 12, 9, 8, 6, 7, 8, 4, 8, 7, 8, 9, 11, 10, 3, 12, 12, 11, 3, 7, 3, 6, 7, 8, 7, 7, 6, 4, 2, 0, 5, 8, 10, 4, 6, 3, 9, 3, 7, 11, 10, 4, 4, 6, 7, 8, 6, 10, 6, 12, 8, 11, 6, 0, 6, 5, 6, 8, 6, 11, 8, 4, 2, 8, 8, 11, 9, 2, 4, 7, 2, 8, 8, 7, 7, 6, 10, 9, 7, 7, 4, 7, 2, 6, 8, 9, 7, 8, 10, 9, 11, 9, 3, 11, 3, 7, 8, 11, 6, 3, 7, 12, 5, 3, 10, 13, 10, 10, 6, 6, 3, 6, 3, 9, 13, 12, 10, 10, 6, 8, 2, 7, 9, 8, 9, 4, 6, 9, 1, 10, 3, 6, 8, 7, 7, 1, 3, 10, 5, 9, 7, 7 ], [ 15, 12, 16, 13, 11, 13, 4, 3, 12, 10, 5, 13, 3, 12, 4, 9, 2, 5, 3, 10, 6, 17, 13, 5, 7, 9, 10, 8, 16, 6, 5, 13, 7, 17, 10, 13, 3, 14, 7, 9, 11, 4, 17, 9, 15, 11, 14, 13, 10, 14, 14, 13, 3, 10, 10, 9, 11, 11, 5, 8, 3, 14, 14, 11, 5, 15, 6, 17, 4, 15, 15, 13, 1, 10, 12, 10, 14, 6, 14, 14, 9, 15, 9, 18, 15, 13, 8, 10, 7, 11, 13, 14, 1, 13, 11, 2, 4, 6, 4, 2, 14, 7, 11, 8, 8, 9, 10, 9, 8, 7, 10, 12, 5, 14, 7, 6, 9, 16, 13, 11, 5, 6, 0, 9, 11, 14, 7, 16, 10, 6, 4, 12, 6, 17, 7, 4, 9, 12, 5, 9, 9, 5, 5, 12, 8, 5, 8, 12, 9, 11, 4, 11, 3, 4, 11, 14, 13, 15, 8, 11, 6, 10, 7, 11, 13, 9, 12, 5, 12, 17, 11, 5, 16, 17, 9, 16, 2, 11, 4, 12, 5, 3, 17, 12, 14, 15, 5, 13, 6, 1, 12, 4, 14, 9, 1, 14, 6, 13, 6, 10, 14, 6, 10, 6, 5, 15, 2, 7, 10, 4 ], [ 10, 15, 10, 4, 5, 6, 9, 10, 11, 13, 11, 13, 10, 5, 10, 8, 10, 4, 9, 2, 8, 12, 11, 5, 3, 9, 12, 15, 14, 10, 4, 8, 14, 15, 11, 12, 12, 14, 11, 0, 3, 11, 16, 16, 11, 16, 7, 13, 2, 17, 6, 4, 12, 1, 12, 3, 16, 2, 6, 3, 8, 17, 13, 16, 13, 15, 7, 10, 10, 16, 8, 5, 10, 2, 3, 3, 5, 6, 7, 11, 16, 13, 5, 13, 16, 16, 3, 1, 8, 7, 9, 5, 10, 9, 6, 8, 6, 6, 6, 11, 14, 9, 7, 2, 14, 6, 12, 16, 15, 3, 6, 4, 7, 6, 4, 14, 0, 16, 4, 16, 5, 5, 9, 0, 9, 8, 4, 12, 13, 3, 6, 12, 13, 11, 14, 6, 2, 3, 5, 13, 13, 7, 12, 7, 15, 13, 12, 11, 2, 2, 7, 9, 12, 13, 11, 7, 15, 6, 16, 14, 8, 17, 9, 10, 11, 16, 5, 8, 7, 15, 5, 9, 11, 17, 15, 12, 10, 5, 6, 5, 9, 13, 16, 17, 13, 13, 11, 10, 7, 10, 13, 13, 12, 2, 9, 11, 5, 15, 8, 10, 10, 12, 12, 7, 4, 12, 7, 14, 12, 8 ], [ 4, 8, 5, 8, 5, 6, 8, 9, 3, 7, 9, 5, 9, 6, 8, 3, 13, 10, 13, 10, 6, 6, 3, 11, 6, 2, 6, 12, 6, 7, 8, 3, 11, 7, 4, 3, 14, 6, 8, 9, 6, 11, 8, 13, 4, 10, 6, 4, 10, 10, 7, 9, 13, 8, 4, 11, 10, 10, 7, 11, 12, 10, 4, 10, 12, 7, 5, 7, 9, 8, 6, 7, 11, 11, 9, 6, 8, 12, 5, 3, 12, 5, 4, 6, 7, 8, 6, 10, 5, 2, 2, 7, 12, 2, 3, 10, 8, 6, 11, 13, 6, 4, 2, 7, 11, 3, 5, 12, 12, 9, 2, 7, 12, 6, 11, 13, 9, 7, 8, 10, 11, 6, 11, 9, 0, 3, 11, 5, 6, 9, 7, 4, 10, 6, 12, 7, 7, 9, 8, 8, 9, 13, 10, 3, 11, 12, 8, 2, 6, 11, 7, 1, 12, 13, 4, 5, 8, 8, 12, 8, 6, 12, 5, 2, 2, 12, 6, 6, 3, 7, 4, 7, 6, 8, 11, 5, 11, 5, 9, 5, 7, 13, 7, 11, 5, 5, 8, 2, 5, 12, 6, 12, 4, 6, 11, 3, 6, 7, 6, 2, 2, 10, 5, 6, 9, 4, 10, 11, 6, 12 ], [ 2, 11, 2, 7, 4, 4, 10, 12, 6, 10, 12, 7, 12, 5, 11, 5, 15, 11, 15, 10, 8, 4, 5, 12, 7, 6, 9, 15, 6, 10, 10, 0, 15, 8, 7, 6, 16, 8, 11, 9, 6, 13, 9, 16, 2, 14, 3, 7, 10, 12, 4, 8, 16, 7, 8, 11, 14, 9, 9, 11, 14, 13, 6, 13, 15, 9, 7, 4, 12, 11, 2, 5, 14, 10, 8, 6, 6, 13, 2, 3, 15, 6, 5, 5, 9, 11, 6, 9, 8, 2, 2, 5, 14, 1, 2, 12, 10, 8, 12, 15, 9, 7, 2, 8, 14, 4, 8, 15, 15, 10, 3, 6, 14, 4, 12, 16, 9, 9, 6, 13, 13, 8, 14, 8, 3, 0, 12, 4, 9, 10, 9, 7, 13, 3, 15, 9, 7, 8, 10, 11, 12, 14, 13, 1, 15, 15, 11, 5, 7, 10, 10, 5, 15, 16, 7, 2, 11, 6, 16, 11, 8, 16, 8, 5, 4, 16, 4, 9, 2, 7, 3, 10, 3, 10, 14, 3, 13, 4, 10, 3, 10, 16, 9, 15, 7, 7, 12, 2, 8, 14, 9, 15, 5, 7, 13, 3, 8, 10, 9, 5, 3, 13, 8, 8, 10, 3, 12, 14, 9, 14 ], [ 14, 16, 14, 8, 8, 10, 9, 9, 14, 15, 11, 15, 9, 8, 9, 10, 7, 3, 6, 3, 8, 16, 14, 2, 6, 11, 14, 14, 17, 10, 4, 12, 14, 18, 13, 14, 9, 16, 12, 4, 7, 10, 19, 16, 14, 16, 11, 15, 4, 19, 10, 7, 10, 5, 13, 2, 17, 4, 7, 1, 5, 18, 15, 16, 12, 17, 8, 14, 10, 18, 12, 9, 8, 4, 7, 6, 9, 2, 11, 14, 16, 16, 8, 17, 18, 17, 6, 4, 9, 10, 12, 9, 7, 12, 10, 6, 5, 6, 3, 9, 16, 10, 10, 4, 14, 9, 13, 16, 14, 2, 9, 7, 3, 10, 1, 13, 4, 18, 8, 17, 2, 6, 7, 4, 11, 12, 0, 16, 14, 2, 6, 14, 13, 14, 14, 5, 5, 7, 5, 14, 14, 3, 11, 11, 15, 12, 13, 13, 5, 4, 7, 12, 10, 11, 13, 11, 16, 10, 15, 15, 9, 16, 10, 13, 14, 16, 9, 8, 10, 18, 9, 9, 14, 19, 15, 15, 9, 9, 5, 9, 9, 10, 19, 18, 16, 16, 11, 13, 8, 7, 15, 11, 15, 5, 7, 14, 6, 16, 9, 12, 13, 12, 13, 8, 3, 15, 5, 13, 13, 4 ], [ 2, 10, 3, 11, 8, 8, 13, 14, 5, 10, 14, 6, 14, 8, 13, 7, 18, 14, 18, 14, 11, 1, 4, 15, 10, 7, 9, 16, 3, 11, 13, 4, 16, 5, 8, 5, 18, 7, 12, 12, 9, 15, 7, 16, 2, 13, 7, 5, 14, 11, 8, 12, 18, 11, 8, 15, 13, 13, 11, 15, 17, 12, 4, 13, 17, 6, 10, 5, 14, 9, 5, 8, 16, 14, 12, 9, 9, 17, 6, 2, 16, 3, 8, 2, 7, 10, 10, 13, 10, 5, 3, 9, 17, 4, 6, 15, 13, 11, 16, 18, 7, 9, 5, 12, 15, 7, 8, 15, 16, 14, 6, 9, 17, 7, 16, 17, 13, 6, 10, 13, 16, 11, 16, 12, 5, 4, 16, 0, 9, 14, 12, 6, 14, 4, 16, 12, 11, 11, 13, 11, 12, 17, 15, 5, 15, 17, 12, 5, 10, 14, 12, 6, 17, 18, 7, 6, 10, 9, 16, 11, 10, 16, 9, 5, 4, 16, 8, 11, 5, 3, 7, 12, 3, 7, 14, 0, 16, 7, 13, 7, 12, 18, 6, 14, 5, 4, 13, 3, 10, 17, 8, 17, 3, 10, 16, 2, 11, 8, 10, 6, 3, 14, 8, 10, 14, 1, 15, 15, 9, 17 ], [ 9, 3, 11, 14, 10, 12, 6, 7, 4, 1, 5, 4, 7, 12, 6, 5, 12, 11, 12, 14, 6, 10, 6, 12, 9, 4, 1, 7, 8, 4, 10, 9, 6, 8, 2, 5, 11, 4, 3, 12, 11, 7, 7, 7, 10, 4, 12, 4, 14, 5, 13, 15, 11, 12, 2, 15, 4, 14, 7, 13, 12, 4, 6, 4, 8, 5, 6, 13, 6, 5, 12, 13, 9, 15, 14, 10, 13, 14, 11, 8, 6, 7, 8, 11, 6, 4, 10, 14, 5, 8, 8, 13, 11, 8, 9, 9, 9, 7, 12, 11, 4, 4, 8, 11, 5, 7, 1, 6, 7, 12, 7, 12, 13, 12, 13, 8, 13, 7, 14, 4, 13, 8, 10, 13, 6, 9, 14, 9, 0, 12, 8, 3, 6, 12, 6, 8, 11, 14, 9, 2, 3, 14, 6, 9, 6, 8, 3, 5, 10, 15, 7, 5, 9, 10, 2, 11, 3, 14, 7, 2, 5, 6, 4, 5, 6, 7, 11, 5, 9, 9, 9, 6, 12, 7, 5, 9, 9, 10, 9, 11, 6, 11, 8, 5, 5, 6, 5, 8, 6, 11, 2, 8, 6, 11, 10, 8, 8, 3, 5, 4, 7, 5, 1, 6, 11, 8, 10, 6, 0, 13 ], [ 12, 14, 12, 7, 7, 8, 7, 8, 12, 12, 9, 13, 7, 7, 7, 7, 7, 1, 6, 3, 6, 14, 12, 2, 3, 8, 12, 13, 15, 8, 2, 10, 12, 16, 11, 12, 9, 14, 10, 3, 5, 9, 17, 14, 12, 14, 9, 13, 4, 16, 8, 7, 9, 4, 11, 3, 15, 4, 5, 2, 5, 16, 13, 14, 11, 15, 6, 13, 8, 16, 11, 8, 7, 4, 6, 5, 8, 3, 10, 12, 14, 14, 6, 15, 16, 15, 4, 4, 7, 8, 10, 8, 7, 10, 8, 5, 3, 4, 3, 8, 14, 8, 8, 2, 12, 7, 11, 14, 13, 0, 7, 6, 4, 9, 2, 12, 3, 16, 7, 15, 3, 4, 6, 3, 9, 10, 2, 14, 12, 0, 4, 12, 11, 13, 12, 4, 3, 6, 3, 12, 12, 4, 10, 9, 13, 11, 11, 11, 4, 4, 5, 10, 9, 10, 11, 9, 14, 9, 13, 13, 7, 15, 8, 10, 12, 14, 7, 6, 9, 16, 7, 7, 13, 17, 13, 13, 7, 7, 3, 7, 7, 10, 16, 16, 14, 14, 9, 11, 6, 7, 13, 10, 13, 4, 6, 12, 4, 14, 7, 10, 11, 10, 11, 5, 1, 13, 4, 12, 11, 5 ], [ 10, 10, 12, 9, 7, 9, 3, 4, 9, 8, 5, 10, 3, 8, 3, 5, 6, 4, 6, 7, 2, 13, 9, 5, 4, 5, 8, 9, 12, 4, 2, 9, 8, 13, 7, 9, 7, 11, 5, 6, 7, 5, 13, 10, 11, 10, 10, 10, 8, 12, 10, 9, 7, 6, 7, 7, 11, 8, 1, 6, 5, 12, 11, 10, 7, 12, 2, 13, 4, 12, 11, 9, 5, 8, 9, 6, 10, 6, 10, 10, 10, 11, 5, 13, 12, 11, 4, 7, 3, 7, 9, 10, 5, 9, 7, 3, 1, 1, 4, 6, 11, 4, 7, 4, 8, 5, 7, 10, 9, 4, 6, 8, 6, 10, 6, 8, 7, 13, 9, 10, 5, 2, 4, 6, 7, 9, 6, 12, 8, 4, 0, 9, 7, 12, 8, 1, 5, 9, 2, 8, 8, 6, 6, 8, 9, 7, 7, 8, 5, 8, 1, 7, 6, 7, 7, 10, 10, 11, 9, 9, 3, 10, 4, 8, 9, 10, 8, 2, 8, 14, 7, 2, 12, 14, 9, 12, 4, 7, 2, 8, 3, 7, 14, 11, 11, 11, 5, 9, 2, 5, 9, 7, 10, 5, 4, 10, 2, 10, 3, 7, 9, 6, 7, 2, 3, 11, 3, 8, 7, 6 ], [ 6, 4, 9, 13, 9, 10, 8, 9, 1, 4, 8, 1, 9, 10, 8, 5, 14, 12, 14, 14, 7, 7, 3, 13, 9, 4, 2, 10, 5, 6, 11, 7, 10, 5, 2, 2, 14, 2, 6, 12, 10, 10, 5, 10, 7, 7, 10, 1, 14, 5, 11, 14, 13, 11, 2, 15, 7, 14, 8, 14, 14, 6, 3, 6, 11, 3, 7, 10, 9, 4, 9, 11, 12, 14, 13, 10, 12, 15, 9, 5, 9, 3, 7, 8, 4, 4, 9, 13, 6, 6, 5, 12, 13, 6, 7, 11, 10, 8, 13, 13, 2, 5, 6, 11, 9, 6, 2, 9, 10, 12, 6, 11, 15, 11, 14, 11, 13, 4, 12, 6, 14, 8, 12, 12, 4, 7, 14, 6, 3, 12, 9, 0, 9, 9, 10, 9, 11, 13, 10, 5, 6, 15, 9, 7, 9, 11, 6, 2, 10, 14, 9, 3, 12, 13, 1, 9, 3, 13, 10, 4, 6, 9, 5, 2, 3, 10, 10, 7, 8, 6, 8, 7, 9, 5, 8, 6, 11, 9, 10, 9, 7, 13, 5, 8, 2, 3, 8, 5, 7, 13, 2, 11, 3, 10, 12, 5, 9, 3, 6, 3, 5, 8, 2, 7, 11, 5, 12, 9, 3, 14 ], [ 14, 7, 16, 16, 13, 15, 4, 3, 10, 6, 2, 10, 4, 14, 3, 8, 8, 10, 9, 14, 6, 15, 11, 11, 10, 8, 6, 2, 13, 4, 9, 13, 1, 13, 7, 10, 7, 10, 3, 13, 13, 3, 12, 3, 15, 5, 15, 10, 14, 9, 15, 16, 6, 13, 7, 14, 5, 15, 7, 13, 9, 8, 11, 5, 2, 11, 7, 17, 3, 10, 16, 15, 5, 15, 16, 12, 16, 12, 15, 13, 3, 12, 10, 16, 11, 8, 11, 14, 6, 12, 12, 16, 7, 12, 12, 7, 8, 8, 10, 6, 9, 6, 11, 11, 1, 9, 6, 3, 2, 11, 10, 14, 11, 15, 12, 3, 13, 12, 16, 5, 11, 8, 6, 13, 10, 13, 13, 14, 6, 11, 7, 9, 0, 16, 1, 8, 12, 15, 8, 4, 3, 11, 2, 12, 2, 3, 3, 10, 12, 15, 6, 9, 5, 5, 7, 14, 7, 17, 3, 5, 5, 4, 6, 9, 11, 3, 14, 5, 13, 15, 12, 5, 16, 12, 2, 14, 5, 13, 8, 13, 5, 6, 13, 6, 11, 11, 2, 12, 6, 7, 7, 3, 12, 12, 7, 13, 9, 8, 5, 8, 12, 1, 7, 7, 10, 13, 7, 1, 5, 10 ], [ 3, 13, 1, 8, 6, 5, 14, 15, 8, 13, 15, 9, 15, 6, 14, 9, 18, 14, 18, 12, 12, 3, 7, 15, 10, 9, 11, 18, 7, 13, 12, 4, 18, 9, 10, 8, 19, 10, 14, 11, 8, 17, 11, 19, 2, 16, 4, 9, 12, 14, 5, 9, 19, 9, 10, 13, 16, 11, 12, 13, 17, 15, 8, 16, 18, 10, 11, 1, 15, 12, 2, 6, 17, 12, 9, 8, 6, 16, 3, 4, 18, 7, 7, 3, 11, 14, 9, 11, 11, 5, 5, 6, 18, 4, 5, 15, 13, 11, 15, 18, 11, 11, 5, 10, 17, 8, 11, 18, 18, 13, 6, 7, 16, 4, 14, 19, 11, 10, 7, 16, 15, 11, 17, 11, 6, 3, 14, 4, 12, 13, 12, 9, 16, 0, 18, 12, 9, 9, 13, 14, 15, 17, 16, 4, 18, 18, 14, 7, 9, 12, 13, 8, 18, 19, 10, 3, 13, 6, 19, 14, 12, 18, 11, 8, 6, 18, 6, 12, 4, 7, 6, 13, 1, 11, 17, 4, 17, 6, 13, 5, 13, 19, 9, 17, 8, 8, 15, 4, 11, 17, 11, 18, 7, 9, 16, 5, 10, 12, 12, 8, 5, 16, 11, 11, 13, 4, 15, 17, 12, 17 ], [ 15, 8, 17, 17, 14, 16, 6, 4, 11, 6, 3, 11, 5, 16, 5, 9, 9, 11, 10, 15, 7, 17, 12, 12, 11, 9, 7, 1, 14, 5, 11, 14, 0, 14, 8, 11, 7, 10, 4, 14, 15, 4, 13, 2, 16, 5, 17, 11, 16, 9, 17, 17, 6, 14, 8, 15, 5, 16, 8, 14, 10, 8, 12, 5, 2, 12, 8, 18, 4, 10, 17, 17, 6, 16, 17, 13, 17, 13, 16, 14, 2, 13, 12, 17, 12, 8, 12, 16, 7, 13, 13, 17, 8, 14, 14, 8, 9, 9, 11, 7, 10, 7, 13, 13, 1, 11, 7, 2, 1, 12, 12, 16, 12, 17, 13, 2, 15, 13, 17, 5, 12, 9, 7, 14, 12, 15, 14, 16, 6, 12, 8, 10, 1, 18, 0, 9, 13, 17, 10, 5, 4, 12, 3, 14, 1, 3, 4, 11, 13, 16, 8, 10, 5, 4, 9, 16, 8, 18, 1, 6, 7, 3, 7, 10, 12, 2, 15, 7, 14, 16, 14, 6, 17, 13, 2, 15, 6, 14, 9, 15, 6, 6, 14, 5, 12, 12, 3, 14, 8, 8, 8, 3, 13, 13, 8, 14, 10, 9, 7, 10, 13, 2, 8, 8, 11, 15, 8, 1, 6, 11 ], [ 11, 11, 12, 9, 7, 9, 3, 5, 9, 9, 6, 10, 4, 8, 4, 5, 6, 3, 5, 6, 3, 13, 10, 4, 3, 6, 8, 10, 13, 5, 2, 9, 9, 14, 8, 10, 7, 11, 6, 5, 7, 6, 14, 11, 11, 11, 10, 10, 7, 13, 9, 9, 7, 6, 8, 7, 11, 7, 1, 5, 5, 13, 11, 11, 8, 12, 3, 13, 5, 13, 11, 9, 5, 7, 9, 5, 9, 5, 10, 11, 11, 12, 5, 14, 13, 12, 4, 7, 4, 7, 9, 10, 5, 9, 7, 2, 1, 1, 4, 6, 11, 5, 7, 4, 9, 5, 8, 10, 9, 4, 6, 8, 5, 10, 5, 9, 6, 14, 9, 11, 5, 2, 4, 6, 7, 9, 5, 12, 8, 4, 1, 9, 8, 12, 9, 0, 5, 8, 1, 9, 8, 6, 6, 8, 9, 8, 7, 9, 5, 8, 1, 7, 6, 8, 8, 10, 11, 11, 10, 10, 4, 11, 4, 8, 10, 10, 8, 3, 8, 14, 7, 3, 12, 14, 9, 12, 5, 7, 1, 8, 3, 7, 14, 12, 11, 12, 6, 10, 3, 5, 10, 7, 11, 5, 4, 11, 2, 11, 4, 7, 10, 7, 8, 2, 2, 11, 3, 8, 8, 5 ], [ 9, 13, 9, 4, 3, 5, 8, 9, 10, 12, 10, 11, 9, 4, 9, 6, 10, 5, 9, 3, 6, 11, 10, 5, 2, 7, 11, 14, 13, 9, 4, 7, 13, 14, 10, 10, 12, 13, 10, 2, 2, 11, 15, 15, 9, 15, 6, 11, 3, 16, 5, 4, 12, 1, 10, 4, 15, 3, 5, 4, 8, 15, 11, 14, 13, 13, 6, 9, 9, 15, 7, 5, 10, 4, 4, 2, 5, 7, 6, 10, 15, 12, 3, 12, 14, 14, 1, 3, 7, 5, 8, 5, 9, 7, 5, 7, 5, 4, 6, 11, 13, 7, 6, 1, 13, 5, 10, 15, 14, 3, 5, 3, 7, 6, 5, 14, 2, 14, 4, 15, 6, 4, 9, 2, 7, 7, 5, 11, 11, 3, 5, 11, 12, 9, 13, 5, 0, 3, 4, 12, 12, 8, 11, 6, 14, 13, 11, 9, 1, 4, 6, 8, 11, 13, 10, 6, 13, 6, 15, 13, 7, 15, 7, 9, 9, 15, 4, 7, 6, 13, 4, 8, 9, 15, 14, 10, 10, 4, 5, 4, 8, 12, 14, 16, 12, 12, 10, 8, 6, 10, 12, 12, 11, 1, 8, 10, 3, 13, 7, 8, 9, 11, 10, 6, 4, 10, 7, 13, 11, 8 ], [ 9, 16, 9, 1, 4, 4, 11, 13, 12, 15, 14, 13, 12, 3, 12, 9, 13, 7, 12, 4, 10, 11, 12, 8, 5, 10, 14, 17, 14, 12, 7, 7, 17, 15, 12, 12, 15, 15, 13, 3, 2, 14, 17, 18, 10, 18, 5, 13, 3, 18, 4, 1, 15, 2, 13, 5, 18, 2, 9, 6, 11, 18, 13, 17, 16, 15, 9, 9, 13, 17, 7, 3, 13, 3, 0, 4, 3, 9, 6, 10, 18, 13, 6, 12, 16, 17, 5, 3, 10, 7, 9, 3, 12, 8, 6, 10, 9, 8, 9, 14, 15, 10, 7, 4, 16, 7, 13, 18, 17, 6, 7, 2, 9, 4, 7, 17, 3, 16, 2, 17, 8, 7, 12, 3, 9, 8, 7, 11, 14, 6, 9, 13, 15, 9, 17, 8, 3, 0, 8, 15, 15, 10, 14, 7, 17, 16, 14, 11, 4, 3, 9, 10, 15, 16, 12, 6, 16, 4, 18, 16, 10, 19, 10, 11, 11, 18, 3, 10, 6, 14, 5, 11, 9, 17, 17, 11, 13, 4, 9, 4, 11, 15, 16, 19, 13, 14, 13, 9, 9, 13, 14, 15, 12, 4, 12, 11, 7, 15, 10, 10, 10, 15, 13, 9, 7, 11, 10, 16, 13, 11 ], [ 11, 12, 12, 8, 7, 9, 4, 5, 10, 10, 7, 11, 5, 8, 5, 6, 6, 2, 5, 6, 4, 13, 10, 3, 3, 7, 9, 10, 13, 6, 1, 9, 10, 14, 8, 10, 7, 12, 7, 5, 6, 6, 15, 11, 12, 12, 10, 11, 6, 14, 9, 8, 8, 5, 9, 6, 12, 7, 2, 5, 4, 14, 12, 12, 8, 13, 4, 13, 5, 14, 11, 9, 5, 7, 8, 5, 9, 5, 10, 11, 11, 12, 5, 14, 14, 13, 4, 6, 5, 8, 9, 9, 5, 9, 7, 3, 1, 2, 3, 6, 12, 6, 8, 3, 10, 5, 9, 11, 10, 3, 6, 7, 5, 10, 4, 9, 5, 14, 9, 12, 4, 2, 5, 5, 8, 10, 5, 13, 9, 3, 2, 10, 8, 13, 10, 1, 4, 8, 0, 9, 9, 5, 7, 8, 10, 8, 8, 9, 4, 7, 2, 8, 7, 8, 9, 10, 12, 10, 11, 11, 4, 12, 5, 9, 10, 11, 8, 4, 8, 15, 7, 4, 12, 15, 10, 12, 5, 7, 1, 8, 4, 8, 15, 13, 12, 12, 7, 10, 4, 5, 11, 8, 12, 4, 4, 11, 2, 12, 4, 8, 10, 8, 9, 3, 2, 12, 3, 9, 9, 5 ], [ 11, 3, 13, 15, 12, 13, 6, 6, 6, 2, 4, 6, 6, 13, 6, 6, 11, 11, 12, 15, 6, 12, 7, 13, 10, 6, 2, 5, 10, 4, 10, 11, 5, 9, 4, 6, 10, 6, 3, 13, 13, 6, 8, 5, 12, 3, 14, 6, 15, 5, 14, 16, 9, 13, 4, 15, 3, 15, 7, 14, 12, 4, 8, 3, 6, 7, 6, 14, 6, 6, 13, 14, 8, 15, 15, 11, 15, 14, 13, 10, 4, 8, 9, 13, 7, 4, 10, 15, 5, 10, 9, 15, 10, 10, 11, 9, 9, 8, 12, 10, 5, 4, 9, 11, 4, 8, 3, 4, 5, 12, 9, 13, 13, 14, 14, 7, 14, 8, 15, 3, 13, 8, 9, 13, 8, 11, 14, 11, 2, 12, 8, 5, 4, 14, 5, 9, 12, 15, 9, 0, 1, 13, 5, 10, 4, 7, 2, 7, 11, 15, 7, 6, 8, 8, 4, 13, 4, 16, 5, 1, 5, 5, 5, 6, 8, 5, 13, 6, 11, 11, 11, 5, 13, 8, 3, 11, 8, 12, 9, 12, 5, 9, 9, 4, 7, 8, 4, 9, 6, 10, 4, 7, 8, 11, 9, 10, 9, 4, 5, 6, 9, 4, 3, 7, 11, 10, 10, 4, 2, 12 ], [ 12, 4, 14, 15, 12, 14, 5, 5, 7, 3, 3, 7, 5, 14, 5, 7, 10, 11, 11, 15, 6, 13, 8, 12, 10, 6, 4, 4, 11, 4, 10, 11, 4, 10, 5, 7, 9, 7, 2, 13, 13, 5, 9, 4, 13, 3, 14, 7, 15, 6, 15, 16, 9, 13, 5, 15, 3, 15, 7, 14, 11, 5, 9, 3, 5, 8, 7, 15, 5, 7, 14, 14, 8, 15, 16, 12, 15, 13, 13, 11, 4, 9, 10, 14, 8, 5, 11, 15, 5, 10, 10, 15, 10, 11, 11, 8, 9, 8, 12, 9, 7, 5, 10, 12, 3, 9, 4, 3, 4, 12, 9, 14, 13, 14, 13, 6, 14, 9, 15, 3, 13, 8, 9, 13, 9, 12, 14, 12, 3, 12, 8, 6, 3, 15, 4, 8, 12, 15, 9, 1, 0, 13, 4, 11, 3, 6, 1, 8, 12, 16, 7, 7, 7, 7, 5, 13, 5, 16, 4, 2, 5, 4, 5, 7, 9, 4, 13, 6, 12, 12, 11, 5, 14, 9, 2, 12, 7, 12, 9, 13, 5, 8, 10, 4, 8, 9, 3, 10, 6, 9, 5, 6, 9, 12, 9, 10, 9, 5, 5, 7, 10, 3, 4, 7, 11, 11, 9, 3, 3, 12 ], [ 16, 16, 16, 11, 11, 12, 8, 8, 15, 14, 10, 16, 8, 11, 8, 11, 4, 3, 3, 6, 8, 18, 15, 2, 7, 11, 14, 13, 18, 10, 5, 14, 12, 19, 13, 15, 7, 17, 11, 7, 10, 9, 20, 14, 16, 16, 14, 16, 7, 18, 13, 10, 8, 8, 14, 5, 16, 8, 7, 4, 2, 18, 17, 16, 10, 18, 8, 17, 8, 18, 15, 12, 6, 7, 10, 9, 12, 1, 14, 16, 14, 17, 10, 19, 19, 17, 8, 7, 9, 12, 14, 12, 4, 14, 12, 5, 5, 7, 2, 6, 17, 10, 12, 6, 13, 10, 14, 14, 13, 4, 11, 10, 0, 13, 3, 11, 7, 19, 11, 16, 2, 7, 5, 7, 13, 14, 3, 17, 14, 4, 6, 15, 11, 17, 12, 6, 8, 10, 5, 13, 13, 0, 10, 13, 13, 10, 12, 14, 8, 7, 6, 13, 8, 9, 14, 14, 16, 13, 13, 15, 9, 15, 10, 14, 15, 14, 11, 8, 13, 19, 11, 8, 17, 20, 14, 17, 7, 11, 5, 12, 8, 8, 20, 17, 17, 17, 10, 15, 8, 5, 15, 9, 16, 8, 5, 16, 7, 16, 9, 13, 15, 11, 14, 8, 4, 17, 4, 12, 13, 1 ], [ 14, 8, 15, 15, 12, 14, 3, 2, 10, 7, 1, 10, 2, 13, 2, 8, 6, 9, 7, 13, 5, 15, 11, 9, 9, 8, 7, 3, 14, 3, 8, 13, 3, 14, 7, 10, 5, 10, 3, 12, 12, 1, 13, 4, 15, 6, 15, 10, 13, 10, 15, 15, 4, 12, 7, 13, 7, 14, 6, 11, 8, 9, 12, 7, 2, 12, 6, 17, 2, 11, 15, 14, 4, 14, 15, 11, 15, 10, 14, 13, 5, 12, 10, 16, 12, 9, 10, 13, 5, 11, 12, 15, 6, 12, 12, 5, 6, 7, 9, 5, 10, 6, 11, 10, 3, 9, 7, 5, 3, 10, 10, 13, 10, 15, 11, 3, 12, 13, 15, 7, 10, 7, 5, 12, 10, 13, 11, 15, 6, 10, 6, 9, 2, 16, 3, 6, 11, 14, 7, 5, 4, 10, 0, 12, 3, 2, 3, 10, 11, 14, 5, 9, 3, 3, 8, 14, 9, 16, 4, 6, 5, 5, 5, 9, 11, 4, 13, 5, 13, 15, 12, 4, 16, 13, 4, 14, 3, 12, 7, 13, 4, 4, 14, 7, 11, 12, 2, 12, 6, 5, 8, 2, 12, 11, 5, 13, 8, 9, 5, 9, 12, 1, 7, 6, 8, 13, 6, 2, 6, 8 ], [ 3, 10, 4, 6, 3, 4, 9, 11, 5, 9, 11, 7, 10, 4, 10, 4, 14, 10, 13, 9, 7, 5, 5, 11, 6, 5, 8, 14, 7, 9, 8, 1, 14, 8, 7, 5, 15, 8, 10, 8, 5, 12, 10, 15, 3, 13, 3, 6, 9, 12, 4, 7, 15, 6, 7, 10, 13, 8, 8, 10, 13, 12, 6, 12, 14, 9, 6, 5, 11, 10, 3, 4, 12, 9, 7, 4, 5, 12, 2, 4, 14, 6, 3, 6, 9, 11, 5, 8, 7, 1, 2, 5, 13, 1, 1, 11, 9, 7, 11, 14, 9, 6, 1, 7, 13, 3, 8, 14, 14, 9, 2, 5, 12, 4, 11, 15, 8, 9, 6, 12, 11, 6, 12, 7, 3, 1, 11, 5, 9, 9, 8, 7, 12, 4, 14, 8, 6, 7, 8, 10, 11, 13, 12, 0, 14, 14, 10, 4, 6, 9, 8, 4, 14, 15, 6, 2, 10, 6, 15, 10, 7, 15, 7, 4, 4, 15, 4, 8, 1, 7, 2, 9, 4, 10, 13, 4, 12, 3, 9, 3, 9, 15, 9, 14, 7, 7, 10, 3, 7, 13, 8, 14, 5, 5, 12, 4, 6, 9, 7, 5, 3, 12, 7, 7, 9, 4, 11, 13, 8, 13 ], [ 15, 7, 17, 17, 15, 16, 6, 5, 10, 6, 4, 10, 6, 16, 5, 9, 10, 12, 11, 16, 8, 16, 12, 13, 12, 9, 7, 1, 14, 5, 11, 14, 1, 13, 8, 11, 8, 10, 4, 15, 15, 5, 12, 1, 16, 4, 17, 10, 16, 8, 17, 18, 7, 15, 8, 16, 4, 17, 9, 15, 11, 7, 12, 4, 3, 11, 9, 18, 5, 9, 17, 17, 7, 17, 18, 14, 18, 14, 16, 14, 1, 13, 12, 17, 11, 7, 13, 16, 8, 13, 13, 18, 9, 14, 14, 8, 10, 10, 12, 8, 10, 7, 13, 13, 1, 11, 7, 1, 1, 13, 12, 16, 13, 17, 14, 3, 15, 12, 18, 4, 13, 10, 8, 15, 11, 15, 15, 15, 6, 13, 9, 9, 2, 18, 1, 9, 14, 17, 10, 4, 3, 13, 3, 14, 0, 4, 3, 11, 13, 17, 8, 10, 6, 6, 8, 16, 7, 19, 1, 5, 7, 2, 7, 10, 12, 1, 16, 7, 14, 15, 14, 6, 17, 12, 1, 15, 7, 15, 10, 15, 6, 7, 13, 4, 11, 12, 4, 13, 8, 9, 8, 4, 12, 14, 9, 14, 11, 8, 7, 10, 13, 3, 7, 8, 12, 14, 9, 1, 6, 12 ], [ 16, 10, 18, 17, 14, 16, 5, 3, 12, 8, 3, 12, 4, 15, 4, 10, 6, 10, 7, 14, 7, 18, 13, 10, 11, 10, 9, 3, 16, 5, 9, 15, 3, 16, 9, 12, 4, 12, 5, 13, 14, 2, 15, 4, 17, 7, 17, 12, 15, 12, 17, 17, 3, 14, 10, 14, 8, 15, 7, 13, 8, 11, 14, 8, 0, 14, 8, 19, 3, 12, 17, 16, 4, 15, 16, 13, 17, 11, 16, 15, 5, 14, 12, 18, 14, 11, 12, 15, 7, 13, 14, 17, 6, 14, 14, 6, 8, 8, 9, 4, 12, 8, 13, 12, 4, 11, 9, 5, 3, 11, 12, 15, 10, 17, 12, 1, 14, 15, 17, 8, 10, 9, 5, 13, 12, 15, 12, 17, 8, 11, 7, 11, 3, 18, 3, 8, 13, 16, 8, 7, 6, 10, 2, 14, 4, 0, 5, 12, 12, 15, 7, 11, 2, 2, 10, 16, 10, 18, 3, 8, 7, 5, 8, 12, 13, 4, 15, 7, 15, 17, 14, 6, 18, 15, 5, 16, 4, 14, 8, 15, 6, 3, 16, 8, 13, 14, 4, 14, 8, 5, 10, 1, 14, 12, 6, 15, 9, 11, 7, 11, 14, 3, 9, 8, 10, 16, 7, 3, 8, 9 ], [ 11, 5, 13, 14, 12, 13, 4, 4, 7, 3, 3, 7, 4, 13, 4, 6, 9, 10, 10, 14, 5, 13, 8, 11, 9, 6, 4, 4, 11, 3, 9, 11, 4, 11, 4, 7, 9, 7, 1, 12, 12, 5, 10, 5, 12, 4, 14, 7, 14, 7, 14, 15, 8, 12, 4, 14, 4, 14, 6, 13, 10, 6, 9, 4, 5, 8, 6, 15, 4, 7, 14, 14, 7, 14, 15, 11, 14, 12, 13, 11, 4, 9, 9, 14, 9, 6, 10, 14, 5, 10, 10, 14, 9, 10, 10, 7, 8, 7, 11, 8, 7, 4, 9, 11, 3, 8, 4, 4, 4, 11, 9, 13, 12, 14, 12, 5, 13, 10, 14, 4, 12, 7, 8, 12, 8, 11, 13, 12, 3, 11, 7, 6, 3, 14, 4, 7, 11, 14, 8, 2, 1, 12, 3, 10, 3, 5, 0, 7, 11, 15, 6, 7, 7, 7, 5, 13, 5, 15, 4, 3, 4, 4, 4, 7, 9, 4, 12, 5, 11, 12, 11, 4, 14, 10, 3, 12, 6, 11, 8, 12, 4, 8, 11, 5, 8, 9, 2, 10, 5, 8, 5, 5, 9, 11, 8, 10, 8, 6, 4, 6, 10, 2, 4, 6, 10, 11, 8, 3, 3, 11 ], [ 4, 6, 6, 10, 7, 8, 8, 10, 1, 6, 9, 2, 9, 8, 9, 4, 14, 11, 14, 12, 7, 6, 1, 12, 8, 3, 4, 12, 4, 7, 10, 5, 11, 5, 3, 1, 14, 4, 7, 11, 9, 11, 6, 12, 5, 9, 8, 2, 12, 8, 9, 12, 14, 10, 3, 13, 9, 12, 8, 13, 13, 8, 2, 9, 12, 4, 6, 8, 9, 6, 7, 9, 12, 13, 11, 8, 10, 14, 7, 3, 11, 3, 6, 6, 5, 7, 8, 12, 6, 4, 3, 10, 13, 4, 5, 11, 9, 7, 12, 13, 4, 5, 4, 9, 10, 4, 4, 11, 12, 11, 4, 9, 14, 8, 13, 12, 11, 5, 10, 9, 13, 7, 12, 11, 2, 5, 13, 5, 5, 11, 8, 2, 10, 7, 11, 9, 9, 11, 9, 7, 8, 14, 10, 4, 11, 12, 7, 0, 8, 13, 8, 1, 13, 13, 2, 7, 6, 10, 12, 6, 6, 11, 5, 1, 1, 11, 8, 7, 5, 5, 6, 8, 7, 6, 10, 4, 11, 7, 10, 7, 8, 14, 5, 10, 3, 3, 8, 3, 6, 13, 4, 12, 2, 9, 12, 3, 8, 5, 6, 2, 2, 9, 3, 7, 11, 4, 11, 10, 5, 14 ], [ 8, 13, 9, 4, 3, 5, 7, 9, 9, 11, 10, 11, 8, 4, 8, 6, 10, 5, 9, 4, 6, 11, 9, 5, 2, 6, 10, 14, 12, 8, 4, 6, 13, 13, 9, 10, 11, 12, 10, 2, 2, 10, 14, 15, 9, 14, 6, 10, 4, 15, 5, 5, 12, 2, 9, 5, 14, 4, 5, 4, 8, 15, 11, 14, 12, 13, 5, 9, 9, 14, 7, 5, 9, 4, 4, 1, 5, 7, 6, 9, 14, 11, 3, 11, 14, 14, 1, 3, 6, 5, 7, 5, 9, 7, 4, 7, 5, 4, 6, 10, 12, 7, 5, 1, 13, 4, 10, 14, 14, 3, 4, 3, 7, 6, 5, 13, 3, 14, 4, 14, 6, 4, 9, 2, 6, 7, 5, 10, 10, 4, 5, 10, 12, 9, 13, 5, 1, 4, 4, 11, 12, 8, 11, 6, 13, 12, 11, 8, 0, 4, 6, 7, 11, 12, 9, 6, 13, 6, 14, 12, 6, 15, 7, 8, 9, 14, 4, 6, 5, 13, 3, 7, 9, 14, 13, 10, 9, 3, 5, 4, 7, 12, 14, 15, 11, 11, 10, 8, 5, 9, 11, 12, 10, 0, 8, 9, 3, 12, 7, 8, 8, 11, 10, 5, 4, 10, 7, 12, 10, 8 ], [ 12, 17, 12, 4, 6, 7, 11, 12, 14, 16, 13, 15, 11, 6, 12, 10, 11, 6, 10, 1, 10, 14, 14, 5, 6, 11, 15, 17, 16, 12, 6, 10, 16, 17, 13, 14, 13, 16, 13, 2, 5, 13, 19, 18, 12, 18, 8, 15, 1, 19, 7, 3, 14, 3, 14, 2, 18, 1, 8, 3, 9, 19, 15, 18, 15, 17, 9, 12, 12, 18, 10, 6, 12, 0, 3, 5, 6, 6, 9, 13, 18, 15, 7, 15, 18, 18, 5, 1, 10, 9, 11, 6, 11, 10, 8, 9, 8, 8, 7, 12, 17, 11, 9, 4, 16, 8, 14, 18, 17, 4, 8, 5, 7, 7, 4, 16, 2, 18, 5, 18, 6, 7, 11, 2, 11, 10, 4, 14, 15, 4, 8, 14, 15, 12, 16, 8, 4, 3, 7, 15, 16, 7, 14, 9, 17, 15, 15, 13, 4, 0, 9, 11, 13, 15, 13, 9, 17, 7, 18, 16, 10, 19, 11, 12, 13, 18, 6, 10, 9, 17, 7, 11, 12, 19, 17, 14, 12, 7, 7, 7, 11, 14, 18, 19, 15, 16, 13, 12, 9, 11, 16, 14, 14, 4, 10, 13, 7, 17, 10, 12, 12, 14, 14, 9, 6, 13, 9, 16, 14, 8 ], [ 11, 10, 12, 10, 8, 10, 2, 3, 9, 8, 5, 10, 3, 9, 3, 5, 5, 4, 5, 8, 2, 13, 10, 5, 4, 5, 7, 8, 13, 4, 3, 9, 7, 13, 7, 9, 6, 11, 5, 7, 8, 5, 13, 9, 12, 10, 11, 10, 8, 12, 10, 10, 6, 7, 7, 8, 10, 9, 1, 7, 5, 12, 11, 10, 7, 12, 2, 13, 3, 12, 11, 10, 4, 9, 10, 6, 10, 6, 10, 11, 9, 11, 5, 14, 12, 11, 5, 8, 3, 8, 9, 11, 5, 9, 8, 2, 1, 2, 5, 5, 11, 4, 8, 5, 7, 5, 7, 9, 8, 5, 6, 9, 6, 10, 6, 7, 7, 13, 10, 10, 6, 2, 4, 7, 7, 10, 7, 12, 7, 5, 1, 9, 6, 13, 8, 1, 6, 9, 2, 7, 7, 6, 5, 8, 8, 7, 6, 8, 6, 9, 0, 7, 6, 7, 7, 10, 10, 12, 9, 9, 3, 10, 4, 8, 9, 9, 9, 2, 9, 14, 7, 2, 13, 14, 8, 12, 4, 8, 2, 8, 2, 7, 14, 11, 11, 11, 4, 10, 2, 5, 9, 6, 11, 6, 4, 11, 3, 10, 3, 7, 10, 5, 7, 2, 4, 11, 3, 7, 7, 6 ], [ 5, 6, 7, 10, 6, 7, 7, 9, 2, 6, 8, 3, 8, 7, 8, 2, 12, 10, 12, 11, 5, 6, 3, 11, 6, 2, 4, 11, 6, 6, 8, 4, 10, 6, 3, 2, 13, 5, 6, 9, 7, 10, 7, 11, 6, 9, 7, 3, 11, 8, 8, 11, 13, 8, 3, 12, 9, 11, 6, 11, 12, 8, 4, 9, 11, 6, 5, 8, 8, 7, 7, 8, 11, 12, 10, 7, 9, 12, 6, 4, 11, 4, 4, 7, 6, 7, 6, 11, 4, 4, 3, 9, 12, 3, 5, 9, 8, 6, 11, 12, 5, 3, 3, 8, 9, 3, 4, 10, 11, 10, 3, 8, 13, 8, 11, 12, 10, 7, 9, 9, 12, 6, 11, 9, 1, 5, 12, 6, 5, 10, 7, 3, 9, 8, 10, 7, 8, 10, 8, 6, 7, 13, 9, 4, 10, 11, 7, 1, 7, 11, 7, 0, 11, 12, 2, 6, 6, 10, 11, 6, 5, 11, 4, 1, 2, 11, 7, 5, 5, 7, 5, 6, 7, 7, 9, 5, 10, 6, 8, 6, 6, 13, 7, 10, 4, 4, 7, 3, 5, 12, 4, 11, 4, 7, 10, 4, 6, 6, 5, 1, 3, 8, 3, 5, 9, 4, 10, 10, 4, 12 ], [ 16, 11, 17, 15, 13, 15, 5, 3, 13, 10, 4, 13, 3, 14, 4, 10, 4, 8, 5, 12, 7, 18, 14, 8, 10, 10, 10, 5, 17, 6, 8, 15, 5, 17, 10, 13, 2, 13, 6, 12, 13, 2, 16, 7, 17, 9, 16, 13, 13, 13, 16, 15, 1, 12, 10, 12, 10, 13, 6, 11, 6, 12, 14, 10, 3, 15, 8, 18, 3, 14, 17, 15, 2, 13, 15, 12, 16, 9, 16, 15, 7, 15, 11, 19, 15, 12, 10, 13, 7, 13, 14, 16, 3, 14, 13, 4, 6, 7, 7, 2, 13, 8, 13, 10, 6, 11, 10, 7, 5, 9, 12, 14, 8, 16, 10, 3, 12, 16, 16, 10, 8, 8, 3, 12, 12, 15, 10, 17, 9, 9, 6, 12, 5, 18, 5, 6, 11, 15, 7, 8, 7, 8, 3, 14, 6, 2, 7, 13, 11, 13, 6, 11, 0, 1, 11, 16, 12, 17, 6, 10, 7, 8, 8, 12, 14, 7, 14, 6, 14, 18, 13, 5, 18, 16, 7, 17, 2, 13, 6, 14, 5, 1, 17, 10, 14, 15, 5, 15, 7, 3, 11, 2, 15, 11, 4, 15, 8, 12, 7, 11, 14, 4, 10, 7, 8, 16, 5, 5, 9, 6 ], [ 17, 11, 18, 17, 15, 16, 6, 4, 13, 10, 5, 14, 4, 16, 5, 11, 5, 9, 6, 14, 8, 19, 14, 10, 11, 11, 10, 5, 17, 7, 9, 16, 5, 17, 11, 14, 3, 14, 6, 13, 14, 3, 17, 6, 18, 9, 17, 14, 14, 13, 17, 17, 2, 13, 11, 13, 10, 15, 8, 12, 7, 12, 15, 10, 2, 15, 9, 20, 4, 14, 18, 17, 3, 15, 16, 13, 17, 10, 17, 16, 7, 16, 12, 19, 15, 12, 12, 14, 8, 14, 15, 17, 5, 15, 14, 5, 7, 9, 8, 3, 14, 9, 14, 12, 5, 12, 10, 7, 4, 11, 13, 15, 9, 17, 11, 3, 13, 17, 17, 10, 9, 9, 4, 13, 13, 16, 11, 18, 10, 10, 7, 13, 5, 19, 4, 8, 13, 16, 8, 8, 7, 9, 3, 15, 6, 2, 7, 13, 12, 15, 7, 12, 1, 0, 11, 17, 12, 18, 5, 10, 8, 7, 9, 13, 14, 6, 15, 7, 15, 18, 14, 6, 19, 17, 7, 18, 3, 15, 7, 15, 6, 1, 17, 10, 15, 15, 5, 15, 8, 4, 12, 1, 15, 12, 5, 16, 10, 13, 7, 12, 15, 5, 11, 8, 9, 17, 6, 5, 10, 7 ], [ 7, 4, 9, 12, 9, 10, 7, 8, 2, 3, 7, 2, 8, 10, 7, 4, 12, 11, 13, 13, 5, 8, 3, 12, 8, 3, 2, 9, 6, 5, 9, 7, 9, 6, 1, 2, 12, 3, 5, 11, 10, 9, 6, 9, 7, 7, 10, 2, 13, 6, 11, 13, 12, 11, 1, 14, 6, 13, 7, 13, 13, 6, 4, 6, 10, 4, 5, 10, 8, 5, 9, 11, 10, 13, 13, 9, 11, 13, 9, 6, 9, 4, 6, 9, 5, 5, 8, 13, 4, 6, 5, 11, 12, 6, 7, 9, 9, 7, 12, 12, 3, 3, 6, 10, 8, 5, 1, 8, 9, 11, 6, 10, 13, 10, 13, 10, 12, 6, 12, 6, 13, 7, 11, 11, 4, 7, 13, 7, 2, 11, 7, 1, 7, 10, 9, 8, 10, 12, 9, 4, 5, 14, 8, 6, 8, 10, 5, 2, 9, 13, 7, 2, 11, 11, 0, 9, 4, 12, 9, 4, 5, 9, 4, 2, 4, 9, 9, 6, 7, 7, 7, 6, 9, 6, 7, 7, 10, 8, 9, 9, 6, 12, 6, 8, 4, 4, 6, 5, 5, 12, 2, 10, 4, 9, 11, 5, 7, 3, 5, 2, 5, 7, 1, 6, 10, 6, 10, 8, 2, 13 ], [ 4, 13, 3, 5, 3, 2, 11, 13, 8, 12, 13, 9, 12, 3, 12, 7, 15, 10, 15, 9, 9, 5, 7, 11, 7, 7, 10, 17, 8, 11, 9, 2, 16, 10, 9, 8, 16, 10, 12, 8, 4, 14, 11, 17, 4, 15, 1, 9, 9, 14, 2, 6, 17, 6, 9, 10, 15, 8, 9, 10, 14, 15, 8, 15, 16, 10, 8, 3, 13, 13, 1, 3, 14, 9, 6, 5, 4, 13, 0, 5, 17, 8, 5, 6, 11, 13, 6, 8, 9, 3, 4, 3, 15, 3, 2, 12, 10, 8, 12, 15, 11, 9, 3, 7, 15, 5, 10, 16, 17, 9, 4, 4, 13, 2, 11, 17, 8, 11, 5, 15, 12, 8, 14, 7, 5, 2, 11, 6, 11, 9, 10, 9, 14, 3, 16, 10, 6, 6, 10, 13, 13, 14, 14, 2, 16, 16, 13, 7, 6, 9, 10, 6, 16, 17, 9, 0, 12, 4, 17, 13, 9, 17, 9, 7, 6, 17, 3, 10, 2, 9, 3, 11, 3, 12, 15, 5, 14, 3, 10, 2, 11, 17, 11, 16, 9, 9, 13, 4, 8, 15, 11, 16, 7, 6, 13, 5, 8, 11, 9, 7, 5, 14, 10, 9, 10, 5, 12, 15, 11, 14 ], [ 10, 1, 12, 16, 12, 14, 9, 9, 5, 2, 8, 4, 9, 14, 9, 7, 14, 14, 15, 16, 8, 11, 6, 15, 12, 6, 3, 8, 7, 7, 13, 10, 8, 6, 4, 5, 14, 3, 6, 15, 14, 10, 5, 8, 10, 4, 13, 4, 17, 2, 14, 17, 13, 14, 3, 17, 4, 17, 10, 16, 15, 2, 6, 4, 10, 4, 8, 13, 9, 2, 13, 14, 12, 17, 16, 13, 15, 16, 13, 8, 7, 6, 10, 11, 4, 1, 12, 16, 7, 10, 9, 15, 14, 9, 11, 12, 11, 10, 15, 13, 3, 6, 9, 13, 7, 9, 3, 7, 9, 14, 9, 14, 16, 14, 16, 10, 15, 5, 16, 4, 16, 10, 13, 15, 8, 11, 16, 10, 3, 14, 10, 3, 7, 13, 8, 11, 13, 16, 12, 4, 5, 16, 9, 10, 7, 10, 5, 6, 13, 17, 10, 6, 12, 12, 4, 12, 0, 16, 8, 2, 8, 7, 7, 6, 7, 8, 13, 8, 11, 8, 11, 8, 12, 5, 6, 9, 11, 12, 12, 12, 8, 13, 6, 5, 5, 5, 7, 8, 8, 13, 2, 11, 6, 13, 13, 8, 11, 1, 7, 6, 8, 7, 3, 9, 13, 9, 13, 8, 3, 15 ], [ 7, 16, 6, 3, 4, 2, 13, 15, 11, 15, 15, 13, 14, 3, 14, 9, 16, 11, 15, 7, 11, 9, 11, 11, 7, 10, 14, 19, 12, 13, 10, 6, 18, 14, 12, 11, 18, 14, 15, 7, 4, 16, 15, 20, 7, 18, 3, 12, 7, 18, 2, 4, 18, 5, 13, 9, 18, 6, 11, 9, 14, 18, 12, 18, 18, 14, 10, 5, 15, 16, 4, 2, 16, 7, 4, 5, 1, 12, 4, 9, 20, 12, 7, 9, 15, 17, 7, 6, 11, 6, 8, 1, 15, 7, 5, 13, 11, 10, 12, 17, 14, 11, 6, 7, 18, 8, 13, 19, 19, 9, 7, 3, 13, 2, 11, 19, 7, 15, 2, 18, 12, 9, 15, 6, 8, 6, 10, 9, 14, 9, 11, 13, 17, 6, 18, 11, 6, 4, 10, 16, 16, 13, 16, 6, 19, 18, 15, 10, 6, 7, 12, 10, 17, 18, 12, 4, 16, 0, 20, 16, 12, 20, 11, 10, 10, 20, 3, 12, 5, 12, 5, 13, 6, 15, 18, 9, 15, 4, 11, 4, 13, 18, 14, 20, 12, 12, 15, 8, 11, 16, 14, 18, 11, 6, 14, 9, 9, 15, 12, 10, 9, 16, 13, 11, 10, 9, 13, 18, 14, 14 ], [ 16, 8, 18, 18, 16, 17, 7, 6, 11, 7, 4, 11, 6, 17, 6, 10, 9, 12, 11, 16, 8, 17, 13, 13, 13, 10, 8, 0, 15, 6, 12, 15, 1, 14, 9, 12, 8, 11, 5, 15, 16, 5, 14, 1, 17, 5, 18, 11, 17, 9, 18, 19, 7, 16, 9, 16, 5, 17, 9, 15, 11, 8, 13, 5, 3, 12, 9, 19, 5, 11, 18, 18, 7, 17, 18, 15, 18, 14, 17, 15, 2, 14, 13, 18, 12, 9, 13, 17, 8, 14, 14, 18, 9, 15, 15, 9, 10, 10, 12, 8, 11, 8, 14, 14, 2, 12, 8, 2, 1, 14, 13, 17, 13, 18, 14, 3, 16, 13, 18, 5, 13, 11, 8, 16, 12, 16, 15, 16, 7, 13, 9, 10, 3, 19, 1, 10, 15, 18, 11, 5, 4, 13, 4, 15, 1, 3, 4, 12, 14, 18, 9, 11, 6, 5, 9, 17, 8, 20, 0, 6, 8, 2, 8, 11, 13, 1, 16, 8, 15, 16, 15, 7, 18, 14, 2, 16, 7, 15, 10, 16, 7, 6, 14, 5, 12, 13, 5, 14, 9, 9, 9, 4, 13, 14, 9, 15, 11, 9, 8, 11, 14, 3, 8, 9, 12, 15, 10, 2, 7, 12 ], [ 11, 2, 13, 16, 12, 14, 7, 7, 6, 1, 6, 5, 7, 13, 7, 7, 12, 13, 13, 16, 7, 12, 7, 14, 11, 6, 2, 6, 9, 5, 11, 11, 6, 8, 4, 6, 12, 5, 4, 14, 13, 8, 7, 6, 11, 3, 14, 5, 16, 4, 14, 16, 11, 14, 3, 16, 2, 16, 9, 15, 13, 3, 7, 2, 8, 6, 7, 14, 7, 4, 13, 14, 10, 16, 16, 12, 15, 15, 13, 9, 5, 8, 10, 12, 6, 3, 11, 15, 6, 10, 9, 15, 12, 10, 11, 10, 10, 9, 13, 11, 4, 5, 10, 12, 5, 9, 3, 5, 6, 13, 9, 14, 15, 14, 15, 8, 15, 7, 15, 2, 14, 9, 11, 14, 8, 11, 15, 11, 2, 13, 9, 4, 5, 14, 6, 10, 13, 16, 11, 1, 2, 15, 6, 10, 5, 8, 3, 6, 12, 16, 9, 6, 10, 10, 4, 13, 2, 16, 6, 0, 6, 5, 6, 6, 7, 6, 13, 7, 11, 10, 11, 7, 13, 7, 4, 11, 9, 12, 11, 12, 7, 11, 8, 4, 6, 7, 5, 9, 7, 11, 3, 8, 7, 12, 11, 9, 10, 3, 6, 6, 9, 5, 3, 8, 12, 10, 11, 5, 2, 14 ], [ 9, 7, 11, 10, 8, 9, 2, 4, 6, 6, 4, 7, 3, 9, 3, 3, 8, 6, 8, 9, 1, 11, 7, 8, 5, 3, 5, 8, 10, 2, 5, 8, 7, 11, 4, 7, 8, 8, 3, 8, 8, 5, 11, 8, 10, 8, 10, 7, 10, 10, 10, 11, 8, 8, 5, 10, 8, 10, 2, 9, 8, 9, 8, 8, 7, 9, 1, 12, 4, 9, 10, 10, 6, 10, 10, 7, 10, 9, 9, 9, 8, 9, 5, 12, 10, 8, 6, 10, 1, 6, 7, 11, 7, 7, 7, 5, 4, 3, 7, 7, 8, 2, 6, 6, 6, 4, 5, 8, 8, 7, 5, 9, 9, 10, 8, 7, 9, 11, 10, 8, 8, 3, 6, 8, 6, 8, 9, 10, 5, 7, 3, 6, 5, 12, 7, 4, 7, 10, 4, 5, 5, 9, 5, 7, 7, 7, 4, 6, 6, 10, 3, 5, 7, 8, 5, 9, 8, 12, 8, 6, 0, 8, 1, 5, 7, 8, 8, 1, 8, 11, 7, 2, 11, 11, 7, 10, 5, 8, 4, 8, 2, 8, 11, 9, 8, 9, 3, 8, 1, 7, 6, 7, 8, 7, 6, 9, 4, 8, 0, 4, 8, 5, 5, 1, 6, 9, 6, 6, 4, 8 ], [ 15, 6, 17, 19, 16, 18, 8, 7, 11, 6, 5, 10, 7, 17, 7, 10, 11, 14, 12, 18, 9, 17, 12, 15, 13, 10, 7, 2, 14, 7, 13, 15, 3, 13, 8, 11, 10, 10, 5, 16, 16, 6, 12, 1, 16, 3, 18, 11, 18, 7, 18, 19, 9, 16, 8, 18, 3, 18, 10, 16, 13, 6, 12, 4, 5, 11, 10, 19, 7, 9, 18, 18, 9, 18, 19, 15, 19, 15, 17, 14, 1, 13, 13, 17, 11, 7, 14, 18, 9, 14, 14, 19, 11, 14, 15, 10, 11, 11, 14, 10, 9, 8, 14, 15, 2, 12, 7, 1, 3, 15, 13, 17, 15, 18, 16, 5, 17, 12, 19, 4, 15, 11, 10, 17, 12, 16, 16, 16, 6, 15, 10, 9, 4, 18, 3, 11, 15, 19, 12, 5, 4, 15, 5, 15, 2, 5, 4, 11, 15, 19, 10, 11, 8, 7, 9, 17, 7, 20, 2, 5, 8, 0, 8, 11, 12, 1, 17, 9, 15, 15, 15, 8, 18, 12, 2, 16, 8, 16, 12, 16, 8, 8, 13, 3, 11, 12, 5, 14, 10, 10, 8, 6, 13, 15, 10, 14, 12, 8, 8, 10, 14, 4, 8, 10, 13, 15, 11, 3, 6, 13 ], [ 8, 7, 10, 10, 7, 9, 3, 5, 5, 5, 4, 6, 4, 9, 4, 2, 9, 7, 9, 10, 2, 10, 6, 8, 5, 2, 4, 8, 9, 2, 6, 7, 7, 10, 3, 6, 9, 7, 3, 8, 8, 6, 10, 9, 9, 7, 10, 6, 10, 9, 10, 11, 9, 8, 4, 10, 8, 10, 3, 9, 9, 8, 7, 7, 7, 8, 2, 11, 4, 8, 10, 9, 7, 11, 11, 7, 10, 10, 9, 8, 8, 8, 5, 11, 9, 8, 6, 10, 1, 6, 6, 10, 8, 7, 6, 6, 5, 3, 8, 8, 7, 0, 6, 7, 7, 4, 4, 8, 8, 8, 5, 9, 10, 10, 9, 8, 9, 9, 10, 7, 9, 3, 7, 9, 5, 8, 10, 9, 4, 8, 4, 5, 6, 11, 7, 4, 7, 10, 5, 5, 5, 10, 5, 7, 7, 8, 4, 5, 7, 11, 4, 4, 8, 9, 4, 9, 7, 11, 8, 6, 1, 8, 0, 4, 6, 8, 8, 2, 7, 10, 6, 3, 10, 10, 7, 9, 6, 7, 5, 8, 3, 9, 10, 9, 7, 8, 4, 7, 2, 8, 5, 7, 7, 7, 7, 8, 4, 7, 1, 3, 7, 5, 4, 2, 7, 8, 7, 7, 4, 9 ], [ 5, 6, 7, 10, 7, 8, 8, 9, 1, 5, 8, 3, 9, 8, 8, 3, 13, 11, 13, 12, 6, 6, 2, 12, 7, 2, 4, 11, 5, 6, 9, 5, 10, 6, 3, 1, 13, 4, 7, 10, 8, 10, 6, 11, 5, 9, 8, 2, 12, 8, 9, 11, 13, 9, 3, 13, 9, 12, 7, 12, 13, 8, 3, 8, 11, 5, 5, 8, 9, 6, 7, 9, 11, 12, 11, 7, 10, 13, 7, 4, 11, 3, 5, 7, 6, 7, 7, 11, 5, 4, 3, 9, 13, 4, 5, 10, 9, 7, 12, 13, 4, 4, 4, 9, 10, 4, 4, 10, 11, 11, 4, 9, 13, 8, 12, 12, 11, 6, 10, 8, 13, 7, 11, 10, 2, 5, 13, 5, 5, 10, 8, 2, 9, 8, 10, 8, 9, 11, 9, 6, 7, 14, 9, 4, 10, 12, 7, 1, 8, 12, 8, 1, 12, 13, 2, 7, 6, 10, 11, 6, 5, 11, 4, 0, 2, 11, 8, 6, 5, 6, 6, 7, 7, 6, 9, 5, 11, 7, 9, 7, 7, 13, 6, 10, 3, 3, 8, 3, 6, 12, 4, 11, 3, 8, 11, 3, 7, 5, 6, 1, 3, 9, 3, 6, 10, 4, 11, 10, 4, 13 ], [ 3, 7, 5, 10, 7, 8, 9, 11, 2, 7, 10, 3, 10, 8, 10, 4, 15, 12, 15, 13, 8, 4, 1, 13, 8, 4, 5, 13, 3, 8, 10, 4, 12, 4, 4, 2, 15, 4, 8, 11, 9, 12, 6, 13, 4, 10, 7, 2, 13, 8, 8, 11, 15, 10, 4, 14, 10, 12, 9, 13, 14, 9, 2, 10, 13, 4, 7, 7, 10, 6, 7, 9, 13, 13, 11, 8, 10, 15, 6, 2, 12, 2, 6, 5, 5, 7, 8, 12, 7, 4, 2, 9, 14, 3, 5, 11, 10, 8, 13, 14, 5, 6, 4, 10, 11, 5, 5, 12, 13, 12, 5, 9, 15, 8, 13, 14, 11, 5, 10, 10, 14, 8, 13, 11, 2, 4, 14, 4, 6, 12, 9, 3, 11, 6, 12, 10, 9, 11, 10, 8, 9, 15, 11, 4, 12, 13, 9, 1, 9, 13, 9, 2, 14, 14, 4, 6, 7, 10, 13, 7, 7, 12, 6, 2, 0, 13, 8, 8, 5, 4, 6, 9, 6, 6, 11, 3, 12, 7, 11, 7, 9, 15, 5, 11, 3, 3, 10, 2, 7, 14, 5, 13, 2, 9, 13, 2, 8, 6, 7, 3, 1, 10, 5, 7, 11, 2, 12, 11, 6, 15 ], [ 16, 7, 18, 18, 16, 17, 7, 6, 11, 6, 5, 11, 7, 17, 6, 10, 10, 13, 11, 17, 9, 17, 12, 14, 13, 10, 7, 1, 14, 6, 12, 15, 2, 14, 8, 11, 9, 10, 5, 16, 16, 5, 13, 0, 16, 4, 18, 11, 17, 8, 18, 19, 8, 16, 8, 17, 4, 18, 10, 16, 12, 7, 12, 4, 4, 11, 10, 19, 6, 10, 18, 18, 8, 18, 18, 15, 18, 15, 17, 15, 1, 13, 13, 18, 11, 8, 14, 17, 8, 14, 14, 19, 10, 14, 15, 9, 10, 10, 13, 9, 10, 8, 14, 14, 2, 12, 8, 1, 2, 14, 13, 17, 14, 18, 15, 4, 16, 13, 18, 4, 14, 11, 9, 16, 12, 16, 16, 16, 7, 14, 10, 10, 3, 18, 2, 10, 15, 18, 11, 5, 4, 14, 4, 15, 1, 4, 4, 11, 14, 18, 9, 11, 7, 6, 9, 17, 8, 20, 1, 6, 8, 1, 8, 11, 13, 0, 16, 8, 15, 16, 15, 7, 18, 13, 2, 16, 7, 15, 11, 16, 7, 7, 14, 4, 12, 12, 5, 14, 9, 9, 8, 5, 13, 15, 9, 14, 12, 9, 8, 10, 14, 4, 8, 9, 13, 15, 10, 2, 7, 13 ], [ 6, 13, 6, 3, 1, 1, 10, 12, 9, 12, 12, 10, 11, 0, 11, 6, 13, 8, 12, 6, 8, 8, 8, 9, 5, 7, 11, 16, 10, 10, 7, 4, 15, 12, 10, 9, 15, 12, 12, 5, 2, 13, 13, 17, 6, 15, 2, 10, 6, 15, 2, 4, 15, 4, 10, 8, 15, 5, 8, 8, 12, 15, 10, 15, 15, 12, 7, 6, 12, 14, 4, 1, 13, 6, 4, 2, 2, 10, 3, 7, 16, 10, 4, 8, 13, 14, 4, 5, 8, 3, 5, 2, 13, 5, 2, 10, 8, 7, 10, 14, 12, 8, 4, 5, 15, 5, 11, 16, 16, 7, 4, 1, 11, 2, 9, 16, 5, 13, 2, 15, 10, 6, 12, 5, 6, 4, 9, 8, 11, 7, 8, 10, 14, 6, 15, 8, 4, 3, 8, 13, 13, 11, 13, 4, 16, 15, 12, 8, 4, 6, 9, 7, 14, 15, 9, 3, 13, 3, 16, 13, 8, 17, 8, 8, 8, 16, 0, 9, 3, 11, 2, 10, 6, 13, 15, 8, 12, 1, 8, 1, 10, 15, 13, 17, 10, 10, 12, 6, 7, 13, 11, 15, 9, 3, 12, 7, 6, 13, 9, 8, 7, 13, 10, 7, 8, 8, 10, 15, 11, 12 ], [ 10, 8, 11, 10, 8, 10, 2, 3, 7, 6, 4, 8, 3, 9, 3, 4, 7, 6, 7, 9, 0, 12, 8, 7, 5, 4, 6, 8, 11, 2, 5, 8, 7, 11, 5, 7, 7, 9, 3, 8, 8, 5, 12, 8, 11, 8, 10, 8, 9, 10, 10, 11, 7, 8, 5, 9, 8, 10, 2, 8, 7, 10, 9, 8, 6, 10, 2, 12, 3, 10, 11, 10, 5, 10, 10, 7, 10, 8, 10, 9, 8, 10, 5, 12, 10, 9, 5, 9, 1, 7, 8, 11, 6, 8, 7, 4, 3, 2, 7, 7, 9, 2, 7, 6, 6, 4, 5, 8, 7, 7, 6, 9, 8, 10, 8, 7, 8, 11, 10, 8, 7, 3, 5, 8, 6, 9, 8, 11, 5, 6, 2, 7, 5, 12, 7, 3, 7, 10, 4, 6, 6, 8, 5, 8, 7, 7, 5, 7, 6, 10, 2, 5, 6, 7, 6, 10, 8, 12, 8, 7, 1, 9, 2, 6, 8, 8, 9, 0, 8, 12, 7, 1, 12, 12, 7, 11, 5, 8, 4, 8, 1, 7, 12, 9, 9, 9, 3, 8, 1, 6, 7, 6, 9, 6, 5, 9, 3, 8, 1, 5, 8, 5, 5, 1, 5, 10, 5, 6, 5, 7 ], [ 3, 11, 4, 5, 2, 3, 10, 11, 6, 10, 12, 8, 11, 3, 11, 5, 14, 9, 13, 8, 8, 5, 6, 10, 5, 5, 9, 15, 8, 9, 8, 1, 14, 9, 8, 6, 15, 9, 10, 7, 4, 13, 11, 16, 4, 14, 3, 7, 8, 13, 3, 7, 15, 6, 8, 10, 14, 8, 8, 10, 13, 13, 7, 13, 14, 9, 7, 4, 11, 11, 3, 4, 13, 9, 6, 4, 5, 12, 2, 4, 15, 7, 3, 6, 10, 12, 5, 8, 7, 1, 3, 4, 13, 2, 1, 11, 9, 7, 11, 14, 9, 7, 2, 6, 14, 4, 9, 15, 15, 9, 2, 4, 12, 3, 10, 15, 7, 10, 5, 13, 11, 7, 12, 7, 3, 2, 10, 5, 9, 9, 8, 8, 13, 4, 14, 8, 6, 6, 8, 11, 12, 13, 13, 1, 14, 15, 11, 5, 5, 9, 9, 5, 14, 15, 7, 2, 11, 5, 15, 11, 8, 15, 7, 5, 5, 15, 3, 8, 0, 8, 2, 9, 4, 11, 14, 5, 13, 2, 9, 2, 9, 15, 10, 15, 8, 8, 11, 3, 7, 13, 9, 14, 6, 5, 12, 5, 6, 10, 8, 5, 4, 12, 8, 7, 9, 5, 11, 14, 9, 13 ], [ 5, 9, 6, 13, 10, 11, 13, 15, 5, 9, 14, 5, 14, 11, 14, 9, 19, 16, 19, 16, 12, 4, 4, 17, 12, 8, 8, 16, 1, 12, 15, 7, 16, 2, 8, 5, 19, 6, 12, 15, 12, 16, 4, 16, 5, 12, 10, 5, 16, 9, 11, 15, 19, 14, 8, 18, 12, 16, 13, 17, 19, 10, 3, 12, 17, 5, 11, 8, 15, 7, 8, 11, 17, 17, 15, 12, 12, 19, 9, 4, 15, 3, 10, 4, 5, 9, 12, 16, 11, 8, 6, 12, 18, 6, 9, 16, 15, 13, 18, 19, 6, 10, 8, 14, 15, 9, 8, 15, 16, 16, 9, 12, 19, 10, 18, 17, 15, 4, 13, 12, 18, 12, 17, 15, 7, 7, 18, 3, 9, 16, 14, 6, 15, 7, 16, 14, 13, 14, 15, 11, 12, 19, 15, 7, 15, 17, 12, 5, 13, 17, 14, 7, 18, 18, 7, 9, 8, 12, 16, 10, 11, 15, 10, 6, 4, 16, 11, 12, 8, 0, 10, 13, 6, 4, 14, 3, 17, 10, 15, 10, 13, 19, 3, 13, 4, 3, 13, 5, 11, 18, 7, 17, 3, 13, 17, 4, 13, 7, 11, 7, 5, 14, 8, 12, 16, 3, 17, 15, 9, 19 ], [ 5, 11, 5, 4, 1, 3, 9, 10, 7, 10, 11, 8, 10, 2, 9, 4, 12, 8, 12, 7, 7, 7, 7, 9, 4, 5, 9, 14, 9, 8, 6, 3, 13, 10, 8, 7, 14, 10, 10, 5, 3, 12, 12, 15, 6, 13, 3, 8, 7, 13, 3, 6, 14, 4, 8, 8, 14, 6, 6, 8, 11, 13, 8, 13, 13, 10, 5, 6, 10, 12, 4, 3, 11, 7, 5, 2, 4, 10, 3, 6, 15, 8, 2, 8, 11, 12, 3, 6, 6, 2, 4, 4, 12, 3, 1, 9, 7, 6, 9, 13, 10, 6, 2, 5, 13, 3, 9, 14, 14, 7, 2, 3, 11, 3, 9, 14, 6, 11, 4, 13, 9, 5, 11, 5, 4, 3, 9, 7, 9, 7, 7, 8, 12, 6, 14, 7, 4, 5, 7, 11, 11, 11, 12, 2, 14, 14, 11, 6, 3, 7, 7, 5, 13, 14, 7, 3, 11, 5, 15, 11, 7, 15, 6, 6, 6, 15, 2, 7, 2, 10, 0, 8, 6, 12, 13, 7, 11, 1, 8, 1, 8, 14, 11, 15, 9, 9, 10, 5, 6, 12, 10, 13, 7, 3, 11, 6, 5, 11, 7, 6, 5, 11, 8, 6, 7, 6, 10, 13, 9, 11 ], [ 11, 8, 12, 11, 9, 11, 1, 2, 8, 6, 3, 8, 2, 10, 2, 4, 6, 6, 7, 10, 1, 13, 9, 7, 5, 5, 6, 7, 12, 2, 5, 9, 6, 12, 5, 8, 7, 9, 3, 8, 9, 4, 12, 8, 11, 8, 11, 9, 10, 10, 11, 12, 6, 8, 6, 10, 8, 10, 2, 9, 7, 10, 10, 8, 5, 10, 3, 13, 2, 10, 12, 11, 4, 10, 11, 7, 11, 8, 11, 10, 8, 10, 6, 13, 11, 9, 6, 10, 2, 8, 9, 12, 6, 9, 8, 3, 3, 3, 6, 6, 9, 3, 8, 7, 6, 5, 6, 7, 7, 7, 7, 10, 8, 11, 8, 6, 9, 12, 11, 8, 8, 3, 5, 9, 7, 10, 9, 12, 6, 7, 2, 7, 5, 13, 6, 3, 8, 11, 4, 5, 5, 8, 4, 9, 6, 6, 4, 8, 7, 11, 2, 6, 5, 6, 6, 11, 8, 13, 7, 7, 2, 8, 3, 7, 9, 7, 10, 1, 9, 13, 8, 0, 13, 12, 6, 12, 4, 9, 4, 9, 0, 6, 12, 9, 10, 10, 3, 9, 2, 5, 7, 5, 10, 7, 5, 10, 4, 8, 1, 6, 9, 4, 6, 2, 6, 11, 4, 5, 5, 7 ], [ 2, 13, 0, 8, 6, 5, 13, 15, 7, 12, 15, 9, 14, 6, 14, 8, 18, 14, 17, 12, 11, 3, 6, 14, 10, 8, 11, 18, 7, 13, 12, 3, 17, 8, 10, 7, 19, 10, 13, 11, 8, 16, 10, 18, 2, 16, 4, 8, 12, 14, 5, 9, 19, 9, 10, 14, 16, 11, 12, 13, 17, 14, 7, 15, 18, 10, 10, 1, 15, 12, 2, 6, 17, 12, 9, 8, 7, 16, 3, 4, 18, 7, 7, 3, 10, 13, 9, 11, 11, 5, 4, 6, 17, 4, 5, 15, 13, 11, 15, 18, 10, 10, 5, 10, 17, 7, 11, 18, 18, 13, 6, 7, 16, 5, 14, 19, 11, 10, 8, 15, 15, 10, 16, 11, 6, 3, 14, 3, 12, 13, 12, 9, 16, 1, 17, 12, 9, 9, 12, 13, 14, 17, 16, 4, 17, 18, 14, 7, 9, 12, 13, 7, 18, 19, 9, 3, 12, 6, 18, 13, 11, 18, 10, 7, 6, 18, 6, 12, 4, 6, 6, 13, 0, 10, 16, 3, 16, 6, 13, 5, 13, 19, 9, 17, 8, 8, 14, 4, 11, 17, 11, 18, 6, 9, 16, 4, 10, 11, 11, 8, 4, 15, 10, 11, 13, 4, 15, 17, 11, 17 ], [ 8, 6, 10, 16, 13, 13, 13, 14, 5, 7, 12, 4, 13, 14, 13, 9, 19, 17, 19, 18, 12, 8, 5, 18, 14, 8, 7, 14, 4, 11, 15, 10, 13, 2, 7, 5, 18, 3, 11, 17, 14, 14, 0, 13, 8, 9, 13, 4, 18, 5, 14, 17, 18, 16, 6, 19, 9, 18, 13, 18, 19, 6, 4, 9, 15, 2, 11, 12, 13, 3, 12, 14, 16, 19, 17, 14, 15, 19, 12, 7, 12, 4, 12, 8, 1, 5, 14, 18, 11, 10, 8, 15, 18, 9, 11, 16, 15, 13, 18, 18, 3, 9, 10, 15, 12, 10, 7, 12, 14, 17, 10, 15, 20, 14, 19, 15, 17, 1, 16, 9, 19, 13, 17, 17, 8, 10, 19, 7, 7, 17, 14, 5, 12, 11, 13, 14, 15, 17, 15, 8, 9, 20, 13, 10, 12, 15, 10, 6, 14, 19, 14, 7, 16, 17, 6, 12, 5, 15, 14, 7, 11, 12, 10, 6, 6, 13, 13, 12, 11, 4, 12, 12, 10, 0, 11, 7, 16, 12, 15, 12, 12, 18, 1, 10, 3, 3, 12, 7, 11, 18, 5, 15, 4, 14, 17, 6, 13, 4, 11, 7, 7, 12, 6, 12, 16, 6, 16, 13, 7, 19 ], [ 14, 5, 16, 17, 14, 16, 6, 6, 9, 5, 4, 9, 6, 15, 6, 9, 10, 12, 11, 16, 7, 15, 10, 13, 12, 8, 6, 2, 13, 5, 11, 13, 2, 12, 7, 9, 9, 8, 4, 15, 15, 5, 11, 2, 15, 3, 16, 9, 16, 7, 16, 18, 8, 15, 7, 16, 3, 16, 8, 15, 12, 6, 11, 3, 4, 10, 8, 17, 5, 8, 16, 16, 8, 17, 17, 13, 17, 14, 15, 13, 1, 11, 11, 16, 10, 6, 12, 16, 7, 12, 12, 17, 10, 13, 13, 9, 10, 9, 12, 9, 8, 7, 12, 13, 1, 10, 6, 1, 3, 13, 11, 15, 13, 16, 14, 4, 15, 11, 17, 3, 13, 10, 9, 15, 11, 14, 15, 14, 5, 13, 9, 8, 2, 17, 2, 9, 14, 17, 10, 3, 2, 14, 4, 13, 1, 5, 3, 10, 13, 17, 8, 9, 7, 7, 7, 15, 6, 18, 2, 4, 7, 2, 7, 9, 11, 2, 15, 7, 14, 14, 13, 6, 16, 11, 0, 14, 7, 14, 10, 14, 6, 8, 12, 3, 10, 11, 4, 12, 8, 9, 7, 5, 11, 13, 9, 13, 10, 7, 7, 9, 12, 3, 6, 8, 12, 13, 10, 2, 5, 12 ], [ 2, 10, 3, 10, 7, 7, 12, 14, 5, 10, 13, 6, 13, 8, 13, 7, 17, 14, 17, 13, 10, 1, 4, 15, 10, 7, 9, 16, 3, 11, 12, 4, 15, 5, 7, 5, 18, 7, 12, 12, 9, 15, 7, 16, 2, 13, 6, 5, 13, 11, 8, 11, 18, 11, 7, 15, 13, 13, 11, 14, 17, 11, 4, 13, 16, 6, 9, 5, 14, 9, 5, 8, 16, 14, 11, 9, 9, 16, 5, 1, 15, 3, 7, 2, 7, 10, 10, 13, 9, 5, 3, 9, 17, 3, 6, 14, 13, 11, 15, 17, 7, 9, 5, 11, 14, 7, 8, 15, 16, 13, 6, 9, 17, 7, 15, 17, 12, 6, 10, 13, 16, 10, 16, 12, 5, 3, 15, 0, 9, 13, 12, 6, 14, 4, 15, 12, 10, 11, 12, 11, 12, 17, 14, 4, 15, 16, 12, 4, 10, 14, 12, 5, 17, 18, 7, 5, 9, 9, 16, 11, 10, 16, 9, 5, 3, 16, 8, 11, 5, 3, 7, 12, 3, 7, 14, 0, 15, 7, 13, 7, 12, 18, 6, 14, 5, 4, 13, 2, 10, 17, 8, 16, 3, 10, 15, 2, 10, 8, 10, 6, 2, 14, 8, 10, 13, 1, 15, 15, 9, 17 ], [ 14, 11, 16, 14, 12, 14, 3, 2, 12, 9, 4, 12, 2, 13, 3, 8, 3, 6, 4, 11, 5, 16, 13, 7, 8, 9, 9, 6, 15, 5, 6, 13, 6, 16, 9, 12, 3, 13, 5, 10, 11, 2, 16, 7, 15, 9, 14, 12, 11, 13, 14, 14, 3, 10, 9, 10, 10, 12, 5, 9, 4, 12, 13, 10, 4, 14, 6, 17, 2, 13, 15, 14, 0, 12, 13, 10, 14, 7, 14, 14, 8, 14, 9, 17, 14, 12, 9, 11, 6, 11, 12, 14, 3, 13, 12, 2, 4, 6, 6, 2, 13, 7, 11, 9, 6, 9, 9, 8, 6, 8, 10, 12, 7, 14, 8, 5, 10, 15, 14, 10, 7, 6, 2, 10, 11, 13, 9, 16, 9, 7, 4, 11, 5, 17, 6, 5, 10, 13, 5, 8, 7, 7, 3, 12, 7, 4, 6, 11, 9, 12, 4, 10, 2, 3, 10, 14, 11, 15, 7, 9, 5, 8, 6, 11, 12, 7, 12, 5, 13, 17, 11, 4, 16, 16, 7, 15, 0, 12, 4, 12, 4, 3, 16, 10, 13, 14, 4, 13, 6, 2, 11, 3, 14, 10, 2, 14, 7, 12, 5, 10, 13, 4, 9, 5, 6, 15, 3, 5, 8, 5 ], [ 5, 12, 5, 4, 0, 2, 9, 11, 8, 11, 11, 9, 10, 1, 10, 5, 13, 8, 12, 7, 7, 7, 7, 9, 4, 6, 10, 15, 10, 9, 7, 3, 14, 11, 8, 8, 14, 11, 11, 5, 2, 12, 12, 16, 6, 14, 3, 9, 6, 14, 2, 5, 14, 4, 9, 8, 14, 6, 7, 8, 11, 14, 9, 14, 14, 11, 6, 6, 11, 13, 4, 2, 12, 7, 5, 2, 3, 10, 3, 6, 15, 9, 3, 8, 12, 13, 3, 6, 7, 2, 5, 3, 12, 4, 1, 10, 8, 6, 9, 13, 11, 7, 3, 5, 14, 4, 9, 15, 15, 7, 3, 2, 11, 3, 9, 15, 5, 12, 3, 14, 10, 6, 11, 5, 5, 4, 9, 7, 10, 7, 7, 9, 13, 6, 14, 7, 4, 4, 7, 12, 12, 11, 12, 3, 15, 14, 11, 7, 3, 7, 8, 6, 13, 15, 8, 3, 12, 4, 15, 12, 8, 16, 7, 7, 7, 15, 1, 8, 2, 10, 1, 9, 6, 12, 14, 7, 12, 0, 8, 1, 9, 14, 12, 15, 9, 9, 11, 5, 7, 12, 10, 14, 8, 3, 11, 7, 5, 11, 8, 6, 6, 12, 9, 7, 7, 7, 10, 14, 10, 11 ], [ 12, 12, 13, 9, 8, 10, 4, 5, 10, 10, 6, 11, 4, 9, 4, 6, 5, 2, 4, 6, 4, 14, 11, 3, 4, 7, 9, 10, 14, 5, 2, 10, 9, 15, 9, 11, 6, 12, 7, 5, 7, 6, 15, 11, 12, 12, 11, 11, 7, 14, 10, 9, 7, 6, 9, 6, 12, 7, 2, 5, 4, 14, 12, 12, 8, 13, 4, 14, 5, 14, 12, 10, 4, 7, 9, 6, 10, 4, 10, 12, 11, 13, 6, 15, 14, 13, 5, 7, 5, 8, 10, 10, 4, 10, 8, 2, 1, 2, 3, 5, 12, 6, 8, 4, 9, 6, 9, 11, 10, 3, 7, 8, 4, 10, 4, 9, 6, 15, 9, 12, 4, 3, 4, 6, 9, 10, 5, 13, 9, 3, 2, 10, 8, 13, 9, 1, 5, 9, 1, 9, 9, 5, 7, 9, 10, 8, 8, 10, 5, 7, 2, 8, 6, 7, 9, 10, 12, 11, 10, 11, 4, 12, 5, 9, 11, 11, 8, 4, 9, 15, 8, 4, 13, 15, 10, 13, 4, 8, 0, 9, 4, 7, 15, 13, 12, 13, 6, 11, 4, 4, 11, 7, 12, 5, 3, 12, 3, 12, 5, 8, 11, 7, 9, 3, 2, 12, 2, 9, 9, 4 ], [ 5, 13, 5, 4, 1, 1, 10, 12, 8, 11, 12, 9, 11, 1, 11, 6, 13, 8, 13, 7, 8, 7, 7, 9, 5, 6, 10, 16, 9, 10, 7, 3, 15, 11, 9, 8, 15, 11, 11, 6, 2, 13, 12, 16, 5, 15, 2, 9, 7, 14, 2, 5, 15, 4, 9, 8, 15, 6, 8, 8, 12, 15, 9, 14, 15, 11, 7, 5, 11, 13, 3, 2, 13, 7, 5, 3, 3, 11, 2, 6, 16, 9, 3, 8, 12, 13, 4, 6, 8, 3, 5, 3, 13, 4, 2, 10, 8, 7, 10, 14, 11, 8, 3, 5, 14, 4, 10, 16, 16, 7, 3, 2, 11, 2, 9, 15, 6, 12, 3, 14, 10, 6, 12, 5, 5, 3, 9, 7, 11, 7, 8, 9, 13, 5, 15, 8, 4, 4, 8, 12, 13, 12, 13, 3, 15, 15, 12, 7, 4, 7, 8, 6, 14, 15, 9, 2, 12, 4, 16, 12, 8, 16, 8, 7, 7, 16, 1, 8, 2, 10, 1, 9, 5, 12, 14, 7, 12, 1, 9, 0, 9, 15, 12, 16, 9, 9, 11, 5, 7, 13, 11, 14, 8, 4, 12, 6, 6, 12, 8, 7, 6, 13, 9, 7, 8, 7, 11, 14, 10, 12 ], [ 11, 8, 12, 11, 9, 11, 1, 2, 8, 6, 3, 8, 2, 10, 1, 4, 6, 6, 7, 10, 1, 13, 9, 7, 6, 5, 6, 7, 12, 2, 5, 9, 6, 12, 5, 8, 7, 9, 3, 8, 9, 4, 12, 8, 11, 8, 11, 9, 10, 10, 11, 12, 6, 9, 6, 10, 8, 10, 2, 9, 7, 10, 10, 8, 5, 10, 3, 13, 2, 10, 12, 11, 4, 11, 11, 8, 11, 8, 11, 10, 7, 10, 6, 13, 11, 9, 6, 10, 2, 8, 9, 12, 6, 9, 8, 3, 3, 3, 6, 6, 9, 3, 8, 7, 6, 5, 6, 7, 7, 7, 7, 10, 8, 11, 8, 6, 9, 12, 11, 8, 8, 3, 5, 9, 7, 10, 9, 12, 6, 7, 3, 7, 5, 13, 6, 3, 8, 11, 4, 5, 5, 8, 4, 9, 6, 6, 4, 8, 7, 11, 2, 6, 5, 6, 6, 11, 8, 13, 7, 7, 2, 8, 3, 7, 9, 7, 10, 1, 9, 13, 8, 0, 13, 12, 6, 12, 4, 9, 4, 9, 0, 6, 12, 9, 10, 10, 3, 9, 2, 5, 7, 5, 10, 7, 4, 10, 4, 8, 1, 6, 9, 4, 6, 2, 6, 11, 4, 5, 5, 7 ], [ 17, 12, 18, 16, 14, 16, 6, 4, 14, 11, 5, 14, 5, 15, 5, 11, 4, 8, 5, 13, 8, 19, 15, 9, 11, 11, 11, 6, 18, 7, 9, 16, 6, 18, 11, 14, 1, 15, 7, 12, 14, 3, 17, 7, 18, 10, 17, 14, 13, 14, 17, 16, 0, 13, 12, 12, 11, 14, 7, 11, 6, 13, 16, 11, 3, 16, 9, 20, 4, 15, 18, 16, 3, 14, 16, 13, 17, 9, 17, 17, 8, 16, 12, 20, 16, 13, 11, 14, 8, 14, 15, 17, 4, 15, 14, 5, 7, 8, 8, 2, 15, 9, 14, 11, 7, 12, 11, 8, 6, 10, 13, 15, 8, 17, 10, 4, 13, 17, 16, 11, 9, 9, 3, 13, 13, 16, 10, 18, 11, 10, 7, 13, 6, 19, 6, 7, 12, 15, 8, 9, 8, 8, 4, 15, 7, 3, 8, 14, 12, 14, 7, 13, 1, 1, 12, 17, 13, 18, 6, 11, 8, 8, 9, 13, 15, 7, 15, 7, 15, 19, 14, 6, 19, 18, 8, 18, 3, 14, 7, 15, 6, 0, 18, 11, 15, 16, 6, 16, 8, 3, 12, 2, 16, 12, 4, 16, 9, 13, 8, 12, 16, 6, 11, 8, 9, 17, 5, 6, 10, 6 ], [ 7, 7, 9, 15, 12, 12, 13, 14, 5, 8, 13, 4, 14, 13, 13, 9, 19, 17, 19, 18, 12, 6, 4, 18, 13, 8, 7, 14, 2, 11, 15, 9, 14, 1, 7, 5, 19, 4, 11, 16, 14, 15, 1, 14, 7, 10, 12, 4, 18, 7, 13, 16, 18, 15, 7, 19, 10, 17, 13, 18, 19, 7, 3, 10, 16, 2, 11, 10, 14, 4, 11, 13, 16, 18, 16, 13, 14, 19, 11, 6, 13, 3, 11, 7, 2, 6, 13, 17, 11, 9, 7, 14, 18, 8, 10, 16, 15, 13, 18, 18, 4, 9, 9, 15, 13, 10, 7, 13, 15, 16, 10, 14, 19, 12, 18, 16, 16, 1, 15, 10, 19, 13, 17, 16, 7, 9, 19, 6, 8, 16, 14, 5, 13, 9, 14, 14, 14, 16, 15, 9, 10, 20, 14, 9, 13, 16, 11, 5, 14, 18, 14, 7, 17, 17, 6, 11, 6, 14, 14, 8, 11, 13, 10, 6, 5, 14, 13, 12, 10, 3, 11, 12, 9, 1, 12, 6, 16, 12, 15, 12, 12, 18, 0, 11, 3, 3, 12, 6, 11, 18, 6, 16, 4, 14, 17, 5, 13, 5, 11, 7, 6, 13, 7, 12, 16, 5, 17, 13, 8, 19 ], [ 14, 4, 16, 19, 16, 17, 9, 9, 9, 4, 7, 8, 9, 17, 9, 10, 13, 15, 14, 18, 10, 15, 10, 16, 14, 10, 6, 5, 12, 7, 14, 14, 5, 11, 7, 9, 12, 8, 6, 17, 16, 8, 10, 4, 15, 1, 17, 9, 19, 5, 18, 20, 11, 17, 7, 19, 1, 19, 11, 18, 15, 4, 10, 1, 8, 9, 10, 18, 8, 6, 17, 18, 11, 19, 19, 15, 19, 17, 16, 13, 3, 11, 13, 16, 8, 5, 14, 18, 9, 14, 13, 19, 13, 13, 14, 12, 12, 12, 15, 12, 7, 8, 13, 15, 4, 12, 6, 3, 5, 16, 13, 17, 17, 18, 17, 7, 18, 10, 19, 1, 16, 12, 12, 17, 11, 15, 18, 14, 5, 16, 11, 8, 6, 17, 5, 12, 16, 19, 13, 4, 4, 17, 7, 14, 4, 8, 5, 10, 15, 19, 11, 10, 10, 10, 8, 16, 5, 20, 5, 4, 9, 3, 9, 10, 11, 4, 17, 9, 15, 13, 15, 9, 17, 10, 3, 14, 10, 15, 13, 16, 9, 11, 11, 0, 10, 10, 7, 13, 10, 13, 6, 9, 11, 15, 12, 13, 13, 6, 9, 9, 12, 6, 7, 10, 15, 13, 13, 5, 6, 15 ], [ 5, 5, 8, 13, 10, 10, 10, 11, 2, 6, 10, 1, 11, 11, 11, 6, 16, 14, 16, 15, 9, 6, 2, 15, 10, 5, 5, 12, 3, 8, 12, 7, 12, 3, 4, 2, 16, 2, 8, 13, 11, 12, 3, 12, 6, 9, 10, 1, 15, 6, 11, 14, 15, 12, 4, 16, 9, 15, 10, 15, 16, 7, 1, 8, 13, 2, 8, 9, 11, 4, 9, 11, 14, 15, 14, 10, 12, 16, 9, 4, 11, 1, 8, 6, 3, 5, 10, 14, 8, 7, 5, 12, 15, 6, 8, 13, 12, 10, 15, 15, 2, 7, 6, 12, 11, 7, 5, 11, 12, 14, 7, 11, 16, 10, 15, 14, 14, 3, 13, 8, 16, 10, 14, 13, 5, 7, 16, 5, 5, 14, 11, 2, 11, 8, 12, 11, 12, 13, 12, 7, 8, 17, 11, 7, 11, 13, 8, 3, 11, 15, 11, 4, 14, 15, 4, 9, 5, 12, 12, 6, 8, 11, 7, 3, 3, 12, 10, 9, 8, 4, 9, 10, 8, 3, 10, 5, 13, 9, 12, 9, 10, 15, 3, 10, 0, 1, 10, 4, 8, 15, 4, 13, 1, 11, 14, 4, 10, 4, 8, 4, 4, 10, 4, 9, 13, 4, 14, 11, 5, 16 ], [ 5, 6, 7, 13, 10, 10, 11, 12, 2, 6, 11, 2, 12, 11, 11, 7, 16, 14, 16, 15, 9, 5, 2, 15, 11, 6, 5, 13, 2, 9, 13, 6, 12, 2, 5, 2, 16, 3, 9, 14, 11, 13, 3, 13, 6, 9, 10, 2, 15, 6, 11, 14, 16, 13, 4, 16, 9, 15, 10, 15, 16, 7, 1, 9, 14, 2, 9, 9, 12, 4, 9, 11, 14, 16, 14, 11, 12, 17, 9, 4, 12, 1, 9, 6, 3, 6, 11, 15, 8, 7, 5, 12, 16, 6, 8, 13, 12, 10, 15, 16, 3, 7, 7, 12, 11, 7, 5, 12, 13, 14, 7, 11, 17, 10, 16, 14, 14, 3, 13, 9, 16, 10, 15, 13, 5, 7, 16, 4, 6, 14, 11, 3, 11, 8, 12, 12, 12, 14, 12, 8, 9, 17, 12, 7, 12, 14, 9, 3, 11, 16, 11, 4, 15, 15, 4, 9, 5, 12, 13, 7, 9, 12, 8, 3, 3, 12, 10, 9, 8, 3, 9, 10, 8, 3, 11, 4, 14, 9, 13, 9, 10, 16, 3, 10, 1, 0, 10, 4, 9, 15, 4, 14, 1, 11, 14, 3, 10, 4, 9, 4, 4, 11, 5, 9, 13, 4, 14, 12, 6, 17 ], [ 12, 7, 14, 14, 11, 13, 2, 2, 8, 5, 1, 8, 2, 12, 2, 6, 7, 8, 8, 12, 4, 14, 9, 9, 8, 6, 5, 4, 12, 2, 7, 11, 3, 12, 6, 9, 6, 9, 1, 11, 11, 3, 12, 5, 13, 6, 13, 9, 13, 9, 13, 14, 6, 11, 6, 12, 6, 13, 5, 11, 8, 8, 10, 6, 4, 10, 5, 15, 2, 9, 14, 13, 5, 13, 14, 10, 14, 10, 13, 11, 5, 11, 8, 15, 10, 8, 9, 12, 4, 10, 10, 14, 7, 10, 10, 5, 6, 6, 9, 6, 9, 4, 10, 9, 3, 7, 5, 5, 4, 9, 9, 12, 10, 13, 10, 4, 12, 12, 14, 6, 10, 6, 5, 11, 8, 12, 11, 13, 5, 9, 5, 8, 2, 15, 3, 6, 10, 13, 7, 4, 3, 10, 2, 10, 4, 4, 2, 8, 10, 13, 4, 7, 5, 5, 6, 13, 7, 15, 5, 5, 3, 5, 4, 8, 10, 5, 12, 3, 11, 13, 10, 3, 14, 12, 4, 13, 4, 11, 6, 11, 3, 6, 12, 7, 10, 10, 0, 11, 4, 6, 7, 4, 10, 10, 6, 11, 7, 8, 3, 7, 10, 1, 6, 5, 8, 12, 6, 3, 5, 9 ], [ 1, 9, 4, 9, 6, 6, 10, 12, 4, 8, 11, 5, 11, 6, 11, 5, 15, 12, 15, 12, 8, 3, 3, 13, 8, 5, 7, 14, 4, 9, 10, 2, 13, 6, 6, 4, 16, 6, 10, 10, 7, 13, 7, 15, 2, 12, 5, 4, 11, 10, 7, 10, 16, 9, 6, 13, 12, 11, 9, 12, 14, 11, 4, 11, 14, 6, 7, 5, 11, 8, 5, 7, 13, 12, 10, 7, 8, 14, 4, 1, 14, 4, 5, 4, 7, 9, 7, 11, 7, 3, 1, 7, 15, 1, 4, 12, 10, 8, 13, 15, 7, 7, 3, 9, 13, 5, 7, 14, 14, 11, 4, 7, 14, 6, 13, 15, 10, 7, 8, 11, 13, 8, 13, 10, 2, 2, 13, 3, 8, 11, 9, 5, 12, 4, 14, 10, 8, 9, 10, 9, 10, 15, 12, 3, 13, 14, 10, 3, 8, 12, 10, 3, 15, 15, 5, 4, 8, 8, 14, 9, 8, 14, 7, 3, 2, 14, 6, 8, 3, 5, 5, 9, 4, 7, 12, 2, 13, 5, 11, 5, 9, 16, 6, 13, 4, 4, 11, 0, 8, 14, 7, 14, 3, 8, 13, 1, 8, 8, 8, 4, 1, 12, 6, 8, 11, 2, 12, 13, 8, 15 ], [ 9, 8, 10, 9, 7, 8, 3, 5, 7, 7, 5, 8, 4, 8, 4, 3, 8, 6, 8, 8, 1, 11, 7, 7, 4, 3, 6, 9, 10, 3, 4, 7, 8, 11, 5, 7, 8, 9, 4, 7, 7, 6, 11, 9, 10, 9, 9, 8, 9, 11, 9, 10, 8, 7, 5, 9, 9, 9, 2, 8, 7, 10, 8, 9, 8, 10, 0, 11, 4, 10, 10, 9, 6, 9, 9, 6, 9, 8, 9, 8, 9, 9, 4, 12, 10, 9, 4, 8, 1, 6, 7, 9, 7, 7, 6, 4, 3, 2, 7, 7, 9, 2, 6, 5, 8, 3, 5, 9, 9, 6, 4, 8, 8, 9, 8, 8, 7, 11, 9, 9, 7, 2, 6, 7, 5, 8, 8, 10, 6, 6, 2, 7, 6, 11, 8, 3, 6, 9, 4, 6, 6, 8, 6, 7, 8, 8, 5, 6, 5, 9, 2, 5, 7, 8, 5, 8, 8, 11, 9, 7, 1, 10, 2, 6, 7, 9, 7, 1, 7, 11, 6, 2, 11, 11, 8, 10, 6, 7, 4, 7, 2, 8, 11, 10, 8, 9, 4, 8, 0, 7, 7, 7, 8, 5, 6, 8, 3, 8, 1, 5, 8, 6, 5, 0, 5, 9, 5, 7, 5, 8 ], [ 15, 13, 17, 13, 12, 14, 5, 4, 13, 11, 6, 14, 4, 13, 5, 10, 1, 5, 2, 10, 6, 18, 14, 6, 8, 10, 11, 8, 17, 7, 6, 14, 8, 18, 11, 14, 2, 15, 7, 9, 11, 4, 17, 9, 16, 12, 15, 14, 10, 15, 14, 13, 3, 10, 11, 9, 12, 11, 6, 8, 3, 14, 15, 12, 6, 16, 7, 18, 4, 15, 16, 14, 2, 11, 13, 10, 14, 6, 15, 15, 10, 16, 10, 18, 16, 14, 9, 11, 7, 12, 14, 15, 0, 14, 12, 3, 4, 6, 4, 1, 15, 8, 12, 8, 8, 10, 11, 10, 8, 7, 11, 12, 5, 15, 7, 6, 10, 17, 14, 12, 5, 7, 1, 10, 12, 14, 7, 17, 11, 7, 5, 13, 7, 17, 8, 5, 10, 13, 5, 10, 9, 5, 5, 13, 9, 5, 8, 13, 9, 11, 5, 12, 3, 4, 12, 15, 13, 16, 9, 11, 7, 10, 8, 12, 14, 9, 13, 6, 13, 18, 12, 5, 17, 18, 9, 17, 2, 12, 4, 13, 5, 3, 18, 13, 15, 15, 6, 14, 7, 0, 13, 5, 15, 10, 1, 15, 7, 14, 7, 11, 14, 7, 11, 7, 6, 16, 2, 8, 10, 3 ], [ 8, 2, 10, 14, 11, 12, 8, 9, 3, 2, 7, 2, 8, 12, 8, 6, 14, 13, 14, 15, 7, 9, 4, 14, 10, 5, 1, 9, 6, 6, 11, 9, 8, 6, 2, 3, 13, 2, 5, 13, 12, 9, 5, 9, 9, 5, 12, 3, 15, 4, 13, 15, 13, 13, 2, 16, 5, 15, 9, 15, 14, 4, 4, 5, 10, 3, 7, 12, 8, 3, 11, 13, 11, 16, 15, 11, 13, 15, 11, 7, 8, 5, 9, 10, 4, 3, 10, 15, 6, 8, 7, 13, 13, 8, 9, 11, 10, 9, 14, 13, 2, 5, 8, 12, 7, 7, 2, 8, 9, 13, 8, 12, 15, 12, 15, 10, 14, 5, 14, 5, 14, 9, 12, 13, 6, 9, 15, 8, 2, 13, 9, 2, 7, 11, 8, 10, 12, 14, 11, 4, 5, 15, 8, 8, 8, 10, 5, 4, 11, 16, 9, 4, 11, 12, 2, 11, 2, 14, 9, 3, 6, 8, 5, 4, 5, 8, 11, 7, 9, 7, 10, 7, 11, 5, 7, 8, 11, 10, 11, 11, 7, 12, 6, 6, 4, 4, 7, 7, 7, 13, 0, 10, 5, 11, 12, 7, 9, 1, 6, 4, 6, 7, 2, 8, 12, 7, 12, 8, 2, 14 ], [ 16, 10, 17, 16, 14, 16, 5, 3, 12, 9, 3, 12, 3, 15, 4, 10, 5, 9, 7, 13, 7, 17, 13, 10, 10, 10, 9, 4, 16, 5, 9, 15, 3, 16, 9, 12, 4, 12, 5, 12, 14, 2, 15, 5, 16, 8, 16, 12, 14, 12, 16, 16, 3, 13, 10, 13, 8, 14, 7, 12, 7, 11, 14, 8, 1, 14, 8, 18, 3, 13, 17, 16, 3, 14, 16, 12, 16, 10, 16, 15, 6, 14, 11, 18, 14, 11, 11, 14, 7, 13, 14, 17, 5, 14, 13, 5, 7, 8, 8, 4, 12, 8, 13, 11, 4, 11, 9, 6, 3, 10, 12, 15, 9, 16, 11, 2, 13, 15, 16, 8, 10, 8, 4, 13, 12, 15, 11, 17, 8, 10, 7, 11, 3, 18, 3, 7, 12, 15, 8, 7, 6, 9, 2, 14, 4, 1, 5, 12, 12, 14, 6, 11, 2, 1, 10, 16, 11, 18, 4, 8, 7, 6, 7, 11, 13, 5, 15, 6, 14, 17, 13, 5, 18, 15, 5, 16, 3, 14, 7, 14, 5, 2, 16, 9, 13, 14, 4, 14, 7, 5, 10, 0, 14, 12, 5, 15, 9, 11, 6, 11, 14, 3, 9, 7, 9, 16, 6, 3, 8, 8 ], [ 4, 7, 6, 12, 8, 9, 10, 12, 2, 7, 11, 2, 11, 9, 11, 6, 16, 13, 16, 14, 9, 4, 1, 15, 10, 5, 6, 13, 2, 9, 12, 5, 13, 3, 5, 2, 16, 4, 9, 12, 10, 13, 4, 13, 4, 10, 8, 2, 14, 8, 10, 13, 16, 11, 5, 15, 10, 14, 10, 14, 16, 8, 1, 9, 14, 3, 8, 8, 11, 6, 7, 10, 14, 14, 13, 9, 11, 16, 7, 2, 13, 1, 7, 5, 4, 7, 10, 14, 8, 6, 4, 10, 15, 4, 7, 13, 12, 10, 15, 15, 4, 7, 5, 11, 12, 6, 5, 12, 13, 13, 6, 10, 16, 9, 15, 14, 13, 4, 11, 9, 15, 9, 14, 12, 4, 5, 15, 3, 6, 13, 10, 3, 12, 7, 13, 11, 11, 12, 12, 8, 9, 16, 12, 5, 12, 14, 9, 2, 10, 14, 11, 4, 15, 15, 4, 7, 6, 11, 13, 7, 8, 13, 7, 3, 2, 13, 9, 9, 6, 3, 7, 10, 6, 4, 11, 3, 14, 8, 12, 8, 10, 16, 4, 11, 1, 1, 10, 3, 8, 15, 5, 14, 0, 10, 14, 2, 10, 5, 8, 4, 2, 11, 5, 9, 13, 2, 14, 12, 6, 16 ], [ 8, 13, 9, 4, 3, 5, 8, 9, 9, 12, 10, 11, 9, 3, 9, 6, 10, 5, 9, 4, 6, 10, 9, 6, 2, 7, 10, 14, 12, 8, 4, 6, 13, 13, 9, 10, 12, 12, 10, 2, 2, 10, 14, 15, 9, 14, 6, 10, 4, 15, 5, 4, 12, 1, 9, 5, 14, 4, 5, 4, 8, 15, 11, 14, 12, 13, 5, 9, 9, 14, 7, 4, 10, 4, 4, 1, 5, 7, 6, 9, 15, 11, 3, 11, 14, 14, 1, 3, 6, 5, 7, 5, 9, 7, 4, 7, 5, 4, 6, 11, 12, 7, 5, 1, 13, 4, 10, 14, 14, 4, 4, 3, 7, 5, 5, 13, 3, 14, 4, 14, 6, 4, 9, 2, 6, 7, 5, 10, 11, 4, 5, 10, 12, 9, 13, 5, 1, 4, 4, 11, 12, 8, 11, 5, 14, 12, 11, 9, 0, 4, 6, 7, 11, 12, 9, 6, 13, 6, 14, 12, 7, 15, 7, 8, 9, 15, 3, 6, 5, 13, 3, 7, 9, 14, 13, 10, 10, 3, 5, 4, 7, 12, 14, 15, 11, 11, 10, 8, 5, 10, 11, 12, 10, 0, 8, 9, 3, 12, 7, 8, 8, 11, 10, 5, 4, 10, 7, 13, 10, 8 ], [ 14, 12, 16, 12, 11, 13, 4, 4, 12, 11, 5, 13, 4, 12, 4, 8, 2, 4, 2, 9, 5, 16, 13, 5, 7, 9, 10, 8, 16, 6, 5, 13, 8, 17, 10, 12, 3, 14, 7, 8, 10, 4, 17, 9, 15, 11, 14, 13, 9, 15, 13, 12, 4, 9, 10, 8, 12, 10, 4, 7, 2, 14, 14, 11, 6, 15, 6, 16, 4, 15, 15, 13, 2, 10, 12, 9, 13, 5, 13, 14, 10, 15, 9, 17, 15, 13, 8, 10, 6, 11, 12, 13, 1, 12, 11, 1, 3, 5, 4, 2, 14, 7, 11, 7, 8, 9, 10, 10, 8, 6, 10, 11, 5, 13, 6, 7, 9, 16, 13, 12, 5, 6, 1, 9, 11, 13, 7, 16, 10, 6, 4, 12, 7, 16, 8, 4, 8, 12, 4, 9, 9, 5, 5, 12, 9, 6, 8, 12, 8, 10, 4, 10, 4, 5, 11, 13, 13, 14, 9, 11, 6, 10, 7, 11, 13, 9, 12, 5, 12, 17, 11, 5, 16, 17, 9, 15, 2, 11, 3, 12, 4, 4, 17, 12, 14, 14, 6, 13, 6, 1, 12, 5, 14, 8, 0, 14, 6, 13, 6, 10, 13, 6, 10, 5, 5, 15, 1, 7, 10, 3 ], [ 2, 9, 4, 10, 7, 7, 11, 12, 3, 8, 12, 4, 12, 8, 11, 6, 16, 13, 16, 13, 9, 3, 2, 14, 9, 5, 7, 14, 3, 10, 11, 3, 14, 5, 6, 3, 17, 6, 10, 11, 9, 13, 6, 15, 2, 12, 6, 4, 13, 10, 8, 11, 16, 10, 6, 14, 12, 12, 10, 14, 15, 10, 3, 11, 15, 5, 8, 5, 12, 8, 5, 8, 14, 13, 11, 8, 9, 15, 5, 0, 14, 3, 6, 3, 6, 9, 9, 12, 8, 4, 2, 9, 15, 3, 5, 13, 11, 9, 14, 16, 6, 7, 4, 10, 13, 6, 7, 14, 15, 12, 5, 9, 16, 7, 14, 15, 12, 6, 10, 11, 15, 9, 14, 11, 3, 3, 14, 2, 8, 12, 10, 5, 13, 5, 14, 11, 10, 11, 11, 10, 10, 16, 13, 4, 14, 15, 10, 3, 9, 13, 11, 4, 15, 16, 5, 5, 8, 9, 15, 9, 9, 14, 8, 3, 2, 14, 7, 9, 5, 4, 6, 10, 4, 6, 13, 2, 14, 7, 12, 6, 10, 16, 5, 13, 4, 3, 11, 1, 8, 15, 7, 15, 2, 9, 14, 0, 9, 7, 9, 4, 1, 12, 6, 9, 12, 1, 13, 13, 8, 16 ], [ 9, 11, 10, 7, 5, 7, 5, 6, 8, 9, 7, 9, 5, 6, 5, 4, 8, 4, 7, 6, 3, 11, 9, 5, 1, 5, 8, 11, 12, 5, 2, 7, 10, 12, 7, 8, 9, 11, 7, 4, 5, 7, 13, 12, 10, 11, 8, 9, 6, 13, 7, 7, 9, 4, 7, 6, 12, 6, 2, 5, 7, 13, 10, 11, 9, 12, 2, 11, 6, 12, 9, 7, 7, 7, 7, 4, 8, 6, 8, 9, 12, 10, 3, 12, 12, 12, 2, 6, 4, 5, 7, 8, 7, 7, 5, 4, 3, 1, 5, 8, 11, 5, 5, 3, 10, 3, 8, 11, 11, 4, 4, 6, 7, 8, 5, 10, 5, 13, 7, 11, 6, 1, 6, 5, 6, 8, 6, 11, 8, 4, 2, 9, 9, 10, 10, 2, 3, 7, 2, 9, 9, 7, 8, 6, 11, 9, 8, 8, 3, 7, 3, 6, 8, 10, 7, 8, 11, 9, 11, 10, 4, 12, 4, 7, 8, 12, 6, 3, 6, 13, 5, 4, 10, 13, 10, 10, 7, 5, 3, 6, 4, 9, 13, 13, 10, 10, 7, 8, 3, 7, 9, 9, 10, 3, 6, 9, 0, 11, 4, 6, 8, 8, 8, 2, 3, 10, 5, 9, 8, 7 ], [ 9, 2, 11, 15, 12, 13, 9, 10, 4, 3, 8, 3, 10, 13, 9, 7, 15, 14, 15, 16, 8, 10, 5, 15, 11, 6, 3, 9, 6, 7, 12, 9, 9, 5, 3, 4, 14, 2, 6, 14, 13, 10, 4, 9, 9, 5, 13, 3, 16, 3, 14, 16, 13, 14, 3, 17, 5, 16, 10, 16, 15, 3, 5, 5, 11, 3, 8, 13, 9, 2, 12, 14, 12, 17, 16, 12, 15, 16, 12, 7, 8, 5, 10, 10, 3, 2, 12, 16, 7, 9, 8, 14, 14, 8, 10, 12, 11, 10, 15, 14, 1, 6, 9, 13, 8, 8, 3, 8, 9, 14, 9, 13, 16, 13, 16, 11, 15, 4, 15, 5, 16, 10, 13, 15, 7, 10, 16, 8, 3, 14, 10, 3, 8, 12, 9, 11, 13, 15, 12, 4, 5, 16, 9, 9, 8, 11, 6, 5, 12, 17, 10, 6, 12, 13, 3, 11, 1, 15, 9, 3, 8, 8, 7, 5, 6, 9, 13, 8, 10, 7, 11, 8, 11, 4, 7, 8, 12, 11, 12, 12, 8, 13, 5, 6, 4, 4, 8, 8, 8, 14, 1, 11, 5, 12, 13, 7, 11, 0, 7, 5, 7, 8, 3, 9, 13, 8, 13, 8, 3, 16 ], [ 9, 7, 11, 11, 8, 10, 2, 4, 6, 6, 4, 7, 3, 9, 3, 3, 8, 7, 8, 10, 1, 11, 7, 8, 5, 3, 5, 7, 10, 2, 5, 8, 7, 11, 4, 7, 8, 8, 3, 8, 8, 5, 11, 8, 10, 8, 10, 7, 10, 10, 10, 11, 8, 8, 5, 10, 8, 10, 2, 9, 8, 9, 8, 8, 7, 9, 2, 12, 3, 9, 11, 10, 6, 10, 11, 7, 11, 9, 10, 9, 8, 9, 5, 12, 10, 8, 6, 10, 1, 7, 7, 11, 7, 8, 7, 5, 4, 3, 7, 7, 8, 2, 6, 7, 6, 4, 5, 8, 7, 7, 5, 9, 9, 10, 9, 7, 9, 11, 11, 8, 8, 3, 6, 8, 6, 9, 9, 10, 5, 7, 3, 6, 5, 12, 7, 4, 7, 10, 4, 5, 5, 9, 5, 7, 7, 7, 4, 6, 7, 10, 3, 5, 7, 7, 5, 9, 7, 12, 8, 6, 0, 8, 1, 6, 7, 8, 9, 1, 8, 11, 7, 1, 11, 11, 7, 10, 5, 8, 5, 8, 1, 8, 11, 9, 8, 9, 3, 8, 1, 7, 6, 6, 8, 7, 6, 9, 4, 7, 0, 5, 8, 4, 5, 2, 6, 9, 6, 6, 4, 8 ], [ 5, 6, 7, 10, 7, 8, 7, 8, 2, 5, 7, 3, 8, 8, 7, 2, 12, 10, 12, 11, 5, 7, 3, 11, 7, 1, 4, 10, 6, 5, 8, 5, 10, 6, 2, 2, 13, 5, 6, 10, 8, 9, 7, 11, 6, 8, 8, 3, 11, 8, 9, 11, 12, 9, 2, 12, 8, 11, 6, 11, 12, 8, 4, 8, 10, 5, 4, 9, 8, 6, 8, 9, 10, 12, 11, 7, 10, 12, 7, 4, 10, 4, 5, 8, 6, 7, 7, 11, 4, 4, 4, 9, 12, 4, 5, 9, 8, 6, 11, 12, 5, 3, 4, 8, 9, 3, 3, 10, 10, 10, 4, 8, 13, 8, 12, 11, 10, 7, 10, 8, 12, 6, 10, 10, 2, 5, 12, 6, 4, 10, 7, 3, 8, 8, 10, 7, 8, 10, 8, 6, 7, 13, 9, 5, 10, 11, 6, 2, 8, 12, 7, 1, 11, 12, 2, 7, 6, 10, 11, 6, 4, 10, 3, 1, 3, 10, 8, 5, 5, 7, 6, 6, 8, 7, 9, 6, 10, 6, 8, 7, 6, 12, 7, 9, 4, 4, 7, 4, 5, 11, 4, 11, 4, 8, 10, 4, 6, 5, 5, 0, 4, 8, 3, 5, 9, 5, 10, 9, 4, 12 ], [ 2, 8, 4, 9, 6, 7, 10, 12, 3, 8, 11, 4, 11, 7, 11, 5, 15, 12, 15, 12, 8, 3, 2, 13, 8, 5, 7, 14, 4, 9, 10, 3, 13, 5, 5, 3, 16, 6, 9, 10, 8, 13, 7, 14, 3, 11, 6, 4, 12, 10, 7, 11, 16, 9, 5, 13, 11, 11, 9, 13, 15, 10, 3, 11, 14, 6, 7, 6, 11, 8, 5, 7, 13, 12, 10, 7, 8, 14, 5, 1, 14, 3, 6, 4, 7, 9, 8, 11, 7, 3, 1, 8, 15, 2, 4, 12, 10, 8, 13, 15, 6, 6, 3, 9, 12, 5, 6, 13, 14, 11, 4, 8, 15, 7, 13, 15, 11, 6, 9, 11, 14, 8, 14, 10, 2, 3, 13, 3, 7, 11, 9, 5, 12, 5, 13, 10, 9, 10, 10, 9, 10, 15, 12, 3, 13, 14, 10, 2, 8, 12, 10, 3, 14, 15, 5, 5, 8, 9, 14, 9, 8, 14, 7, 3, 1, 14, 7, 8, 4, 5, 5, 9, 4, 7, 12, 2, 13, 6, 11, 6, 9, 16, 6, 12, 4, 4, 10, 1, 8, 14, 6, 14, 2, 8, 13, 1, 8, 7, 8, 4, 0, 11, 6, 8, 11, 2, 13, 13, 7, 15 ], [ 13, 7, 15, 15, 12, 14, 3, 3, 9, 5, 1, 9, 3, 13, 3, 7, 8, 9, 8, 13, 5, 15, 10, 10, 9, 7, 6, 3, 13, 3, 9, 12, 2, 13, 6, 9, 7, 9, 2, 12, 12, 3, 12, 4, 14, 5, 15, 9, 14, 9, 15, 15, 6, 12, 6, 13, 6, 14, 6, 12, 9, 8, 11, 5, 3, 11, 6, 16, 2, 10, 15, 14, 5, 14, 15, 11, 15, 11, 14, 12, 4, 11, 10, 15, 11, 8, 10, 14, 5, 11, 11, 15, 7, 12, 11, 6, 7, 7, 9, 6, 9, 5, 11, 10, 2, 9, 6, 4, 3, 11, 10, 13, 11, 15, 11, 3, 13, 12, 15, 5, 11, 7, 6, 12, 10, 13, 12, 14, 5, 10, 6, 8, 1, 16, 2, 7, 11, 15, 8, 4, 3, 11, 1, 12, 3, 3, 2, 9, 11, 14, 5, 8, 4, 5, 7, 14, 7, 16, 3, 5, 5, 4, 5, 9, 10, 4, 13, 5, 12, 14, 11, 4, 15, 12, 3, 14, 4, 12, 7, 13, 4, 6, 13, 6, 10, 11, 1, 12, 6, 7, 7, 3, 11, 11, 6, 12, 8, 8, 4, 8, 11, 0, 6, 6, 9, 13, 7, 2, 5, 9 ], [ 8, 3, 10, 13, 9, 11, 6, 7, 3, 2, 6, 3, 7, 11, 7, 4, 12, 11, 12, 13, 5, 9, 4, 12, 8, 3, 1, 8, 7, 4, 9, 8, 8, 7, 1, 3, 12, 3, 4, 12, 10, 8, 6, 8, 8, 6, 11, 3, 13, 5, 11, 13, 11, 11, 0, 14, 6, 13, 7, 13, 12, 5, 5, 5, 9, 5, 5, 11, 7, 5, 10, 11, 10, 14, 13, 9, 12, 13, 10, 7, 8, 5, 7, 10, 5, 4, 9, 13, 4, 7, 6, 12, 11, 7, 8, 9, 9, 7, 12, 11, 3, 3, 7, 10, 7, 6, 0, 7, 8, 11, 6, 11, 13, 11, 13, 9, 12, 6, 12, 5, 13, 7, 10, 12, 5, 8, 13, 8, 1, 11, 7, 2, 7, 11, 8, 8, 10, 13, 9, 3, 4, 14, 7, 7, 7, 9, 4, 3, 10, 14, 7, 3, 10, 11, 1, 10, 3, 13, 8, 3, 5, 8, 4, 3, 5, 8, 10, 5, 8, 8, 8, 6, 10, 6, 6, 8, 9, 9, 9, 9, 6, 11, 7, 7, 4, 5, 6, 6, 5, 11, 2, 9, 5, 10, 10, 6, 8, 3, 5, 3, 6, 6, 0, 6, 10, 7, 10, 7, 1, 13 ], [ 9, 9, 10, 9, 7, 8, 3, 4, 7, 7, 5, 8, 4, 8, 4, 3, 7, 5, 7, 8, 1, 11, 8, 6, 3, 4, 6, 9, 11, 3, 4, 8, 8, 11, 5, 7, 8, 9, 5, 6, 7, 6, 12, 10, 10, 9, 9, 8, 8, 11, 9, 10, 8, 6, 6, 8, 10, 8, 1, 7, 7, 11, 9, 9, 8, 10, 1, 11, 4, 11, 10, 9, 6, 9, 9, 5, 9, 8, 9, 9, 9, 9, 4, 12, 11, 10, 4, 8, 2, 6, 7, 9, 7, 7, 6, 4, 3, 1, 6, 7, 9, 3, 6, 5, 8, 4, 6, 9, 9, 6, 5, 8, 8, 9, 7, 8, 7, 11, 9, 9, 7, 1, 6, 7, 6, 8, 8, 10, 6, 5, 2, 7, 7, 11, 8, 2, 6, 9, 3, 7, 7, 8, 6, 7, 8, 8, 6, 7, 5, 9, 2, 5, 7, 8, 6, 9, 9, 11, 9, 8, 1, 10, 2, 6, 7, 9, 7, 1, 7, 12, 6, 2, 11, 12, 8, 10, 5, 7, 3, 7, 2, 8, 12, 10, 9, 9, 5, 8, 0, 7, 8, 7, 9, 5, 5, 9, 2, 9, 2, 5, 8, 6, 6, 0, 5, 9, 5, 7, 6, 7 ], [ 12, 13, 12, 8, 7, 9, 6, 7, 11, 12, 8, 12, 6, 8, 6, 7, 6, 1, 5, 4, 5, 14, 12, 2, 3, 8, 11, 12, 15, 7, 1, 10, 11, 16, 10, 11, 8, 13, 9, 4, 6, 8, 16, 13, 12, 13, 10, 12, 5, 16, 9, 8, 8, 5, 10, 4, 14, 5, 4, 3, 4, 15, 13, 13, 10, 14, 5, 13, 7, 15, 11, 9, 6, 5, 7, 5, 9, 3, 10, 12, 13, 13, 6, 15, 15, 14, 4, 5, 6, 8, 10, 9, 5, 10, 8, 4, 2, 3, 2, 7, 14, 7, 8, 3, 11, 6, 10, 13, 12, 2, 7, 7, 4, 10, 3, 11, 4, 16, 8, 14, 3, 3, 5, 4, 9, 10, 3, 14, 11, 1, 3, 11, 10, 13, 11, 2, 4, 7, 2, 11, 11, 4, 8, 9, 12, 10, 10, 11, 4, 6, 4, 9, 8, 9, 10, 10, 13, 10, 12, 12, 6, 13, 7, 10, 11, 13, 8, 5, 9, 16, 7, 6, 13, 16, 12, 13, 6, 7, 2, 8, 6, 9, 16, 15, 13, 13, 8, 11, 5, 6, 12, 9, 13, 4, 5, 12, 3, 13, 6, 9, 11, 9, 10, 5, 0, 13, 3, 11, 10, 4 ], [ 2, 9, 4, 10, 7, 7, 11, 13, 4, 9, 12, 5, 12, 8, 12, 6, 17, 13, 17, 13, 10, 2, 3, 14, 9, 6, 8, 15, 3, 10, 12, 4, 14, 5, 7, 4, 17, 6, 11, 12, 9, 14, 6, 15, 2, 12, 6, 4, 13, 10, 8, 11, 17, 10, 7, 15, 12, 13, 10, 14, 16, 11, 3, 12, 15, 6, 9, 5, 13, 8, 5, 8, 15, 14, 11, 9, 9, 16, 6, 1, 15, 3, 7, 3, 7, 9, 9, 13, 9, 5, 3, 9, 16, 3, 6, 13, 12, 10, 15, 16, 6, 8, 4, 11, 14, 6, 7, 14, 15, 13, 6, 9, 16, 7, 15, 16, 12, 6, 10, 12, 15, 10, 15, 12, 4, 3, 15, 1, 8, 13, 11, 5, 13, 4, 15, 11, 10, 11, 12, 10, 11, 17, 13, 4, 14, 16, 11, 4, 10, 13, 11, 4, 16, 17, 6, 5, 9, 9, 15, 10, 9, 15, 8, 4, 2, 15, 8, 10, 5, 3, 6, 11, 4, 6, 13, 1, 15, 7, 12, 7, 11, 17, 5, 13, 4, 4, 12, 2, 9, 16, 7, 16, 2, 10, 15, 1, 10, 8, 9, 5, 2, 13, 7, 9, 13, 0, 14, 14, 8, 16 ], [ 13, 12, 15, 11, 10, 12, 4, 4, 12, 11, 6, 13, 4, 11, 4, 8, 3, 3, 2, 8, 5, 16, 13, 4, 6, 8, 10, 9, 16, 6, 3, 12, 8, 16, 10, 12, 4, 14, 7, 7, 9, 5, 16, 10, 14, 12, 13, 13, 8, 15, 12, 11, 5, 8, 10, 7, 12, 9, 4, 6, 2, 14, 14, 12, 7, 15, 5, 16, 4, 15, 14, 12, 3, 9, 10, 8, 12, 4, 12, 14, 11, 14, 8, 16, 15, 14, 7, 8, 6, 10, 12, 12, 2, 12, 10, 1, 2, 4, 3, 3, 14, 7, 10, 6, 9, 8, 10, 11, 9, 5, 9, 10, 4, 12, 5, 8, 8, 16, 11, 12, 4, 5, 2, 7, 10, 12, 5, 15, 10, 4, 3, 12, 7, 15, 8, 3, 7, 10, 3, 10, 9, 4, 6, 11, 9, 7, 8, 11, 7, 9, 3, 10, 5, 6, 10, 12, 13, 13, 10, 11, 6, 11, 7, 11, 12, 10, 10, 5, 11, 17, 10, 4, 15, 16, 10, 15, 3, 10, 2, 11, 4, 5, 17, 13, 14, 14, 6, 12, 5, 2, 12, 6, 14, 7, 1, 13, 5, 13, 6, 10, 13, 7, 10, 5, 3, 14, 0, 8, 10, 3 ], [ 14, 7, 16, 16, 14, 16, 5, 4, 10, 6, 2, 10, 4, 15, 4, 9, 8, 11, 10, 15, 7, 16, 11, 12, 11, 8, 6, 1, 14, 4, 10, 14, 1, 13, 7, 10, 7, 10, 3, 14, 14, 3, 13, 2, 15, 4, 16, 10, 15, 9, 16, 17, 6, 14, 7, 15, 5, 16, 8, 14, 10, 8, 12, 5, 3, 11, 8, 18, 4, 10, 16, 16, 6, 16, 16, 13, 17, 13, 15, 13, 2, 12, 11, 17, 11, 8, 12, 15, 7, 12, 12, 17, 8, 13, 13, 7, 8, 8, 11, 7, 10, 7, 12, 12, 1, 10, 7, 2, 1, 12, 11, 15, 12, 16, 13, 3, 14, 12, 17, 5, 12, 9, 7, 14, 11, 14, 13, 15, 6, 12, 8, 9, 1, 17, 1, 8, 13, 16, 9, 4, 3, 12, 2, 13, 1, 3, 3, 10, 12, 16, 7, 10, 5, 5, 8, 15, 8, 18, 2, 5, 6, 3, 7, 10, 11, 2, 15, 6, 14, 15, 13, 5, 17, 13, 2, 15, 5, 14, 9, 14, 5, 6, 13, 5, 11, 12, 3, 13, 7, 8, 8, 3, 12, 13, 7, 13, 9, 8, 6, 9, 13, 2, 7, 7, 11, 14, 8, 0, 6, 11 ], [ 9, 3, 11, 13, 10, 12, 6, 7, 4, 1, 5, 4, 6, 11, 6, 5, 11, 11, 12, 13, 5, 10, 6, 12, 9, 4, 1, 7, 8, 4, 10, 9, 6, 8, 2, 5, 11, 4, 3, 12, 11, 7, 7, 7, 10, 4, 12, 4, 14, 5, 12, 14, 10, 12, 2, 14, 4, 14, 7, 13, 12, 5, 6, 4, 8, 6, 5, 13, 6, 5, 12, 12, 9, 14, 14, 10, 13, 13, 11, 8, 6, 7, 8, 11, 6, 4, 9, 13, 4, 8, 7, 13, 11, 8, 9, 9, 8, 7, 12, 10, 4, 3, 8, 10, 5, 6, 1, 6, 7, 11, 7, 12, 13, 12, 13, 8, 13, 7, 13, 4, 13, 7, 10, 12, 6, 9, 13, 9, 0, 11, 7, 3, 5, 12, 6, 8, 11, 13, 9, 2, 3, 13, 6, 8, 6, 8, 3, 5, 10, 14, 7, 4, 9, 10, 2, 11, 3, 14, 7, 2, 4, 6, 4, 4, 6, 7, 11, 5, 9, 9, 9, 5, 11, 7, 5, 9, 8, 10, 9, 10, 5, 10, 8, 6, 5, 6, 5, 8, 5, 10, 2, 8, 6, 10, 10, 8, 8, 3, 4, 4, 7, 5, 1, 6, 10, 8, 10, 6, 0, 12 ], [ 15, 15, 16, 12, 11, 13, 7, 7, 14, 13, 9, 15, 7, 12, 7, 10, 3, 3, 1, 7, 8, 18, 15, 3, 7, 11, 13, 11, 18, 9, 5, 14, 11, 19, 12, 15, 5, 16, 10, 7, 10, 7, 19, 13, 16, 14, 14, 15, 8, 17, 13, 11, 6, 9, 13, 6, 15, 9, 6, 5, 1, 17, 16, 15, 9, 17, 8, 17, 7, 17, 15, 13, 5, 8, 11, 9, 13, 3, 14, 16, 13, 17, 10, 18, 18, 16, 8, 8, 9, 12, 14, 13, 3, 14, 12, 4, 4, 6, 2, 4, 16, 10, 12, 7, 11, 10, 13, 13, 11, 5, 11, 11, 2, 14, 4, 10, 8, 19, 12, 15, 3, 7, 4, 8, 12, 14, 4, 17, 13, 5, 6, 14, 10, 17, 11, 5, 8, 11, 5, 12, 12, 1, 8, 13, 12, 9, 11, 14, 8, 8, 6, 12, 6, 7, 13, 14, 15, 14, 12, 14, 8, 13, 9, 13, 15, 13, 12, 7, 13, 19, 11, 7, 17, 19, 12, 17, 5, 11, 4, 12, 7, 6, 19, 15, 16, 17, 9, 15, 8, 3, 14, 8, 16, 8, 3, 16, 7, 16, 8, 12, 15, 9, 13, 7, 4, 16, 3, 11, 12, 0 ] ]
+}
