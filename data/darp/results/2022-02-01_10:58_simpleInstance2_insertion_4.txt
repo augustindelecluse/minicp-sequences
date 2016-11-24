@@ -1,0 +1,11 @@
+insertion_4 all solutions 
+run 1 / 10:  	Time: 1.537 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 
+run 2 / 10:  	Time: 1.944 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 
+run 3 / 10:  	Time: 3.408 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 
+run 4 / 10:  	Time: 1.432 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 
+run 5 / 10:  	Time: 2.112 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 
+run 6 / 10:  	Time: 3.326 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 
+run 7 / 10:  	Time: 1.431 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 
+run 8 / 10:  	Time: 2.436 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 
+run 9 / 10:  	Time: 3.461 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 
+run 10 / 10:  	Time: 1.411 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 9 	Unique solutions found: 9  	#choice: 114662 	#fail: 60059 	#sols : 4608 	completed : true 

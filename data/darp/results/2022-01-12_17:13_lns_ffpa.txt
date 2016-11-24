@@ -1,0 +1,11 @@
+lns_ffpa
+run 1 / 10 with seed = -2070908241:  	Time: 2.875 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 15514 	#fail: 8961 	#sols : 4608 	completed : true 
+run 2 / 10 with seed = -1367649369:  	Time: 2.076 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 12552 	#fail: 6158 	#sols : 4608 	completed : true 
+run 3 / 10 with seed =  1305925195:  	Time: 2.703 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 16236 	#fail: 9671 	#sols : 4608 	completed : true 
+run 4 / 10 with seed =  -257042734:  	Time: 2.303 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 12645 	#fail: 6221 	#sols : 4608 	completed : true 
+run 5 / 10 with seed =  1467786694:  	Time: 2.285 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 12566 	#fail: 6171 	#sols : 4608 	completed : true 
+run 6 / 10 with seed =  -538314904:  	Time: 3.957 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 16071 	#fail: 9359 	#sols : 4608 	completed : true 
+run 7 / 10 with seed =  -848334120:  	Time: 3.038 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 14676 	#fail: 8151 	#sols : 4608 	completed : true 
+run 8 / 10 with seed =  1125756999:  	Time: 2.360 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 12013 	#fail: 5676 	#sols : 4608 	completed : true 
+run 9 / 10 with seed = -1382527103:  	Time: 2.702 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 12601 	#fail: 6198 	#sols : 4608 	completed : true 
+run 10 / 10 with seed = -1228266787:  	Time: 2.878 / 60.000 [s] 	Best objective: 207.419 	#Solutions found: 4608 	Unique solutions found: 2304  	#choice: 12808 	#fail: 6388 	#sols : 4608 	completed : true 

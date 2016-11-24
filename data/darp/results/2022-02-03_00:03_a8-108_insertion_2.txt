@@ -1,0 +1,21 @@
+insertion_2 lns without initial solution 
+run 1 / 10 with seed =  -949917528:  	Time: 900.002 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+
+run 2 / 10 with seed =  -137573768:  	Time: 900.007 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+
+run 3 / 10 with seed =   804772077:  	Time: 900.006 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+
+run 4 / 10 with seed =   219559132:  	Time: 900.002 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+
+run 5 / 10 with seed =   196770851:  	Time: 900.001 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+
+run 6 / 10 with seed =  2088357043:  	Time: 900.003 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+
+run 7 / 10 with seed =  1905878496:  	Time: 900.002 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+
+run 8 / 10 with seed =  -642877587:  	Time: 900.004 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+
+run 9 / 10 with seed = -1247626198:  	Time: 900.003 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+
+run 10 / 10 with seed = -1942129295:  	Time: 900.004 / 900.000 [s] 	#Solutions found: 0 	Unique solutions found: 0
+

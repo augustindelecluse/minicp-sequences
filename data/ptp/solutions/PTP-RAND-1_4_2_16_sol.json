@@ -1,0 +1,1119 @@
+{
+ "instance": {
+  "coordType": "Eucl",
+  "places": [
+   {
+    "id": 0,
+    "category": 0,
+    "lat": -9.765289504081604,
+    "long": 0.09260531673304229
+   },
+   {
+    "id": 1,
+    "category": 0,
+    "lat": 4.673051931629041,
+    "long": 5.956203854277059
+   },
+   {
+    "id": 2,
+    "category": 0,
+    "lat": 8.970483477833124,
+    "long": -1.344528976142434
+   },
+   {
+    "id": 3,
+    "category": 0,
+    "lat": -0.7842328090380445,
+    "long": -0.9748944990575854
+   },
+   {
+    "id": 4,
+    "category": 1,
+    "lat": -1.6147407787060566,
+    "long": 6.679254780225531
+   },
+   {
+    "id": 5,
+    "category": 2,
+    "lat": 4.205049876711114,
+    "long": -0.9330855773049336
+   },
+   {
+    "id": 6,
+    "category": 2,
+    "lat": 7.281000764482507,
+    "long": -4.3312379162670025
+   },
+   {
+    "id": 7,
+    "category": 2,
+    "lat": 7.962777196489704,
+    "long": -1.9544444610048661
+   },
+   {
+    "id": 8,
+    "category": 2,
+    "lat": 1.8012313750509241,
+    "long": 1.1308517524047685
+   },
+   {
+    "id": 9,
+    "category": 2,
+    "lat": 0.7691648755564798,
+    "long": -6.481901513073326
+   },
+   {
+    "id": 10,
+    "category": 2,
+    "lat": -2.6465298610459773,
+    "long": 0.5421910828573182
+   },
+   {
+    "id": 11,
+    "category": 2,
+    "lat": -2.4498401030178756,
+    "long": -8.284896535338184
+   },
+   {
+    "id": 12,
+    "category": 2,
+    "lat": -7.212333676805886,
+    "long": 2.2768468802184474
+   },
+   {
+    "id": 13,
+    "category": 2,
+    "lat": -3.141907994220871,
+    "long": -2.693142217612778
+   },
+   {
+    "id": 14,
+    "category": 2,
+    "lat": 5.57361332956267,
+    "long": -7.533207440866401
+   },
+   {
+    "id": 15,
+    "category": 2,
+    "lat": -2.7211795038162645,
+    "long": 3.4968058763172043
+   },
+   {
+    "id": 16,
+    "category": 2,
+    "lat": -6.784436596604538,
+    "long": 2.134235218129515
+   },
+   {
+    "id": 17,
+    "category": 2,
+    "lat": -2.2677228993290703,
+    "long": -8.513900400070018
+   },
+   {
+    "id": 18,
+    "category": 2,
+    "lat": -7.980152767556046,
+    "long": -4.777132281449949
+   },
+   {
+    "id": 19,
+    "category": 2,
+    "lat": -2.0424908483847424,
+    "long": -1.5015726999113692
+   },
+   {
+    "id": 20,
+    "category": 2,
+    "lat": -0.7019351233585336,
+    "long": 6.7146606740927535
+   }
+  ],
+  "maxWaitTime": "00h30",
+  "patients": [
+   {
+    "rdvTime": "10h43",
+    "srvDuration": "00h03",
+    "load": 1,
+    "start": 5,
+    "destination": 0,
+    "rdvDuration": "00h23",
+    "end": 5,
+    "id": 23,
+    "category": 0
+   },
+   {
+    "rdvTime": "09h34",
+    "srvDuration": "00h04",
+    "load": 2,
+    "start": 6,
+    "destination": 1,
+    "rdvDuration": "02h37",
+    "end": 6,
+    "id": 24,
+    "category": 0
+   },
+   {
+    "rdvTime": "14h09",
+    "srvDuration": "00h03",
+    "load": 1,
+    "start": 7,
+    "destination": 2,
+    "rdvDuration": "02h57",
+    "end": 7,
+    "id": 25,
+    "category": 0
+   },
+   {
+    "rdvTime": "08h15",
+    "srvDuration": "00h03",
+    "load": 1,
+    "start": 8,
+    "destination": 3,
+    "rdvDuration": "02h57",
+    "end": 8,
+    "id": 26,
+    "category": 0
+   },
+   {
+    "rdvTime": "13h48",
+    "srvDuration": "00h03",
+    "load": 2,
+    "start": 9,
+    "destination": 3,
+    "rdvDuration": "01h28",
+    "end": -1,
+    "id": 27,
+    "category": 0
+   },
+   {
+    "rdvTime": "08h57",
+    "srvDuration": "00h03",
+    "load": 2,
+    "start": 10,
+    "destination": 2,
+    "rdvDuration": "00h39",
+    "end": 10,
+    "id": 28,
+    "category": 0
+   },
+   {
+    "rdvTime": "08h24",
+    "srvDuration": "00h05",
+    "load": 2,
+    "start": 11,
+    "destination": 0,
+    "rdvDuration": "00h28",
+    "end": -1,
+    "id": 29,
+    "category": 0
+   },
+   {
+    "rdvTime": "15h42",
+    "srvDuration": "00h03",
+    "load": 1,
+    "start": 12,
+    "destination": 1,
+    "rdvDuration": "02h16",
+    "end": -1,
+    "id": 30,
+    "category": 0
+   },
+   {
+    "rdvTime": "08h22",
+    "srvDuration": "00h05",
+    "load": 2,
+    "start": 13,
+    "destination": 3,
+    "rdvDuration": "00h20",
+    "end": -1,
+    "id": 31,
+    "category": 0
+   },
+   {
+    "rdvTime": "14h00",
+    "srvDuration": "00h04",
+    "load": 2,
+    "start": 14,
+    "destination": 3,
+    "rdvDuration": "02h19",
+    "end": 14,
+    "id": 32,
+    "category": 0
+   },
+   {
+    "rdvTime": "15h38",
+    "srvDuration": "00h05",
+    "load": 2,
+    "start": 15,
+    "destination": 3,
+    "rdvDuration": "02h37",
+    "end": 15,
+    "id": 33,
+    "category": 0
+   },
+   {
+    "rdvTime": "11h49",
+    "srvDuration": "00h02",
+    "load": 1,
+    "start": 16,
+    "destination": 3,
+    "rdvDuration": "02h27",
+    "end": -1,
+    "id": 34,
+    "category": 0
+   },
+   {
+    "rdvTime": "14h37",
+    "srvDuration": "00h03",
+    "load": 1,
+    "start": 17,
+    "destination": 2,
+    "rdvDuration": "02h42",
+    "end": 17,
+    "id": 35,
+    "category": 0
+   },
+   {
+    "rdvTime": "13h57",
+    "srvDuration": "00h03",
+    "load": 2,
+    "start": 18,
+    "destination": 3,
+    "rdvDuration": "02h25",
+    "end": 18,
+    "id": 36,
+    "category": 0
+   },
+   {
+    "rdvTime": "15h56",
+    "srvDuration": "00h01",
+    "load": 1,
+    "start": 19,
+    "destination": 3,
+    "rdvDuration": "02h36",
+    "end": -1,
+    "id": 37,
+    "category": 0
+   },
+   {
+    "rdvTime": "08h19",
+    "srvDuration": "00h01",
+    "load": 2,
+    "start": 20,
+    "destination": 2,
+    "rdvDuration": "02h36",
+    "end": 20,
+    "id": 38,
+    "category": 0
+   }
+  ],
+  "name": "PTP-RAND-1_4_2_16",
+  "sameVehicleBackward": false,
+  "vehicles": [
+   {
+    "canTake": [0],
+    "start": 4,
+    "end": 4,
+    "id": 21,
+    "availability": ["07h00:20h00"],
+    "capacity": 6
+   },
+   {
+    "canTake": [0],
+    "start": 4,
+    "end": 4,
+    "id": 22,
+    "availability": ["07h00:20h00"],
+    "capacity": 6
+   }
+  ],
+  "distMatrix": [
+   [
+    0,
+    16,
+    19,
+    9,
+    10,
+    14,
+    18,
+    18,
+    12,
+    12,
+    7,
+    11,
+    3,
+    7,
+    17,
+    8,
+    4,
+    11,
+    5,
+    8,
+    11
+   ],
+   [
+    16,
+    0,
+    8,
+    9,
+    6,
+    7,
+    11,
+    9,
+    6,
+    13,
+    9,
+    16,
+    12,
+    12,
+    14,
+    8,
+    12,
+    16,
+    17,
+    10,
+    5
+   ],
+   [
+    19,
+    8,
+    0,
+    10,
+    13,
+    5,
+    3,
+    1,
+    8,
+    10,
+    12,
+    13,
+    17,
+    12,
+    7,
+    13,
+    16,
+    13,
+    17,
+    11,
+    13
+   ],
+   [
+    9,
+    9,
+    10,
+    0,
+    8,
+    5,
+    9,
+    9,
+    3,
+    6,
+    2,
+    7,
+    7,
+    3,
+    9,
+    5,
+    7,
+    8,
+    8,
+    1,
+    8
+   ],
+   [
+    10,
+    6,
+    13,
+    8,
+    0,
+    10,
+    14,
+    13,
+    7,
+    13,
+    6,
+    15,
+    7,
+    9,
+    16,
+    3,
+    7,
+    15,
+    13,
+    8,
+    1
+   ],
+   [
+    14,
+    7,
+    5,
+    5,
+    10,
+    0,
+    5,
+    4,
+    3,
+    7,
+    7,
+    10,
+    12,
+    8,
+    7,
+    8,
+    11,
+    10,
+    13,
+    6,
+    9
+   ],
+   [
+    18,
+    11,
+    3,
+    9,
+    14,
+    5,
+    0,
+    2,
+    8,
+    7,
+    11,
+    11,
+    16,
+    11,
+    4,
+    13,
+    15,
+    10,
+    15,
+    10,
+    14
+   ],
+   [
+    18,
+    9,
+    1,
+    9,
+    13,
+    4,
+    2,
+    0,
+    7,
+    8,
+    11,
+    12,
+    16,
+    11,
+    6,
+    12,
+    15,
+    12,
+    16,
+    10,
+    12
+   ],
+   [
+    12,
+    6,
+    8,
+    3,
+    7,
+    3,
+    8,
+    7,
+    0,
+    8,
+    4,
+    10,
+    9,
+    6,
+    9,
+    5,
+    9,
+    10,
+    11,
+    5,
+    6
+   ],
+   [
+    12,
+    13,
+    10,
+    6,
+    13,
+    7,
+    7,
+    8,
+    8,
+    0,
+    8,
+    4,
+    12,
+    5,
+    5,
+    11,
+    11,
+    4,
+    9,
+    6,
+    13
+   ],
+   [
+    7,
+    9,
+    12,
+    2,
+    6,
+    7,
+    11,
+    11,
+    4,
+    8,
+    0,
+    9,
+    5,
+    3,
+    12,
+    3,
+    4,
+    9,
+    8,
+    2,
+    6
+   ],
+   [
+    11,
+    16,
+    13,
+    7,
+    15,
+    10,
+    11,
+    12,
+    10,
+    4,
+    9,
+    0,
+    12,
+    6,
+    8,
+    12,
+    11,
+    0,
+    7,
+    7,
+    15
+   ],
+   [
+    3,
+    12,
+    17,
+    7,
+    7,
+    12,
+    16,
+    16,
+    9,
+    12,
+    5,
+    12,
+    0,
+    6,
+    16,
+    5,
+    0,
+    12,
+    7,
+    6,
+    8
+   ],
+   [
+    7,
+    12,
+    12,
+    3,
+    9,
+    8,
+    11,
+    11,
+    6,
+    5,
+    3,
+    6,
+    6,
+    0,
+    10,
+    6,
+    6,
+    6,
+    5,
+    2,
+    10
+   ],
+   [
+    17,
+    14,
+    7,
+    9,
+    16,
+    7,
+    4,
+    6,
+    9,
+    5,
+    12,
+    8,
+    16,
+    10,
+    0,
+    14,
+    16,
+    8,
+    14,
+    10,
+    16
+   ],
+   [
+    8,
+    8,
+    13,
+    5,
+    3,
+    8,
+    13,
+    12,
+    5,
+    11,
+    3,
+    12,
+    5,
+    6,
+    14,
+    0,
+    4,
+    12,
+    10,
+    5,
+    4
+   ],
+   [
+    4,
+    12,
+    16,
+    7,
+    7,
+    11,
+    15,
+    15,
+    9,
+    11,
+    4,
+    11,
+    0,
+    6,
+    16,
+    4,
+    0,
+    12,
+    7,
+    6,
+    8
+   ],
+   [
+    11,
+    16,
+    13,
+    8,
+    15,
+    10,
+    10,
+    12,
+    10,
+    4,
+    9,
+    0,
+    12,
+    6,
+    8,
+    12,
+    12,
+    0,
+    7,
+    7,
+    15
+   ],
+   [
+    5,
+    17,
+    17,
+    8,
+    13,
+    13,
+    15,
+    16,
+    11,
+    9,
+    8,
+    7,
+    7,
+    5,
+    14,
+    10,
+    7,
+    7,
+    0,
+    7,
+    14
+   ],
+   [
+    8,
+    10,
+    11,
+    1,
+    8,
+    6,
+    10,
+    10,
+    5,
+    6,
+    2,
+    7,
+    6,
+    2,
+    10,
+    5,
+    6,
+    7,
+    7,
+    0,
+    8
+   ],
+   [
+    11,
+    5,
+    13,
+    8,
+    1,
+    9,
+    14,
+    12,
+    6,
+    13,
+    6,
+    15,
+    8,
+    10,
+    16,
+    4,
+    8,
+    15,
+    14,
+    8,
+    0
+   ]
+  ],
+  "id": 423769621,
+  "version": "0.3"
+ },
+ "paths": [
+  {
+   "steps": [
+    {
+     "patient": 26,
+     "place": 8,
+     "time": "07h45",
+     "operation": 0
+    },
+    {
+     "patient": 26,
+     "place": 3,
+     "time": "07h51",
+     "operation": 1
+    },
+    {
+     "patient": 29,
+     "place": 11,
+     "time": "08h01",
+     "operation": 0
+    },
+    {
+     "patient": 29,
+     "place": 0,
+     "time": "08h17",
+     "operation": 1
+    },
+    {
+     "patient": 24,
+     "place": 6,
+     "time": "09h04",
+     "operation": 0
+    },
+    {
+     "patient": 24,
+     "place": 1,
+     "time": "09h19",
+     "operation": 1
+    },
+    {
+     "patient": 23,
+     "place": 5,
+     "time": "10h13",
+     "operation": 0
+    },
+    {
+     "patient": 23,
+     "place": 0,
+     "time": "10h30",
+     "operation": 1
+    },
+    {
+     "patient": 23,
+     "place": 0,
+     "time": "11h06",
+     "operation": 2
+    },
+    {
+     "patient": 26,
+     "place": 3,
+     "time": "11h18",
+     "operation": 2
+    },
+    {
+     "patient": 26,
+     "place": 8,
+     "time": "11h24",
+     "operation": 3
+    },
+    {
+     "patient": 23,
+     "place": 5,
+     "time": "11h30",
+     "operation": 3
+    },
+    {
+     "patient": 24,
+     "place": 1,
+     "time": "12h11",
+     "operation": 2
+    },
+    {
+     "patient": 24,
+     "place": 6,
+     "time": "12h26",
+     "operation": 3
+    },
+    {
+     "patient": 27,
+     "place": 9,
+     "time": "13h18",
+     "operation": 0
+    },
+    {
+     "patient": 27,
+     "place": 3,
+     "time": "13h27",
+     "operation": 1
+    },
+    {
+     "patient": 36,
+     "place": 18,
+     "time": "13h38",
+     "operation": 0
+    },
+    {
+     "patient": 36,
+     "place": 3,
+     "time": "13h49",
+     "operation": 1
+    },
+    {
+     "patient": 30,
+     "place": 12,
+     "time": "15h12",
+     "operation": 0
+    },
+    {
+     "patient": 37,
+     "place": 19,
+     "time": "15h26",
+     "operation": 0
+    },
+    {
+     "patient": 37,
+     "place": 3,
+     "time": "15h28",
+     "operation": 1
+    },
+    {
+     "patient": 30,
+     "place": 1,
+     "time": "15h38",
+     "operation": 1
+    },
+    {
+     "patient": 36,
+     "place": 3,
+     "time": "16h22",
+     "operation": 2
+    },
+    {
+     "patient": 36,
+     "place": 18,
+     "time": "16h33",
+     "operation": 3
+    }
+   ],
+   "vehicle": 21
+  },
+  {
+   "steps": [
+    {
+     "patient": 31,
+     "place": 13,
+     "time": "07h52",
+     "operation": 0
+    },
+    {
+     "patient": 31,
+     "place": 3,
+     "time": "08h00",
+     "operation": 1
+    },
+    {
+     "patient": 28,
+     "place": 10,
+     "time": "08h27",
+     "operation": 0
+    },
+    {
+     "patient": 28,
+     "place": 2,
+     "time": "08h42",
+     "operation": 1
+    },
+    {
+     "patient": 28,
+     "place": 2,
+     "time": "09h36",
+     "operation": 2
+    },
+    {
+     "patient": 28,
+     "place": 10,
+     "time": "09h51",
+     "operation": 3
+    },
+    {
+     "patient": 34,
+     "place": 16,
+     "time": "11h19",
+     "operation": 0
+    },
+    {
+     "patient": 34,
+     "place": 3,
+     "time": "11h28",
+     "operation": 1
+    },
+    {
+     "patient": 32,
+     "place": 14,
+     "time": "13h30",
+     "operation": 0
+    },
+    {
+     "patient": 32,
+     "place": 3,
+     "time": "13h43",
+     "operation": 1
+    },
+    {
+     "patient": 25,
+     "place": 7,
+     "time": "13h56",
+     "operation": 0
+    },
+    {
+     "patient": 25,
+     "place": 2,
+     "time": "14h00",
+     "operation": 1
+    },
+    {
+     "patient": 35,
+     "place": 17,
+     "time": "14h16",
+     "operation": 0
+    },
+    {
+     "patient": 35,
+     "place": 2,
+     "time": "14h32",
+     "operation": 1
+    },
+    {
+     "patient": 33,
+     "place": 15,
+     "time": "15h08",
+     "operation": 0
+    },
+    {
+     "patient": 33,
+     "place": 3,
+     "time": "15h18",
+     "operation": 1
+    },
+    {
+     "patient": 32,
+     "place": 3,
+     "time": "16h19",
+     "operation": 2
+    },
+    {
+     "patient": 32,
+     "place": 14,
+     "time": "16h32",
+     "operation": 3
+    },
+    {
+     "patient": 25,
+     "place": 2,
+     "time": "17h06",
+     "operation": 2
+    },
+    {
+     "patient": 35,
+     "place": 2,
+     "time": "17h19",
+     "operation": 2
+    },
+    {
+     "patient": 25,
+     "place": 7,
+     "time": "17h23",
+     "operation": 3
+    },
+    {
+     "patient": 35,
+     "place": 17,
+     "time": "17h38",
+     "operation": 3
+    },
+    {
+     "patient": 33,
+     "place": 3,
+     "time": "18h15",
+     "operation": 2
+    },
+    {
+     "patient": 33,
+     "place": 15,
+     "time": "18h25",
+     "operation": 3
+    }
+   ],
+   "vehicle": 22
+  }
+ ]
+}

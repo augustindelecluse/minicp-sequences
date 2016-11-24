@@ -1,0 +1,317 @@
+
+import cotfd; 
+
+class pair {
+	int first;
+	int second;
+	pair(int f, int s) {
+		first = f;
+		second = s;
+	}
+	void setF(int f) {
+		first = f;
+	}
+	void setS(int s) {
+		second = s;
+	}
+	int getF() {
+		return first;
+	}
+	int getS() {
+		return second;
+	}
+}
+
+abstract class RestartStrategy
+{
+	Solver<CP> solver;
+	int timeLimit;
+	int endTime;
+	int t0;
+
+	RestartStrategy(Solver<CP> _solver, int _timeLimit) 
+	{
+		solver = _solver;
+		timeLimit = _timeLimit;
+		t0 = System.getCPUTime();
+		endTime = timeLimit*1000+t0;
+	}
+	bool restart();
+	void setInit();
+}
+
+class ExponentialRestart extends RestartStrategy
+{
+	pair exponentialRun;
+
+	ExponentialRestart(Solver<CP> solver, int timeLimit, int i, int j) : RestartStrategy(solver, timeLimit) {
+		exponentialRun = new pair(i, j); // 2,1
+	}
+
+	void setInit() {
+		solver.restartOnTimeLimit(2);
+	}
+
+	bool restart()
+	{
+		//cout << "restarting... "<< exponentialRun.getF() << endl;
+		int currentTime = System.getCPUTime();
+		timeLimit = (endTime - currentTime)/1000;
+		if (timeLimit < 0) {
+			//cout << "Timeout" << endl;
+			return false;
+		}
+		else {
+			int newLimit = exponentialRun.getF()*2;
+			exponentialRun.setF(newLimit);
+			//cout << "newLimit: " << newLimit << endl;
+			if (newLimit < timeLimit) {
+				solver.setRestartTimeLimit(newLimit);
+			}
+			else {
+				solver.setRestartTimeLimit(timeLimit);
+			}
+		}
+		return true;
+	}
+}
+
+class IdealRestart extends RestartStrategy
+{
+	int base;
+	int lengthMultiplier;
+	pair idealRun;
+
+	// i is initial sequence length, base is the factor to increase the sequence by
+	IdealRestart(Solver<CP> solver, int timeLimit, int _lengthMuliplier, int _base, int i, int j) : RestartStrategy(solver, timeLimit)
+	{
+		idealRun = new pair(i, j); // 2,1
+		base = _base;
+		lengthMultiplier = _lengthMuliplier;
+	}
+
+	void setInit() 
+	{
+		solver.restartOnTimeLimit(lengthMultiplier); 
+		cout << "Restart initialized" << endl;
+	}
+
+	bool restart()
+	{
+		return false;
+		//cout << "r " << idealRun.getS() << ", " ;
+		if (idealRun.getS() > idealRun.getF()) {
+			idealRun.setF(idealRun.getF() * 2);
+			idealRun.setS(1);
+		}
+		int currentTime = System.getCPUTime();
+		timeLimit = (endTime - currentTime)/1000;
+		cout << timeLimit << endl;
+		if (timeLimit <= 0) {
+			cout << "Timeout" << endl;
+			return false;
+		}
+		else {
+			int newLimit = lengthMultiplier*(base^(idealRun.getS()-1));
+			idealRun.setS(idealRun.getS() + 1);
+			if (newLimit < timeLimit) {
+				//cout << "newLimit: " << newLimit << endl;
+				solver.setRestartTimeLimit(newLimit);
+			}
+			else {
+				//cout << "newLimit: " << timeLimit << endl;
+				solver.setRestartTimeLimit(timeLimit);
+			}
+		}
+		return true;
+	}
+}
+
+class IncrementalRestart extends RestartStrategy
+{
+	Integer incrementalRun;
+	
+	IncrementalRestart(Solver<CP> solver, int timeLimit, int i) : RestartStrategy(solver, timeLimit) {
+		incrementalRun = new Integer(i); // i=5
+	}
+
+	void setInit() {
+		solver.restartOnTimeLimit(2);
+	}
+
+	bool restart() {
+		cout << "restarting... "<< incrementalRun << endl;
+		int currentTime = System.getCPUTime();
+		timeLimit = (endTime - currentTime)/1000;
+		if (timeLimit < 0) {
+			cout << "Timeout" << endl;
+			return false;
+		}
+		else {
+			int newLimit = incrementalRun+5;
+			incrementalRun := incrementalRun+5;
+			cout << "newLimit: " << newLimit << endl;
+			if (newLimit < timeLimit) {
+				solver.setRestartTimeLimit(newLimit);
+			}
+			else {
+				solver.setRestartTimeLimit(timeLimit);
+			}
+		}
+	}
+}
+
+class ConstantRestart extends RestartStrategy
+{
+	Integer restartLimit;
+	
+	ConstantRestart(Solver<CP> solver, int timeLimit, int i) : RestartStrategy(solver, timeLimit) {
+		restartLimit = new Integer(i); // i=5
+	}
+
+	void setInit() {
+		solver.restartOnTimeLimit((int)restartLimit);
+	}
+
+	bool restart() {
+		int currentTime = System.getCPUTime();
+		timeLimit = (endTime - currentTime)/1000;
+		cout << timeLimit << endl;
+		if (timeLimit < 0) {
+			cout << "Timeout" << endl;
+			return false;
+		}
+		else {
+			if (restartLimit < timeLimit) {
+				solver.setRestartTimeLimit((int)restartLimit);
+			}
+			else {
+				solver.setRestartTimeLimit(timeLimit);
+			}
+		}
+		return true;
+	}
+}
+
+class ConstantFailureRestart extends RestartStrategy
+{
+	Integer maxFailures;
+	Integer restartLimit;
+	
+	ConstantFailureRestart(Solver<CP> solver, int _maxFailures, int i) : RestartStrategy(solver, 0) {
+		maxFailures = new Integer(_maxFailures);
+		restartLimit = new Integer(i); // i=5
+	}
+
+	void setInit() {
+		solver.restartOnFailureLimit(restartLimit);
+	}
+
+	bool restart() {
+		int currentFailures = solver.getNumberFailures();
+		timeLimit = (maxFailures - currentFailures);
+		cout << timeLimit << endl;
+		if (timeLimit < 0) {
+			cout << "Max failures reached" << endl;
+			return false;
+		}
+		else {
+			if (restartLimit < timeLimit) {
+				solver.setRestartFailureLimit(restartLimit);
+			}
+			else {
+				solver.setRestartFailureLimit(timeLimit);
+			}
+		}
+		return true;
+	}
+}
+
+
+class IdealAdditiveRestart extends RestartStrategy
+{
+	pair idealRun;
+
+	IdealAdditiveRestart(Solver<CP> solver, int timeLimit, int i, int j) : RestartStrategy(solver, timeLimit) {
+		idealRun = new pair(i, j); // 2,1
+	}
+
+	void setInit() 
+	{
+		solver.restartOnTimeLimit(2);
+	}
+
+	bool restart()
+	{
+		cout << "restarting... " << idealRun.getS() << " " ;
+		if (idealRun.getS() > idealRun.getF()) {
+			idealRun.setF(idealRun.getF() * 2);
+			idealRun.setS(1);
+		}
+		int currentTime = System.getCPUTime();
+		timeLimit = (endTime - currentTime)/1000;
+		if (timeLimit < 0) {
+			cout << "Timeout" << endl;
+			return false;
+		}
+		else {
+			int newLimit = 5+5*(idealRun.getS()-1);
+			idealRun.setS(idealRun.getS() + 1);
+			cout << newLimit << endl;
+			if (newLimit < timeLimit) {
+				solver.setRestartTimeLimit(newLimit);
+			}
+			else {
+				solver.setRestartTimeLimit(timeLimit);
+			}
+		}
+		return true;
+	}
+}
+
+class ExponentialFailureRestart extends RestartStrategy
+{
+	int startLimit;
+	int failLimit;
+	float increaseFraction;
+	float decreaseFraction;
+
+	ExponentialFailureRestart(Solver<CP> solver, int timeLimit, int initialFailLimit,
+			float _increaseFraction, float _decreaseFraction) : RestartStrategy(solver, timeLimit)
+	{
+		startLimit = initialFailLimit;
+		failLimit = initialFailLimit;
+		increaseFraction = _increaseFraction;
+		decreaseFraction = _decreaseFraction;
+		cout << "startLimit: " << startLimit << endl;
+		//solver.startWithRestart();
+	}
+
+	void setInit() 
+	{
+		//solver.setLNSFailureLimit(startLimit);
+		solver.lnsOnFailure(startLimit);
+	}
+
+	bool restart()
+	{
+		assert(failLimit == solver.getLNSFailureLimit());
+
+		if (System.getCPUTime() > endTime) {
+			cout << "Timeout" << endl;
+			return false;
+		}
+
+		if (!solver.isLastLNSRestartCompleted()) {
+			//cout << "Failure Limit Reached" << endl;
+			failLimit = (int) floor((float) solver.getLNSFailureLimit() * increaseFraction);
+		}
+		else {
+			//cout << "Exhaustive Tree Searched" << endl;
+			failLimit = max(20, (int) floor((float)solver.getLNSFailureLimit() * decreaseFraction));
+		}
+		solver.setLNSFailureLimit(failLimit);
+
+		return true;
+	}
+}

@@ -1,0 +1,175 @@
+
+function bool isSorted(int [] array) {
+	forall (i in array.getLow()+1..array.getHigh()) {
+		if (array[i] < array[i-1]) { 
+			return false;
+		}
+	}
+	return true;
+}
+function bool isSorted(float [] array) {
+	forall (i in array.getLow()+1..array.getHigh()) {
+		if (array[i] < array[i-1]) { 
+			return false;
+		}
+	}
+	return true;
+}
+function bool contains(int [] array, int data) {
+	forall (i in array.getRange()) {
+		if (array[i] == data) {
+			return true;
+		}
+	}
+	return false;
+}
+function bool isPositive(int [] array) 
+{
+	forall (i in array.getRange()) {
+		if (array[i] < 0) {
+			return false;
+		}
+	}
+	return true;
+}
+function bool isPositive(trail{int} [] array) 
+{
+	forall (i in array.getRange()) {
+		if (array[i] < 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
+class Edge {
+	int left;
+	int right;
+
+	Edge(int _left, int _right) {
+		left = _left;
+		right = _right;
+	}
+	int getLeft() {
+		return left;
+	}
+	int getRight() {
+		return right;
+	}
+}
+
+class TreeNode implements Comparable {
+	int value;
+	dict{int->TreeNode} children;
+
+	TreeNode(int _value) {
+		value = _value;
+		children = new dict{int->TreeNode}();
+	}
+
+	TreeNode(TreeNode _node) {
+		value = _node.getValue();
+		children = _node.getChildren();
+	}
+
+	int getValue() { return value; }
+	dict{int->TreeNode} getChildren() { return children; }
+	void addChild(TreeNode child) { children{children.getSize()+1} = child; }
+	void removeChild(int i) { children.remove(i); }
+
+	bool isLeaf() { return children.getSize() == 0; }
+
+	int compare(Comparable n) { if (value == (int)((TreeNode) n).getValue()) return 0; else return -1; }
+}
+
+function int getKruskalMstWeight(int [,] adjMatrix, TreeNode [] graph, int initMstWeight) {
+	int numNodes = graph.getUp();
+	range numNodesRange = 1..numNodes;
+	int vertexTree[numNodesRange] = -1;
+	int vertexTreeNum = 1;
+	int mstWeight = initMstWeight;
+	set{int} edgeWeight = new set{int}();
+	dict{int->int} edgeWeightToIndex();
+	queue{Edge} [] edgeIndexToEdge;
+
+	forall (i in numNodesRange) {
+		if (vertexTree[i] == -1) {
+			stack{TreeNode} nodes();
+			nodes.push(graph[i]);
+			while (!nodes.empty()) {
+				TreeNode node = nodes.pop();
+				if (vertexTree[node.getValue()] == vertexTreeNum) {
+					continue;
+				}
+				vertexTree[node.getValue()] = vertexTreeNum;
+				forall (j in node.getChildren().getKeys()) {
+					nodes.push(node.getChildren(){j});
+				}
+			}
+			vertexTreeNum++;
+		}
+	}
+
+	// adjMatrix can be -1 for edges which are in the same tree
+	int index=1;
+	forall (i in numNodesRange) {
+		forall (j in i+1..numNodes) {
+			if (adjMatrix[i,j] != -1 && vertexTree[i] != vertexTree[j]) {
+				assert(adjMatrix[i,j] >= 0);
+				if (!edgeWeight.contains(adjMatrix[i,j])) {
+					assert(!edgeWeightToIndex.hasKey(adjMatrix[i,j]));
+					edgeWeight.insert(adjMatrix[i,j]);
+					edgeWeightToIndex{adjMatrix[i,j]} = index++;
+				}
+			}
+		}
+	}
+
+	edgeIndexToEdge = new queue{Edge}[1..edgeWeight.getSize()] = new queue{Edge}();
+	forall (i in numNodesRange) {
+		forall (j in i+1..numNodes) {
+			if (adjMatrix[i, j] != -1 && vertexTree[i] != vertexTree[j]) {
+				edgeIndexToEdge[edgeWeightToIndex{adjMatrix[i, j]}].enqueueFront(new Edge(i, j));
+			}
+		}
+	}
+
+	while (!edgeWeight.empty()) {
+		int weight;
+		queue{Edge} q;
+		Edge e = null;
+		assert(edgeWeight.getSize() > 0);
+		do {
+			weight = edgeWeight.getLow();
+			q = edgeIndexToEdge[edgeWeightToIndex{weight}];
+			assert(q.getSize() > 0);
+			e = q.dequeueFront();
+			if (q.getSize() == 0) {
+				edgeWeight.delete(weight);
+			}
+		} while (!edgeWeight.empty() && vertexTree[e.getLeft()] == vertexTree[e.getRight()]);
+		assert(e != null);
+		if (vertexTree[e.getLeft()] == vertexTree[e.getRight()]) {
+			break;
+		}
+		mstWeight += weight;
+		//cout << e.getLeft() << ", " << e.getRight() << ", " << weight << endl;
+		graph[e.getLeft()].addChild(graph[e.getRight()]);
+		graph[e.getRight()].addChild(graph[e.getLeft()]);
+		stack{TreeNode} nodes();
+		nodes.push(graph[e.getRight()]);
+		while (!nodes.empty()) {
+			TreeNode node = nodes.pop();
+			if (vertexTree[node.getValue()] == vertexTree[e.getLeft()]) {
+				continue;
+			}
+			vertexTree[node.getValue()] = vertexTree[e.getLeft()];
+			forall (j in node.getChildren().getKeys()) {
+				nodes.push(node.getChildren(){j});
+			}
+		}
+	}
+
+	return mstWeight;
+}
+

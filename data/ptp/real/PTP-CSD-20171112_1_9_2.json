@@ -1,0 +1,182 @@
+{
+    "version": "0.3",
+    "id": 20171112,
+    "name": "PTP-CSD-20171112_1_9_2",
+    "coordType": "Geo",
+    "sameVehicleBackward": false,
+    "maxWaitTime": "0h30",
+    "places": [
+        {
+            "id": 0,
+            "lat": 50.5982491,
+            "long": 5.505323199999999,
+            "category": 1
+        },
+        {
+            "id": 1,
+            "lat": 50.6192649,
+            "long": 5.5656115,
+            "category": 2
+        },
+        {
+            "id": 2,
+            "lat": 50.5830803,
+            "long": 5.559063999999999,
+            "category": 0
+        }
+    ],
+    "vehicles": [
+        {
+            "id": 3,
+            "canTake": [
+                0
+            ],
+            "start": 0,
+            "end": 0,
+            "capacity": 4,
+            "availability": [
+                "06h00:14h00",
+                "14h00:20h00"
+            ]
+        },
+        {
+            "id": 4,
+            "canTake": [
+                0
+            ],
+            "start": 0,
+            "end": 0,
+            "capacity": 4,
+            "availability": [
+                "06h00:14h00"
+            ]
+        },
+        {
+            "id": 5,
+            "canTake": [
+                0
+            ],
+            "start": 0,
+            "end": 0,
+            "capacity": 4,
+            "availability": [
+                "06h00:14h00",
+                "14h00:20h00"
+            ]
+        },
+        {
+            "id": 6,
+            "canTake": [
+                0
+            ],
+            "start": 0,
+            "end": 0,
+            "capacity": 4,
+            "availability": [
+                "06h00:14h00",
+                "14h00:20h00"
+            ]
+        },
+        {
+            "id": 7,
+            "canTake": [
+                0
+            ],
+            "start": 0,
+            "end": 0,
+            "capacity": 4,
+            "availability": [
+                "11h00:19h00"
+            ]
+        },
+        {
+            "id": 8,
+            "canTake": [
+                0
+            ],
+            "start": 0,
+            "end": 0,
+            "capacity": 4,
+            "availability": [
+                "11h00:19h00"
+            ]
+        },
+        {
+            "id": 9,
+            "canTake": [
+                0
+            ],
+            "start": 0,
+            "end": 0,
+            "capacity": 4,
+            "availability": [
+                "07h30:15h30"
+            ]
+        },
+        {
+            "id": 10,
+            "canTake": [
+                0
+            ],
+            "start": 0,
+            "end": 0,
+            "capacity": 4,
+            "availability": [
+                "06h00:14h00"
+            ]
+        },
+        {
+            "id": 11,
+            "canTake": [
+                0
+            ],
+            "start": 0,
+            "end": 0,
+            "capacity": 3,
+            "availability": [
+                "11h00:19h00"
+            ]
+        }
+    ],
+    "patients": [
+        {
+            "id": 12,
+            "category": 0,
+            "load": 1,
+            "start": 1,
+            "destination": 2,
+            "end": 1,
+            "rdvTime": "08h30",
+            "rdvDuration": "05h00",
+            "srvDuration": "0h01"
+        },
+        {
+            "id": 13,
+            "category": 0,
+            "load": 1,
+            "start": 1,
+            "destination": 2,
+            "end": 1,
+            "rdvTime": "08h30",
+            "rdvDuration": "05h00",
+            "srvDuration": "0h01"
+        }
+    ],
+    "distMatrix": [
+        [
+            0,
+            5,
+            4
+        ],
+        [
+            5,
+            0,
+            9
+        ],
+        [
+            4,
+            9,
+            0
+        ]
+    ]
+}

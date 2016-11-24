@@ -1,0 +1,152 @@
+
+class Coordinate {
+	float x;
+	float y;
+	Coordinate(float _x, float _y) {
+		x = _x;
+		y = _y;
+	}
+
+	float getX() {
+		return x;
+	}
+	float getY() {
+		return y;
+	}
+	void setX(float _x) {
+		x = _x;
+	}
+	void setY(float _y) {
+		y = _y;
+	}
+
+	float getDistance(Coordinate c)
+	{
+		return sqrt((x-c.getX())*(x-c.getX())+(y-c.getY())*(y-c.getY()));
+	}
+}
+
+abstract class DarpMap {
+	int numRequests;
+	int numVehicles;
+	int timeHorizon;
+	int vehicleCapacity;
+	int maxRideTime;
+
+	int [] timeWindowStart;
+	int [] timeWindowEnd;
+	int [] loadChange;
+	int [] servingDuration;
+
+	int beginTimeWindowStart;
+	int beginTimeWindowEnd;
+	int endTimeWindowStart;
+	int endTimeWindowEnd;
+
+	DarpMap() {}
+	float getTravelTime(int i, int j);
+
+	// Getters and Setters
+	int getNumRequests() { return numRequests; }
+	int getNumVehicles() { return numVehicles; }
+	int getTimeHorizon() { return timeHorizon; }
+	int getMaxRideTime() { return maxRideTime; }
+	int getVehicleCapacity() { return vehicleCapacity; }
+	int [] getServingDuration() { return servingDuration; }
+	int [] getTimeWindowStart() { return timeWindowStart; }
+	int [] getTimeWindowEnd() { return timeWindowEnd; }
+	int [] getLoadChange() { return loadChange; }
+	int getBeginTimeWindowStart() { return beginTimeWindowStart; }
+	int getBeginTimeWindowEnd() { return beginTimeWindowEnd; }
+	int getEndTimeWindowStart() { return endTimeWindowStart; }
+	int getEndTimeWindowEnd() { return endTimeWindowEnd; }
+}
+
+class EuclideanDarp extends DarpMap 
+{
+	Coordinate [] pickupVertices;
+	Coordinate [] deliveryVertices;
+	Coordinate startDepotCoord;
+	Coordinate endDepotCoord;
+
+	EuclideanDarp(string filename) : DarpMap() {
+		readFile(filename);
+	}
+
+	void readFile(string filename) {
+		ifstream f(filename);
+
+		numVehicles = f.getInt();
+		numRequests = f.getInt();
+		numRequests = numRequests;
+		timeHorizon = f.getInt();
+		vehicleCapacity = f.getInt();
+		maxRideTime = f.getInt();
+		f.getLine(); 
+
+		pickupVertices = new Coordinate[0..numRequests];
+		deliveryVertices = new Coordinate[0..numRequests];
+		pickupVertices[0] = new Coordinate(0, 0);
+		deliveryVertices[0] = new Coordinate(0, 0);
+
+		timeWindowStart = new int[1..2*numRequests];
+		timeWindowEnd = new int[1..2*numRequests];
+
+		loadChange = new int[1..numRequests*2];
+		servingDuration = new int[1..numRequests*2];
+
+		f.getInt(); // To get past the index in the file of the depot
+		startDepotCoord = new Coordinate(f.getFloat(), f.getFloat());
+		assert(f.getInt() == 0); // Get past the serving duration
+		assert(f.getInt() == 0); // Get past load change
+		beginTimeWindowStart = f.getInt(); 
+		beginTimeWindowEnd = f.getInt(); 
+
+		forall (i in 1..numRequests*2) {
+			assert(i == f.getInt());
+			if (i <= numRequests) {
+				pickupVertices[i] = new Coordinate(f.getFloat(), f.getFloat());
+			}
+			else {
+				deliveryVertices[i-numRequests] = new Coordinate(f.getFloat(), f.getFloat());
+			}
+			servingDuration[i] = f.getInt(); // Serving Duration
+			loadChange[i] = f.getInt();
+			if (i <= numRequests) {
+				timeWindowStart[i] = f.getInt();
+				timeWindowEnd[i] = f.getInt();
+			}
+			else {
+				timeWindowStart[i] = f.getInt();
+				timeWindowEnd[i] = f.getInt();
+			}
+			f.getLine(); // To go to next line
+		}
+
+		f.getInt(); // To get past the index in the file of the depot
+		endDepotCoord = new Coordinate(f.getFloat(), f.getFloat());
+		assert(f.getInt() == 0); // Get past the serving duration
+		assert(f.getInt() == 0); // Get past load change
+		endTimeWindowStart = f.getInt(); 
+		endTimeWindowEnd = f.getInt(); 
+	}
+
+	Coordinate getCoordinate(int i) 
+	{
+		if (i <= numRequests) {
+			return pickupVertices[i];
+		}
+		else if (i <= 2*numRequests) {
+			return deliveryVertices[i-numRequests];
+		}
+		else if (i <= 2*numRequests+numVehicles) {
+			return startDepotCoord;
+		}
+		else {
+			assert(i <= 2*numRequests+2*numVehicles);
+			return endDepotCoord;
+		}
+	}
+
+	float getTravelTime(int i, int j) { return getCoordinate(i).getDistance(getCoordinate(j)); }
+}

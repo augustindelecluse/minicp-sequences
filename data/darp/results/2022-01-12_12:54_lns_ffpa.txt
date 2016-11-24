@@ -1,0 +1,35 @@
+lns_ffpa
+run 1 / 2 with seed = -1456642261:  	Time: 60.002 / 60.000 [s] 	Best objective: 199.835 	#Solutions found: 12 	Unique solutions found: 12
+	t = 0.070 [s] 	 obj = 218.359
+	t = 0.227 [s] 	 obj = 217.031
+	t = 0.596 [s] 	 obj = 211.647
+	t = 0.731 [s] 	 obj = 211.627
+	t = 0.799 [s] 	 obj = 207.946
+	t = 0.834 [s] 	 obj = 207.334
+	t = 0.904 [s] 	 obj = 206.493
+	t = 1.652 [s] 	 obj = 205.932
+	t = 1.761 [s] 	 obj = 204.833
+	t = 2.420 [s] 	 obj = 203.696
+	t = 3.115 [s] 	 obj = 203.084
+	t = 49.372 [s] 	 obj = 199.835
+run 2 / 2 with seed = 1905038242:  	Time: 60.026 / 60.000 [s] 	Best objective: 194.185 	#Solutions found: 20 	Unique solutions found: 20
+	t = 0.030 [s] 	 obj = 220.071
+	t = 0.058 [s] 	 obj = 219.037
+	t = 0.086 [s] 	 obj = 217.285
+	t = 0.126 [s] 	 obj = 215.414
+	t = 0.281 [s] 	 obj = 213.508
+	t = 0.537 [s] 	 obj = 212.086
+	t = 0.678 [s] 	 obj = 211.055
+	t = 1.346 [s] 	 obj = 207.236
+	t = 1.600 [s] 	 obj = 207.188
+	t = 1.672 [s] 	 obj = 203.644
+	t = 2.169 [s] 	 obj = 203.595
+	t = 5.375 [s] 	 obj = 203.173
+	t = 5.641 [s] 	 obj = 202.546
+	t = 6.251 [s] 	 obj = 201.931
+	t = 6.330 [s] 	 obj = 201.548
+	t = 6.479 [s] 	 obj = 200.171
+	t = 19.924 [s] 	 obj = 199.491
+	t = 20.036 [s] 	 obj = 197.978
+	t = 20.154 [s] 	 obj = 195.534
+	t = 35.163 [s] 	 obj = 194.185

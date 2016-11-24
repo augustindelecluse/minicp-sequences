@@ -1,0 +1,9 @@
+insertion_4 lns without initial solution 
+run 1 / 3:  	Time: 300.000 / 300.000 [s] 	Best objective: 229.079 	#Solutions found: 1 	Unique solutions found: 1
+	t = 0.079 [s] 	 obj = 229.079
+run 2 / 3:  	Time: 300.000 / 300.000 [s] 	Best objective: 228.066 	#Solutions found: 2 	Unique solutions found: 2
+	t = 0.013 [s] 	 obj = 237.814
+	t = 0.034 [s] 	 obj = 228.066
+run 3 / 3:  	Time: 300.000 / 300.000 [s] 	Best objective: 221.555 	#Solutions found: 2 	Unique solutions found: 2
+	t = 0.012 [s] 	 obj = 222.052
+	t = 0.086 [s] 	 obj = 221.555
