@@ -20,113 +20,36 @@ Be able to
 
 * Understand reversible data structures
 * Understand a domain
-* Implement a constraint
+* Implement global constraints
 * Implement custom search
-* Extend IntVar
-* Implement branch and bound into a CP solver
 * Model CP easy problems
-
-
-ReversibleSparseSet: range constructor
-===================================================
-
-The ReversibleSparseSet constructor ask for a single parameter.
-Add a new constructor allowing to create a ReversibleSparseSet from any range between min and max: {min...max}.
-
-
-.. literalinclude:: ../../src/main/java/minicp/reversible/ReversibleSparseSet.java
-    :language: java
-    :linenos:
-    :lines: 54-62
-
-You will need to modify the code of the class to do so.
-The test to execute is :javaref:`minicp.reversible.ReversibleSparseSetTest`.
-
-
-
-ReversibleSparseSet: removeBelow/removeAbove methods
-=================================================================
+* Use LNS
+* Write unit-tests for constraints and models
+* Debug constraints, models, etc
 
 
 
 
-
-IntVar: arbitrary domains
-=================================================================
-
-
-Add a two constructors  allowing to create a IntVar with a domain defined as
-
-1. a range {min...max}
-2. a set of initial values. Hint: create a sparse-set using the range constructor between the min and max of the set and remove values not in the set.
+Implement the less or equal reified constraint
+=================================
 
 
-.. literalinclude:: ../../src/main/java/minicp/cp/core/IntVar.java
-        :language: java
-        :linenos:
-        :lines: 52-74
+The file is ``*``
+Check that your implementation pass the tests.
 
 
-
-
-IntVar: removeBelow/removeAbove
-=======================================
-
-Implement the methods allowing to remove all the values below/above a given value.
-Don't forget to enqueue the constraints interested into domain/bind changes
-in case a value is removed or if the domain is reduced to a single value.
-
-
-.. literalinclude:: ../../src/main/java/minicp/cp/core/IntVar.java
-            :language: java
-            :linenos:
-            :lines: 158-176
-
-
-IntVar: propagateOnBoundChange
-=======================================
-
-Implement the methods permitting a constraint to register
-on the bound change events.
-You need to create a new ``ReversibleStack<Constraint> onBoundChange``
-that will store all the constraint interested into these events.
-Also you need to adapt the implementation of ``remove,assign,removeBelow,removeAbove`` methods
-that can possibly trigger such an event.
-
-
-.. literalinclude:: ../../src/main/java/minicp/cp/core/IntVar.java
-                :language: java
-                :linenos:
-                :lines: 93-100
-
-
-The Sum constraint
-=================================================================
-
-
-Implement the Sum constraint.
-The filtering algorithm should be bound consistent.
-As a consequence you will only remove impossible values by updating
-the domains using ``removeBelow,removeAbove``.
-
-Your implementation should only register to the bound change events ``onBoundChange``
-in the ``post`` implementation.
-Don't forget to terminate your ``post`` method by a call to ``propagate``.
-
-
-.. literalinclude:: ../../src/main/java/minicp/cp/constraints/Sum.java
-            :language: java
-            :linenos:
-            :lines: 27-50
 
 AllDifferent Forward Checking
 =================================
 
 Implement a dedicated algorithm for the all-different.
+Whenever a variable is bound to a value, this value is removed from the domain of other variables.
 
 
-Binary first fail branching
+Conflict based search branching
 =================================================================
+
+
 
 Implement a binary first fail search strategy.
 You can use the ``branch`` helper method to create the array of alternatives.
@@ -137,17 +60,13 @@ Capture a call to ``Store::add(new EqualVal(x,v))`` on the left branch,
 and ``Store::add(new DifferentVal(x,v))`` on the right branch.
 
 
-.. literalinclude:: ../../src/main/java/minicp/cp/branchings/BinaryFirstFail.java
-                :language: java
-                :linenos:
-                :lines: 30-61
+Last Conflict [LC2009]_
+Conflict Ordering Search [LC2009]_
 
 
-N-Queens
-===========
+.. [LC2009] Lecoutre, C., Saïs, L., Tabary, S., & Vidal, V. (2009). Reasoning from last conflict (s) in constraint programming. Artificial Intelligence, 173(18), 1592-1614.
 
-Implement a model for the N-Queens.
-Count the number of solution for a 8x8 chessboard.
+
 
 
 Discrepancy Search
@@ -162,27 +81,35 @@ Depth First Search
 Replace the recursive DFS search by a non recursive implementation using an explicit stack.
 
 
-Magic Square
-==============
-
-Implement a model for the Magic-Square
-Count the number of solution for a 5x5 magic square.
-
-
-Objective Function and Branch and Bound
-========================
-
-TODO
 
 Circuit Constraint
 ========================
 
-TODO
+
+Circuit Filtering [TSP1998]_
+
+.. [TSP1998] Pesant, G., Gendreau, M., Potvin, J. Y., & Rousseau, J. M. (1998). An exact constraint logic programming algorithm for the traveling salesman problem with time windows. Transportation Science, 32(1), 12-29.
+
 
 Element Constraint
 ========================
 
 TODO
+
+
+Cumulative Constraint
+========================
+
+Cumulative and Time-Table Filtering [TT2015]_
+
+.. [TT2015] Gay, S., Hartert, R., & Schaus, P. (2015, August). Simple and scalable time-table filtering for the cumulative constraint. In International Conference on Principles and Practice of Constraint Programming (pp. 149-157). Springer.
+
+Table Constraint
+========================
+
+Compact Table [CT2016]_
+
+.. [CT2016] Demeulenaere, J., Hartert, R., Lecoutre, C., Perez, G., Perron, L., Régin, J. C., & Schaus, P. (2016, September). Compact-table: Efficiently filtering table constraints with reversible sparse bit-sets. In International Conference on Principles and Practice of Constraint Programming (pp. 207-223). Springer.
 
 Restarts
 ========================
@@ -195,12 +122,12 @@ Watched Literals: The or (clause) constraint
 TODO
 
 
-LNS
-========================
+Implement a domain iterator
+============================
 
 TODO
 
-Implement: The closure must be deactivated when filtering is lost
+.. Implement: The closure must be deactivated when filtering is lost
 x.whenValueLost(filtering, () -> {});
 
 

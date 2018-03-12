@@ -25,6 +25,13 @@ public class SparseSetDomain extends IntDomain {
     private ReversibleSparseSet domain;
     private int offset;
 
+    public int fillArray(int [] dest) {
+        int s = domain.fillArray(dest);
+        for (int i = 0; i < s; i++) {
+            dest[i] += offset;
+        }
+        return s;
+    }
 
     public SparseSetDomain(Trail trail, int min, int max) {
         offset = min;

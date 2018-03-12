@@ -20,6 +20,7 @@ import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 
 import java.security.InvalidParameterException;
+import java.util.Comparator;
 import java.util.Set;
 
 public class IntVarImpl implements IntVar {
@@ -88,7 +89,16 @@ public class IntVarImpl implements IntVar {
      * @param values
      */
     public IntVarImpl(Solver cp, Set<Integer> values) {
-        throw new NotImplementedException();
+        this(cp,values.stream().min(Integer::compare).get(),values.stream().max(Integer::compare).get());
+        if (values.isEmpty()) throw new InvalidParameterException("at least one value in the domain");
+        for (int i = getMin(); i < getMax(); i++) {
+            if (!values.contains(i)) {
+                try {
+                    this.remove(i);
+                } catch (InconsistencyException e) {
+                }
+            }
+        }
     }
 
 
@@ -138,6 +148,11 @@ public class IntVarImpl implements IntVar {
 
     public int getSize() {
         return domain.getSize();
+    }
+
+    @Override
+    public int fillArray(int[] dest) {
+        return domain.fillArray(dest);
     }
 
     public boolean contains(int v) {

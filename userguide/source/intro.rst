@@ -48,7 +48,7 @@ Getting Help with mini-cp
 
 You'll get greatest chance of getting answers to your questions using the mini-cp usergroup_.
 
-.. _usergroup: https://groups.google.com/forum/?fromgroups#!forum/minicp-user
+.. _usergroup: https://groups.google.com/d/forum/mini-cp
 
      
 
@@ -60,14 +60,14 @@ Miscellaneous
 Citing mini-cp
 ------------------
 
-If you use find this document useful for your research you can cite:
+If you use find mini-cp useful for your research or teaching you can cite:
 
 .. code-block:: latex
 	
 	@Misc{minicp,
 	  author = "{Laurent Michel, Pierre Schaus, Pascal Van Hentenryck}",
-	  title = "Learning Constraint Programming step-by-step with mini-cp",
-	  year = {2016},
+	  title = "{Mini-CP: A Minimalist Open-Source Solver to teach Constraint Programming",
+	  year = {2017},
 	  note = {Available from \texttt{www.info.ucl.ac.be/~pschaus/minicp}},
 	}
 

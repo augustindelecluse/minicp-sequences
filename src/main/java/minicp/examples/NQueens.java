@@ -49,7 +49,7 @@ public class NQueens {
                 )
         ).onSolution(() ->
                 System.out.println("solution:"+ Arrays.toString(q))
-        ).start();
+        ).start(statistics -> statistics.nSolutions == 1);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);

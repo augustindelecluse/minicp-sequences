@@ -81,6 +81,15 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
+    public int fillArray(int[] dest) {
+        int s = x.fillArray(dest);
+        for (int i = 0; i < s; i++) {
+           dest[i] *= a;
+        }
+        return s;
+    }
+
+    @Override
     public boolean isBound() {
         return x.isBound();
     }

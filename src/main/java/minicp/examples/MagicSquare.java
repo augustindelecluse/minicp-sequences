@@ -79,8 +79,7 @@ public class MagicSquare {
 
 
 
-        DFSearch dfs = new DFSearch(cp.getTrail(),firstFail(xFlat));
-        dfs.onSolution(() -> {
+        DFSearch dfs = makeDfs(cp,firstFail(xFlat)).onSolution(() -> {
                     for (int i = 0; i < n; i++) {
                         System.out.println(Arrays.toString(x[i]));
                     }

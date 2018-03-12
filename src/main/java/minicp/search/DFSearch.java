@@ -17,9 +17,9 @@ package minicp.search;
 
 import minicp.reversible.Trail;
 import minicp.util.InconsistencyException;
+import minicp.util.NotImplementedException;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class DFSearch {
 
@@ -65,15 +65,55 @@ public class DFSearch {
     public SearchStatistics start(SearchLimit limit) {
         SearchStatistics statistics = new SearchStatistics();
         int level = state.getLevel();
+
         try {
             dfs(statistics,limit);
-        } catch (StopSearchException e) {}
+        } catch (StopSearchException e) {
+        }  catch (StackOverflowError e) {
+            throw new NotImplementedException("dfs with explicit stack needed to pass this test");
+        }
         state.popUntil(level);
         return statistics;
     }
 
     public SearchStatistics start() {
         return start(statistics -> false);
+    }
+
+
+    private void expandNode(Stack<Alternative> alternatives, SearchStatistics statistics) {
+        Alternative[] alts = choice.call();
+        if (alts.length == 0) {
+            statistics.nSolutions++;
+            notifySolutionFound();
+        } else {
+            for (int i = alts.length-1; i >= 0; i--) {
+                Alternative a = alts[i];
+                alternatives.push(() -> state.pop());
+                alternatives.push(() -> {
+                    statistics.nNodes++;
+                    a.call();
+                    expandNode(alternatives, statistics);
+                });
+                alternatives.push(() -> state.push());
+            }
+        }
+    }
+
+    private void dfs2(SearchStatistics statistics, SearchLimit limit) {
+
+        Stack<Alternative> alternatives = new Stack<Alternative>();
+        expandNode(alternatives,statistics);
+        while (!alternatives.isEmpty()) {
+            if (limit.stopSearch(statistics)) throw new StopSearchException();
+            try {
+                alternatives.pop().call();
+            } catch (InconsistencyException e) {
+                notifyFailure();
+                statistics.nFailures++;
+            }
+        }
+
     }
 
 
@@ -100,3 +140,6 @@ public class DFSearch {
         }
     }
 }
+
+
+

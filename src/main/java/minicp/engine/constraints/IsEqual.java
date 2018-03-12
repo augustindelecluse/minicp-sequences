@@ -46,7 +46,10 @@ public class IsEqual extends Constraint { // b <=> x == c
         } else {
             b.whenBind(() -> {
                 if (b.isTrue()) x.assign(c);
-                else x.remove(c);
+                else {
+                    // should deactivate the constraint as it is entailed
+                    x.remove(c);
+                }
             });
             x.whenBind(() ->
                 b.assign(x.getMin() == c)

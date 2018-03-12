@@ -80,6 +80,15 @@ public class IntVarViewOffset implements IntVar {
     }
 
     @Override
+    public int fillArray(int[] dest) {
+        int s = x.fillArray(dest);
+        for (int i = 0; i < s; i++) {
+            dest[i] += o;
+        }
+        return s;
+    }
+
+    @Override
     public boolean isBound() {
         return x.isBound();
     }

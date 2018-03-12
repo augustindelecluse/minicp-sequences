@@ -5,7 +5,7 @@
 
 
 ########
-Learning Constraint Programming step-by-step with mini-cp
+Mini-CP: A Minimalist Open-Source Solver to teach Constraint Programming
 ########
 
 .. toctree::

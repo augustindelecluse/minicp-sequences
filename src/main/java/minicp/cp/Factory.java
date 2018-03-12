@@ -51,10 +51,23 @@ public class Factory {
         return new IntVarViewOffset(x,-v);
     }
 
+    /**
+     * Create a variable with the elements {0,...,n-1}
+     * as initial domain
+     * @param cp
+     * @param n > 0
+     */
     static public IntVar makeIntVar(Solver cp, int n) {
         return new IntVarImpl(cp,n);
     }
 
+    /**
+     * Create a variable with the elements {min,...,max}
+     * as initial domain
+     * @param cp
+     * @param min
+     * @param max > min
+     */
     static public IntVar makeIntVar(Solver cp, int min, int max) {
         return new IntVarImpl(cp,min,max);
     }
@@ -80,9 +93,9 @@ public class Factory {
         IntVar call(int i) throws InconsistencyException ;
     }
 
-    static public IntVar[] makeIntVarArray(Solver cp,int n,BodyClosure body) throws InconsistencyException {
+    static public IntVar[] makeIntVarArray(Solver cp, int n, BodyClosure body) throws InconsistencyException {
         IntVar[] rv = new IntVar[n];
-        for(int i = 0; i < n;i++)
+        for (int i = 0; i < n; i++)
             rv[i] = body.call(i);
         return rv;
     }
@@ -148,7 +161,7 @@ public class Factory {
         return z;
     }
 
-    static public IntVar sum(IntVar[] x) throws InconsistencyException {
+    static public IntVar sum(IntVar... x) throws InconsistencyException {
         int sumMin = 0;
         int sumMax = 0;
         for (int i = 0; i < x.length; i++) {

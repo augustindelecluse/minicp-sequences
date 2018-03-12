@@ -19,6 +19,7 @@ package minicp.cp;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.Choice;
+import minicp.search.ChoiceCombinator;
 
 import static minicp.search.Selector.branch;
 import static minicp.search.Selector.selectMin;
@@ -45,5 +46,9 @@ public class Heuristics {
         );
     }
 
+
+    public static Choice and(Choice ... choices) {
+        return new ChoiceCombinator(choices);
+    }
 
 }

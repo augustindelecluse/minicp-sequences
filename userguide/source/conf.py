@@ -45,7 +45,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'mini-cp User-Guide'
-copyright = u'2016, Laurent Michel, Pierre Schaus, Pascal Van Hentenryck'
+copyright = u'2017, Laurent Michel, Pierre Schaus, Pascal Van Hentenryck'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -98,11 +98,11 @@ pygments_style = 'sphinx'
 #html_theme = 'sphinxdoc'
 #html_theme = "classic"
 
-import sphinx_rtd_theme
-
+#import sphinx_rtd_theme
 html_theme = "sphinx_rtd_theme"
+html_theme = "bizstyle"
+#html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 
 
@@ -123,7 +123,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = "_static/minicp.png"
+html_logo = "_static/mini-cp.png"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -266,5 +266,5 @@ javalink_classpath = [
 javalink_docroots = [
     'http://docs.oracle.com/javase/7/docs/api/',
     #{'root': './api','base': './api'}
-    {'root': '../../target/scala-2.10/api/', 'base': './_static/'}
+        {'root': '../../target/scala-2.10/api/', 'base': './_static/'}
 ]

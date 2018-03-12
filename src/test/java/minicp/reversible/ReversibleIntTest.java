@@ -23,6 +23,21 @@ import static org.junit.Assert.assertTrue;
 
 public class ReversibleIntTest {
 
+    {
+        Trail trail = new Trail();
+        ReversibleInt a = new ReversibleInt(trail,7);
+        ReversibleInt b = new ReversibleInt(trail,13);
+
+        trail.push();      // Conceptually: record current state a=7, b=13
+        a.setValue(11);
+        b.setValue(14);
+        trail.push();   // Conceptually: record current state a=11, b=14
+        a.setValue(4);
+        b.setValue(9);
+        trail.pop();
+        trail.pop();
+    }
+
     @Test
     public void testExample() {
 

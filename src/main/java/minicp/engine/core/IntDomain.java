@@ -38,6 +38,14 @@ public abstract class IntDomain {
 
     public abstract  int removeAbove(int value, DomainListener x) throws InconsistencyException;
 
+    /**
+     * Copy the values of the domain
+     * @param dest, an array large enough dest.length >= getSize()
+     * @return the size of the domain and dest[0,...,getSize-1] contains
+     *         the values in the domain in an arbitrary order
+     */
+    public abstract int fillArray(int [] dest);
+
     @Override
     public String toString() {
         StringBuilder b = new StringBuilder();
