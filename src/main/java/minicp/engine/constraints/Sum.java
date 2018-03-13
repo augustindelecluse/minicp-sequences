@@ -62,6 +62,8 @@ public class Sum extends Constraint {
 
     @Override
     public void post() throws InconsistencyException {
+
+
         for (IntVar var: x) {
             var.propagateOnBoundChange(this);
             //var.propagateOnDomainChange(this);

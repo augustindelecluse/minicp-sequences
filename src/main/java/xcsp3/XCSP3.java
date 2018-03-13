@@ -42,6 +42,7 @@ public class XCSP3 implements XCallbacks2 {
     public Optional<IntVar> objectiveMinimize = Optional.empty();
 
 
+
     @Override
     public Implem implem() {
         return implem;
@@ -54,9 +55,12 @@ public class XCSP3 implements XCallbacks2 {
         implem.currParameters.put(XCallbacksParameters.RECOGNIZE_UNARY_PRIMITIVES, new Object());
         implem.currParameters.put(XCallbacksParameters.RECOGNIZE_BINARY_PRIMITIVES, new Object());
         implem.currParameters.put(XCallbacksParameters.RECOGNIZE_TERNARY_PRIMITIVES, new Object());
-        implem.currParameters.put(XCallbacksParameters.RECOGNIZE_NVALUES_CASES, new Object());
-        implem.currParameters.put(XCallbacksParameters.CONVERT_INTENSION_TO_EXTENSION_ARITY_LIMIT, 1000); // included
-        implem.currParameters.put(XCallbacksParameters.CONVERT_INTENSION_TO_EXTENSION_ARITY_LIMIT, 1000000);
+        //implem.currParameters.put(XCallbacksParameters.RECOGNIZE_NVALUES_CASES, new Object());
+        implem.currParameters.put(XCallbacksParameters.CONVERT_INTENSION_TO_EXTENSION_ARITY_LIMIT, 100000000); // included
+        implem.currParameters.put(XCallbacksParameters.CONVERT_INTENSION_TO_EXTENSION_ARITY_LIMIT, 100000000);
+
+
+
 
         //Document doc = Utilities.loadDocument(fileName);
         //XParser parser = new XParser(doc);
@@ -115,15 +119,26 @@ public class XCSP3 implements XCallbacks2 {
 
         }
         if (flags.contains(Types.TypeFlag.STARRED_TUPLES.UNCLEAN_TUPLES)) {
+            throw new IllegalArgumentException("short table not supported");
             // You have possibly to clean tuples here, in order to remove invalid tuples.
             // A tuple is invalid if it contains a value $a$ for a variable $x$, not present in $dom(x)$
             // Note that most of the time, tuples are already cleaned by the parser
         }
         try {
-            System.out.println("table");
-            if (!positive) throw new IllegalArgumentException("negative table not supported");
-            minicp.post(new TableCT(trVars(list), tuples));
+            if (!positive) {
+                System.out.println("negative table");
+                throw new IllegalArgumentException("negative table not supported");
+            }
+            /*
+            System.out.println(trVars(list).length);
+            System.out.println(Arrays.toString(trVars(list)));
+            for (int [] tuple: tuples) {
+                System.out.println(Arrays.toString(tuple));
+            }*/
+            minicp.fixPoint();
+            minicp.post(new TableDecomp(trVars(list), tuples));
         } catch (InconsistencyException e) {
+            System.out.println("Inconsistent Model");
             e.printStackTrace();
         }
     }
@@ -154,7 +169,7 @@ public class XCSP3 implements XCallbacks2 {
             }
             x.getSolver().fixPoint();
         } catch (InconsistencyException e) {
-            System.out.println("inconsistent model");
+            e.printStackTrace();
         }
     }
 
@@ -185,7 +200,8 @@ public class XCSP3 implements XCallbacks2 {
                     throw new InvalidParameterException("unknown condition");
             }
         } catch (InconsistencyException e) {
-            System.out.println("inconsistent model");
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
         }
     }
 
@@ -211,26 +227,19 @@ public class XCSP3 implements XCallbacks2 {
                         minicp.post(new IsLessOrEqual(le, expr, (int) op.min - 1));
                         minicp.post(new IsLessOrEqual(ge, minus(expr), (int) -op.max - 1));
                         sum(le, ge).removeBelow(1);
-                        //minisolIsLessOrEqual(BoolVar b, IntVar x, int c
+
                         break;
                     default:
                         throw new InvalidParameterException("unknown condition");
                 }
                 expr.getSolver().fixPoint();
             } catch (InconsistencyException e) {
+                e.printStackTrace();
+                System.out.println("Inconsistent Model");
             }
         }
     }
 
-    @Override
-    public void buildCtrElement(String id, XVarInteger[] list, int value) {
-
-    }
-
-    @Override
-    public void buildCtrElement(String id, XVarInteger[] list, XVarInteger value) {
-
-    }
 
     @Override
     public void buildCtrElement(String id, int[] list, int startIndex, XVarInteger index, Types.TypeRank rank, XVarInteger value) {
@@ -241,7 +250,8 @@ public class XCSP3 implements XCallbacks2 {
         try {
             minicp.post(new Element1D(list, idx, z));
         } catch (InconsistencyException e) {
-            System.out.println("inconsistent model");
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
         }
     }
 
@@ -254,7 +264,8 @@ public class XCSP3 implements XCallbacks2 {
         try {
             minicp.post(new Element1DVar(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new), idx, z));
         } catch (InconsistencyException e) {
-            System.out.println("inconsistent model");
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
         }
     }
 
@@ -267,38 +278,33 @@ public class XCSP3 implements XCallbacks2 {
         try {
             minicp.post(new Element1DVar(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new), idx, z));
         } catch (InconsistencyException e) {
-            System.out.println("inconsistent model");
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
         }
     }
 
+
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeConditionOperatorRel op, int k) {
-        System.out.println("here1");
+        relConstraintVal(mapVar.get(x), op,k);
     }
 
-    @Override
-    public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeConditionOperatorSet op, int[] t) {
-        System.out.println("here2");
-    }
-
-    @Override
-    public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeConditionOperatorSet op, int min, int max) {
-        System.out.println("here3");
-    }
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeUnaryArithmeticOperator aop, XVarInteger y) {
-        System.out.println("here3");
+        throw new IllegalArgumentException("not implemented");
     }
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeArithmeticOperator aop, int p, Types.TypeConditionOperatorRel op, int k) {
-        System.out.println("here5");
+        throw new IllegalArgumentException("not implemented");
+
     }
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeArithmeticOperator aop, int p, Types.TypeConditionOperatorRel op, XVarInteger y) {
-        System.out.println("here6");
+        throw new IllegalArgumentException("not implemented");
+
     }
 
     public IntVar arithmeticOperatorConstraint(IntVar x,Types.TypeArithmeticOperator aop,IntVar y) {
@@ -317,7 +323,8 @@ public class XCSP3 implements XCallbacks2 {
                     System.out.println("division not implemented");
                     throw new IllegalArgumentException("Division between vars is not implemented");
                 case MUL:
-                    break;
+                    System.out.println("mul not implemented");
+                    throw new IllegalArgumentException("Multiplication between vars is not implemented");
                 case SUB:
                     r = sum(x, minus(y));
                     break;
@@ -325,13 +332,15 @@ public class XCSP3 implements XCallbacks2 {
                     System.out.println("modulo not implemented");
                     throw new IllegalArgumentException("Modulo between vars is not implemented");
                 case POW:
+                    System.out.println("pow not implemented");
                     throw new IllegalArgumentException("Pow between vars is not implemented");
                 default:
                     break;
             }
             return r;
         } catch (InconsistencyException e) {
-            System.out.println("inconsistent model");
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
         }
         return r;
     }
@@ -360,9 +369,26 @@ public class XCSP3 implements XCallbacks2 {
             IntVar s = sum(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new));
             _buildCrtWithCondition(id, s, condition);
         } catch (InconsistencyException e) {
-            System.out.println("model inconsistent");
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
         }
     }
+
+    @Override
+    public void buildCtrSum(String id, XVarInteger[] list, int[] coeffs, Condition condition) {
+        try {
+            IntVar [] wx = new IntVar[list.length];
+            for (int i = 0; i < list.length; i++) {
+                wx[i] = mul(mapVar.get(list[i]),coeffs[i]);
+            }
+            IntVar s = sum(wx);
+            _buildCrtWithCondition(id, s, condition);
+        } catch (InconsistencyException e) {
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
+        }
+    }
+
 
     @Override
     public void buildCtrAllDifferent(String id, XVarInteger[] list) {
@@ -370,26 +396,20 @@ public class XCSP3 implements XCallbacks2 {
         try {
             minicp.post(allDifferent(Arrays.stream(list).map(x -> mapVar.get(x)).toArray(IntVar[]::new)));
         } catch (InconsistencyException e) {
-            System.out.println("model inconsistent");
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
         }
     }
 
     @Override
     public void buildObjToMinimize(String id, XVarInteger x) {
         objectiveMinimize = Optional.of(mapVar.get(x));
-        //minicp.post(new Minimize(x,dfs));
-    }
-
-    @Override
-    public void buildObjToMinimize(String id, XNodeParent<XVarInteger> tree) {
-        System.out.println("not implemented1");
     }
 
     @Override
     public void buildObjToMinimize(String id, Types.TypeObjective type, XVarInteger[] list) {
         if (type != Types.TypeObjective.SUM) {
             System.out.println("not implemented2");
-
         }
         try {
             IntVar s = sum(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new));
@@ -401,7 +421,51 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildObjToMinimize(String id, Types.TypeObjective type, XVarInteger[] list, int[] coeffs) {
-        System.out.println("not implemented3");
+        IntVar [] wx = new IntVar[list.length];
+        for (int i = 0; i < list.length; i++) {
+            wx[i] = mul(mapVar.get(list[i]),coeffs[i]);
+        }
+        try {
+            IntVar s = sum(wx);
+            objectiveMinimize = Optional.of(s);
+        } catch (InconsistencyException e) {
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
+        }
+    }
+
+    @Override
+    public void buildObjToMaximize(String id, XVarInteger x) {
+        objectiveMinimize = Optional.of(minus(mapVar.get(x)));
+    }
+
+    @Override
+    public void buildObjToMaximize(String id, Types.TypeObjective type, XVarInteger[] list) {
+        if (type != Types.TypeObjective.SUM) {
+            System.out.println("not implemented2");
+        }
+        try {
+            IntVar s = sum(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new));
+            objectiveMinimize = Optional.of(minus(s));
+        } catch (InconsistencyException e) {
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
+        }
+    }
+
+    @Override
+    public void buildObjToMaximize(String id, Types.TypeObjective type, XVarInteger[] list, int[] coeffs) {
+        IntVar [] wx = new IntVar[list.length];
+        for (int i = 0; i < list.length; i++) {
+            wx[i] = mul(mapVar.get(list[i]),coeffs[i]);
+        }
+        try {
+            IntVar s = sum(wx);
+            objectiveMinimize = Optional.of(minus(s));
+        } catch (InconsistencyException e) {
+            e.printStackTrace();
+            System.out.println("Inconsistent Model");
+        }
     }
 
     @Override
@@ -422,6 +486,7 @@ public class XCSP3 implements XCallbacks2 {
                 minicp.post(new Minimize(objectiveMinimize.get(), search));
             } catch (InconsistencyException e) {
                 e.printStackTrace();
+                System.out.println("Inconsistent Model");
             }
         }
 

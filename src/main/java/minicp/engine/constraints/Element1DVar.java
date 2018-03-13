@@ -41,8 +41,8 @@ public class Element1DVar extends Constraint {
 
     @Override
     public void propagate() throws InconsistencyException {
-        int zMin = z.getMin();
-        int zMax = z.getMax();
+        zMin = z.getMin();
+        zMax = z.getMax();
         if (y.isBound()) equalityPropagate();
         else {
             filterY();
@@ -67,7 +67,6 @@ public class Element1DVar extends Constraint {
     private void filterY() throws InconsistencyException {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
-
 
         int i = y.fillArray(yValues);
         while (i > 0) {

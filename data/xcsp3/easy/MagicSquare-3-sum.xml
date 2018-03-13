@@ -1,0 +1,34 @@
+<instance format="XCSP3" type="CSP">
+  <variables>
+    <array id="x" size="[3][3]"> 1..9 </array>
+  </variables>
+  <constraints>
+    <allDifferent> x[][] </allDifferent>
+    <group class="rows">
+      <sum>
+        <list> %... </list>
+        <condition> (eq,15) </condition>
+      </sum>
+      <args> x[0][] </args>
+      <args> x[1][] </args>
+      <args> x[2][] </args>
+    </group>
+    <group class="columns">
+      <sum>
+        <list> %... </list>
+        <condition> (eq,15) </condition>
+      </sum>
+      <args> x[][0] </args>
+      <args> x[][1] </args>
+      <args> x[][2] </args>
+    </group>
+    <group class="diagonals">
+      <sum>
+        <list> %... </list>
+        <condition> (eq,15) </condition>
+      </sum>
+      <args> x[0][0] x[1][1] x[2][2] </args>
+      <args> x[0][2] x[1][1] x[2][0] </args>
+    </group>
+  </constraints>
+</instance>

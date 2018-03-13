@@ -32,6 +32,7 @@ public class Factory {
 
     static public IntVar mul(IntVar x, int a) {
         if (a == 0) return makeIntVar(x.getSolver(),0,0);
+        else if (a == 1) return x;
         else if (a < 0) {
             return minus(new IntVarViewMul(x,-a));
         } else {
