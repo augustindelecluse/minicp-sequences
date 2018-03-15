@@ -31,7 +31,6 @@ public class Absolute extends Constraint {
         x.propagateOnBoundChange(this);
         y.propagateOnBoundChange(this);
         propagate();
-
         //we can do more propagation with val remove
     }
 
@@ -69,11 +68,13 @@ public class Absolute extends Constraint {
             x.removeBelow(-y.getMax());
             x.removeAbove(-y.getMin());
         } else {
-            int maxabsy = Math.max(Math.abs(x.getMax()), Math.abs(x.getMin()));
-            y.removeAbove(maxabsy);
+            int maxAbs = Math.max(x.getMax(), -x.getMin());
+            y.removeAbove(maxAbs);
             x.removeAbove(y.getMax());
             x.removeBelow(-y.getMax());
-
+            while (!x.contains(y.getMin()) & !x.contains(-y.getMin())) {
+                y.remove(y.getMin());
+            }
         }
     }
 
