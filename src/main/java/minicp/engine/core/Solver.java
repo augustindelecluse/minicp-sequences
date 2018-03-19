@@ -67,5 +67,10 @@ public class Solver {
         if (enforceFixPoint) fixPoint();
     }
 
+    public void post(BoolVar b) throws InconsistencyException {
+        b.assign(true);
+        fixPoint();
+    }
+
 }
 

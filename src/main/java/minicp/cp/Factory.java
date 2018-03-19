@@ -140,6 +140,33 @@ public class Factory {
         return b;
     }
 
+    static public BoolVar isLessOrEqual(IntVar x, final int c)  throws InconsistencyException  {
+        BoolVar b = makeBoolVar(x.getSolver());
+        Solver cp = x.getSolver();
+        cp.post(new IsLessOrEqual(b,x,c));
+        return b;
+    }
+
+    static public BoolVar isLess(IntVar x, final int c)  throws InconsistencyException  {
+        return isLessOrEqual(x,c-1);
+    }
+
+    static public BoolVar isLargerOrEqual(IntVar x, final int c)  throws InconsistencyException  {
+        return isLessOrEqual(minus(x),-c);
+    }
+
+    static public BoolVar isLarger(IntVar x, final int c)  throws InconsistencyException  {
+        return isLargerOrEqual(x,c+1);
+    }
+
+    static public Constraint lessOrEqual(IntVar x, IntVar y) {
+        return new LessOrEqual(x,y);
+    }
+
+    static public Constraint largerOrEqual(IntVar x, IntVar y) {
+        return new LessOrEqual(y,x);
+    }
+
     static public Constraint minimize(IntVar x, DFSearch dfs) {
         return new Minimize(x,dfs);
     }
