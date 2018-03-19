@@ -1,17 +1,21 @@
 package xcsp3;
 
+import minicp.cp.Factory;
 import minicp.engine.constraints.*;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.IntVarViewOpposite;
 import minicp.engine.core.Solver;
 
 import static minicp.cp.Heuristics.*;
 import static minicp.cp.Factory.*;
+import static org.xcsp.parser.XCallbacks.XCallbacksParameters.RECOGNIZING_BEFORE_CONVERTING;
 
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.Box;
 import minicp.util.InconsistencyException;
+import minicp.util.NotImplementedException;
 import org.w3c.dom.Document;
 import org.xcsp.checker.SolutionChecker;
 import org.xcsp.common.Condition;
@@ -34,13 +38,13 @@ public class XCSP3 implements XCallbacks2 {
     private Implem implem = new Implem(this);
 
     private String fileName;
-    public final Map<XVarInteger, IntVar> mapVar = new HashMap<>();
-    public final List<XVarInteger> xVars = new LinkedList<>();
-    public final List<IntVar> minicpVars = new LinkedList<>();
+    private final Map<XVarInteger, IntVar> mapVar = new HashMap<>();
+    private final List<XVarInteger> xVars = new LinkedList<>();
+    private final List<IntVar> minicpVars = new LinkedList<>();
     public final Solver minicp = new Solver();
 
-    public Optional<IntVar> objectiveMinimize = Optional.empty();
-
+    private Optional<IntVar> objectiveMinimize = Optional.empty();
+    private boolean hasFailed;
 
 
     @Override
@@ -50,34 +54,23 @@ public class XCSP3 implements XCallbacks2 {
 
     public XCSP3(String fileName) throws Exception {
         this.fileName = fileName;
+        hasFailed = false;
+
         implem.currParameters.clear();
 
         implem.currParameters.put(XCallbacksParameters.RECOGNIZE_UNARY_PRIMITIVES, new Object());
         implem.currParameters.put(XCallbacksParameters.RECOGNIZE_BINARY_PRIMITIVES, new Object());
         implem.currParameters.put(XCallbacksParameters.RECOGNIZE_TERNARY_PRIMITIVES, new Object());
         //implem.currParameters.put(XCallbacksParameters.RECOGNIZE_NVALUES_CASES, new Object());
-        implem.currParameters.put(XCallbacksParameters.CONVERT_INTENSION_TO_EXTENSION_ARITY_LIMIT, 100000000); // included
-        implem.currParameters.put(XCallbacksParameters.CONVERT_INTENSION_TO_EXTENSION_ARITY_LIMIT, 100000000);
-
-
-
-
-        //Document doc = Utilities.loadDocument(fileName);
-        //XParser parser = new XParser(doc);
-        //parser.vEntries.stream().forEach(e -> System.out.println(e));
-        //parser.cEntries.stream().forEach(e -> System.out.println(e));
-        //parser.oEntries.stream().forEach(e -> System.out.println(e));
+        implem.currParameters.put(XCallbacksParameters.RECOGNIZING_BEFORE_CONVERTING, Boolean.TRUE);
+        implem.currParameters.put(XCallbacksParameters.CONVERT_INTENSION_TO_EXTENSION_ARITY_LIMIT, 10); // included
+        implem.currParameters.put(XCallbacksParameters.CONVERT_INTENSION_TO_EXTENSION_SPACE_LIMIT, 10L); // included
 
         loadInstance(fileName);
     }
 
-    public List<String> getViolatedCtrs(String solution) {
-        try {
-            return new SolutionChecker(false, fileName, new ByteArrayInputStream(solution.getBytes())).violatedCtrs;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new LinkedList<>();
-        }
+    public List<String> getViolatedCtrs(String solution) throws Exception {
+        return new SolutionChecker(false, fileName, new ByteArrayInputStream(solution.getBytes())).violatedCtrs;
     }
 
     @Override
@@ -90,7 +83,7 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildVarInteger(XVarInteger x, int[] values) {
-        Set<Integer> vals = new LinkedHashSet<Integer>();
+        Set<Integer> vals = new LinkedHashSet<>();
         for (int v : values) vals.add(v);
         IntVar x_ = makeIntVar(minicp, vals);
         mapVar.put(x, x_);
@@ -98,59 +91,65 @@ public class XCSP3 implements XCallbacks2 {
         xVars.add(x);
     }
 
-    private IntVar trVar(Object x) {
-        return mapVar.get((XVarInteger) x);
-    }
-
     private IntVar[] trVars(Object vars) {
-        return Arrays.stream((XVarInteger[]) vars).map(x -> mapVar.get(x)).toArray(IntVar[]::new);
+        return Arrays.stream((XVarInteger[]) vars).map(mapVar::get).toArray(IntVar[]::new);
     }
 
     private IntVar[][] trVars2D(Object vars) {
-        return Arrays.stream((XVarInteger[][]) vars).map(t -> trVars(t)).toArray(IntVar[][]::new);
+        return Arrays.stream((XVarInteger[][]) vars).map(this::trVars).toArray(IntVar[][]::new);
+    }
+
+    @Override
+    public void buildCtrExtension(String id, XVarInteger x, int[] values, boolean positive, Set<Types.TypeFlag> flags) {
+        if(hasFailed)
+            return;
+        int[][] table = new int[values.length][1];
+        for(int i = 0; i < values.length; i++)
+            table[i][0] = values[i];
+        buildCtrExtension(id, new XVarInteger[]{x}, table, positive, flags);
     }
 
     @Override
     public void buildCtrExtension(String id, XVarInteger[] list, int[][] tuples, boolean positive, Set<Types.TypeFlag> flags) {
-        if (flags.contains(Types.TypeFlag.STARRED_TUPLES.STARRED_TUPLES)) {
+        if(hasFailed)
+            return;
+
+        if (flags.contains(Types.TypeFlag.STARRED_TUPLES)) {
             // Can you manage short tables ? i.e., tables with tuples containing symbol * ?
             // If not, throw an exception.
             throw new IllegalArgumentException("short table not supported");
-
         }
-        if (flags.contains(Types.TypeFlag.STARRED_TUPLES.UNCLEAN_TUPLES)) {
-            throw new IllegalArgumentException("short table not supported");
+
+        /*if (flags.contains(Types.TypeFlag.UNCLEAN_TUPLES)) {
             // You have possibly to clean tuples here, in order to remove invalid tuples.
             // A tuple is invalid if it contains a value $a$ for a variable $x$, not present in $dom(x)$
             // Note that most of the time, tuples are already cleaned by the parser
-        }
+        }*/
+
         try {
             if (!positive) {
                 System.out.println("negative table");
                 throw new IllegalArgumentException("negative table not supported");
             }
-            /*
-            System.out.println(trVars(list).length);
-            System.out.println(Arrays.toString(trVars(list)));
-            for (int [] tuple: tuples) {
-                System.out.println(Arrays.toString(tuple));
-            }*/
             minicp.fixPoint();
+            //TODO student: use other table implementation
             minicp.post(new TableDecomp(trVars(list), tuples));
         } catch (InconsistencyException e) {
-            System.out.println("Inconsistent Model");
-            e.printStackTrace();
+            hasFailed = true;
         }
     }
 
     private void relConstraintVal(IntVar x, Types.TypeConditionOperatorRel operator, int k) {
+        if(hasFailed)
+            return;
+
         try {
             switch (operator) {
                 case EQ:
-                    x.assign( k);
+                    x.assign(k);
                     break;
                 case GE:
-                    x.removeBelow( k);
+                    x.removeBelow(k);
                     break;
                 case GT:
                     x.removeBelow(k + 1);
@@ -169,11 +168,14 @@ public class XCSP3 implements XCallbacks2 {
             }
             x.getSolver().fixPoint();
         } catch (InconsistencyException e) {
-            e.printStackTrace();
+            hasFailed = true;
         }
     }
 
     private void relConstraintVar(IntVar x, Types.TypeConditionOperatorRel operator, IntVar y) {
+        if(hasFailed)
+            return;
+
         try {
             switch (operator) {
                 case EQ:
@@ -200,13 +202,15 @@ public class XCSP3 implements XCallbacks2 {
                     throw new InvalidParameterException("unknown condition");
             }
         } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
+            hasFailed = true;
         }
     }
 
 
     private void _buildCrtWithCondition(String id, IntVar expr, Condition operator) {
+        if(hasFailed)
+            return;
+
         if (operator instanceof Condition.ConditionVal) {
             Condition.ConditionVal op = (Condition.ConditionVal) operator;
             relConstraintVal(expr,op.operator,(int) op.k);
@@ -234,8 +238,7 @@ public class XCSP3 implements XCallbacks2 {
                 }
                 expr.getSolver().fixPoint();
             } catch (InconsistencyException e) {
-                e.printStackTrace();
-                System.out.println("Inconsistent Model");
+                hasFailed = true;
             }
         }
     }
@@ -243,139 +246,210 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrElement(String id, int[] list, int startIndex, XVarInteger index, Types.TypeRank rank, XVarInteger value) {
-        if (rank != Types.TypeRank.ANY)
-            throw new IllegalArgumentException("Element constraint only supports ANY as position for the index");
-        IntVar idx = minus(mapVar.get(index),startIndex);
-        IntVar z =  mapVar.get(value.id());
-        try {
-            minicp.post(new Element1D(list, idx, z));
-        } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
-        }
-    }
+        if(hasFailed)
+            return;
 
-    @Override
-    public void buildCtrElement(String id, XVarInteger[] list, int startIndex, XVarInteger index, Types.TypeRank rank, int value) {
-        if (rank != Types.TypeRank.ANY)
-            throw new IllegalArgumentException("Element constraint only supports ANY as position for the index");
-        IntVar idx = minus(mapVar.get(index),startIndex);
-        IntVar z =  makeIntVar(minicp,value,value);
-        try {
-            minicp.post(new Element1DVar(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new), idx, z));
-        } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
-        }
-    }
-
-    @Override
-    public void buildCtrElement(String id, XVarInteger[] list, int startIndex, XVarInteger index, Types.TypeRank rank, XVarInteger value) {
         if (rank != Types.TypeRank.ANY)
             throw new IllegalArgumentException("Element constraint only supports ANY as position for the index");
         IntVar idx = minus(mapVar.get(index),startIndex);
         IntVar z =  mapVar.get(value);
         try {
-            minicp.post(new Element1DVar(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new), idx, z));
+            minicp.post(new Element1D(list, idx, z));
         } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
+            hasFailed = true;
+        }
+    }
+
+    @Override
+    public void buildCtrElement(String id, XVarInteger[] list, int startIndex, XVarInteger index, Types.TypeRank rank, int value) {
+        if(hasFailed)
+            return;
+
+        if (rank != Types.TypeRank.ANY)
+            throw new IllegalArgumentException("Element constraint only supports ANY as position for the index");
+        IntVar idx = minus(mapVar.get(index),startIndex);
+        IntVar z =  makeIntVar(minicp,value,value);
+        try {
+            minicp.post(new Element1DVar(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new), idx, z));
+        } catch (InconsistencyException e) {
+            hasFailed = true;
+        }
+    }
+
+    @Override
+    public void buildCtrElement(String id, XVarInteger[] list, int startIndex, XVarInteger index, Types.TypeRank rank, XVarInteger value) {
+        if(hasFailed)
+            return;
+
+        if (rank != Types.TypeRank.ANY)
+            throw new IllegalArgumentException("Element constraint only supports ANY as position for the index");
+        IntVar idx = minus(mapVar.get(index),startIndex);
+        IntVar z =  mapVar.get(value);
+        try {
+            minicp.post(new Element1DVar(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new), idx, z));
+        } catch (InconsistencyException e) {
+            hasFailed = true;
         }
     }
 
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeConditionOperatorRel op, int k) {
+        if(hasFailed)
+            return;
         relConstraintVal(mapVar.get(x), op,k);
     }
 
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeUnaryArithmeticOperator aop, XVarInteger y) {
-        throw new IllegalArgumentException("not implemented");
+        if(hasFailed)
+            return;
+        try {
+            IntVar r = unaryArithmeticOperatorConstraint(mapVar.get(y),aop);
+            relConstraintVar(mapVar.get(x),Types.TypeConditionOperatorRel.EQ,r);
+        } catch (InconsistencyException e) {
+            hasFailed = true;
+        }
     }
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeArithmeticOperator aop, int p, Types.TypeConditionOperatorRel op, int k) {
-        throw new IllegalArgumentException("not implemented");
+        if(hasFailed)
+            return;
 
+        try {
+            IntVar r = arithmeticOperatorConstraintVal(mapVar.get(x), aop, p);
+            relConstraintVal(r,op,k);
+        } catch (InconsistencyException e) {
+            hasFailed = true;
+        }
     }
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeArithmeticOperator aop, int p, Types.TypeConditionOperatorRel op, XVarInteger y) {
-        throw new IllegalArgumentException("not implemented");
-
-    }
-
-    public IntVar arithmeticOperatorConstraint(IntVar x,Types.TypeArithmeticOperator aop,IntVar y) {
-        IntVar r = null;
+        if(hasFailed)
+            return;
         try {
-            switch (aop) {
-                case ADD:
-                    r = sum(x, y);
-                    break;
-                case DIST:
-                    IntVar x_y = sum(x, minus(y));
-                    r = makeIntVar(minicp, 0, x_y.getMax());
-                    minicp.post(new Absolute(x_y, r));
-                    break;
-                case DIV:
-                    System.out.println("division not implemented");
-                    throw new IllegalArgumentException("Division between vars is not implemented");
-                case MUL:
-                    System.out.println("mul not implemented");
-                    throw new IllegalArgumentException("Multiplication between vars is not implemented");
-                case SUB:
-                    r = sum(x, minus(y));
-                    break;
-                case MOD:
-                    System.out.println("modulo not implemented");
-                    throw new IllegalArgumentException("Modulo between vars is not implemented");
-                case POW:
-                    System.out.println("pow not implemented");
-                    throw new IllegalArgumentException("Pow between vars is not implemented");
-                default:
-                    break;
-            }
-            return r;
+            IntVar r = arithmeticOperatorConstraintVal(mapVar.get(x), aop, p);
+            relConstraintVar(r,op,mapVar.get(y));
         } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
+            hasFailed = true;
         }
-        return r;
     }
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x_, Types.TypeArithmeticOperator aop, XVarInteger y_, Types.TypeConditionOperatorRel op, int k) {
+        if(hasFailed)
+            return;
 
         IntVar x = mapVar.get(x_);
         IntVar y = mapVar.get(y_);
 
-        IntVar r = arithmeticOperatorConstraint(x, aop, y);
-        relConstraintVal(r, op, k);
-
+        try {
+            IntVar r = arithmeticOperatorConstraintVar(x, aop, y);
+            relConstraintVal(r, op, k);
+        } catch (InconsistencyException e) {
+            hasFailed = true;
+        }
     }
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeArithmeticOperator aop, XVarInteger y, Types.TypeConditionOperatorRel op, XVarInteger z) {
-        IntVar r = arithmeticOperatorConstraint(mapVar.get(x),aop,mapVar.get(y));
-        relConstraintVar(r,op,mapVar.get(z));
+        if(hasFailed)
+            return;
+
+        try {
+            IntVar r = arithmeticOperatorConstraintVar(mapVar.get(x),aop,mapVar.get(y));
+            relConstraintVar(r,op,mapVar.get(z));
+        } catch (InconsistencyException e) {
+            hasFailed = true;
+        }
     }
 
+    private IntVar unaryArithmeticOperatorConstraint(IntVar x,Types.TypeUnaryArithmeticOperator aop) throws InconsistencyException {
+        switch (aop) {
+            case NEG:
+                return Factory.minus(x);
+            case ABS:
+                return Factory.abs(x);
+            case NOT:
+                //TODO student: you may want to implement it with a new type of view.
+                throw new IllegalArgumentException("not implemented");
+            case SQR:
+            default:
+                // Not needed
+                throw new IllegalArgumentException("not implemented");
+        }
+    }
+
+    private IntVar arithmeticOperatorConstraintVal(IntVar x,Types.TypeArithmeticOperator aop, int p) throws InconsistencyException {
+        switch (aop) {
+            case ADD:
+                return Factory.plus(x, p);
+            case DIST:
+                return Factory.abs(Factory.minus(x, p));
+            case SUB:
+                return Factory.minus(x, p);
+            case MUL:
+                return Factory.mul(x, p);
+            case DIV:
+                // Not needed
+                throw new IllegalArgumentException("Division between vars is not implemented");
+            case MOD:
+                // Not needed
+                throw new IllegalArgumentException("Modulo between vars is not implemented");
+            case POW:
+                // Not needed
+                throw new IllegalArgumentException("Pow between vars is not implemented");
+            default:
+                throw new IllegalArgumentException("Unknown TypeArithmeticOperator");
+        }
+    }
+
+    private IntVar arithmeticOperatorConstraintVar(IntVar x,Types.TypeArithmeticOperator aop,IntVar y) throws InconsistencyException {
+        switch (aop) {
+            case ADD:
+                return sum(x, y);
+            case DIST:
+                return Factory.abs(sum(x, minus(y)));
+            case SUB:
+                return sum(x, minus(y));
+            case DIV:
+                // Not needed
+                throw new IllegalArgumentException("Division between vars is not implemented");
+            case MUL:
+                // Not needed
+                throw new IllegalArgumentException("Multiplication between vars is not implemented");
+            case MOD:
+                // Not needed
+                throw new IllegalArgumentException("Modulo between vars is not implemented");
+            case POW:
+                // Not needed
+                throw new IllegalArgumentException("Pow between vars is not implemented");
+            default:
+                throw new IllegalArgumentException("Unknown TypeArithmeticOperator");
+        }
+    }
 
     @Override
     public void buildCtrSum(String id, XVarInteger[] list, Condition condition) {
+        if(hasFailed)
+            return;
+
         try {
-            IntVar s = sum(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new));
+            IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
             _buildCrtWithCondition(id, s, condition);
         } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
+            hasFailed = true;
         }
     }
 
     @Override
     public void buildCtrSum(String id, XVarInteger[] list, int[] coeffs, Condition condition) {
+        if(hasFailed)
+            return;
+
         try {
             IntVar [] wx = new IntVar[list.length];
             for (int i = 0; i < list.length; i++) {
@@ -384,43 +458,53 @@ public class XCSP3 implements XCallbacks2 {
             IntVar s = sum(wx);
             _buildCrtWithCondition(id, s, condition);
         } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
+            hasFailed = true;
         }
     }
 
 
     @Override
     public void buildCtrAllDifferent(String id, XVarInteger[] list) {
+        if(hasFailed)
+            return;
+
         // Constraints
         try {
-            minicp.post(allDifferent(Arrays.stream(list).map(x -> mapVar.get(x)).toArray(IntVar[]::new)));
+            minicp.post(allDifferent(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new)));
         } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
+            hasFailed = true;
         }
     }
 
     @Override
     public void buildObjToMinimize(String id, XVarInteger x) {
+        if(hasFailed)
+            return;
+
         objectiveMinimize = Optional.of(mapVar.get(x));
     }
 
     @Override
     public void buildObjToMinimize(String id, Types.TypeObjective type, XVarInteger[] list) {
+        if(hasFailed)
+            return;
+
         if (type != Types.TypeObjective.SUM) {
-            System.out.println("not implemented2");
+            throw new NotImplementedException();
         }
         try {
-            IntVar s = sum(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new));
+            IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
             objectiveMinimize = Optional.of(s);
         } catch (InconsistencyException e) {
-            System.out.println("model inconsistent");
+            hasFailed = true;
         }
     }
 
     @Override
     public void buildObjToMinimize(String id, Types.TypeObjective type, XVarInteger[] list, int[] coeffs) {
+        if(hasFailed)
+            return;
+
         IntVar [] wx = new IntVar[list.length];
         for (int i = 0; i < list.length; i++) {
             wx[i] = mul(mapVar.get(list[i]),coeffs[i]);
@@ -429,32 +513,39 @@ public class XCSP3 implements XCallbacks2 {
             IntVar s = sum(wx);
             objectiveMinimize = Optional.of(s);
         } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
+            hasFailed = true;
         }
     }
 
     @Override
     public void buildObjToMaximize(String id, XVarInteger x) {
+        if(hasFailed)
+            return;
+
         objectiveMinimize = Optional.of(minus(mapVar.get(x)));
     }
 
     @Override
     public void buildObjToMaximize(String id, Types.TypeObjective type, XVarInteger[] list) {
+        if(hasFailed)
+            return;
+
         if (type != Types.TypeObjective.SUM) {
-            System.out.println("not implemented2");
+            throw new NotImplementedException();
         }
         try {
-            IntVar s = sum(Arrays.stream(list).map(i -> mapVar.get(i)).toArray(IntVar[]::new));
+            IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
             objectiveMinimize = Optional.of(minus(s));
         } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
+            hasFailed = true;
         }
     }
 
     @Override
     public void buildObjToMaximize(String id, Types.TypeObjective type, XVarInteger[] list, int[] coeffs) {
+        if(hasFailed)
+            return;
+
         IntVar [] wx = new IntVar[list.length];
         for (int i = 0; i < list.length; i++) {
             wx[i] = mul(mapVar.get(list[i]),coeffs[i]);
@@ -463,34 +554,49 @@ public class XCSP3 implements XCallbacks2 {
             IntVar s = sum(wx);
             objectiveMinimize = Optional.of(minus(s));
         } catch (InconsistencyException e) {
-            e.printStackTrace();
-            System.out.println("Inconsistent Model");
+            hasFailed = true;
         }
     }
 
     @Override
     public void buildCtrIntension(String id, XVarInteger[] scope, XNodeParent<XVarInteger> tree) {
-
+        if(hasFailed)
+            return;
+        throw new NotImplementedException();
     }
 
     @Override
     public void buildCtrIntension(String id, XVarSymbolic[] scope, XNodeParent<XVarSymbolic> syntaxTreeRoot) {
+        if(hasFailed)
+            return;
+        //Not needed
+        throw new NotImplementedException();
+    }
 
+    class EntryComparator implements Comparator<Map.Entry<XVarInteger, IntVar>> {
+        @Override
+        public int compare(Map.Entry<XVarInteger, IntVar> o1, Map.Entry<XVarInteger, IntVar> o2) {
+            return o1.getKey().id.compareTo(o2.getKey().id);
+        }
     }
 
     public String solve() {
-        DFSearch search = makeDfs(minicp, firstFail(mapVar.values().toArray(new IntVar[0])));
+        IntVar[] vars = mapVar.entrySet().stream().sorted(new EntryComparator()).map(i -> i.getValue()).toArray(size -> new IntVar[size]);
+
+        DFSearch search = makeDfs(minicp, firstFail(vars));
 
         if (objectiveMinimize.isPresent()) {
             try {
                 minicp.post(new Minimize(objectiveMinimize.get(), search));
             } catch (InconsistencyException e) {
-                e.printStackTrace();
-                System.out.println("Inconsistent Model");
+                hasFailed = true;
             }
         }
 
-        //final ArrayList<String> solutions = new ArrayList<>();
+        if(hasFailed) {
+            System.out.println("Model is inconsistent at first fixpoint");
+            return "";
+        }
 
         Box<String> lastSolution = new Box<String>("");
         search.onSolution(() -> {
