@@ -52,6 +52,12 @@ public class Factory {
         return new IntVarViewOffset(x,-v);
     }
 
+    static public IntVar abs(IntVar x) throws InconsistencyException {
+        IntVar r = makeIntVar(x.getSolver(), 0, x.getMax());
+        x.getSolver().post(new Absolute(x, r));
+        return r;
+    }
+
     /**
      * Create a variable with the elements {0,...,n-1}
      * as initial domain
