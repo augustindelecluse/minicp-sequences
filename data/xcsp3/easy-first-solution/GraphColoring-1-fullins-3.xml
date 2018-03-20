@@ -1,0 +1,113 @@
+<instance format="XCSP3" type="COP">
+  <variables>
+    <array id="x" size="[30]"> 0..29 </array>
+  </variables>
+  <constraints>
+    <group>
+      <intension> ne(%0,%1) </intension>
+      <args> x[0] x[1] </args>
+      <args> x[0] x[3] </args>
+      <args> x[0] x[10] </args>
+      <args> x[0] x[12] </args>
+      <args> x[1] x[2] </args>
+      <args> x[1] x[9] </args>
+      <args> x[1] x[11] </args>
+      <args> x[2] x[5] </args>
+      <args> x[2] x[7] </args>
+      <args> x[2] x[10] </args>
+      <args> x[2] x[14] </args>
+      <args> x[2] x[16] </args>
+      <args> x[3] x[4] </args>
+      <args> x[3] x[7] </args>
+      <args> x[3] x[9] </args>
+      <args> x[3] x[13] </args>
+      <args> x[3] x[16] </args>
+      <args> x[4] x[6] </args>
+      <args> x[4] x[8] </args>
+      <args> x[4] x[12] </args>
+      <args> x[4] x[15] </args>
+      <args> x[4] x[17] </args>
+      <args> x[5] x[6] </args>
+      <args> x[5] x[8] </args>
+      <args> x[5] x[11] </args>
+      <args> x[5] x[15] </args>
+      <args> x[5] x[17] </args>
+      <args> x[6] x[7] </args>
+      <args> x[6] x[8] </args>
+      <args> x[6] x[13] </args>
+      <args> x[6] x[14] </args>
+      <args> x[6] x[16] </args>
+      <args> x[6] x[17] </args>
+      <args> x[7] x[8] </args>
+      <args> x[7] x[11] </args>
+      <args> x[7] x[12] </args>
+      <args> x[7] x[15] </args>
+      <args> x[7] x[17] </args>
+      <args> x[8] x[13] </args>
+      <args> x[8] x[14] </args>
+      <args> x[8] x[15] </args>
+      <args> x[8] x[16] </args>
+      <args> x[9] x[19] </args>
+      <args> x[9] x[21] </args>
+      <args> x[9] x[28] </args>
+      <args> x[10] x[18] </args>
+      <args> x[10] x[20] </args>
+      <args> x[10] x[28] </args>
+      <args> x[11] x[19] </args>
+      <args> x[11] x[23] </args>
+      <args> x[11] x[25] </args>
+      <args> x[11] x[28] </args>
+      <args> x[12] x[18] </args>
+      <args> x[12] x[22] </args>
+      <args> x[12] x[25] </args>
+      <args> x[12] x[28] </args>
+      <args> x[13] x[21] </args>
+      <args> x[13] x[24] </args>
+      <args> x[13] x[26] </args>
+      <args> x[13] x[28] </args>
+      <args> x[14] x[20] </args>
+      <args> x[14] x[24] </args>
+      <args> x[14] x[26] </args>
+      <args> x[14] x[28] </args>
+      <args> x[15] x[22] </args>
+      <args> x[15] x[23] </args>
+      <args> x[15] x[25] </args>
+      <args> x[15] x[26] </args>
+      <args> x[15] x[28] </args>
+      <args> x[16] x[20] </args>
+      <args> x[16] x[21] </args>
+      <args> x[16] x[24] </args>
+      <args> x[16] x[26] </args>
+      <args> x[16] x[28] </args>
+      <args> x[17] x[22] </args>
+      <args> x[17] x[23] </args>
+      <args> x[17] x[24] </args>
+      <args> x[17] x[25] </args>
+      <args> x[17] x[28] </args>
+      <args> x[18] x[27] </args>
+      <args> x[18] x[29] </args>
+      <args> x[19] x[27] </args>
+      <args> x[19] x[29] </args>
+      <args> x[20] x[27] </args>
+      <args> x[20] x[29] </args>
+      <args> x[21] x[27] </args>
+      <args> x[21] x[29] </args>
+      <args> x[22] x[27] </args>
+      <args> x[22] x[29] </args>
+      <args> x[23] x[27] </args>
+      <args> x[23] x[29] </args>
+      <args> x[24] x[27] </args>
+      <args> x[24] x[29] </args>
+      <args> x[25] x[27] </args>
+      <args> x[25] x[29] </args>
+      <args> x[26] x[27] </args>
+      <args> x[26] x[29] </args>
+      <args> x[27] x[28] </args>
+      <args> x[27] x[29] </args>
+      <args> x[28] x[29] </args>
+    </group>
+  </constraints>
+  <objectives>
+    <minimize type="maximum"> x[] </minimize>
+  </objectives>
+</instance>

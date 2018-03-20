@@ -8,5 +8,5 @@ public class XCSP3TestEasy extends XCSP3TestHelper{
     public XCSP3TestEasy(String path) { super(path); }
 
     @Parameterized.Parameters
-    public static Object[] data() { return dataFromFolder("data/xcsp3/easy"); }
+    public static Object[] data() { return dataFromFolder("data/xcsp3/easy-first-solution"); }
 }

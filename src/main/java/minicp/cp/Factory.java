@@ -22,6 +22,7 @@ import minicp.search.DFSearch;
 import minicp.util.InconsistencyException;
 
 
+import java.util.Arrays;
 import java.util.Set;
 
 public class Factory {
@@ -121,6 +122,20 @@ public class Factory {
 
 
     // -------------- constraints -----------------------
+
+    static public IntVar maximum(IntVar ... x) throws InconsistencyException {
+        Solver cp = x[0].getSolver();
+        int min = Arrays.stream(x).mapToInt(IntVar::getMin).min().getAsInt();
+        int max = Arrays.stream(x).mapToInt(IntVar::getMax).max().getAsInt();
+        IntVar y = makeIntVar(cp,min,max);
+        cp.post(new Maximum(x,y));
+        return y;
+    }
+
+    static public IntVar minimum(IntVar ... x) throws InconsistencyException {
+        IntVar[] minusX = Arrays.stream(x).map(Factory::minus).toArray(IntVar[]::new);
+        return minus(maximum(minusX));
+    }
 
     static public void equal(IntVar x, int v) throws InconsistencyException {
         x.assign(v);

@@ -127,13 +127,19 @@ public class XCSP3 implements XCallbacks2 {
         }*/
 
         try {
+
             if (!positive) {
-                System.out.println("negative table");
-                throw new IllegalArgumentException("negative table not supported");
+                minicp.post(new NegTableCT(trVars(list), tuples));
             }
-            minicp.fixPoint();
-            //TODO student: use other table implementation
-            minicp.post(new TableDecomp(trVars(list), tuples));
+            else {
+                if (flags.contains(Types.TypeFlag.STARRED_TUPLES)) {
+                    throw new IllegalArgumentException("start tuples not supported");
+                } else {
+                    minicp.fixPoint();
+                    minicp.post(new TableCT(trVars(list), tuples));
+                }
+            }
+
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -486,15 +492,21 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildObjToMinimize(String id, Types.TypeObjective type, XVarInteger[] list) {
-        if(hasFailed)
+        if (hasFailed)
             return;
-
-        if (type != Types.TypeObjective.SUM) {
-            throw new NotImplementedException();
-        }
         try {
-            IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
-            objectiveMinimize = Optional.of(s);
+            if (type == Types.TypeObjective.MAXIMUM) {
+                IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
+                objectiveMinimize = Optional.of(maximum(xs));
+            } else if (type == Types.TypeObjective.MINIMUM) {
+                IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
+                objectiveMinimize = Optional.of(minimum(xs));
+            } else if (type == Types.TypeObjective.SUM) {
+                IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
+                objectiveMinimize = Optional.of(s);
+            } else {
+                throw new NotImplementedException();
+            }
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -530,12 +542,19 @@ public class XCSP3 implements XCallbacks2 {
         if(hasFailed)
             return;
 
-        if (type != Types.TypeObjective.SUM) {
-            throw new NotImplementedException();
-        }
         try {
-            IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
-            objectiveMinimize = Optional.of(minus(s));
+            if (type == Types.TypeObjective.MAXIMUM) {
+                IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
+                objectiveMinimize = Optional.of(minus(maximum(xs)));
+            } else if (type == Types.TypeObjective.MINIMUM) {
+                IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
+                objectiveMinimize = Optional.of(minus(minimum(xs)));
+            } else if (type != Types.TypeObjective.SUM) {
+                IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
+                objectiveMinimize = Optional.of(minus(s));
+            } else {
+                throw new NotImplementedException();
+            }
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -580,7 +599,8 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
-    public String solve() {
+    public String solve(int nSolution, int timeOut) {
+
         IntVar[] vars = mapVar.entrySet().stream().sorted(new EntryComparator()).map(i -> i.getValue()).toArray(size -> new IntVar[size]);
 
         DFSearch search = makeDfs(minicp, firstFail(vars));
@@ -616,7 +636,11 @@ public class XCSP3 implements XCallbacks2 {
             //solutions.add(sol);
 
         });
-        SearchStatistics stats = objectiveMinimize.isPresent() ? search.start() : search.start(limit -> limit.nSolutions >= 1);
+        Long t0 = System.currentTimeMillis();
+
+        SearchStatistics stats = search.start(limit -> (System.currentTimeMillis()-t0 >= timeOut*1000 || limit.nSolutions >= nSolution));
+        System.out.println(stats);
+        //SearchStatistics stats = objectiveMinimize.isPresent() ? search.start(limit -> (System.currentTimeMillis()-t0 >= timeOut*1000 && limit.nSolutions >= nSolution)) : search.start(limit -> limit.nSolutions >= nSolution && (System.currentTimeMillis()-t0 >= timeOut));
         System.out.println(stats);
         return lastSolution.get();
     }
@@ -626,7 +650,7 @@ public class XCSP3 implements XCallbacks2 {
         try {
             //XCSP3 xcsp3 = new XCSP3("data/xcsp3/TravellingSalesman-15-30-13.xml");
             XCSP3 xcsp3 = new XCSP3("data/xcsp3/easy/Queens-0008-m1.xml");
-            String solution = xcsp3.solve();
+            String solution = xcsp3.solve(1,10);
             List<String> violatedCtrs = xcsp3.getViolatedCtrs(solution);
             System.out.println(violatedCtrs);
         } catch (Exception e) {
