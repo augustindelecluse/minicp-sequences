@@ -1,0 +1,44 @@
+<instance format="XCSP3" type="CSP">
+  <variables>
+    <array id="x" note="x represents the hexagon; on row x[i], only the first n - |n/2 - i| cells are useful (here, n = 3)." size="[3][3]"> 3..9 </array>
+  </variables>
+  <constraints>
+    <allDifferent> x[][0] x[][1] x[1][2] </allDifferent>
+    <group class="rows" note="All rows sum to the magic value">
+      <sum>
+        <list> %... </list>
+        <condition> (eq,14) </condition>
+      </sum>
+      <args> x[0][0] x[0][1] </args>
+      <args> x[1][] </args>
+      <args> x[2][0] x[2][1] </args>
+    </group>
+    <group class="rightDiagonals" note="All right-sloping diagonals sum to the magic value">
+      <sum>
+        <list> %... </list>
+        <condition> (eq,14) </condition>
+      </sum>
+      <args> x[1][0] x[2][0] </args>
+      <args> x[0][0] x[1..2][1] </args>
+      <args> x[0][1] x[1][2] </args>
+    </group>
+    <group class="leftDiagonals" note="All left-sloping diagonals sum to the magic value">
+      <sum>
+        <list> %... </list>
+        <condition> (eq,14) </condition>
+      </sum>
+      <args> x[0][0] x[1][0] </args>
+      <args> x[0..1][1] x[2][0] </args>
+      <args> x[1][2] x[2][1] </args>
+    </group>
+    <group class="symmetryBreaking">
+      <intension> lt(%0,%1) </intension>
+      <args> x[0][0] x[0][1] </args>
+      <args> x[0][0] x[1][2] </args>
+      <args> x[0][0] x[2][1] </args>
+      <args> x[0][0] x[2][0] </args>
+      <args> x[0][0] x[1][0] </args>
+      <args> x[0][1] x[1][0] </args>
+    </group>
+  </constraints>
+</instance>

@@ -1,0 +1,222 @@
+<instance format="XCSP3" type="COP">
+  <variables>
+    <array id="x" size="[38]"> 0 1 </array>
+  </variables>
+  <constraints>
+    <sum>
+      <list> x[0..7] x[13..16] x[36] </list>
+      <coeffs> 1 2 4 8 1 2 4 8 -2 -4 -8 -16 -16 </coeffs>
+      <condition> (ge,-16) </condition>
+    </sum>
+    <sum>
+      <list> x[0..7] x[13..16] x[36] </list>
+      <coeffs> -1 -2 -4 -8 -1 -2 -4 -8 2 4 8 16 16 </coeffs>
+      <condition> (ge,2) </condition>
+    </sum>
+    <sum>
+      <list> x[0..3] x[8..16] x[35] </list>
+      <coeffs> 1 2 4 8 1 2 4 8 16 -2 -4 -8 -16 -16 </coeffs>
+      <condition> (ge,-15) </condition>
+    </sum>
+    <sum>
+      <list> x[0..3] x[8..16] x[35] </list>
+      <coeffs> -1 -2 -4 -8 -1 -2 -4 -8 -16 2 4 8 16 16 </coeffs>
+      <condition> (ge,1) </condition>
+    </sum>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> 1 2 4 8 -1 -2 -4 -8 1 2 4 8 16 -1 -2 -4 -8 -16 </coeffs>
+        <condition> (ge,-17) </condition>
+      </sum>
+      <args> x[0..16] x[34] </args>
+      <args> x[0..16] x[33] </args>
+    </group>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> -1 -2 -4 -8 1 2 4 8 -1 -2 -4 -8 -16 1 2 4 8 16 </coeffs>
+        <condition> (ge,3) </condition>
+      </sum>
+      <args> x[0..16] x[34] </args>
+      <args> x[0..16] x[33] </args>
+    </group>
+    <sum>
+      <list> x[0..12] x[32] </list>
+      <coeffs> 1 2 4 8 -2 -4 -8 -16 1 2 4 8 16 -16 </coeffs>
+      <condition> (ge,-19) </condition>
+    </sum>
+    <sum>
+      <list> x[0..12] x[32] </list>
+      <coeffs> -1 -2 -4 -8 2 4 8 16 -1 -2 -4 -8 -16 16 </coeffs>
+      <condition> (ge,5) </condition>
+    </sum>
+    <sum>
+      <list> x[4..16] x[31] </list>
+      <coeffs> -2 -4 -8 -16 1 2 4 8 16 1 2 4 8 -16 </coeffs>
+      <condition> (ge,-16) </condition>
+    </sum>
+    <sum>
+      <list> x[4..16] x[31] </list>
+      <coeffs> 2 4 8 16 -1 -2 -4 -8 -16 -1 -2 -4 -8 16 </coeffs>
+      <condition> (ge,2) </condition>
+    </sum>
+    <sum>
+      <list> x[0..3] x[13..16] x[30] </list>
+      <coeffs> 1 2 4 8 -2 -4 -8 -16 -16 </coeffs>
+      <condition> (ge,-15) </condition>
+    </sum>
+    <sum>
+      <list> x[0..3] x[13..16] x[30] </list>
+      <coeffs> -1 -2 -4 -8 2 4 8 16 16 </coeffs>
+      <condition> (ge,1) </condition>
+    </sum>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> 1 2 4 8 -1 -2 -4 -8 -1 -2 -4 -8 -16 </coeffs>
+        <condition> (ge,-17) </condition>
+      </sum>
+      <args> x[0..7] x[13..16] x[29] </args>
+      <args> x[0..7] x[13..16] x[27] </args>
+    </group>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> -1 -2 -4 -8 1 2 4 8 1 2 4 8 16 </coeffs>
+        <condition> (ge,3) </condition>
+      </sum>
+      <args> x[0..7] x[13..16] x[29] </args>
+      <args> x[0..7] x[13..16] x[27] </args>
+    </group>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> 1 2 4 8 -1 -2 -4 -8 -16 -1 -2 -4 -8 -16 </coeffs>
+        <condition> (ge,-18) </condition>
+      </sum>
+      <args> x[0..3] x[8..16] x[28] </args>
+      <args> x[0..3] x[8..16] x[22] </args>
+    </group>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> -1 -2 -4 -8 1 2 4 8 16 1 2 4 8 16 </coeffs>
+        <condition> (ge,4) </condition>
+      </sum>
+      <args> x[0..3] x[8..16] x[28] </args>
+      <args> x[0..3] x[8..16] x[22] </args>
+    </group>
+    <sum>
+      <list> x[0..7] x[26] </list>
+      <coeffs> 1 2 4 8 -2 -4 -8 -16 -16 </coeffs>
+      <condition> (ge,-19) </condition>
+    </sum>
+    <sum>
+      <list> x[0..7] x[26] </list>
+      <coeffs> -1 -2 -4 -8 2 4 8 16 16 </coeffs>
+      <condition> (ge,5) </condition>
+    </sum>
+    <sum>
+      <list> x[4..7] x[13..16] x[25] </list>
+      <coeffs> -2 -4 -8 -16 1 2 4 8 -16 </coeffs>
+      <condition> (ge,-16) </condition>
+    </sum>
+    <sum>
+      <list> x[4..7] x[13..16] x[25] </list>
+      <coeffs> 2 4 8 16 -1 -2 -4 -8 16 </coeffs>
+      <condition> (ge,2) </condition>
+    </sum>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> 1 2 4 8 -1 -2 -4 -8 -1 -2 -4 -8 -16 -16 </coeffs>
+        <condition> (ge,-20) </condition>
+      </sum>
+      <args> x[0..12] x[24] </args>
+      <args> x[0..12] x[21] </args>
+    </group>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> -1 -2 -4 -8 1 2 4 8 1 2 4 8 16 16 </coeffs>
+        <condition> (ge,6) </condition>
+      </sum>
+      <args> x[0..12] x[24] </args>
+      <args> x[0..12] x[21] </args>
+    </group>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> -1 -2 -4 -8 -1 -2 -4 -8 -16 1 2 4 8 -16 </coeffs>
+        <condition> (ge,-17) </condition>
+      </sum>
+      <args> x[4..16] x[23] </args>
+      <args> x[4..16] x[20] </args>
+    </group>
+    <group>
+      <sum>
+        <list> %... </list>
+        <coeffs> 1 2 4 8 1 2 4 8 16 -1 -2 -4 -8 16 </coeffs>
+        <condition> (ge,3) </condition>
+      </sum>
+      <args> x[4..16] x[23] </args>
+      <args> x[4..16] x[20] </args>
+    </group>
+    <sum>
+      <list> x[0..3] x[8..12] x[19] </list>
+      <coeffs> 1 2 4 8 -2 -4 -8 -16 -32 -16 </coeffs>
+      <condition> (ge,-21) </condition>
+    </sum>
+    <sum>
+      <list> x[0..3] x[8..12] x[19] </list>
+      <coeffs> -1 -2 -4 -8 2 4 8 16 32 16 </coeffs>
+      <condition> (ge,7) </condition>
+    </sum>
+    <sum>
+      <list> x[8..16] x[18] </list>
+      <coeffs> -2 -4 -8 -16 -32 1 2 4 8 -16 </coeffs>
+      <condition> (ge,-18) </condition>
+    </sum>
+    <sum>
+      <list> x[8..16] x[18] </list>
+      <coeffs> 2 4 8 16 32 -1 -2 -4 -8 16 </coeffs>
+      <condition> (ge,4) </condition>
+    </sum>
+    <sum>
+      <list> x[4..12] x[17] </list>
+      <coeffs> 1 2 4 8 -2 -4 -8 -16 -32 -16 </coeffs>
+      <condition> (ge,-16) </condition>
+    </sum>
+    <sum>
+      <list> x[4..12] x[17] </list>
+      <coeffs> -1 -2 -4 -8 2 4 8 16 32 16 </coeffs>
+      <condition> (ge,2) </condition>
+    </sum>
+    <sum>
+      <list> x[0..3] x[13..16] </list>
+      <coeffs> 1 2 4 8 -1 -2 -4 -8 </coeffs>
+      <condition> (ge,-2) </condition>
+    </sum>
+    <sum>
+      <list> x[4..7] x[13..16] </list>
+      <coeffs> -1 -2 -4 -8 1 2 4 8 </coeffs>
+      <condition> (ge,-1) </condition>
+    </sum>
+    <sum>
+      <list> x[4..12] </list>
+      <coeffs> 1 2 4 8 -1 -2 -4 -8 -16 </coeffs>
+      <condition> (ge,0) </condition>
+    </sum>
+    <sum>
+      <list> x[37] </list>
+      <condition> (ge,1) </condition>
+    </sum>
+  </constraints>
+  <objectives>
+    <minimize type="sum">
+      <list> x[0..3] x[37] </list>
+      <coeffs> 1 2 4 8 6 </coeffs>
+    </minimize>
+  </objectives>
+</instance>

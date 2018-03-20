@@ -20,6 +20,6 @@
     <allDifferent> y[0][1..4] y[1][2..4] y[2][3..4] y[3][4] </allDifferent>
   </constraints>
   <objectives>
-    <minimize type="expression"> x[4]+2*x[3] </minimize>
+    <minimize> x[4] </minimize>
   </objectives>
 </instance>
