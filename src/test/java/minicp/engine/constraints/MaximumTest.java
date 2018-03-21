@@ -89,7 +89,30 @@ public class MaximumTest {
 
 
             assertEquals(2, y.getMax());
-           // assertEquals(2, y.getMin());
+
+
+        } catch (InconsistencyException e) {
+            fail("should not fail");
+        }
+    }
+
+    @Test
+    public void maximumTest3() {
+
+        try {
+
+            Solver cp = makeSolver();
+            IntVar x1 = makeIntVar(cp,0,10);
+            IntVar x2 = makeIntVar(cp,0,10);
+            IntVar x3 = makeIntVar(cp,-5,50);
+            IntVar y = maximum(x1,x2,x3);
+
+            y.removeAbove(5);
+            cp.fixPoint();
+
+            assertEquals(5, x1.getMax());
+            assertEquals(5, x2.getMax());
+            assertEquals(5, x3.getMax());
 
 
         } catch (InconsistencyException e) {
@@ -99,7 +122,7 @@ public class MaximumTest {
 
 
     @Test
-    public void maximumTest3() {
+    public void maximumTest4() {
         Solver cp = makeSolver();
         IntVar[] x = makeIntVarArray(cp,4, 5);
         IntVar y = makeIntVar(cp, -5, 20);
