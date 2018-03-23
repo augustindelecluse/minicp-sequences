@@ -20,11 +20,14 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
+import minicp.util.NotImplementedException;
+import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
+import static minicp.cp.Heuristics.and;
 import static minicp.cp.Heuristics.firstFail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -123,25 +126,33 @@ public class MaximumTest {
 
     @Test
     public void maximumTest4() {
-        Solver cp = makeSolver();
-        IntVar[] x = makeIntVarArray(cp,4, 5);
-        IntVar y = makeIntVar(cp, -5, 20);
+        try {
+            try {
+                Solver cp = makeSolver();
+                IntVar[] x = makeIntVarArray(cp, 4, 5);
+                IntVar y = makeIntVar(cp, -5, 20);
 
-        DFSearch dfs = makeDfs(cp,firstFail(x));
+                DFSearch dfs = makeDfs(cp, and(firstFail(x), firstFail(y)));
 
-        // 5*5*5*5 // 625
+                cp.post(new Maximum(x, y));
+                // 5*5*5*5 // 625
 
-        SearchStatistics stats = dfs.start();
+                SearchStatistics stats = dfs.start();
 
-        dfs.onSolution(() -> {
-            int max = Arrays.stream(x).mapToInt(xi -> xi.getMax()).max().getAsInt();
-            assertEquals(y.getMin(),max);
-            assertEquals(y.getMax(),max);
-        });
+                dfs.onSolution(() -> {
+                    int max = Arrays.stream(x).mapToInt(xi -> xi.getMax()).max().getAsInt();
+                    assertEquals(y.getMin(), max);
+                    assertEquals(y.getMax(), max);
+                });
 
-        assertEquals(625,stats.nSolutions);
+                assertEquals(625, stats.nSolutions);
 
-
+            } catch (InconsistencyException e) {
+                fail("should not fail");
+            }
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
     }
 
 
