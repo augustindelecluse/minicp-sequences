@@ -39,7 +39,7 @@ public class Eternity {
 
         // Reading the data
 
-        InputReader reader = new InputReader("data/eternity7x7.txt");
+        InputReader reader = new InputReader("data/eternity/brendan/pieces_08x08.txt");
 
         int n = reader.getInt();
         int m = reader.getInt();
@@ -89,7 +89,7 @@ public class Eternity {
         }
         for (int k = 0; k < n; k++) {
             final int i = k;
-            if (i < n-1) d[i] = makeIntVarArray(cp,m,j -> u[i+1][j]);
+            if (i < n-1) d[i] = u[i+1];
             else d[i] = makeIntVarArray(cp,m,j -> makeIntVar(cp,0,max));
         }
         for (int j = 0; j < m; j++) {
