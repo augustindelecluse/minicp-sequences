@@ -9,8 +9,11 @@ import minicp.engine.core.Solver;
 
 import static minicp.cp.Heuristics.*;
 import static minicp.cp.Factory.*;
+import static minicp.search.Selector.branch;
+import static minicp.search.Selector.selectMin;
 import static org.xcsp.parser.XCallbacks.XCallbacksParameters.RECOGNIZING_BEFORE_CONVERTING;
 
+import minicp.search.Choice;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.Box;
@@ -609,6 +612,25 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
+    public Choice ff(IntVar ... x) {
+        return selectMin(x,
+                xi -> xi.getSize() > 1,
+                xi -> xi.getSize(),
+                xi -> {
+                    int v = xi.getMax();
+                    return branch(
+                            () -> {
+                                equal(xi,v);
+                            },
+                            () -> {
+                                notEqual(xi,v);
+                            }
+                    );
+                }
+        );
+    }
+
+
     /**
      *
      * @param nSolution maximum number of solution (not taken into account if satisfiability problem, only first feasible one)
@@ -621,8 +643,10 @@ public class XCSP3 implements XCallbacks2 {
         DFSearch search;
         if (decisionVars.isEmpty()) {
             search = makeDfs(minicp, firstFail(vars));
+
         } else {
-            search = makeDfs(minicp, and(firstFail(decisionVars.toArray(new IntVar[0])), firstFail(vars)));
+            search = makeDfs(minicp, ff(vars));
+            //search = makeDfs(minicp, and(ff(decisionVars.toArray(new IntVar[0])), ff(vars)));
         }
 
         if (objectiveMinimize.isPresent()) {
@@ -672,7 +696,7 @@ public class XCSP3 implements XCallbacks2 {
 
     public static void main(String[] args) {
         try {
-            XCSP3 xcsp3 = new XCSP3("data/xcsp3/hard/AllInterval-011.xml");
+            XCSP3 xcsp3 = new XCSP3("SteelXCSP3.xml");
             String solution = xcsp3.solve(100000,100);
             List<String> violatedCtrs = xcsp3.getViolatedCtrs(solution);
             System.out.println(violatedCtrs);

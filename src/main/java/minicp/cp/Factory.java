@@ -24,6 +24,7 @@ import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Factory {
 
@@ -194,6 +195,13 @@ public class Factory {
 
     static public Constraint maximize(IntVar x, DFSearch dfs) {
         return new Minimize(minus(x),dfs);
+    }
+
+    static public IntVar element(int[] T, IntVar y) throws InconsistencyException {
+        Solver cp = y.getSolver();
+        IntVar z = makeIntVar(cp,IntStream.of(T).min().getAsInt(),IntStream.of(T).max().getAsInt());
+        cp.post(new Element1D(T,y,z));
+        return z;
     }
 
     static public IntVar element(int[][] T, IntVar x, IntVar y) throws InconsistencyException {

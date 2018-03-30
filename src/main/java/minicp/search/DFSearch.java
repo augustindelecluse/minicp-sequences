@@ -100,7 +100,7 @@ public class DFSearch {
         }
     }
 
-    private void dfs2(SearchStatistics statistics, SearchLimit limit) {
+    private void dfs(SearchStatistics statistics, SearchLimit limit) {
 
         Stack<Alternative> alternatives = new Stack<Alternative>();
         expandNode(alternatives,statistics);
@@ -117,7 +117,7 @@ public class DFSearch {
     }
 
 
-    private void dfs(SearchStatistics statistics, SearchLimit limit) {
+    private void dfs2(SearchStatistics statistics, SearchLimit limit) {
         if (limit.stopSearch(statistics)) throw new StopSearchException();
         Alternative [] alternatives = choice.call();
         if (alternatives.length == 0) {

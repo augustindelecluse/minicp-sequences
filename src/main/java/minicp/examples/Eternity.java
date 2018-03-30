@@ -39,7 +39,7 @@ public class Eternity {
 
         // Reading the data
 
-        InputReader reader = new InputReader("data/eternity/brendan/pieces_08x08.txt");
+        InputReader reader = new InputReader("data/eternity/eternity7x7.txt");
 
         int n = reader.getInt();
         int m = reader.getInt();
