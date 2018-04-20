@@ -119,6 +119,8 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrExtension(String id, XVarInteger[] list, int[][] tuples, boolean positive, Set<Types.TypeFlag> flags) {
+
+
         if(hasFailed)
             return;
 
@@ -613,11 +615,13 @@ public class XCSP3 implements XCallbacks2 {
     }
 
     public Choice ff(IntVar ... x) {
+        Random r = new java.util.Random(0);
+
         return selectMin(x,
                 xi -> xi.getSize() > 1,
                 xi -> xi.getSize(),
                 xi -> {
-                    int v = xi.getMax();
+                    int v = xi.getMin(); //r.nextBoolean() ? xi.getMax(): xi.getMin();
                     return branch(
                             () -> {
                                 equal(xi,v);
@@ -642,6 +646,7 @@ public class XCSP3 implements XCallbacks2 {
         IntVar[] vars = mapVar.entrySet().stream().sorted(new EntryComparator()).map(i -> i.getValue()).toArray(size -> new IntVar[size]);
         DFSearch search;
         if (decisionVars.isEmpty()) {
+            System.out.println("here");
             search = makeDfs(minicp, firstFail(vars));
 
         } else {
@@ -688,16 +693,17 @@ public class XCSP3 implements XCallbacks2 {
         final int nSols = nSolution;
 
         SearchStatistics stats = search.start(limit -> (System.currentTimeMillis()-t0 >= timeOut*1000 || limit.nSolutions >= nSols));
+
         System.out.println(stats);
-        System.out.println(stats);
+        //System.out.println(stats);
         return lastSolution.get();
     }
 
 
     public static void main(String[] args) {
         try {
-            XCSP3 xcsp3 = new XCSP3("SteelXCSP3.xml");
-            String solution = xcsp3.solve(100000,100);
+            XCSP3 xcsp3 = new XCSP3("/Users/pschaus/Documents/IdeaProjects/minicp-solution/data/xcsp3/hard/GraphColoring-myciel7.xml");
+            String solution = xcsp3.solve(100000,1000);
             List<String> violatedCtrs = xcsp3.getViolatedCtrs(solution);
             System.out.println(violatedCtrs);
         } catch (Exception e) {
