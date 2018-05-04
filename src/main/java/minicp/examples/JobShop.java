@@ -50,7 +50,7 @@ public class JobShop {
         // Reading the data
 
         try {
-            FileInputStream istream = new FileInputStream("data/jobshop/sascha/jobshop-7-7-1");
+            FileInputStream istream = new FileInputStream("data/jobshop/sascha/jobshop-4-4-2");
             BufferedReader in = new BufferedReader(new InputStreamReader(istream));
             in.readLine();
             in.readLine();
@@ -116,7 +116,6 @@ public class JobShop {
             IntVar makespan = maximum(endLast);
 
             DFSearch dfs = makeDfs(cp, firstFail(flatten(start)));
-
 
             cp.post(minimize(makespan, dfs
 
