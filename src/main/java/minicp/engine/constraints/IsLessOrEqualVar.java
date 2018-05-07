@@ -27,11 +27,16 @@ public class IsLessOrEqualVar extends Constraint { // b <=> x <= y
     private final IntVar x;
     private final IntVar y;
 
+    private final Constraint lEqC;
+    private final Constraint grC;
+
     public IsLessOrEqualVar(BoolVar b, IntVar x, IntVar y) {
         super(x.getSolver());
         this.b = b;
         this.x = x;
         this.y = y;
+        lEqC = lessOrEqual(x,y);
+        grC = lessOrEqual(plus(y,1),x);
     }
 
     @Override
@@ -46,10 +51,10 @@ public class IsLessOrEqualVar extends Constraint { // b <=> x <= y
     @Override
     public void propagate() throws InconsistencyException {
         if (b.isTrue()) {
-            cp.post(lessOrEqual(x,y),false);
+            cp.post(lEqC,false);
             deactivate();
         } else if (b.isFalse()) {
-            cp.post(lessOrEqual(plus(y,1),x),false);
+            cp.post(grC,false);
             deactivate();
         } else {
             if (x.getMax() <= y.getMin()) {

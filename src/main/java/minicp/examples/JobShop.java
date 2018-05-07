@@ -50,7 +50,7 @@ public class JobShop {
         // Reading the data
 
         try {
-            FileInputStream istream = new FileInputStream("data/jobshop/sascha/jobshop-4-4-2");
+            FileInputStream istream = new FileInputStream("data/jobshop/sascha/jobshop-7-7-4");
             BufferedReader in = new BufferedReader(new InputStreamReader(istream));
             in.readLine();
             in.readLine();

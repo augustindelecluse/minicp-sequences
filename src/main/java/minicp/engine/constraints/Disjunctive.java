@@ -41,6 +41,8 @@ public class Disjunctive extends Constraint {
     private final Integer [] permLst;
     private final Integer [] permEct;
 
+    private final boolean [] inserted;
+
     private final ThetaTree thetaTree;
 
     private final boolean postMirror;
@@ -60,6 +62,8 @@ public class Disjunctive extends Constraint {
         permLct = new Integer[start.length];
         permLst = new Integer[start.length];
         permEct = new Integer[start.length];
+        inserted = new boolean[start.length];
+
         for (int i = 0; i < start.length; i++) {
             permEst[i] = i;
             permLct[i] = i;
@@ -120,7 +124,7 @@ public class Disjunctive extends Constraint {
     public void propagate() throws InconsistencyException {
         overLoadChecker();
         while (detectablePrecedence()) {}
-        while (notLast()) {}
+        //while (notLast()) {}
 
         super.propagate();
 
@@ -156,7 +160,7 @@ public class Disjunctive extends Constraint {
         boolean changed = false;
         Arrays.sort(permLst,Comparator.comparingInt(i -> start[i].getMax()));
         Arrays.sort(permEct,Comparator.comparingInt(i -> end[i].getMin()));
-        boolean [] inserted = new boolean[start.length];
+        Arrays.fill(inserted,false);
         int idx_j = 0;
         int j = permLst[idx_j];
         thetaTree.reset();
@@ -190,7 +194,7 @@ public class Disjunctive extends Constraint {
         boolean changed = false;
         Arrays.sort(permLst,Comparator.comparingInt(i -> start[i].getMax()));
         Arrays.sort(permLct,Comparator.comparingInt(i -> end[i].getMax()));
-        boolean [] inserted = new boolean[start.length];
+        Arrays.fill(inserted,false);
         int idx_j = 0;
         int j = permLst[idx_j];
         thetaTree.reset();
