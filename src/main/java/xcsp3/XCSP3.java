@@ -8,7 +8,10 @@ import minicp.engine.core.Solver;
 
 import static minicp.cp.Heuristics.*;
 import static minicp.cp.Factory.*;
+import static minicp.search.Selector.branch;
+import static minicp.search.Selector.selectMin;
 
+import minicp.search.Choice;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.Box;
@@ -118,6 +121,8 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrExtension(String id, XVarInteger[] list, int[][] tuples, boolean positive, Set<Types.TypeFlag> flags) {
+
+
         if(hasFailed)
             return;
 
@@ -679,6 +684,7 @@ public class XCSP3 implements XCallbacks2 {
         IntVar[] vars = mapVar.entrySet().stream().sorted(new EntryComparator()).map(Map.Entry::getValue).toArray(IntVar[]::new);
         DFSearch search;
         if (decisionVars.isEmpty()) {
+            System.out.println("here");
             search = makeDfs(minicp, firstFail(vars));
         } else {
             search = makeDfs(minicp, and(firstFail(decisionVars.toArray(new IntVar[0])), firstFail(vars)));

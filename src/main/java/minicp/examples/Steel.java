@@ -67,6 +67,8 @@ public class Steel {
         IntVar [] x = makeIntVarArray(cp,nSlab,nSlab);
         IntVar [] l = makeIntVarArray(cp,nSlab,maxCapa+1);
 
+
+        // bin packing constraint
         for (int j = 0; j < nSlab; j++) {
             IntVar [] wj = new IntVar[nSlab];
             for (int i = 0; i < nSlab; i++) {
@@ -78,6 +80,7 @@ public class Steel {
 
         System.out.println(Arrays.toString(loss));
         System.out.println(Arrays.toString(l));
+
         IntVar [] losses = makeIntVarArray(cp,nSlab,i -> element(loss,l[i]));
         IntVar totLoss = sum(losses);
 

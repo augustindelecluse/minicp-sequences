@@ -59,6 +59,30 @@ public class InputReader {
         return Integer.parseInt(tokenizer.nextToken());
     }
 
+    public Integer[] getIntLine() throws RuntimeException {
+        if (!tokenizer.hasMoreTokens()) {
+            try {
+                String line;
+                do {
+                    line = in.readLine();
+                    if (line == null) {
+                        System.out.println("No more line to read");
+                        throw new RuntimeException("End of file");
+                    }
+                    tokenizer = new StringTokenizer(line);
+                } while (line != null && !tokenizer.hasMoreTokens());
+
+            } catch (IOException e) {
+                throw new RuntimeException(e.toString());
+            }
+        }
+        Integer [] res = new Integer[tokenizer.countTokens()];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = Integer.parseInt(tokenizer.nextToken());
+        }
+        return res;
+    }
+
     public String getString() throws RuntimeException {
         if (!tokenizer.hasMoreTokens()) {
             try {

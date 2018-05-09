@@ -173,6 +173,8 @@ public class CumulativeTest {
 
 
             assertEquals(stats1.nSolutions,stats2.nSolutions);
+            assertEquals(stats1.nFailures, stats2.nFailures);
+
 
 
         } catch (InconsistencyException e) {
