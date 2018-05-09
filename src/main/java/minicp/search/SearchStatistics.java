@@ -20,7 +20,11 @@ public class SearchStatistics {
     public int nFailures = 0;
     public int nNodes = 0;
     public int nSolutions = 0;
+    public boolean completed = false;
     public String toString() {
-        return "\n\t#choice: " + nNodes + "\n\t#fail: " + nFailures + "\n\t#sols : " + nSolutions + "\n";
+        return  "\n\t#choice: " + nNodes +
+                "\n\t#fail: " + nFailures +
+                "\n\t#sols : " + nSolutions +
+                "\n\tcompleted : " + completed + "\n";
     }
 }

@@ -68,8 +68,10 @@ public class DFSearch {
 
         try {
             dfs(statistics,limit);
-        } catch (StopSearchException e) {
-        }  catch (StackOverflowError e) {
+            statistics.completed = true;
+        }
+        catch (StopSearchException ignored) {}
+        catch (StackOverflowError e) {
             throw new NotImplementedException("dfs with explicit stack needed to pass this test");
         }
         state.popUntil(level);

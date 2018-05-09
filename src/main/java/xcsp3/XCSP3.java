@@ -4,38 +4,31 @@ import minicp.cp.Factory;
 import minicp.engine.constraints.*;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
-import minicp.engine.core.IntVarViewOpposite;
 import minicp.engine.core.Solver;
 
 import static minicp.cp.Heuristics.*;
 import static minicp.cp.Factory.*;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
-import static org.xcsp.parser.XCallbacks.XCallbacksParameters.RECOGNIZING_BEFORE_CONVERTING;
 
-import minicp.search.Choice;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.Box;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
-import org.w3c.dom.Document;
 import org.xcsp.checker.SolutionChecker;
 import org.xcsp.common.Condition;
 import org.xcsp.common.Constants;
 import org.xcsp.common.Types;
-import org.xcsp.common.Utilities;
 import org.xcsp.common.predicates.XNodeParent;
-import org.xcsp.parser.XCallbacks;
 import org.xcsp.parser.XCallbacks2;
-import org.xcsp.parser.XParser;
-import org.xcsp.parser.entries.XVariables;
 import org.xcsp.parser.entries.XVariables.*;
 
 import java.io.ByteArrayInputStream;
-import java.lang.reflect.Array;
 import java.security.InvalidParameterException;
 import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class XCSP3 implements XCallbacks2 {
 
@@ -47,11 +40,13 @@ public class XCSP3 implements XCallbacks2 {
     private final List<IntVar> minicpVars = new LinkedList<>();
 
 
-    private final Set<IntVar> decisionVars = new HashSet<>();
+    private final Set<IntVar> decisionVars = new LinkedHashSet<>();
 
     public final Solver minicp = new Solver();
 
     private Optional<IntVar> objectiveMinimize = Optional.empty();
+    private Optional<IntVar> realObjective = Optional.empty();
+
     private boolean hasFailed;
 
 
@@ -75,6 +70,10 @@ public class XCSP3 implements XCallbacks2 {
         implem.currParameters.put(XCallbacksParameters.CONVERT_INTENSION_TO_EXTENSION_SPACE_LIMIT, Long.MAX_VALUE); // included
 
         loadInstance(fileName);
+    }
+
+    public boolean isCOP() {
+        return objectiveMinimize.isPresent();
     }
 
     public List<String> getViolatedCtrs(String solution) throws Exception {
@@ -141,7 +140,7 @@ public class XCSP3 implements XCallbacks2 {
                     minicp.post(new ShortTableCT(trVars(list), tuples, Constants.STAR_INT));
                 } else {
                     minicp.fixPoint();
-                    minicp.post(new TableCT(trVars(list), tuples));
+                    minicp.post(new TableDecomp(trVars(list), tuples));
                 }
             }
 
@@ -495,12 +494,20 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
+    private void setObj(IntVar obj, boolean minimization) {
+        IntVar minobj = minimization ? obj : minus(obj);
+
+
+        objectiveMinimize = Optional.of(minobj);
+        realObjective = Optional.of(obj);
+    }
+
     @Override
     public void buildObjToMinimize(String id, XVarInteger x) {
         if(hasFailed)
             return;
 
-        objectiveMinimize = Optional.of(mapVar.get(x));
+        setObj(mapVar.get(x), true);
     }
 
     @Override
@@ -510,13 +517,13 @@ public class XCSP3 implements XCallbacks2 {
         try {
             if (type == Types.TypeObjective.MAXIMUM) {
                 IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
-                objectiveMinimize = Optional.of(maximum(xs));
+                setObj(maximum(xs), true);
             } else if (type == Types.TypeObjective.MINIMUM) {
                 IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
-                objectiveMinimize = Optional.of(minimum(xs));
+                setObj(minimum(xs), true);
             } else if (type == Types.TypeObjective.SUM) {
                 IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
-                objectiveMinimize = Optional.of(s);
+                setObj(s, true);
             } else {
                 throw new NotImplementedException();
             }
@@ -536,7 +543,7 @@ public class XCSP3 implements XCallbacks2 {
         }
         try {
             IntVar s = sum(wx);
-            objectiveMinimize = Optional.of(s);
+            setObj(s, true);
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -547,7 +554,7 @@ public class XCSP3 implements XCallbacks2 {
         if(hasFailed)
             return;
 
-        objectiveMinimize = Optional.of(minus(mapVar.get(x)));
+        setObj(mapVar.get(x), false);
     }
 
     @Override
@@ -558,13 +565,13 @@ public class XCSP3 implements XCallbacks2 {
         try {
             if (type == Types.TypeObjective.MAXIMUM) {
                 IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
-                objectiveMinimize = Optional.of(minus(maximum(xs)));
+                setObj(maximum(xs), false);
             } else if (type == Types.TypeObjective.MINIMUM) {
                 IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
-                objectiveMinimize = Optional.of(minus(minimum(xs)));
+                setObj(minimum(xs), false);
             } else if (type == Types.TypeObjective.SUM) {
                 IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
-                objectiveMinimize = Optional.of(minus(s));
+                setObj(s, false);
             } else {
                 throw new NotImplementedException();
             }
@@ -584,7 +591,7 @@ public class XCSP3 implements XCallbacks2 {
         }
         try {
             IntVar s = sum(wx);
-            objectiveMinimize = Optional.of(minus(s));
+            setObj(s, false);
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -605,6 +612,35 @@ public class XCSP3 implements XCallbacks2 {
         throw new NotImplementedException();
     }
 
+    @Override
+    public void buildCtrMaximum(String id, XVarInteger[] list, Condition condition) {
+        if(hasFailed)
+            return;
+        // Constraints
+        try {
+            IntVar [] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
+            IntVar s = Factory.maximum(xs);
+            _buildCrtWithCondition(id, s, condition);
+        } catch (InconsistencyException e) {
+            hasFailed = true;
+        }
+    }
+
+
+    @Override
+    public void buildCtrMinimum(String id, XVarInteger[] list, Condition condition) {
+        if(hasFailed)
+            return;
+        // Constraints
+        try {
+            IntVar [] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
+            IntVar s = Factory.minimum(xs);
+            _buildCrtWithCondition(id, s, condition);
+        } catch (InconsistencyException e) {
+            hasFailed = true;
+        }
+    }
+
     class EntryComparator implements Comparator<Map.Entry<XVarInteger, IntVar>> {
         @Override
         public int compare(Map.Entry<XVarInteger, IntVar> o1, Map.Entry<XVarInteger, IntVar> o2) {
@@ -612,41 +648,40 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
-    public Choice ff(IntVar ... x) {
-        return selectMin(x,
-                xi -> xi.getSize() > 1,
-                xi -> xi.getSize(),
-                xi -> {
-                    int v = xi.getMax();
-                    return branch(
-                            () -> {
-                                equal(xi,v);
-                            },
-                            () -> {
-                                notEqual(xi,v);
-                            }
-                    );
-                }
-        );
+    public String solve(int nSolution, int timeOut) throws InconsistencyException {
+        Box<String> lastSolution = new Box<String>("");
+        Long t0 = System.currentTimeMillis();
+
+        solve((solution, value) -> {
+            System.out.println("solfound "+(value == Integer.MAX_VALUE ? value: "solution"));
+            lastSolution.set(solution);
+        }, ss -> {
+            int nSols = isCOP() ? nSolution : 1;
+            return (System.currentTimeMillis()-t0 >= timeOut*1000 || ss.nSolutions >= nSols);
+        });
+
+        return lastSolution.get();
     }
 
+    public void buildAnnotationDecision(XVarInteger[] list) {
+        decisionVars.clear();
+        Arrays.stream(list).map(mapVar::get).forEach(decisionVars::add);
+    }
 
     /**
-     *
-     * @param nSolution maximum number of solution (not taken into account if satisfiability problem, only first feasible one)
-     * @param timeOut
-     * @return
+     * @param onSolution: void onSolution(solution, obj). If not a COP, obj = Integer.MAXVALUE
+     * @param shouldStop: boolean shouldStop(stats, isCOP).
+     * @return Stats
      */
-    public String solve(int nSolution, int timeOut) {
+    public SearchStatistics solve(BiConsumer<String, Integer> onSolution, Function<SearchStatistics, Boolean> shouldStop)
+            throws InconsistencyException {
 
-        IntVar[] vars = mapVar.entrySet().stream().sorted(new EntryComparator()).map(i -> i.getValue()).toArray(size -> new IntVar[size]);
+        IntVar[] vars = mapVar.entrySet().stream().sorted(new EntryComparator()).map(Map.Entry::getValue).toArray(IntVar[]::new);
         DFSearch search;
         if (decisionVars.isEmpty()) {
             search = makeDfs(minicp, firstFail(vars));
-
         } else {
-            search = makeDfs(minicp, ff(vars));
-            //search = makeDfs(minicp, and(ff(decisionVars.toArray(new IntVar[0])), ff(vars)));
+            search = makeDfs(minicp, and(firstFail(decisionVars.toArray(new IntVar[0])), firstFail(vars)));
         }
 
         if (objectiveMinimize.isPresent()) {
@@ -655,55 +690,36 @@ public class XCSP3 implements XCallbacks2 {
             } catch (InconsistencyException e) {
                 hasFailed = true;
             }
-        } else {
-            nSolution = 1;
         }
 
         if (hasFailed) {
-            System.out.println("Model is inconsistent at first fixpoint");
-            return "";
+            throw InconsistencyException.INCONSISTENCY;
         }
 
 
-
-        Box<String> lastSolution = new Box<String>("");
         search.onSolution(() -> {
-            System.out.println("solfound"+(objectiveMinimize.isPresent() ? objectiveMinimize.get(): "-"));
-            int i = 0;
-            String sol = "<instantiation>\n\t<list>\n\t\t";
-            //xcsp3.mapVar.entrySet().stream()
-            for (XVarInteger x : xVars) {
-                sol += x.id() + " ";
-            }
-            sol += "\n\t</list>\n\t<values>\n\t\t";
-            for (IntVar x : minicpVars) {
-                sol += x.getMin() + " ";
-            }
-            sol += "\n\t</values>\n</instantiation>";
-            lastSolution.set(sol);
-            //solutions.add(sol);
+            StringBuilder sol = new StringBuilder("<instantiation>\n\t<list>\n\t\t");
+            for (XVarInteger x : xVars)
+                sol.append(x.id()).append(" ");
+            sol.append("\n\t</list>\n\t<values>\n\t\t");
+            for (IntVar x : minicpVars)
+                sol.append(x.getMin()).append(" ");
+            sol.append("\n\t</values>\n</instantiation>");
+            onSolution.accept(sol.toString(), realObjective.map(IntVar::getMin).orElse(Integer.MAX_VALUE));
         });
-        Long t0 = System.currentTimeMillis();
 
-        final int nSols = nSolution;
-
-        SearchStatistics stats = search.start(limit -> (System.currentTimeMillis()-t0 >= timeOut*1000 || limit.nSolutions >= nSols));
-        System.out.println(stats);
-        System.out.println(stats);
-        return lastSolution.get();
+        return search.start(shouldStop::apply);
     }
 
 
     public static void main(String[] args) {
         try {
-            XCSP3 xcsp3 = new XCSP3("SteelXCSP3.xml");
-            String solution = xcsp3.solve(100000,100);
+            XCSP3 xcsp3 = new XCSP3(args[0]);
+            String solution = xcsp3.solve(Integer.MAX_VALUE,100);
             List<String> violatedCtrs = xcsp3.getViolatedCtrs(solution);
             System.out.println(violatedCtrs);
-        } catch (Exception e) {
+        } catch (InconsistencyException | Exception e) {
             e.printStackTrace();
         }
-
-
     }
 }

@@ -1,14 +1,15 @@
 package xcsp3;
 
+import minicp.util.InconsistencyException;
+import minicp.util.NotImplementedException;
 import org.junit.Assume;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public abstract class XCSP3TestHelper {
@@ -20,12 +21,12 @@ public abstract class XCSP3TestHelper {
 
     @Test
     public void testInstance() throws Exception {
+        boolean shouldBeSat = !path.contains("unsat");
         try {
             System.out.println(path);
             XCSP3 xcsp3 = new XCSP3(path);
-            String solution = xcsp3.solve(1,5); // first sol, 5 seconds timeout
+            String solution = xcsp3.solve(1,3);
 
-            boolean shouldBeSat = !path.contains("unsat");
             if(shouldBeSat) {
                 List<String> violatedCtrs = xcsp3.getViolatedCtrs(solution);
                 assertTrue(violatedCtrs.isEmpty());
@@ -34,8 +35,10 @@ public abstract class XCSP3TestHelper {
                 assertTrue(solution.equals(""));
             }
         }
-        catch (IllegalArgumentException e) {
+        catch (IllegalArgumentException | NotImplementedException e) {
             Assume.assumeNoException(e);
+        } catch (InconsistencyException e) {
+            assertFalse(shouldBeSat);
         }
     }
 
