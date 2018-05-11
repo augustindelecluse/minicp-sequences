@@ -34,7 +34,6 @@ public class IsEqualTest {
     @Test
     public void test1() {
         try {
-            try {
 
                 Solver cp = new Solver();
                 IntVar x = makeIntVar(cp, -4, 7);
@@ -51,9 +50,7 @@ public class IsEqualTest {
 
                 assertEquals(12, stats.nSolutions);
 
-            } catch (InconsistencyException e) {
-                fail("should not fail");
-            }
+
         } catch (NotImplementedException e) {
             e.print();
         }
