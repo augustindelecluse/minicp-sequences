@@ -15,19 +15,27 @@
 
 package minicp.examples;
 
+import minicp.engine.constraints.IsOr;
 import minicp.engine.constraints.TableDecomp;
+import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
+import minicp.search.Alternative;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.InputReader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Heuristics.firstFail;
+import static minicp.search.Selector.branch;
+import static minicp.search.Selector.selectMin;
 
 
 public class Steel {
@@ -37,64 +45,142 @@ public class Steel {
 
         // Reading the data
 
-        InputReader reader = new InputReader("data/steel/bench_13_14");
+        InputReader reader = new InputReader("data/steel/bench_20_0");
         int nCapa = reader.getInt();
-        int [] capa = new int[nCapa];
+        int[] capa = new int[nCapa];
         for (int i = 0; i < nCapa; i++) {
             capa[i] = reader.getInt();
         }
-        int maxCapa = capa[capa.length-1];
-        int [] loss =  new int [maxCapa+1];
+        int maxCapa = capa[capa.length - 1];
+        int[] loss = new int[maxCapa + 1];
         int capaIdx = 0;
         for (int i = 0; i < maxCapa; i++) {
-            loss[i] = capa[capaIdx]-i;
+            loss[i] = capa[capaIdx] - i;
             if (loss[i] == 0) capaIdx++;
         }
-
+        loss[0] = 0;
 
         int nCol = reader.getInt();
         int nSlab = reader.getInt();
-        int [] w = new int[nSlab];
-        int [] c = new int[nSlab];
+        int nOrder = nSlab;
+        int[] w = new int[nSlab];
+        int[] c = new int[nSlab];
         for (int i = 0; i < nSlab; i++) {
             w[i] = reader.getInt();
-            c[i] = reader.getInt();
+            c[i] = reader.getInt()-1;
         }
 
         // ---------------------------
 
-        Solver cp = makeSolver();
-        IntVar [] x = makeIntVarArray(cp,nSlab,nSlab);
-        IntVar [] l = makeIntVarArray(cp,nSlab,maxCapa+1);
+        try {
 
 
-        // bin packing constraint
-        for (int j = 0; j < nSlab; j++) {
-            IntVar [] wj = new IntVar[nSlab];
-            for (int i = 0; i < nSlab; i++) {
-                wj[i] = mul(isEqual(x[i],j),w[i]);
+            Solver cp = makeSolver();
+            IntVar[] x = makeIntVarArray(cp, nOrder, nSlab);
+            IntVar[] l = makeIntVarArray(cp, nSlab, maxCapa + 1);
+
+            BoolVar[][] inSlab = new BoolVar[nSlab][nOrder]; // inSlab[j][i] = 1 if order i is placed in slab j
+
+            for (int j = 0; j < nSlab; j++) {
+                for (int i = 0; i < nOrder; i++) {
+                    inSlab[j][i] = isEqual(x[i], j);
+                }
             }
-            cp.post(sum(wj,l[j]));
+
+
+            for (int j = 0; j < nSlab; j++) {
+                // for each color, is it present in the slab
+                IntVar[] presence = new IntVar[nCol];
+
+                for (int col = 0; col < nCol; col++) {
+                    presence[col] = makeBoolVar(cp);
+
+                    ArrayList<BoolVar> inSlabWithColor = new ArrayList<>();
+                    for (int i = 0; i < nOrder; i++) {
+                        if (c[i] == col) inSlabWithColor.add(inSlab[j][i]);
+                    }
+
+                    // TODO: model that presence[col] is true iff at least one order with color col is placed in slab j
+
+                    cp.post(new IsOr((BoolVar) presence[col],inSlabWithColor.toArray(new BoolVar[0])));
+
+                }
+                // TODO: restrict the number of colors present in slab j to be <= 2
+                lessOrEqual(sum(presence),2);
+            }
+
+
+            // bin packing constraint
+            for (int j = 0; j < nSlab; j++) {
+                IntVar[] wj = new IntVar[nSlab];
+                for (int i = 0; i < nOrder; i++) {
+                    wj[i] = mul(inSlab[j][i], w[i]);
+                }
+                cp.post(sum(wj, l[j]));
+            }
+
+            // TODO: add the redundant constraint that the sum of the loads is equal to the sum of elements
+            cp.post(sum(l, IntStream.of(w).sum()));
+            System.out.println("total weights of items:"+IntStream.of(w).sum());
+
+
+            // TODO: model the objective function using element constraint + a sum constraint
+            IntVar[] losses = makeIntVarArray(cp, nSlab, j -> element(loss, l[j]));
+            IntVar totLoss = sum(losses);
+
+            //DFSearch dfs = makeDfs(cp,firstFail(x));
+
+
+            // TODO add static symmetry breaking constraint
+
+            // TODO implement a dynamic symmetry breaking during search
+            DFSearch dfs = makeDfs(cp,
+                    selectMin(x,
+                            xi -> xi.getSize() > 1,
+                            xi -> xi.getSize(),
+                            xi -> {
+                                int maxUsed = -1;
+                                for (IntVar x_ : x) {
+                                    if (x_.isBound() && x_.getMin() > maxUsed) {
+                                        maxUsed = x_.getMin();
+                                    }
+                                }
+                                Alternative [] alternatives = new Alternative[maxUsed+2];
+                                for (int i = 0; i <= maxUsed+1; i++) {
+                                    int slab = i;
+                                    alternatives[i] = () -> equal(xi,slab);
+                                }
+                                return branch(alternatives);
+                            }
+                    )
+            );
+
+            cp.post(minimize(totLoss, dfs));
+
+            dfs.onSolution(() -> {
+                System.out.println("---");
+                System.out.println(totLoss);
+
+                Set<Integer>[] colorsInSlab = new Set[nSlab];
+                for (int j = 0; j < nSlab; j++) {
+                    colorsInSlab[j] = new HashSet<>();
+                }
+                for (int i = 0; i < nOrder; i++) {
+                    colorsInSlab[x[i].getMin()].add(c[i]);
+                }
+                for (int j = 0; j < nSlab; j++) {
+                    if (colorsInSlab[j].size() > 2) {
+                        System.out.println("problem, "+colorsInSlab[j].size()+" colors in slab "+j+" should be <= 2");
+                    }
+                }
+            });
+
+            SearchStatistics statistics = dfs.start();
+            System.out.println(statistics);
+
+        } catch (InconsistencyException e) {
+            e.printStackTrace();
+
         }
-        cp.post(sum(l,IntStream.of(w).sum()));
-
-        System.out.println(Arrays.toString(loss));
-        System.out.println(Arrays.toString(l));
-
-        IntVar [] losses = makeIntVarArray(cp,nSlab,i -> element(loss,l[i]));
-        IntVar totLoss = sum(losses);
-
-        DFSearch dfs = makeDfs(cp,firstFail(x));
-
-        cp.post(minimize(totLoss,dfs));
-
-        dfs.onSolution(() -> {
-            System.out.println("---");
-            System.out.println(totLoss);
-        });
-
-        dfs.start();
-
-
     }
 }

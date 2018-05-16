@@ -143,6 +143,11 @@ public class Factory {
         x.getSolver().fixPoint();
     }
 
+    static public void lessOrEqual(IntVar x, int v) throws InconsistencyException {
+        x.removeAbove(v);
+        x.getSolver().fixPoint();
+    }
+
     static public void notEqual(IntVar x, int v) throws InconsistencyException {
         x.remove(v);
         x.getSolver().fixPoint();
@@ -155,10 +160,14 @@ public class Factory {
         return new NotEqual(x,y,c);
     }
 
-    static public BoolVar isEqual(IntVar x, final int c)  throws InconsistencyException  {
+    static public BoolVar isEqual(IntVar x, final int c)   {
         BoolVar b = makeBoolVar(x.getSolver());
         Solver cp = x.getSolver();
-        cp.post(new IsEqual(b,x,c));
+        try {
+            cp.post(new IsEqual(b,x,c));
+        } catch (InconsistencyException e) {
+            e.printStackTrace();
+        }
         return b;
     }
 
