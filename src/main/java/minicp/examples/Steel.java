@@ -128,7 +128,7 @@ public class Steel {
             IntVar[] losses = makeIntVarArray(cp, nSlab, j -> element(loss, l[j]));
             IntVar totLoss = sum(losses);
 
-            DFSearch dfs = makeDfs(cp,firstFail(x));
+            //DFSearch dfs = makeDfs(cp,firstFail(x));
 
 
             // TODO add static symmetry breaking constraint

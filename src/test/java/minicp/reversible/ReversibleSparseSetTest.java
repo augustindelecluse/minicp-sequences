@@ -113,33 +113,33 @@ public class ReversibleSparseSetTest {
         try {
 
             Trail trail = new Trail();
-            ReversibleSparseSet set = new ReversibleSparseSet(trail,-5,5);
+            ReversibleSparseSet set = new ReversibleSparseSet(trail,10);
 
-            for (int i = -5; i <= 5; i++) {
+            for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
             }
 
             trail.push();
 
-            set.remove(-4);
-            set.remove(-5);
             set.remove(4);
             set.remove(5);
+            set.remove(0);
+            set.remove(1);
 
-            assertEquals(-3,set.getMin());
-            assertEquals(3,set.getMax());
+            assertEquals(2,set.getMin());
+            assertEquals(9,set.getMax());
 
             trail.push();
 
-            set.removeAllBut(-1);
-            assertEquals(-1,set.getMin());
-            assertEquals(-1,set.getMax());
+            set.removeAllBut(7);
+            assertEquals(7,set.getMin());
+            assertEquals(7,set.getMax());
 
 
             trail.pop();
             trail.pop();
 
-            for (int i = -5; i <= 5; i++) {
+            for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
             }
 
@@ -151,43 +151,41 @@ public class ReversibleSparseSetTest {
     @Test
     public void testRemoveBelow() {
 
-        try {
+        //try {
 
             Trail trail = new Trail();
-            ReversibleSparseSet set = new ReversibleSparseSet(trail,-5,5);
+            ReversibleSparseSet set = new ReversibleSparseSet(trail,10);
 
-            for (int i = -5; i <= 5; i++) {
+            for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
             }
 
             trail.push();
 
 
-            set.remove(-2);
-            set.remove(-1);
-            set.removeBelow(-2);
+
+            set.removeBelow(5);
 
 
 
-            assertEquals(0,set.getMin());
-            assertEquals(5,set.getMax());
+            assertEquals(5,set.getMin());
+            assertEquals(9,set.getMax());
 
             trail.push();
 
-            set.removeBelow(2);
+            set.remove(7);
+            set.removeBelow(7);
 
-            assertEquals(1,set.getMin());
+            assertEquals(8,set.getMin());
 
             trail.pop();
             trail.pop();
 
-            for (int i = -5; i <= 5; i++) {
+            for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
             }
 
-        } catch (NotImplementedException e) {
-            e.print();
-        }
+
     }
 
     @Test
@@ -196,9 +194,9 @@ public class ReversibleSparseSetTest {
         try {
 
             Trail trail = new Trail();
-            ReversibleSparseSet set = new ReversibleSparseSet(trail,-5,5);
+            ReversibleSparseSet set = new ReversibleSparseSet(trail,10);
 
-            for (int i = -5; i <= 5; i++) {
+            for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
             }
 
@@ -207,21 +205,22 @@ public class ReversibleSparseSetTest {
 
             set.remove(1);
             set.remove(2);
-            set.removeAbove(2);
 
-            assertEquals(-5,set.getMin());
-            assertEquals(0,set.getMax());
+            set.removeAbove(7);
+
+            assertEquals(0,set.getMin());
+            assertEquals(7,set.getMax());
 
             trail.push();
 
-            set.removeAbove(-2);
+            set.removeAbove(2);
 
-            assertEquals(-3,set.getMax());
+            assertEquals(0,set.getMax());
 
             trail.pop();
             trail.pop();
 
-            for (int i = -5; i <= 5; i++) {
+            for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
             }
 
