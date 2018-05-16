@@ -31,12 +31,13 @@ public class AllDifferentAC extends Constraint {
 
     @Override
     public void post() throws InconsistencyException {
-        Solver cp = x[0].getSolver();
         for (int i = 0; i < x.length; i++) {
-            for (int j = i+1; j < x.length; j++) {
-                cp.post(new NotEqual(x[i],x[j]),false);
-            }
+            x[i].propagateOnDomainChange(this);
         }
     }
 
+    @Override
+    public void propagate() throws InconsistencyException {
+        super.propagate();
+    }
 }
