@@ -39,6 +39,7 @@ public class NQueens {
                 cp.post(notEqual(q[i],q[j],i-j));
             }
 
+
         cp.post(new AllDifferentAC(q));
         cp.post(new AllDifferentAC( makeIntVarArray(cp,n, i -> minus(q[i],i))));
         cp.post(new AllDifferentAC( makeIntVarArray(cp,n, i -> plus(q[i],i))));

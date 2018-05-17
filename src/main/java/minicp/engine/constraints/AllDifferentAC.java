@@ -17,6 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.reversible.ReversibleInt;
 import minicp.util.GraphUtil;
 import minicp.util.GraphUtil.*;
 import minicp.util.InconsistencyException;
@@ -26,19 +27,44 @@ import java.util.Arrays;
 
 public class AllDifferentAC extends Constraint {
 
-    private IntVar [] x;
-    private int [] unbound;
-    private int nUnBound;
+    private IntVar[] x;
 
-    private int [] match;
+    // residual graph
+    private ArrayList<Integer>[] in;
+    private ArrayList<Integer>[] out;
+    private int nNodes;
+    Graph g = new Graph() {
+        @Override
+        public int n() { return nNodes; }
+
+        @Override
+        public Iterable<Integer> in(int idx) { return in[idx]; }
+
+        @Override
+        public Iterable<Integer> out(int idx) { return out[idx]; }
+    };
+
+
+    private int[] unbound;
+    private ReversibleInt nUnBound;
+
+    private int[] match;
+    boolean[] matched;
+
+    private int minVal;
+    private int maxVal;
 
     private final MaximumMatching maximumMatching;
 
-    public AllDifferentAC(IntVar ... x) {
+    public AllDifferentAC(IntVar... x) {
         super(x[0].getSolver());
         maximumMatching = new MaximumMatching(x);
         match = new int[x.length];
         unbound = new int[x.length];
+        for (int i = 0; i < x.length; i++) {
+            unbound[i] = i;
+        }
+        nUnBound = new ReversibleInt(cp.getTrail(),x.length);
         this.x = x;
     }
 
@@ -47,8 +73,84 @@ public class AllDifferentAC extends Constraint {
         for (int i = 0; i < x.length; i++) {
             x[i].propagateOnDomainChange(this);
         }
+        updateRange();
+
+        matched = new boolean[maxVal - minVal + 1];
+        nNodes = nUnBound.getValue() + (maxVal - minVal + 1) + 1;
+        in = new ArrayList[nNodes];
+        out = new ArrayList[nNodes];
+        for (int i = 0; i < nNodes; i++) {
+            in[i] = new ArrayList<>();
+            out[i] = new ArrayList<>();
+        }
+
         propagate();
     }
+
+    public void updateRange() throws InconsistencyException {
+        minVal = Integer.MAX_VALUE;
+        maxVal = Integer.MIN_VALUE;
+        int nU = nUnBound.getValue();
+        for (int i = 0; i < nU; i++) {
+            minVal = Math.min(minVal, x[unbound[i]].getMin());
+            maxVal = Math.max(maxVal, x[unbound[i]].getMax());
+        }
+    }
+
+    public void forwardChecking() throws InconsistencyException {
+        int nU = nUnBound.getValue();
+        int i = nU-1;
+        while (i >= 0) {
+            if (x[unbound[i]].isBound()) {
+                int value = x[unbound[i]].getMin();
+                for (int j = 0; j < nU; j++) {
+                    if (j != i) {
+                        x[unbound[j]].remove(value);
+                    }
+                }
+                int tmp = unbound[nU-1];
+                unbound[nU-1] = unbound[i];
+                unbound[i] = tmp;
+                nU -= 1;
+            }
+            i -= 1;
+        }
+        nUnBound.setValue(nU); // trail
+    }
+
+    public void updateGraph() {
+        int nU = nUnBound.getValue();
+        nNodes = nU + (maxVal - minVal + 1) + 1;
+        int sink = nNodes - 1;
+        for (int i = 0; i < nNodes; i++) {
+            in[i].clear();
+            out[i].clear();
+        }
+        Arrays.fill(matched,0,(maxVal-minVal+1),false);
+        for (int i = 0; i < nU; i++) {
+            in[i].add(match[unbound[i]] - minVal + nU);
+            out[match[unbound[i]] - minVal + nU].add(i);
+            matched[match[unbound[i]] - minVal] = true;
+        }
+        for (int i = 0; i < nU; i++) {
+            for (int v = x[unbound[i]].getMin(); v <= x[unbound[i]].getMax(); v++) {
+                if (x[unbound[i]].contains(v) && match[unbound[i]] != v) {
+                    in[v - minVal + nU].add(i);
+                    out[i].add(v - minVal + nU);
+                }
+            }
+        }
+        for (int v = minVal; v <= maxVal; v++) {
+            if (!matched[v - minVal]) {
+                in[sink].add(v - minVal + nU);
+                out[v - minVal + nU].add(sink);
+            } else {
+                in[v - minVal + nU].add(sink);
+                out[sink].add(v - minVal + nU);
+            }
+        }
+    }
+
 
     @Override
     public void propagate() throws InconsistencyException {
@@ -56,83 +158,17 @@ public class AllDifferentAC extends Constraint {
         if (size < x.length) {
             throw new InconsistencyException();
         }
-
-        int minVal = Integer.MAX_VALUE;
-        int maxVal = Integer.MIN_VALUE;
-        nUnBound = 0;
-        for (int i = 0; i < x.length; i++) {
-            if (!x[i].isBound()) {
-                minVal = Math.min(minVal, x[i].getMin());
-                maxVal = Math.max(maxVal, x[i].getMax());
-                unbound[nUnBound] = i;
-                nUnBound++;
-            }
-        }
-
-
-        final int nNodes = nUnBound+(maxVal-minVal+1) +1 ;
-        int sink = nNodes -1;
-
-        ArrayList<Integer> [] in = new ArrayList[nNodes];
-        ArrayList<Integer> [] out = new ArrayList[nNodes];
-        for (int i = 0; i < nNodes; i++) {
-            in[i] = new ArrayList<>();
-            out[i] = new ArrayList<>();
-        }
-
-        boolean [] matched = new boolean[maxVal-minVal+1];
-        for (int i = 0; i < nUnBound; i++) {
-            in[i].add(match[unbound[i]]-minVal+nUnBound);
-            out[match[unbound[i]]-minVal+nUnBound].add(i);
-            matched [match[unbound[i]]-minVal] = true;
-        }
-        for (int i = 0; i < nUnBound; i++) {
-            for (int v = x[unbound[i]].getMin(); v <= x[unbound[i]].getMax(); v++) {
-                if (x[unbound[i]].contains(v) && match[unbound[i]] != v) {
-                    in[v-minVal+nUnBound].add(i);
-                    out[i].add(v-minVal+nUnBound);
-                }
-            }
-        }
-        for (int v = minVal; v < maxVal; v++) {
-            if (!matched[v-minVal]) {
-                in[sink].add(v-minVal+nUnBound);
-                out[v-minVal+nUnBound].add(sink);
-            } else {
-                in[v-minVal+nUnBound].add(sink);
-                out[sink].add(v-minVal+nUnBound);
-            }
-        }
-
-
-        Graph g = new Graph() {
-            @Override
-            public int n() {
-                return nNodes;
-            }
-
-            @Override
-            public Iterable<Integer> in(int idx) {
-                return in[idx];
-            }
-
-            @Override
-            public Iterable<Integer> out(int idx) {
-                return out[idx];
-            }
-        };
-
-        int [] scc = GraphUtil.stronglyConnectedComponents(g);
-        System.out.println(Arrays.toString(scc));
-
-        for (int i = 0; i < nUnBound; i++) {
+        forwardChecking();
+        updateRange();
+        updateGraph();
+        int[] scc = GraphUtil.stronglyConnectedComponents(g);
+        int nU = nUnBound.getValue();
+        for (int i = 0; i < nU; i++) {
             for (int v = minVal; v <= maxVal; v++) {
-                if (scc[i] != scc[v-minVal+nUnBound]) {
+                if (match[unbound[i]] != v && scc[i] != scc[v - minVal + nU]) {
                     x[unbound[i]].remove(v);
                 }
             }
         }
-
-
     }
 }

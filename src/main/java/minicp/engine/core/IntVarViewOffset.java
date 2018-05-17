@@ -118,4 +118,19 @@ public class IntVarViewOffset implements IntVar {
         return x.removeAbove(v - o);
     }
 
+    @Override
+    public String toString() {
+            StringBuilder b = new StringBuilder();
+            b.append("{");
+            for (int i = getMin(); i <= getMax() - 1; i++) {
+                if (contains((i))) {
+                    b.append(i);
+                    b.append(',');
+                }
+            }
+            if (getSize() > 0) b.append(getMax());
+            b.append("}");
+            return b.toString();
+
+    }
 }
