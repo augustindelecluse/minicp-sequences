@@ -3,10 +3,10 @@ package minicp.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class GraphUtil {
-
     public static interface Graph {
         /**
          * @return the number of nodes in this graph. They are indexed from 0 to n-1.
@@ -56,47 +56,56 @@ public class GraphUtil {
      * For at each index, an integer representing the scc id of the node
      */
     public static int[] stronglyConnectedComponents(Graph graph) {
+        //Compute the suffix order
         Stack<Integer> firstOrder = new Stack<>();
-        dfs(graph, firstOrder::push, (x) -> { });
+        int[] visited = new int[graph.n()];
+        Arrays.fill(visited, 0);
+        for (int i = 0; i < graph.n(); i++) {
+            if (visited[i] == 0) {
+                dfsNode(graph, (suffix, b) -> {if(suffix) firstOrder.push(b);}, visited, i);
+            }
+        }
+
+        //Reverse the order, and do the dfs of the transposed graph
+        Arrays.fill(visited, 0);
         int [] scc = new int[graph.n()];
         Counter cpt = new Counter();
-        dfs(transpose(graph),
-                x -> scc[x] = cpt.getValue(),
-                x -> cpt.incr());
+        Graph tranposed = GraphUtil.transpose(graph);
+
+        while (!firstOrder.empty()) {
+            int next = firstOrder.pop();
+            if(visited[next] == 0) {
+                cpt.incr();
+                dfsNode(tranposed, (suffix, x) -> {if(!suffix) scc[x] = cpt.getValue();}, visited, next);
+            }
+        }
         return scc;
     }
 
-    /**
-     * Do a DFS
-     *
-     * @param graph      the graph on which the DFS is run
-     * @param action     the action to be made on each node. It is a function that will be called with the id of the node.
-     * @param onNewStart each time the DFS has to restart from a new node, this function is called with the id of the node.
-     */
-    public static void dfs(Graph graph, Consumer<Integer> action, Consumer<Integer> onNewStart) {
-        boolean[] visited = new boolean[graph.n()];
-        Arrays.fill(visited, false);
-        for (int i = 0; i < graph.n(); i++) {
-            if (!visited[i]) {
-                onNewStart.accept(i);
-                dfsNode(graph, action, visited, i);
-            }
-
-        }
-    }
-
-    private static void dfsNode(Graph graph, Consumer<Integer> action, boolean[] visited, int start) {
+    private static void dfsNode(Graph graph, BiConsumer<Boolean, Integer> action, int[] visited, int start) {
         Stack<Integer> todo = new Stack<>();
         todo.add(start);
-        visited[start] = true;
+
+        // seen = 1
+        // visited = 2
+        // closed = 3
+        visited[start] = 1; //seen
         while (!todo.isEmpty()) {
-            int cur = todo.pop();
-            action.accept(cur);
-            for (int next : graph.out(cur)) {
-                if (!visited[next]) {
-                    todo.add(next);
-                    visited[next] = true;
+            int cur = todo.peek();
+            if(visited[cur] == 1) {
+                action.accept(false, cur);
+                for (int next : graph.out(cur)) {
+                    if (visited[next] == 0) {
+                        todo.add(next);
+                        visited[next] = 1; //seen
+                    }
                 }
+                visited[cur] = 2; //visited
+            }
+            else if(visited[cur] == 2) {
+                action.accept(true, cur);
+                visited[cur] = 3; //closed
+                todo.pop();
             }
         }
     }

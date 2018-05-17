@@ -20,6 +20,7 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static minicp.util.GraphUtil.*;
@@ -37,7 +38,7 @@ public class GraphUtilTest {
     public void simpleTest0() {
 
         Integer [][] out = new Integer[][] {{1},{2},{0},{},{7},{4},{4},{6,8},{7}};
-        Integer [][] in  = new Integer[][] {{2},{0},{1},{},{5},{6},{7},{4,8},{7}};
+        Integer [][] in  = inFromOut(out);
         Graph g = new Graph() {
             @Override
             public int n() {
@@ -62,20 +63,22 @@ public class GraphUtilTest {
         assertEquals(scc[0], scc[2]);
 
         assertNotEquals(scc[0], scc[3]);
+        assertNotEquals(scc[0], scc[4]);
+        assertNotEquals(scc[0], scc[5]);
         assertNotEquals(scc[4], scc[3]);
+        assertNotEquals(scc[4], scc[5]);
+        assertNotEquals(scc[5], scc[3]);
 
-        assertEquals(scc[4], scc[5]);
         assertEquals(scc[4], scc[6]);
         assertEquals(scc[4], scc[7]);
         assertEquals(scc[4], scc[8]);
-
     }
 
     @Test
     public void simpleTest1() {
 
         Integer [][] out = new Integer[][] {{1},{2},{0},{},{7},{4},{},{8},{7}};
-        Integer [][] in  = new Integer[][] {{2},{0},{1},{},{5},{6},{},{4,8},{7}};
+        Integer [][] in  = inFromOut(out);
         Graph g = new Graph() {
             @Override
             public int n() {
@@ -109,6 +112,23 @@ public class GraphUtilTest {
     }
 
 
+    public static Integer[][] inFromOut(Integer[][] out) {
+        ArrayList<Integer>[] in = new ArrayList[out.length];
+        for(int i = 0; i < out.length; i++) {
+            in[i] = new ArrayList<Integer>();
+        }
+        for(int i = 0; i < out.length; i++) {
+            for(int j = 0; j < out[i].length; j++) {
+                in[out[i][j]].add(i);
+            }
+        }
 
+        Integer[][] inA = new Integer[out.length][];
+        for(int i = 0; i < out.length; i++) {
+            inA[i] = in[i].toArray(new Integer[0]);
+        }
+
+        return inA;
+    }
 
 }
