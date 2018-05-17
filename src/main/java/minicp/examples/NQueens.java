@@ -15,6 +15,7 @@
 
 package minicp.examples;
 
+import minicp.engine.constraints.AllDifferentAC;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.util.InconsistencyException;
@@ -30,12 +31,18 @@ public class NQueens {
         Solver cp = makeSolver();
         IntVar[] q = makeIntVarArray(cp, n, n);
 
+
         for(int i=0;i < n;i++)
             for(int j=i+1;j < n;j++) {
                 cp.post(notEqual(q[i],q[j]));
                 cp.post(notEqual(q[i],q[j],j-i));
                 cp.post(notEqual(q[i],q[j],i-j));
             }
+
+        cp.post(new AllDifferentAC(q));
+        cp.post(new AllDifferentAC( makeIntVarArray(cp,n, i -> minus(q[i],i))));
+        cp.post(new AllDifferentAC( makeIntVarArray(cp,n, i -> plus(q[i],i))));
+
 
         SearchStatistics stats = makeDfs(cp,
                 selectMin(q,
@@ -49,7 +56,7 @@ public class NQueens {
                 )
         ).onSolution(() ->
                 System.out.println("solution:"+ Arrays.toString(q))
-        ).start(statistics -> statistics.nSolutions == 1);
+        ).start(statistics -> statistics.nSolutions == 1000);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);
