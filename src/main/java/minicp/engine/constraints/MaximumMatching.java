@@ -22,7 +22,7 @@ import static minicp.util.InconsistencyException.*;
 
 public class MaximumMatching {
 
-    private static final int NONE = -Integer.MIN_VALUE;
+    public static final int NONE = -Integer.MIN_VALUE;
 
     // For each variable, the value it is mached to
     private int[] match;
@@ -73,7 +73,8 @@ public class MaximumMatching {
         findInitialMatching();
     }
 
-    public int [] compute() throws InconsistencyException {
+
+    public int compute(int [] result) {
         for (int k = 0; k < x.length; k++) {
             if (match[k] != NONE) {
                 if (!x[k].contains(match[k])) {
@@ -84,8 +85,10 @@ public class MaximumMatching {
             }
         }
         int sizeMatching = findMaximalMatching();
-        if (sizeMatching < x.length) throw INCONSISTENCY;
-        return match;
+        for (int k = 0; k < x.length; k++) {
+            result[k] = match[k];
+        }
+        return sizeMatching;
     }
 
 
@@ -111,7 +114,7 @@ public class MaximumMatching {
             for (int k = 0; k < x.length; k++) {
                 if (match[k] == NONE) {
                     magic++;
-                    if (findAlternatingPath(k)) {
+                    if (findAlternatingPathFromVar(k)) {
                         sizeMatching++;
                     }
                 }
@@ -120,7 +123,7 @@ public class MaximumMatching {
         return sizeMatching;
     }
 
-    private boolean findAlternatingPath(int i) {
+    private boolean findAlternatingPathFromVar(int i) {
         if (varSeen[i] != magic) {
             varSeen[i] = magic;
             int mx = x[i].getMin();
@@ -128,7 +131,7 @@ public class MaximumMatching {
             for (int v = mx; v <= Mx; v++) {
                 if (match[i] != v) {
                     if (x[i].contains(v)) {
-                        if (findAlternatingPathValue(v)) {
+                        if (findAlternatingPathFromVal(v)) {
                             match[i] = v;
                             valMatch[v - min] = i;
                             return true;
@@ -140,12 +143,13 @@ public class MaximumMatching {
         return false;
     }
 
-    private boolean findAlternatingPathValue(int v) {
+    private boolean findAlternatingPathFromVal
+            (int v) {
         if (valSeen[v - min] != magic) {
             valSeen[v - min] = magic;
             if (valMatch[v - min] == -1)
                 return true;
-            if (findAlternatingPath(valMatch[v - min]))
+            if (findAlternatingPathFromVar(valMatch[v - min]))
                 return true;
         }
         return false;
