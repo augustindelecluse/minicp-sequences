@@ -20,6 +20,7 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
+import minicp.util.NotImplementedException;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -173,6 +174,36 @@ public class AllDifferentACTest {
             assertEquals(80,stats.nSolutions);
 
 
+        } catch (InconsistencyException e) {
+            fail("should not fail");
+        }
+    }
+
+
+    @Test
+    public void allDifferentTest7() {
+        try {
+            Solver cp = new Solver();
+            IntVar[] x = new IntVar[]{
+                    makeIVar(cp, 3, 4),
+                    makeIVar(cp, 1),
+                    makeIVar(cp,  3, 4),
+                    makeIVar(cp, 0),
+                    makeIVar(cp,  3, 4, 5),
+                    makeIVar(cp, 5,6, 7),
+                    makeIVar(cp, 2,9,10),
+                    makeIVar(cp, 5,6, 7, 8),
+                    makeIVar(cp, 5,6, 7)};
+            int[] matching = new int[x.length];
+
+            cp.post(new AllDifferentAC(x));
+
+            assertTrue(!x[4].contains(3));
+            assertTrue(!x[4].contains(4));
+            assertTrue(!x[5].contains(5));
+            assertTrue(!x[7].contains(5));
+            assertTrue(!x[7].contains(6));
+            assertTrue(!x[8].contains(5));
         } catch (InconsistencyException e) {
             fail("should not fail");
         }
