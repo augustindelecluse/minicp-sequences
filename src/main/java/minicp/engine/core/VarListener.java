@@ -17,23 +17,7 @@ package minicp.engine.core;
 import minicp.reversible.ReversibleBool;
 import minicp.util.InconsistencyException;
 
-public abstract class Watcher {
-
-    protected final Solver cp;
-    protected final ReversibleBool active;
-
-    public Watcher(Solver cp) {
-        this.cp = cp;
-        active = new ReversibleBool(cp.getTrail(),true);
-    }
-
-    public boolean isActive() {
-        return active.getValue();
-    }
-
-    public void deactivate() {
-        active.setValue(false);
-    }
-
-    abstract void awake() throws InconsistencyException;
+@FunctionalInterface
+public interface VarListener {
+    public void call () throws InconsistencyException;
 }

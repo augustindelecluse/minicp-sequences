@@ -32,7 +32,7 @@ import static minicp.search.Selector.selectMin;
 public class MagicSerie {
     public static void main(String[] args) throws InconsistencyException {
 
-        int n = 20;
+        int n = 200;
         Solver cp = makeSolver();
 
         IntVar[] s = makeIntVarArray(cp, n, n);
@@ -45,10 +45,11 @@ public class MagicSerie {
         cp.post(sum(all(0,n-1,i -> mul(s[i],i)),n));
         cp.post(sum(all(0,n-1,i -> mul(s[i],i-1)),0));
 
+        long t0 = System.currentTimeMillis();
         SearchStatistics stats = makeDfs(cp,
                 selectMin(s,
                         si -> si.getSize() > 1,
-                        si -> si.getSize(),
+                        si -> -si.getSize(),
                         si -> {
                             int v = si.getMin();
                             return branch(() -> equal(si,v),
@@ -58,6 +59,10 @@ public class MagicSerie {
         ).onSolution(() ->
                 System.out.println("solution:"+ Arrays.toString(s))
         ).start();
+
+        long t1 = System.currentTimeMillis();
+
+        System.out.println(t1-t0);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);

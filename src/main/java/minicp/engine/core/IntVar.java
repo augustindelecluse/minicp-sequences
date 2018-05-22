@@ -28,23 +28,23 @@ public interface IntVar {
     /**
      * Ask that the closure is called whenever the domain
      * of this variable is reduced to a single value
-     * @param w
+     * @param l
      */
-    void whenBind(WatcherClosure.Awake w);
+    void whenBind(VarListener l);
 
     /**
      * Ask that the closure is called whenever
      * the max or min value of the domain of this variable changes
-     * @param w
+     * @param l
      */
-    void whenBoundsChange(WatcherClosure.Awake w);
+    void whenBoundsChange(VarListener l);
 
     /**
      * Ask that the closure is called whenever the domain change
      * of this variable changes
-     * @param w
+     * @param l
      */
-    void whenDomainChange(WatcherClosure.Awake w);
+    void whenDomainChange(VarListener l);
 
     /**
      * Ask that the closure is called whenever the domain change

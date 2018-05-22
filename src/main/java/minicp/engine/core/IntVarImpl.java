@@ -25,9 +25,9 @@ public class IntVarImpl implements IntVar {
 
     private Solver cp;
     private IntDomain domain;
-    private ReversibleStack<Watcher> onDomain;
-    private ReversibleStack<Watcher> onBind;
-    private ReversibleStack<Watcher> onBounds;
+    private ReversibleStack<VarListener> onDomain;
+    private ReversibleStack<VarListener> onBind;
+    private ReversibleStack<VarListener> onBounds;
 
     protected DomainListener domListener = new DomainListener() {
         @Override
@@ -113,18 +113,18 @@ public class IntVarImpl implements IntVar {
     }
 
     @Override
-    public void whenBind(WatcherClosure.Awake w) {
-        onBind.push(new WatcherClosure(cp,w));
+    public void whenBind(VarListener l) {
+        onBind.push(l);
     }
 
     @Override
-    public void whenBoundsChange(WatcherClosure.Awake w) {
-        onBounds.push(new WatcherClosure(cp,w));
+    public void whenBoundsChange(VarListener l) {
+        onBounds.push(l);
     }
 
     @Override
-    public void whenDomainChange(WatcherClosure.Awake w) {
-        onDomain.push(new WatcherClosure(cp,w));
+    public void whenDomainChange(VarListener l) {
+        onDomain.push(l);
     }
 
     public void propagateOnDomainChange(ConstraintClosure.Filtering c) {
@@ -151,11 +151,9 @@ public class IntVarImpl implements IntVar {
     public void propagateOnBoundChange(Constraint c) { onBounds.push(c);}
 
 
-
-
-    protected void awakeAll(ReversibleStack<Watcher> watchers) throws InconsistencyException {
-        for (int i = 0; i < watchers.size(); i++)
-            watchers.get(i).awake();
+    protected void awakeAll(ReversibleStack<VarListener> listeners) throws InconsistencyException {
+        for (int i = 0; i < listeners.size(); i++)
+            listeners.get(i).call();
     }
 
     public int getMin() {

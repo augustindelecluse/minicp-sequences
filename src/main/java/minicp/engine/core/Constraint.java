@@ -17,12 +17,15 @@ package minicp.engine.core;
 import minicp.reversible.ReversibleBool;
 import minicp.util.InconsistencyException;
 
-public abstract class Constraint extends Watcher {
+public abstract class Constraint implements VarListener {
 
     protected boolean scheduled = false;
+    protected final Solver cp;
+    protected final ReversibleBool active;
 
     public Constraint(Solver cp) {
-        super(cp);
+        this.cp = cp;
+        active = new ReversibleBool(cp.getTrail(),true);
     }
 
     public boolean isActive() {
@@ -37,7 +40,7 @@ public abstract class Constraint extends Watcher {
     public void propagate() throws InconsistencyException {}
 
     @Override
-    public void awake() throws InconsistencyException {
+    public void call() throws InconsistencyException {
         cp.schedule(this);
     }
 }

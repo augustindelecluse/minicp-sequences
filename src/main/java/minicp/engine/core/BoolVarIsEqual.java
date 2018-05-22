@@ -22,17 +22,33 @@ public class BoolVarIsEqual extends IntVarImpl implements BoolVar {
     public BoolVarIsEqual(IntVar x, int v) throws InconsistencyException{
         super(x.getSolver(),0,1);
 
-        this.whenBind (() -> {
-            if (isTrue()) x.assign(v);
-            else x.remove(v);
-        });
+        if (!x.contains(v)) {
+            assign(false);
+        } else if (x.isBound() && x.getMin() == v) {
+            assign(true);
+        } else {
 
-        x.whenDomainChange (() -> {
-            if (!x.contains(v)) {
-                this.assign(false);
-                // we sh
-            }
-        });
+            this.whenBind(() -> {
+                if (isTrue()) x.assign(v);
+                else x.remove(v);
+            });
+
+            x.whenDomainChange(() -> {
+                if (!x.contains(v)) {
+                    this.assign(false);
+                }
+            });
+
+            x.whenBind(() -> {
+                if (x.getMin() == v) {
+                    assign(true);
+                } else {
+                    assign(false);
+                }
+            });
+
+        }
+
     }
 
     @Override
