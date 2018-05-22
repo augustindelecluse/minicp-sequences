@@ -14,30 +14,26 @@
  */
 
 package minicp.engine.core;
-import minicp.reversible.ReversibleBool;
+
+
 import minicp.util.InconsistencyException;
 
-public abstract class Constraint extends Watcher {
+public class WatcherClosure extends Watcher {
 
-    protected boolean scheduled = false;
+    @FunctionalInterface
+    public interface Awake {
+        void call() throws InconsistencyException;
+    }
 
-    public Constraint(Solver cp) {
+    private final Awake awake;
+
+    public WatcherClosure(Solver cp, Awake awake) {
         super(cp);
+        this.awake = awake;
     }
-
-    public boolean isActive() {
-        return active.getValue();
-    }
-
-    public void deactivate() {
-        active.setValue(false);
-    }
-
-    public abstract void post() throws InconsistencyException;
-    public void propagate() throws InconsistencyException {}
 
     @Override
-    public void awake() throws InconsistencyException {
-        cp.schedule(this);
+    void awake() throws InconsistencyException{
+        awake.call();
     }
 }

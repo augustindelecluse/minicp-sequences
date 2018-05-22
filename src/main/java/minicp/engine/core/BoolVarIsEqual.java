@@ -14,30 +14,39 @@
  */
 
 package minicp.engine.core;
-import minicp.reversible.ReversibleBool;
+
 import minicp.util.InconsistencyException;
 
-public abstract class Constraint extends Watcher {
+public class BoolVarIsEqual extends IntVarImpl implements BoolVar {
 
-    protected boolean scheduled = false;
+    public BoolVarIsEqual(IntVar x, int v) throws InconsistencyException{
+        super(x.getSolver(),0,1);
 
-    public Constraint(Solver cp) {
-        super(cp);
+        this.whenBind (() -> {
+            if (isTrue()) x.assign(v);
+            else x.remove(v);
+        });
+
+        x.whenDomainChange (() -> {
+            if (!x.contains(v)) {
+                this.assign(false);
+                // we sh
+            }
+        });
     }
-
-    public boolean isActive() {
-        return active.getValue();
-    }
-
-    public void deactivate() {
-        active.setValue(false);
-    }
-
-    public abstract void post() throws InconsistencyException;
-    public void propagate() throws InconsistencyException {}
 
     @Override
-    public void awake() throws InconsistencyException {
-        cp.schedule(this);
+    public boolean isTrue() {
+        return getMin() == 1;
+    }
+
+    @Override
+    public boolean isFalse() {
+        return getMax() == 0;
+    }
+
+    @Override
+    public void assign(boolean b) throws InconsistencyException {
+        assign(b ? 1 : 0);
     }
 }

@@ -48,7 +48,7 @@ public class Solver {
         while (!propagationQueue.isEmpty()) {
             Constraint c = propagationQueue.pop();
             c.scheduled = false;
-            if (!failed) {
+            if (!failed && c.isActive()) {
                 try { c.propagate(); }
                 catch (InconsistencyException e) {
                     failed = true;

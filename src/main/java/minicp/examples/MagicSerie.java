@@ -15,6 +15,7 @@
 
 package minicp.examples;
 
+import minicp.engine.core.BoolVarIsEqual;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.SearchStatistics;
@@ -31,14 +32,15 @@ import static minicp.search.Selector.selectMin;
 public class MagicSerie {
     public static void main(String[] args) throws InconsistencyException {
 
-        int n = 8;
+        int n = 20;
         Solver cp = makeSolver();
 
         IntVar[] s = makeIntVarArray(cp, n, n);
 
         for (int i = 0; i < n; i++) {
             final int fi = i;
-            cp.post(sum(all(0,n-1,j -> isEqual(s[j],fi)),s[i]));
+            cp.post(sum(all(0,n-1,j -> new BoolVarIsEqual(s[j],fi)),s[i]));
+            //cp.post(sum(all(0,n-1,j -> isEqual(s[j],fi)),s[i]));
         }
         cp.post(sum(all(0,n-1,i -> mul(s[i],i)),n));
         cp.post(sum(all(0,n-1,i -> mul(s[i],i-1)),0));

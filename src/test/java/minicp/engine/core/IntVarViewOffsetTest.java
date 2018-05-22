@@ -91,8 +91,8 @@ public class IntVarViewOffsetTest {
 
             @Override
             public void post() throws InconsistencyException {
-                x.whenBind(() -> propagateCalled = true);
-                y.whenDomainChange(() -> propagateCalled = true);
+                x.propagateOnBind(() -> propagateCalled = true);
+                y.propagateOnDomainChange(() -> propagateCalled = true);
             }
         };
 
@@ -130,8 +130,8 @@ public class IntVarViewOffsetTest {
 
             @Override
             public void post() throws InconsistencyException {
-                x.whenBind(() -> propagateCalled  = true);
-                y.whenDomainChange(() -> propagateCalled = true);
+                x.propagateOnBind(() -> propagateCalled  = true);
+                y.propagateOnDomainChange(() -> propagateCalled = true);
             }
         };
 

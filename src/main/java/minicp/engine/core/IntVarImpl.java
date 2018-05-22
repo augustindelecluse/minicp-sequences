@@ -17,38 +17,37 @@ package minicp.engine.core;
 
 import minicp.reversible.ReversibleStack;
 import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
 
 import java.security.InvalidParameterException;
-import java.util.Comparator;
 import java.util.Set;
 
 public class IntVarImpl implements IntVar {
 
     private Solver cp;
     private IntDomain domain;
-    private ReversibleStack<Constraint> onDomain;
-    private ReversibleStack<Constraint> onBind;
-    private ReversibleStack<Constraint> onBounds;
-    private DomainListener domListener = new DomainListener() {
+    private ReversibleStack<Watcher> onDomain;
+    private ReversibleStack<Watcher> onBind;
+    private ReversibleStack<Watcher> onBounds;
+
+    protected DomainListener domListener = new DomainListener() {
         @Override
-        public void bind() {
-            scheduleAll(onBind);
+        public void bind() throws InconsistencyException {
+            awakeAll(onBind);
         }
 
         @Override
-        public void change(int domainSize) {
-            scheduleAll(onDomain);
+        public void change(int domainSize) throws InconsistencyException{
+            awakeAll(onDomain);
         }
 
         @Override
-        public void removeBelow(int domainSize) {
-            scheduleAll(onBounds);
+        public void removeBelow(int domainSize) throws InconsistencyException {
+            awakeAll(onBounds);
         }
 
         @Override
-        public void removeAbove(int domainSize) {
-            scheduleAll(onBounds);
+        public void removeAbove(int domainSize) throws InconsistencyException {
+            awakeAll(onBounds);
         }
     };
 
@@ -83,6 +82,8 @@ public class IntVarImpl implements IntVar {
         return cp;
     }
 
+
+
     /**
      * Create a variable with values as initial domain
      * @param cp
@@ -111,17 +112,33 @@ public class IntVarImpl implements IntVar {
         return domain.toString();
     }
 
-    public void whenDomainChange(ConstraintClosure.Filtering c) {
+    @Override
+    public void whenBind(WatcherClosure.Awake w) {
+        onBind.push(new WatcherClosure(cp,w));
+    }
+
+    @Override
+    public void whenBoundsChange(WatcherClosure.Awake w) {
+        onBounds.push(new WatcherClosure(cp,w));
+    }
+
+    @Override
+    public void whenDomainChange(WatcherClosure.Awake w) {
+        onDomain.push(new WatcherClosure(cp,w));
+    }
+
+    public void propagateOnDomainChange(ConstraintClosure.Filtering c) {
         onDomain.push(new ConstraintClosure(cp,c));
     }
 
-    public void whenBind(ConstraintClosure.Filtering c) {
+    public void propagateOnBind(ConstraintClosure.Filtering c) {
         onBind.push(new ConstraintClosure(cp,c));
     }
 
-    public void whenBoundsChange(ConstraintClosure.Filtering c) {
+    public void propagateOnBoundChange(ConstraintClosure.Filtering c) {
         onBounds.push(new ConstraintClosure(cp,c));
     }
+
 
     public void propagateOnDomainChange(Constraint c) {
         onDomain.push(c);
@@ -133,9 +150,12 @@ public class IntVarImpl implements IntVar {
 
     public void propagateOnBoundChange(Constraint c) { onBounds.push(c);}
 
-    private void scheduleAll(ReversibleStack<Constraint> constraints) {
-        for (int i = 0; i < constraints.size(); i++)
-            cp.schedule(constraints.get(i));
+
+
+
+    protected void awakeAll(ReversibleStack<Watcher> watchers) throws InconsistencyException {
+        for (int i = 0; i < watchers.size(); i++)
+            watchers.get(i).awake();
     }
 
     public int getMin() {

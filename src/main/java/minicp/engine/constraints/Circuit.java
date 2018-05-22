@@ -63,7 +63,7 @@ public class Circuit extends Constraint {
             if (x[i].isBound()) bind(i);
             else {
                 final int fi = i;
-                x[i].whenBind(() -> bind(fi));
+                x[i].propagateOnBind(() -> bind(fi));
             }
         }
     }

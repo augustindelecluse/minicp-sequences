@@ -26,25 +26,46 @@ public interface IntVar {
     Solver getSolver();
 
     /**
+     * Ask that the closure is called whenever the domain
+     * of this variable is reduced to a single value
+     * @param w
+     */
+    void whenBind(WatcherClosure.Awake w);
+
+    /**
+     * Ask that the closure is called whenever
+     * the max or min value of the domain of this variable changes
+     * @param w
+     */
+    void whenBoundsChange(WatcherClosure.Awake w);
+
+    /**
+     * Ask that the closure is called whenever the domain change
+     * of this variable changes
+     * @param w
+     */
+    void whenDomainChange(WatcherClosure.Awake w);
+
+    /**
      * Ask that the closure is called whenever the domain change
      * of this variable changes
      * @param c
      */
-    void whenDomainChange(ConstraintClosure.Filtering c);
+    void propagateOnDomainChange(ConstraintClosure.Filtering c);
 
     /**
      * Ask that the closure is called whenever the domain
      * of this variable is reduced to a single value
      * @param c
      */
-    void whenBind(ConstraintClosure.Filtering c);
+    void propagateOnBind(ConstraintClosure.Filtering c);
 
     /**
      * Ask that the closure is called whenever
      * the max or min value of the domain of this variable changes
      * @param c
      */
-    void whenBoundsChange(ConstraintClosure.Filtering c);
+    void propagateOnBoundChange(ConstraintClosure.Filtering c);
 
     /**
      * Ask that c.propagate() is called whenever the domain change
@@ -66,6 +87,7 @@ public interface IntVar {
      * @param c
      */
     void propagateOnBoundChange(Constraint c);
+
 
     /**
      * Return the minimum of the domain of the variable

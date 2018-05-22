@@ -45,8 +45,8 @@ public class NotEqual extends Constraint {
             x.propagateOnBind(this);
             y.propagateOnBind(this);
 
-            //x.whenBind(() -> y.remove(x.getMin() - c));
-            //y.whenBind(() -> x.remove(y.getMin() + c));
+            //x.propagateOnBind(() -> y.remove(x.getMin() - c));
+            //y.propagateOnBind(() -> x.remove(y.getMin() + c));
         }
     }
 
