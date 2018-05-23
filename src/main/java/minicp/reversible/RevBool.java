@@ -15,37 +15,11 @@
 
 package minicp.reversible;
 
-import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+public interface RevBool {
 
+    public void setValue(boolean v);
 
-public class  ReversibleBoolTest {
-
-    @Test
-    public void testReversibleBool() {
-        Trail trail = new TrailImpl();
-
-        RevBool b1 = trail.makeRevBool(true);
-        RevBool b2 = trail.makeRevBool(false);
-
-        trail.push();
-
-        b1.setValue(true);
-        b1.setValue(false);
-        b1.setValue(true);
-
-        b2.setValue(false);
-        b2.setValue(true);
-
-        trail.pop();
-
-        assertTrue(b1.getValue());
-        assertFalse(b2.getValue());
-
-    }
-
-
+    public boolean getValue();
 
 }

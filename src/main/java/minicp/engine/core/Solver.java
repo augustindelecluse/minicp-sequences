@@ -15,15 +15,17 @@
 
 package minicp.engine.core;
 
+import minicp.reversible.StateManager;
 import minicp.reversible.Trail;
+import minicp.reversible.TrailImpl;
 import minicp.util.InconsistencyException;
 
 import java.util.Stack;
 import java.util.Vector;
 
-public class Solver {
+public class Solver implements StateManager {
 
-    private Trail trail = new Trail();
+    private Trail trail = new TrailImpl();
     private Stack<Constraint> propagationQueue = new Stack<>();
     private Vector<IntVar>  vars = new Vector<>(2);
     public void registerVar(IntVar x) {
@@ -34,7 +36,6 @@ public class Solver {
     public void pop()  { trail.pop();}
 
     public Trail getTrail() { return trail;}
-
 
     public void schedule(Constraint c) {
         if (!c.scheduled && c.isActive()) {

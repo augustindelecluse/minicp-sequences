@@ -20,12 +20,10 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Set;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Heuristics.firstFail;
@@ -69,7 +67,7 @@ public class AllDifferentACTest {
         try {
             cp.post(new AllDifferentAC(x));
 
-            SearchStatistics stats = makeDfs(cp,firstFail(x)).start();
+            SearchStatistics stats = makeDfs(cp,firstFail(x)).solve();
             assertEquals(120,stats.nSolutions);
 
         } catch (InconsistencyException e) {
@@ -168,7 +166,7 @@ public class AllDifferentACTest {
                         );
                     }
             ));
-            SearchStatistics stats = dfs.start();
+            SearchStatistics stats = dfs.solve();
             // GAC filter with a single constraint should have no fail
             assertEquals(0,stats.nFailures);
             assertEquals(80,stats.nSolutions);

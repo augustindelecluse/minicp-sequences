@@ -137,7 +137,7 @@ public class MaximumTest {
                 cp.post(new Maximum(x, y));
                 // 5*5*5*5 // 625
 
-                SearchStatistics stats = dfs.start();
+                SearchStatistics stats = dfs.solve();
 
                 dfs.onSolution(() -> {
                     int max = Arrays.stream(x).mapToInt(xi -> xi.getMax()).max().getAsInt();

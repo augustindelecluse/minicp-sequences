@@ -15,7 +15,6 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.SearchStatistics;
@@ -24,10 +23,7 @@ import minicp.util.NotImplementedException;
 import org.junit.Assume;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.function.BiFunction;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Heuristics.firstFail;
@@ -126,7 +122,7 @@ public class ShortTableTest {
             cp.post(new ShortTableDecomp(new IntVar[]{x[0], x[1], x[2]}, t1, star));
             cp.post(new ShortTableDecomp(new IntVar[]{x[2], x[3], x[4]}, t2, star));
             cp.post(new ShortTableDecomp(new IntVar[]{x[0], x[2], x[4]}, t3, star));
-            statsDecomp = makeDfs(cp, firstFail(x)).start();
+            statsDecomp = makeDfs(cp, firstFail(x)).solve();
         } catch (InconsistencyException e) {
             statsDecomp = null;
         }
@@ -138,7 +134,7 @@ public class ShortTableTest {
             cp.post(new ShortTableCT(new IntVar[]{x[0], x[1], x[2]}, t1, star));
             cp.post(new ShortTableCT(new IntVar[]{x[2], x[3], x[4]}, t2, star));
             cp.post(new ShortTableCT(new IntVar[]{x[0], x[2], x[4]}, t3, star));
-            statsAlgo = makeDfs(cp, firstFail(x)).start();
+            statsAlgo = makeDfs(cp, firstFail(x)).solve();
         } catch (InconsistencyException e) {
             statsAlgo = null;
         }

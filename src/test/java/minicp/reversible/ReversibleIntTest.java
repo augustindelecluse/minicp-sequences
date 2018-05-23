@@ -24,9 +24,9 @@ import static org.junit.Assert.assertTrue;
 public class ReversibleIntTest {
 
     {
-        Trail trail = new Trail();
-        ReversibleInt a = new ReversibleInt(trail,7);
-        ReversibleInt b = new ReversibleInt(trail,13);
+        Trail trail = new TrailImpl();
+        RevInt a = trail.makeRevInt(7);
+        RevInt b = trail.makeRevInt(13);
 
         trail.push();      // Conceptually: record current state a=7, b=13
         a.setValue(11);
@@ -41,11 +41,11 @@ public class ReversibleIntTest {
     @Test
     public void testExample() {
 
-        Trail trail = new Trail();
+        Trail trail = new TrailImpl();
 
         // Two reversible int's inside the trail
-        ReversibleInt a = new ReversibleInt(trail,5);
-        ReversibleInt b = new ReversibleInt(trail,9);
+        RevInt a = trail.makeRevInt(5);
+        RevInt b = trail.makeRevInt(9);
 
         a.setValue(7);
         b.setValue(13);
@@ -86,9 +86,9 @@ public class ReversibleIntTest {
 
     @Test
     public void testReversibleInt() {
-        Trail trail = new Trail();
-        ReversibleInt a = new ReversibleInt(trail,5);
-        ReversibleInt b = new ReversibleInt(trail,5);
+        Trail trail = new TrailImpl();
+        RevInt a = trail.makeRevInt(5);
+        RevInt b = trail.makeRevInt(5);
         assertTrue(a.getValue() == 5);
         a.setValue(7);
         b.setValue(13);
@@ -112,9 +112,9 @@ public class ReversibleIntTest {
     @Test
     public void testPopAll() {
 
-        Trail trail = new Trail();
-        ReversibleInt a = new ReversibleInt(trail,5);
-        ReversibleInt b = new ReversibleInt(trail,5);
+        Trail trail = new TrailImpl();
+        RevInt a = trail.makeRevInt(5);
+        RevInt b = trail.makeRevInt(5);
 
         trail.push();
 
@@ -127,7 +127,7 @@ public class ReversibleIntTest {
         a.setValue(5);
         b.setValue(10);
 
-        ReversibleInt c = new ReversibleInt(trail,5);
+        RevInt c = trail.makeRevInt(5);
 
         trail.push();
 
@@ -171,9 +171,9 @@ public class ReversibleIntTest {
     @Test
     public void testPopUntill() {
 
-        Trail trail = new Trail();
-        ReversibleInt a = new ReversibleInt(trail,5);
-        ReversibleInt b = new ReversibleInt(trail,5);
+        Trail trail = new TrailImpl();
+        RevInt a = trail.makeRevInt(5);
+        RevInt b = trail.makeRevInt(5);
 
         a.setValue(7);
         b.setValue(13);
@@ -184,7 +184,7 @@ public class ReversibleIntTest {
         a.setValue(5);
         b.setValue(10);
 
-        ReversibleInt c = new ReversibleInt(trail,5);
+        RevInt c = trail.makeRevInt(5);
 
         trail.push(); // level 1
 

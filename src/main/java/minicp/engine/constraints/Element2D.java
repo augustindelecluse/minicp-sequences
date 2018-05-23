@@ -18,7 +18,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.reversible.ReversibleInt;
+import minicp.reversible.RevInt;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;
@@ -30,11 +30,11 @@ public class Element2D extends Constraint {
     private final int[][] T;
     private final IntVar x, y, z;
     private int n, m;
-    private final ReversibleInt[] nRowsSup;
-    private final ReversibleInt[] nColsSup;
+    private final RevInt[] nRowsSup;
+    private final RevInt[] nColsSup;
 
-    private final ReversibleInt low;
-    private final ReversibleInt up;
+    private final RevInt low;
+    private final RevInt up;
     private final ArrayList<Tripple> xyz;
 
     private class Tripple implements Comparable<Tripple> {
@@ -77,16 +77,16 @@ public class Element2D extends Constraint {
             }
         }
         Collections.sort(xyz);
-        low = new ReversibleInt(cp.getTrail(),0);
-        up = new ReversibleInt(cp.getTrail(),xyz.size()-1);
+        low = cp.getTrail().makeRevInt(0);
+        up = cp.getTrail().makeRevInt(xyz.size()-1);
 
-        nColsSup = new ReversibleInt[n];
-        nRowsSup = new ReversibleInt[m];
+        nColsSup = new RevInt[n];
+        nRowsSup = new RevInt[m];
         for (int i = 0; i < n; i++) {
-            nColsSup[i] = new ReversibleInt(cp.getTrail(),m);
+            nColsSup[i] = cp.getTrail().makeRevInt(m);
         }
         for (int j = 0; j < m; j++) {
-            nRowsSup[j] = new ReversibleInt(cp.getTrail(),n);
+            nRowsSup[j] = cp.getTrail().makeRevInt(n);
         }
     }
 

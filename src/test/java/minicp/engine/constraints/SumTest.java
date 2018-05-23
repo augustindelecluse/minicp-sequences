@@ -214,9 +214,9 @@ public class SumTest {
             IntVar[] x = new IntVar[]{makeIntVar(cp, -3, 3), makeIntVar(cp, -3, 3), makeIntVar(cp, -3, 3)};
             cp.post(new Sum(x, 0));
 
-            DFSearch search = new DFSearch(cp.getTrail(),firstFail(x));
+            DFSearch search = new DFSearch(cp,firstFail(x));
 
-            SearchStatistics stats = search.start();
+            SearchStatistics stats = search.solve();
 
             assertEquals(37,stats.nSolutions);
 

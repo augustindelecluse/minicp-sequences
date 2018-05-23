@@ -60,7 +60,7 @@ public class AllDifferentTest {
         try {
             cp.post(allDifferent(x));
 
-            SearchStatistics stats = makeDfs(cp,firstFail(x)).start();
+            SearchStatistics stats = makeDfs(cp,firstFail(x)).solve();
             assertEquals(120,stats.nSolutions);
 
         } catch (InconsistencyException e) {

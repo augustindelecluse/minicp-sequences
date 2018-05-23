@@ -16,7 +16,7 @@
 package minicp.reversible;
 
 
-public class ReversibleBool implements TrailEntry {
+public class ReversibleBool implements TrailEntry, RevBool {
 
     final TrailEntry restoreTrue = new TrailEntry() {
         @Override
@@ -33,21 +33,21 @@ public class ReversibleBool implements TrailEntry {
     };
 
     private boolean v;
-    private Trail context;
+    private TrailImpl trail;
     private long lastMagic;
 
-    public ReversibleBool(Trail context, boolean initial) {
-        this.context = context;
+    protected ReversibleBool(TrailImpl context, boolean initial) {
+        this.trail = context;
         v = initial;
         lastMagic = context.magic;
     }
 
     private void trail() {
-        long contextMagic = context.magic;
+        long contextMagic = trail.magic;
         if (lastMagic != contextMagic) {
             lastMagic = contextMagic;
-            if (v) context.pushOnTrail(restoreTrue);
-            else context.pushOnTrail(restoreFalse);
+            if (v) trail.pushOnTrail(restoreTrue);
+            else trail.pushOnTrail(restoreFalse);
         }
     }
 

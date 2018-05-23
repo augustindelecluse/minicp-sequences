@@ -52,7 +52,7 @@ public class CumulativeDecompTest {
 
             cp.post(new CumulativeDecomposition(s,d,r,100));
 
-            SearchStatistics stats = makeDfs(cp,firstFail(s)).start();
+            SearchStatistics stats = makeDfs(cp,firstFail(s)).solve();
             assertEquals("cumulative alldiff expect all permutations",120, stats.nSolutions);
 
         } catch (InconsistencyException e) {
@@ -120,9 +120,9 @@ public class CumulativeDecompTest {
 
             cp.post(new CumulativeDecomposition(s,d,r,12));
 
-            DFSearch search = new DFSearch(cp.getTrail(), firstFail(s));
+            DFSearch search = new DFSearch(cp, firstFail(s));
 
-            SearchStatistics stats = search.start();
+            SearchStatistics stats = search.solve();
 
             search.onSolution(() -> {
                 Rectangle[] rects = IntStream.range(0, s.length).mapToObj(i -> {

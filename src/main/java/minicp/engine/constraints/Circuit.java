@@ -19,15 +19,15 @@ package minicp.engine.constraints;
 import static minicp.cp.Factory.*;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.reversible.ReversibleInt;
+import minicp.reversible.RevInt;
 import minicp.util.InconsistencyException;
 
 public class Circuit extends Constraint {
 
     private final IntVar [] x;
-    private final ReversibleInt [] dest;
-    private final ReversibleInt [] orig;
-    private final ReversibleInt [] lengthToDest;
+    private final RevInt[] dest;
+    private final RevInt [] orig;
+    private final RevInt [] lengthToDest;
 
     /**
      * x represents an Hamiltonian circuit on the cities {0..x.length-1}
@@ -38,13 +38,13 @@ public class Circuit extends Constraint {
         super(x[0].getSolver());
         assert (x.length > 0);
         this.x = x;
-        dest = new ReversibleInt[x.length];
-        orig = new ReversibleInt[x.length];
-        lengthToDest = new ReversibleInt[x.length];
+        dest = new RevInt[x.length];
+        orig = new RevInt[x.length];
+        lengthToDest = new RevInt[x.length];
         for (int i = 0; i < x.length; i++) {
-            dest[i] = new ReversibleInt(cp.getTrail(),i);
-            orig[i] = new ReversibleInt(cp.getTrail(),i);
-            lengthToDest[i] = new ReversibleInt(cp.getTrail(),0);
+            dest[i] = cp.getTrail().makeRevInt(i);
+            orig[i] = cp.getTrail().makeRevInt(i);
+            lengthToDest[i] = cp.getTrail().makeRevInt(0);
         }
     }
 

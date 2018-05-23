@@ -17,30 +17,40 @@ package minicp.search;
 
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.reversible.ReversibleInt;
+import minicp.reversible.*;
+
 import java.util.Arrays;
 
 import static minicp.cp.Factory.makeSolver;
 import static minicp.search.Selector.*;
 
-import minicp.reversible.Trail;
 import minicp.util.Counter;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
-import static minicp.search.Selector.*;
+
 import static minicp.cp.Factory.*;
 
 
 public class DFSearchTest {
 
+    public static StateManager makeStateManager() {
+        Trail tr = new TrailImpl();
+        return  new StateManager() {
+            @Override
+            public Trail getTrail() {
+                return tr;
+            }
+        };
+    }
+
     @Test
     public void testExample1() {
-        Trail tr = new Trail();
-        ReversibleInt i = new ReversibleInt(tr,0);
+        StateManager sm = makeStateManager();
+        RevInt i = sm.getTrail().makeRevInt(0);
         int [] values = new int[3];
 
-        DFSearch dfs = new DFSearch(tr,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length)
                 return TRUE;
             else return branch(
@@ -56,7 +66,7 @@ public class DFSearchTest {
         });
 
 
-        SearchStatistics stats = dfs.start();
+        SearchStatistics stats = dfs.solve();
 
         assert(stats.nSolutions == 8);
         assert(stats.nFailures == 0);
@@ -68,7 +78,7 @@ public class DFSearchTest {
         Solver cp = makeSolver();
         IntVar[] values = makeIntVarArray(cp,3,2);
 
-        DFSearch dfs = new DFSearch(cp.getTrail(),() -> {
+        DFSearch dfs = new DFSearch(cp,() -> {
             int sel = -1;
             for(int i = 0 ; i < values.length;i++)
                 if (values[i].getSize() > 1 && sel == -1)
@@ -81,7 +91,7 @@ public class DFSearchTest {
         });
 
 
-        SearchStatistics stats = dfs.start();
+        SearchStatistics stats = dfs.solve();
 
         assert(stats.nSolutions == 8);
         assert(stats.nFailures == 0);
@@ -90,11 +100,11 @@ public class DFSearchTest {
 
     @Test
     public void testExample3() {
-        Trail tr = new Trail();
-        ReversibleInt i = new ReversibleInt(tr,0);
+        StateManager sm = makeStateManager();
+        RevInt i = sm.getTrail().makeRevInt(0);
         int [] values = new int[3];
 
-        DFSearch dfs = new DFSearch(tr,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length)
                 return TRUE;
             else return branch(
@@ -125,14 +135,14 @@ public class DFSearchTest {
 
     @Test
     public void testDFS() {
-        Trail tr = new Trail();
-        ReversibleInt i = new ReversibleInt(tr,0);
+        StateManager sm = makeStateManager();
+        RevInt i = sm.getTrail().makeRevInt(0);
         boolean [] values = new boolean[4];
 
         Counter nSols = new Counter();
 
 
-        DFSearch dfs = new DFSearch(tr,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length)
                 return TRUE;
             else return branch (
@@ -155,7 +165,7 @@ public class DFSearchTest {
 
 
 
-        SearchStatistics stats = dfs.start();
+        SearchStatistics stats = dfs.solve();
 
 
         assert(nSols.getValue() == 16);
@@ -167,11 +177,11 @@ public class DFSearchTest {
 
     @Test
     public void testDFSSearchLimit() {
-        Trail tr = new Trail();
-        ReversibleInt i = new ReversibleInt(tr,0);
+        StateManager sm = makeStateManager();
+        RevInt i = sm.getTrail().makeRevInt(0);
         boolean [] values = new boolean[4];
 
-        DFSearch dfs = new DFSearch(tr,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length) {
                 return branch(() -> {throw new InconsistencyException();});
             }
@@ -206,11 +216,11 @@ public class DFSearchTest {
 
     @Test
     public void testDeepDFS() {
-        Trail tr = new Trail();
-        ReversibleInt i = new ReversibleInt(tr,0);
+        StateManager sm = makeStateManager();
+        RevInt i = sm.getTrail().makeRevInt(0);
         boolean [] values = new boolean[10000];
 
-        DFSearch dfs = new DFSearch(tr,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length) {
                 return TRUE;
             }

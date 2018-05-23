@@ -16,7 +16,6 @@
 package minicp.examples;
 
 import minicp.engine.constraints.IsOr;
-import minicp.engine.constraints.TableDecomp;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -27,13 +26,11 @@ import minicp.util.InconsistencyException;
 import minicp.util.InputReader;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.IntStream;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
 import static minicp.search.Selector.branch;
 import static minicp.search.Selector.selectMin;
 
@@ -175,7 +172,7 @@ public class Steel {
                 }
             });
 
-            SearchStatistics statistics = dfs.start();
+            SearchStatistics statistics = dfs.solve();
             System.out.println(statistics);
 
         } catch (InconsistencyException e) {

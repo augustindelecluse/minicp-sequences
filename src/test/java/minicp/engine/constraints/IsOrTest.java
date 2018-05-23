@@ -23,7 +23,6 @@ import minicp.util.NotImplementedException;
 import org.junit.Test;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.and;
 import static minicp.cp.Heuristics.firstFail;
 import static org.junit.Assert.*;
 
@@ -107,7 +106,7 @@ public class IsOrTest {
                             assertTrue((nTrue > 0 && b.isTrue()) || (nTrue == 0 && b.isFalse()));
 
                         }
-                ).start();
+                ).solve();
                 assertEquals(16,stats.nSolutions);
 
             } catch (InconsistencyException e) {

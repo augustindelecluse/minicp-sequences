@@ -23,8 +23,6 @@ import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.InputReader;
 
-import java.util.Arrays;
-
 import static minicp.cp.Factory.*;
 import static minicp.cp.Heuristics.firstFail;
 
@@ -106,7 +104,7 @@ public class RCPSP {
                 System.out.println("makespan:" + makespan)
         );
 
-        SearchStatistics stats = dfs.start();
+        SearchStatistics stats = dfs.solve();
 
         System.out.format("Statistics: %s\n", stats);
 

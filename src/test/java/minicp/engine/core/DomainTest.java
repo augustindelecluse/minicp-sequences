@@ -64,7 +64,7 @@ public class DomainTest {
     public void testDomain1() throws InconsistencyException {
         Solver cp  = makeSolver();
         MyDomainListener dlistener = new MyDomainListener();
-        IntDomain dom = new SparseSetDomain(cp.getTrail(),5,10);
+        IntDomain dom = new SparseSetDomain(cp,5,10);
 
         dom.removeAbove(8,dlistener);
 
@@ -100,7 +100,7 @@ public class DomainTest {
     public void testDomain2() throws InconsistencyException {
         Solver cp  = makeSolver();
         MyDomainListener dlistener = new MyDomainListener();
-        IntDomain dom = new SparseSetDomain(cp.getTrail(),5,10);
+        IntDomain dom = new SparseSetDomain(cp,5,10);
 
         dom.removeAllBut(7,dlistener);
 
@@ -115,7 +115,7 @@ public class DomainTest {
     public void testDomain3() throws InconsistencyException {
         Solver cp  = makeSolver();
         MyDomainListener dlistener = new MyDomainListener();
-        IntDomain dom = new SparseSetDomain(cp.getTrail(),5,10);
+        IntDomain dom = new SparseSetDomain(cp,5,10);
 
         dom.removeAbove(5,dlistener);
 

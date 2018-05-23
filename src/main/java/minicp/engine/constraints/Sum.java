@@ -19,7 +19,7 @@ import minicp.cp.Factory;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.IntVarImpl;
-import minicp.reversible.ReversibleInt;
+import minicp.reversible.RevInt;
 import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
@@ -27,8 +27,8 @@ import java.util.Arrays;
 public class Sum extends Constraint {
 
     private  int[] unBounds;
-    private ReversibleInt nUnBounds;
-    private ReversibleInt sumBounds;
+    private RevInt nUnBounds;
+    private RevInt sumBounds;
     private IntVar [] x;
     private int n;
 
@@ -52,8 +52,8 @@ public class Sum extends Constraint {
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
-        nUnBounds = new ReversibleInt(cp.getTrail(),n);
-        sumBounds = new ReversibleInt(cp.getTrail(),0);
+        nUnBounds = cp.getTrail().makeRevInt(n);
+        sumBounds = cp.getTrail().makeRevInt(0);
         unBounds = new int[n];
         for (int i = 0; i < n; i++) {
             unBounds[i] = i;
