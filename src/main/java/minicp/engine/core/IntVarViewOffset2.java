@@ -13,103 +13,40 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
+
 package minicp.engine.core;
+
 
 import minicp.reversible.ReversibleStack;
 import minicp.util.InconsistencyException;
 
-import java.security.InvalidParameterException;
-import java.util.Set;
-
-public class IntVarImpl implements IntVar {
+public class IntVarViewOffset2 implements IntVar {
 
     private Solver cp;
-    private IntDomain domain;
     private ReversibleStack<VarListener> onDomain;
     private ReversibleStack<VarListener> onBind;
     private ReversibleStack<VarListener> onBounds;
 
-    protected DomainListener domListener = new DomainListener() {
-        @Override
-        public void bind() throws InconsistencyException {
-            notifyListeners(onBind);
-        }
+    private final IntVar x;
+    private final int o;
 
-        @Override
-        public void change(int domainSize) throws InconsistencyException{
-            notifyListeners(onDomain);
-        }
-
-        @Override
-        public void removeBelow(int domainSize) throws InconsistencyException {
-            notifyListeners(onBounds);
-        }
-
-        @Override
-        public void removeAbove(int domainSize) throws InconsistencyException {
-            notifyListeners(onBounds);
-        }
-    };
-
-    /**
-     * Create a variable with the elements {0,...,n-1}
-     * as initial domain
-     * @param cp
-     * @param n > 0
-     */
-    public IntVarImpl(Solver cp, int n) {
-        this(cp,0,n-1);
-    }
-
-    /**
-     * Create a variable with the elements {min,...,max}
-     * as initial domain
-     * @param cp
-     * @param min
-     * @param max >= min
-     */
-    public IntVarImpl(Solver cp, int min, int max) {
-        if (min > max) throw new InvalidParameterException("at least one value in the domain");
-        this.cp = cp;
+    public IntVarViewOffset2(IntVar x, int offset) { // y = x + o
+        this.x = x;
+        this.o = offset;
+        this.cp = x.getSolver();
         cp.registerVar(this);
-        domain = new SparseSetDomain(cp.getTrail(),min,max);
         onDomain = new ReversibleStack<>(cp.getTrail());
         onBind  = new ReversibleStack<>(cp.getTrail());
         onBounds = new ReversibleStack<>(cp.getTrail());
-    }
 
-    public Solver getSolver() {
-        return cp;
-    }
-
-
-
-    /**
-     * Create a variable with values as initial domain
-     * @param cp
-     * @param values
-     */
-    public IntVarImpl(Solver cp, Set<Integer> values) {
-        this(cp,values.stream().min(Integer::compare).get(),values.stream().max(Integer::compare).get());
-        if (values.isEmpty()) throw new InvalidParameterException("at least one value in the domain");
-        for (int i = getMin(); i < getMax(); i++) {
-            if (!values.contains(i)) {
-                try {
-                    this.remove(i);
-                } catch (InconsistencyException e) {
-                }
-            }
-        }
-    }
-
-
-    public boolean isBound() {
-        return domain.getSize() == 1;
+        x.whenDomainChange(() -> notifyListeners(onDomain));
+        x.whenBind(() -> notifyListeners(onBind));
+        x.whenBoundsChange(() -> notifyListeners(onBounds));
     }
 
     @Override
-    public String toString() {
-        return domain.toString();
+    public Solver getSolver() {
+        return x.getSolver();
     }
 
     @Override
@@ -156,41 +93,73 @@ public class IntVarImpl implements IntVar {
             listeners.get(i).call();
     }
 
+    @Override
     public int getMin() {
-        return domain.getMin();
+        return x.getMin() + o;
     }
 
+    @Override
     public int getMax() {
-        return domain.getMax();
+        return x.getMax() + o;
     }
 
+    @Override
     public int getSize() {
-        return domain.getSize();
+        return x.getSize();
     }
 
     @Override
     public int fillArray(int[] dest) {
-        return domain.fillArray(dest);
+        int s = x.fillArray(dest);
+        for (int i = 0; i < s; i++) {
+            dest[i] += o;
+        }
+        return s;
     }
 
+    @Override
+    public boolean isBound() {
+        return x.isBound();
+    }
+
+    @Override
     public boolean contains(int v) {
-        return domain.contains(v);
+        return x.contains(v - o);
     }
 
+    @Override
     public void remove(int v) throws InconsistencyException {
-        domain.remove(v, domListener);
+        x.remove(v - o);
     }
 
+    @Override
     public void assign(int v) throws InconsistencyException {
-        domain.removeAllBut(v, domListener);
+        x.assign(v - o);
     }
 
+    @Override
     public int removeBelow(int v) throws InconsistencyException {
-        return domain.removeBelow(v, domListener);
+        return x.removeBelow(v - o);
     }
 
+    @Override
     public int removeAbove(int v) throws InconsistencyException {
-        return domain.removeAbove(v, domListener);
+        return x.removeAbove(v - o);
     }
 
+    @Override
+    public String toString() {
+            StringBuilder b = new StringBuilder();
+            b.append("{");
+            for (int i = getMin(); i <= getMax() - 1; i++) {
+                if (contains((i))) {
+                    b.append(i);
+                    b.append(',');
+                }
+            }
+            if (getSize() > 0) b.append(getMax());
+            b.append("}");
+            return b.toString();
+
+    }
 }
