@@ -30,13 +30,13 @@ public abstract class IntDomain {
 
     public abstract  boolean isBound();
 
-    public abstract  void remove(int v, DomainListener x) throws InconsistencyException;
+    public abstract  void remove(int v, DomainListener x);
 
-    public abstract  void removeAllBut(int v, DomainListener x) throws InconsistencyException;
+    public abstract  void removeAllBut(int v, DomainListener x);
 
-    public abstract  int removeBelow(int value, DomainListener x) throws InconsistencyException;
+    public abstract  void removeBelow(int value, DomainListener x);
 
-    public abstract  int removeAbove(int value, DomainListener x) throws InconsistencyException;
+    public abstract  void removeAbove(int value, DomainListener x);
 
     /**
      * Copy the values of the domain

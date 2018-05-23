@@ -16,15 +16,12 @@
 
 package minicp.engine.core;
 
-
-import minicp.util.InconsistencyException;
-
 public interface DomainListener {
-    void bind() throws InconsistencyException;
+    void bind();
 
-    void change(int domainSize) throws InconsistencyException;
+    void change(int domainSize);
 
-    void removeBelow(int domainSize) throws InconsistencyException;
+    void removeBelow(int domainSize);
 
-    void removeAbove(int domainSize) throws InconsistencyException;
+    void removeAbove(int domainSize);
 }
