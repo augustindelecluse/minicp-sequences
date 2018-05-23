@@ -52,9 +52,10 @@ public class NotEqual extends Constraint {
 
     @Override
     public void propagate() throws InconsistencyException {
-        if (y.isBound()) x.remove(y.getMin() + c);
+        if (y.isBound())
+            x.remove(y.getMin() + c);
         else y.remove(x.getMin() - c);
-        this.deactivate();
+        deactivate();
     }
 
 }

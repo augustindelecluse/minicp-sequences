@@ -46,16 +46,18 @@ public class Solver implements StateManager {
 
     public void fixPoint() throws InconsistencyException {
         boolean failed = false;
-        while (!propagationQueue.isEmpty()) {
+        while (!failed && !propagationQueue.isEmpty()) {
             Constraint c = propagationQueue.pop();
             c.scheduled = false;
-            if (!failed && c.isActive()) {
+            if (c.isActive()) {
                 try { c.propagate(); }
                 catch (InconsistencyException e) {
                     failed = true;
                 }
             }
         }
+        while (propagationQueue.size() > 0)
+            propagationQueue.pop().scheduled = false;
         if (failed) throw new InconsistencyException();
     }
 
