@@ -44,7 +44,7 @@ public class IsLessOrEqual extends Constraint { // b <=> x <= c
         } else if (x.getMin() > c) {
             b.assign(0);
         } else {
-            b.propagateOnBind(() -> {
+            b.whenBind(() -> {
                 // should deactivate the constraint as it is entailed
                 if (b.isTrue()) {
                     x.removeAbove(c);
