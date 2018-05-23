@@ -58,12 +58,12 @@ public class SparseSetDomain extends IntDomain {
         return domain.getSize() == 1;
     }
 
-    public void remove(int v, DomainListener x) throws InconsistencyException {
+    public void remove(int v, DomainListener x) {
         if (domain.contains(v - offset)) {
             boolean maxChanged = getMax() == v;
             boolean minChanged = getMin() == v;
             domain.remove(v - offset);
-            if (domain.getSize() == 0) throw INCONSISTENCY;
+            if (domain.getSize() == 0) return;
             x.change(domain.getSize());
             if (maxChanged) x.removeAbove(domain.getSize());
             if (minChanged) x.removeBelow(domain.getSize());
@@ -71,7 +71,7 @@ public class SparseSetDomain extends IntDomain {
         }
     }
 
-    public void removeAllBut(int v, DomainListener x) throws InconsistencyException {
+    public void removeAllBut(int v, DomainListener x) {
         if (domain.contains(v - offset)) {
             if (domain.getSize() != 1) {
                 boolean maxChanged = getMax() != v;
@@ -85,29 +85,24 @@ public class SparseSetDomain extends IntDomain {
         }
         else {
             domain.removeAll();
-            throw InconsistencyException.INCONSISTENCY;
         }
     }
 
-    public int removeBelow(int value, DomainListener x) throws InconsistencyException {
+    public void removeBelow(int value, DomainListener x) {
         if (domain.getMin() + offset < value) {
             domain.removeBelow(value - offset);
             x.removeBelow(domain.getSize());
             x.change(domain.getSize());
             if (domain.getSize() == 1) x.bind();
         }
-        if (domain.getSize() == 0) throw INCONSISTENCY;
-        else return domain.getMin() + offset;
     }
 
-    public int removeAbove(int value, DomainListener x) throws InconsistencyException {
+    public void removeAbove(int value, DomainListener x) {
         if (domain.getMax() + offset > value) {
             domain.removeAbove(value - offset);
             x.removeAbove(domain.getSize());
             x.change(domain.getSize());
             if (domain.getSize() == 1) x.bind();
         }
-        if (domain.getSize() == 0) throw INCONSISTENCY;
-        else return domain.getMax() + offset;
     }
 }

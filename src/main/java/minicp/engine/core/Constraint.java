@@ -17,7 +17,7 @@ package minicp.engine.core;
 import minicp.reversible.ReversibleBool;
 import minicp.util.InconsistencyException;
 
-public abstract class Constraint implements VarListener {
+public abstract class Constraint {
 
     protected boolean scheduled = false;
     protected final Solver cp;
@@ -39,8 +39,7 @@ public abstract class Constraint implements VarListener {
     public abstract void post() throws InconsistencyException;
     public void propagate() throws InconsistencyException {}
 
-    @Override
-    public void call() throws InconsistencyException {
+    public void schedule() {
         cp.schedule(this);
     }
 }

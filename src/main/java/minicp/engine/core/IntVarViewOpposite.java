@@ -33,13 +33,13 @@ public class IntVarViewOpposite implements IntVar {
     }
 
     @Override
-    public void whenBind(VarListener l) { x.whenBind(l); }
+    public void whenBind(ConstraintClosure.Filtering f) { x.whenBind(f); }
 
     @Override
-    public void whenBoundsChange(VarListener l) { x.whenBoundsChange(l); }
+    public void whenBoundsChange(ConstraintClosure.Filtering f) { x.whenBoundsChange(f); }
 
     @Override
-    public void whenDomainChange(VarListener l) { x.whenDomainChange(l); }
+    public void whenDomainChange(ConstraintClosure.Filtering f) { x.whenDomainChange(f); }
 
     @Override
     public void propagateOnDomainChange(ConstraintClosure.Filtering c) {

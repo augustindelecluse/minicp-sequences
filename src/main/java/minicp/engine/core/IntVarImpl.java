@@ -25,28 +25,28 @@ public class IntVarImpl implements IntVar {
 
     private Solver cp;
     private IntDomain domain;
-    private ReversibleStack<VarListener> onDomain;
-    private ReversibleStack<VarListener> onBind;
-    private ReversibleStack<VarListener> onBounds;
+    private ReversibleStack<Constraint> onDomain;
+    private ReversibleStack<Constraint> onBind;
+    private ReversibleStack<Constraint> onBounds;
 
     protected DomainListener domListener = new DomainListener() {
         @Override
-        public void bind() throws InconsistencyException {
+        public void bind() {
             awakeAll(onBind);
         }
 
         @Override
-        public void change(int domainSize) throws InconsistencyException{
+        public void change(int domainSize) {
             awakeAll(onDomain);
         }
 
         @Override
-        public void removeBelow(int domainSize) throws InconsistencyException {
+        public void removeBelow(int domainSize) {
             awakeAll(onBounds);
         }
 
         @Override
-        public void removeAbove(int domainSize) throws InconsistencyException {
+        public void removeAbove(int domainSize) {
             awakeAll(onBounds);
         }
     };
@@ -113,18 +113,18 @@ public class IntVarImpl implements IntVar {
     }
 
     @Override
-    public void whenBind(VarListener l) {
-        onBind.push(l);
+    public void whenBind(ConstraintClosure.Filtering f) {
+        onBind.push(new ConstraintClosure(cp,f));
     }
 
     @Override
-    public void whenBoundsChange(VarListener l) {
-        onBounds.push(l);
+    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+        onBounds.push(new ConstraintClosure(cp,f));
     }
 
     @Override
-    public void whenDomainChange(VarListener l) {
-        onDomain.push(l);
+    public void whenDomainChange(ConstraintClosure.Filtering f) {
+        onDomain.push(new ConstraintClosure(cp,f));
     }
 
     public void propagateOnDomainChange(ConstraintClosure.Filtering c) {
@@ -151,9 +151,9 @@ public class IntVarImpl implements IntVar {
     public void propagateOnBoundChange(Constraint c) { onBounds.push(c);}
 
 
-    protected void awakeAll(ReversibleStack<VarListener> listeners) throws InconsistencyException {
+    protected void awakeAll(ReversibleStack<Constraint> listeners) {
         for (int i = 0; i < listeners.size(); i++)
-            listeners.get(i).call();
+            listeners.get(i).schedule();
     }
 
     public int getMin() {
@@ -179,18 +179,25 @@ public class IntVarImpl implements IntVar {
 
     public void remove(int v) throws InconsistencyException {
         domain.remove(v, domListener);
+        if (domain.getSize()==0) throw InconsistencyException.INCONSISTENCY;
     }
 
     public void assign(int v) throws InconsistencyException {
         domain.removeAllBut(v, domListener);
+        if (domain.getSize() == 0)
+            throw InconsistencyException.INCONSISTENCY;
     }
 
     public int removeBelow(int v) throws InconsistencyException {
-        return domain.removeBelow(v, domListener);
+        domain.removeBelow(v, domListener);
+        if (domain.getSize()==0) throw InconsistencyException.INCONSISTENCY;
+        return getMin();
     }
 
     public int removeAbove(int v) throws InconsistencyException {
-        return domain.removeAbove(v, domListener);
+        domain.removeAbove(v, domListener);
+        if (domain.getSize()==0) throw InconsistencyException.INCONSISTENCY;
+        return getMax();
     }
 
 }
