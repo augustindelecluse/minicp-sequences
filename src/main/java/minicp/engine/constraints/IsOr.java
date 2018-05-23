@@ -18,6 +18,7 @@ package minicp.engine.constraints;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.reversible.RevInt;
 import minicp.reversible.ReversibleInt;
 import minicp.util.InconsistencyException;
 
@@ -28,7 +29,7 @@ public class IsOr extends Constraint { // b <=> x1 or x2 or ... xn
     private final int n;
 
     private int[] unBounds;
-    private ReversibleInt nUnBounds;
+    private RevInt nUnBounds;
 
     private final Or or;
 
@@ -39,7 +40,7 @@ public class IsOr extends Constraint { // b <=> x1 or x2 or ... xn
         this.n = x.length;
         or = new Or(x);
 
-        nUnBounds = new ReversibleInt(cp.getTrail(), n);
+        nUnBounds = cp.getTrail().makeRevInt(n);
         unBounds = new int[n];
         for (int i = 0; i < n; i++) {
             unBounds[i] = i;

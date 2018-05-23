@@ -105,11 +105,11 @@ public class Element2DTest {
 
             cp.post(new Element2D(T, x, y, z));
 
-            DFSearch dfs = new DFSearch(cp.getTrail(), firstFail(x, y, z));
+            DFSearch dfs = new DFSearch(cp, firstFail(x, y, z));
             dfs.onSolution(() ->
                     assertEquals(T[x.getMin()][y.getMin()], z.getMin())
             );
-            SearchStatistics stats = dfs.start();
+            SearchStatistics stats = dfs.solve();
 
             assertEquals(20, stats.nSolutions);
 

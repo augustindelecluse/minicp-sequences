@@ -71,8 +71,8 @@ public class NQueensPhase {
                 ).onSolution(() -> {
                     nbSol.set(nbSol.get() + 1);
                     System.out.println("solution:"+ Arrays.toString(q));
-                }).start()
-        ).start();
+                }).solve()
+        ).solve();
 
         System.out.format("#Solutions: %s\n", nbSol);
     }

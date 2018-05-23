@@ -118,7 +118,7 @@ public class Factory {
     }
 
     static public DFSearch makeDfs(Solver cp, Choice branching) {
-        return new DFSearch(cp.getTrail(),branching);
+        return new DFSearch(cp,branching);
     }
 
 

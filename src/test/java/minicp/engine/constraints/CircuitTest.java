@@ -17,7 +17,6 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
@@ -28,8 +27,6 @@ import java.util.Arrays;
 import static minicp.cp.Factory.*;
 import static minicp.cp.Factory.notEqual;
 import static minicp.cp.Heuristics.firstFail;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
 import static org.junit.Assert.*;
 
 
@@ -118,7 +115,7 @@ public class CircuitTest {
                             System.out.println(Arrays.toString(sol));
                             assertTrue("Solution is not an hamiltonian Circuit",checkHamiltonian(sol));
                         }
-                ).start();
+                ).solve();
             } catch (InconsistencyException e) { fail("should not fail");}
         } catch (NotImplementedException e) {
             e.print();

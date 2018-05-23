@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 public class ReversibleStack<E> {
 
-    ReversibleInt size;
+    RevInt size;
     ArrayList<E> stack;
 
-    public ReversibleStack(Trail rc) {
-        size = new ReversibleInt(rc,0);
+    public ReversibleStack(StateManager sm) {
+        size = sm.getTrail().makeRevInt(0);
         stack = new ArrayList<E>();
     }
 

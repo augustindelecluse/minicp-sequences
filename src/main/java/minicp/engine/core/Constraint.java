@@ -14,18 +14,18 @@
  */
 
 package minicp.engine.core;
-import minicp.reversible.ReversibleBool;
+import minicp.reversible.RevBool;
 import minicp.util.InconsistencyException;
 
 public abstract class Constraint implements VarListener {
 
     protected boolean scheduled = false;
     protected final Solver cp;
-    protected final ReversibleBool active;
+    protected final RevBool active;
 
     public Constraint(Solver cp) {
         this.cp = cp;
-        active = new ReversibleBool(cp.getTrail(),true);
+        active = cp.getTrail().makeRevBool(true);
     }
 
     public boolean isActive() {

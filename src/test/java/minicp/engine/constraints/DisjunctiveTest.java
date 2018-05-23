@@ -15,7 +15,6 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.constraints.Profile.Rectangle;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -28,7 +27,6 @@ import org.junit.Assume;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Heuristics.firstFail;
@@ -72,7 +70,7 @@ public class DisjunctiveTest {
 
             cp.post(new Disjunctive(s,d));
 
-            SearchStatistics stats = makeDfs(cp,firstFail(s)).start();
+            SearchStatistics stats = makeDfs(cp,firstFail(s)).solve();
             assertEquals("disjunctive alldiff expect all permutations",120, stats.nSolutions);
 
         } catch (InconsistencyException e) {
@@ -96,13 +94,13 @@ public class DisjunctiveTest {
 
             cp.post(new Disjunctive(s,d));
 
-            SearchStatistics stat1 = dfs.start();
+            SearchStatistics stat1 = dfs.solve();
 
             cp.pop();
 
             decomposeDisjunctive(s,d);
 
-            SearchStatistics stat2 = dfs.start();
+            SearchStatistics stat2 = dfs.solve();
 
             assertEquals(stat1.nSolutions, stat2.nSolutions);
 

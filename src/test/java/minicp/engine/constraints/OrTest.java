@@ -16,15 +16,11 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Heuristics.firstFail;
@@ -77,7 +73,7 @@ public class OrTest {
                             assertTrue(nTrue > 0);
 
                         }
-                ).start();
+                ).solve();
                 assertEquals(15,stats.nSolutions);
 
             } catch (InconsistencyException e) {

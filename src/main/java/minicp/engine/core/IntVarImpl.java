@@ -72,10 +72,10 @@ public class IntVarImpl implements IntVar {
         if (min > max) throw new InvalidParameterException("at least one value in the domain");
         this.cp = cp;
         cp.registerVar(this);
-        domain = new SparseSetDomain(cp.getTrail(),min,max);
-        onDomain = new ReversibleStack<>(cp.getTrail());
-        onBind  = new ReversibleStack<>(cp.getTrail());
-        onBounds = new ReversibleStack<>(cp.getTrail());
+        domain = new SparseSetDomain(cp,min,max);
+        onDomain = new ReversibleStack<>(cp);
+        onBind  = new ReversibleStack<>(cp);
+        onBounds = new ReversibleStack<>(cp);
     }
 
     public Solver getSolver() {

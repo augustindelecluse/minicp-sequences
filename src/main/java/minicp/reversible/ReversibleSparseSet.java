@@ -23,21 +23,21 @@ public class ReversibleSparseSet {
 
     private int [] values;
     private int [] indexes;
-    private ReversibleInt size;
-    private ReversibleInt min;
-    private ReversibleInt max;
+    private RevInt size;
+    private RevInt min;
+    private RevInt max;
     private int n;
 
     /**
      * Creates a ReversibleSparseSet containing the elements {0,...,n-1}.
-     * @param rs
+     * @param sm
      * @param n > 0
      */
-    public ReversibleSparseSet(Trail rs, int n) {
+    public ReversibleSparseSet(StateManager sm, int n) {
         this.n = n;
-        size = new ReversibleInt(rs,n);
-        min = new ReversibleInt(rs,0);
-        max = new ReversibleInt(rs,n-1);
+        size = sm.getTrail().makeRevInt(n);
+        min = sm.getTrail().makeRevInt(0);
+        max = sm.getTrail().makeRevInt(n-1);
         values = new int [n];
         indexes = new int [n];
         for (int i = 0; i < n; i++) {

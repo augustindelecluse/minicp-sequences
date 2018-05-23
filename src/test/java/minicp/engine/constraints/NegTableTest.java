@@ -25,7 +25,6 @@ import org.junit.Assume;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 import static minicp.cp.Factory.*;
@@ -126,7 +125,7 @@ public class NegTableTest {
                 int[][] table = new int[][]{{1,1,1}};
                 cp.post(new NegTableCT(x, table));
                 DFSearch dfs = makeDfs(cp,firstFail(x));
-                SearchStatistics stats = dfs.start();
+                SearchStatistics stats = dfs.solve();
                 assertEquals(7,stats.nSolutions);
 
             } catch (InconsistencyException e) {
@@ -146,7 +145,7 @@ public class NegTableTest {
                 int[][] table = new int[][]{{1,1,1},{1,1,1},{1,1,1}};
                 cp.post(new NegTableCT(x, table));
                 DFSearch dfs = makeDfs(cp,firstFail(x));
-                SearchStatistics stats = dfs.start();
+                SearchStatistics stats = dfs.solve();
                 assertEquals(7,stats.nSolutions);
 
             } catch (InconsistencyException e) {
@@ -202,7 +201,7 @@ public class NegTableTest {
             cp.post(new TableCT(new IntVar[]{x[0], x[1], x[2]}, toPositive(x[0], x[1], x[2],t1)));
             cp.post(new TableCT(new IntVar[]{x[2], x[3], x[4]}, toPositive(x[2], x[3], x[4],t2)));
             cp.post(new TableCT(new IntVar[]{x[0], x[2], x[4]}, toPositive(x[0], x[2], x[4],t3)));
-            statsDecomp = makeDfs(cp, firstFail(x)).start();
+            statsDecomp = makeDfs(cp, firstFail(x)).solve();
         } catch (InconsistencyException e) {
             statsDecomp = null;
         }
@@ -214,7 +213,7 @@ public class NegTableTest {
             cp.post(new NegTableCT(new IntVar[]{x[0], x[1], x[2]}, t1));
             cp.post(new NegTableCT(new IntVar[]{x[2], x[3], x[4]}, t2));
             cp.post(new NegTableCT(new IntVar[]{x[0], x[2], x[4]}, t3));
-            statsAlgo = makeDfs(cp, firstFail(x)).start();
+            statsAlgo = makeDfs(cp, firstFail(x)).solve();
         } catch (InconsistencyException e) {
             statsAlgo = null;
         }

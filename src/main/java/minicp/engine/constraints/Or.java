@@ -17,7 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.Constraint;
-import minicp.reversible.ReversibleInt;
+import minicp.reversible.RevInt;
 import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
@@ -28,16 +28,16 @@ public class Or extends Constraint { // x1 or x2 or ... xn
 
     private final BoolVar [] x;
     private final int n;
-    private ReversibleInt wL ; // watched literal left
-    private ReversibleInt wR ; // watched literal right
+    private RevInt wL ; // watched literal left
+    private RevInt wR ; // watched literal right
 
 
     public Or(BoolVar [] x) {
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
-        wL = new ReversibleInt(cp.getTrail(),0);
-        wR = new ReversibleInt(cp.getTrail(),n-1);
+        wL = cp.getTrail().makeRevInt(0);
+        wR = cp.getTrail().makeRevInt(n-1);
     }
 
     @Override

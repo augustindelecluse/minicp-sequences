@@ -160,7 +160,7 @@ public class StableMariage {
         );
 
 
-        SearchStatistics stats = dfs.start();
+        SearchStatistics stats = dfs.solve();
         System.out.println(stats);
 
     }

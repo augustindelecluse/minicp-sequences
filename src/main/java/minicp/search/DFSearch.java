@@ -15,6 +15,7 @@
 
 package minicp.search;
 
+import minicp.reversible.StateManager;
 import minicp.reversible.Trail;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
@@ -24,7 +25,7 @@ import java.util.*;
 public class DFSearch {
 
     private Choice choice;
-    private Trail state;
+    private Trail trail;
 
     private List<SolutionListener> solutionListeners = new LinkedList<SolutionListener>();
     private List<FailListener> failListeners = new LinkedList<FailListener>();
@@ -57,14 +58,14 @@ public class DFSearch {
         failListeners.forEach(s -> s.failure());
     }
 
-    public DFSearch(Trail state, Choice branching) {
-        this.state = state;
+    public DFSearch(StateManager sm, Choice branching) {
+        this.trail = sm.getTrail();
         this.choice = branching;
     }
 
     public SearchStatistics start(SearchLimit limit) {
         SearchStatistics statistics = new SearchStatistics();
-        int level = state.getLevel();
+        int level = trail.getLevel();
 
         try {
             dfs(statistics,limit);
@@ -74,11 +75,11 @@ public class DFSearch {
         catch (StackOverflowError e) {
             throw new NotImplementedException("dfs with explicit stack needed to pass this test");
         }
-        state.popUntil(level);
+        trail.popUntil(level);
         return statistics;
     }
 
-    public SearchStatistics start() {
+    public SearchStatistics solve() {
         return start(statistics -> false);
     }
 
@@ -91,13 +92,13 @@ public class DFSearch {
         } else {
             for (int i = alts.length-1; i >= 0; i--) {
                 Alternative a = alts[i];
-                alternatives.push(() -> state.pop());
+                alternatives.push(() -> trail.pop());
                 alternatives.push(() -> {
                     statistics.nNodes++;
                     a.call();
                     expandNode(alternatives, statistics);
                 });
-                alternatives.push(() -> state.push());
+                alternatives.push(() -> trail.push());
             }
         }
     }
@@ -128,7 +129,7 @@ public class DFSearch {
         }
         else {
             for (Alternative alt : alternatives) {
-                state.push();
+                trail.push();
                 try {
                     statistics.nNodes++;
                     alt.call();
@@ -137,7 +138,7 @@ public class DFSearch {
                     notifyFailure();
                     statistics.nFailures++;
                 }
-                state.pop();
+                trail.pop();
             }
         }
     }

@@ -75,7 +75,7 @@ public class QAP {
 
         dfs.onSolution(() -> System.out.println("objective:"+objective.getMin()));
 
-        SearchStatistics stats = dfs.start();
+        SearchStatistics stats = dfs.solve();
 
         System.out.println(stats);
 

@@ -58,7 +58,7 @@ public class MagicSerie {
                 )
         ).onSolution(() ->
                 System.out.println("solution:"+ Arrays.toString(s))
-        ).start();
+        ).solve();
 
         long t1 = System.currentTimeMillis();
 

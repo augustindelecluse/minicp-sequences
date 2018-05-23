@@ -15,25 +15,20 @@
 
 package minicp.examples;
 
-import minicp.engine.constraints.Cumulative;
 import minicp.engine.constraints.Disjunctive;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
-import minicp.util.InputReader;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
-import java.util.stream.IntStream;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Heuristics.firstFail;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
 
 /**
  * JobShop Problem
@@ -126,7 +121,7 @@ public class JobShop {
                     System.out.println("makespan:" + makespan)
             );
 
-            SearchStatistics stats = dfs.start();
+            SearchStatistics stats = dfs.solve();
 
             System.out.format("Statistics: %s\n", stats);
 

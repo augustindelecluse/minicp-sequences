@@ -43,7 +43,7 @@ public class MaximizeTest {
 
                 cp.post(maximize(y,dfs));
 
-                SearchStatistics stats = dfs.start();
+                SearchStatistics stats = dfs.solve();
 
                 assertEquals(stats.nSolutions,11);
 
