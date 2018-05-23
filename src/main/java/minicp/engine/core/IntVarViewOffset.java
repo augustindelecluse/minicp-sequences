@@ -44,21 +44,6 @@ public class IntVarViewOffset implements IntVar {
     public void whenDomainChange(ConstraintClosure.Filtering f) { x.whenDomainChange(f); }
 
     @Override
-    public void propagateOnDomainChange(ConstraintClosure.Filtering c) {
-        x.propagateOnDomainChange(c);
-    }
-
-    @Override
-    public void propagateOnBind(ConstraintClosure.Filtering c) {
-        x.propagateOnBind(c);
-    }
-
-    @Override
-    public void propagateOnBoundChange(ConstraintClosure.Filtering c) {
-        x.propagateOnBoundChange(c);
-    }
-
-    @Override
     public void propagateOnDomainChange(Constraint c) {
         x.propagateOnDomainChange(c);
     }

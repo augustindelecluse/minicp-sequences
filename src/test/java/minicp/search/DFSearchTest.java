@@ -23,12 +23,15 @@ import minicp.reversible.*;
 import java.util.Arrays;
 
 import static minicp.cp.Factory.makeSolver;
+import static minicp.cp.Heuristics.firstFail;
 import static minicp.search.Selector.*;
 
 import minicp.util.Counter;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 import static minicp.cp.Factory.*;
 
@@ -245,6 +248,27 @@ public class DFSearchTest {
         } catch (NotImplementedException e) {
             e.print();
         }
+
+    }
+
+
+    @Test
+    public void testSolveSubjectTo() {
+        Solver cp = makeSolver();
+        IntVar[] x = makeIntVarArray(cp,3,2);
+
+        DFSearch dfs = makeDfs(cp,firstFail(x));
+
+        SearchStatistics stats1 = dfs.solveSubjectTo(l -> false, () -> {
+            equal(x[0],0);
+        });
+
+        assertEquals(4,stats1.nSolutions);
+
+        SearchStatistics stats2 = dfs.solve(l -> false);
+
+        assertEquals(8,stats2.nSolutions);
+
 
     }
 

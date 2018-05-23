@@ -55,8 +55,7 @@ public class NQueens {
                             return branch(() -> Factory.equal(qi, v),
                                           () -> Factory.notEqual(qi, v));
                         }
-                )
-        );
+                ));
 
         search.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(q))

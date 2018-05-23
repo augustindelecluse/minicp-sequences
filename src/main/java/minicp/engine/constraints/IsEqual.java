@@ -44,17 +44,17 @@ public class IsEqual extends Constraint { // b <=> x == c
         } else if (!x.contains(c)) {
             b.assign(0);
         } else {
-            b.propagateOnBind(() -> {
+            b.whenBind(() -> {
                 if (b.isTrue()) x.assign(c);
                 else {
                     // should deactivate the constraint as it is entailed
                     x.remove(c);
                 }
             });
-            x.propagateOnBind(() ->
+            x.whenBind(() ->
                 b.assign(x.getMin() == c)
             );
-            x.propagateOnDomainChange(() -> {
+            x.whenDomainChange(() -> {
                 if (!x.contains(c))
                     b.assign(0);
             });

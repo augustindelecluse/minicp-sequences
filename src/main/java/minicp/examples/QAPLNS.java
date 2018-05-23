@@ -97,20 +97,16 @@ public class QAPLNS {
         for (int i = 0; i < nRestarts; i++) {
             System.out.println("restart number #"+i);
 
-            // Record the state such that the fragment constraints can be cancelled
-            cp.push();
-
-            // Assign the fragment 5% of the variables randomly chosen
-            for (int j = 0; j < n; j++) {
-                if (rand.nextInt(100) < 5) {
-                    equal(x[j],xBest[j]);
-                }
-            }
-            dfs.solve(statistics -> statistics.nFailures >= failureLimit);
-
-            // cancel all the fragment constraints
-            cp.pop();
+            dfs.solveSubjectTo(statistics -> statistics.nFailures >= failureLimit, () -> {
+                        // Assign the fragment 5% of the variables randomly chosen
+                        for (int j = 0; j < n; j++) {
+                            if (rand.nextInt(100) < 5) {
+                                // after the solveSubjectTo those constraints are removed
+                                equal(x[j], xBest[j]);
+                            }
+                        }
+                    }
+            );
         }
-
     }
 }

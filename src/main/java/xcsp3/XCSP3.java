@@ -8,10 +8,7 @@ import minicp.engine.core.Solver;
 
 import static minicp.cp.Heuristics.*;
 import static minicp.cp.Factory.*;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
 
-import minicp.search.Choice;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.Box;
@@ -29,8 +26,6 @@ import java.io.ByteArrayInputStream;
 import java.security.InvalidParameterException;
 import java.util.*;
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class XCSP3 implements XCallbacks2 {

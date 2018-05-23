@@ -40,7 +40,7 @@ public class Profile {
 
         @Override
         public String toString() {
-            return "[start:"+start+" dur:"+dur+" end:"+(end)+"] h:"+height;
+            return "[solve:"+start+" dur:"+dur+" end:"+(end)+"] h:"+height;
         }
     }
 
@@ -79,7 +79,7 @@ public class Profile {
     /**
      *
      * @param t
-     * @return the rectangle r of the profileRectangles such that r.start <= t and r.end > t
+     * @return the rectangle r of the profileRectangles such that r.solve <= t and r.end > t
      */
     public int rectangleIndex(int t) {
         for (int i = 0; i < profileRectangles.length; i++) {

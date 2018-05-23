@@ -86,8 +86,8 @@ public class IntVarTest {
 
             @Override
             public void post() throws InconsistencyException {
-                x.propagateOnBind(() -> propagateCalled = true);
-                y.propagateOnDomainChange(() -> propagateCalled = true);
+                x.whenBind(() -> propagateCalled = true);
+                y.whenDomainChange(() -> propagateCalled = true);
             }
         };
 
@@ -218,8 +218,8 @@ public class IntVarTest {
 
             @Override
             public void post() throws InconsistencyException {
-                x.propagateOnBind(() -> propagateCalled  = true);
-                y.propagateOnDomainChange(() -> propagateCalled = true);
+                x.whenBind(() -> propagateCalled  = true);
+                y.whenDomainChange(() -> propagateCalled = true);
             }
         };
 

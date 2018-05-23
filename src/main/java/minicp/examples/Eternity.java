@@ -15,7 +15,6 @@
 
 package minicp.examples;
 
-import minicp.engine.constraints.TableCT;
 import minicp.engine.constraints.TableDecomp;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;

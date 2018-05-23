@@ -19,6 +19,7 @@ import minicp.reversible.StateManager;
 import minicp.reversible.Trail;
 import minicp.reversible.ReversibleSparseSet;
 import minicp.util.InconsistencyException;
+
 import static minicp.util.InconsistencyException.INCONSISTENCY;
 
 
@@ -26,7 +27,7 @@ public class SparseSetDomain extends IntDomain {
     private ReversibleSparseSet domain;
     private int offset;
 
-    public int fillArray(int [] dest) {
+    public int fillArray(int[] dest) {
         int s = domain.fillArray(dest);
         for (int i = 0; i < s; i++) {
             dest[i] += offset;
@@ -36,7 +37,7 @@ public class SparseSetDomain extends IntDomain {
 
     public SparseSetDomain(StateManager sm, int min, int max) {
         offset = min;
-        domain = new ReversibleSparseSet(sm, max-min+1);
+        domain = new ReversibleSparseSet(sm, max - min + 1);
     }
 
     public int getMin() {
@@ -83,8 +84,7 @@ public class SparseSetDomain extends IntDomain {
                 if (maxChanged) x.removeAbove(domain.getSize());
                 if (minChanged) x.removeBelow(domain.getSize());
             }
-        }
-        else {
+        } else {
             domain.removeAll();
         }
     }
