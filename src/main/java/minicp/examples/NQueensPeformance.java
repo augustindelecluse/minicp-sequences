@@ -61,7 +61,7 @@ public class NQueensPeformance {
                 )
         ).onSolution(() ->
                 System.out.println("solution:"+ Arrays.toString(q))
-        ).start(statistics -> {
+        ).solve(statistics -> {
            if ((statistics.nNodes/2) % 10000 == 0) {
                //System.out.println("failures:"+statistics.nFailures);
                System.out.println("nodes:"+(statistics.nNodes/2));

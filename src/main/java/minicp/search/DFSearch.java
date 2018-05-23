@@ -33,7 +33,7 @@ public class DFSearch {
 
     @FunctionalInterface
     public interface SolutionListener {
-        void solutionFound();
+        void call();
     }
     public DFSearch onSolution(SolutionListener listener) {
         solutionListeners.add(listener);
@@ -41,12 +41,12 @@ public class DFSearch {
     }
 
     public void notifySolutionFound() {
-        solutionListeners.forEach(s -> s.solutionFound());
+        solutionListeners.forEach(s -> s.call());
     }
 
     @FunctionalInterface
     public interface FailListener {
-        void failure();
+        void call();
     }
 
     public DFSearch onFail(FailListener listener) {
@@ -55,7 +55,7 @@ public class DFSearch {
     }
 
     public void notifyFailure() {
-        failListeners.forEach(s -> s.failure());
+        failListeners.forEach(s -> s.call());
     }
 
     public DFSearch(StateManager sm, Choice branching) {
@@ -63,7 +63,7 @@ public class DFSearch {
         this.choice = branching;
     }
 
-    public SearchStatistics start(SearchLimit limit) {
+    public SearchStatistics solve(SearchLimit limit) {
         SearchStatistics statistics = new SearchStatistics();
         int level = trail.getLevel();
 
@@ -80,7 +80,24 @@ public class DFSearch {
     }
 
     public SearchStatistics solve() {
-        return start(statistics -> false);
+        return solve(statistics -> false);
+    }
+
+    @FunctionalInterface
+    public interface SubjectTo {
+        public void call() throws InconsistencyException;
+    }
+
+
+    public SearchStatistics solveSubjectTo(SearchLimit limit, SubjectTo subjectTo) {
+        SearchStatistics statistics = new SearchStatistics();
+        trail.push();
+        try {
+            subjectTo.call();
+            statistics = solve(limit);
+        } catch (InconsistencyException e) {}
+        trail.pop();
+        return  statistics;
     }
 
 

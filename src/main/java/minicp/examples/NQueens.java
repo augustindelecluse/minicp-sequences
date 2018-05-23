@@ -57,7 +57,7 @@ public class NQueens {
                 )
         ).onSolution(() ->
                 System.out.println("solution:"+ Arrays.toString(q))
-        ).start(statistics -> statistics.nSolutions == 1000);
+        ).solve(statistics -> statistics.nSolutions == 1000);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);

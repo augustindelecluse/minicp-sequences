@@ -20,14 +20,11 @@ import minicp.engine.constraints.Element1D;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
-import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
 import static minicp.search.Selector.branch;
 import static minicp.search.Selector.selectMin;
 
@@ -110,7 +107,7 @@ public class TSP {
         );
 
         // take a while (optimum = 291)
-        SearchStatistics stats = dfs.start();
+        SearchStatistics stats = dfs.solve();
 
         System.out.println(stats);
         */
@@ -148,7 +145,7 @@ public class TSP {
                     equal(succ[j],succBest[j]);
                 }
             }
-            dfs.start(statistics -> statistics.nFailures >= failureLimit);
+            dfs.solve(statistics -> statistics.nFailures >= failureLimit);
 
             // cancel all the fragment constraints
             cp.pop();

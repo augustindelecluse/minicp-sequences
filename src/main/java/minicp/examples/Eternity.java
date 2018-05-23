@@ -15,7 +15,6 @@
 
 package minicp.examples;
 
-import minicp.engine.constraints.TableCT;
 import minicp.engine.constraints.TableDecomp;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -157,7 +156,7 @@ public class Eternity {
             }
             System.out.println(line);
 
-        }).start(statistics -> statistics.nSolutions == 1);
+        }).solve(statistics -> statistics.nSolutions == 1);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);
