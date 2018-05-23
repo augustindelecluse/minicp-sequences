@@ -15,6 +15,7 @@
 
 package minicp.search;
 
+import minicp.cp.Factory;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.reversible.*;
@@ -47,7 +48,7 @@ public class DFSearchTest {
     @Test
     public void testExample1() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         int [] values = new int[3];
 
         DFSearch dfs = new DFSearch(sm,() -> {
@@ -101,7 +102,7 @@ public class DFSearchTest {
     @Test
     public void testExample3() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         int [] values = new int[3];
 
         DFSearch dfs = new DFSearch(sm,() -> {
@@ -125,7 +126,7 @@ public class DFSearchTest {
         });
 
 
-        SearchStatistics stats = dfs.start(stat -> stat.nSolutions >= 1);
+        SearchStatistics stats = dfs.solve(stat -> stat.nSolutions >= 1);
 
         assert(stats.nSolutions == 1);
     }
@@ -136,7 +137,7 @@ public class DFSearchTest {
     @Test
     public void testDFS() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         boolean [] values = new boolean[4];
 
         Counter nSols = new Counter();
@@ -178,7 +179,7 @@ public class DFSearchTest {
     @Test
     public void testDFSSearchLimit() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         boolean [] values = new boolean[4];
 
         DFSearch dfs = new DFSearch(sm,() -> {
@@ -206,7 +207,7 @@ public class DFSearchTest {
 
 
         // stop search after 2 solutions
-        SearchStatistics stats = dfs.start(stat -> stat.nFailures >= 3);
+        SearchStatistics stats = dfs.solve(stat -> stat.nFailures >= 3);
 
         assert(stats.nSolutions == 0);
         assert(stats.nFailures == 3);
@@ -217,7 +218,7 @@ public class DFSearchTest {
     @Test
     public void testDeepDFS() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         boolean [] values = new boolean[10000];
 
         DFSearch dfs = new DFSearch(sm,() -> {
@@ -239,7 +240,7 @@ public class DFSearchTest {
         });
         try {
             // stop search after 1 solutions (only left most branch)
-            SearchStatistics stats = dfs.start(stat -> stat.nSolutions >= 1);
+            SearchStatistics stats = dfs.solve(stat -> stat.nSolutions >= 1);
             assert(stats.nSolutions == 1);
         } catch (NotImplementedException e) {
             e.print();

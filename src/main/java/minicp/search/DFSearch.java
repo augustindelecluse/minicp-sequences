@@ -63,7 +63,7 @@ public class DFSearch {
         this.choice = branching;
     }
 
-    public SearchStatistics start(SearchLimit limit) {
+    public SearchStatistics solve(SearchLimit limit) {
         SearchStatistics statistics = new SearchStatistics();
         int level = trail.getLevel();
 
@@ -80,7 +80,7 @@ public class DFSearch {
     }
 
     public SearchStatistics solve() {
-        return start(statistics -> false);
+        return solve(statistics -> false);
     }
 
 

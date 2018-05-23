@@ -20,7 +20,7 @@ import java.util.Stack;
 
 public class TrailImpl implements Trail {
 
-    public long magic = 0;
+    private long magic = 0;
     private Stack<TrailEntry> trail = new Stack<TrailEntry>();
     private Stack<Integer>    trailLimit = new Stack<Integer>();
 
@@ -29,6 +29,8 @@ public class TrailImpl implements Trail {
      * The current level is -1
      */
     public TrailImpl() {}
+
+    public long getMagic() { return magic;}
 
     public void pushOnTrail(TrailEntry entry) {
         trail.push(entry);

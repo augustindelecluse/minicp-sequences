@@ -714,7 +714,7 @@ public class XCSP3 implements XCallbacks2 {
             onSolution.accept(sol.toString(), realObjective.map(IntVar::getMin).orElse(Integer.MAX_VALUE));
         });
 
-        return search.start(shouldStop::apply);
+        return search.solve(shouldStop::apply);
     }
 
 

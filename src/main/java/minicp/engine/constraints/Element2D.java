@@ -16,6 +16,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.cp.Factory;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.reversible.RevInt;
@@ -77,16 +78,16 @@ public class Element2D extends Constraint {
             }
         }
         Collections.sort(xyz);
-        low = cp.getTrail().makeRevInt(0);
-        up = cp.getTrail().makeRevInt(xyz.size()-1);
+        low = Factory.makeRevInt(cp,0);
+        up = Factory.makeRevInt(cp,xyz.size()-1);
 
         nColsSup = new RevInt[n];
         nRowsSup = new RevInt[m];
         for (int i = 0; i < n; i++) {
-            nColsSup[i] = cp.getTrail().makeRevInt(m);
+            nColsSup[i] = Factory.makeRevInt(cp,m);
         }
         for (int j = 0; j < m; j++) {
-            nRowsSup[j] = cp.getTrail().makeRevInt(n);
+            nRowsSup[j] = Factory.makeRevInt(cp,n);
         }
     }
 

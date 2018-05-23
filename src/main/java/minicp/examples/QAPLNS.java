@@ -106,7 +106,7 @@ public class QAPLNS {
                     equal(x[j],xBest[j]);
                 }
             }
-            dfs.start(statistics -> statistics.nFailures >= failureLimit);
+            dfs.solve(statistics -> statistics.nFailures >= failureLimit);
 
             // cancel all the fragment constraints
             cp.pop();

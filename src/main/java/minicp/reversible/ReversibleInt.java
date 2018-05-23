@@ -24,18 +24,18 @@ public class ReversibleInt implements RevInt {
         }
         public void restore()       { ReversibleInt.this.v = v;}
     }
-    private TrailImpl trail;
+    private Trail trail;
     private int v;
-    private Long lastMagic = -1L;
+    private long lastMagic = -1L;
 
-    protected ReversibleInt(TrailImpl trail, int initial) {
+    protected ReversibleInt(Trail trail, int initial) {
         this.trail = trail;
         v = initial;
-        lastMagic = trail.magic;
+        lastMagic = trail.getMagic();
     }
 
     private void trail() {
-        long trailMagic = trail.magic;
+        long trailMagic = trail.getMagic();
         if (lastMagic != trailMagic) {
             lastMagic = trailMagic;
             trail.pushOnTrail(new TrailEntryInt(v));

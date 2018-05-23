@@ -148,7 +148,7 @@ public class TSP {
                     equal(succ[j],succBest[j]);
                 }
             }
-            dfs.start(statistics -> statistics.nFailures >= failureLimit);
+            dfs.solve(statistics -> statistics.nFailures >= failureLimit);
 
             // cancel all the fragment constraints
             cp.pop();

@@ -15,49 +15,53 @@
 
 package minicp.examples;
 
+import minicp.cp.Factory;
 import minicp.engine.constraints.AllDifferentAC;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
+import minicp.search.DFSearch;
 import minicp.util.InconsistencyException;
 import minicp.search.SearchStatistics;
 import java.util.Arrays;
 
 import static minicp.search.Selector.*;
-import static minicp.cp.Factory.*;
 
 public class NQueens {
     public static void main(String[] args) throws InconsistencyException {
         int n = 8;
-        Solver cp = makeSolver();
-        IntVar[] q = makeIntVarArray(cp, n, n);
+        Solver cp = Factory.makeSolver();
+        IntVar[] q = Factory.makeIntVarArray(cp, n, n);
 
 
         for(int i=0;i < n;i++)
             for(int j=i+1;j < n;j++) {
-                cp.post(notEqual(q[i],q[j]));
-                cp.post(notEqual(q[i],q[j],j-i));
-                cp.post(notEqual(q[i],q[j],i-j));
+                cp.post(Factory.notEqual(q[i],q[j]));
+                cp.post(Factory.notEqual(q[i],q[j],j-i));
+                cp.post(Factory.notEqual(q[i],q[j],i-j));
             }
 
 
-        cp.post(new AllDifferentAC(q));
-        cp.post(new AllDifferentAC( makeIntVarArray(cp,n, i -> minus(q[i],i))));
-        cp.post(new AllDifferentAC( makeIntVarArray(cp,n, i -> plus(q[i],i))));
+        cp.post(Factory.allDifferentAC(q));
+        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(cp,n, i -> Factory.minus(q[i],i))));
+        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(cp,n, i -> Factory.plus(q[i],i))));
 
 
-        SearchStatistics stats = makeDfs(cp,
+        DFSearch search = Factory.makeDfs(cp,
                 selectMin(q,
                         qi -> qi.getSize() > 1,
                         qi -> qi.getSize(),
                         qi -> {
                             int v = qi.getMin();
-                            return branch(() -> equal(qi,v),
-                                          () -> notEqual(qi,v));
+                            return branch(() -> Factory.equal(qi, v),
+                                          () -> Factory.notEqual(qi, v));
                         }
                 )
-        ).onSolution(() ->
-                System.out.println("solution:"+ Arrays.toString(q))
-        ).start(statistics -> statistics.nSolutions == 1000);
+        );
+
+        search.onSolution(() ->
+                System.out.println("solution:" + Arrays.toString(q))
+        );
+        SearchStatistics stats = search.solve(statistics -> statistics.nSolutions == 1000);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);

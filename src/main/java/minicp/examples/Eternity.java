@@ -157,7 +157,7 @@ public class Eternity {
             }
             System.out.println(line);
 
-        }).start(statistics -> statistics.nSolutions == 1);
+        }).solve(statistics -> statistics.nSolutions == 1);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);
