@@ -47,18 +47,20 @@ public class Solver implements StateManager {
     }
 
     public void fixPoint() throws InconsistencyException {
-        boolean failed = false;
-        while (!propagationQueue.isEmpty()) {
-            Constraint c = propagationQueue.remove();
-            c.scheduled = false;
-            if (!failed && c.isActive()) {
-                try { c.propagate(); }
-                catch (InconsistencyException e) {
-                    failed = true;
+        try {
+            while (!propagationQueue.isEmpty()) {
+                Constraint c = propagationQueue.remove();
+                c.scheduled = false;
+                if (c.isActive()) {
+                    c.propagate();
                 }
             }
+        } catch (InconsistencyException e) {
+            // empty the queue and unset the scheduled status
+            while (propagationQueue.size() > 0)
+                propagationQueue.remove().scheduled = false;
+            throw new InconsistencyException();
         }
-        if (failed) throw new InconsistencyException();
     }
 
     public void post(Constraint c) throws InconsistencyException {

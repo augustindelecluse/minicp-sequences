@@ -15,6 +15,7 @@
 
 package minicp.reversible;
 
+import minicp.cp.Factory;
 import java.util.ArrayList;
 
 public class ReversibleStack<E> {
@@ -23,7 +24,7 @@ public class ReversibleStack<E> {
     ArrayList<E> stack;
 
     public ReversibleStack(StateManager sm) {
-        size = sm.getTrail().makeRevInt(0);
+        size = Factory.makeRevInt(sm,0);
         stack = new ArrayList<E>();
     }
 

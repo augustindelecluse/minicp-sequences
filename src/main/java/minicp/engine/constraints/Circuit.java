@@ -17,6 +17,8 @@
 package minicp.engine.constraints;
 
 import static minicp.cp.Factory.*;
+
+import minicp.cp.Factory;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.reversible.RevInt;
@@ -42,9 +44,9 @@ public class Circuit extends Constraint {
         orig = new RevInt[x.length];
         lengthToDest = new RevInt[x.length];
         for (int i = 0; i < x.length; i++) {
-            dest[i] = cp.getTrail().makeRevInt(i);
-            orig[i] = cp.getTrail().makeRevInt(i);
-            lengthToDest[i] = cp.getTrail().makeRevInt(0);
+            dest[i] = Factory.makeRevInt(cp,i);
+            orig[i] = Factory.makeRevInt(cp,i);
+            lengthToDest[i] = Factory.makeRevInt(cp,0);
         }
     }
 

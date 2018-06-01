@@ -15,12 +15,11 @@
 
 package minicp.engine.constraints;
 
+import minicp.cp.Factory;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.Constraint;
 import minicp.reversible.RevInt;
 import minicp.util.InconsistencyException;
-
-import java.util.Arrays;
 
 import static minicp.util.InconsistencyException.*;
 
@@ -36,8 +35,8 @@ public class Or extends Constraint { // x1 or x2 or ... xn
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
-        wL = cp.getTrail().makeRevInt(0);
-        wR = cp.getTrail().makeRevInt(n-1);
+        wL = Factory.makeRevInt(cp,0);
+        wR = Factory.makeRevInt(cp,n-1);
     }
 
     @Override

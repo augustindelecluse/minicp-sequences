@@ -112,7 +112,6 @@ public class CircuitTest {
                             for (int i = 0; i < x.length; i++) {
                                 sol[i] = x[i].getMin();
                             }
-                            System.out.println(Arrays.toString(sol));
                             assertTrue("Solution is not an hamiltonian Circuit",checkHamiltonian(sol));
                         }
                 ).solve();

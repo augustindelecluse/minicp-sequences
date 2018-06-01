@@ -51,7 +51,7 @@ public class DFSearchTest {
     @Test
     public void testExample1() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         int [] values = new int[3];
 
         DFSearch dfs = new DFSearch(sm,() -> {
@@ -105,7 +105,7 @@ public class DFSearchTest {
     @Test
     public void testExample3() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         int [] values = new int[3];
 
         DFSearch dfs = new DFSearch(sm,() -> {
@@ -140,7 +140,7 @@ public class DFSearchTest {
     @Test
     public void testDFS() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         boolean [] values = new boolean[4];
 
         Counter nSols = new Counter();
@@ -182,7 +182,7 @@ public class DFSearchTest {
     @Test
     public void testDFSSearchLimit() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         boolean [] values = new boolean[4];
 
         DFSearch dfs = new DFSearch(sm,() -> {
@@ -221,7 +221,7 @@ public class DFSearchTest {
     @Test
     public void testDeepDFS() {
         StateManager sm = makeStateManager();
-        RevInt i = sm.getTrail().makeRevInt(0);
+        RevInt i = Factory.makeRevInt(sm,0);
         boolean [] values = new boolean[10000];
 
         DFSearch dfs = new DFSearch(sm,() -> {

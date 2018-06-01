@@ -14,6 +14,7 @@
  */
 
 package minicp.engine.core;
+import minicp.cp.Factory;
 import minicp.reversible.RevBool;
 import minicp.util.InconsistencyException;
 
@@ -25,7 +26,7 @@ public abstract class Constraint {
 
     public Constraint(Solver cp) {
         this.cp = cp;
-        active = cp.getTrail().makeRevBool(true);
+        active = Factory.makeRevBool(cp,true);
     }
 
     public boolean isActive() {

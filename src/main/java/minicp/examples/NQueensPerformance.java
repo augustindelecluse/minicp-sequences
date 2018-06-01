@@ -26,7 +26,7 @@ import static minicp.cp.Factory.*;
 import static minicp.search.Selector.branch;
 import static minicp.search.Selector.selectMin;
 
-public class NQueensPeformance {
+public class NQueensPerformance {
     public static void main(String[] args) throws InconsistencyException {
         int n = 88;
         Solver cp = makeSolver();

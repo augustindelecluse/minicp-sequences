@@ -52,8 +52,8 @@ public class Sum extends Constraint {
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
-        nUnBounds = cp.getTrail().makeRevInt(n);
-        sumBounds = cp.getTrail().makeRevInt(0);
+        nUnBounds = Factory.makeRevInt(cp,n);
+        sumBounds = Factory.makeRevInt(cp,0);
         unBounds = new int[n];
         for (int i = 0; i < n; i++) {
             unBounds[i] = i;

@@ -15,8 +15,11 @@
 
 package minicp.cp;
 
+import minicp.reversible.RevInt;
+import minicp.reversible.RevBool;
 import minicp.engine.constraints.*;
 import minicp.engine.core.*;
+import minicp.reversible.StateManager;
 import minicp.search.Choice;
 import minicp.search.DFSearch;
 import minicp.util.InconsistencyException;
@@ -59,6 +62,15 @@ public class Factory {
         x.getSolver().post(new Absolute(x, r));
         return r;
     }
+
+    static public RevInt makeRevInt(StateManager m,int initialValue) {
+        return m.getTrail().makeRevInt(initialValue);
+    }
+
+    static public RevBool makeRevBool(StateManager m,boolean initValue) {
+        return m.getTrail().makeRevBool(initValue);
+    }
+
 
     /**
      * Create a variable with the elements {0,...,n-1}
@@ -250,5 +262,8 @@ public class Factory {
 
     static public Constraint allDifferent(IntVar[] x) throws InconsistencyException  {
         return new AllDifferentBinary(x);
+    }
+    static public Constraint allDifferentAC(IntVar[] x) throws InconsistencyException  {
+        return new AllDifferentAC(x);
     }
 }

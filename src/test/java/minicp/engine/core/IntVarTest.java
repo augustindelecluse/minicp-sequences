@@ -352,9 +352,6 @@ public class IntVarTest {
             for (int i = 0; i < s; i++) {
                 dom.add(values[i]);
             }
-            System.out.println(x);
-            System.out.println(dom);
-            System.out.println(s);
             HashSet<Integer> expectedDom = new HashSet<Integer>();
             Collections.addAll(expectedDom, -7, -4, -1, 2, 5);
             assertEquals(expectedDom, dom);

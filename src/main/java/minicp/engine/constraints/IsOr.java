@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.cp.Factory;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
@@ -40,7 +41,7 @@ public class IsOr extends Constraint { // b <=> x1 or x2 or ... xn
         this.n = x.length;
         or = new Or(x);
 
-        nUnBounds = cp.getTrail().makeRevInt(n);
+        nUnBounds = Factory.makeRevInt(cp,n);
         unBounds = new int[n];
         for (int i = 0; i < n; i++) {
             unBounds[i] = i;
