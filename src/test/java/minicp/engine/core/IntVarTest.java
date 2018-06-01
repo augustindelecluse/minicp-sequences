@@ -278,7 +278,8 @@ public class IntVarTest {
                 x.remove(8);
                 cp.fixPoint();
                 assertFalse(propagateCalled);
-                assertEquals(7,x.removeAbove(8));
+                x.removeAbove(8);
+                assertEquals(7,x.getMax());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
 
@@ -318,12 +319,14 @@ public class IntVarTest {
                 x.remove(3);
                 cp.fixPoint();
                 assertFalse(propagateCalled);
-                assertEquals(4,x.removeBelow(3));
+                x.removeBelow(3);
+                assertEquals(4,x.getMin());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
                 propagateCalled = false;
 
-                assertEquals(5,x.removeBelow(5));
+                x.removeBelow(5);
+                assertEquals(5,x.getMin());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
                 propagateCalled = false;

@@ -103,13 +103,13 @@ public class IntVarViewOffset implements IntVar {
     }
 
     @Override
-    public int removeBelow(int v) throws InconsistencyException {
-        return x.removeBelow(v - o);
+    public void removeBelow(int v) throws InconsistencyException {
+        x.removeBelow(v - o);
     }
 
     @Override
-    public int removeAbove(int v) throws InconsistencyException {
-        return x.removeAbove(v - o);
+    public void removeAbove(int v) throws InconsistencyException {
+        x.removeAbove(v - o);
     }
 
     @Override

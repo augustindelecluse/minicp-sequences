@@ -110,13 +110,13 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
-    public int removeBelow(int v) throws InconsistencyException {
-        return (x.removeBelow(ceilDiv(v, a))) * a;
+    public void removeBelow(int v) throws InconsistencyException {
+        x.removeBelow(ceilDiv(v, a));
     }
 
     @Override
-    public int removeAbove(int v) throws InconsistencyException {
-        return (x.removeAbove(floorDiv(v, a))) * a;
+    public void removeAbove(int v) throws InconsistencyException {
+        x.removeAbove(floorDiv(v, a));
     }
 
 

@@ -182,16 +182,14 @@ public class IntVarImpl implements IntVar {
             throw InconsistencyException.INCONSISTENCY;
     }
 
-    public int removeBelow(int v) throws InconsistencyException {
+    public void removeBelow(int v) throws InconsistencyException {
         domain.removeBelow(v, domListener);
         if (domain.getSize() == 0) throw InconsistencyException.INCONSISTENCY;
-        return getMin();
     }
 
-    public int removeAbove(int v) throws InconsistencyException {
+    public void removeAbove(int v) throws InconsistencyException {
         domain.removeAbove(v, domListener);
         if (domain.getSize() == 0) throw InconsistencyException.INCONSISTENCY;
-        return getMax();
     }
 
 }
