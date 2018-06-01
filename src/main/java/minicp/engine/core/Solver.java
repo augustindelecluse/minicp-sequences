@@ -20,13 +20,15 @@ import minicp.reversible.Trail;
 import minicp.reversible.TrailImpl;
 import minicp.util.InconsistencyException;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 import java.util.Vector;
 
 public class Solver implements StateManager {
 
     private Trail trail = new TrailImpl();
-    private Stack<Constraint> propagationQueue = new Stack<>();
+    private Queue<Constraint> propagationQueue = new ArrayDeque<>();
     private Vector<IntVar>  vars = new Vector<>(2);
     public void registerVar(IntVar x) {
         vars.add(x);
@@ -47,7 +49,7 @@ public class Solver implements StateManager {
     public void fixPoint() throws InconsistencyException {
         boolean failed = false;
         while (!propagationQueue.isEmpty()) {
-            Constraint c = propagationQueue.pop();
+            Constraint c = propagationQueue.remove();
             c.scheduled = false;
             if (!failed && c.isActive()) {
                 try { c.propagate(); }

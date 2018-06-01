@@ -68,6 +68,9 @@ public class Cumulative extends Constraint {
     public void propagate() throws InconsistencyException {
         Profile profile = buildProfile();
         for (int i = 0; i < profile.size(); i++) {
+            System.out.println(profile.get(i).height == capa); {
+                System.out.println(profile.get(i));
+            }
             if (profile.get(i).height > capa) {
                 throw InconsistencyException.INCONSISTENCY;
             }
