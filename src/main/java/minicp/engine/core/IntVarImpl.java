@@ -32,22 +32,22 @@ public class IntVarImpl implements IntVar {
     protected DomainListener domListener = new DomainListener() {
         @Override
         public void bind() {
-            awakeAll(onBind);
+            scheduleAll(onBind);
         }
 
         @Override
         public void change(int domainSize) {
-            awakeAll(onDomain);
+            scheduleAll(onDomain);
         }
 
         @Override
         public void removeBelow(int domainSize) {
-            awakeAll(onBounds);
+            scheduleAll(onBounds);
         }
 
         @Override
         public void removeAbove(int domainSize) {
-            awakeAll(onBounds);
+            scheduleAll(onBounds);
         }
     };
 
@@ -145,7 +145,7 @@ public class IntVarImpl implements IntVar {
     }
 
 
-    protected void awakeAll(ReversibleStack<Constraint> constraints) {
+    protected void scheduleAll(ReversibleStack<Constraint> constraints) {
         for (int i = 0; i < constraints.size(); i++)
             constraints.get(i).schedule();
     }
