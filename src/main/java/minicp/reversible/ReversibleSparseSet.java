@@ -201,36 +201,29 @@ public class ReversibleSparseSet {
     /**
      * Remove all the values < value in the set
      * @param value
-     * @return the new minimum
      */
-    public int removeBelow(int value) {
+    public void removeBelow(int value) {
         if (getMax() < value) {
             removeAll();
-            return Integer.MAX_VALUE;
         } else {
             for (int v = getMin(); v < value; v++) {
                 remove(v);
             }
-            return getMin();
         }
     }
 
     /**
      * Remove all the values > value in the set
-     * @param value
-     * @return the new maximum
      */
-    public int removeAbove(int value) {
+    public void removeAbove(int value) {
         int max = getMax();
         if (getMin() > value) {
             removeAll();
-            return Integer.MIN_VALUE;
         }
         else {
             for (int v = value + 1; v <= max; v++) {
                 remove(v);
             }
-            return getMax();
         }
     }
 
@@ -247,7 +240,6 @@ public class ReversibleSparseSet {
         b.append("}");
         return b.toString();
     }
-
 
 
 }
