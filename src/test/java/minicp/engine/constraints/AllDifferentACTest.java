@@ -153,7 +153,7 @@ public class AllDifferentACTest {
 
             DFSearch dfs = makeDfs(cp,selectMin(x,
                     xi -> xi.getSize() > 1,
-                    xi -> -xi.getSize(),
+                    xi -> (float)-xi.getSize(),
                     xi -> {
                         int v = xi.getMin();
                         return branch(

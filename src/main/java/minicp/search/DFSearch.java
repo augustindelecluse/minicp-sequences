@@ -24,7 +24,7 @@ import java.util.*;
 
 public class DFSearch {
 
-    private Choice choice;
+    private BranchingScheme choice;
     private Trail trail;
 
     private List<SolutionListener> solutionListeners = new LinkedList<SolutionListener>();
@@ -58,7 +58,7 @@ public class DFSearch {
         failListeners.forEach(s -> s.call());
     }
 
-    public DFSearch(StateManager sm, Choice branching) {
+    public DFSearch(StateManager sm, BranchingScheme branching) {
         this.trail = sm.getTrail();
         this.choice = branching;
     }
@@ -101,14 +101,14 @@ public class DFSearch {
     }
 
 
-    private void expandNode(Stack<Alternative> alternatives, SearchStatistics statistics) {
-        Alternative[] alts = choice.call();
+    private void expandNode(Stack<Branch> alternatives, SearchStatistics statistics) {
+        Branch[] alts = choice.call();
         if (alts.length == 0) {
             statistics.nSolutions++;
             notifySolutionFound();
         } else {
             for (int i = alts.length-1; i >= 0; i--) {
-                Alternative a = alts[i];
+                Branch a = alts[i];
                 alternatives.push(() -> trail.pop());
                 alternatives.push(() -> {
                     statistics.nNodes++;
@@ -122,7 +122,7 @@ public class DFSearch {
 
     private void dfs(SearchStatistics statistics, SearchLimit limit) {
 
-        Stack<Alternative> alternatives = new Stack<Alternative>();
+        Stack<Branch> alternatives = new Stack<Branch>();
         expandNode(alternatives,statistics);
         while (!alternatives.isEmpty()) {
             if (limit.stopSearch(statistics)) throw new StopSearchException();
@@ -139,18 +139,18 @@ public class DFSearch {
 
     private void dfs2(SearchStatistics statistics, SearchLimit limit) {
         if (limit.stopSearch(statistics)) throw new StopSearchException();
-        Alternative [] alternatives = choice.call();
-        if (alternatives.length == 0) {
+        Branch[] branches = choice.call();
+        if (branches.length == 0) {
             statistics.nSolutions++;
             notifySolutionFound();
         }
         else {
-            for (Alternative alt : alternatives) {
+            for (Branch alt : branches) {
                 trail.push();
                 try {
                     statistics.nNodes++;
                     alt.call();
-                    dfs(statistics,limit);
+                    dfs2(statistics,limit);
                 } catch (InconsistencyException e) {
                     notifyFailure();
                     statistics.nFailures++;

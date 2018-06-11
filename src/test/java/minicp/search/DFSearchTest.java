@@ -56,7 +56,7 @@ public class DFSearchTest {
 
         DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length)
-                return TRUE;
+                return EMPTY;
             else return branch(
                     ()-> { // left branch
                         values[i.getValue()] = 0;
@@ -89,7 +89,7 @@ public class DFSearchTest {
                     sel = i;
             final int i = sel;
             if (i == -1)
-                return TRUE;
+                return EMPTY;
             else return branch(()-> equal(values[i],0),
                                ()-> equal(values[i],1));
         });
@@ -110,7 +110,7 @@ public class DFSearchTest {
 
         DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length)
-                return TRUE;
+                return EMPTY;
             else return branch(
                     ()-> { // left branch
                         values[i.getValue()] = 1;
@@ -148,7 +148,7 @@ public class DFSearchTest {
 
         DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length)
-                return TRUE;
+                return EMPTY;
             else return branch (
                     ()-> {
                         // left branch
@@ -226,7 +226,7 @@ public class DFSearchTest {
 
         DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length) {
-                return TRUE;
+                return EMPTY;
             }
             else return branch (
                     ()-> {

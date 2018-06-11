@@ -18,7 +18,7 @@ package minicp.search;
 import minicp.util.InconsistencyException;
 
 @FunctionalInterface
-public interface Alternative {
+public interface Branch {
     void call() throws InconsistencyException;
 }
 

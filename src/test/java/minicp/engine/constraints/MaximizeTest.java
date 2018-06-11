@@ -39,7 +39,7 @@ public class MaximizeTest {
                 IntVar y = makeIntVar(cp, 10,20);
 
                 IntVar[] x = new IntVar[]{y};
-                DFSearch dfs = makeDfs(cp,() -> y.isBound() ? TRUE : branch(() -> equal(y,y.getMin()),() -> notEqual(y,y.getMin())));
+                DFSearch dfs = makeDfs(cp,() -> y.isBound() ? EMPTY : branch(() -> equal(y,y.getMin()),() -> notEqual(y,y.getMin())));
 
                 cp.post(maximize(y,dfs));
 

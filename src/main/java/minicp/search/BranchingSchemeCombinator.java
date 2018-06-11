@@ -16,22 +16,22 @@
 package minicp.search;
 
 
-public class ChoiceCombinator implements Choice {
+public class BranchingSchemeCombinator implements BranchingScheme {
 
-    private minicp.search.Choice [] choices;
+    private BranchingScheme[] choices;
 
-    public ChoiceCombinator(minicp.search.Choice ... choices) {
+    public BranchingSchemeCombinator(BranchingScheme... choices) {
         this.choices = choices;
     }
 
     @Override
-    public Alternative[] call() {
+    public Branch[] call() {
         for (int i = 0; i < choices.length; i++) {
-            Alternative [] alts = choices[i].call();
+            Branch[] alts = choices[i].call();
             if (alts.length != 0) {
                 return alts;
             }
         }
-        return Selector.TRUE;
+        return Selector.EMPTY;
     }
 }

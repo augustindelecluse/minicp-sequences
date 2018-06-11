@@ -23,7 +23,7 @@ import minicp.util.InconsistencyException;
 import static minicp.util.InconsistencyException.INCONSISTENCY;
 
 
-public class SparseSetDomain extends IntDomain {
+public class SparseSetDomain implements IntDomain {
     private ReversibleSparseSet domain;
     private int offset;
 
@@ -106,4 +106,18 @@ public class SparseSetDomain extends IntDomain {
             if (domain.getSize() == 1) x.bind();
         }
     }
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        b.append("{");
+        for (int i = getMin(); i <= getMax() - 1; i++) {
+            if (contains((i))) {
+                b.append(i);
+                b.append(',');
+            }
+        }
+        if (getSize() > 0) b.append(getMax());
+        b.append("}");
+        return b.toString();
+    }
+
 }

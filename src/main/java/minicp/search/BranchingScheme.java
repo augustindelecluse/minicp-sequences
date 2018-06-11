@@ -17,6 +17,6 @@ package minicp.search;
 
 
 @FunctionalInterface
-public interface Choice {
-    Alternative[] call();
+public interface BranchingScheme {
+    Branch[] call();
 }

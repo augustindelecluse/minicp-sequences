@@ -61,7 +61,7 @@ public class NQueensPhase {
         ).onSolution(() ->
                 makeDfs(cp,selectMin(q2,
                         qi -> qi.getSize() > 1,
-                        qi -> qi.getSize(),
+                        qi -> (float)qi.getSize(),
                         qi -> {
                             int v = qi.getMin();
                             return branch(() -> equal(qi,v),

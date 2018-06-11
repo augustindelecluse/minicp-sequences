@@ -19,7 +19,7 @@ import minicp.engine.constraints.IsOr;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.Alternative;
+import minicp.search.Branch;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
@@ -142,12 +142,12 @@ public class Steel {
                                         maxUsed = x_.getMin();
                                     }
                                 }
-                                Alternative [] alternatives = new Alternative[maxUsed+2];
+                                Branch[] branches = new Branch[maxUsed+2];
                                 for (int i = 0; i <= maxUsed+1; i++) {
                                     int slab = i;
-                                    alternatives[i] = () -> equal(xi,slab);
+                                    branches[i] = () -> equal(xi,slab);
                                 }
-                                return branch(alternatives);
+                                return branch(branches);
                             }
                     )
             );

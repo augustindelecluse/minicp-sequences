@@ -15,28 +15,25 @@
 
 package minicp.engine.core;
 
-import minicp.util.InconsistencyException;
+public interface IntDomain {
 
+    int getMin();
 
-public abstract class IntDomain {
+    int getMax();
 
-    public abstract int getMin();
+    int getSize();
 
-    public abstract  int getMax();
+    boolean contains(int v);
 
-    public abstract  int getSize();
+    boolean isBound();
 
-    public abstract  boolean contains(int v);
+    void remove(int v, DomainListener x);
 
-    public abstract  boolean isBound();
+    void removeAllBut(int v, DomainListener x);
 
-    public abstract  void remove(int v, DomainListener x);
+    void removeBelow(int value, DomainListener x);
 
-    public abstract  void removeAllBut(int v, DomainListener x);
-
-    public abstract  void removeBelow(int value, DomainListener x);
-
-    public abstract  void removeAbove(int value, DomainListener x);
+    void removeAbove(int value, DomainListener x);
 
     /**
      * Copy the values of the domain
@@ -44,20 +41,7 @@ public abstract class IntDomain {
      * @return the size of the domain and dest[0,...,getSize-1] contains
      *         the values in the domain in an arbitrary order
      */
-    public abstract int fillArray(int [] dest);
+    int fillArray(int [] dest);
 
-    @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-        b.append("{");
-        for (int i = getMin(); i <= getMax() - 1; i++) {
-            if (contains((i))) {
-                b.append(i);
-                b.append(',');
-            }
-        }
-        if (getSize() > 0) b.append(getMax());
-        b.append("}");
-        return b.toString();
-    }
+    String toString();
 }
