@@ -24,6 +24,6 @@ public interface BoolVar extends IntVar {
 
     public boolean isFalse();
 
-    public void assign(boolean b) throws InconsistencyException;
+    public void assign(boolean b);
 
 }

@@ -28,7 +28,7 @@ import static minicp.cp.Heuristics.firstFail;
 
 public class QAPLNS {
 
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args) {
         
         // ---- read the instance -----
 

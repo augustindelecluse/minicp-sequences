@@ -61,12 +61,16 @@ public class IntVarViewMul implements IntVar {
 
     @Override
     public int getMin() {
-        return a * x.getMin();
+        if (a >= 0)
+            return a * x.getMin();
+        else return a * x.getMax();
     }
 
     @Override
     public int getMax() {
-        return a * x.getMax();
+        if (a >= 0)
+            return a * x.getMax();
+        else return a * x.getMin();
     }
 
     @Override
@@ -94,14 +98,14 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
-    public void remove(int v) throws InconsistencyException {
+    public void remove(int v)  {
         if (v % a == 0) {
             x.remove(v / a);
         }
     }
 
     @Override
-    public void assign(int v) throws InconsistencyException {
+    public void assign(int v)  {
         if (v % a == 0) {
             x.assign(v / a);
         } else {
@@ -110,12 +114,12 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
-    public int removeBelow(int v) throws InconsistencyException {
+    public int removeBelow(int v)  {
         return (x.removeBelow(ceilDiv(v, a))) * a;
     }
 
     @Override
-    public int removeAbove(int v) throws InconsistencyException {
+    public int removeAbove(int v)  {
         return (x.removeAbove(floorDiv(v, a))) * a;
     }
 

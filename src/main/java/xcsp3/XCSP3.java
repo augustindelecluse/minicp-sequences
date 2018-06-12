@@ -381,7 +381,7 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
-    private IntVar unaryArithmeticOperatorConstraint(IntVar x,Types.TypeUnaryArithmeticOperator aop) throws InconsistencyException {
+    private IntVar unaryArithmeticOperatorConstraint(IntVar x,Types.TypeUnaryArithmeticOperator aop)  {
         switch (aop) {
             case NEG:
                 return Factory.minus(x);
@@ -397,7 +397,7 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
-    private IntVar arithmeticOperatorConstraintVal(IntVar x,Types.TypeArithmeticOperator aop, int p) throws InconsistencyException {
+    private IntVar arithmeticOperatorConstraintVal(IntVar x,Types.TypeArithmeticOperator aop, int p)  {
         switch (aop) {
             case ADD:
                 return Factory.plus(x, p);
@@ -421,7 +421,7 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
-    private IntVar arithmeticOperatorConstraintVar(IntVar x,Types.TypeArithmeticOperator aop,IntVar y) throws InconsistencyException {
+    private IntVar arithmeticOperatorConstraintVar(IntVar x,Types.TypeArithmeticOperator aop,IntVar y)  {
         switch (aop) {
             case ADD:
                 return sum(x, y);
@@ -648,7 +648,7 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
-    public String solve(int nSolution, int timeOut) throws InconsistencyException {
+    public String solve(int nSolution, int timeOut) {
         Box<String> lastSolution = new Box<String>("");
         Long t0 = System.currentTimeMillis();
 
@@ -674,7 +674,7 @@ public class XCSP3 implements XCallbacks2 {
      * @return Stats
      */
     public SearchStatistics solve(BiConsumer<String, Integer> onSolution, Function<SearchStatistics, Boolean> shouldStop)
-            throws InconsistencyException {
+             {
 
         IntVar[] vars = mapVar.entrySet().stream().sorted(new EntryComparator()).map(Map.Entry::getValue).toArray(IntVar[]::new);
         DFSearch search;
@@ -719,7 +719,7 @@ public class XCSP3 implements XCallbacks2 {
             String solution = xcsp3.solve(Integer.MAX_VALUE,100);
             List<String> violatedCtrs = xcsp3.getViolatedCtrs(solution);
             System.out.println(violatedCtrs);
-        } catch (InconsistencyException | Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

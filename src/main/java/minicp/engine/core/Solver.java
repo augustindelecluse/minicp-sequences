@@ -44,7 +44,7 @@ public class Solver implements StateManager {
         }
     }
 
-    public void fixPoint() throws InconsistencyException {
+    public void fixPoint() {
         boolean failed = false;
         while (!failed && !propagationQueue.isEmpty()) {
             Constraint c = propagationQueue.pop();
@@ -61,16 +61,16 @@ public class Solver implements StateManager {
         if (failed) throw new InconsistencyException();
     }
 
-    public void post(Constraint c) throws InconsistencyException {
+    public void post(Constraint c) {
         post(c,true);
     }
 
-    public void post(Constraint c, boolean enforceFixPoint) throws InconsistencyException {
+    public void post(Constraint c, boolean enforceFixPoint)  {
         c.post();
         if (enforceFixPoint) fixPoint();
     }
 
-    public void post(BoolVar b) throws InconsistencyException {
+    public void post(BoolVar b) {
         b.assign(true);
         fixPoint();
     }

@@ -22,7 +22,7 @@ public class ConstraintClosure extends Constraint {
 
     @FunctionalInterface
     public interface Filtering {
-        void call() throws InconsistencyException;
+        void call();
     }
 
     private final Filtering filtering;
@@ -33,12 +33,12 @@ public class ConstraintClosure extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post() {
 
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate() {
         filtering.call();
     }
 }

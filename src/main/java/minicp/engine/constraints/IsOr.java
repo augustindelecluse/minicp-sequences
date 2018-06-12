@@ -49,7 +49,7 @@ public class IsOr extends Constraint { // b <=> x1 or x2 or ... xn
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         b.propagateOnBind(this);
         for (BoolVar xi : x) {
             xi.propagateOnBind(this);
@@ -57,7 +57,7 @@ public class IsOr extends Constraint { // b <=> x1 or x2 or ... xn
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate() {
         if (b.isTrue()) {
             deactivate();
             cp.post(or, false);

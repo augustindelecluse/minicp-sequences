@@ -35,11 +35,11 @@ public class Cumulative extends Constraint {
     private final boolean postMirror;
 
 
-    public Cumulative(IntVar[] start, int[] duration, int[] demand, int capa) throws InconsistencyException {
+    public Cumulative(IntVar[] start, int[] duration, int[] demand, int capa)  {
         this(start, duration, demand, capa, true);
     }
 
-    private Cumulative(IntVar[] start, int[] duration, int[] demand, int capa, boolean postMirror) throws InconsistencyException {
+    private Cumulative(IntVar[] start, int[] duration, int[] demand, int capa, boolean postMirror)  {
         super(start[0].getSolver());
         this.start = start;
         this.duration = duration;
@@ -51,7 +51,7 @@ public class Cumulative extends Constraint {
 
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         for (int i = 0; i < start.length; i++) {
             start[i].propagateOnBoundChange(this);
         }
@@ -65,7 +65,7 @@ public class Cumulative extends Constraint {
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate()  {
         Profile profile = buildProfile();
         for (int i = 0; i < profile.size(); i++) {
             if (profile.get(i).height > capa) {
@@ -90,7 +90,7 @@ public class Cumulative extends Constraint {
         }
     }
 
-    public Profile buildProfile() throws InconsistencyException {
+    public Profile buildProfile() {
         ArrayList<Rectangle> mandatoryParts = new ArrayList<Rectangle>();
         for (int i = 0; i < start.length; i++) {
             if (end[i].getMin() > start[i].getMax()) {

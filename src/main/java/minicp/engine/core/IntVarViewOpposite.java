@@ -91,22 +91,22 @@ public class IntVarViewOpposite implements IntVar {
     }
 
     @Override
-    public void remove(int v) throws InconsistencyException {
+    public void remove(int v)  {
         x.remove(-v);
     }
 
     @Override
-    public void assign(int v) throws InconsistencyException {
+    public void assign(int v)  {
         x.assign(-v);
     }
 
     @Override
-    public int removeBelow(int v) throws InconsistencyException {
+    public int removeBelow(int v)  {
         return - x.removeAbove(-v);
     }
 
     @Override
-    public int removeAbove(int v) throws InconsistencyException {
+    public int removeAbove(int v)  {
         return - x.removeBelow(-v);
     }
 

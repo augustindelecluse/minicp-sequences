@@ -36,24 +36,26 @@ public class DomainTest {
         int nChange = 0;
         int nRemoveBelow = 0;
         int nRemoveAbove = 0;
-
+        @Override
+        public void empty() {
+        }
         @Override
         public void bind() {
             nBind++;
         }
 
         @Override
-        public void change(int domainSize) {
+        public void change() {
             nChange++;
         }
 
         @Override
-        public void removeBelow(int domainSize) {
+        public void removeBelow() {
             nRemoveBelow++;
         }
 
         @Override
-        public void removeAbove(int domainSize) {
+        public void removeAbove() {
             nRemoveAbove++;
         }
     };
@@ -61,7 +63,7 @@ public class DomainTest {
 
 
     @Test
-    public void testDomain1() throws InconsistencyException {
+    public void testDomain1() {
         Solver cp  = makeSolver();
         MyDomainListener dlistener = new MyDomainListener();
         IntDomain dom = new SparseSetDomain(cp,5,10);
@@ -97,7 +99,7 @@ public class DomainTest {
     }
 
     @Test
-    public void testDomain2() throws InconsistencyException {
+    public void testDomain2() {
         Solver cp  = makeSolver();
         MyDomainListener dlistener = new MyDomainListener();
         IntDomain dom = new SparseSetDomain(cp,5,10);
@@ -112,7 +114,7 @@ public class DomainTest {
     }
 
     @Test
-    public void testDomain3() throws InconsistencyException {
+    public void testDomain3() {
         Solver cp  = makeSolver();
         MyDomainListener dlistener = new MyDomainListener();
         IntDomain dom = new SparseSetDomain(cp,5,10);

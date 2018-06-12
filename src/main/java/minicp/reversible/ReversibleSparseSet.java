@@ -92,7 +92,7 @@ public class ReversibleSparseSet {
      * @return true if the set is empty
      */
     public boolean isEmpty() {
-        return getSize() == 0;
+        return size.getValue() == 0;
     }
 
     /**
@@ -104,7 +104,8 @@ public class ReversibleSparseSet {
      * @return the minimum value in the set
      */
     public int getMin() {
-        if (isEmpty()) throw new NoSuchElementException();
+        if (isEmpty())
+            throw new NoSuchElementException();
         return min.getValue();
     }
 
@@ -112,7 +113,8 @@ public class ReversibleSparseSet {
      * @return the maximum value in the set
      */
     public int getMax() {
-        if (isEmpty()) throw new NoSuchElementException();
+        if (isEmpty())
+            throw new NoSuchElementException();
         else return max.getValue();
     }
 
@@ -247,8 +249,5 @@ public class ReversibleSparseSet {
         b.append("}");
         return b.toString();
     }
-
-
-
 }
 

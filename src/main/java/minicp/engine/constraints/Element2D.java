@@ -92,7 +92,7 @@ public class Element2D extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         x.removeBelow(0);
         x.removeAbove(n-1);
         y.removeBelow(0);
@@ -104,7 +104,7 @@ public class Element2D extends Constraint {
         propagate();
     }
 
-    private void updateSupports(int lostPos) throws InconsistencyException {
+    private void updateSupports(int lostPos)  {
         if (nColsSup[xyz.get(lostPos).x].decrement() == 0) {
             x.remove(xyz.get(lostPos).x);
         }
@@ -114,7 +114,7 @@ public class Element2D extends Constraint {
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate() {
         int l = low.getValue();
         int u = up.getValue();
         int zMin = z.getMin();

@@ -34,7 +34,7 @@ public class CumulativeDecomposition extends Constraint {
     private final int capa;
 
 
-    public CumulativeDecomposition(IntVar[] start, int[] duration, int[] demand, int capa) throws InconsistencyException {
+    public CumulativeDecomposition(IntVar[] start, int[] duration, int[] demand, int capa)  {
         super(start[0].getSolver());
         this.start = start;
         this.duration = duration;
@@ -44,7 +44,7 @@ public class CumulativeDecomposition extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
 
         int min = Arrays.stream(start).map(s-> s.getMin()).min(Integer::compare).get();
         int max = Arrays.stream(end).map(e-> e.getMax()).max(Integer::compare).get();

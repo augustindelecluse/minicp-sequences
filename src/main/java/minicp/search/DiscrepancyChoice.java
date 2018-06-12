@@ -31,11 +31,11 @@ public abstract class DiscrepancyChoice {
 
     ReversibleInt currentDiscrepancy;
 
-    public DiscrepancyChoice(Trail state, BranchingScheme choice, int maxD) throws InconsistencyException {
+    public DiscrepancyChoice(Trail state, BranchingScheme choice, int maxD) {
         throw new NotImplementedException();
     }
 
-    public Branch[] getAlternatives() throws InconsistencyException {
+    public Branch[] getAlternatives() {
         // Hint:
         // Let b.alts denote b.call()
         // Filter-out alternatives from b.alts that would exceed maxDiscrepancy

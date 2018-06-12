@@ -30,7 +30,7 @@ public class AllDifferentBinary extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post() {
         Solver cp = x[0].getSolver();
         for (int i = 0; i < x.length; i++) {
             for (int j = i+1; j < x.length; j++) {

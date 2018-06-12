@@ -34,7 +34,7 @@ public class BoolVarImpl extends IntVarImpl implements BoolVar {
     }
 
     @Override
-    public void assign(boolean b) throws InconsistencyException {
+    public void assign(boolean b) {
         assign(b ? 1 : 0);
     }
 }

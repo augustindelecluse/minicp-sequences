@@ -32,7 +32,7 @@ import minicp.util.Box;
  * Created by ldm on 2/12/17.
  */
 public class NQueensPhase {
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args) {
 
         int n = 8;
         Solver cp = makeSolver();

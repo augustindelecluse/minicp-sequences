@@ -52,7 +52,7 @@ public class Circuit extends Constraint {
 
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         cp.post(allDifferent(x));
         if (x.length == 1) {
             x[0].assign(0);
@@ -71,7 +71,7 @@ public class Circuit extends Constraint {
     }
 
 
-    private void bind(int i) throws InconsistencyException {
+    private void bind(int i) {
         int j = x[i].getMin();
         int orig_i = orig[i].getValue();
         int dest_j = dest[j].getValue();

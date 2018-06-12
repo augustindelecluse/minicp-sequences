@@ -62,7 +62,7 @@ public class AllDifferentAC extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         for (int i = 0; i < nVar; i++) {
             x[i].propagateOnDomainChange(this);
         }
@@ -80,7 +80,7 @@ public class AllDifferentAC extends Constraint {
         propagate();
     }
 
-    public void updateRange() throws InconsistencyException {
+    public void updateRange()  {
         minVal = Integer.MAX_VALUE;
         maxVal = Integer.MIN_VALUE;
         for (int i = 0; i < nVar; i++) {
@@ -125,7 +125,7 @@ public class AllDifferentAC extends Constraint {
 
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate() {
         int size = maximumMatching.compute(match);
         if (size < x.length) {
             throw new InconsistencyException();

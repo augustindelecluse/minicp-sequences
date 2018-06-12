@@ -26,7 +26,7 @@ public class Element1DVar extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         y.removeBelow(0);
         y.removeAbove(T.length - 1);
 
@@ -40,7 +40,7 @@ public class Element1DVar extends Constraint {
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate()  {
         zMin = z.getMin();
         zMax = z.getMax();
         if (y.isBound()) equalityPropagate();
@@ -55,7 +55,7 @@ public class Element1DVar extends Constraint {
         }
     }
 
-    private void equalityPropagate() throws InconsistencyException {
+    private void equalityPropagate()  {
         int id = y.getMin();
         IntVar tVar = T[id];
         tVar.removeBelow(zMin);
@@ -64,7 +64,7 @@ public class Element1DVar extends Constraint {
         z.removeAbove(tVar.getMax());
     }
 
-    private void filterY() throws InconsistencyException {
+    private void filterY() {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
 

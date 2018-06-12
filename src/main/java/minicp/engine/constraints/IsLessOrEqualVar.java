@@ -40,7 +40,7 @@ public class IsLessOrEqualVar extends Constraint { // b <=> x <= y
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         x.propagateOnBoundChange(this);
         y.propagateOnBoundChange(this);
         b.propagateOnBind(this);
@@ -49,7 +49,7 @@ public class IsLessOrEqualVar extends Constraint { // b <=> x <= y
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate()  {
         if (b.isTrue()) {
             cp.post(lEqC,false);
             deactivate();

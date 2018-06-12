@@ -36,7 +36,7 @@ public class NotEqual extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         if (y.isBound())
             x.remove(y.getMin() + c);
         else if (x.isBound())
@@ -51,7 +51,7 @@ public class NotEqual extends Constraint {
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate()  {
         if (y.isBound())
             x.remove(y.getMin() + c);
         else y.remove(x.getMin() - c);

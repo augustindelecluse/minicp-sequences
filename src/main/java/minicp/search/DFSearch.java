@@ -85,7 +85,7 @@ public class DFSearch {
 
     @FunctionalInterface
     public interface SubjectTo {
-        public void call() throws InconsistencyException;
+        public void call();
     }
 
 

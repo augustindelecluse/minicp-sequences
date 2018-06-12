@@ -31,22 +31,23 @@ public class IntVarImpl implements IntVar {
 
     protected DomainListener domListener = new DomainListener() {
         @Override
+        public void empty() {
+            throw InconsistencyException.INCONSISTENCY; // Integer Vars cannot be empty
+        }
+        @Override
         public void bind() {
             awakeAll(onBind);
         }
-
         @Override
-        public void change(int domainSize) {
+        public void change() {
             awakeAll(onDomain);
         }
-
         @Override
-        public void removeBelow(int domainSize) {
+        public void removeBelow() {
             awakeAll(onBounds);
         }
-
         @Override
-        public void removeAbove(int domainSize) {
+        public void removeAbove() {
             awakeAll(onBounds);
         }
     };
@@ -103,7 +104,6 @@ public class IntVarImpl implements IntVar {
             }
         }
     }
-
 
     public boolean isBound() {
         return domain.getSize() == 1;
@@ -171,26 +171,21 @@ public class IntVarImpl implements IntVar {
         return domain.contains(v);
     }
 
-    public void remove(int v) throws InconsistencyException {
+    public void remove(int v)  {
         domain.remove(v, domListener);
-        if (domain.getSize() == 0) throw InconsistencyException.INCONSISTENCY;
     }
 
-    public void assign(int v) throws InconsistencyException {
+    public void assign(int v) {
         domain.removeAllBut(v, domListener);
-        if (domain.getSize() == 0)
-            throw InconsistencyException.INCONSISTENCY;
     }
 
-    public int removeBelow(int v) throws InconsistencyException {
+    public int removeBelow(int v)  {
         domain.removeBelow(v, domListener);
-        if (domain.getSize() == 0) throw InconsistencyException.INCONSISTENCY;
         return getMin();
     }
 
-    public int removeAbove(int v) throws InconsistencyException {
+    public int removeAbove(int v) {
         domain.removeAbove(v, domListener);
-        if (domain.getSize() == 0) throw InconsistencyException.INCONSISTENCY;
         return getMax();
     }
 

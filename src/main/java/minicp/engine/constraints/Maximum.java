@@ -43,7 +43,7 @@ public class Maximum extends Constraint {
 
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         for (IntVar xi: x) {
             xi.propagateOnBoundChange(this);
         }
@@ -53,7 +53,7 @@ public class Maximum extends Constraint {
 
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate()  {
         int max = Integer.MIN_VALUE;
         int min = Integer.MIN_VALUE;
         int nSupport = 0;

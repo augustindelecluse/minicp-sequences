@@ -85,7 +85,7 @@ public class IntVarTest {
         Constraint cons = new Constraint(cp) {
 
             @Override
-            public void post() throws InconsistencyException {
+            public void post()  {
                 x.whenBind(() -> propagateCalled = true);
                 y.whenDomainChange(() -> propagateCalled = true);
             }
@@ -217,7 +217,7 @@ public class IntVarTest {
         Constraint cons = new Constraint(cp) {
 
             @Override
-            public void post() throws InconsistencyException {
+            public void post() {
                 x.whenBind(() -> propagateCalled  = true);
                 y.whenDomainChange(() -> propagateCalled = true);
             }
@@ -263,12 +263,12 @@ public class IntVarTest {
             Constraint cons = new Constraint(cp) {
 
                 @Override
-                public void post() throws InconsistencyException {
+                public void post()  {
                     x.propagateOnBoundChange(this);
                 }
 
                 @Override
-                public void propagate() throws InconsistencyException {
+                public void propagate() {
                     propagateCalled = true;
                 }
             };
@@ -303,12 +303,12 @@ public class IntVarTest {
             Constraint cons = new Constraint(cp) {
 
                 @Override
-                public void post() throws InconsistencyException {
+                public void post()  {
                     x.propagateOnBoundChange(this);
                 }
 
                 @Override
-                public void propagate() throws InconsistencyException {
+                public void propagate() {
                     propagateCalled = true;
                 }
             };

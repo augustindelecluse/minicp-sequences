@@ -30,7 +30,7 @@ import static minicp.cp.Heuristics.*;
 public class MagicSquare {
 
     // https://en.wikipedia.org/wiki/Magic_square
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args)  {
 
         int n = 6;
         int M = n * (n * n + 1) / 2;

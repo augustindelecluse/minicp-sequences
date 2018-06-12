@@ -19,7 +19,7 @@ import minicp.util.InconsistencyException;
 
 public class BoolVarIsEqual extends IntVarImpl implements BoolVar {
 
-    public BoolVarIsEqual(IntVar x, int v) throws InconsistencyException{
+    public BoolVarIsEqual(IntVar x, int v) {
         super(x.getSolver(),0,1);
 
         if (!x.contains(v)) {

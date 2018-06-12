@@ -65,10 +65,11 @@ public class SparseSetDomain implements IntDomain {
             boolean maxChanged = getMax() == v;
             boolean minChanged = getMin() == v;
             domain.remove(v - offset);
-            if (domain.getSize() == 0) return;
-            x.change(domain.getSize());
-            if (maxChanged) x.removeAbove(domain.getSize());
-            if (minChanged) x.removeBelow(domain.getSize());
+            if (domain.getSize() == 0)
+                x.empty();
+            x.change();
+            if (maxChanged) x.removeAbove();
+            if (minChanged) x.removeBelow();
             if (domain.getSize() == 1) x.bind();
         }
     }
@@ -79,31 +80,44 @@ public class SparseSetDomain implements IntDomain {
                 boolean maxChanged = getMax() != v;
                 boolean minChanged = getMin() != v;
                 domain.removeAllBut(v - offset);
+                if (domain.getSize() == 0)
+                    x.empty();
                 x.bind();
-                x.change(domain.getSize());
-                if (maxChanged) x.removeAbove(domain.getSize());
-                if (minChanged) x.removeBelow(domain.getSize());
+                x.change();
+                if (maxChanged) x.removeAbove();
+                if (minChanged) x.removeBelow();
             }
         } else {
             domain.removeAll();
+            x.empty();
         }
     }
 
     public void removeBelow(int value, DomainListener x) {
         if (domain.getMin() + offset < value) {
             domain.removeBelow(value - offset);
-            x.removeBelow(domain.getSize());
-            x.change(domain.getSize());
-            if (domain.getSize() == 1) x.bind();
+            switch (domain.getSize()) {
+                case 0: x.empty();break;
+                case 1: x.bind();
+                default:
+                    x.removeBelow();
+                    x.change();
+                    break;
+            }
         }
     }
 
     public void removeAbove(int value, DomainListener x) {
         if (domain.getMax() + offset > value) {
             domain.removeAbove(value - offset);
-            x.removeAbove(domain.getSize());
-            x.change(domain.getSize());
-            if (domain.getSize() == 1) x.bind();
+            switch(domain.getSize()) {
+                case 0: x.empty();break;
+                case 1: x.bind();
+                default:
+                    x.removeAbove();
+                    x.change();
+                    break;
+            }
         }
     }
     public String toString() {

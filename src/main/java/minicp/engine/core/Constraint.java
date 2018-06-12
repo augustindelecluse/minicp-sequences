@@ -37,8 +37,8 @@ public abstract class Constraint {
         active.setValue(false);
     }
 
-    public abstract void post() throws InconsistencyException;
-    public void propagate() throws InconsistencyException {}
+    public abstract void post();
+    public void propagate() {}
 
     public void schedule() {
         cp.schedule(this);

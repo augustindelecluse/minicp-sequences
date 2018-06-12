@@ -33,14 +33,14 @@ public class LessOrEqual extends Constraint { // x <= y
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         x.propagateOnBoundChange(this);
         y.propagateOnBoundChange(this);
         propagate();
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate()  {
         x.removeAbove(y.getMax());
         y.removeBelow(x.getMin());
         if (x.getMax() <= y.getMin()) {

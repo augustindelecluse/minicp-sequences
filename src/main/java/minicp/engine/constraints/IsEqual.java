@@ -34,7 +34,7 @@ public class IsEqual extends Constraint { // b <=> x == c
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post() {
         if (b.isTrue()) {
             x.assign(c);
         } else if (b.isFalse()) {

@@ -37,7 +37,7 @@ import static org.junit.Assert.assertTrue;
 public class DisjunctiveTest {
 
 
-    private static void decomposeDisjunctive(IntVar[] start, int[] duration) throws InconsistencyException {
+    private static void decomposeDisjunctive(IntVar[] start, int[] duration) {
         Solver cp = start[0].getSolver();
         for (int i = 0; i < start.length; i++) {
             IntVar end_i = plus(start[i],duration[i]);

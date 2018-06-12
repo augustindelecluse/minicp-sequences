@@ -26,7 +26,7 @@ public class Absolute extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         y.removeBelow(0);
         x.propagateOnBoundChange(this);
         y.propagateOnBoundChange(this);
@@ -35,7 +35,7 @@ public class Absolute extends Constraint {
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate() {
         // y = |x|
 
         if (x.isBound()) {

@@ -38,7 +38,7 @@ import static minicp.search.Selector.selectMin;
 public class Steel {
 
 
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args)  {
 
         // Reading the data
 

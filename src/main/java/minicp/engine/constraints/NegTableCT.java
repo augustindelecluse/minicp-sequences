@@ -84,14 +84,14 @@ public class NegTableCT extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         for (IntVar var : x)
             var.propagateOnDomainChange(this);
         propagate();
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate() {
 
         // For each var, compute the tuples supported by the var
         // Intersection of the tuples supported by each var is the list of supported tuples

@@ -40,13 +40,13 @@ public class Or extends Constraint { // x1 or x2 or ... xn
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         propagate();
     }
 
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate()  {
         // update watched literals
         int i = wL.getValue();
         while (i < n && x[i].isBound()) {

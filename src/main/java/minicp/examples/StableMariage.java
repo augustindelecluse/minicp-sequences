@@ -42,7 +42,7 @@ import static minicp.cp.Heuristics.firstFail;
 public class StableMariage {
 
 
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args) {
 
 
         // http://mathworld.wolfram.com/StableMarriageProblem.html
@@ -171,7 +171,7 @@ public class StableMariage {
      * @param b2
      * @return b equiv (b1 => b2) (logical implication)
      */
-    public static BoolVar implies(BoolVar b1, BoolVar b2) throws InconsistencyException {
+    public static BoolVar implies(BoolVar b1, BoolVar b2) {
         IntVar not_b1 = plus(minus(b1),1);
         return isLargerOrEqual(sum(not_b1,b2),1);
     }

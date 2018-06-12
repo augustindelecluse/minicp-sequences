@@ -39,7 +39,7 @@ public class Minimize extends Constraint {
 
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         x.propagateOnBoundChange(this);
         // Ensure that the constraint is scheduled on backtrack
         dfs.onSolution(() -> {
@@ -50,7 +50,7 @@ public class Minimize extends Constraint {
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate()  {
         x.removeAbove(bound);
     }
 }

@@ -47,11 +47,11 @@ public class Disjunctive extends Constraint {
 
     private final boolean postMirror;
 
-    public Disjunctive(IntVar[] start, int[] duration) throws InconsistencyException {
+    public Disjunctive(IntVar[] start, int[] duration)  {
         this(start,duration,true);
     }
 
-    private Disjunctive(IntVar[] start, int[] duration, boolean postMirror) throws InconsistencyException {
+    private Disjunctive(IntVar[] start, int[] duration, boolean postMirror)  {
         super(start[0].getSolver());
         this.postMirror = postMirror;
         this.start = start;
@@ -78,7 +78,7 @@ public class Disjunctive extends Constraint {
 
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
 
         int [] demands = new int[start.length];
         for (int i = 0; i < start.length; i++) {
@@ -121,7 +121,7 @@ public class Disjunctive extends Constraint {
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate()  {
         overLoadChecker();
         while (detectablePrecedence()) {}
         //while (notLast()) {}
@@ -141,7 +141,7 @@ public class Disjunctive extends Constraint {
     }
 
 
-    private void overLoadChecker() throws InconsistencyException {
+    private void overLoadChecker()  {
         update();
         Arrays.sort(permLct,Comparator.comparingInt(i -> end[i].getMax()));
         thetaTree.reset();
@@ -155,7 +155,7 @@ public class Disjunctive extends Constraint {
     }
 
 
-    private boolean detectablePrecedence() throws InconsistencyException {
+    private boolean detectablePrecedence()  {
         update();
         boolean changed = false;
         Arrays.sort(permLst,Comparator.comparingInt(i -> start[i].getMax()));
@@ -189,7 +189,7 @@ public class Disjunctive extends Constraint {
     }
 
 
-    private boolean notLast() throws InconsistencyException {
+    private boolean notLast() {
         update();
         boolean changed = false;
         Arrays.sort(permLst,Comparator.comparingInt(i -> start[i].getMax()));

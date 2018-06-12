@@ -27,7 +27,7 @@ import java.util.Arrays;
 import static minicp.search.Selector.*;
 
 public class NQueens {
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args) {
         int n = 8;
         Solver cp = Factory.makeSolver();
         IntVar[] q = Factory.makeIntVarArray(cp, n, n);

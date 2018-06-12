@@ -29,7 +29,7 @@ import static minicp.search.Selector.branch;
 import static minicp.search.Selector.selectMin;
 
 public class TSP {
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args) {
 
 
         // instance gr17 https://people.sc.fsu.edu/~jburkardt/datasets/tsp/gr17_d.txt

@@ -16,7 +16,7 @@
 package minicp.util;
 
 
-public class InconsistencyException extends Throwable {
+public class InconsistencyException extends RuntimeException {
 
     public static final InconsistencyException INCONSISTENCY = new InconsistencyException();
 

@@ -40,7 +40,7 @@ public class JobShop {
         return Arrays.stream(x).flatMap(Arrays::stream).toArray(IntVar[]::new);
     }
 
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args) {
 
         // Reading the data
 

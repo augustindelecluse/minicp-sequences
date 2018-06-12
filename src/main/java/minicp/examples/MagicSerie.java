@@ -30,7 +30,7 @@ import static minicp.search.Selector.selectMin;
 
 
 public class MagicSerie {
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args)  {
 
         int n = 200;
         Solver cp = makeSolver();

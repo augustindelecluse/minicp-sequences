@@ -40,14 +40,14 @@ public class ShortTableDecomp extends Constraint {
     }
 
     @Override
-    public void post() throws InconsistencyException {
+    public void post()  {
         for (IntVar var : x)
             var.propagateOnDomainChange(this);
         propagate();
     }
 
     @Override
-    public void propagate() throws InconsistencyException {
+    public void propagate() {
         for (int i = 0; i < x.length; i++) {
             for (int v = x[i].getMin(); v <= x[i].getMax(); v++) {
                 if (x[i].contains(v)) {

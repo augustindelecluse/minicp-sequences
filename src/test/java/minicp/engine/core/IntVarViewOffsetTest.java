@@ -90,7 +90,7 @@ public class IntVarViewOffsetTest {
         Constraint cons = new Constraint(cp) {
 
             @Override
-            public void post() throws InconsistencyException {
+            public void post() {
                 x.whenBind(() -> propagateCalled = true);
                 y.whenDomainChange(() -> propagateCalled = true);
             }
@@ -129,7 +129,7 @@ public class IntVarViewOffsetTest {
         Constraint cons = new Constraint(cp) {
 
             @Override
-            public void post() throws InconsistencyException {
+            public void post() {
                 x.whenBind(() -> propagateCalled  = true);
                 y.whenDomainChange(() -> propagateCalled = true);
             }

@@ -33,7 +33,7 @@ import static minicp.cp.Heuristics.firstFail;
 public class RCPSP {
 
 
-    public static void main(String[] args) throws InconsistencyException {
+    public static void main(String[] args) {
 
         // Reading the data
 

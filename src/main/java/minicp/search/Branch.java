@@ -19,7 +19,7 @@ import minicp.util.InconsistencyException;
 
 @FunctionalInterface
 public interface Branch {
-    void call() throws InconsistencyException;
+    void call();
 }
 
 
