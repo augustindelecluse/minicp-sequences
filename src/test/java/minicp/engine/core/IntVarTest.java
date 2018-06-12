@@ -278,7 +278,8 @@ public class IntVarTest {
                 x.remove(8);
                 cp.fixPoint();
                 assertFalse(propagateCalled);
-                assertEquals(7,x.removeAbove(8));
+                x.removeAbove(8);
+                assertEquals(7,x.getMax());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
 
@@ -318,12 +319,14 @@ public class IntVarTest {
                 x.remove(3);
                 cp.fixPoint();
                 assertFalse(propagateCalled);
-                assertEquals(4,x.removeBelow(3));
+                x.removeBelow(3);
+                assertEquals(4,x.getMin());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
                 propagateCalled = false;
 
-                assertEquals(5,x.removeBelow(5));
+                x.removeBelow(5);
+                assertEquals(5,x.getMin());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
                 propagateCalled = false;
@@ -352,9 +355,6 @@ public class IntVarTest {
             for (int i = 0; i < s; i++) {
                 dom.add(values[i]);
             }
-            System.out.println(x);
-            System.out.println(dom);
-            System.out.println(s);
             HashSet<Integer> expectedDom = new HashSet<Integer>();
             Collections.addAll(expectedDom, -7, -4, -1, 2, 5);
             assertEquals(expectedDom, dom);

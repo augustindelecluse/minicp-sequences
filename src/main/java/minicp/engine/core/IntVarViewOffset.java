@@ -16,9 +16,6 @@
 
 package minicp.engine.core;
 
-
-import minicp.util.InconsistencyException;
-
 public class IntVarViewOffset implements IntVar {
 
     private final IntVar x;
@@ -103,13 +100,12 @@ public class IntVarViewOffset implements IntVar {
     }
 
     @Override
-    public int removeBelow(int v)  {
-        return x.removeBelow(v - o);
+    public void removeBelow(int v)  {
+        x.removeBelow(v - o);
     }
-
     @Override
-    public int removeAbove(int v)  {
-        return x.removeAbove(v - o);
+    public void removeAbove(int v)  {
+        x.removeAbove(v - o);
     }
 
     @Override

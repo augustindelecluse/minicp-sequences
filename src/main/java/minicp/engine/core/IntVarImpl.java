@@ -36,19 +36,19 @@ public class IntVarImpl implements IntVar {
         }
         @Override
         public void bind() {
-            awakeAll(onBind);
+            scheduleAll(onBind);
         }
         @Override
         public void change() {
-            awakeAll(onDomain);
+            scheduleAll(onDomain);
         }
         @Override
         public void removeBelow() {
-            awakeAll(onBounds);
+            scheduleAll(onBounds);
         }
         @Override
         public void removeAbove() {
-            awakeAll(onBounds);
+            scheduleAll(onBounds);
         }
     };
 
@@ -145,7 +145,7 @@ public class IntVarImpl implements IntVar {
     }
 
 
-    protected void awakeAll(ReversibleStack<Constraint> constraints) {
+    protected void scheduleAll(ReversibleStack<Constraint> constraints) {
         for (int i = 0; i < constraints.size(); i++)
             constraints.get(i).schedule();
     }
@@ -174,19 +174,14 @@ public class IntVarImpl implements IntVar {
     public void remove(int v)  {
         domain.remove(v, domListener);
     }
-
     public void assign(int v) {
         domain.removeAllBut(v, domListener);
     }
-
-    public int removeBelow(int v)  {
+    public void removeBelow(int v)  {
         domain.removeBelow(v, domListener);
-        return getMin();
     }
-
-    public int removeAbove(int v) {
+    public void removeAbove(int v) {
         domain.removeAbove(v, domListener);
-        return getMax();
     }
 
 }

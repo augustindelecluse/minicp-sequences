@@ -138,8 +138,6 @@ public class CumulativeTest {
                 }
             });
 
-            System.out.println(stats);
-
 
 
         } catch (InconsistencyException e) {

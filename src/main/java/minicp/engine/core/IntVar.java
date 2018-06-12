@@ -126,7 +126,7 @@ public interface IntVar {
      * @return the new minimum
      * @throws InconsistencyException
      */
-    int removeBelow(int v) throws InconsistencyException;
+    void removeBelow(int v) throws InconsistencyException;
 
     /**
      * Remove all the values > v
@@ -134,7 +134,7 @@ public interface IntVar {
      * @return the new maximum
      * @throws InconsistencyException
      */
-    int removeAbove(int v) throws InconsistencyException;
+    void removeAbove(int v) throws InconsistencyException;
 
 
 }

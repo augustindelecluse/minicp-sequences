@@ -65,7 +65,8 @@ public class QAPLNS {
         int ind = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                weightedDist[ind] = mul(element(d,x[i],x[j]),w[i][j]);
+                IntVar d_xixj = element(d,x[i],x[j]);
+                weightedDist[ind] = mul(d_xixj,w[i][j]);
                 ind++;
             }
         }

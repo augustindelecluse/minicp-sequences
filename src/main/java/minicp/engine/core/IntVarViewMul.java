@@ -114,15 +114,13 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
-    public int removeBelow(int v)  {
-        return (x.removeBelow(ceilDiv(v, a))) * a;
+    public void removeBelow(int v)  {
+         x.removeBelow(ceilDiv(v, a));
     }
-
     @Override
-    public int removeAbove(int v)  {
-        return (x.removeAbove(floorDiv(v, a))) * a;
+    public void removeAbove(int v)  {
+        x.removeAbove(floorDiv(v, a));
     }
-
 
     // Java's division always rounds to the integer closest to zero, but we need flooring/ceiling versions.
     private int floorDiv(int a, int b) {

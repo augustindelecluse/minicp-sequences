@@ -137,7 +137,6 @@ public class CumulativeDecompTest {
                 }
             });
 
-            System.out.println(stats);
 
 
 

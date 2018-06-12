@@ -101,6 +101,7 @@ public class RCPSP {
         cp.post(minimize(makespan, dfs));
 
         dfs.onSolution(() ->
+
                 System.out.println("makespan:" + makespan)
         );
 

@@ -16,9 +16,6 @@
 
 package minicp.engine.core;
 
-
-import minicp.util.InconsistencyException;
-
 public class IntVarViewOpposite implements IntVar {
 
     private final IntVar x;
@@ -101,15 +98,14 @@ public class IntVarViewOpposite implements IntVar {
     }
 
     @Override
-    public int removeBelow(int v)  {
-        return - x.removeAbove(-v);
+    public void removeBelow(int v)  {
+        x.removeAbove(-v);
     }
 
     @Override
-    public int removeAbove(int v)  {
-        return - x.removeBelow(-v);
+    public void removeAbove(int v) {
+        x.removeBelow(-v);
     }
-
 
     @Override
     public String toString() {
