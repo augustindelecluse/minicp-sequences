@@ -24,7 +24,7 @@ import java.util.*;
 
 public class DFSearch {
 
-    private BranchingScheme choice;
+    private BranchingScheme branching;
     private Trail trail;
 
     private List<SolutionListener> solutionListeners = new LinkedList<SolutionListener>();
@@ -60,7 +60,7 @@ public class DFSearch {
 
     public DFSearch(StateManager sm, BranchingScheme branching) {
         this.trail = sm.getTrail();
-        this.choice = branching;
+        this.branching = branching;
     }
 
     public SearchStatistics solve(SearchLimit limit) {
@@ -102,7 +102,7 @@ public class DFSearch {
 
 
     private void expandNode(Stack<Branch> alternatives, SearchStatistics statistics) {
-        Branch[] alts = choice.call();
+        Branch[] alts = branching.call();
         if (alts.length == 0) {
             statistics.nSolutions++;
             notifySolutionFound();
@@ -139,17 +139,17 @@ public class DFSearch {
 
     private void dfs2(SearchStatistics statistics, SearchLimit limit) {
         if (limit.stopSearch(statistics)) throw new StopSearchException();
-        Branch[] branches = choice.call();
+        Branch[] branches = branching.call();
         if (branches.length == 0) {
             statistics.nSolutions++;
             notifySolutionFound();
         }
         else {
-            for (Branch alt : branches) {
+            for (Branch b : branches) {
                 trail.push();
                 try {
                     statistics.nNodes++;
-                    alt.call();
+                    b.call();
                     dfs2(statistics,limit);
                 } catch (InconsistencyException e) {
                     notifyFailure();

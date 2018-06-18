@@ -21,16 +21,6 @@ import java.util.Stack;
 public interface Trail {
 
     /**
-     * Returns the current timestamp for the trail
-     * @return timestamp
-     */
-    public long getMagic();
-    /**
-     * @param entry the entry to add at the top of the trail
-     */
-    public void pushOnTrail(TrailEntry entry);
-
-    /**
      * @return The current level
      */
     public int getLevel();
