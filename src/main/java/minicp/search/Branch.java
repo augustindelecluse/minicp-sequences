@@ -15,8 +15,6 @@
 
 package minicp.search;
 
-import minicp.util.InconsistencyException;
-
 @FunctionalInterface
 public interface Branch {
     void call();

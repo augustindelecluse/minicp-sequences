@@ -27,11 +27,11 @@ public class Selector {
     }
 
     @FunctionalInterface
-    public interface BranchOn<T> {
+    public interface ChoicePoint<T> {
         Branch[] call(T x);
     }
 
-    public static <T,N extends Comparable<N> > BranchingScheme selectMin(T[] x, Predicate<T> p, Function<T,N> f, BranchOn<T> body) {
+    public static <T,N extends Comparable<N> > BranchingScheme selectMin(T[] x, Predicate<T> p, Function<T,N> f, ChoicePoint<T> body) {
         return () -> {
             T sel = null;
             for (T xi : x) {
