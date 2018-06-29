@@ -28,13 +28,12 @@ public abstract class BasicConstraint implements Constraint {
         active = Factory.makeRevBool(cp,true);
     }
 
+    public void post()      {}
+    public void propagate() {}
+
     public void deactivate() {
         active.setValue(false);
     }
-
-    public abstract void post();
-    public void propagate() {}
-
     public void schedule() {
         if (!scheduled && active.getValue()) {
             scheduled = true;
