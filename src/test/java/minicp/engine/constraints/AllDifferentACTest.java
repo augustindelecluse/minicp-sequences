@@ -85,7 +85,7 @@ public class AllDifferentACTest {
     @Test
     public void allDifferentTest3() {
         try {
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{
                     makeIVar(cp, 1, 2),
                     makeIVar(cp, 1, 2),
@@ -106,7 +106,7 @@ public class AllDifferentACTest {
     @Test
     public void allDifferentTest5() {
         try {
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{
                     makeIVar(cp, 1, 2, 3, 4, 5),
                     makeIVar(cp, 2),
@@ -136,7 +136,7 @@ public class AllDifferentACTest {
     @Test
     public void allDifferentTest6() {
         try {
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{
                     makeIVar(cp, 1, 2, 3, 4, 5),
                     makeIVar(cp, 2,7),
@@ -181,7 +181,7 @@ public class AllDifferentACTest {
     @Test
     public void allDifferentTest7() {
         try {
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{
                     makeIVar(cp, 3, 4),
                     makeIVar(cp, 1),

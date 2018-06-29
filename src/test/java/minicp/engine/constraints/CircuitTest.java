@@ -22,8 +22,6 @@ import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static minicp.cp.Factory.*;
 import static minicp.cp.Factory.notEqual;
 import static minicp.cp.Heuristics.firstFail;
@@ -69,7 +67,7 @@ public class CircuitTest {
     public void testCircuitOk() {
         try {
             try {
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 cp.post(new Circuit(instanciate(cp,circuit1ok)));
                 cp.post(new Circuit(instanciate(cp,circuit2ok)));
             } catch (InconsistencyException e) {
@@ -85,12 +83,12 @@ public class CircuitTest {
     public void testCircuitKo() {
         try {
             try {
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 cp.post(new Circuit(instanciate(cp,circuit1ko)));
                 fail("should fail");
             } catch (InconsistencyException e) {}
             try {
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 cp.post(new Circuit(instanciate(cp,circuit2ko)));
                 fail("should fail");
             } catch (InconsistencyException e) {}
@@ -104,7 +102,7 @@ public class CircuitTest {
     public void testAllSolutions() {
         try {
             try {
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar [] x = makeIntVarArray(cp,5,5);
                 cp.post(new Circuit(x));
                 SearchStatistics stats = makeDfs(cp,firstFail(x)).onSolution(() -> {

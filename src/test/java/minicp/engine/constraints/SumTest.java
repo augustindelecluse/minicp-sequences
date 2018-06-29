@@ -38,7 +38,7 @@ public class SumTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar y = makeIntVar(cp, -100, 100);
                 IntVar[] x = new IntVar[]{makeIntVar(cp, 0, 5), makeIntVar(cp, 1, 5), makeIntVar(cp, 0, 5)};
                 cp.post(new Sum(x, y));
@@ -60,7 +60,7 @@ public class SumTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar[] x = new IntVar[]{makeIntVar(cp, -5, 5), makeIntVar(cp, 1, 2), makeIntVar(cp, 0, 1)};
                 IntVar y = makeIntVar(cp, 0, 100);
                 cp.post(new Sum(x, y));
@@ -82,7 +82,7 @@ public class SumTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar[] x = new IntVar[]{makeIntVar(cp, -5, 5), makeIntVar(cp, 1, 2), makeIntVar(cp, 0, 1)};
                 IntVar y = makeIntVar(cp, 5, 5);
                 cp.post(new Sum(x, y));
@@ -113,7 +113,7 @@ public class SumTest {
 
         try {
 
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{makeIntVar(cp, 0, 5), makeIntVar(cp, 0, 2), makeIntVar(cp, 0, 1)};
             cp.post(new Sum(x, 0));
 
@@ -131,7 +131,7 @@ public class SumTest {
     public void sum5() {
         try {
 
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{makeIntVar(cp, -5, 0), makeIntVar(cp, -5, 0), makeIntVar(cp, -3, 0)};
             cp.post(new Sum(x, 0));
 
@@ -149,7 +149,7 @@ public class SumTest {
     public void sum6() {
         try {
 
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{makeIntVar(cp, -5, 0), makeIntVar(cp, -5, 0), makeIntVar(cp, -3, 3)};
             cp.post(new Sum(x, 0));
             assertEquals(-3, x[0].getMin());
@@ -172,7 +172,7 @@ public class SumTest {
     public void sum7() {
         try {
 
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{makeIntVar(cp, -5, 0), makeIntVar(cp, -5, 0), makeIntVar(cp, -3, 3)};
             cp.post(new Sum(x, 0));
             assertEquals(-3, x[0].getMin());
@@ -199,7 +199,7 @@ public class SumTest {
     public void sum8() {
         try {
 
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
 
             // {0,0,0},  1
             // {-2,1,1}  3
@@ -228,7 +228,7 @@ public class SumTest {
 
     @Test
     public void sum9() {
-        Solver cp = new Solver();
+        Solver cp = makeSolver();
 
         IntVar[] x = new IntVar[]{makeIntVar(cp, -9, -9)};
         boolean failed = false;
@@ -243,7 +243,7 @@ public class SumTest {
 
     @Test
     public void sum10() {
-        Solver cp = new Solver();
+        Solver cp = makeSolver();
 
         IntVar[] x = new IntVar[]{makeIntVar(cp, -9, -4)};
         boolean failed = false;

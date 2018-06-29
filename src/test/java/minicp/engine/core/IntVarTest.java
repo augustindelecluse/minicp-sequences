@@ -116,7 +116,7 @@ public class IntVarTest {
 
         try {
 
-            Solver cp  = new Solver();
+            Solver cp  = makeSolver();
 
             IntVar x = makeIntVar(cp,-10,10);
 
@@ -209,7 +209,7 @@ public class IntVarTest {
     @Test
     public void onBoundChange() {
 
-        Solver cp = new Solver();
+        Solver cp = makeSolver();
 
         IntVar x = makeIntVar(cp, 10);
         IntVar y = makeIntVar(cp, 10);
@@ -256,7 +256,7 @@ public class IntVarTest {
 
         try {
 
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
 
             IntVar x = makeIntVar(cp, 10);
 
@@ -296,8 +296,7 @@ public class IntVarTest {
 
         try {
 
-            Solver cp = new Solver();
-
+            Solver cp = makeSolver();
             IntVar x = makeIntVar(cp, 10);
 
             Constraint cons = new BasicConstraint(cp) {
@@ -344,7 +343,7 @@ public class IntVarTest {
     public void fillArray() {
 
         try {
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
 
             IntVar x = plus(mul(minus(makeIntVar(cp, 5)), 3), 5); // D(x)= {-7,-4,-1,2,5}
             int[] values = new int[10];

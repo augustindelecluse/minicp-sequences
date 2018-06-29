@@ -15,8 +15,9 @@
 
 package minicp.reversible;
 
+import minicp.engine.core.IntVar;
+
 public interface StateManager {
-
+    void registerVar(IntVar x);
     Trail getTrail();
-
 }

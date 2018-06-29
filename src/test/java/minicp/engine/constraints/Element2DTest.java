@@ -91,7 +91,7 @@ public class Element2DTest {
 
         try {
 
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar x = makeIntVar(cp, -2, 40);
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, -20, 40);

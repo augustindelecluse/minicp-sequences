@@ -20,7 +20,6 @@ import minicp.engine.constraints.Element1D;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
-import minicp.util.InconsistencyException;
 
 import java.util.Random;
 

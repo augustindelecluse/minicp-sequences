@@ -16,6 +16,7 @@
 package minicp.reversible;
 
 
+import minicp.engine.core.IntVar;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
 
@@ -34,6 +35,9 @@ public class ReversibleSparseSetTest {
             @Override
             public Trail getTrail() {
                 return tr;
+            }
+            @Override
+            public void registerVar(IntVar x) {
             }
         };
     }

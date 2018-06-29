@@ -34,7 +34,7 @@ public class OrTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 BoolVar [] x = new BoolVar[] {makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp)};
                 cp.post(new Or(x));
 
@@ -61,7 +61,7 @@ public class OrTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 BoolVar [] x = new BoolVar[] {makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp)};
                 cp.post(new Or(x));
 

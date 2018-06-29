@@ -18,10 +18,9 @@ import minicp.cp.Factory;
 import minicp.reversible.RevBool;
 
 public abstract class BasicConstraint implements Constraint {
-
-    protected boolean scheduled = false;
+    private boolean scheduled = false;
+    private final RevBool active;
     protected final Solver cp;
-    protected final RevBool active;
 
     public BasicConstraint(Solver cp) {
         this.cp = cp;

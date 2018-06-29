@@ -118,12 +118,10 @@ public class IntVarImpl implements IntVar {
     public void whenBind(BasicConstraintClosure.Filtering f) {
         onBind.push(new BasicConstraintClosure(cp, f));
     }
-
     @Override
     public void whenBoundsChange(BasicConstraintClosure.Filtering f) {
         onBounds.push(new BasicConstraintClosure(cp, f));
     }
-
     @Override
     public void whenDomainChange(BasicConstraintClosure.Filtering f) {
         onDomain.push(new BasicConstraintClosure(cp, f));
@@ -133,12 +131,10 @@ public class IntVarImpl implements IntVar {
     public void propagateOnDomainChange(Constraint c) {
         onDomain.push(c);
     }
-
     @Override
     public void propagateOnBind(Constraint c) {
         onBind.push(c);
     }
-
     @Override
     public void propagateOnBoundChange(Constraint c) {
         onBounds.push(c);
@@ -153,11 +149,9 @@ public class IntVarImpl implements IntVar {
     public int getMin() {
         return domain.getMin();
     }
-
     public int getMax() {
         return domain.getMax();
     }
-
     public int getSize() {
         return domain.getSize();
     }
@@ -183,5 +177,4 @@ public class IntVarImpl implements IntVar {
     public void removeAbove(int v) {
         domain.removeAbove(v, domListener);
     }
-
 }

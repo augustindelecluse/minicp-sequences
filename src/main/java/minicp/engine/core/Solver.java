@@ -25,48 +25,14 @@ import java.util.Queue;
 import java.util.Stack;
 import java.util.Vector;
 
-public class Solver implements StateManager {
-
-    private Trail trail = new TrailImpl();
-    private Queue<Constraint> propagationQueue = new ArrayDeque<>();
-    private Vector<IntVar>  vars = new Vector<>(2);
-    public void registerVar(IntVar x) {
-        vars.add(x);
-    }
-
-    public void push() { trail.push();}
-    public void pop()  { trail.pop();}
-
-    public Trail getTrail() { return trail;}
-
-    public void schedule(Constraint c) {
-        propagationQueue.add(c);
-    }
-
-    public void fixPoint() {
-        try {
-            while (propagationQueue.size() > 0)
-                propagationQueue.remove().process();
-        } catch (InconsistencyException e) {
-            // empty the queue and unset the scheduled status
-            while (propagationQueue.size() > 0)
-                propagationQueue.remove().discard();
-            throw e;
-        }
-    }
-
-    public void post(Constraint c) {
-        post(c,true);
-    }
-
-    public void post(Constraint c, boolean enforceFixPoint)  {
-        c.post();
-        if (enforceFixPoint) fixPoint();
-    }
-
-    public void post(BoolVar b) {
-        b.assign(true);
-        fixPoint();
-    }
+public interface Solver extends StateManager {
+    void post(Constraint c);
+    void schedule(Constraint c);
+    void post(Constraint c, boolean enforceFixPoint);
+    void fixPoint();
+    // ugly
+    void push();
+    void pop();
+    void post(BoolVar b);
 }
 

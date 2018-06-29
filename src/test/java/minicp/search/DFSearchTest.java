@@ -45,6 +45,10 @@ public class DFSearchTest {
             public Trail getTrail() {
                 return tr;
             }
+
+            @Override
+            public void registerVar(IntVar x) {
+            }
         };
     }
 

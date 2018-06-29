@@ -50,7 +50,7 @@ public class MaximumMatchingTest {
     @Test
     public void test1() {
         try {
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{
                     makeIVar(cp, 1, 2),
                     makeIVar(cp, 1, 2),
@@ -83,7 +83,7 @@ public class MaximumMatchingTest {
     @Test
     public void test2() {
         try {
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar[] x = new IntVar[]{
                     makeIVar(cp, 1, 4, 5),
                     makeIVar(cp, 9, 10), // will be 10

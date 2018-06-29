@@ -36,7 +36,7 @@ public class IsLessOrEqualVarTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar x = makeIntVar(cp, 0, 5);
                 IntVar y = makeIntVar(cp, 0, 5);
 
@@ -67,7 +67,7 @@ public class IsLessOrEqualVarTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar x = makeIntVar(cp, -8, 7);
                 IntVar y = makeIntVar(cp, -4, 3);
 
@@ -98,7 +98,7 @@ public class IsLessOrEqualVarTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar x = makeIntVar(cp, -4, 7);
                 IntVar y = makeIntVar(cp, 0, 7);
                 equal(x, -2);
@@ -121,7 +121,7 @@ public class IsLessOrEqualVarTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar x = makeIntVar(cp, -4, 7);
                 BoolVar b = makeBoolVar(cp);
 

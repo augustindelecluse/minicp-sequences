@@ -18,7 +18,6 @@ package minicp.examples;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
-import minicp.util.InconsistencyException;
 import minicp.util.InputReader;
 
 import java.util.Random;

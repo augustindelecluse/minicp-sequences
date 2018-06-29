@@ -34,7 +34,7 @@ public class IsOrTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 BoolVar [] x = new BoolVar[] {makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp)};
                 BoolVar b = makeBoolVar(cp);
                 cp.post(new IsOr(b,x));
@@ -92,7 +92,7 @@ public class IsOrTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 BoolVar [] x = new BoolVar[] {makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp)};
                 BoolVar b = makeBoolVar(cp);
                 cp.post(new IsOr(b,x));

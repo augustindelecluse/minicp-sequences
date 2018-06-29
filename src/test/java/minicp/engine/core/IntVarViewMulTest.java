@@ -29,7 +29,7 @@ public class IntVarViewMulTest {
 
     @Test
     public void testIntVar() {
-        Solver cp  = new Solver();
+        Solver cp  = makeSolver();
 
         IntVar x = mul(mul(makeIntVar(cp,-3,4),-3),-1); // domain is {-9,-6,-3,0,3,6,9,12}
 
@@ -81,7 +81,7 @@ public class IntVarViewMulTest {
     @Test
     public void onDomainChangeOnBind() {
         propagateCalled = false;
-        Solver cp  = new Solver();
+        Solver cp  = makeSolver();
 
         IntVar x = mul(makeIntVar(cp,10),1);
         IntVar y = mul(makeIntVar(cp,10),1);
@@ -120,7 +120,7 @@ public class IntVarViewMulTest {
     @Test
     public void onBoundChange() {
 
-        Solver cp = new Solver();
+        Solver cp = makeSolver();
 
         IntVar x = mul(makeIntVar(cp, 10),1);
         IntVar y = mul(makeIntVar(cp, 10),1);

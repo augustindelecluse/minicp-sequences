@@ -16,11 +16,9 @@
 package minicp.examples;
 
 import minicp.cp.Factory;
-import minicp.engine.constraints.AllDifferentAC;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
-import minicp.util.InconsistencyException;
 import minicp.search.SearchStatistics;
 import java.util.Arrays;
 

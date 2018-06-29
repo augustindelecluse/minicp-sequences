@@ -19,7 +19,6 @@ import minicp.engine.constraints.TableDecomp;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.SearchStatistics;
-import minicp.util.InconsistencyException;
 import minicp.util.InputReader;
 
 import java.util.Arrays;

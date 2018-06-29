@@ -18,7 +18,6 @@ package minicp.examples;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.SearchStatistics;
-import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
 

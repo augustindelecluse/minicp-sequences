@@ -15,6 +15,7 @@
 
 package minicp.examples;
 
+import minicp.cp.Factory;
 import minicp.engine.constraints.Element1D;
 import minicp.engine.constraints.Element1DVar;
 import minicp.engine.core.BoolVar;
@@ -22,7 +23,6 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
-import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
 
@@ -93,7 +93,7 @@ public class StableMariage {
 
         int n = rankMen.length;
 
-        Solver cp = new Solver();
+        Solver cp = makeSolver();
 
         // wife[m] is the woman chosen for man m
         IntVar [] wife = makeIntVarArray(cp,n,n);

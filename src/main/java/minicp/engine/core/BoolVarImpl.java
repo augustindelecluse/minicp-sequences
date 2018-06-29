@@ -15,8 +15,6 @@
 
 package minicp.engine.core;
 
-import minicp.util.InconsistencyException;
-
 public class BoolVarImpl extends IntVarImpl implements BoolVar {
 
     public BoolVarImpl(Solver cp) {

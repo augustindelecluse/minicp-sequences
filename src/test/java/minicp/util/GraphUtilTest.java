@@ -15,9 +15,6 @@
 
 package minicp.util;
 
-import minicp.engine.constraints.Absolute;
-import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,7 +22,6 @@ import java.util.Arrays;
 
 import static minicp.util.GraphUtil.*;
 
-import static minicp.cp.Factory.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;

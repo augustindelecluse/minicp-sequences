@@ -16,11 +16,12 @@
 package minicp.examples;
 
 
+import minicp.cp.Factory;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
-import minicp.util.InconsistencyException;
+
 import static minicp.cp.Factory.*;
 
 import java.util.Arrays;
@@ -35,7 +36,7 @@ public class MagicSquare {
         int n = 6;
         int M = n * (n * n + 1) / 2;
 
-        Solver cp = new Solver();
+        Solver cp = Factory.makeSolver();
         IntVar[][] x = new IntVar[n][n];
 
         for (int i = 0; i < n; i++) {

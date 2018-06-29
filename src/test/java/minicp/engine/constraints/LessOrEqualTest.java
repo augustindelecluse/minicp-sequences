@@ -15,17 +15,13 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.DFSearch;
-import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
 import static org.junit.Assert.*;
 
 

@@ -15,13 +15,8 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
 import org.junit.Test;
 
-import static minicp.cp.Factory.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 

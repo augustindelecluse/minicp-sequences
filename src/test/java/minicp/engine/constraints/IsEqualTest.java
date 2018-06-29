@@ -35,7 +35,7 @@ public class IsEqualTest {
     public void test1() {
         try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar x = makeIntVar(cp, -4, 7);
 
                 BoolVar b = isEqual(x, -2);
@@ -61,7 +61,7 @@ public class IsEqualTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar x = makeIntVar(cp, -4, 7);
 
                 BoolVar b = isEqual(x, -2);
@@ -89,7 +89,7 @@ public class IsEqualTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar x = makeIntVar(cp, -4, 7);
                 equal(x, -2);
 
@@ -117,7 +117,7 @@ public class IsEqualTest {
         try {
             try {
 
-                Solver cp = new Solver();
+                Solver cp = makeSolver();
                 IntVar x = makeIntVar(cp, -4, 7);
                 BoolVar b = makeBoolVar(cp);
 

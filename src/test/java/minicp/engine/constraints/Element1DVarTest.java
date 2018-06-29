@@ -117,7 +117,7 @@ public class Element1DVarTest {
 
         try {
 
-            Solver cp = new Solver();
+            Solver cp = makeSolver();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, -20, 40);
 

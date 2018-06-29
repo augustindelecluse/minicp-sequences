@@ -1,9 +1,6 @@
 package xcsp3.models;
 
-import minicp.engine.constraints.TableDecomp;
-import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.SearchStatistics;
 import minicp.util.InputReader;
 import org.xcsp.common.IVar.Var;
 import org.xcsp.common.Types;
@@ -11,13 +8,8 @@ import org.xcsp.common.structures.TableInteger;
 import org.xcsp.modeler.ProblemAPI;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Factory.equal;
-import static minicp.cp.Factory.makeDfs;
-import static minicp.cp.Heuristics.and;
-import static minicp.cp.Heuristics.firstFail;
 
 class EternityXCSP3 implements ProblemAPI {
 

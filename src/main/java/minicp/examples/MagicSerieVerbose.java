@@ -24,8 +24,6 @@ import minicp.search.SearchStatistics;
 import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
 
 
 public class MagicSerieVerbose {

@@ -40,7 +40,7 @@ public class XCSP3 implements XCallbacks2 {
 
     private final Set<IntVar> decisionVars = new LinkedHashSet<>();
 
-    public final Solver minicp = new Solver();
+    public final Solver minicp = makeSolver();
 
     private Optional<IntVar> objectiveMinimize = Optional.empty();
     private Optional<IntVar> realObjective = Optional.empty();
