@@ -45,17 +45,17 @@ public class IntVarViewMul implements IntVar {
     public void whenDomainChange(BasicConstraintClosure.Filtering f) { x.whenDomainChange(f); }
 
     @Override
-    public void propagateOnDomainChange(BasicConstraint c) {
+    public void propagateOnDomainChange(Constraint c) {
         x.propagateOnDomainChange(c);
     }
 
     @Override
-    public void propagateOnBind(BasicConstraint c) {
+    public void propagateOnBind(Constraint c) {
         x.propagateOnBind(c);
     }
 
     @Override
-    public void propagateOnBoundChange(BasicConstraint c) {
+    public void propagateOnBoundChange(Constraint c) {
         x.propagateOnBoundChange(c);
     }
 

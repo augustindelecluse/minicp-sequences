@@ -16,6 +16,7 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.SearchStatistics;
@@ -35,8 +36,8 @@ import static org.junit.Assert.*;
 
 public class TableTest {
 
-    private static List<BiFunction<IntVar[], int[][], BasicConstraint>> getAlgos() {
-        List<BiFunction<IntVar[], int[][], BasicConstraint>> algos = new ArrayList<>();
+    private static List<BiFunction<IntVar[], int[][], Constraint>> getAlgos() {
+        List<BiFunction<IntVar[], int[][], Constraint>> algos = new ArrayList<>();
         algos.add(TableDecomp::new);
         algos.add(TableCT::new);
         return algos;
@@ -109,7 +110,7 @@ public class TableTest {
             int[][] tuples2 = randomTuples(rand, 3, 50, 1, 7);
             int[][] tuples3 = randomTuples(rand, 3, 50, 0, 6);
 
-            for (BiFunction<IntVar[], int[][], BasicConstraint> algo : getAlgos()) {
+            for (BiFunction<IntVar[], int[][], Constraint> algo : getAlgos()) {
                 try {
                     testTable(algo, tuples1, tuples2, tuples3);
                 } catch (NotImplementedException e) {
@@ -120,7 +121,7 @@ public class TableTest {
     }
 
 
-    public void testTable(BiFunction<IntVar[], int[][], BasicConstraint> tc, int[][] t1, int[][] t2, int[][] t3) {
+    public void testTable(BiFunction<IntVar[], int[][], Constraint> tc, int[][] t1, int[][] t2, int[][] t3) {
 
         SearchStatistics statsDecomp;
         SearchStatistics statsAlgo;

@@ -49,21 +49,21 @@ public interface IntVar {
      * of this variable changes
      * @param c
      */
-    void propagateOnDomainChange(BasicConstraint c);
+    void propagateOnDomainChange(Constraint c);
 
     /**
      * Ask that c.propagate() is called whenever the domain
      * of this variable is reduced to a single value
      * @param c
      */
-    void propagateOnBind(BasicConstraint c);
+    void propagateOnBind(Constraint c);
 
     /**
      * Ask that c.propagate() is called whenever
      * the max or min value of the domain of this variable changes
      * @param c
      */
-    void propagateOnBoundChange(BasicConstraint c);
+    void propagateOnBoundChange(Constraint c);
 
 
     /**

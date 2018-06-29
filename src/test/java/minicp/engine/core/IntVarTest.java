@@ -82,8 +82,7 @@ public class IntVarTest {
         IntVar x = makeIntVar(cp,10);
         IntVar y = makeIntVar(cp,10);
 
-        BasicConstraint cons = new BasicConstraint(cp) {
-
+        Constraint cons = new BasicConstraint(cp) {
             @Override
             public void post()  {
                 x.whenBind(() -> propagateCalled = true);
@@ -215,7 +214,7 @@ public class IntVarTest {
         IntVar x = makeIntVar(cp, 10);
         IntVar y = makeIntVar(cp, 10);
 
-        BasicConstraint cons = new BasicConstraint(cp) {
+        Constraint cons = new BasicConstraint(cp) {
 
             @Override
             public void post() {
@@ -261,8 +260,7 @@ public class IntVarTest {
 
             IntVar x = makeIntVar(cp, 10);
 
-            BasicConstraint cons = new BasicConstraint(cp) {
-
+            Constraint cons = new BasicConstraint(cp) {
                 @Override
                 public void post()  {
                     x.propagateOnBoundChange(this);
@@ -302,8 +300,7 @@ public class IntVarTest {
 
             IntVar x = makeIntVar(cp, 10);
 
-            BasicConstraint cons = new BasicConstraint(cp) {
-
+            Constraint cons = new BasicConstraint(cp) {
                 @Override
                 public void post()  {
                     x.propagateOnBoundChange(this);

@@ -25,9 +25,9 @@ public class IntVarImpl implements IntVar {
 
     private Solver cp;
     private IntDomain domain;
-    private ReversibleStack<BasicConstraint> onDomain;
-    private ReversibleStack<BasicConstraint> onBind;
-    private ReversibleStack<BasicConstraint> onBounds;
+    private ReversibleStack<Constraint> onDomain;
+    private ReversibleStack<Constraint> onBind;
+    private ReversibleStack<Constraint> onBounds;
 
     protected DomainListener domListener = new DomainListener() {
         @Override
@@ -130,22 +130,22 @@ public class IntVarImpl implements IntVar {
     }
 
     @Override
-    public void propagateOnDomainChange(BasicConstraint c) {
+    public void propagateOnDomainChange(Constraint c) {
         onDomain.push(c);
     }
 
     @Override
-    public void propagateOnBind(BasicConstraint c) {
+    public void propagateOnBind(Constraint c) {
         onBind.push(c);
     }
 
     @Override
-    public void propagateOnBoundChange(BasicConstraint c) {
+    public void propagateOnBoundChange(Constraint c) {
         onBounds.push(c);
     }
 
 
-    protected void scheduleAll(ReversibleStack<BasicConstraint> constraints) {
+    protected void scheduleAll(ReversibleStack<Constraint> constraints) {
         for (int i = 0; i < constraints.size(); i++)
             constraints.get(i).schedule();
     }

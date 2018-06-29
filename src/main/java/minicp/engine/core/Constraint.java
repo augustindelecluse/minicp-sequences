@@ -12,6 +12,11 @@ public interface Constraint {
     void propagate();
 
     /**
+     * API to schedule a constraint when an event has occurred.
+     */
+    void schedule();
+
+    /**
      * API to process a constraint.
      * This involves resetting any attribute prior to propagation
      * and propagating the constraint (if it makes sense).
