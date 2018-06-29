@@ -16,16 +16,10 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
-import minicp.reversible.ReversibleInt;
-import minicp.util.InconsistencyException;
 
-import java.util.Arrays;
-
-import static minicp.cp.Factory.allDifferent;
-
-public class Maximum extends Constraint {
+public class Maximum extends BasicConstraint {
 
     private final IntVar [] x;
     private final IntVar y;

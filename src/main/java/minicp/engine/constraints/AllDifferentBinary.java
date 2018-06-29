@@ -15,12 +15,11 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.util.InconsistencyException;
 
-public class AllDifferentBinary extends Constraint {
+public class AllDifferentBinary extends BasicConstraint {
 
     private IntVar [] x;
 

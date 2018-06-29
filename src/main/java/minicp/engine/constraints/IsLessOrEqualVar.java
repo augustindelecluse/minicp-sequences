@@ -16,19 +16,19 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
-import minicp.util.InconsistencyException;
+
 import static minicp.cp.Factory.*;
 
-public class IsLessOrEqualVar extends Constraint { // b <=> x <= y
+public class IsLessOrEqualVar extends BasicConstraint { // b <=> x <= y
 
     private final BoolVar b;
     private final IntVar x;
     private final IntVar y;
 
-    private final Constraint lEqC;
-    private final Constraint grC;
+    private final BasicConstraint lEqC;
+    private final BasicConstraint grC;
 
     public IsLessOrEqualVar(BoolVar b, IntVar x, IntVar y) {
         super(x.getSolver());

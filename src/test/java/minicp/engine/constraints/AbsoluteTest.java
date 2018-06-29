@@ -15,22 +15,13 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
-import org.junit.Assume;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.function.BiFunction;
-
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
 import static org.junit.Assert.*;
 
 public class AbsoluteTest {

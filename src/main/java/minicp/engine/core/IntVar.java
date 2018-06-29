@@ -15,8 +15,6 @@
 
 package minicp.engine.core;
 
-import minicp.util.InconsistencyException;
-
 public interface IntVar {
 
     /**
@@ -30,42 +28,42 @@ public interface IntVar {
      * of this variable is reduced to a single value
      * @param f
      */
-    void whenBind(ConstraintClosure.Filtering f);
+    void whenBind(BasicConstraintClosure.Filtering f);
 
     /**
      * Ask that the closure is called whenever
      * the max or min value of the domain of this variable changes
      * @param f
      */
-    void whenBoundsChange(ConstraintClosure.Filtering f);
+    void whenBoundsChange(BasicConstraintClosure.Filtering f);
 
     /**
      * Ask that the closure is called whenever the domain change
      * of this variable changes
      * @param f
      */
-    void whenDomainChange(ConstraintClosure.Filtering f);
+    void whenDomainChange(BasicConstraintClosure.Filtering f);
 
     /**
      * Ask that c.propagate() is called whenever the domain change
      * of this variable changes
      * @param c
      */
-    void propagateOnDomainChange(Constraint c);
+    void propagateOnDomainChange(BasicConstraint c);
 
     /**
      * Ask that c.propagate() is called whenever the domain
      * of this variable is reduced to a single value
      * @param c
      */
-    void propagateOnBind(Constraint c);
+    void propagateOnBind(BasicConstraint c);
 
     /**
      * Ask that c.propagate() is called whenever
      * the max or min value of the domain of this variable changes
      * @param c
      */
-    void propagateOnBoundChange(Constraint c);
+    void propagateOnBoundChange(BasicConstraint c);
 
 
     /**
@@ -108,33 +106,27 @@ public interface IntVar {
     /**
      * Remove the value v from the domain
      * @param v
-     * @throws InconsistencyException
      */
-    void remove(int v) throws InconsistencyException;
+    void remove(int v);
 
     /**
      * Assign the value v i.e.
      * remove every value different from v
      * @param v
-     * @throws InconsistencyException
      */
-    void assign(int v) throws InconsistencyException;
+    void assign(int v);
 
     /**
      * Remove all the values < va
      * @param v
      * @return the new minimum
-     * @throws InconsistencyException
      */
-    void removeBelow(int v) throws InconsistencyException;
+    void removeBelow(int v);
 
     /**
      * Remove all the values > v
      * @param v
      * @return the new maximum
-     * @throws InconsistencyException
      */
-    void removeAbove(int v) throws InconsistencyException;
-
-
+    void removeAbove(int v);
 }

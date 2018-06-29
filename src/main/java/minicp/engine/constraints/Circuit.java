@@ -19,12 +19,11 @@ package minicp.engine.constraints;
 import static minicp.cp.Factory.*;
 
 import minicp.cp.Factory;
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
 import minicp.reversible.RevInt;
-import minicp.util.InconsistencyException;
 
-public class Circuit extends Constraint {
+public class Circuit extends BasicConstraint {
 
     private final IntVar [] x;
     private final RevInt[] dest;

@@ -165,10 +165,10 @@ public class Factory {
         x.getSolver().fixPoint();
     }
 
-    static public Constraint notEqual(IntVar x, IntVar y) {
+    static public BasicConstraint notEqual(IntVar x, IntVar y) {
         return new NotEqual(x,y);
     }
-    static public Constraint notEqual(IntVar x, IntVar y,int c) {
+    static public BasicConstraint notEqual(IntVar x, IntVar y, int c) {
         return new NotEqual(x,y,c);
     }
 
@@ -202,19 +202,19 @@ public class Factory {
         return isLargerOrEqual(x,c+1);
     }
 
-    static public Constraint lessOrEqual(IntVar x, IntVar y) {
+    static public BasicConstraint lessOrEqual(IntVar x, IntVar y) {
         return new LessOrEqual(x,y);
     }
 
-    static public Constraint largerOrEqual(IntVar x, IntVar y) {
+    static public BasicConstraint largerOrEqual(IntVar x, IntVar y) {
         return new LessOrEqual(y,x);
     }
 
-    static public Constraint minimize(IntVar x, DFSearch dfs) {
+    static public BasicConstraint minimize(IntVar x, DFSearch dfs) {
         return new Minimize(x,dfs);
     }
 
-    static public Constraint maximize(IntVar x, DFSearch dfs) {
+    static public BasicConstraint maximize(IntVar x, DFSearch dfs) {
         return new Minimize(minus(x),dfs);
     }
 
@@ -252,18 +252,18 @@ public class Factory {
         return s;
     }
 
-    static public Constraint sum(IntVar[] x, IntVar y)  {
+    static public BasicConstraint sum(IntVar[] x, IntVar y)  {
         return new Sum(x,y);
     }
 
-    static public Constraint sum(IntVar[] x, int y)  {
+    static public BasicConstraint sum(IntVar[] x, int y)  {
         return new Sum(x,y);
     }
 
-    static public Constraint allDifferent(IntVar[] x)  {
+    static public BasicConstraint allDifferent(IntVar[] x)  {
         return new AllDifferentBinary(x);
     }
-    static public Constraint allDifferentAC(IntVar[] x)  {
+    static public BasicConstraint allDifferentAC(IntVar[] x)  {
         return new AllDifferentAC(x);
     }
 }

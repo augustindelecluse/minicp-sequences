@@ -82,7 +82,7 @@ public class IntVarTest {
         IntVar x = makeIntVar(cp,10);
         IntVar y = makeIntVar(cp,10);
 
-        Constraint cons = new Constraint(cp) {
+        BasicConstraint cons = new BasicConstraint(cp) {
 
             @Override
             public void post()  {
@@ -178,7 +178,8 @@ public class IntVarTest {
             try {
 
                 for (int i = -15; i < 15; i++) {
-                    if (dom.contains(i)) assertTrue(x.contains(i));
+                    if (dom.contains(i))
+                        assertTrue(x.contains(i));
                     else assertFalse(x.contains(i));
                 }
 
@@ -214,7 +215,7 @@ public class IntVarTest {
         IntVar x = makeIntVar(cp, 10);
         IntVar y = makeIntVar(cp, 10);
 
-        Constraint cons = new Constraint(cp) {
+        BasicConstraint cons = new BasicConstraint(cp) {
 
             @Override
             public void post() {
@@ -260,7 +261,7 @@ public class IntVarTest {
 
             IntVar x = makeIntVar(cp, 10);
 
-            Constraint cons = new Constraint(cp) {
+            BasicConstraint cons = new BasicConstraint(cp) {
 
                 @Override
                 public void post()  {
@@ -301,7 +302,7 @@ public class IntVarTest {
 
             IntVar x = makeIntVar(cp, 10);
 
-            Constraint cons = new Constraint(cp) {
+            BasicConstraint cons = new BasicConstraint(cp) {
 
                 @Override
                 public void post()  {

@@ -15,12 +15,11 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
 import minicp.search.DFSearch;
-import minicp.util.InconsistencyException;
 
-public class Minimize extends Constraint {
+public class Minimize extends BasicConstraint {
 
     public int bound = Integer.MAX_VALUE;
     public final IntVar x;

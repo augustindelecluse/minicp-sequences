@@ -17,15 +17,14 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
-import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
 
-public class CumulativeDecomposition extends Constraint {
+public class CumulativeDecomposition extends BasicConstraint {
 
     private final IntVar[] start;
     private final int[] duration;

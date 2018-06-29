@@ -44,7 +44,7 @@ public class ReversibleSparseSetTest {
 
         StateManager sm = makeStateManager();
         Trail trail = sm.getTrail();
-        ReversibleSparseSet set = new ReversibleSparseSet(sm,9);
+        ReversibleSparseSet set = new ReversibleSparseSet(sm,9,0);
 
         trail.push();
 
@@ -66,7 +66,7 @@ public class ReversibleSparseSetTest {
 
         StateManager sm = makeStateManager();
         Trail trail = sm.getTrail();
-        ReversibleSparseSet set = new ReversibleSparseSet(sm,10);
+        ReversibleSparseSet set = new ReversibleSparseSet(sm,10,0);
 
         assertTrue(toSet(set.toArray()).equals(toSet(new int[]{0,1,2,3,4,5,6,7,8,9})));
 
@@ -126,7 +126,7 @@ public class ReversibleSparseSetTest {
 
             StateManager sm = makeStateManager();
             Trail trail = sm.getTrail();
-            ReversibleSparseSet set = new ReversibleSparseSet(sm,10);
+            ReversibleSparseSet set = new ReversibleSparseSet(sm,10,0);
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
@@ -168,7 +168,7 @@ public class ReversibleSparseSetTest {
 
             StateManager sm = makeStateManager();
             Trail trail = sm.getTrail();
-            ReversibleSparseSet set = new ReversibleSparseSet(sm,10);
+            ReversibleSparseSet set = new ReversibleSparseSet(sm,10,0);
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
@@ -209,7 +209,7 @@ public class ReversibleSparseSetTest {
 
             StateManager sm = makeStateManager();
             Trail trail = sm.getTrail();
-            ReversibleSparseSet set = new ReversibleSparseSet(sm,10);
+            ReversibleSparseSet set = new ReversibleSparseSet(sm,10,0);
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));

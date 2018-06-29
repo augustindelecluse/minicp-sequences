@@ -18,14 +18,14 @@ package minicp.engine.constraints;
 
 import static minicp.cp.Factory.*;
 
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.constraints.Profile.Rectangle;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;
 
-public class Cumulative extends Constraint {
+public class Cumulative extends BasicConstraint {
 
     private final IntVar[] start;
     private final int[] duration;

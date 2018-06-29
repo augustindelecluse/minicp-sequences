@@ -40,26 +40,18 @@ public class Solver implements StateManager {
     public Trail getTrail() { return trail;}
 
     public void schedule(Constraint c) {
-        if (!c.scheduled && c.isActive()) {
-            c.scheduled = true;
-            propagationQueue.add(c);
-        }
+        propagationQueue.add(c);
     }
 
     public void fixPoint() {
         try {
-            while (!propagationQueue.isEmpty()) {
-                Constraint c = propagationQueue.remove();
-                c.scheduled = false;
-                if (c.isActive()) {
-                    c.propagate();
-                }
-            }
+            while (propagationQueue.size() > 0)
+                propagationQueue.remove().process();
         } catch (InconsistencyException e) {
             // empty the queue and unset the scheduled status
             while (propagationQueue.size() > 0)
-                propagationQueue.remove().scheduled = false;
-            throw new InconsistencyException();
+                propagationQueue.remove().discard();
+            throw e;
         }
     }
 
@@ -76,6 +68,5 @@ public class Solver implements StateManager {
         b.assign(true);
         fixPoint();
     }
-
 }
 

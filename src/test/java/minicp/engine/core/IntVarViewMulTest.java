@@ -86,7 +86,7 @@ public class IntVarViewMulTest {
         IntVar x = mul(makeIntVar(cp,10),1);
         IntVar y = mul(makeIntVar(cp,10),1);
 
-        Constraint cons = new Constraint(cp) {
+        BasicConstraint cons = new BasicConstraint(cp) {
 
             @Override
             public void post()  {
@@ -125,7 +125,7 @@ public class IntVarViewMulTest {
         IntVar x = mul(makeIntVar(cp, 10),1);
         IntVar y = mul(makeIntVar(cp, 10),1);
 
-        Constraint cons = new Constraint(cp) {
+        BasicConstraint cons = new BasicConstraint(cp) {
 
             @Override
             public void post()  {

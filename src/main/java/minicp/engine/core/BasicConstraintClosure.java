@@ -16,9 +16,7 @@
 package minicp.engine.core;
 
 
-import minicp.util.InconsistencyException;
-
-public class ConstraintClosure extends Constraint {
+public class BasicConstraintClosure extends BasicConstraint {
 
     @FunctionalInterface
     public interface Filtering {
@@ -27,7 +25,7 @@ public class ConstraintClosure extends Constraint {
 
     private final Filtering filtering;
 
-    public ConstraintClosure(Solver cp, Filtering filtering) {
+    public BasicConstraintClosure(Solver cp, Filtering filtering) {
         super(cp);
         this.filtering = filtering;
     }

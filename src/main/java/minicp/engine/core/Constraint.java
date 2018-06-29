@@ -1,46 +1,27 @@
-/*
- * mini-cp is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License  v3
- * as published by the Free Software Foundation.
- *
- * mini-cp is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY.
- * See the GNU Lesser General Public License  for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
- *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
- */
-
 package minicp.engine.core;
-import minicp.cp.Factory;
-import minicp.reversible.RevBool;
-import minicp.util.InconsistencyException;
 
-public abstract class Constraint {
+public interface Constraint {
+    /**
+     * API to initialize the internal of a constraint when it is added to the solver.
+     */
+    void post();
 
-    protected boolean scheduled = false;
-    protected final Solver cp;
-    protected final RevBool active;
+    /**
+     * API to propagate the constraint when at least one variable has changed (AC3)
+     */
+    void propagate();
 
-    public Constraint(Solver cp) {
-        this.cp = cp;
-        active = Factory.makeRevBool(cp,true);
-    }
+    /**
+     * API to process a constraint.
+     * This involves resetting any attribute prior to propagation
+     * and propagating the constraint (if it makes sense).
+     */
+    void process();
 
-    public boolean isActive() {
-        return active.getValue();
-    }
-
-    public void deactivate() {
-        active.setValue(false);
-    }
-
-    public abstract void post();
-    public void propagate() {}
-
-    public void schedule() {
-        cp.schedule(this);
-    }
+    /**
+     * API to discard a constraint from the scheduled set.
+     * This happens when the propagation queue must be cleared after a failure has
+     * occurred.
+     */
+    void discard();
 }

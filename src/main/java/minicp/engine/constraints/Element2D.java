@@ -17,7 +17,7 @@
 package minicp.engine.constraints;
 
 import minicp.cp.Factory;
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
 import minicp.reversible.RevInt;
 import minicp.util.InconsistencyException;
@@ -25,7 +25,7 @@ import minicp.util.InconsistencyException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Element2D extends Constraint {
+public class Element2D extends BasicConstraint {
 
 
     private final int[][] T;

@@ -16,7 +16,7 @@
 package minicp.engine.constraints;
 
 import minicp.cp.Factory;
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.IntVarImpl;
 import minicp.reversible.RevInt;
@@ -24,7 +24,7 @@ import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
 
-public class Sum extends Constraint {
+public class Sum extends BasicConstraint {
 
     private  int[] unBounds;
     private RevInt nUnBounds;

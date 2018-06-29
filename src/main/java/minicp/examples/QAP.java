@@ -61,11 +61,10 @@ public class QAP {
 
         // build the objective function
         IntVar[] weightedDist = new IntVar[n*n];
-        int ind = 0;
-        for (int i = 0; i < n; i++) {
+        for (int k=0,i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                weightedDist[ind] = mul(element(d,x[i],x[j]),w[i][j]);
-                ind++;
+                weightedDist[k] = mul(element(d,x[i],x[j]),w[i][j]);
+                k++;
             }
         }
         IntVar objective = sum(weightedDist);

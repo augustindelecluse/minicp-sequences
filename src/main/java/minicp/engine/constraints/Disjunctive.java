@@ -17,7 +17,7 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
 import minicp.util.InconsistencyException;
 
@@ -27,7 +27,7 @@ import java.util.Comparator;
 
 import static minicp.cp.Factory.*;
 
-public class Disjunctive extends Constraint {
+public class Disjunctive extends BasicConstraint {
 
     private final IntVar[] start;
     private final int[] duration;

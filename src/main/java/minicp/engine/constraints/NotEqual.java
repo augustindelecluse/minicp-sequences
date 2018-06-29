@@ -15,11 +15,10 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
-import minicp.util.InconsistencyException;
 
-public class NotEqual extends Constraint {
+public class NotEqual extends BasicConstraint {
 
     private IntVar x, y;
     private int c;

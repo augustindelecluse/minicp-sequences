@@ -41,8 +41,9 @@ public class MagicSerie {
             final int fi = i;
             cp.post(sum(all(0,n-1,j -> isEqual(s[j],fi)),s[i]));
         }
+        cp.post(sum(s,n));
         cp.post(sum(all(0,n-1,i -> mul(s[i],i)),n));
-        cp.post(sum(all(0,n-1,i -> mul(s[i],i-1)),0));
+        //cp.post(sum(all(0,n-1,i -> mul(s[i],i-1)),0));
 
         long t0 = System.currentTimeMillis();
         SearchStatistics stats = makeDfs(cp,

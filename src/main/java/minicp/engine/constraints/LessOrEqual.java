@@ -15,12 +15,10 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
-import minicp.util.InconsistencyException;
 
-public class LessOrEqual extends Constraint { // x <= y
+public class LessOrEqual extends BasicConstraint { // x <= y
 
 
     private final IntVar x;

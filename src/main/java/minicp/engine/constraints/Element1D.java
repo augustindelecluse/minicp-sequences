@@ -17,14 +17,7 @@
 package minicp.engine.constraints;
 
 import minicp.cp.Factory;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.reversible.ReversibleInt;
-import minicp.util.InconsistencyException;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class Element1D extends Element2D {
 

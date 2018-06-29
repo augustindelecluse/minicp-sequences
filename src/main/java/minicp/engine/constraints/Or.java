@@ -17,13 +17,12 @@ package minicp.engine.constraints;
 
 import minicp.cp.Factory;
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.reversible.RevInt;
-import minicp.util.InconsistencyException;
 
 import static minicp.util.InconsistencyException.*;
 
-public class Or extends Constraint { // x1 or x2 or ... xn
+public class Or extends BasicConstraint { // x1 or x2 or ... xn
 
     private final BoolVar [] x;
     private final int n;

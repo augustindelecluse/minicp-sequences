@@ -15,7 +15,7 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
 import minicp.util.GraphUtil;
 import minicp.util.GraphUtil.*;
@@ -24,7 +24,7 @@ import minicp.util.InconsistencyException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AllDifferentAC extends Constraint {
+public class AllDifferentAC extends BasicConstraint {
 
     private IntVar[] x;
     private final int nVar;

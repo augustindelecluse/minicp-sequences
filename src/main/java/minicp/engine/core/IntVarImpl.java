@@ -25,9 +25,9 @@ public class IntVarImpl implements IntVar {
 
     private Solver cp;
     private IntDomain domain;
-    private ReversibleStack<Constraint> onDomain;
-    private ReversibleStack<Constraint> onBind;
-    private ReversibleStack<Constraint> onBounds;
+    private ReversibleStack<BasicConstraint> onDomain;
+    private ReversibleStack<BasicConstraint> onBind;
+    private ReversibleStack<BasicConstraint> onBounds;
 
     protected DomainListener domListener = new DomainListener() {
         @Override
@@ -95,7 +95,7 @@ public class IntVarImpl implements IntVar {
     public IntVarImpl(Solver cp, Set<Integer> values) {
         this(cp, values.stream().min(Integer::compare).get(), values.stream().max(Integer::compare).get());
         if (values.isEmpty()) throw new InvalidParameterException("at least one value in the domain");
-        for (int i = getMin(); i < getMax(); i++) {
+        for (int i = getMin(); i <= getMax(); i++) {
             if (!values.contains(i)) {
                 try {
                     this.remove(i);
@@ -115,37 +115,37 @@ public class IntVarImpl implements IntVar {
     }
 
     @Override
-    public void whenBind(ConstraintClosure.Filtering f) {
-        onBind.push(new ConstraintClosure(cp, f));
+    public void whenBind(BasicConstraintClosure.Filtering f) {
+        onBind.push(new BasicConstraintClosure(cp, f));
     }
 
     @Override
-    public void whenBoundsChange(ConstraintClosure.Filtering f) {
-        onBounds.push(new ConstraintClosure(cp, f));
+    public void whenBoundsChange(BasicConstraintClosure.Filtering f) {
+        onBounds.push(new BasicConstraintClosure(cp, f));
     }
 
     @Override
-    public void whenDomainChange(ConstraintClosure.Filtering f) {
-        onDomain.push(new ConstraintClosure(cp, f));
+    public void whenDomainChange(BasicConstraintClosure.Filtering f) {
+        onDomain.push(new BasicConstraintClosure(cp, f));
     }
 
     @Override
-    public void propagateOnDomainChange(Constraint c) {
+    public void propagateOnDomainChange(BasicConstraint c) {
         onDomain.push(c);
     }
 
     @Override
-    public void propagateOnBind(Constraint c) {
+    public void propagateOnBind(BasicConstraint c) {
         onBind.push(c);
     }
 
     @Override
-    public void propagateOnBoundChange(Constraint c) {
+    public void propagateOnBoundChange(BasicConstraint c) {
         onBounds.push(c);
     }
 
 
-    protected void scheduleAll(ReversibleStack<Constraint> constraints) {
+    protected void scheduleAll(ReversibleStack<BasicConstraint> constraints) {
         for (int i = 0; i < constraints.size(); i++)
             constraints.get(i).schedule();
     }

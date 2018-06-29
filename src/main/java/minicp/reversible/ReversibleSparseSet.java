@@ -27,6 +27,7 @@ public class ReversibleSparseSet {
     private RevInt size;
     private RevInt min;
     private RevInt max;
+    private int ofs;
     private int n;
 
     /**
@@ -34,8 +35,9 @@ public class ReversibleSparseSet {
      * @param sm
      * @param n > 0
      */
-    public ReversibleSparseSet(StateManager sm, int n) {
+    public ReversibleSparseSet(StateManager sm, int n,int ofs) {
         this.n = n;
+        this.ofs = ofs;
         size = Factory.makeRevInt(sm,n);
         min = Factory.makeRevInt(sm,0);
         max = Factory.makeRevInt(sm,n-1);
@@ -69,22 +71,23 @@ public class ReversibleSparseSet {
     /**
      * @return an array representation of values present in the set
      */
+
     public int[] toArray()  {
         int [] res = new int[getSize()];
         fillArray(res);
         return res;
     }
 
-
     /**
      * set the first values of <code>dest</code> to the ones
-     * prsent in the set
+     * present in the set
      * @param dest, an array large enough dest.length >= getSize()
      * @return the size of the set
      */
     public int fillArray(int [] dest) {
         int s = size.getValue();
-        System.arraycopy(values, 0, dest, 0, s);
+        for(int i=0;i < s;i++)
+            dest[i] = values[i] + ofs;
         return s;
     }
 
@@ -106,7 +109,7 @@ public class ReversibleSparseSet {
     public int getMin() {
         if (isEmpty())
             throw new NoSuchElementException();
-        return min.getValue();
+        return min.getValue() + ofs;
     }
 
     /**
@@ -115,7 +118,7 @@ public class ReversibleSparseSet {
     public int getMax() {
         if (isEmpty())
             throw new NoSuchElementException();
-        else return max.getValue();
+        else return max.getValue() + ofs;
     }
 
     private void updateBoundsValRemoved(int val) {
@@ -125,10 +128,10 @@ public class ReversibleSparseSet {
 
     private void updateMaxValRemoved(int val) {
         if (!isEmpty() && max.getValue() == val) {
-            assert(!contains(val));
+            assert(!internalContains(val));
             //the maximum was removed, search the new one
             for (int v = val-1; v >= min.getValue(); v--) {
-                if (contains(v)) {
+                if (internalContains(v)) {
                     max.setValue(v);
                     return;
                 }
@@ -138,10 +141,10 @@ public class ReversibleSparseSet {
 
     private void updateMinValRemoved(int val) {
         if (!isEmpty() && min.getValue() == val) {
-            assert(!contains(val));
+            assert(!internalContains(val));
             //the minimum was removed, search the new one
             for (int v = val+1; v <= max.getValue(); v++) {
-                if (contains(v)) {
+                if (internalContains(v)) {
                     min.setValue(v);
                     return;
                 }
@@ -155,8 +158,10 @@ public class ReversibleSparseSet {
      * @return true if val was in the set, false otherwise
      */
     public boolean remove(int val) {
+        if (!contains(val))
+            return false; //the value has already been removed
+        val -= ofs;
         assert(checkVal(val));
-        if (!contains(val)) return false; //the value has already been removed
         int s = getSize();
         exchangePositions(val, values[s-1]);
         size.decrement();
@@ -165,13 +170,27 @@ public class ReversibleSparseSet {
     }
 
     /**
-     * Check is the val is in the set
-     * @param val
-     * @return
+     * This method operates on the shifted value (one cannot shift now).
+     * @param val the value to lookup for membership
+     * @return true <-> val IN S
+     */
+    private boolean internalContains(int val) {
+        if (val < 0 || val >= n)
+            return false;
+        else
+            return indexes[val] < getSize();
+    }
+    /**
+     * Check if the value val is in the set
+     * @param val the original value to check.
+     * @return true <-> (val-ofs) IN S
      */
     public boolean contains(int val) {
-        if (val < 0 || val >= n) return false;
-        return indexes[val] < getSize();
+        val -= ofs;
+        if (val < 0 || val >= n)
+            return false;
+        else
+            return indexes[val] < getSize();
     }
 
     /**
@@ -180,8 +199,9 @@ public class ReversibleSparseSet {
      */
     public void removeAllBut(int v) {
         // we only have to put in first position this value and set the size to 1
-        assert(checkVal(v));
         assert(contains(v));
+        v -= ofs;
+        assert(checkVal(v));
         int val = values[0];
         int index = indexes[v];
         indexes[v] = 0;
@@ -218,11 +238,11 @@ public class ReversibleSparseSet {
      * Remove all the values > value in the set
      */
     public void removeAbove(int value) {
-        int max = getMax();
         if (getMin() > value) {
             removeAll();
         }
         else {
+            int max = getMax();
             for (int v = value + 1; v <= max; v++) {
                 remove(v);
             }
@@ -235,10 +255,10 @@ public class ReversibleSparseSet {
         StringBuilder b = new StringBuilder();
         b.append("{");
         for (int i = 0; i < getSize()-1; i++) {
-            b.append(values[i]);
+            b.append(values[i] + ofs);
             b.append(',');
         }
-        if (getSize() > 0) b.append(values[getSize()-1]);
+        if (getSize() > 0) b.append(values[getSize()-1] + ofs);
         b.append("}");
         return b.toString();
     }

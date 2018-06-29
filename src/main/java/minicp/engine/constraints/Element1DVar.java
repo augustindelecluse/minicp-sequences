@@ -1,10 +1,9 @@
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
-import minicp.util.InconsistencyException;
 
-public class Element1DVar extends Constraint {
+public class Element1DVar extends BasicConstraint {
 
     private final IntVar[] T;
     private final IntVar y;

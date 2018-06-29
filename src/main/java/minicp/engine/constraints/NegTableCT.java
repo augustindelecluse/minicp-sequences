@@ -15,16 +15,15 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
-import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;
 import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
-public class NegTableCT extends Constraint {
+public class NegTableCT extends BasicConstraint {
     private IntVar[] x; //variables
     private int[][] table; //the table
     //supports[i][v] is the set of tuples supported by x[i]=v

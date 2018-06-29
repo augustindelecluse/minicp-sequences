@@ -1,14 +1,9 @@
 package minicp.engine.constraints;
 
-import minicp.engine.core.Constraint;
+import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
-import minicp.util.InconsistencyException;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-public class Absolute extends Constraint {
+public class Absolute extends BasicConstraint {
 
     private IntVar x;
     private IntVar y;
