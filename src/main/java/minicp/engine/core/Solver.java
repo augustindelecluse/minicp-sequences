@@ -31,8 +31,6 @@ public interface Solver extends StateManager {
     void post(Constraint c, boolean enforceFixPoint);
     void fixPoint();
     // ugly
-    void push();
-    void pop();
     void post(BoolVar b);
 }
 

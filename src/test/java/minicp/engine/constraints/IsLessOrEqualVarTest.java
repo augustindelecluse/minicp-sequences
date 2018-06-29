@@ -75,15 +75,15 @@ public class IsLessOrEqualVarTest {
 
                 cp.post(new IsLessOrEqualVar(b,x,y));
 
-                cp.push();
+                cp.getTrail().push();
                 equal(b, 1);
                 assertEquals(3, x.getMax());
-                cp.pop();
+                cp.getTrail().pop();
 
-                cp.push();
+                cp.getTrail().push();
                 equal(b, 0);
                 assertEquals(-3,x.getMin());
-                cp.pop();
+                cp.getTrail().pop();
 
             } catch (InconsistencyException e) {
                 fail("should not fail");
@@ -125,18 +125,17 @@ public class IsLessOrEqualVarTest {
                 IntVar x = makeIntVar(cp, -4, 7);
                 BoolVar b = makeBoolVar(cp);
 
-                cp.push();
+                cp.getTrail().push();
                 equal(b, 1);
                 cp.post(new IsLessOrEqual(b,x,-2));
                 assertEquals(-2, x.getMax());
-                cp.pop();
+                cp.getTrail().pop();
 
-                cp.push();
+                cp.getTrail().push();
                 equal(b, 0);
                 cp.post(new IsLessOrEqual(b,x,-2));
                 assertEquals(-1, x.getMin());
-
-                cp.pop();
+                cp.getTrail().pop();
 
 
             } catch (InconsistencyException e) {

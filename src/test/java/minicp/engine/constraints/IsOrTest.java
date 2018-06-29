@@ -43,39 +43,38 @@ public class IsOrTest {
                     assertTrue(!xi.isBound());
                 }
 
-                cp.push();
+                cp.getTrail().push();
                 equal(x[1],0);
                 equal(x[2],0);
                 equal(x[3],0);
                 assertTrue(!b.isBound());
                 equal(x[0],0);
                 assertTrue(b.isFalse());
-                cp.pop();
+                cp.getTrail().pop();
 
-                cp.push();
+                cp.getTrail().push();
                 equal(x[1],0);
                 equal(x[2],1);
                 assertTrue(b.isTrue());
-                cp.pop();
+                cp.getTrail().pop();
 
-                cp.push();
+                cp.getTrail().push();
                 equal(b,1);
                 equal(x[1],0);
                 equal(x[2],0);
                 assertTrue(!x[0].isBound());
                 equal(x[3],0);
                 assertTrue(x[0].isTrue());
-                cp.pop();
+                cp.getTrail().pop();
 
 
-                cp.push();
+                cp.getTrail().push();
                 equal(b,0);
                 assertTrue(x[0].isFalse());
                 assertTrue(x[1].isFalse());
                 assertTrue(x[2].isFalse());
                 assertTrue(x[3].isFalse());
-                cp.pop();
-
+                cp.getTrail().pop();
 
 
             } catch (InconsistencyException e) {
@@ -93,13 +92,13 @@ public class IsOrTest {
             try {
 
                 Solver cp = makeSolver();
-                BoolVar [] x = new BoolVar[] {makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp)};
+                BoolVar[] x = new BoolVar[]{makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp)};
                 BoolVar b = makeBoolVar(cp);
-                cp.post(new IsOr(b,x));
+                cp.post(new IsOr(b, x));
 
-                SearchStatistics stats = makeDfs(cp,firstFail(x)).onSolution(() -> {
+                SearchStatistics stats = makeDfs(cp, firstFail(x)).onSolution(() -> {
                             int nTrue = 0;
-                            for (BoolVar xi: x) {
+                            for (BoolVar xi : x) {
                                 if (xi.isTrue()) nTrue++;
                             }
 
@@ -107,7 +106,7 @@ public class IsOrTest {
 
                         }
                 ).solve();
-                assertEquals(16,stats.nSolutions);
+                assertEquals(16, stats.nSolutions);
 
             } catch (InconsistencyException e) {
                 fail("should not fail");
@@ -115,12 +114,5 @@ public class IsOrTest {
         } catch (NotImplementedException e) {
             e.print();
         }
-
     }
-
-
-
-
-
-
 }

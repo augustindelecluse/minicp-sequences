@@ -90,13 +90,13 @@ public class DisjunctiveTest {
             int[] d = new int[] {5,4,6,7};
             DFSearch dfs = makeDfs(cp, firstFail(s));
 
-            cp.push();
+            cp.getTrail().push();
 
             cp.post(new Disjunctive(s,d));
 
             SearchStatistics stat1 = dfs.solve();
 
-            cp.pop();
+            cp.getTrail().pop();
 
             decomposeDisjunctive(s,d);
 

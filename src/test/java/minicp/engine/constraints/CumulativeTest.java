@@ -159,12 +159,12 @@ public class CumulativeTest {
 
             DFSearch search = new DFSearch(cp, firstFail(s));
 
-            cp.push();
+            cp.getTrail().push();
 
             cp.post(new Cumulative(s,d,r,12));
             SearchStatistics stats1 = search.solve();
 
-            cp.pop();
+            cp.getTrail().pop();
 
             cp.post(new CumulativeDecomposition(s,d,r,12));
             SearchStatistics stats2 = search.solve();

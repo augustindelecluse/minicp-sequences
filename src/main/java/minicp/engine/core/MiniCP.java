@@ -16,9 +16,6 @@ public class MiniCP implements Solver {
         vars.add(x);
     }
 
-    public void push() { trail.push();}
-    public void pop()  { trail.pop();}
-
     public Trail getTrail() { return trail;}
 
     public void schedule(Constraint c) {

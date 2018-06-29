@@ -85,9 +85,8 @@ public class DFSearch {
 
     @FunctionalInterface
     public interface SubjectTo {
-        public void call();
+        void call();
     }
-
 
     public SearchStatistics solveSubjectTo(SearchLimit limit, SubjectTo subjectTo) {
         SearchStatistics statistics = new SearchStatistics();
