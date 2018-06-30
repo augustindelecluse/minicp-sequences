@@ -39,7 +39,7 @@ public class ReversibleBool implements TrailEntry, RevBool {
     protected ReversibleBool(TrailImpl context, boolean initial) {
         this.trail = context;
         v = initial;
-        lastMagic = context.getMagic();
+        lastMagic = context.getMagic() - 1;
     }
 
     private void trail() {

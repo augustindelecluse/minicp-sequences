@@ -31,7 +31,7 @@ public class ReversibleInt implements RevInt {
     protected ReversibleInt(TrailImpl trail, int initial) {
         this.trail = trail;
         v = initial;
-        lastMagic = trail.getMagic();
+        lastMagic = trail.getMagic() - 1;
     }
 
     private void trail() {

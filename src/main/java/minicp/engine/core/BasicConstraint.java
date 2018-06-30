@@ -15,7 +15,7 @@
 
 package minicp.engine.core;
 
-public abstract class BasicConstraint implements Constraint {
+public class BasicConstraint implements Constraint {
     private final int id;
     protected final Solver cp;
 

@@ -33,6 +33,5 @@ public interface Solver extends StateManager {
     void fixPoint();
     // ugly
     void post(BoolVar b);
-
 }
 
