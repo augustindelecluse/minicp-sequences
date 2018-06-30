@@ -19,8 +19,6 @@ import minicp.engine.core.BasicConstraint;
 import minicp.engine.core.IntVar;
 
 public class LessOrEqual extends BasicConstraint { // x <= y
-
-
     private final IntVar x;
     private final IntVar y;
 
@@ -29,20 +27,17 @@ public class LessOrEqual extends BasicConstraint { // x <= y
         this.x = x;
         this.y = y;
     }
-
     @Override
     public void post()  {
         x.propagateOnBoundChange(this);
         y.propagateOnBoundChange(this);
         propagate();
     }
-
     @Override
     public void propagate()  {
         x.removeAbove(y.getMax());
         y.removeBelow(x.getMin());
-        if (x.getMax() <= y.getMin()) {
-            this.deactivate();
-        }
+        if (x.getMax() <= y.getMin()) 
+            cp.deactivate(this);        
     }
 }
