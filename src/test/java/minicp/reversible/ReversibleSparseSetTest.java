@@ -16,6 +16,7 @@
 package minicp.reversible;
 
 
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
@@ -37,7 +38,12 @@ public class ReversibleSparseSetTest {
                 return tr;
             }
             @Override
-            public void registerVar(IntVar x) {
+            public int registerVar(IntVar x) {
+                return 0;
+            }
+            @Override
+            public int registerConstraint(Constraint c) {
+                return 0;
             }
         };
     }

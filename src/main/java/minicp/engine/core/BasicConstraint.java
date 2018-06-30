@@ -14,37 +14,21 @@
  */
 
 package minicp.engine.core;
-import minicp.cp.Factory;
-import minicp.reversible.RevBool;
 
 public abstract class BasicConstraint implements Constraint {
-    private boolean scheduled = false;
-    private final RevBool active;
+    private final int id;
     protected final Solver cp;
 
     public BasicConstraint(Solver cp) {
         this.cp = cp;
-        active = Factory.makeRevBool(cp,true);
+        id = cp.registerConstraint(this);
     }
+    public int getId() { return id;}
 
     public void post()      {}
     public void propagate() {}
 
     public void deactivate() {
-        active.setValue(false);
-    }
-    public void schedule() {
-        if (!scheduled && active.getValue()) {
-            scheduled = true;
-            cp.schedule(this);
-        }
-    }
-    public void discard() {
-        scheduled = false;
-    }
-    public void process() {
-        scheduled = false;
-        if (active.getValue())
-            propagate();
+        cp.deactivate(this);
     }
 }

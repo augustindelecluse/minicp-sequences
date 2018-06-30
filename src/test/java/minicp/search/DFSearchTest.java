@@ -16,6 +16,7 @@
 package minicp.search;
 
 import minicp.cp.Factory;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.reversible.*;
@@ -47,7 +48,12 @@ public class DFSearchTest {
             }
 
             @Override
-            public void registerVar(IntVar x) {
+            public int registerVar(IntVar x) {
+                return 0;
+            }
+            @Override
+            public int registerConstraint(Constraint c) {
+                return 0;
             }
         };
     }

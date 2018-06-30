@@ -143,7 +143,7 @@ public class IntVarImpl implements IntVar {
 
     protected void scheduleAll(ReversibleStack<Constraint> constraints) {
         for (int i = 0; i < constraints.size(); i++)
-            constraints.get(i).schedule();
+            cp.schedule(constraints.get(i));
     }
 
     public int getMin() {

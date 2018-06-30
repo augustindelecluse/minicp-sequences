@@ -12,21 +12,8 @@ public interface Constraint {
     void propagate();
 
     /**
-     * API to schedule a constraint when an event has occurred.
+     * API to retrieve the identifier of the constraint (an integer between 0 and |cstrs|
+     * @return the constraint identifier
      */
-    void schedule();
-
-    /**
-     * API to process a constraint.
-     * This involves resetting any attribute prior to propagation
-     * and propagating the constraint (if it makes sense).
-     */
-    void process();
-
-    /**
-     * API to discard a constraint from the scheduled set.
-     * This happens when the propagation queue must be cleared after a failure has
-     * occurred.
-     */
-    void discard();
+    int getId();
 }
