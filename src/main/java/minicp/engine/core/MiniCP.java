@@ -1,67 +1,85 @@
 package minicp.engine.core;
 
-import minicp.reversible.Trail;
-import minicp.reversible.TrailImpl;
+import minicp.cp.Factory;
+import minicp.reversible.*;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.Vector;
+
 
 public class MiniCP implements Solver {
-    private Trail trail = new TrailImpl();
-    private Queue<Constraint> propagationQueue = new ArrayDeque<>();
-    private Vector<IntVar> vars      = new Vector<>(2);
-    private Vector<Constraint> cstrs = new Vector<>(2);
-    private ConstraintState[] cState;
 
-    private void makeState(Constraint c) {
-        if (cState == null) {
-            cState = new ConstraintState[cstrs.size()];
-            for (int i = 0; i < cstrs.size(); i++)
-                cState[i] = new ConstraintState(this, cstrs.get(i));
+    private Trail trail = new TrailImpl();
+    private Queue<ConstraintState> propagationQueue = new ArrayDeque<>();
+    private ReversibleStack<ConstraintState> constraints = new ReversibleStack<>(this);
+    private ReversibleStack<IntVar> vars = new ReversibleStack<>(this);
+
+    class ConstraintState {
+
+        final Constraint c;
+        boolean scheduled;
+        RevBool active;
+
+        public ConstraintState(Constraint c) {
+            this.c = c;
+            active = Factory.makeRevBool(MiniCP.this,true);
+            scheduled = false;
         }
-        if (c.getId() >= cState.length) {
-            ConstraintState[] cs = new ConstraintState[cstrs.size()];
-            System.arraycopy(cState, 0, cs, 0, cState.length);
-            for (int i = cState.length; i < cs.length; i++)
-                cs[i] = new ConstraintState(this, cstrs.get(i));
-            cState = cs;
+
+        public void propagate() {
+            scheduled = false;
+            if (active.getValue())
+                c.propagate();
         }
+
+        public boolean canSchedule() {
+            return !scheduled && active.getValue();
+        }
+
+        public void deactivate() {
+            active.setValue(false);
+        }
+
     }
+
+
+
 
     public void schedule(Constraint c) {
-        makeState(c);
-        int x = c.getId();
-        if (cState[x].canSchedule()) {
-            cState[x].scheduled = true;
-            propagationQueue.add(c);
+        ConstraintState cs = constraints.get(c.getId());
+        if (cs.canSchedule()) {
+            cs.scheduled = true;
+            propagationQueue.add(cs);
         }
     }
-    private void propagate(Constraint c) {
-        makeState(c);
-        int x = c.getId();
-        cState[x].scheduled = false;
-        if (cState[x].isActive())
-            c.propagate();
-    }
-    private void clear(Constraint c) {
-        int x = c.getId();
-        cState[x].scheduled = false;
-    }
-    public void deactivate(Constraint c) {
-        int x = c.getId();
-        cState[x].deactivate();
+
+    private void clear(ConstraintState cs) {
+        cs.scheduled = false;
     }
 
-    public int registerVar(IntVar x) { vars.add(x);return vars.size()-1;}
-    public int registerConstraint(Constraint c) { cstrs.add(c);return cstrs.size()-1;}
-    public Trail getTrail() { return trail;}
+    public void deactivate(Constraint c) {
+        constraints.get(c.getId()).deactivate();
+    }
+
+    public int registerVar(IntVar x) {
+        vars.push(x);
+        return vars.size() - 1;
+    }
+
+    public int registerConstraint(Constraint c) {
+        constraints.push(new ConstraintState(c));
+        return constraints.size() - 1;
+    }
+
+    public Trail getTrail() {
+        return trail;
+    }
 
     public void fixPoint() {
         try {
             while (propagationQueue.size() > 0)
-                propagate(propagationQueue.remove());
+                propagationQueue.remove().propagate();
         } catch (InconsistencyException e) {
             // empty the queue and unset the scheduled status
             while (propagationQueue.size() > 0)
