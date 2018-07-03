@@ -15,7 +15,7 @@
 
 package minicp.engine.core;
 
-public class BasicConstraint implements Constraint {
+public abstract class BasicConstraint implements Constraint {
 
     private final int id;
     protected final Solver cp;
@@ -24,7 +24,9 @@ public class BasicConstraint implements Constraint {
         this.cp = cp;
         id = cp.registerConstraint(this);
     }
-    public int getId() { return id;}
+    public final int getId() {
+        return id;
+    }
 
     public void post()      {}
 
