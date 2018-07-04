@@ -10,9 +10,10 @@ import java.util.Queue;
 
 public class MiniCP implements Solver {
 
-    private Trail trail = new TrailImpl();
+    private TrailImpl trail = new TrailImpl();
     private Queue<ConstraintState> propagationQueue = new ArrayDeque<>();
-    private ReversibleStack<ConstraintState> constraints = new ReversibleStack<>(this);
+
+    private RevMap<Constraint,ConstraintState> constraints = trail.makeRevMap();
     private ReversibleStack<IntVar> vars = new ReversibleStack<>(this);
 
     class ConstraintState {
@@ -43,11 +44,8 @@ public class MiniCP implements Solver {
 
     }
 
-
-
-
     public void schedule(Constraint c) {
-        ConstraintState cs = constraints.get(c.getId());
+        ConstraintState cs = constraints.get(c);
         if (cs.canSchedule()) {
             cs.scheduled = true;
             propagationQueue.add(cs);
@@ -59,7 +57,7 @@ public class MiniCP implements Solver {
     }
 
     public void deactivate(Constraint c) {
-        constraints.get(c.getId()).deactivate();
+        constraints.get(c).deactivate();
     }
 
     public int registerVar(IntVar x) {
@@ -67,10 +65,6 @@ public class MiniCP implements Solver {
         return vars.size() - 1;
     }
 
-    public int registerConstraint(Constraint c) {
-        constraints.push(new ConstraintState(c));
-        return constraints.size() - 1;
-    }
 
     public Trail getTrail() {
         return trail;
@@ -93,6 +87,7 @@ public class MiniCP implements Solver {
     }
 
     public void post(Constraint c, boolean enforceFixPoint)  {
+        constraints.put(c,new ConstraintState(c));
         c.post();
         if (enforceFixPoint) fixPoint();
     }

@@ -18,14 +18,15 @@ package minicp.engine.constraints;
 
 import static minicp.cp.Factory.*;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.constraints.Profile.Rectangle;
+import minicp.engine.core.Solver;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;
 
-public class Cumulative extends BasicConstraint {
+public class Cumulative implements Constraint {
 
     private final IntVar[] start;
     private final int[] duration;
@@ -33,6 +34,7 @@ public class Cumulative extends BasicConstraint {
     private final int[] demand;
     private final int capa;
     private final boolean postMirror;
+    private final Solver cp;
 
 
     public Cumulative(IntVar[] start, int[] duration, int[] demand, int capa)  {
@@ -40,7 +42,7 @@ public class Cumulative extends BasicConstraint {
     }
 
     private Cumulative(IntVar[] start, int[] duration, int[] demand, int capa, boolean postMirror)  {
-        super(start[0].getSolver());
+        cp = start[0].getSolver();
         this.start = start;
         this.duration = duration;
         this.end = makeIntVarArray(cp,start.length, i -> plus(start[i],duration[i]));

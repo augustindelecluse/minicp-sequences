@@ -1,12 +1,14 @@
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 
-public class Absolute extends BasicConstraint {
+public class Absolute implements Constraint {
 
     private IntVar x;
     private IntVar y;
+    private Solver cp;
 
     /**
      * Build a constraint y = |x|
@@ -15,9 +17,9 @@ public class Absolute extends BasicConstraint {
      * @param y
      */
     public Absolute(IntVar x, IntVar y) {
-        super(x.getSolver());
         this.x = x;
         this.y = y;
+        this.cp = x.getSolver();
     }
 
     @Override
@@ -35,7 +37,7 @@ public class Absolute extends BasicConstraint {
 
         if (x.isBound()) {
             y.assign(Math.abs(x.getMin()));
-            deactivate();
+            cp.deactivate(this);
         } else if (y.isBound()) { // y is bound
             // y = |x|
             if (!x.contains(-y.getMin())) {
@@ -51,7 +53,7 @@ public class Absolute extends BasicConstraint {
                     }
                 }
             }
-            deactivate();
+            cp.deactivate(this);
         } else if (x.getMin() >= 0) {
             y.removeBelow(x.getMin());
             y.removeAbove(x.getMax());

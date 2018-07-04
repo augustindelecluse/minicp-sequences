@@ -28,21 +28,21 @@ public interface IntVar {
      * of this variable is reduced to a single value
      * @param f
      */
-    void whenBind(BasicConstraintClosure.Filtering f);
+    void whenBind(ConstraintClosure.Filtering f);
 
     /**
      * Ask that the closure is called whenever
      * the max or min value of the domain of this variable changes
      * @param f
      */
-    void whenBoundsChange(BasicConstraintClosure.Filtering f);
+    void whenBoundsChange(ConstraintClosure.Filtering f);
 
     /**
      * Ask that the closure is called whenever the domain change
      * of this variable changes
      * @param f
      */
-    void whenDomainChange(BasicConstraintClosure.Filtering f);
+    void whenDomainChange(ConstraintClosure.Filtering f);
 
     /**
      * Ask that c.propagate() is called whenever the domain change

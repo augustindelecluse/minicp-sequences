@@ -15,15 +15,18 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 
-public class LessOrEqual extends BasicConstraint { // x <= y
+public class LessOrEqual implements Constraint { // x <= y
+
+    private final Solver cp;
     private final IntVar x;
     private final IntVar y;
 
     public LessOrEqual(IntVar x, IntVar y) {
-        super(x.getSolver());
+        this.cp = x.getSolver();
         this.x = x;
         this.y = y;
     }

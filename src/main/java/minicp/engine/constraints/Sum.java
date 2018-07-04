@@ -16,16 +16,18 @@
 package minicp.engine.constraints;
 
 import minicp.cp.Factory;
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.IntVarImpl;
+import minicp.engine.core.Solver;
 import minicp.reversible.RevInt;
 import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
 
-public class Sum extends BasicConstraint {
+public class Sum implements Constraint {
 
+    private final Solver cp;
     private  int[] unBounds;
     private RevInt nUnBounds;
     private RevInt sumBounds;
@@ -49,7 +51,7 @@ public class Sum extends BasicConstraint {
      * @param x
      */
     public Sum(IntVar [] x) {
-        super(x[0].getSolver());
+        this.cp = x[0].getSolver();
         this.x = x;
         this.n = x.length;
         nUnBounds = Factory.makeRevInt(cp,n);

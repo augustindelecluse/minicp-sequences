@@ -17,18 +17,20 @@
 package minicp.engine.constraints;
 
 import minicp.cp.Factory;
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 import minicp.reversible.RevInt;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Element2D extends BasicConstraint {
+public class Element2D implements Constraint {
 
 
     private final int[][] T;
+    private final Solver cp;
     private final IntVar x, y, z;
     private int n, m;
     private final RevInt[] nRowsSup;
@@ -61,8 +63,7 @@ public class Element2D extends BasicConstraint {
      * @param z
      */
     public Element2D(int[][] T, IntVar x, IntVar y, IntVar z) {
-        super(x.getSolver());
-
+        this.cp = x.getSolver();
         this.T = T;
         this.x = x;
         this.y = y;

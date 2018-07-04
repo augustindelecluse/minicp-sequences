@@ -115,16 +115,24 @@ public class IntVarImpl implements IntVar {
     }
 
     @Override
-    public void whenBind(BasicConstraintClosure.Filtering f) {
-        onBind.push(new BasicConstraintClosure(cp, f));
+    public void whenBind(ConstraintClosure.Filtering f) {
+        onBind.push(constraintClosure(f));
     }
+
     @Override
-    public void whenBoundsChange(BasicConstraintClosure.Filtering f) {
-        onBounds.push(new BasicConstraintClosure(cp, f));
+    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+        onBounds.push(constraintClosure(f));
     }
+
     @Override
-    public void whenDomainChange(BasicConstraintClosure.Filtering f) {
-        onDomain.push(new BasicConstraintClosure(cp, f));
+    public void whenDomainChange(ConstraintClosure.Filtering f) {
+        onDomain.push(constraintClosure(f));
+    }
+
+    private Constraint constraintClosure(ConstraintClosure.Filtering f) {
+        Constraint c = new ConstraintClosure(cp, f);
+        getSolver().post(c,false);
+        return c;
     }
 
     @Override

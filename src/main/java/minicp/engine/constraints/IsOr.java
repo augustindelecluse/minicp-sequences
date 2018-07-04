@@ -17,11 +17,13 @@ package minicp.engine.constraints;
 
 import minicp.cp.Factory;
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
+import minicp.engine.core.Solver;
 import minicp.reversible.RevInt;
 
-public class IsOr extends BasicConstraint { // b <=> x1 or x2 or ... xn
+public class IsOr implements Constraint { // b <=> x1 or x2 or ... xn
 
+    private final Solver cp;
     private final BoolVar b;
     private final BoolVar[] x;
     private final int n;
@@ -32,7 +34,7 @@ public class IsOr extends BasicConstraint { // b <=> x1 or x2 or ... xn
     private final Or or;
 
     public IsOr(BoolVar b, BoolVar[] x) {
-        super(b.getSolver());
+        this.cp = b.getSolver();
         this.b = b;
         this.x = x;
         this.n = x.length;
@@ -56,13 +58,13 @@ public class IsOr extends BasicConstraint { // b <=> x1 or x2 or ... xn
     @Override
     public void propagate() {
         if (b.isTrue()) {
-            deactivate();
+            cp.deactivate(this);
             cp.post(or, false);
         } else if (b.isFalse()) {
             for (BoolVar xi : x) {
                 xi.assign(false);
             }
-            deactivate();
+            cp.deactivate(this);
         } else {
             int nU = nUnBounds.getValue();
             for (int i = nU - 1; i >= 0; i--) {
@@ -71,7 +73,7 @@ public class IsOr extends BasicConstraint { // b <=> x1 or x2 or ... xn
                 if (y.isBound()) {
                     if (y.isTrue()) {
                         b.assign(true);
-                        deactivate();
+                        cp.deactivate(this);
                         return;
                     }
                     // Swap the variable
@@ -82,7 +84,7 @@ public class IsOr extends BasicConstraint { // b <=> x1 or x2 or ... xn
             }
             if (nU == 0) {
                 b.assign(false);
-                deactivate();
+                cp.deactivate(this);
             }
             nUnBounds.setValue(nU);
         }

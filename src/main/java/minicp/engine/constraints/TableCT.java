@@ -15,14 +15,14 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 
 import static minicp.cp.Factory.*;
 
 import java.util.BitSet;
 
-public class TableCT extends BasicConstraint {
+public class TableCT implements Constraint {
     private IntVar[] x; //variables
     private int[][] table; //the table
     //supports[i][v] is the set of tuples supported by x[i]=v
@@ -37,7 +37,6 @@ public class TableCT extends BasicConstraint {
      * @param table array of valid solutions (second dimension must be of same size as the array x)
      */
     public TableCT(IntVar[] x, int[][] table) {
-        super(x[0].getSolver());
         this.x = new IntVar[x.length];
         this.table = table;
 

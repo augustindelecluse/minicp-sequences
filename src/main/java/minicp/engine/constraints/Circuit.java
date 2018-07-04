@@ -19,16 +19,18 @@ package minicp.engine.constraints;
 import static minicp.cp.Factory.*;
 
 import minicp.cp.Factory;
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 import minicp.reversible.RevInt;
 
-public class Circuit extends BasicConstraint {
+public class Circuit implements Constraint {
 
     private final IntVar [] x;
     private final RevInt[] dest;
     private final RevInt [] orig;
     private final RevInt [] lengthToDest;
+    private final Solver cp;
 
     /**
      * x represents an Hamiltonian circuit on the cities {0..x.length-1}
@@ -36,7 +38,7 @@ public class Circuit extends BasicConstraint {
      * @param x
      */
     public Circuit(IntVar [] x) {
-        super(x[0].getSolver());
+        cp = x[0].getSolver();
         assert (x.length > 0);
         this.x = x;
         dest = new RevInt[x.length];

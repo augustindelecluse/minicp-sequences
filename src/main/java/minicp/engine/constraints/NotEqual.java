@@ -15,16 +15,18 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 
-public class NotEqual extends BasicConstraint {
+public class NotEqual implements Constraint {
 
-    private IntVar x, y;
-    private int c;
+    private final IntVar x, y;
+    private final int c;
+    private final Solver cp;
 
     public NotEqual(IntVar x, IntVar y, int c) { // x != y + c
-        super(x.getSolver());
+        this.cp = x.getSolver();
         this.x = x;
         this.y = y;
         this.c = c;
@@ -54,7 +56,7 @@ public class NotEqual extends BasicConstraint {
         if (y.isBound())
             x.remove(y.getMin() + c);
         else y.remove(x.getMin() - c);
-        deactivate();
+        cp.deactivate(this);
     }
 
 }

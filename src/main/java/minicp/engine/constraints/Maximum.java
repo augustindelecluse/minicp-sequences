@@ -16,11 +16,13 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 
-public class Maximum extends BasicConstraint {
+public class Maximum implements Constraint {
 
+    private final Solver cp;
     private final IntVar [] x;
     private final IntVar y;
 
@@ -29,7 +31,7 @@ public class Maximum extends BasicConstraint {
      * @param x
      */
     public Maximum(IntVar [] x, IntVar y) {
-        super(x[0].getSolver());
+        this.cp = x[0].getSolver();
         assert (x.length > 0);
         this.x = x;
         this.y = y;

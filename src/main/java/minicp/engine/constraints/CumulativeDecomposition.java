@@ -17,24 +17,26 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 
 import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
 
-public class CumulativeDecomposition extends BasicConstraint {
+public class CumulativeDecomposition implements Constraint {
 
     private final IntVar[] start;
     private final int[] duration;
     private final IntVar[] end;
     private final int[] demand;
     private final int capa;
+    private final Solver cp;
 
 
     public CumulativeDecomposition(IntVar[] start, int[] duration, int[] demand, int capa)  {
-        super(start[0].getSolver());
+        this.cp = start[0].getSolver();
         this.start = start;
         this.duration = duration;
         this.end = makeIntVarArray(cp,start.length, i -> plus(start[i],duration[i]));

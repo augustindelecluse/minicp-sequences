@@ -46,15 +46,6 @@ public class DFSearchTest {
             public Trail getTrail() {
                 return tr;
             }
-
-            @Override
-            public int registerVar(IntVar x) {
-                return 0;
-            }
-            @Override
-            public int registerConstraint(Constraint c) {
-                return 0;
-            }
         };
     }
 

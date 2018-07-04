@@ -16,17 +16,16 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 
-public class IsLessOrEqual extends BasicConstraint { // b <=> x <= c
+public class IsLessOrEqual implements Constraint { // b <=> x <= c
 
     private final BoolVar b;
     private final IntVar x;
     private final int c;
 
     public IsLessOrEqual(BoolVar b, IntVar x, int c) {
-        super(x.getSolver());
         this.b = b;
         this.x = x;
         this.c = c;

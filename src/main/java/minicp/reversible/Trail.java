@@ -56,5 +56,7 @@ public interface Trail {
 
     public RevBool makeRevBool(boolean initValue);
 
+    public RevMap makeRevMap();
+
 }
 

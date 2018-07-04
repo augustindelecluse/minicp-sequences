@@ -15,16 +15,19 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 
 import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
-public class ShortTableCT extends BasicConstraint {
-    private IntVar[] x; //variables
-    private int[][] table; //the table
+public class ShortTableCT implements Constraint {
+
+    private final Solver cp;
+    private final IntVar[] x; //variables
+    private final int[][] table; //the table
     //supports[i][v] is the set of tuples supported by x[i]=v
     private BitSet[][] supports;
 
@@ -37,9 +40,8 @@ public class ShortTableCT extends BasicConstraint {
      * @param star the symbol representing "any" value in the table
      */
     public ShortTableCT(IntVar[] x, int[][] table, int star) {
-        super(x[0].getSolver());
+        this.cp = x[0].getSolver();
         this.x = x;
-        this.x = new IntVar[x.length];
         this.table = table;
 
         // Allocate supportedByVarVal

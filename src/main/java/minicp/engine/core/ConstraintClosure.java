@@ -16,7 +16,7 @@
 package minicp.engine.core;
 
 
-public class BasicConstraintClosure extends BasicConstraint {
+public class ConstraintClosure implements Constraint {
 
     @FunctionalInterface
     public interface Filtering {
@@ -25,8 +25,7 @@ public class BasicConstraintClosure extends BasicConstraint {
 
     private final Filtering filtering;
 
-    public BasicConstraintClosure(Solver cp, Filtering filtering) {
-        super(cp);
+    public ConstraintClosure(Solver cp, Filtering filtering) {
         this.filtering = filtering;
     }
 

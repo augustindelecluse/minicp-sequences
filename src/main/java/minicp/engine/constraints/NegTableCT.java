@@ -15,15 +15,18 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 
 import java.util.ArrayList;
 import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
-public class NegTableCT extends BasicConstraint {
+public class NegTableCT implements Constraint {
+
+    private Solver cp;
     private IntVar[] x; //variables
     private int[][] table; //the table
     //supports[i][v] is the set of tuples supported by x[i]=v
@@ -38,7 +41,7 @@ public class NegTableCT extends BasicConstraint {
      * @param table array of valid solutions (second dimension must be of same size as the array x)
      */
     public NegTableCT(IntVar[] x, int[][] table) {
-        super(x[0].getSolver());
+        this.cp = x[0].getSolver();
         this.x = new IntVar[x.length];
 
 

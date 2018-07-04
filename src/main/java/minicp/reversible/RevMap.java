@@ -13,26 +13,10 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.engine.core;
+package minicp.reversible;
 
-public abstract class BasicConstraint implements Constraint {
 
-    private final int id;
-    protected final Solver cp;
-
-    public BasicConstraint(Solver cp) {
-        this.cp = cp;
-        id = cp.registerConstraint(this);
-    }
-    public final int getId() {
-        return id;
-    }
-
-    public void post()      {}
-
-    public void propagate() {}
-
-    public void deactivate() {
-        cp.deactivate(this);
-    }
+public interface RevMap<K,V> {
+    public void put(K k, V v);
+    public V get(K k);
 }

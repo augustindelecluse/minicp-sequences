@@ -15,18 +15,20 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 
-public class Minimize extends BasicConstraint {
+public class Minimize implements Constraint {
 
     public int bound = Integer.MAX_VALUE;
-    public final IntVar x;
-    public final DFSearch dfs;
+    private final Solver cp;
+    private final IntVar x;
+    private final DFSearch dfs;
 
     public Minimize(IntVar x, DFSearch dfs) {
-        super(x.getSolver());
+        this.cp = x.getSolver();
         this.x = x;
         this.dfs = dfs;
     }

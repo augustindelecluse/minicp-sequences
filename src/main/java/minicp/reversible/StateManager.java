@@ -19,7 +19,5 @@ import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 
 public interface StateManager {
-    int registerVar(IntVar x);
-    int registerConstraint(Constraint c);
     Trail getTrail();
 }

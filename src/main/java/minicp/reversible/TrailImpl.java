@@ -105,5 +105,11 @@ public class TrailImpl implements Trail {
     public RevBool makeRevBool(boolean initValue) {
         return new ReversibleBool(this, initValue);
     }
+
+    @Override
+    public RevMap makeRevMap() {
+        return new ReversibleMap(this);
+    }
+
 }
 

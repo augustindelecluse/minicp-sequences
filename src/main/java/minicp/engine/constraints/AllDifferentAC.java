@@ -15,7 +15,7 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.util.GraphUtil;
 import minicp.util.GraphUtil.*;
@@ -24,7 +24,7 @@ import minicp.util.InconsistencyException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AllDifferentAC extends BasicConstraint {
+public class AllDifferentAC implements Constraint {
 
     private IntVar[] x;
     private final int nVar;
@@ -54,7 +54,6 @@ public class AllDifferentAC extends BasicConstraint {
     private final MaximumMatching maximumMatching;
 
     public AllDifferentAC(IntVar... x) {
-        super(x[0].getSolver());
         maximumMatching = new MaximumMatching(x);
         match = new int[x.length];
         this.x = x;

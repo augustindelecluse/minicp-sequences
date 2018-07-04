@@ -17,8 +17,9 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 import minicp.util.InconsistencyException;
 
 
@@ -27,11 +28,12 @@ import java.util.Comparator;
 
 import static minicp.cp.Factory.*;
 
-public class Disjunctive extends BasicConstraint {
+public class Disjunctive implements Constraint {
 
     private final IntVar[] start;
     private final int[] duration;
     private final IntVar[] end;
+    private final Solver cp;
 
     private final Integer [] permEst;
     private final int[] rankEst;
@@ -52,7 +54,7 @@ public class Disjunctive extends BasicConstraint {
     }
 
     private Disjunctive(IntVar[] start, int[] duration, boolean postMirror)  {
-        super(start[0].getSolver());
+        this.cp = start[0].getSolver();
         this.postMirror = postMirror;
         this.start = start;
         this.duration = duration;
@@ -125,9 +127,6 @@ public class Disjunctive extends BasicConstraint {
         overLoadChecker();
         while (detectablePrecedence()) {}
         //while (notLast()) {}
-
-        super.propagate();
-
 
     }
 

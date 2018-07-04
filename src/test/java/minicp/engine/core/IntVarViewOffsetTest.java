@@ -89,7 +89,7 @@ public class IntVarViewOffsetTest {
         IntVar x = plus(makeIntVar(cp,10),1); // 1..11
         IntVar y = plus(makeIntVar(cp,10),1); // 1..11
 
-        Constraint cons = new BasicConstraint(cp) {
+        Constraint cons = new Constraint() {
 
             @Override
             public void post() {
@@ -128,7 +128,7 @@ public class IntVarViewOffsetTest {
         IntVar x = plus(makeIntVar(cp, 10),1);
         IntVar y = plus(makeIntVar(cp, 10),1);
 
-        Constraint cons = new BasicConstraint(cp) {
+        Constraint cons = new Constraint() {
 
             @Override
             public void post() {

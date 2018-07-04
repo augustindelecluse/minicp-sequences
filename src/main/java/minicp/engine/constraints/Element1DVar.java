@@ -1,10 +1,12 @@
 package minicp.engine.constraints;
 
-import minicp.engine.core.BasicConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.engine.core.Solver;
 
-public class Element1DVar extends BasicConstraint {
+public class Element1DVar implements Constraint {
 
+    private final Solver cp;
     private final IntVar[] T;
     private final IntVar y;
     private final IntVar z;
@@ -17,7 +19,7 @@ public class Element1DVar extends BasicConstraint {
     int zMax;
 
     public Element1DVar(IntVar[] T, IntVar y, IntVar z) {
-        super(y.getSolver());
+        this.cp = y.getSolver();
         this.T = T;
         this.y = y;
         this.z = z;
