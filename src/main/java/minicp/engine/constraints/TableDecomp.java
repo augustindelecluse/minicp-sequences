@@ -15,10 +15,11 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 
-public class TableDecomp implements Constraint {
+public class TableDecomp extends AbstractConstraint {
     private final IntVar[] x;
     private final int[][] table;
 
@@ -30,6 +31,7 @@ public class TableDecomp implements Constraint {
      * @param table array of valid solutions (second dimension must be of same size as the array x)
      */
     public TableDecomp(IntVar[] x, int[][] table) {
+        super(x[0].getSolver());
         this.x = x;
         this.table = table;
     }

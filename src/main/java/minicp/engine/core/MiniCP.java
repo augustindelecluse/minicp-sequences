@@ -1,6 +1,5 @@
 package minicp.engine.core;
 
-import minicp.cp.Factory;
 import minicp.reversible.*;
 import minicp.util.InconsistencyException;
 
@@ -11,53 +10,15 @@ import java.util.Queue;
 public class MiniCP implements Solver {
 
     private TrailImpl trail = new TrailImpl();
-    private Queue<ConstraintState> propagationQueue = new ArrayDeque<>();
+    private Queue<Constraint> propagationQueue = new ArrayDeque<>();
 
-    private RevMap<Constraint,ConstraintState> constraints = trail.makeRevMap();
     private ReversibleStack<IntVar> vars = new ReversibleStack<>(this);
 
-    class ConstraintState {
-
-        final Constraint c;
-        boolean scheduled;
-        RevBool active;
-
-        public ConstraintState(Constraint c) {
-            this.c = c;
-            active = Factory.makeRevBool(MiniCP.this,true);
-            scheduled = false;
-        }
-
-        public void propagate() {
-            scheduled = false;
-            if (active.getValue())
-                c.propagate();
-        }
-
-        public boolean canSchedule() {
-            return !scheduled && active.getValue();
-        }
-
-        public void deactivate() {
-            active.setValue(false);
-        }
-
-    }
-
     public void schedule(Constraint c) {
-        ConstraintState cs = constraints.get(c);
-        if (cs.canSchedule()) {
-            cs.scheduled = true;
-            propagationQueue.add(cs);
+        if (c.isActive() && !c.isScheduled()) {
+            c.setScheduled(true);
+            propagationQueue.add(c);
         }
-    }
-
-    private void clear(ConstraintState cs) {
-        cs.scheduled = false;
-    }
-
-    public void deactivate(Constraint c) {
-        constraints.get(c).deactivate();
     }
 
     public int registerVar(IntVar x) {
@@ -72,12 +33,17 @@ public class MiniCP implements Solver {
 
     public void fixPoint() {
         try {
-            while (propagationQueue.size() > 0)
-                propagationQueue.remove().propagate();
+            while (!propagationQueue.isEmpty()) {
+                Constraint c = propagationQueue.remove();
+                c.setScheduled(false);
+                if (c.isActive()) {
+                    c.propagate();
+                }
+            }
         } catch (InconsistencyException e) {
             // empty the queue and unset the scheduled status
-            while (propagationQueue.size() > 0)
-                clear(propagationQueue.remove());
+            while (!propagationQueue.isEmpty())
+                propagationQueue.remove().setScheduled(false);
             throw e;
         }
     }
@@ -87,7 +53,6 @@ public class MiniCP implements Solver {
     }
 
     public void post(Constraint c, boolean enforceFixPoint)  {
-        constraints.put(c,new ConstraintState(c));
         c.post();
         if (enforceFixPoint) fixPoint();
     }

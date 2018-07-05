@@ -15,13 +15,13 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 
-public class ShortTableDecomp implements Constraint {
+public class ShortTableDecomp extends AbstractConstraint {
 
-    private final Solver cp;
     private final IntVar[] x;
     private final int[][] table;
     private final int star; // considered as *
@@ -35,7 +35,7 @@ public class ShortTableDecomp implements Constraint {
      * @param star the symbol representing "any" value in the table
      */
     public ShortTableDecomp(IntVar[] x, int[][] table, int star) {
-        this.cp = x[0].getSolver();
+        super(x[0].getSolver());
         this.x = x;
         this.table = table;
         this.star = star;

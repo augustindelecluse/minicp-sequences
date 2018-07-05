@@ -122,7 +122,7 @@ public class Steel {
 
 
             // TODO: model the objective function using element constraint + a sum constraint
-            IntVar[] losses = makeIntVarArray(cp, nSlab, j -> element(loss, l[j]));
+            IntVar[] losses = makeIntVarArray(nSlab, j -> element(loss, l[j]));
             IntVar totLoss = sum(losses);
 
             //DFSearch dfs = makeDfs(cp,firstFail(x));

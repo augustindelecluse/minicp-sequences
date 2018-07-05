@@ -16,14 +16,14 @@
 package minicp.engine.constraints;
 
 import minicp.cp.Factory;
+import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.Solver;
 import minicp.reversible.RevInt;
 
-public class IsOr implements Constraint { // b <=> x1 or x2 or ... xn
+public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
 
-    private final Solver cp;
     private final BoolVar b;
     private final BoolVar[] x;
     private final int n;
@@ -34,7 +34,7 @@ public class IsOr implements Constraint { // b <=> x1 or x2 or ... xn
     private final Or or;
 
     public IsOr(BoolVar b, BoolVar[] x) {
-        this.cp = b.getSolver();
+        super(b.getSolver());
         this.b = b;
         this.x = x;
         this.n = x.length;
@@ -58,13 +58,13 @@ public class IsOr implements Constraint { // b <=> x1 or x2 or ... xn
     @Override
     public void propagate() {
         if (b.isTrue()) {
-            cp.deactivate(this);
+            setActive(false);
             cp.post(or, false);
         } else if (b.isFalse()) {
             for (BoolVar xi : x) {
                 xi.assign(false);
             }
-            cp.deactivate(this);
+            setActive(false);
         } else {
             int nU = nUnBounds.getValue();
             for (int i = nU - 1; i >= 0; i--) {
@@ -73,7 +73,7 @@ public class IsOr implements Constraint { // b <=> x1 or x2 or ... xn
                 if (y.isBound()) {
                     if (y.isTrue()) {
                         b.assign(true);
-                        cp.deactivate(this);
+                        setActive(false);
                         return;
                     }
                     // Swap the variable
@@ -84,7 +84,7 @@ public class IsOr implements Constraint { // b <=> x1 or x2 or ... xn
             }
             if (nU == 0) {
                 b.assign(false);
-                cp.deactivate(this);
+                setActive(false);
             }
             nUnBounds.setValue(nU);
         }

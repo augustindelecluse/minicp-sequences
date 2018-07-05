@@ -39,11 +39,11 @@ public class NQueensPerformance {
                 cp.post(notEqual(q[i],q[j],i-j));
             }*/
 
-        for(int i=0;i < n;i++)
-            for(int j=i+1;j < n;j++) {
-                cp.post(notEqual(q[i],q[j]));
-                cp.post(notEqual(plus(q[i],j-i),q[j]));
-                cp.post(notEqual(minus(q[i],j-i),q[j]));
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++) {
+                cp.post(notEqual(q[i], q[j]));
+                cp.post(notEqual(plus(q[i], j - i), q[j]));
+                cp.post(notEqual(minus(q[i], j - i), q[j]));
             }
 
 
@@ -65,7 +65,7 @@ public class NQueensPerformance {
                //System.out.println("failures:"+statistics.nFailures);
                System.out.println("nodes:"+(statistics.nNodes/2));
            }
-           return /*statistics.nFailures > 100000 ||*/ statistics.nSolutions > 0;
+           return statistics.nFailures > 100000 || statistics.nSolutions > 0;
         });
 
         System.out.println("time:"+(System.currentTimeMillis()-t0));

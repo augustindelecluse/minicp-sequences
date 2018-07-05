@@ -37,10 +37,10 @@ public class NQueensPhase {
         Solver cp = makeSolver();
 
         IntVar[] q = makeIntVarArray(cp, n, n);
-        IntVar[] ql = makeIntVarArray(cp,n,i -> plus(q[i],i));
-        IntVar[] qr = makeIntVarArray(cp,n,i -> plus(q[i],-i));
-        IntVar[]  q1 = makeIntVarArray(cp,n/2,i -> q[i]);
-        IntVar[]  q2 = makeIntVarArray(cp,n/2,i -> q[i+4]);
+        IntVar[] ql = makeIntVarArray(n,i -> plus(q[i],i));
+        IntVar[] qr = makeIntVarArray(n,i -> plus(q[i],-i));
+        IntVar[]  q1 = makeIntVarArray(n/2,i -> q[i]);
+        IntVar[]  q2 = makeIntVarArray(n/2,i -> q[i+4]);
 
         cp.post(allDifferent(q));
         cp.post(allDifferent(ql));

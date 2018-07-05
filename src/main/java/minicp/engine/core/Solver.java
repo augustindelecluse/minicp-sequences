@@ -28,7 +28,6 @@ import java.util.Vector;
 public interface Solver extends StateManager {
     void post(Constraint c);
     void schedule(Constraint c);
-    void deactivate(Constraint c);
     void post(Constraint c, boolean enforceFixPoint);
     void fixPoint();
     // ugly

@@ -16,6 +16,7 @@
 package minicp.engine.constraints;
 
 import minicp.cp.Factory;
+import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.Solver;
@@ -23,9 +24,8 @@ import minicp.reversible.RevInt;
 
 import static minicp.util.InconsistencyException.*;
 
-public class Or implements Constraint { // x1 or x2 or ... xn
+public class Or extends AbstractConstraint { // x1 or x2 or ... xn
 
-    private final Solver cp;
     private final BoolVar [] x;
     private final int n;
     private RevInt wL ; // watched literal left
@@ -33,7 +33,7 @@ public class Or implements Constraint { // x1 or x2 or ... xn
 
 
     public Or(BoolVar [] x) {
-        cp = x[0].getSolver();
+        super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
         wL = Factory.makeRevInt(cp,0);
@@ -52,7 +52,7 @@ public class Or implements Constraint { // x1 or x2 or ... xn
         int i = wL.getValue();
         while (i < n && x[i].isBound()) {
             if (x[i].isTrue()) {
-                cp.deactivate(this);
+                setActive(false);
                 return;
             }
             i += 1;
@@ -61,7 +61,7 @@ public class Or implements Constraint { // x1 or x2 or ... xn
         i = wR.getValue();
         while (i >= 0 && x[i].isBound() && i >= wL.getValue()) {
             if (x[i].isTrue()) {
-                cp.deactivate(this);
+                setActive(false);
                 return;
             }
             i -= 1;
@@ -73,7 +73,7 @@ public class Or implements Constraint { // x1 or x2 or ... xn
         }
         else if (wL.getValue() == wR.getValue()) { // only one unassigned var
             x[wL.getValue()].assign(true);
-            cp.deactivate(this);
+            setActive(false);
         }
         else {
             assert(wL.getValue() != wR.getValue());

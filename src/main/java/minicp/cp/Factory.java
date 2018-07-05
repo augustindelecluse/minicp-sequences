@@ -114,7 +114,7 @@ public class Factory {
         IntVar call(int i);
     }
 
-    static public IntVar[] makeIntVarArray(StateManager cp, int n, BodyClosure body) {
+    static public IntVar[] makeIntVarArray(int n, BodyClosure body) {
         IntVar[] rv = new IntVar[n];
         for (int i = 0; i < n; i++)
             rv[i] = body.call(i);

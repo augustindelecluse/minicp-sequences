@@ -40,8 +40,8 @@ public class NQueens {
 
 
         cp.post(Factory.allDifferentAC(q));
-        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(cp,n, i -> Factory.minus(q[i],i))));
-        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(cp,n, i -> Factory.plus(q[i],i))));
+        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(n, i -> Factory.minus(q[i],i))));
+        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(n, i -> Factory.plus(q[i],i))));
 
 
         DFSearch search = Factory.makeDfs(cp,

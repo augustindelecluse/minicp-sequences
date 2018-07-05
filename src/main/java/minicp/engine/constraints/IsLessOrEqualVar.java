@@ -15,16 +15,12 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
-import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
+import minicp.engine.core.*;
 
 import static minicp.cp.Factory.*;
 
-public class IsLessOrEqualVar implements Constraint { // b <=> x <= y
+public class IsLessOrEqualVar extends AbstractConstraint { // b <=> x <= y
 
-    private final Solver cp;
     private final BoolVar b;
     private final IntVar x;
     private final IntVar y;
@@ -33,7 +29,7 @@ public class IsLessOrEqualVar implements Constraint { // b <=> x <= y
     private final Constraint grC;
 
     public IsLessOrEqualVar(BoolVar b, IntVar x, IntVar y) {
-        this.cp = x.getSolver();
+        super(x.getSolver());
         this.b = b;
         this.x = x;
         this.y = y;
@@ -54,17 +50,17 @@ public class IsLessOrEqualVar implements Constraint { // b <=> x <= y
     public void propagate()  {
         if (b.isTrue()) {
             cp.post(lEqC,false);
-            cp.deactivate(this);
+            setActive(false);
         } else if (b.isFalse()) {
             cp.post(grC,false);
-            cp.deactivate(this);
+            setActive(false);
         } else {
             if (x.getMax() <= y.getMin()) {
                 b.assign(1);
-                cp.deactivate(this);
+                setActive(false);
             } else if (x.getMin() > y.getMax()) {
                 b.assign(0);
-                cp.deactivate(this);
+                setActive(false);
             }
         }
     }

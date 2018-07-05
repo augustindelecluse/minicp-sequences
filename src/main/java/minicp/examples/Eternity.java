@@ -82,13 +82,13 @@ public class Eternity {
         IntVar[][] l = new IntVar[n][m];  // left
 
         for (int i = 0; i < n; i++) {
-            u[i] = makeIntVarArray(cp,m,j -> makeIntVar(cp,0,max));
+            u[i] = makeIntVarArray(m,j -> makeIntVar(cp,0,max));
             id[i] = makeIntVarArray(cp,m,n*m);
         }
         for (int k = 0; k < n; k++) {
             final int i = k;
             if (i < n-1) d[i] = u[i+1];
-            else d[i] = makeIntVarArray(cp,m,j -> makeIntVar(cp,0,max));
+            else d[i] = makeIntVarArray(m,j -> makeIntVar(cp,0,max));
         }
         for (int j = 0; j < m; j++) {
             for (int i = 0; i < n; i++) {

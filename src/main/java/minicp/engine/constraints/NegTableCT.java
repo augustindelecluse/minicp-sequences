@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -24,7 +25,7 @@ import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
-public class NegTableCT implements Constraint {
+public class NegTableCT extends AbstractConstraint {
 
     private Solver cp;
     private IntVar[] x; //variables
@@ -41,7 +42,7 @@ public class NegTableCT implements Constraint {
      * @param table array of valid solutions (second dimension must be of same size as the array x)
      */
     public NegTableCT(IntVar[] x, int[][] table) {
-        this.cp = x[0].getSolver();
+        super(x[0].getSolver());
         this.x = new IntVar[x.length];
 
 

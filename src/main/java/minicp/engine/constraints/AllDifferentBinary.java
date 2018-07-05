@@ -15,17 +15,17 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 
-public class AllDifferentBinary implements Constraint {
+public class AllDifferentBinary extends AbstractConstraint {
 
     private IntVar [] x;
-    private Solver cp;
 
     public AllDifferentBinary(IntVar ... x) {
-        this.cp = x[0].getSolver();
+        super(x[0].getSolver());
         this.x = x;
     }
 

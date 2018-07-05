@@ -16,30 +16,26 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
-import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
+import minicp.engine.core.*;
 
 import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
 
-public class CumulativeDecomposition implements Constraint {
+public class CumulativeDecomposition extends AbstractConstraint {
 
     private final IntVar[] start;
     private final int[] duration;
     private final IntVar[] end;
     private final int[] demand;
     private final int capa;
-    private final Solver cp;
 
 
     public CumulativeDecomposition(IntVar[] start, int[] duration, int[] demand, int capa)  {
-        this.cp = start[0].getSolver();
+        super(start[0].getSolver());
         this.start = start;
         this.duration = duration;
-        this.end = makeIntVarArray(cp,start.length, i -> plus(start[i],duration[i]));
+        this.end = makeIntVarArray(start.length, i -> plus(start[i],duration[i]));
         this.demand = demand;
         this.capa = capa;
     }
@@ -66,7 +62,7 @@ public class CumulativeDecomposition implements Constraint {
                 cp.post(new IsLessOrEqual(overlaps[i],minus(sum(new IntVar[]{startsBefore,endsAfter})),-2));
             }
 
-            IntVar[] overlapHeights = makeIntVarArray(cp,start.length,i -> mul(overlaps[i],demand[i]));
+            IntVar[] overlapHeights = makeIntVarArray(start.length,i -> mul(overlaps[i],demand[i]));
             IntVar cumHeight = sum(overlapHeights);
             cumHeight.removeAbove(capa);
 

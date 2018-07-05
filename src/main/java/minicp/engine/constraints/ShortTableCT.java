@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -23,9 +24,8 @@ import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
-public class ShortTableCT implements Constraint {
+public class ShortTableCT extends AbstractConstraint {
 
-    private final Solver cp;
     private final IntVar[] x; //variables
     private final int[][] table; //the table
     //supports[i][v] is the set of tuples supported by x[i]=v
@@ -40,7 +40,7 @@ public class ShortTableCT implements Constraint {
      * @param star the symbol representing "any" value in the table
      */
     public ShortTableCT(IntVar[] x, int[][] table, int star) {
-        this.cp = x[0].getSolver();
+        super(x[0].getSolver());
         this.x = x;
         this.table = table;
 

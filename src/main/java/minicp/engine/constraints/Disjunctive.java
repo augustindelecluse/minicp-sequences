@@ -16,10 +16,7 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
-import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
+import minicp.engine.core.*;
 import minicp.util.InconsistencyException;
 
 
@@ -28,12 +25,11 @@ import java.util.Comparator;
 
 import static minicp.cp.Factory.*;
 
-public class Disjunctive implements Constraint {
+public class Disjunctive extends AbstractConstraint {
 
     private final IntVar[] start;
     private final int[] duration;
     private final IntVar[] end;
-    private final Solver cp;
 
     private final Integer [] permEst;
     private final int[] rankEst;
@@ -54,11 +50,11 @@ public class Disjunctive implements Constraint {
     }
 
     private Disjunctive(IntVar[] start, int[] duration, boolean postMirror)  {
-        this.cp = start[0].getSolver();
+        super(start[0].getSolver());
         this.postMirror = postMirror;
         this.start = start;
         this.duration = duration;
-        this.end = makeIntVarArray(cp,start.length, i -> plus(start[i],duration[i]));
+        this.end = makeIntVarArray(start.length, i -> plus(start[i],duration[i]));
         permEst = new Integer[start.length];
         rankEst = new int[start.length];
         permLct = new Integer[start.length];
@@ -113,7 +109,7 @@ public class Disjunctive implements Constraint {
             }
 
 
-            IntVar[] startMirror = makeIntVarArray(cp, start.length, i -> minus(end[i]));
+            IntVar[] startMirror = makeIntVarArray(start.length, i -> minus(end[i]));
             cp.post(new Disjunctive(startMirror, duration, false), false);
 
             propagate();
