@@ -27,6 +27,7 @@ import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class Factory {
@@ -103,29 +104,18 @@ public class Factory {
 
     // Factory
     static public IntVar[] makeIntVarArray(Solver cp, int n, int sz) {
-        IntVar[] rv = new IntVar[n];
-        for (int i = 0; i < n; i++)
-            rv[i] = makeIntVar(cp, sz);
-        return rv;
+        return makeIntVarArray(n, i -> makeIntVar(cp,sz));
     }
 
-    @FunctionalInterface
-    public interface BodyClosure {
-        IntVar call(int i);
+    static public IntVar[] makeIntVarArray(int n, Function<Integer,IntVar> body) {
+        return makeIntVarArray(0,n-1,body);
     }
 
-    static public IntVar[] makeIntVarArray(int n, BodyClosure body) {
-        IntVar[] rv = new IntVar[n];
-        for (int i = 0; i < n; i++)
-            rv[i] = body.call(i);
-        return rv;
-    }
-
-    static public IntVar[] all(int low, int up, BodyClosure body) {
+    static public IntVar[] makeIntVarArray(int low, int up, Function<Integer,IntVar> body) {
         int sz = up - low + 1;
         IntVar[] t = new IntVar[sz];
         for (int i = low; i <= up; i++)
-            t[i - low] = body.call(i);
+            t[i - low] = body.apply(i);
         return t;
     }
 

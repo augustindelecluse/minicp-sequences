@@ -15,6 +15,7 @@
 
 package minicp.examples;
 
+import minicp.cp.Factory;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.SearchStatistics;
@@ -37,10 +38,10 @@ public class NQueensPhase {
         Solver cp = makeSolver();
 
         IntVar[] q = makeIntVarArray(cp, n, n);
-        IntVar[] ql = makeIntVarArray(n,i -> plus(q[i],i));
-        IntVar[] qr = makeIntVarArray(n,i -> plus(q[i],-i));
-        IntVar[]  q1 = makeIntVarArray(n/2,i -> q[i]);
-        IntVar[]  q2 = makeIntVarArray(n/2,i -> q[i+4]);
+        IntVar[] ql = Factory.makeIntVarArray(n, i -> plus(q[i],i));
+        IntVar[] qr = Factory.makeIntVarArray(n, i -> plus(q[i],-i));
+        IntVar[]  q1 = Factory.makeIntVarArray(n/2, i -> q[i]);
+        IntVar[]  q2 = Factory.makeIntVarArray(n/2, i -> q[i+4]);
 
         cp.post(allDifferent(q));
         cp.post(allDifferent(ql));

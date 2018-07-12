@@ -16,6 +16,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.cp.Factory;
 import minicp.engine.core.*;
 
 import java.util.Arrays;
@@ -35,7 +36,7 @@ public class CumulativeDecomposition extends AbstractConstraint {
         super(start[0].getSolver());
         this.start = start;
         this.duration = duration;
-        this.end = makeIntVarArray(start.length, i -> plus(start[i],duration[i]));
+        this.end = Factory.makeIntVarArray(start.length, i -> plus(start[i],duration[i]));
         this.demand = demand;
         this.capa = capa;
     }
@@ -62,7 +63,7 @@ public class CumulativeDecomposition extends AbstractConstraint {
                 cp.post(new IsLessOrEqual(overlaps[i],minus(sum(new IntVar[]{startsBefore,endsAfter})),-2));
             }
 
-            IntVar[] overlapHeights = makeIntVarArray(start.length,i -> mul(overlaps[i],demand[i]));
+            IntVar[] overlapHeights = Factory.makeIntVarArray(start.length, i -> mul(overlaps[i],demand[i]));
             IntVar cumHeight = sum(overlapHeights);
             cumHeight.removeAbove(capa);
 

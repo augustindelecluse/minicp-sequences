@@ -15,6 +15,7 @@
 
 package minicp.examples;
 
+import minicp.cp.Factory;
 import minicp.engine.constraints.AllDifferentAC;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -43,8 +44,8 @@ public class NQueensVerbose {
 
 
         cp.post(new AllDifferentAC(q));
-        cp.post(new AllDifferentAC( makeIntVarArray(n, i -> minus(q[i],i))));
-        cp.post(new AllDifferentAC( makeIntVarArray(n, i -> plus(q[i],i))));
+        cp.post(new AllDifferentAC( Factory.makeIntVarArray(n, i -> minus(q[i],i))));
+        cp.post(new AllDifferentAC( Factory.makeIntVarArray(n, i -> plus(q[i],i))));
 
 
         DFSearch dfs = makeDfs(cp, () -> {

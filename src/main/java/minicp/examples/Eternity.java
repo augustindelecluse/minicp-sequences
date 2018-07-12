@@ -15,6 +15,7 @@
 
 package minicp.examples;
 
+import minicp.cp.Factory;
 import minicp.engine.constraints.TableDecomp;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -57,7 +58,7 @@ public class Eternity {
 
         // ------------------------
 
-        // Table with all pieces and for each their 4 possible rotations
+        // Table with makeIntVarArray pieces and for each their 4 possible rotations
 
         int [][] table = new int[4*n*m][5];
 
@@ -82,13 +83,13 @@ public class Eternity {
         IntVar[][] l = new IntVar[n][m];  // left
 
         for (int i = 0; i < n; i++) {
-            u[i] = makeIntVarArray(m,j -> makeIntVar(cp,0,max));
+            u[i] = Factory.makeIntVarArray(m, j -> makeIntVar(cp,0,max));
             id[i] = makeIntVarArray(cp,m,n*m);
         }
         for (int k = 0; k < n; k++) {
             final int i = k;
             if (i < n-1) d[i] = u[i+1];
-            else d[i] = makeIntVarArray(m,j -> makeIntVar(cp,0,max));
+            else d[i] = Factory.makeIntVarArray(m, j -> makeIntVar(cp,0,max));
         }
         for (int j = 0; j < m; j++) {
             for (int i = 0; i < n; i++) {
@@ -104,10 +105,10 @@ public class Eternity {
 
         // The constraints of the problem
 
-        // all the pieces placed are different
+        // makeIntVarArray the pieces placed are different
         cp.post(allDifferent(flatten(id)));
 
-        // all the pieces placed are valid one (one of the given mxn piece possibly rotated)
+        // makeIntVarArray the pieces placed are valid one (one of the given mxn piece possibly rotated)
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 //cp.post(new TableCT(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
