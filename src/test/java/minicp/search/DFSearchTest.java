@@ -46,6 +46,11 @@ public class DFSearchTest {
             public Trail getTrail() {
                 return tr;
             }
+            public void withNewState(Body body) {
+                tr.push();
+                body.call();
+                tr.pop();
+            }
         };
     }
 
