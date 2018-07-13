@@ -15,6 +15,7 @@
 
 package minicp.examples;
 
+import minicp.cp.Factory;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.Branch;
@@ -30,23 +31,25 @@ public class MagicSerieVerbose {
     public static void main(String[] args) {
 
         int n = 8;
+        int[] pos = new int[n];
+        for (int i = 0; i < n; i++) pos[i] = n;
+
         Solver cp = makeSolver();
 
         IntVar[] s = makeIntVarArray(cp, n, n);
 
-        for (int i = 0; i < n; i++) {
-            final int fi = i;
-            cp.post(sum(all(0, n - 1, j -> isEqual(s[j], fi)), s[i]));
+        for (int i : pos) {
+            cp.post(sum(makeIntVarArray(n, j -> isEqual(s[j], i)), s[i]));
         }
 
         cp.post(sum(s, n));
-        cp.post(sum(all(0, n - 1, i -> mul(s[i], i)), n));
+        cp.post(sum(makeIntVarArray(n, i -> mul(s[i], i)), n));
 
 
         long t0 = System.currentTimeMillis();
         DFSearch dfs = makeDfs(cp, () -> {
             int idx = -1; // index of the first variable that is not bound
-            for (int k = 0; k < s.length; k++)
+            for (int k: pos)
                 if (s[k].getSize() > 1) {
                     idx = k;
                     break;

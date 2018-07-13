@@ -53,7 +53,7 @@ public class CumulativeDecompTest {
             cp.post(new CumulativeDecomposition(s,d,r,100));
 
             SearchStatistics stats = makeDfs(cp,firstFail(s)).solve();
-            assertEquals("cumulative alldiff expect all permutations",120, stats.nSolutions);
+            assertEquals("cumulative alldiff expect makeIntVarArray permutations",120, stats.nSolutions);
 
         } catch (InconsistencyException e) {
             assert (false);

@@ -15,6 +15,7 @@
 
 package minicp.examples;
 
+import minicp.cp.Factory;
 import minicp.engine.constraints.IsOr;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
@@ -122,7 +123,7 @@ public class Steel {
 
 
             // TODO: model the objective function using element constraint + a sum constraint
-            IntVar[] losses = makeIntVarArray(nSlab, j -> element(loss, l[j]));
+            IntVar[] losses = Factory.makeIntVarArray(nSlab, j -> element(loss, l[j]));
             IntVar totLoss = sum(losses);
 
             //DFSearch dfs = makeDfs(cp,firstFail(x));

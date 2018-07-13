@@ -16,6 +16,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.cp.Factory;
 import minicp.engine.core.*;
 import minicp.util.InconsistencyException;
 
@@ -54,7 +55,7 @@ public class Disjunctive extends AbstractConstraint {
         this.postMirror = postMirror;
         this.start = start;
         this.duration = duration;
-        this.end = makeIntVarArray(start.length, i -> plus(start[i],duration[i]));
+        this.end = Factory.makeIntVarArray(start.length, i -> plus(start[i],duration[i]));
         permEst = new Integer[start.length];
         rankEst = new int[start.length];
         permLct = new Integer[start.length];
@@ -109,7 +110,7 @@ public class Disjunctive extends AbstractConstraint {
             }
 
 
-            IntVar[] startMirror = makeIntVarArray(start.length, i -> minus(end[i]));
+            IntVar[] startMirror = Factory.makeIntVarArray(start.length, i -> minus(end[i]));
             cp.post(new Disjunctive(startMirror, duration, false), false);
 
             propagate();

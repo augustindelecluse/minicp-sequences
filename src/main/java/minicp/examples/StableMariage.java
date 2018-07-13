@@ -32,11 +32,11 @@ import static minicp.cp.Heuristics.firstFail;
 
 /**
  * Stable Marriage problem:
- * Given n men and n women, where each person has ranked all members
+ * Given n men and n women, where each person has ranked makeIntVarArray members
  * of the opposite sex with a unique number between 1 and n in order of preference,
  * marry the men and women together such that there are no two people of opposite sex
  * who would both rather have each other than their current partners.
- * If there are no such people, all the marriages are "stable".
+ * If there are no such people, makeIntVarArray the marriages are "stable".
  * Wikipedia: http://en.wikipedia.org/wiki/Stable_marriage_problem
  */
 public class StableMariage {
