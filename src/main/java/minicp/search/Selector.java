@@ -28,13 +28,8 @@ public class Selector {
     public static Procedure[] branch(Procedure... branches) {
         return branches;
     }
-
-    @FunctionalInterface
-    public interface ChoicePoint<T> {
-        Procedure[] call(T x);
-    }
-
-    public static <T,N extends Comparable<N> > Supplier<Procedure[]> selectMin(T[] x, Predicate<T> p, Function<T,N> f, ChoicePoint<T> body) {
+    
+    public static <T,N extends Comparable<N> > Supplier<Procedure[]> selectMin(T[] x, Predicate<T> p, Function<T,N> f, Function<T,Procedure[]> body) {
         return () -> {
             T sel = null;
             for (T xi : x) {
@@ -45,7 +40,7 @@ public class Selector {
             if (sel == null) {
                 return EMPTY;
             } else {
-                return body.call(sel);
+                return body.apply(sel);
             }
         };
     }
