@@ -21,26 +21,17 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 
 public class NotEqual extends AbstractConstraint {
-
     private final IntVar x, y;
     private final int c;
-
-    public static int id = 0;
-    private int hash;
-
     public NotEqual(IntVar x, IntVar y, int c) { // x != y + c
         super(x.getSolver());
         this.x = x;
         this.y = y;
         this.c = c;
-        id++;
-        hash = id;
     }
-
     public NotEqual(IntVar x, IntVar y) { // x != y
         this(x,y,0);
     }
-
     @Override
     public void post()  {
         if (y.isBound())
@@ -50,12 +41,8 @@ public class NotEqual extends AbstractConstraint {
         else {
             x.propagateOnBind(this);
             y.propagateOnBind(this);
-
-            //x.propagateOnBind(() -> y.remove(x.getMin() - c));
-            //y.propagateOnBind(() -> x.remove(y.getMin() + c));
         }
     }
-
     @Override
     public void propagate()  {
         if (y.isBound())
@@ -63,13 +50,4 @@ public class NotEqual extends AbstractConstraint {
         else y.remove(x.getMin() - c);
         setActive(false);
     }
-
-    /*
-
-    @Override
-    public int hashCode() {
-        return hash;
-    }*/
-
-
 }

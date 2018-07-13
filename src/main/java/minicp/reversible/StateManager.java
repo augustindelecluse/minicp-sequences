@@ -20,4 +20,9 @@ import minicp.engine.core.IntVar;
 
 public interface StateManager {
     Trail getTrail();
+    @FunctionalInterface
+    public interface Body {
+        void call();
+    }
+    void withNewState(Body body);
 }

@@ -26,7 +26,7 @@ public class DFSearch {
 
     private BranchingScheme branching;
     private Trail trail;
-
+    private StateManager sm;
     private List<SolutionListener> solutionListeners = new LinkedList<SolutionListener>();
     private List<FailListener> failListeners = new LinkedList<FailListener>();
 
@@ -59,6 +59,7 @@ public class DFSearch {
     }
 
     public DFSearch(StateManager sm, BranchingScheme branching) {
+        this.sm    = sm;
         this.trail = sm.getTrail();
         this.branching = branching;
     }
@@ -145,16 +146,17 @@ public class DFSearch {
         }
         else {
             for (Branch b : branches) {
-                trail.push();
-                try {
-                    statistics.nNodes++;
-                    b.call();
-                    dfs2(statistics,limit);
-                } catch (InconsistencyException e) {
-                    notifyFailure();
-                    statistics.nFailures++;
-                }
-                trail.pop();
+                sm.withNewState( ()-> {
+                        try {
+                            statistics.nNodes++;
+                            b.call();
+                            dfs2(statistics,limit);
+                        } catch (InconsistencyException e) {
+                            notifyFailure();
+                            statistics.nFailures++;
+                        }
+                    }
+                    );
             }
         }
     }

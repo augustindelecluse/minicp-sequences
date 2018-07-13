@@ -61,4 +61,11 @@ public class MiniCP implements Solver {
         b.assign(true);
         fixPoint();
     }
+    
+    public void withNewState(Body body) {
+        trail.push();
+        body.call();
+        trail.pop();
+    }
+
 }
