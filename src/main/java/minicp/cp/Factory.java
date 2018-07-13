@@ -245,11 +245,9 @@ public class Factory {
     static public Constraint sum(IntVar[] x, IntVar y)  {
         return new Sum(x,y);
     }
-
     static public Constraint sum(IntVar[] x, int y)  {
         return new Sum(x,y);
     }
-
     static public Constraint allDifferent(IntVar[] x)  {
         return new AllDifferentBinary(x);
     }

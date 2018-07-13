@@ -2,6 +2,7 @@ package minicp.engine.core;
 
 import minicp.reversible.*;
 import minicp.util.InconsistencyException;
+import minicp.util.Procedure;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -56,16 +57,13 @@ public class MiniCP implements Solver {
         c.post();
         if (enforceFixPoint) fixPoint();
     }
-
     public void post(BoolVar b) {
         b.assign(true);
         fixPoint();
-    }
-    
-    public void withNewState(Body body) {
+    }    
+    public void withNewState(Procedure body) {
         trail.push();
         body.call();
         trail.pop();
     }
-
 }

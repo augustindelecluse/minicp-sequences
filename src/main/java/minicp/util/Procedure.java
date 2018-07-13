@@ -12,14 +12,27 @@
  *
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
+package minicp.util;
 
-package minicp.reversible;
-
-import minicp.util.Procedure;
-import minicp.engine.core.Constraint;
-import minicp.engine.core.IntVar;
-
-public interface StateManager {
-    Trail getTrail();
-    void withNewState(Procedure body);
+@FunctionalInterface
+public interface Procedure {
+    void call();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
