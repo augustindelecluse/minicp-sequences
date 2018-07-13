@@ -15,19 +15,22 @@
 
 package minicp.search;
 
+import minicp.util.Procedure;
 
-public class BranchingSchemeCombinator implements BranchingScheme {
+import java.util.function.Supplier;
 
-    private BranchingScheme[] choices;
+public class BranchingSchemeCombinator implements Supplier<Procedure[]> {
 
-    public BranchingSchemeCombinator(BranchingScheme... choices) {
+    private Supplier<Procedure[]>[] choices;
+
+    public BranchingSchemeCombinator(Supplier<Procedure[]>... choices) {
         this.choices = choices;
     }
 
     @Override
-    public Branch[] call() {
+    public Procedure[] get() {
         for (int i = 0; i < choices.length; i++) {
-            Branch[] alts = choices[i].call();
+            Procedure[] alts = choices[i].get();
             if (alts.length != 0) {
                 return alts;
             }

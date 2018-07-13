@@ -15,23 +15,26 @@
 
 package minicp.search;
 
+import minicp.util.Procedure;
+
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Selector {
 
-    public static final Branch[] EMPTY = new Branch[0];
+    public static final Procedure[] EMPTY = new Procedure[0];
 
-    public static Branch[] branch(Branch... branches) {
+    public static Procedure[] branch(Procedure... branches) {
         return branches;
     }
 
     @FunctionalInterface
     public interface ChoicePoint<T> {
-        Branch[] call(T x);
+        Procedure[] call(T x);
     }
 
-    public static <T,N extends Comparable<N> > BranchingScheme selectMin(T[] x, Predicate<T> p, Function<T,N> f, ChoicePoint<T> body) {
+    public static <T,N extends Comparable<N> > Supplier<Procedure[]> selectMin(T[] x, Predicate<T> p, Function<T,N> f, ChoicePoint<T> body) {
         return () -> {
             T sel = null;
             for (T xi : x) {

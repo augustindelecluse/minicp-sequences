@@ -20,6 +20,9 @@ import minicp.reversible.Trail;
 import minicp.reversible.ReversibleInt;
 import minicp.util.NotImplementedException;
 import minicp.util.InconsistencyException;
+import minicp.util.Procedure;
+
+import java.util.function.Supplier;
 
 /**
  * Branching wrapper that ensures that
@@ -31,11 +34,11 @@ public abstract class DiscrepancyChoice {
 
     ReversibleInt currentDiscrepancy;
 
-    public DiscrepancyChoice(Trail state, BranchingScheme choice, int maxD) {
+    public DiscrepancyChoice(Trail state, Supplier<Procedure[]> choice, int maxD) {
         throw new NotImplementedException();
     }
 
-    public Branch[] getAlternatives() {
+    public Procedure[] getAlternatives() {
         // Hint:
         // Let b.alts denote b.call()
         // Filter-out alternatives from b.alts that would exceed maxDiscrepancy

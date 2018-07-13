@@ -19,10 +19,10 @@ import minicp.cp.Factory;
 import minicp.engine.constraints.AllDifferentAC;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.Branch;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
+import minicp.util.Procedure;
 
 import java.util.Arrays;
 
@@ -58,13 +58,13 @@ public class NQueensVerbose {
                         }
                     }
                     if (i == -1) {
-                        return new Branch[0];
+                        return new Procedure[0];
                     } else {
                         IntVar qi = q[i];
                         int v = qi.getMin();
-                        Branch left = () -> equal(qi, v);
-                        Branch right = () -> notEqual(qi, v);
-                        return new Branch[]{left,right};
+                        Procedure left = () -> equal(qi, v);
+                        Procedure right = () -> notEqual(qi, v);
+                        return new Procedure[]{left,right};
                     }
                 }
         );

@@ -20,14 +20,15 @@ import minicp.reversible.RevBool;
 import minicp.engine.constraints.*;
 import minicp.engine.core.*;
 import minicp.reversible.StateManager;
-import minicp.search.BranchingScheme;
 import minicp.search.DFSearch;
 import minicp.util.InconsistencyException;
+import minicp.util.Procedure;
 
 
 import java.util.Arrays;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 public class Factory {
@@ -119,7 +120,7 @@ public class Factory {
         return t;
     }
 
-    static public DFSearch makeDfs(Solver cp, BranchingScheme branching) {
+    static public DFSearch makeDfs(Solver cp, Supplier<Procedure[]> branching) {
         return new DFSearch(cp,branching);
     }
 

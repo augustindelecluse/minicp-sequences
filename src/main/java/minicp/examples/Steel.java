@@ -20,11 +20,11 @@ import minicp.engine.constraints.IsOr;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.Branch;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.InputReader;
+import minicp.util.Procedure;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -143,7 +143,7 @@ public class Steel {
                                         maxUsed = x_.getMin();
                                     }
                                 }
-                                Branch[] branches = new Branch[maxUsed+2];
+                                Procedure[] branches = new Procedure[maxUsed+2];
                                 for (int i = 0; i <= maxUsed+1; i++) {
                                     int slab = i;
                                     branches[i] = () -> equal(xi,slab);

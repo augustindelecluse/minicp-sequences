@@ -18,8 +18,10 @@ package minicp.cp;
 
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.BranchingScheme;
 import minicp.search.BranchingSchemeCombinator;
+import minicp.util.Procedure;
+
+import java.util.function.Supplier;
 
 import static minicp.search.Selector.branch;
 import static minicp.search.Selector.selectMin;
@@ -27,7 +29,7 @@ import static minicp.cp.Factory.*;
 
 public class Heuristics {
 
-    public static BranchingScheme firstFail(IntVar... x) {
+    public static Supplier<Procedure[]> firstFail(IntVar... x) {
         Solver cp = x[0].getSolver();
         return selectMin(x,
                 xi -> xi.getSize() > 1,
@@ -45,9 +47,7 @@ public class Heuristics {
                 }
         );
     }
-
-
-    public static BranchingScheme and(BranchingScheme... choices) {
+    public static Supplier<Procedure[]> and(Supplier<Procedure[]>... choices) {
         return new BranchingSchemeCombinator(choices);
     }
 

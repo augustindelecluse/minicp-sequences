@@ -22,10 +22,11 @@ import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 public class DFSearch {
 
-    private BranchingScheme branching;
+    private Supplier<Procedure[]> branching;
     private Trail trail;
     private StateManager sm;
     private List<Procedure> solutionListeners = new LinkedList<Procedure>();
@@ -48,7 +49,7 @@ public class DFSearch {
         failListeners.forEach(s -> s.call());
     }
 
-    public DFSearch(StateManager sm, BranchingScheme branching) {
+    public DFSearch(StateManager sm, Supplier<Procedure[]> branching) {
         this.sm    = sm;
         this.trail = sm.getTrail();
         this.branching = branching;
@@ -86,14 +87,14 @@ public class DFSearch {
     }
 
 
-    private void expandNode(Stack<Branch> alternatives, SearchStatistics statistics) {
-        Branch[] alts = branching.call();
+    private void expandNode(Stack<Procedure> alternatives, SearchStatistics statistics) {
+        Procedure[] alts = branching.get();
         if (alts.length == 0) {
             statistics.nSolutions++;
             notifySolutionFound();
         } else {
             for (int i = alts.length-1; i >= 0; i--) {
-                Branch a = alts[i];
+                Procedure a = alts[i];
                 alternatives.push(() -> trail.pop());
                 alternatives.push(() -> {
                     statistics.nNodes++;
@@ -106,7 +107,7 @@ public class DFSearch {
     }
 
     private void dfs(SearchStatistics statistics, SearchLimit limit) {
-        Stack<Branch> alternatives = new Stack<Branch>();
+        Stack<Procedure> alternatives = new Stack<Procedure>();
         expandNode(alternatives,statistics);
         while (!alternatives.isEmpty()) {
             if (limit.stopSearch(statistics)) throw new StopSearchException();
@@ -123,13 +124,13 @@ public class DFSearch {
     private void dfs2(SearchStatistics statistics, SearchLimit limit) {
         if (limit.stopSearch(statistics))
             throw new StopSearchException();
-        Branch[] branches = branching.call();
+        Procedure[] branches = branching.get();
         if (branches.length == 0) {
             statistics.nSolutions++;
             notifySolutionFound();
         }
         else {
-            for (Branch b : branches) {
+            for (Procedure b : branches) {
                 sm.withNewState( ()-> {
                         try {
                             statistics.nNodes++;

@@ -15,12 +15,11 @@
 
 package minicp.examples;
 
-import minicp.cp.Factory;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.search.Branch;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
+import minicp.util.Procedure;
 
 import java.util.Arrays;
 
@@ -55,13 +54,13 @@ public class MagicSerieVerbose {
                     break;
                 }
             if (idx == -1)
-                return new Branch[0];
+                return new Procedure[0];
             else {
                 IntVar si = s[idx];
                 int v = si.getMin();
-                Branch left = () -> equal(si, v);
-                Branch right = () -> notEqual(si, v);
-                return new Branch[]{left, right};
+                Procedure left = () -> equal(si, v);
+                Procedure right = () -> notEqual(si, v);
+                return new Procedure[]{left, right};
             }
         });
 
