@@ -55,8 +55,7 @@ public class DFSearch {
         this.branching = branching;
     }
 
-    public SearchStatistics solve(SearchLimit limit) {
-        SearchStatistics statistics = new SearchStatistics();
+    private SearchStatistics solve(SearchStatistics statistics,SearchLimit limit) {
         int level = trail.getLevel();
 
         try {
@@ -72,17 +71,22 @@ public class DFSearch {
     }
 
     public SearchStatistics solve() {
-        return solve(statistics -> false);
+        SearchStatistics statistics = new SearchStatistics();
+        return solve(statistics,stats -> false);
+    }
+    public SearchStatistics solve(SearchLimit limit) {
+        SearchStatistics statistics = new SearchStatistics();
+        return solve(statistics,limit);
     }
 
     public SearchStatistics solveSubjectTo(SearchLimit limit, Procedure subjectTo) {
         SearchStatistics statistics = new SearchStatistics();
-        trail.push();
-        try {
-            subjectTo.call();
-            statistics = solve(limit);
-        } catch (InconsistencyException e) {}
-        trail.pop();
+        sm.withNewState(() -> {
+            try {
+                subjectTo.call();
+                solve(statistics,limit);
+            } catch (InconsistencyException e) {}
+        });
         return  statistics;
     }
 

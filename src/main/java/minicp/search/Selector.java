@@ -28,7 +28,7 @@ public class Selector {
     public static Procedure[] branch(Procedure... branches) {
         return branches;
     }
-    
+
     public static <T,N extends Comparable<N> > Supplier<Procedure[]> selectMin(T[] x, Predicate<T> p, Function<T,N> f, Function<T,Procedure[]> body) {
         return () -> {
             T sel = null;
