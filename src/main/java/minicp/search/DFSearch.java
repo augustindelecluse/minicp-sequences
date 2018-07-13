@@ -15,6 +15,7 @@
 
 package minicp.search;
 
+import minicp.util.Procedure;
 import minicp.reversible.StateManager;
 import minicp.reversible.Trail;
 import minicp.util.InconsistencyException;
@@ -27,15 +28,10 @@ public class DFSearch {
     private BranchingScheme branching;
     private Trail trail;
     private StateManager sm;
-    private List<SolutionListener> solutionListeners = new LinkedList<SolutionListener>();
-    private List<FailListener> failListeners = new LinkedList<FailListener>();
+    private List<Procedure> solutionListeners = new LinkedList<Procedure>();
+    private List<Procedure> failListeners = new LinkedList<Procedure>();
 
-
-    @FunctionalInterface
-    public interface SolutionListener {
-        void call();
-    }
-    public DFSearch onSolution(SolutionListener listener) {
+    public DFSearch onSolution(Procedure listener) {
         solutionListeners.add(listener);
         return this;
     }
@@ -44,16 +40,10 @@ public class DFSearch {
         solutionListeners.forEach(s -> s.call());
     }
 
-    @FunctionalInterface
-    public interface FailListener {
-        void call();
-    }
-
-    public DFSearch onFail(FailListener listener) {
+    public DFSearch onFail(Procedure listener) {
         failListeners.add(listener);
         return this;
     }
-
     public void notifyFailure() {
         failListeners.forEach(s -> s.call());
     }
@@ -84,12 +74,7 @@ public class DFSearch {
         return solve(statistics -> false);
     }
 
-    @FunctionalInterface
-    public interface SubjectTo {
-        void call();
-    }
-
-    public SearchStatistics solveSubjectTo(SearchLimit limit, SubjectTo subjectTo) {
+    public SearchStatistics solveSubjectTo(SearchLimit limit, Procedure subjectTo) {
         SearchStatistics statistics = new SearchStatistics();
         trail.push();
         try {
@@ -121,7 +106,6 @@ public class DFSearch {
     }
 
     private void dfs(SearchStatistics statistics, SearchLimit limit) {
-
         Stack<Branch> alternatives = new Stack<Branch>();
         expandNode(alternatives,statistics);
         while (!alternatives.isEmpty()) {
@@ -136,9 +120,9 @@ public class DFSearch {
 
     }
 
-
     private void dfs2(SearchStatistics statistics, SearchLimit limit) {
-        if (limit.stopSearch(statistics)) throw new StopSearchException();
+        if (limit.stopSearch(statistics))
+            throw new StopSearchException();
         Branch[] branches = branching.call();
         if (branches.length == 0) {
             statistics.nSolutions++;
@@ -155,8 +139,7 @@ public class DFSearch {
                             notifyFailure();
                             statistics.nFailures++;
                         }
-                    }
-                    );
+                    });
             }
         }
     }

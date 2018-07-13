@@ -15,7 +15,7 @@
 
 package minicp.reversible;
 
-
+import minicp.util.Procedure;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.util.NotImplementedException;
@@ -27,9 +27,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-
 public class ReversibleSparseSetTest {
-
     public static StateManager makeStateManager() {
         Trail tr = new TrailImpl();
         return  new StateManager() {
@@ -37,7 +35,7 @@ public class ReversibleSparseSetTest {
             public Trail getTrail() {
                 return tr;
             }
-            public void withNewState(Body body) {
+            public void withNewState(Procedure body) {
                 tr.push();
                 body.call();
                 tr.pop();

@@ -15,6 +15,7 @@
 
 package minicp.search;
 
+import minicp.util.Procedure;
 import minicp.cp.Factory;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
@@ -46,7 +47,8 @@ public class DFSearchTest {
             public Trail getTrail() {
                 return tr;
             }
-            public void withNewState(Body body) {
+            @Override
+            public void withNewState(Procedure body) {
                 tr.push();
                 body.call();
                 tr.pop();
