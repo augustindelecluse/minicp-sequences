@@ -110,6 +110,8 @@ public class DFSearch {
         }
     }
 
+
+
     private void dfs(SearchStatistics statistics, SearchLimit limit) {
         Stack<Procedure> alternatives = new Stack<Procedure>();
         expandNode(alternatives,statistics);

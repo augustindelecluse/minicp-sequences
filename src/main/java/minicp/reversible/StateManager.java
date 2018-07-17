@@ -21,5 +21,9 @@ import minicp.engine.core.IntVar;
 
 public interface StateManager {
     Trail getTrail();
-    void withNewState(Procedure body);
+    default void withNewState(Procedure body) {
+        getTrail().push();
+        body.call();
+        getTrail().pop();
+    }
 }

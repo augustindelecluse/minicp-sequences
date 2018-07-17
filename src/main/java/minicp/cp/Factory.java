@@ -75,13 +75,13 @@ public class Factory {
 
 
     /**
-     * Create a variable with the elements {0,...,n-1}
+     * Create a variable with the elements {0,...,sz-1}
      * as initial domain
      * @param cp
-     * @param n > 0
+     * @param sz > 0
      */
-    static public IntVar makeIntVar(Solver cp, int n) {
-        return new IntVarImpl(cp,n);
+    static public IntVar makeIntVar(Solver cp, int sz) {
+        return new IntVarImpl(cp,sz);
     }
 
     /**
@@ -106,6 +106,11 @@ public class Factory {
     // Factory
     static public IntVar[] makeIntVarArray(Solver cp, int n, int sz) {
         return makeIntVarArray(n, i -> makeIntVar(cp,sz));
+    }
+
+    // Factory
+    static public IntVar[] makeIntVarArray(Solver cp, int n, int min, int max) {
+        return makeIntVarArray(n, i -> makeIntVar(cp,min,max));
     }
 
     static public IntVar[] makeIntVarArray(int n, Function<Integer,IntVar> body) {
