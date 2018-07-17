@@ -56,7 +56,7 @@ public class QAPLNS {
 
         cp.post(allDifferent(x));
 
-        DFSearch dfs = makeDfs(cp,firstFail(x));
+
 
 
         // build the objective function
@@ -70,7 +70,9 @@ public class QAPLNS {
             }
         }
         IntVar objective = sum(weightedDist);
-        cp.post(minimize(objective,dfs));
+        minimize(objective);
+
+        DFSearch dfs = makeDfs(cp,firstFail(x));
 
 
         // --- Large Neighborhood Search ---
@@ -81,7 +83,7 @@ public class QAPLNS {
             xBest[i] = i;
         }
 
-        dfs.onSolution(() -> {
+        cp.onSolution(() -> {
             // Update the current best solution
             for (int i = 0; i < n; i++) {
                 xBest[i] = x[i].getMin();

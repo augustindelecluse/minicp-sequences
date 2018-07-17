@@ -48,7 +48,7 @@ public class IsLessOrEqualVarTest {
 
                 SearchStatistics stats = search.solve();
 
-                search.onSolution(() ->
+                cp.onSolution(() ->
                         assertTrue(x.getMin() <= y.getMin() && b.isTrue() || x.getMin() > y.getMin() && b.isFalse())
                 );
 

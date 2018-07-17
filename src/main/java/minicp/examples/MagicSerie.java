@@ -44,6 +44,10 @@ public class MagicSerie {
         cp.post(sum(Factory.makeIntVarArray(0,n-1, i -> mul(s[i],i)),n));
         //cp.post(sum(makeIntVarArray(0,n-1,i -> mul(s[i],i-1)),0));
 
+        cp.onSolution(() ->
+                System.out.println("solution:"+ Arrays.toString(s))
+        );
+
         long t0 = System.currentTimeMillis();
         SearchStatistics stats = makeDfs(cp,
                 selectMin(s,
@@ -55,8 +59,6 @@ public class MagicSerie {
                                           () -> notEqual(si,v));
                         }
                 )
-        ).onSolution(() ->
-                System.out.println("solution:"+ Arrays.toString(s))
         ).solve();
 
         long t1 = System.currentTimeMillis();

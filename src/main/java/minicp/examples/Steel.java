@@ -126,6 +126,8 @@ public class Steel {
             IntVar[] losses = Factory.makeIntVarArray(nSlab, j -> element(loss, l[j]));
             IntVar totLoss = sum(losses);
 
+            minimize(totLoss);
+
             //DFSearch dfs = makeDfs(cp,firstFail(x));
 
 
@@ -153,9 +155,8 @@ public class Steel {
                     )
             );
 
-            cp.post(minimize(totLoss, dfs));
 
-            dfs.onSolution(() -> {
+            cp.onSolution(() -> {
                 System.out.println("---");
                 System.out.println(totLoss);
 

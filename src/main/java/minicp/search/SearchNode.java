@@ -13,30 +13,17 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.engine.core;
+
+package minicp.search;
 
 import minicp.reversible.StateManager;
-import minicp.reversible.Trail;
-import minicp.reversible.TrailImpl;
-import minicp.search.SearchNode;
-import minicp.util.InconsistencyException;
 import minicp.util.Procedure;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.Stack;
-import java.util.Vector;
+public interface SearchNode extends StateManager {
 
-public interface Solver extends SearchNode {
-    void post(Constraint c);
-    void schedule(Constraint c);
-    void post(Constraint c, boolean enforceFixPoint);
-    void fixPoint();
+    public void notifySolution();
+    public void onSolution(Procedure listener);
 
-    public void onFixPoint(Procedure listener);
-
-    // ugly
-    void post(BoolVar b);
-    int registerVar(IntVar x);
+    public void notifyFailure();
+    public void onFailure(Procedure listener);
 }
-

@@ -25,12 +25,10 @@ public class Minimize extends AbstractConstraint {
 
     public int bound = Integer.MAX_VALUE;
     private final IntVar x;
-    private final DFSearch dfs;
 
-    public Minimize(IntVar x, DFSearch dfs) {
+    public Minimize(IntVar x) {
         super(x.getSolver());
         this.x = x;
-        this.dfs = dfs;
     }
 
     protected void tighten() {
@@ -38,16 +36,17 @@ public class Minimize extends AbstractConstraint {
         this.bound = x.getMax() - 1;
     }
 
-
     @Override
     public void post()  {
         x.propagateOnBoundChange(this);
         // Ensure that the constraint is scheduled on backtrack
-        dfs.onSolution(() -> {
+        x.getSolver().onSolution(() -> {
             tighten();
             cp.schedule(this);
         });
-        dfs.onFail(() -> cp.schedule(this));
+        x.getSolver().onFixPoint(() -> {
+            cp.schedule(this);
+        });
     }
 
     @Override

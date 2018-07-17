@@ -45,11 +45,12 @@ public class IsLessOrEqualTest {
 
                 DFSearch search = new DFSearch(cp, firstFail(x));
 
-                SearchStatistics stats = search.solve();
-
-                search.onSolution(() ->
+                cp.onSolution(() ->
                         assertTrue(x.getMin() <= 3 && b.isTrue() || x.getMin() > 3 && b.isFalse())
                 );
+
+                SearchStatistics stats = search.solve();
+
 
                 assertEquals(12, stats.nSolutions);
 

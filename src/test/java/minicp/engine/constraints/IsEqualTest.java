@@ -44,7 +44,7 @@ public class IsEqualTest {
 
                 SearchStatistics stats = search.solve();
 
-                search.onSolution(() ->
+                cp.onSolution(() ->
                         assertEquals(-2 == x.getMin(), b.isTrue())
                 );
 

@@ -83,7 +83,7 @@ public class Element1DTest {
             cp.post(new Element1D(T, y, z));
 
             DFSearch dfs = new DFSearch(cp, firstFail(y, z));
-            dfs.onSolution(() ->
+            cp.onSolution(() ->
                     assertEquals(T[y.getMin()], z.getMin())
             );
             SearchStatistics stats = dfs.solve();

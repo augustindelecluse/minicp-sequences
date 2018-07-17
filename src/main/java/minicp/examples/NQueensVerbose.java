@@ -69,7 +69,7 @@ public class NQueensVerbose {
                 }
         );
 
-        dfs.onSolution(() ->
+        cp.onSolution(() ->
                 System.out.println("solution:"+ Arrays.toString(q))
         );
 

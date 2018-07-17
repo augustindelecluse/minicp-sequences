@@ -161,6 +161,14 @@ public class Factory {
         x.getSolver().fixPoint();
     }
 
+    static public void minimize(IntVar x) {
+        x.getSolver().post(new Minimize(x));
+    }
+
+    static public void maximize(IntVar x) {
+        x.getSolver().post(new Minimize(minus(x)));
+    }
+
     static public Constraint notEqual(IntVar x, IntVar y) {
         return new NotEqual(x,y);
     }
@@ -206,13 +214,7 @@ public class Factory {
         return new LessOrEqual(y,x);
     }
 
-    static public Constraint minimize(IntVar x, DFSearch dfs) {
-        return new Minimize(x,dfs);
-    }
 
-    static public Constraint maximize(IntVar x, DFSearch dfs) {
-        return new Minimize(minus(x),dfs);
-    }
 
     static public IntVar element(int[] T, IntVar y) {
         Solver cp = y.getSolver();

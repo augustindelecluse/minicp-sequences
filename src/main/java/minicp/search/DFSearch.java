@@ -28,30 +28,12 @@ public class DFSearch {
 
     private Supplier<Procedure[]> branching;
     private Trail trail;
-    private StateManager sm;
-    private List<Procedure> solutionListeners = new LinkedList<Procedure>();
-    private List<Procedure> failListeners = new LinkedList<Procedure>();
+    private SearchNode node;
 
-    public DFSearch onSolution(Procedure listener) {
-        solutionListeners.add(listener);
-        return this;
-    }
 
-    public void notifySolutionFound() {
-        solutionListeners.forEach(s -> s.call());
-    }
-
-    public DFSearch onFail(Procedure listener) {
-        failListeners.add(listener);
-        return this;
-    }
-    public void notifyFailure() {
-        failListeners.forEach(s -> s.call());
-    }
-
-    public DFSearch(StateManager sm, Supplier<Procedure[]> branching) {
-        this.sm    = sm;
-        this.trail = sm.getTrail();
+    public DFSearch(SearchNode root, Supplier<Procedure[]> branching) {
+        this.node    = root;
+        this.trail = root.getTrail();
         this.branching = branching;
     }
 
@@ -81,7 +63,7 @@ public class DFSearch {
 
     public SearchStatistics solveSubjectTo(SearchLimit limit, Procedure subjectTo) {
         SearchStatistics statistics = new SearchStatistics();
-        sm.withNewState(() -> {
+        node.withNewState(() -> {
             try {
                 subjectTo.call();
                 solve(statistics,limit);
@@ -95,7 +77,7 @@ public class DFSearch {
         Procedure[] alts = branching.get();
         if (alts.length == 0) {
             statistics.nSolutions++;
-            notifySolutionFound();
+            node.notifySolution();
         } else {
             for (int i = alts.length-1; i >= 0; i--) {
                 Procedure a = alts[i];
@@ -112,7 +94,7 @@ public class DFSearch {
 
 
 
-    private void dfs(SearchStatistics statistics, SearchLimit limit) {
+    private void dfs2(SearchStatistics statistics, SearchLimit limit) {
         Stack<Procedure> alternatives = new Stack<Procedure>();
         expandNode(alternatives,statistics);
         while (!alternatives.isEmpty()) {
@@ -120,31 +102,31 @@ public class DFSearch {
             try {
                 alternatives.pop().call();
             } catch (InconsistencyException e) {
-                notifyFailure();
                 statistics.nFailures++;
+                node.notifyFailure();
             }
         }
 
     }
 
-    private void dfs2(SearchStatistics statistics, SearchLimit limit) {
+    private void dfs(SearchStatistics statistics, SearchLimit limit) {
         if (limit.stopSearch(statistics))
             throw new StopSearchException();
         Procedure[] branches = branching.get();
         if (branches.length == 0) {
             statistics.nSolutions++;
-            notifySolutionFound();
+            node.notifySolution();
         }
         else {
             for (Procedure b : branches) {
-                sm.withNewState( ()-> {
+                node.withNewState( ()-> {
                         try {
                             statistics.nNodes++;
                             b.call();
                             dfs2(statistics,limit);
                         } catch (InconsistencyException e) {
-                            notifyFailure();
                             statistics.nFailures++;
+                            node.notifyFailure();
                         }
                     });
             }
