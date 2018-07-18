@@ -27,13 +27,11 @@ import java.util.function.Supplier;
 public class DFSearch {
 
     private Supplier<Procedure[]> branching;
-    private Trail trail;
     private SearchNode node;
 
 
     public DFSearch(SearchNode root, Supplier<Procedure[]> branching) {
         this.node    = root;
-        this.trail = root.getTrail();
         this.branching = branching;
     }
 
@@ -80,13 +78,13 @@ public class DFSearch {
         } else {
             for (int i = alts.length-1; i >= 0; i--) {
                 Procedure a = alts[i];
-                alternatives.push(() -> trail.pop());
+                alternatives.push(() -> node.getTrail().pop());
                 alternatives.push(() -> {
                     statistics.nNodes++;
                     a.call();
                     expandNode(alternatives, statistics);
                 });
-                alternatives.push(() -> trail.push());
+                alternatives.push(() -> node.getTrail().push());
             }
         }
     }
