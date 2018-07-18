@@ -15,6 +15,8 @@
 
 package minicp.engine.core;
 
+import minicp.cp.Factory;
+import minicp.engine.constraints.Minimize;
 import minicp.reversible.StateManager;
 import minicp.reversible.Trail;
 import minicp.reversible.TrailImpl;
@@ -34,6 +36,9 @@ public interface Solver extends SearchNode {
     void fixPoint();
 
     public void onFixPoint(Procedure listener);
+
+    default void minimize(IntVar x) { post(new Minimize(x)); }
+    default void maximize(IntVar x) { minimize(Factory.minus(x)); }
 
     // ugly
     void post(BoolVar b);
