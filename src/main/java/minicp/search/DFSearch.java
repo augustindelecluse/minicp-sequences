@@ -56,17 +56,16 @@ public class DFSearch {
     }
 
     private SearchStatistics solve(SearchStatistics statistics,SearchLimit limit) {
-        int level = trail.getLevel();
-
-        try {
-            dfs(statistics,limit);
-            statistics.completed = true;
-        }
-        catch (StopSearchException ignored) {}
-        catch (StackOverflowError e) {
-            throw new NotImplementedException("dfs with explicit stack needed to pass this test");
-        }
-        trail.popUntil(level);
+        sm.withNewState( ()-> {
+                try {
+                    dfs2(statistics,limit);
+                    statistics.completed = true;
+                }
+                catch (StopSearchException ignored) {}
+                catch (StackOverflowError e) {
+                    throw new NotImplementedException("dfs with explicit stack needed to pass this test");
+                }
+            });
         return statistics;
     }
 
@@ -149,6 +148,3 @@ public class DFSearch {
         }
     }
 }
-
-
-

@@ -49,24 +49,16 @@ public class NQueensVerbose {
 
 
         DFSearch dfs = makeDfs(cp, () -> {
-                    int i = -1; // index of smallest domain size variable
-                    int best = Integer.MAX_VALUE;
-                    for (int k = 0; k < q.length; k++) {
-                        if (q[k].getSize() > 1 && q[k].getSize() < best) {
-                            i = k;
-                            best = q[k].getSize();
-                        }
-                    }
-                    if (i == -1) {
-                        return new Procedure[0];
-                    } else {
-                        IntVar qi = q[i];
-                        int v = qi.getMin();
-                        Procedure left = () -> equal(qi, v);
-                        Procedure right = () -> notEqual(qi, v);
-                        return new Procedure[]{left,right};
-                    }
+                IntVar qi = Arrays.stream(q).reduce(null,(a,b) -> b.getSize()>1 && a==null ? b : a);
+                if (qi == null) {
+                    return new Procedure[0];
+                } else {
+                    int v = qi.getMin();
+                    Procedure left = () -> equal(qi, v);
+                    Procedure right = () -> notEqual(qi, v);
+                    return new Procedure[]{left,right};
                 }
+             }
         );
 
         dfs.onSolution(() ->

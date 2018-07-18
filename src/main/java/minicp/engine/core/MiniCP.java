@@ -62,8 +62,9 @@ public class MiniCP implements Solver {
         fixPoint();
     }    
     public void withNewState(Procedure body) {
+        int level = trail.getLevel();
         trail.push();
         body.call();
-        trail.pop();
+        trail.popUntil(level);
     }
 }
