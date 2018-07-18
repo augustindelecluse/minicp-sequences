@@ -15,21 +15,31 @@
 
 package minicp.engine.core;
 
+import minicp.cp.Factory;
+import minicp.engine.constraints.Minimize;
 import minicp.reversible.StateManager;
 import minicp.reversible.Trail;
 import minicp.reversible.TrailImpl;
+import minicp.search.SearchNode;
 import minicp.util.InconsistencyException;
+import minicp.util.Procedure;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.Vector;
 
-public interface Solver extends StateManager {
+public interface Solver extends SearchNode {
     void post(Constraint c);
     void schedule(Constraint c);
     void post(Constraint c, boolean enforceFixPoint);
     void fixPoint();
+
+    public void onFixPoint(Procedure listener);
+
+    default void minimize(IntVar x) { post(new Minimize(x)); }
+    default void maximize(IntVar x) { minimize(Factory.minus(x)); }
+
     // ugly
     void post(BoolVar b);
     int registerVar(IntVar x);

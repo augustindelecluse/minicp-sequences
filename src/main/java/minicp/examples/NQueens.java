@@ -55,7 +55,7 @@ public class NQueens {
                         }
                 ));
 
-        search.onSolution(() ->
+        cp.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(q))
         );
         SearchStatistics stats = search.solve(statistics -> statistics.nSolutions == 1000);

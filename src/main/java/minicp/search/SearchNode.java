@@ -13,19 +13,17 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
 
+package minicp.search;
+
+import minicp.reversible.StateManager;
 import minicp.util.Procedure;
-import minicp.engine.core.Constraint;
-import minicp.engine.core.IntVar;
 
-public interface StateManager {
-    Trail getTrail();
-    default void withNewState(Procedure body) {
-        Trail t = getTrail();
-        int level = t.getLevel();
-        t.push();
-        body.call();
-        t.popUntil(level);
-    }
+public interface SearchNode extends StateManager {
+
+    public void notifySolution();
+    public void onSolution(Procedure listener);
+
+    public void notifyFailure();
+    public void onFailure(Procedure listener);
 }

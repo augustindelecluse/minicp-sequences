@@ -126,7 +126,7 @@ public class Element1DVarTest {
             cp.post(new Element1DVar(T, y, z));
 
             DFSearch dfs = new DFSearch(cp, firstFail(y, z));
-            dfs.onSolution(() ->
+            cp.onSolution(() ->
                     assertEquals(T[y.getMin()].getMin(), z.getMin())
             );
             SearchStatistics stats = dfs.solve();

@@ -126,16 +126,7 @@ public class Eternity {
             equal(d[n-1][j],0);
         }
 
-
-        // The search using the and combinator
-
-        SearchStatistics stats = makeDfs(cp,
-                and(firstFail(flatten(id)),
-                        firstFail(flatten(u)),
-                        firstFail(flatten(r)),
-                        firstFail(flatten(d)),
-                        firstFail(flatten(l)))
-        ).onSolution(() -> {
+        cp.onSolution(() -> {
             // Pretty Print
             for (int i = 0; i < n; i++) {
                 String line = "   ";
@@ -156,7 +147,18 @@ public class Eternity {
             }
             System.out.println(line);
 
-        }).solve(statistics -> statistics.nSolutions == 1);
+        });
+
+
+        // The search using the and combinator
+
+        SearchStatistics stats = makeDfs(cp,
+                and(firstFail(flatten(id)),
+                        firstFail(flatten(u)),
+                        firstFail(flatten(r)),
+                        firstFail(flatten(d)),
+                        firstFail(flatten(l)))
+        ).solve(statistics -> statistics.nSolutions == 1);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);

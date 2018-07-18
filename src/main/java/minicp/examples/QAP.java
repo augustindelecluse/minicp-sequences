@@ -55,7 +55,7 @@ public class QAP {
 
         cp.post(allDifferent(x));
 
-        DFSearch dfs = makeDfs(cp,firstFail(x));
+
 
 
         // build the objective function
@@ -67,11 +67,12 @@ public class QAP {
             }
         }
         IntVar objective = sum(weightedDist);
-        cp.post(minimize(objective,dfs));
 
+        minimize(objective);
 
+        cp.onSolution(() -> System.out.println("objective:"+objective.getMin()));
 
-        dfs.onSolution(() -> System.out.println("objective:"+objective.getMin()));
+        DFSearch dfs = makeDfs(cp,firstFail(x));
 
         SearchStatistics stats = dfs.solve();
 

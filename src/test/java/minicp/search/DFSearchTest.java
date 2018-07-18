@@ -40,29 +40,17 @@ import static minicp.cp.Factory.*;
 
 public class DFSearchTest {
 
-    public static StateManager makeStateManager() {
-        Trail tr = new TrailImpl();
-        return  new StateManager() {
-            @Override
-            public Trail getTrail() {
-                return tr;
-            }
-            @Override
-            public void withNewState(Procedure body) {
-                tr.push();
-                body.call();
-                tr.pop();
-            }
-        };
+    public static SearchNode makeSearchNode() {
+        return new AbstractSearchNode() {};
     }
 
     @Test
     public void testExample1() {
-        StateManager sm = makeStateManager();
-        RevInt i = Factory.makeRevInt(sm,0);
+        SearchNode r = makeSearchNode();
+        RevInt i = Factory.makeRevInt(r,0);
         int [] values = new int[3];
 
-        DFSearch dfs = new DFSearch(sm,() -> {
+        DFSearch dfs = new DFSearch(r,() -> {
             if (i.getValue() >= values.length)
                 return EMPTY;
             else return branch(
@@ -112,11 +100,11 @@ public class DFSearchTest {
 
     @Test
     public void testExample3() {
-        StateManager sm = makeStateManager();
-        RevInt i = Factory.makeRevInt(sm,0);
+        SearchNode r = makeSearchNode();
+        RevInt i = Factory.makeRevInt(r,0);
         int [] values = new int[3];
 
-        DFSearch dfs = new DFSearch(sm,() -> {
+        DFSearch dfs = new DFSearch(r,() -> {
             if (i.getValue() >= values.length)
                 return EMPTY;
             else return branch(
@@ -132,7 +120,7 @@ public class DFSearchTest {
         });
 
 
-        dfs.onSolution(() -> {
+        r.onSolution(() -> {
             assert(Arrays.stream(values).allMatch(v -> v == 1));
         });
 
@@ -147,14 +135,14 @@ public class DFSearchTest {
 
     @Test
     public void testDFS() {
-        StateManager sm = makeStateManager();
-        RevInt i = Factory.makeRevInt(sm,0);
+        SearchNode r = makeSearchNode();
+        RevInt i = Factory.makeRevInt(r,0);
         boolean [] values = new boolean[4];
 
         Counter nSols = new Counter();
 
 
-        DFSearch dfs = new DFSearch(sm,() -> {
+        DFSearch dfs = new DFSearch(r,() -> {
             if (i.getValue() >= values.length)
                 return EMPTY;
             else return branch (
@@ -171,7 +159,7 @@ public class DFSearchTest {
             );
         });
 
-        dfs.onSolution(() -> {
+        r.onSolution(() -> {
            nSols.incr();
         });
 
@@ -189,11 +177,11 @@ public class DFSearchTest {
 
     @Test
     public void testDFSSearchLimit() {
-        StateManager sm = makeStateManager();
-        RevInt i = Factory.makeRevInt(sm,0);
+        SearchNode r = makeSearchNode();
+        RevInt i = Factory.makeRevInt(r,0);
         boolean [] values = new boolean[4];
 
-        DFSearch dfs = new DFSearch(sm,() -> {
+        DFSearch dfs = new DFSearch(r,() -> {
             if (i.getValue() >= values.length) {
                 return branch(() -> {throw new InconsistencyException();});
             }
@@ -212,7 +200,7 @@ public class DFSearchTest {
         });
 
         Counter nFails = new Counter();
-        dfs.onFail(() -> {
+        r.onFailure(() -> {
             nFails.incr();
         });
 
@@ -228,11 +216,11 @@ public class DFSearchTest {
 
     @Test
     public void testDeepDFS() {
-        StateManager sm = makeStateManager();
-        RevInt i = Factory.makeRevInt(sm,0);
+        SearchNode r = makeSearchNode();
+        RevInt i = Factory.makeRevInt(r,0);
         boolean [] values = new boolean[10000];
 
-        DFSearch dfs = new DFSearch(sm,() -> {
+        DFSearch dfs = new DFSearch(r,() -> {
             if (i.getValue() >= values.length) {
                 return EMPTY;
             }
@@ -266,6 +254,7 @@ public class DFSearchTest {
         IntVar[] x = makeIntVarArray(cp,3,2);
 
         DFSearch dfs = makeDfs(cp,firstFail(x));
+
 
         SearchStatistics stats1 = dfs.solveSubjectTo(l -> false, () -> {
             equal(x[0],0);

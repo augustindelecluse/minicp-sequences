@@ -93,13 +93,11 @@ public class RCPSP {
 
         IntVar makespan = maximum(end);
 
+        minimize(makespan);
 
         DFSearch dfs = makeDfs(cp, firstFail(start));
 
-
-        cp.post(minimize(makespan, dfs));
-
-        dfs.onSolution(() ->
+        cp.onSolution(() ->
 
                 System.out.println("makespan:" + makespan)
         );

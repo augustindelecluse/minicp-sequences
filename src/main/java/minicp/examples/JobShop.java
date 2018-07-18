@@ -110,14 +110,12 @@ public class JobShop {
 
             IntVar makespan = maximum(endLast);
 
+            minimize(makespan);
+
             DFSearch dfs = makeDfs(cp, firstFail(flatten(start)));
 
-            cp.post(minimize(makespan, dfs
 
-
-            ));
-
-            dfs.onSolution(() ->
+            cp.onSolution(() ->
                     System.out.println("makespan:" + makespan)
             );
 

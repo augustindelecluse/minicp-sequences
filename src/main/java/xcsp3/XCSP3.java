@@ -687,7 +687,7 @@ public class XCSP3 implements XCallbacks2 {
 
         if (objectiveMinimize.isPresent()) {
             try {
-                minicp.post(new Minimize(objectiveMinimize.get(), search));
+                minicp.post(new Minimize(objectiveMinimize.get()));
             } catch (InconsistencyException e) {
                 hasFailed = true;
             }
@@ -698,7 +698,7 @@ public class XCSP3 implements XCallbacks2 {
         }
 
 
-        search.onSolution(() -> {
+        minicp.onSolution(() -> {
             StringBuilder sol = new StringBuilder("<instantiation>\n\t<list>\n\t\t");
             for (XVarInteger x : xVars)
                 sol.append(x.id()).append(" ");

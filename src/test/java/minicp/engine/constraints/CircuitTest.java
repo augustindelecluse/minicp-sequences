@@ -105,14 +105,16 @@ public class CircuitTest {
                 Solver cp = makeSolver();
                 IntVar [] x = makeIntVarArray(cp,5,5);
                 cp.post(new Circuit(x));
-                SearchStatistics stats = makeDfs(cp,firstFail(x)).onSolution(() -> {
-                            int [] sol = new int[x.length];
+
+                cp.onSolution(() -> {
+                            int[] sol = new int[x.length];
                             for (int i = 0; i < x.length; i++) {
                                 sol[i] = x[i].getMin();
                             }
-                            assertTrue("Solution is not an hamiltonian Circuit",checkHamiltonian(sol));
+                            assertTrue("Solution is not an hamiltonian Circuit", checkHamiltonian(sol));
                         }
-                ).solve();
+                );
+                SearchStatistics stats = makeDfs(cp,firstFail(x)).solve();
             } catch (InconsistencyException e) { fail("should not fail");}
         } catch (NotImplementedException e) {
             e.print();

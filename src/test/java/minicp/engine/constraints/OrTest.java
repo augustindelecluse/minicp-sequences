@@ -65,7 +65,7 @@ public class OrTest {
                 BoolVar [] x = new BoolVar[] {makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp)};
                 cp.post(new Or(x));
 
-                SearchStatistics stats = makeDfs(cp,firstFail(x)).onSolution(() -> {
+                cp.onSolution(() -> {
                             int nTrue = 0;
                             for (BoolVar xi: x) {
                                 if (xi.isTrue()) nTrue++;
@@ -73,7 +73,9 @@ public class OrTest {
                             assertTrue(nTrue > 0);
 
                         }
-                ).solve();
+                );
+
+                SearchStatistics stats = makeDfs(cp,firstFail(x)).solve();
                 assertEquals(15,stats.nSolutions);
 
             } catch (InconsistencyException e) {

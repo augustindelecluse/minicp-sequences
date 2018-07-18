@@ -65,7 +65,7 @@ public class MagicSerieVerbose {
         });
 
 
-        dfs.onSolution(() ->
+        cp.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(s))
         );
 

@@ -124,7 +124,7 @@ public class CumulativeDecompTest {
 
             SearchStatistics stats = search.solve();
 
-            search.onSolution(() -> {
+            cp.onSolution(() -> {
                 Rectangle[] rects = IntStream.range(0, s.length).mapToObj(i -> {
                     int start = s[i].getMin();
                     int end = start + d[i];

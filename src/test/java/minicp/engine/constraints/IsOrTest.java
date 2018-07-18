@@ -96,16 +96,16 @@ public class IsOrTest {
                 BoolVar b = makeBoolVar(cp);
                 cp.post(new IsOr(b, x));
 
-                SearchStatistics stats = makeDfs(cp, firstFail(x)).onSolution(() -> {
+                cp.onSolution(() -> {
                             int nTrue = 0;
                             for (BoolVar xi : x) {
                                 if (xi.isTrue()) nTrue++;
                             }
-
                             assertTrue((nTrue > 0 && b.isTrue()) || (nTrue == 0 && b.isFalse()));
-
                         }
-                ).solve();
+                );
+
+                SearchStatistics stats = makeDfs(cp, firstFail(x)).solve();
                 assertEquals(16, stats.nSolutions);
 
             } catch (InconsistencyException e) {

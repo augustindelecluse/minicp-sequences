@@ -83,6 +83,8 @@ public class TSP {
 
         IntVar totalDist = sum(distSucc);
 
+        minimize(totalDist);
+
         //DFSearch dfs = makeDfs(cp, firstFail(succ));
 
         DFSearch dfs = makeDfs(cp,
@@ -96,7 +98,7 @@ public class TSP {
                         }
                 ));
 
-        cp.post(minimize(totalDist, dfs));
+
 
 
 
@@ -119,7 +121,7 @@ public class TSP {
             succBest[i] = i;
         }
 
-        dfs.onSolution(() -> {
+        cp.onSolution(() -> {
             // Update the current best solution
             for (int i = 0; i < n; i++) {
                 succBest[i] = succ[i].getMin();

@@ -139,7 +139,7 @@ public class MaximumTest {
 
                 SearchStatistics stats = dfs.solve();
 
-                dfs.onSolution(() -> {
+                cp.onSolution(() -> {
                     int max = Arrays.stream(x).mapToInt(xi -> xi.getMax()).max().getAsInt();
                     assertEquals(y.getMin(), max);
                     assertEquals(y.getMax(), max);

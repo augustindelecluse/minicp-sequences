@@ -1,17 +1,21 @@
 package minicp.engine.core;
 
 import minicp.reversible.*;
+import minicp.search.AbstractSearchNode;
+import minicp.search.DFSearch;
 import minicp.util.InconsistencyException;
 import minicp.util.Procedure;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 
-public class MiniCP implements Solver {
+public class MiniCP extends AbstractSearchNode implements Solver  {
 
-    private TrailImpl trail = new TrailImpl();
     private Queue<Constraint> propagationQueue = new ArrayDeque<>();
+    private List<Procedure> fixPointListeners = new LinkedList<Procedure>();
 
     private ReversibleStack<IntVar> vars = new ReversibleStack<>(this);
 
@@ -27,12 +31,16 @@ public class MiniCP implements Solver {
         return vars.size() - 1;
     }
 
+    public void onFixPoint(Procedure listener) {
+        fixPointListeners.add(listener);
+    }
 
-    public Trail getTrail() {
-        return trail;
+    private void notifyFixPoint() {
+        fixPointListeners.forEach(s -> s.call());
     }
 
     public void fixPoint() {
+        notifyFixPoint();
         try {
             while (!propagationQueue.isEmpty()) {
                 Constraint c = propagationQueue.remove();
@@ -61,10 +69,4 @@ public class MiniCP implements Solver {
         b.assign(true);
         fixPoint();
     }    
-    public void withNewState(Procedure body) {
-        int level = trail.getLevel();
-        trail.push();
-        body.call();
-        trail.popUntil(level);
-    }
 }

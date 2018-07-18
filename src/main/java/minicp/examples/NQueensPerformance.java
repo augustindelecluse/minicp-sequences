@@ -46,6 +46,9 @@ public class NQueensPerformance {
                 cp.post(notEqual(minus(q[i], j - i), q[j]));
             }
 
+        cp.onSolution(() ->
+                System.out.println("solution:"+ Arrays.toString(q))
+        );
 
         long t0 = System.currentTimeMillis();
         SearchStatistics stats = makeDfs(cp,
@@ -58,8 +61,6 @@ public class NQueensPerformance {
                                           () -> notEqual(qi,v));
                         }
                 )
-        ).onSolution(() ->
-                System.out.println("solution:"+ Arrays.toString(q))
         ).solve(statistics -> {
            if ((statistics.nNodes/2) % 10000 == 0) {
                //System.out.println("failures:"+statistics.nFailures);
