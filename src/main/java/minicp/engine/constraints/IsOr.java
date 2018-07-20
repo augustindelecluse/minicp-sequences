@@ -15,12 +15,9 @@
 
 package minicp.engine.constraints;
 
-import minicp.cp.Factory;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
-import minicp.engine.core.Solver;
-import minicp.reversible.RevInt;
+import minicp.reversible.StateInt;
 
 public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
 
@@ -29,7 +26,7 @@ public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
     private final int n;
 
     private int[] unBounds;
-    private RevInt nUnBounds;
+    private StateInt nUnBounds;
 
     private final Or or;
 
@@ -40,7 +37,7 @@ public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
         this.n = x.length;
         or = new Or(x);
 
-        nUnBounds = Factory.makeRevInt(cp,n);
+        nUnBounds = cp.getStateManager().makeStateInt(n);
         unBounds = new int[n];
         for (int i = 0; i < n; i++) {
             unBounds[i] = i;

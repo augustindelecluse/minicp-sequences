@@ -15,9 +15,6 @@
 
 package minicp.reversible;
 
-import minicp.util.Procedure;
-import minicp.engine.core.Constraint;
-import minicp.engine.core.IntVar;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
 
@@ -27,31 +24,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class ReversibleSparseSetTest {
-    public static StateManager makeStateManager() {
-        Trail tr = new TrailImpl();
-        return  new StateManager() {
-            @Override
-            public Trail getTrail() {
-                return tr;
-            }
-            public void withNewState(Procedure body) {
-                tr.push();
-                body.call();
-                tr.pop();
-            }
-        };
-    }
+public class StateSparseSetTest {
+
 
 
     @Test
     public void testExample() {
 
-        StateManager sm = makeStateManager();
-        Trail trail = sm.getTrail();
-        ReversibleSparseSet set = new ReversibleSparseSet(sm,9,0);
+        StateManager sm = new Trail();
+        StateSparseSet set = new StateSparseSet(sm,9,0);
 
-        trail.push();
+        sm.save();
 
         set.remove(4);
         set.remove(6);
@@ -59,7 +42,7 @@ public class ReversibleSparseSetTest {
         assertFalse(set.contains(4));
         assertFalse(set.contains(6));
 
-        trail.pop();
+        sm.restore();
 
         assertTrue(set.contains(4));
         assertTrue(set.contains(6));
@@ -69,13 +52,12 @@ public class ReversibleSparseSetTest {
     @Test
     public void testReversibleSparseSet() {
 
-        StateManager sm = makeStateManager();
-        Trail trail = sm.getTrail();
-        ReversibleSparseSet set = new ReversibleSparseSet(sm,10,0);
+        StateManager sm = new Trail();
+        StateSparseSet set = new StateSparseSet(sm,10,0);
 
         assertTrue(toSet(set.toArray()).equals(toSet(new int[]{0,1,2,3,4,5,6,7,8,9})));
 
-        trail.push();
+        sm.save();
 
         set.remove(1);
         set.remove(0);
@@ -88,8 +70,8 @@ public class ReversibleSparseSetTest {
         assertTrue(toSet(set.toArray()).equals(toSet(new int[]{2,3,4,5,6,7})));
         assertTrue(set.getMax() == 7);
 
-        trail.pop();
-        trail.push();
+        sm.restore();
+        sm.save();
 
         assertEquals(10, set.getSize());
 
@@ -110,8 +92,8 @@ public class ReversibleSparseSetTest {
         assertTrue(toSet(set.toArray()).equals(toSet(new int[]{2})));
 
 
-        trail.pop();
-        trail.push();
+        sm.restore();
+        sm.save();
 
         assertEquals(10, set.getSize());
 
@@ -129,15 +111,14 @@ public class ReversibleSparseSetTest {
 
         try {
 
-            StateManager sm = makeStateManager();
-            Trail trail = sm.getTrail();
-            ReversibleSparseSet set = new ReversibleSparseSet(sm,10,0);
+            StateManager sm = new Trail();
+            StateSparseSet set = new StateSparseSet(sm,10,0);
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
             }
 
-            trail.push();
+            sm.save();
 
             set.remove(4);
             set.remove(5);
@@ -147,15 +128,15 @@ public class ReversibleSparseSetTest {
             assertEquals(2,set.getMin());
             assertEquals(9,set.getMax());
 
-            trail.push();
+            sm.save();
 
             set.removeAllBut(7);
             assertEquals(7,set.getMin());
             assertEquals(7,set.getMax());
 
 
-            trail.pop();
-            trail.pop();
+            sm.restore();
+            sm.restore();
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
@@ -171,15 +152,14 @@ public class ReversibleSparseSetTest {
 
         //try {
 
-            StateManager sm = makeStateManager();
-            Trail trail = sm.getTrail();
-            ReversibleSparseSet set = new ReversibleSparseSet(sm,10,0);
+            StateManager sm = new Trail();
+            StateSparseSet set = new StateSparseSet(sm,10,0);
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
             }
 
-            trail.push();
+            sm.save();
 
 
 
@@ -190,15 +170,15 @@ public class ReversibleSparseSetTest {
             assertEquals(5,set.getMin());
             assertEquals(9,set.getMax());
 
-            trail.push();
+            sm.save();
 
             set.remove(7);
             set.removeBelow(7);
 
             assertEquals(8,set.getMin());
 
-            trail.pop();
-            trail.pop();
+            sm.restore();
+            sm.restore();
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
@@ -212,15 +192,14 @@ public class ReversibleSparseSetTest {
 
         try {
 
-            StateManager sm = makeStateManager();
-            Trail trail = sm.getTrail();
-            ReversibleSparseSet set = new ReversibleSparseSet(sm,10,0);
+            StateManager sm = new Trail();
+            StateSparseSet set = new StateSparseSet(sm,10,0);
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
             }
 
-            trail.push();
+            sm.save();
 
 
             set.remove(1);
@@ -231,14 +210,14 @@ public class ReversibleSparseSetTest {
             assertEquals(0,set.getMin());
             assertEquals(7,set.getMax());
 
-            trail.push();
+            sm.save();
 
             set.removeAbove(2);
 
             assertEquals(0,set.getMax());
 
-            trail.pop();
-            trail.pop();
+            sm.restore();
+            sm.restore();
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));

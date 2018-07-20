@@ -24,34 +24,34 @@ import static org.junit.Assert.assertTrue;
 public class ReversibleIntTest {
 
     {
-        Trail trail = new TrailImpl();
-        RevInt a = trail.makeRevInt(7);
-        RevInt b = trail.makeRevInt(13);
+        StateManager trail = new Trail();
+        StateInt a = trail.makeStateInt(7);
+        StateInt b = trail.makeStateInt(13);
 
-        trail.push();      // Conceptually: record current state a=7, b=13
+        trail.save();      // Conceptually: record current state a=7, b=13
         a.setValue(11);
         b.setValue(14);
-        trail.push();   // Conceptually: record current state a=11, b=14
+        trail.save();   // Conceptually: record current state a=11, b=14
         a.setValue(4);
         b.setValue(9);
-        trail.pop();
-        trail.pop();
+        trail.restore();
+        trail.restore();
     }
 
     @Test
     public void testExample() {
 
-        Trail trail = new TrailImpl();
+        StateManager trail = new Trail();
 
         // Two reversible int's inside the trail
-        RevInt a = trail.makeRevInt(5);
-        RevInt b = trail.makeRevInt(9);
+        StateInt a = trail.makeStateInt(5);
+        StateInt b = trail.makeStateInt(9);
 
         a.setValue(7);
         b.setValue(13);
 
         // Record current state a=7, b=1 and increase the level to 0
-        trail.push();
+        trail.save();
         assertEquals(0,trail.getLevel());
 
         a.setValue(10);
@@ -59,7 +59,7 @@ public class ReversibleIntTest {
         a.setValue(11);
 
         // Record current state a=11, b=13 and increase the level to 1
-        trail.push();
+        trail.save();
         assertEquals(1,trail.getLevel());
 
         a.setValue(4);
@@ -67,7 +67,7 @@ public class ReversibleIntTest {
 
         // Restore the state recorded at the top level 1: a=11, b=13
         // and remove the state of that level
-        trail.pop();
+        trail.restore();
 
         assertEquals(11,a.getValue());
         assertEquals(13,b.getValue());
@@ -75,7 +75,7 @@ public class ReversibleIntTest {
 
         // Restore the state recorded at the top level 0: a=7, b=13
         // and remove the state of that level
-        trail.pop();
+        trail.restore();
 
         assertEquals(7,a.getValue());
         assertEquals(13,b.getValue());
@@ -86,15 +86,15 @@ public class ReversibleIntTest {
 
     @Test
     public void testReversibleInt() {
-        Trail trail = new TrailImpl();
-        RevInt a = trail.makeRevInt(5);
-        RevInt b = trail.makeRevInt(5);
+        StateManager trail = new Trail();
+        StateInt a = trail.makeStateInt(5);
+        StateInt b = trail.makeStateInt(5);
         assertTrue(a.getValue() == 5);
         a.setValue(7);
         b.setValue(13);
         assertTrue(a.getValue() == 7);
 
-        trail.push();
+        trail.save();
 
         a.setValue(10);
         assertTrue(a.getValue() == 10);
@@ -103,7 +103,7 @@ public class ReversibleIntTest {
         b.setValue(16);
         b.setValue(15);
 
-        trail.pop();
+        trail.restore();
         assertTrue(a.getValue() == 7);
         assertTrue(b.getValue() == 13);
 
@@ -112,31 +112,31 @@ public class ReversibleIntTest {
     @Test
     public void testPopAll() {
 
-        Trail trail = new TrailImpl();
-        RevInt a = trail.makeRevInt(5);
-        RevInt b = trail.makeRevInt(5);
+        StateManager trail = new Trail();
+        StateInt a = trail.makeStateInt(5);
+        StateInt b = trail.makeStateInt(5);
 
-        trail.push();
+        trail.save();
 
         a.setValue(7);
         b.setValue(13);
         a.setValue(13);
 
-        trail.push();
+        trail.save();
 
         a.setValue(5);
         b.setValue(10);
 
-        RevInt c = trail.makeRevInt(5);
+        StateInt c = trail.makeStateInt(5);
 
-        trail.push();
+        trail.save();
 
         a.setValue(8);
         b.setValue(1);
         c.setValue(10);
 
-        trail.popAll();
-        trail.push();
+        trail.restoreAll();
+        trail.save();
 
         assertEquals(5,a.getValue());
         assertEquals(5,b.getValue());
@@ -147,19 +147,19 @@ public class ReversibleIntTest {
         b.setValue(13);
         b.setValue(16);
 
-        trail.push();
+        trail.save();
 
         a.setValue(8);
         b.setValue(10);
 
-        trail.pop();
+        trail.restore();
 
 
         assertEquals(10,a.getValue());
         assertEquals(16,b.getValue());
         assertEquals(5,c.getValue());
 
-        trail.popAll();
+        trail.restoreAll();
 
         assertEquals(5,a.getValue());
         assertEquals(5,b.getValue());
@@ -171,34 +171,34 @@ public class ReversibleIntTest {
     @Test
     public void testPopUntill() {
 
-        Trail trail = new TrailImpl();
-        RevInt a = trail.makeRevInt(5);
-        RevInt b = trail.makeRevInt(5);
+        StateManager trail = new Trail();
+        StateInt a = trail.makeStateInt(5);
+        StateInt b = trail.makeStateInt(5);
 
         a.setValue(7);
         b.setValue(13);
         a.setValue(13);
 
-        trail.push(); // level 0
+        trail.save(); // level 0
 
         a.setValue(5);
         b.setValue(10);
 
-        RevInt c = trail.makeRevInt(5);
+        StateInt c = trail.makeStateInt(5);
 
-        trail.push(); // level 1
+        trail.save(); // level 1
 
         a.setValue(8);
         b.setValue(1);
         c.setValue(10);
 
-        trail.push(); // level 2
+        trail.save(); // level 2
 
         a.setValue(10);
         b.setValue(13);
         b.setValue(16);
 
-        trail.push(); // level 3
+        trail.save(); // level 3
 
         a.setValue(8);
         b.setValue(10);
@@ -207,7 +207,7 @@ public class ReversibleIntTest {
 
         assertEquals(0,trail.getLevel());
 
-        trail.push(); // level 1
+        trail.save(); // level 1
 
         assertEquals(1,trail.getLevel());
         assertEquals(5,a.getValue());

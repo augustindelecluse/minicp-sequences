@@ -43,38 +43,38 @@ public class IsOrTest {
                     assertTrue(!xi.isBound());
                 }
 
-                cp.getTrail().push();
+                cp.getStateManager().save();
                 equal(x[1],0);
                 equal(x[2],0);
                 equal(x[3],0);
                 assertTrue(!b.isBound());
                 equal(x[0],0);
                 assertTrue(b.isFalse());
-                cp.getTrail().pop();
+                cp.getStateManager().restore();
 
-                cp.getTrail().push();
+                cp.getStateManager().save();
                 equal(x[1],0);
                 equal(x[2],1);
                 assertTrue(b.isTrue());
-                cp.getTrail().pop();
+                cp.getStateManager().restore();
 
-                cp.getTrail().push();
+                cp.getStateManager().save();
                 equal(b,1);
                 equal(x[1],0);
                 equal(x[2],0);
                 assertTrue(!x[0].isBound());
                 equal(x[3],0);
                 assertTrue(x[0].isTrue());
-                cp.getTrail().pop();
+                cp.getStateManager().restore();
 
 
-                cp.getTrail().push();
+                cp.getStateManager().save();
                 equal(b,0);
                 assertTrue(x[0].isFalse());
                 assertTrue(x[1].isFalse());
                 assertTrue(x[2].isFalse());
                 assertTrue(x[3].isFalse());
-                cp.getTrail().pop();
+                cp.getStateManager().restore();
 
 
             } catch (InconsistencyException e) {

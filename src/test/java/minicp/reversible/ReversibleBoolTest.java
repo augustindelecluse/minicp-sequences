@@ -25,12 +25,12 @@ public class  ReversibleBoolTest {
 
     @Test
     public void testReversibleBool() {
-        Trail trail = new TrailImpl();
+        StateManager trail = new Trail();
 
-        RevBool b1 = trail.makeRevBool(true);
-        RevBool b2 = trail.makeRevBool(false);
+        StateBool b1 = trail.makeStateBool(true);
+        StateBool b2 = trail.makeStateBool(false);
 
-        trail.push();
+        trail.save();
 
         b1.setValue(true);
         b1.setValue(false);
@@ -39,7 +39,7 @@ public class  ReversibleBoolTest {
         b2.setValue(false);
         b2.setValue(true);
 
-        trail.pop();
+        trail.restore();
 
         assertTrue(b1.getValue());
         assertFalse(b2.getValue());

@@ -16,22 +16,18 @@
 package minicp.engine.core;
 
 import minicp.reversible.StateManager;
-import minicp.reversible.Trail;
-import minicp.reversible.ReversibleSparseSet;
-import minicp.util.InconsistencyException;
-
-import static minicp.util.InconsistencyException.INCONSISTENCY;
+import minicp.reversible.StateSparseSet;
 
 
 public class SparseSetDomain implements IntDomain {
-    private ReversibleSparseSet domain;
+    private StateSparseSet domain;
 
     public int fillArray(int[] dest) {
         return domain.fillArray(dest);
     }
 
     public SparseSetDomain(StateManager sm, int min, int max) {
-        domain = new ReversibleSparseSet(sm, max - min + 1,min);
+        domain = new StateSparseSet(sm, max - min + 1,min);
     }
 
     public int getMin() {

@@ -66,7 +66,7 @@ public class NQueensPerformance {
                //System.out.println("failures:"+statistics.nFailures);
                System.out.println("nodes:"+(statistics.nNodes/2));
            }
-           return /*statistics.nFailures > 100000 ||*/ statistics.nSolutions > 0;
+           return statistics.nFailures > 500000 || statistics.nSolutions > 0;
         });
 
         System.out.println("time:"+(System.currentTimeMillis()-t0));

@@ -15,18 +15,16 @@
 
 package minicp.search;
 
-import minicp.engine.core.Constraint;
-import minicp.reversible.TrailImpl;
+import minicp.reversible.StateManager;
+import minicp.reversible.Trail;
 import minicp.util.Procedure;
 
-import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public abstract class AbstractSearchNode implements SearchNode {
 
-    private TrailImpl trail = new TrailImpl();
+    private final StateManager sm = new Trail();
     private List<Procedure> solutionListeners = new LinkedList<Procedure>();
     private List<Procedure> failureListeners = new LinkedList<Procedure>();
 
@@ -50,7 +48,7 @@ public abstract class AbstractSearchNode implements SearchNode {
     }
 
     @Override
-    public TrailImpl getTrail() {
-        return trail;
+    public StateManager getStateManager() {
+        return sm;
     }
 }

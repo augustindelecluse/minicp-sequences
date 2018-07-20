@@ -16,10 +16,11 @@
 package minicp.reversible;
 
 
-public interface RevBool {
-
-    public void setValue(boolean v);
-
-    public boolean getValue();
-
+public interface StateInt {
+    int setValue(int v);
+    int getValue();
+    int increment();
+    int decrement();
+    @Override
+    String toString();
 }

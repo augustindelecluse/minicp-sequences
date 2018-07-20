@@ -16,12 +16,9 @@
 
 package minicp.engine.constraints;
 
-import minicp.cp.Factory;
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
-import minicp.reversible.RevInt;
+import minicp.reversible.StateInt;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;
@@ -33,11 +30,11 @@ public class Element2D extends AbstractConstraint {
     private final int[][] T;
     private final IntVar x, y, z;
     private int n, m;
-    private final RevInt[] nRowsSup;
-    private final RevInt[] nColsSup;
+    private final StateInt[] nRowsSup;
+    private final StateInt[] nColsSup;
 
-    private final RevInt low;
-    private final RevInt up;
+    private final StateInt low;
+    private final StateInt up;
     private final ArrayList<Tripple> xyz;
 
     private class Tripple implements Comparable<Tripple> {
@@ -79,16 +76,16 @@ public class Element2D extends AbstractConstraint {
             }
         }
         Collections.sort(xyz);
-        low = Factory.makeRevInt(cp,0);
-        up = Factory.makeRevInt(cp,xyz.size()-1);
+        low = cp.getStateManager().makeStateInt(0);
+        up = cp.getStateManager().makeStateInt(xyz.size()-1);
 
-        nColsSup = new RevInt[n];
-        nRowsSup = new RevInt[m];
+        nColsSup = new StateInt[n];
+        nRowsSup = new StateInt[m];
         for (int i = 0; i < n; i++) {
-            nColsSup[i] = Factory.makeRevInt(cp,m);
+            nColsSup[i] = cp.getStateManager().makeStateInt(m);
         }
         for (int j = 0; j < m; j++) {
-            nRowsSup[j] = Factory.makeRevInt(cp,n);
+            nRowsSup[j] = cp.getStateManager().makeStateInt(n);
         }
     }
 

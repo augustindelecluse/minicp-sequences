@@ -16,10 +16,9 @@
 package minicp.search;
 
 
-import minicp.reversible.Trail;
-import minicp.reversible.ReversibleInt;
+import minicp.reversible.StateManager;
+import minicp.reversible.TrailInt;
 import minicp.util.NotImplementedException;
-import minicp.util.InconsistencyException;
 import minicp.util.Procedure;
 
 import java.util.function.Supplier;
@@ -32,9 +31,9 @@ import java.util.function.Supplier;
 
 public abstract class DiscrepancyChoice {
 
-    ReversibleInt currentDiscrepancy;
+    TrailInt currentDiscrepancy;
 
-    public DiscrepancyChoice(Trail state, Supplier<Procedure[]> choice, int maxD) {
+    public DiscrepancyChoice(StateManager state, Supplier<Procedure[]> choice, int maxD) {
         throw new NotImplementedException();
     }
 

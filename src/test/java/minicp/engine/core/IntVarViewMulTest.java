@@ -37,7 +37,7 @@ public class IntVarViewMulTest {
         assertEquals(12,x.getMax());
         assertEquals(8,x.getSize());
 
-        cp.getTrail().push();
+        cp.getStateManager().save();
 
 
         try {
@@ -70,7 +70,7 @@ public class IntVarViewMulTest {
             fail( "should have failed" );
         } catch (InconsistencyException expectedException) {}
 
-        cp.getTrail().pop();
+        cp.getStateManager().restore();
 
         assertEquals(8,x.getSize());
         assertFalse(x.contains(-1));

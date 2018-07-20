@@ -17,17 +17,8 @@ package minicp.engine.core;
 
 import minicp.cp.Factory;
 import minicp.engine.constraints.Minimize;
-import minicp.reversible.StateManager;
-import minicp.reversible.Trail;
-import minicp.reversible.TrailImpl;
 import minicp.search.SearchNode;
-import minicp.util.InconsistencyException;
 import minicp.util.Procedure;
-
-import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.Stack;
-import java.util.Vector;
 
 public interface Solver extends SearchNode {
     void post(Constraint c);

@@ -16,8 +16,6 @@
 package minicp.search;
 
 import minicp.util.Procedure;
-import minicp.reversible.StateManager;
-import minicp.reversible.Trail;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 
@@ -36,7 +34,7 @@ public class DFSearch {
     }
 
     private SearchStatistics solve(SearchStatistics statistics,SearchLimit limit) {
-        node.withNewState( ()-> {
+        node.getStateManager().withNewState( ()-> {
                 try {
                     dfs(statistics,limit);
                     statistics.completed = true;
@@ -60,7 +58,7 @@ public class DFSearch {
 
     public SearchStatistics solveSubjectTo(SearchLimit limit, Procedure subjectTo) {
         SearchStatistics statistics = new SearchStatistics();
-        node.withNewState(() -> {
+        node.getStateManager().withNewState(() -> {
             try {
                 subjectTo.call();
                 solve(statistics,limit);
@@ -78,13 +76,13 @@ public class DFSearch {
         } else {
             for (int i = alts.length-1; i >= 0; i--) {
                 Procedure a = alts[i];
-                alternatives.push(() -> node.getTrail().pop());
+                alternatives.push(() -> node.getStateManager().restore());
                 alternatives.push(() -> {
                     statistics.nNodes++;
                     a.call();
                     expandNode(alternatives, statistics);
                 });
-                alternatives.push(() -> node.getTrail().push());
+                alternatives.push(() -> node.getStateManager().save());
             }
         }
     }
@@ -116,7 +114,7 @@ public class DFSearch {
         }
         else {
             for (Procedure b : branches) {
-                node.withNewState( ()-> {
+                node.getStateManager().withNewState( ()-> {
                         try {
                             statistics.nNodes++;
                             b.call();

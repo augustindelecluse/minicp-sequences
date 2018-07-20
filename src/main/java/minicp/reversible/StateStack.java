@@ -15,12 +15,24 @@
 
 package minicp.reversible;
 
+import java.util.ArrayList;
 
-public interface RevInt {
-    int setValue(int v);
-    int getValue();
-    int increment();
-    int decrement();
-    @Override
-    String toString();
+public class StateStack<E> {
+
+    StateInt size;
+    ArrayList<E> stack;
+
+    public StateStack(StateManager sm) {
+        size = sm.makeStateInt(0);
+        stack = new ArrayList<E>();
+    }
+
+    public void push(E elem) {
+        stack.add(size.getValue(),elem);
+        size.increment();
+    }
+
+    public int size() { return size.getValue(); }
+
+    public E get(int index) { return stack.get(index); }
 }

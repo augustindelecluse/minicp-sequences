@@ -18,45 +18,98 @@ package minicp.reversible;
 import java.util.Stack;
 
 
-public interface Trail {
+public class Trail implements StateManager {
+
+    private long magic = 0;
+    private Stack<TrailEntry> trail = new Stack<TrailEntry>();
+    private Stack<Integer>    trailLimit = new Stack<Integer>();
+
+    /**
+     * Initialize a reversible context
+     * The current level is -1
+     */
+    public Trail() {}
+
+    public long getMagic() { return magic;}
+
+    public void pushOnTrail(TrailEntry entry) {
+        trail.push(entry);
+    }
+
+    /**
+     *
+     * Restore all the entries from the top of the trailStack
+     * to the limit (excluded)
+     */
+    private void restoreToSize(int size) {
+        int n = trail.size() - size;
+        for (int i = 0; i < n; i++) {
+            trail.pop().restore();
+        }
+    }
 
     /**
      * @return The current level
      */
-    public int getLevel();
+    public int getLevel() {
+        return trailLimit.size()-1;
+    }
 
     /**
      * Stores the current state
-     * such that it can be recovered using pop()
+     * such that it can be recovered using restore()
      * Increase the level by 1
      */
-    public void push();
+    public void save() {
+        magic++;
+        trailLimit.push(trail.size());
+    }
 
 
     /**
      *  Restores state as it was at getLevel()-1
      *  Decrease the level by 1
      */
-    public void pop();
+    public void restore() {
+        restoreToSize(trailLimit.pop());
+        // Increments the magic because we want to trail again
+        magic++;
+    }
 
     /**
-     *  Restores the state as it was at level 0 (first push)
+     *  Restores the state as it was at level 0 (first save)
      *  The level is now -1.
-     *  Notice that you'll probably want to push after this operation.
+     *  Notice that you'll probably want to save after this operation.
      */
-    public void popAll();
+    public void restoreAll() {
+        popUntil(-1);
+        trail.clear();
+    }
 
     /**
      *  Restores the state as it was at level
      *  @param level
      */
-    public void popUntil(int level);
+    public void popUntil(int level) {
+        while (getLevel() > level) {
+            restore();
+        }
+    }
 
-    public RevInt makeRevInt(int initValue);
+    @Override
+    public StateInt makeStateInt(int initValue) {
+        return new TrailInt(this, initValue);
+    }
 
-    public RevBool makeRevBool(boolean initValue);
+    @Override
+    public StateBool makeStateBool(boolean initValue) {
+        return new TrailBool(this, initValue);
+    }
 
-    public RevMap makeRevMap();
+    @Override
+    public StateMap makeStateMap() {
+        return new TrailMap(this);
+    }
 
 }
 

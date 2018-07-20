@@ -39,7 +39,7 @@ public class IntVarViewOffsetTest {
         assertEquals(7,x.getMax());
         assertEquals(8,x.getSize());
 
-        cp.getTrail().push();
+        cp.getStateManager().save();
 
 
         try {
@@ -72,7 +72,7 @@ public class IntVarViewOffsetTest {
             fail( "should have failed" );
         } catch (InconsistencyException expectedException) {}
 
-        cp.getTrail().pop();
+        cp.getStateManager().restore();
 
         assertEquals(8,x.getSize());
         assertFalse(x.contains(-1));

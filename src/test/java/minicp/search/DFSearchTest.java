@@ -15,9 +15,6 @@
 
 package minicp.search;
 
-import minicp.util.Procedure;
-import minicp.cp.Factory;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.reversible.*;
@@ -47,7 +44,7 @@ public class DFSearchTest {
     @Test
     public void testExample1() {
         SearchNode r = makeSearchNode();
-        RevInt i = Factory.makeRevInt(r,0);
+        StateInt i = r.getStateManager().makeStateInt(0);
         int [] values = new int[3];
 
         DFSearch dfs = new DFSearch(r,() -> {
@@ -101,7 +98,7 @@ public class DFSearchTest {
     @Test
     public void testExample3() {
         SearchNode r = makeSearchNode();
-        RevInt i = Factory.makeRevInt(r,0);
+        StateInt i = r.getStateManager().makeStateInt(0);
         int [] values = new int[3];
 
         DFSearch dfs = new DFSearch(r,() -> {
@@ -136,7 +133,7 @@ public class DFSearchTest {
     @Test
     public void testDFS() {
         SearchNode r = makeSearchNode();
-        RevInt i = Factory.makeRevInt(r,0);
+        StateInt i = r.getStateManager().makeStateInt(0);
         boolean [] values = new boolean[4];
 
         Counter nSols = new Counter();
@@ -178,7 +175,7 @@ public class DFSearchTest {
     @Test
     public void testDFSSearchLimit() {
         SearchNode r = makeSearchNode();
-        RevInt i = Factory.makeRevInt(r,0);
+        StateInt i = r.getStateManager().makeStateInt(0);
         boolean [] values = new boolean[4];
 
         DFSearch dfs = new DFSearch(r,() -> {
@@ -217,7 +214,7 @@ public class DFSearchTest {
     @Test
     public void testDeepDFS() {
         SearchNode r = makeSearchNode();
-        RevInt i = Factory.makeRevInt(r,0);
+        StateInt i = r.getStateManager().makeStateInt(0);
         boolean [] values = new boolean[10000];
 
         DFSearch dfs = new DFSearch(r,() -> {

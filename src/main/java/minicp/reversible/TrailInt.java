@@ -16,19 +16,19 @@
 package minicp.reversible;
 
 
-public class ReversibleInt implements RevInt {
+public class TrailInt implements StateInt {
     class TrailEntryInt implements TrailEntry {
         private final int v;
         public TrailEntryInt(int v) {
             this.v = v;
         }
-        public void restore()       { ReversibleInt.this.v = v;}
+        public void restore()       { TrailInt.this.v = v;}
     }
-    private TrailImpl trail;
+    private Trail trail;
     private int v;
     private long lastMagic = -1L;
 
-    protected ReversibleInt(TrailImpl trail, int initial) {
+    protected TrailInt(Trail trail, int initial) {
         this.trail = trail;
         v = initial;
         lastMagic = trail.getMagic() - 1;

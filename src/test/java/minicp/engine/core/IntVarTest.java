@@ -38,7 +38,7 @@ public class IntVarTest {
         IntVar x = makeIntVar(cp,10);
         IntVar y = makeIntVar(cp,10);
 
-        cp.getTrail().push();
+        cp.getStateManager().save();
 
 
         try {
@@ -61,8 +61,8 @@ public class IntVarTest {
 
 
 
-        cp.getTrail().pop();
-        cp.getTrail().push();
+        cp.getStateManager().restore();
+        cp.getStateManager().save();
 
         assertFalse(x.isBound());
         assertEquals(10,x.getSize());
@@ -120,7 +120,7 @@ public class IntVarTest {
 
             IntVar x = makeIntVar(cp,-10,10);
 
-            cp.getTrail().push();
+            cp.getStateManager().save();
 
 
             try {
@@ -144,7 +144,7 @@ public class IntVarTest {
             } catch (InconsistencyException expectedException) {}
 
 
-            cp.getTrail().pop();
+            cp.getStateManager().restore();
 
             assertEquals(21,x.getSize());
 
@@ -172,7 +172,7 @@ public class IntVarTest {
 
             IntVar x = makeIntVar(cp,dom);
 
-            cp.getTrail().push();
+            cp.getStateManager().save();
 
             try {
 
@@ -191,7 +191,7 @@ public class IntVarTest {
             } catch (InconsistencyException expectedException) {}
 
 
-            cp.getTrail().pop();
+            cp.getStateManager().restore();
 
             for (int i = -15; i < 15; i++) {
                 if (dom.contains(i)) assertTrue(x.contains(i));

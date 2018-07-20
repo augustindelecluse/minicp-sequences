@@ -15,7 +15,7 @@
 
 package minicp.engine.core;
 
-import minicp.reversible.ReversibleStack;
+import minicp.reversible.StateStack;
 import minicp.util.InconsistencyException;
 
 import java.security.InvalidParameterException;
@@ -25,9 +25,9 @@ public class IntVarImpl implements IntVar {
 
     private Solver cp;
     private IntDomain domain;
-    private ReversibleStack<Constraint> onDomain;
-    private ReversibleStack<Constraint> onBind;
-    private ReversibleStack<Constraint> onBounds;
+    private StateStack<Constraint> onDomain;
+    private StateStack<Constraint> onBind;
+    private StateStack<Constraint> onBounds;
 
     protected DomainListener domListener = new DomainListener() {
         @Override
@@ -75,10 +75,10 @@ public class IntVarImpl implements IntVar {
         if (min > max) throw new InvalidParameterException("at least one value in the domain");
         this.cp = cp;
         cp.registerVar(this);
-        domain = new SparseSetDomain(cp, min, max);
-        onDomain = new ReversibleStack<>(cp);
-        onBind = new ReversibleStack<>(cp);
-        onBounds = new ReversibleStack<>(cp);
+        domain = new SparseSetDomain(cp.getStateManager(), min, max);
+        onDomain = new StateStack<>(cp.getStateManager());
+        onBind = new StateStack<>(cp.getStateManager());
+        onBounds = new StateStack<>(cp.getStateManager());
     }
 
     public Solver getSolver() {
@@ -149,7 +149,7 @@ public class IntVarImpl implements IntVar {
     }
 
 
-    protected void scheduleAll(ReversibleStack<Constraint> constraints) {
+    protected void scheduleAll(StateStack<Constraint> constraints) {
         for (int i = 0; i < constraints.size(); i++)
             cp.schedule(constraints.get(i));
     }

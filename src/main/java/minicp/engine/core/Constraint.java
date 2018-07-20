@@ -1,8 +1,5 @@
 package minicp.engine.core;
 
-import minicp.reversible.RevBool;
-import minicp.util.Box;
-
 public interface Constraint {
 
     /**

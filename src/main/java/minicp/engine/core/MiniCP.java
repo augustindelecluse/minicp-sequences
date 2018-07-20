@@ -2,7 +2,6 @@ package minicp.engine.core;
 
 import minicp.reversible.*;
 import minicp.search.AbstractSearchNode;
-import minicp.search.DFSearch;
 import minicp.util.InconsistencyException;
 import minicp.util.Procedure;
 
@@ -17,7 +16,7 @@ public class MiniCP extends AbstractSearchNode implements Solver  {
     private Queue<Constraint> propagationQueue = new ArrayDeque<>();
     private List<Procedure> fixPointListeners = new LinkedList<Procedure>();
 
-    private ReversibleStack<IntVar> vars = new ReversibleStack<>(this);
+    private StateStack<IntVar> vars = new StateStack<>(getStateManager());
 
     public void schedule(Constraint c) {
         if (c.isActive() && !c.isScheduled()) {

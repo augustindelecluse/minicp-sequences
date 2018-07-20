@@ -17,7 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.cp.Factory;
 import minicp.engine.core.*;
-import minicp.reversible.RevInt;
+import minicp.reversible.StateInt;
 import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
@@ -25,8 +25,8 @@ import java.util.Arrays;
 public class Sum extends AbstractConstraint {
 
     private  int[] unBounds;
-    private RevInt nUnBounds;
-    private RevInt sumBounds;
+    private StateInt nUnBounds;
+    private StateInt sumBounds;
     private IntVar [] x;
     private int n;
 
@@ -50,8 +50,8 @@ public class Sum extends AbstractConstraint {
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
-        nUnBounds = Factory.makeRevInt(cp,n);
-        sumBounds = Factory.makeRevInt(cp,0);
+        nUnBounds = cp.getStateManager().makeStateInt(n);
+        sumBounds = cp.getStateManager().makeStateInt(0);
         unBounds = new int[n];
         for (int i = 0; i < n; i++) {
             unBounds[i] = i;

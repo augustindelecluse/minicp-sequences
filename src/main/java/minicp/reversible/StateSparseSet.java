@@ -15,32 +15,29 @@
 
 package minicp.reversible;
 
-import minicp.cp.Factory;
-import minicp.util.NotImplementedException;
-
 import java.util.NoSuchElementException;
 
-public class ReversibleSparseSet {
+public class StateSparseSet {
 
     private int [] values;
     private int [] indexes;
-    private RevInt size;
-    private RevInt min;
-    private RevInt max;
+    private StateInt size;
+    private StateInt min;
+    private StateInt max;
     private int ofs;
     private int n;
 
     /**
-     * Creates a ReversibleSparseSet containing the elements {0,...,n-1}.
+     * Creates a StateSparseSet containing the elements {0,...,n-1}.
      * @param sm
      * @param n > 0
      */
-    public ReversibleSparseSet(StateManager sm, int n,int ofs) {
+    public StateSparseSet(StateManager sm, int n, int ofs) {
         this.n = n;
         this.ofs = ofs;
-        size = Factory.makeRevInt(sm,n);
-        min = Factory.makeRevInt(sm,0);
-        max = Factory.makeRevInt(sm,n-1);
+        size = sm.makeStateInt(n);
+        min = sm.makeStateInt(0);
+        max = sm.makeStateInt(n-1);
         values = new int [n];
         indexes = new int [n];
         for (int i = 0; i < n; i++) {

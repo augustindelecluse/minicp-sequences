@@ -18,12 +18,12 @@ package minicp.reversible;
 
 import java.util.*;
 
-public class ReversibleMap<K,V> implements RevMap<K,V> {
+public class TrailMap<K,V> implements StateMap<K,V> {
 
-    TrailImpl trail;
+    Trail trail;
     Map<K,V> map = new IdentityHashMap<>();
 
-    protected ReversibleMap(TrailImpl trail) {
+    protected TrailMap(Trail trail) {
         this.trail = trail;
     }
 

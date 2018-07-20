@@ -74,15 +74,15 @@ public class IsLessOrEqualTest {
 
                 cp.post(new IsLessOrEqual(b,x,-2));
 
-                cp.getTrail().push();
+                cp.getStateManager().save();
                 equal(b, 1);
                 assertEquals(-2, x.getMax());
-                cp.getTrail().pop();
+                cp.getStateManager().restore();
 
-                cp.getTrail().push();
+                cp.getStateManager().save();
                 equal(b, 0);
                 assertEquals(-1,x.getMin());
-                cp.getTrail().pop();
+                cp.getStateManager().restore();
 
             } catch (InconsistencyException e) {
                 fail("should not fail");
@@ -128,17 +128,17 @@ public class IsLessOrEqualTest {
                 IntVar x = makeIntVar(cp, -4, 7);
                 BoolVar b = makeBoolVar(cp);
 
-                cp.getTrail().push();
+                cp.getStateManager().save();
                 equal(b, 1);
                 cp.post(new IsLessOrEqual(b,x,-2));
                 assertEquals(-2, x.getMax());
-                cp.getTrail().pop();
+                cp.getStateManager().restore();
 
-                cp.getTrail().push();
+                cp.getStateManager().save();
                 equal(b, 0);
                 cp.post(new IsLessOrEqual(b,x,-2));
                 assertEquals(-1, x.getMin());
-                cp.getTrail().pop();
+                cp.getStateManager().restore();
 
 
             } catch (InconsistencyException e) {

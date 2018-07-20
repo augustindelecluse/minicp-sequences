@@ -19,11 +19,13 @@ package minicp.search;
 import minicp.reversible.StateManager;
 import minicp.util.Procedure;
 
-public interface SearchNode extends StateManager {
+public interface SearchNode {
 
     public void notifySolution();
     public void onSolution(Procedure listener);
 
     public void notifyFailure();
     public void onFailure(Procedure listener);
+
+    public StateManager getStateManager();
 }

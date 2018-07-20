@@ -18,19 +18,16 @@ package minicp.engine.constraints;
 
 import static minicp.cp.Factory.*;
 
-import minicp.cp.Factory;
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
-import minicp.reversible.RevInt;
+import minicp.reversible.StateInt;
 
 public class Circuit extends AbstractConstraint {
 
     private final IntVar [] x;
-    private final RevInt[] dest;
-    private final RevInt [] orig;
-    private final RevInt [] lengthToDest;
+    private final StateInt[] dest;
+    private final StateInt[] orig;
+    private final StateInt[] lengthToDest;
 
     /**
      * x represents an Hamiltonian circuit on the cities {0..x.length-1}
@@ -41,13 +38,13 @@ public class Circuit extends AbstractConstraint {
         super(x[0].getSolver());
         assert (x.length > 0);
         this.x = x;
-        dest = new RevInt[x.length];
-        orig = new RevInt[x.length];
-        lengthToDest = new RevInt[x.length];
+        dest = new StateInt[x.length];
+        orig = new StateInt[x.length];
+        lengthToDest = new StateInt[x.length];
         for (int i = 0; i < x.length; i++) {
-            dest[i] = Factory.makeRevInt(cp,i);
-            orig[i] = Factory.makeRevInt(cp,i);
-            lengthToDest[i] = Factory.makeRevInt(cp,0);
+            dest[i] = cp.getStateManager().makeStateInt(i);
+            orig[i] = cp.getStateManager().makeStateInt(i);
+            lengthToDest[i] = cp.getStateManager().makeStateInt(0);
         }
     }
 

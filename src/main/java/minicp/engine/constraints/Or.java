@@ -15,12 +15,9 @@
 
 package minicp.engine.constraints;
 
-import minicp.cp.Factory;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
-import minicp.engine.core.Solver;
-import minicp.reversible.RevInt;
+import minicp.reversible.StateInt;
 
 import static minicp.util.InconsistencyException.*;
 
@@ -28,16 +25,16 @@ public class Or extends AbstractConstraint { // x1 or x2 or ... xn
 
     private final BoolVar [] x;
     private final int n;
-    private RevInt wL ; // watched literal left
-    private RevInt wR ; // watched literal right
+    private StateInt wL ; // watched literal left
+    private StateInt wR ; // watched literal right
 
 
     public Or(BoolVar [] x) {
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
-        wL = Factory.makeRevInt(cp,0);
-        wR = Factory.makeRevInt(cp,n-1);
+        wL = cp.getStateManager().makeStateInt(0);
+        wR = cp.getStateManager().makeStateInt(n-1);
     }
 
     @Override

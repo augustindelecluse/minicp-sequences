@@ -1,15 +1,15 @@
 package minicp.engine.core;
 
-import minicp.reversible.RevBool;
+import minicp.reversible.StateBool;
 
 public abstract class AbstractConstraint implements Constraint {
     final protected Solver cp;
     private boolean scheduled = false;
-    private final RevBool active;
+    private final StateBool active;
 
     public AbstractConstraint(Solver cp) {
         this.cp = cp;
-        active = cp.getTrail().makeRevBool(true);
+        active = cp.getStateManager().makeStateBool(true);
     }
     public void post() {}
     public void propagate() {}
