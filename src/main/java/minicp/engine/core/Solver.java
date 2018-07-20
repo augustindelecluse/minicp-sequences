@@ -17,7 +17,7 @@ package minicp.engine.core;
 
 import minicp.cp.Factory;
 import minicp.engine.constraints.Minimize;
-import minicp.reversible.StateManager;
+import minicp.state.StateManager;
 import minicp.search.SearchObserver;
 import minicp.util.Procedure;
 

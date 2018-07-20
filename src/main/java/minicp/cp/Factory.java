@@ -17,7 +17,8 @@ package minicp.cp;
 
 import minicp.engine.constraints.*;
 import minicp.engine.core.*;
-import minicp.reversible.Trail;
+import minicp.state.Copier;
+import minicp.state.Trailer;
 import minicp.search.DFSearch;
 import minicp.util.InconsistencyException;
 import minicp.util.Procedure;
@@ -32,7 +33,10 @@ import java.util.stream.IntStream;
 public class Factory {
 
     static public Solver makeSolver() {
-        return new MiniCP(new Trail());
+        return new MiniCP(new Trailer());
+    }
+    static public Solver makeSolver(boolean byCopy) {
+        return new MiniCP(byCopy ? new Copier() : new Trailer());
     }
 
     static public IntVar mul(IntVar x, int a) {

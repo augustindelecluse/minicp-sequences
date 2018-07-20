@@ -20,7 +20,7 @@ import static minicp.cp.Factory.*;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
-import minicp.reversible.StateInt;
+import minicp.state.StateInt;
 
 public class Circuit extends AbstractConstraint {
 

@@ -16,8 +16,8 @@
 package minicp.search;
 
 
-import minicp.reversible.StateManager;
-import minicp.reversible.TrailInt;
+import minicp.state.StateManager;
+import minicp.state.TrailInt;
 import minicp.util.NotImplementedException;
 import minicp.util.Procedure;
 

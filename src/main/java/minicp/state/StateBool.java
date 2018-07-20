@@ -13,10 +13,13 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 
-public interface StateMap<K,V> {
-    public void put(K k, V v);
-    public V get(K k);
+public interface StateBool {
+
+    public void setValue(boolean v);
+
+    public boolean getValue();
+
 }

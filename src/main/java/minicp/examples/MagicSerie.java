@@ -32,8 +32,8 @@ import static minicp.search.Selector.selectMin;
 public class MagicSerie {
     public static void main(String[] args)  {
 
-        int n = 200;
-        Solver cp = makeSolver();
+        int n = 50;
+        Solver cp = makeSolver(false);
 
         IntVar[] s = makeIntVarArray(cp, n, n);
 

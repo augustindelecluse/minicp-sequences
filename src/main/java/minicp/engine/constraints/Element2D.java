@@ -18,7 +18,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
-import minicp.reversible.StateInt;
+import minicp.state.StateInt;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;

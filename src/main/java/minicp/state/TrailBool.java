@@ -13,7 +13,7 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 
 public class TrailBool implements TrailEntry, StateBool {
@@ -33,10 +33,10 @@ public class TrailBool implements TrailEntry, StateBool {
     };
 
     private boolean v;
-    private Trail trail;
+    private Trailer trail;
     private long lastMagic;
 
-    protected TrailBool(Trail context, boolean initial) {
+    protected TrailBool(Trailer context, boolean initial) {
         this.trail = context;
         v = initial;
         lastMagic = context.getMagic() - 1;
@@ -63,4 +63,5 @@ public class TrailBool implements TrailEntry, StateBool {
     public void restore() {
         v = !v;
     }
+
 }

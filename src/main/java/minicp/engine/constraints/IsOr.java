@@ -17,7 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
-import minicp.reversible.StateInt;
+import minicp.state.StateInt;
 
 public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
 

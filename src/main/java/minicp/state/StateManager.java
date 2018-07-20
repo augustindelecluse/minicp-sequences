@@ -13,57 +13,50 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 import minicp.util.Procedure;
-
 
 public interface StateManager {
 
     /**
      * @return The current level
      */
-    public int getLevel();
+    int getLevel();
 
     /**
      * Stores the current state
      * such that it can be recovered using restore()
      * Increase the level by 1
      */
-    public void save();
+    void save();
 
 
     /**
      *  Restores state as it was at getLevel()-1
      *  Decrease the level by 1
      */
-    public void restore();
+    void restore();
 
     /**
      *  Restores the state as it was at level 0 (first save)
      *  The level is now -1.
      *  Notice that you'll probably want to save after this operation.
      */
-    public void restoreAll();
+    void restoreAll();
 
     /**
      *  Restores the state as it was at level
      *  @param level
      */
-    public void restoreUntil(int level);
+    void restoreUntil(int level);
 
-    public StateInt makeStateInt(int initValue);
+    StateInt makeStateInt(int initValue);
 
-    public StateBool makeStateBool(boolean initValue);
+    StateBool makeStateBool(boolean initValue);
 
-    public StateMap makeStateMap();
+    StateMap makeStateMap();
 
-    default void withNewState(Procedure body) {
-        int level = getLevel();
-        save();
-        body.call();
-        restoreUntil(level);
-    }
-
+    void withNewState(Procedure body);
 }
 

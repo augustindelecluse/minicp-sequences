@@ -13,13 +13,14 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 
-public interface StateBool {
-
-    public void setValue(boolean v);
-
-    public boolean getValue();
-
+public interface StateInt {
+    int setValue(int v);
+    int getValue();
+    int increment();
+    int decrement();
+    @Override
+    String toString();
 }

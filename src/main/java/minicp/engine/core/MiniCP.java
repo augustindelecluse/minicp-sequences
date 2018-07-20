@@ -1,8 +1,9 @@
 package minicp.engine.core;
 
-import minicp.reversible.*;
 import minicp.search.AbstractSearcher;
 import minicp.search.SearchObserver;
+import minicp.state.StateManager;
+import minicp.state.StateStack;
 import minicp.util.InconsistencyException;
 import minicp.util.Procedure;
 

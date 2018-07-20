@@ -1,6 +1,6 @@
 package minicp.engine.core;
 
-import minicp.reversible.StateBool;
+import minicp.state.StateBool;
 
 public abstract class AbstractConstraint implements Constraint {
     final protected Solver cp;

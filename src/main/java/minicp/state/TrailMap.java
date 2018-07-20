@@ -13,17 +13,17 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 
 import java.util.*;
 
 public class TrailMap<K,V> implements StateMap<K,V> {
 
-    Trail trail;
+    Trailer trail;
     Map<K,V> map = new IdentityHashMap<>();
 
-    protected TrailMap(Trail trail) {
+    protected TrailMap(Trailer trail) {
         this.trail = trail;
     }
 
