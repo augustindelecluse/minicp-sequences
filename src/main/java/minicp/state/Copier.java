@@ -15,11 +15,6 @@ public class Copier implements StateManager {
     }
 
     @Override
-    public int getLevel() {
-        return _priorStates.size();
-    }
-
-    @Override
     public void save() {
         ArrayList<Storage> copy = new ArrayList<Storage>(_store.size());
         for(Storage s : _store)
@@ -41,8 +36,7 @@ public class Copier implements StateManager {
             restore();
     }
 
-    @Override
-    public void restoreUntil(int level) {
+    private void restoreUntil(int level) {
         while (_priorStates.size() != level)
             restore();
     }

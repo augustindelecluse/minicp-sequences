@@ -20,17 +20,11 @@ import minicp.util.Procedure;
 public interface StateManager {
 
     /**
-     * @return The current level
-     */
-    int getLevel();
-
-    /**
      * Stores the current state
      * such that it can be recovered using restore()
      * Increase the level by 1
      */
     void save();
-
 
     /**
      *  Restores state as it was at getLevel()-1
@@ -46,17 +40,27 @@ public interface StateManager {
     void restoreAll();
 
     /**
-     *  Restores the state as it was at level
-     *  @param level
+     * Creates a Stateful integer (restorable)
+     * @param initValue the initial value
+     * @return a reference to the integer.
      */
-    void restoreUntil(int level);
-
     StateInt makeStateInt(int initValue);
-
+    /**
+     * Creates a Stateful boolean (restorable)
+     * @param initValue the initial value
+     * @return a reference to the boolean.
+     */
     StateBool makeStateBool(boolean initValue);
-
+    /**
+     * Creates a Stateful map (restorable)
+     * @return a reference to the map.
+     */
     StateMap makeStateMap();
 
+    /**
+     * Higher-order function that preserves the state prior to calling body and restores it after.
+     * @param body the first-order function to execute.
+     */
     void withNewState(Procedure body);
 }
 

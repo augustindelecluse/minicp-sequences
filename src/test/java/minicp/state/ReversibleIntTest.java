@@ -41,7 +41,7 @@ public class ReversibleIntTest {
     @Test
     public void testExample() {
 
-        StateManager trail = new Trailer();
+        Trailer trail = new Trailer();
 
         // Two reversible int's inside the trail
         StateInt a = trail.makeStateInt(5);
@@ -171,7 +171,7 @@ public class ReversibleIntTest {
     @Test
     public void testPopUntill() {
 
-        StateManager trail = new Trailer();
+        Trailer trail = new Trailer();
         StateInt a = trail.makeStateInt(5);
         StateInt b = trail.makeStateInt(5);
 
