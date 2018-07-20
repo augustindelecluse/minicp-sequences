@@ -121,7 +121,7 @@ public class TSP {
             succBest[i] = i;
         }
 
-        cp.onSolution(() -> {
+        dfs.onSolution(() -> {
             // Update the current best solution
             for (int i = 0; i < n; i++) {
                 succBest[i] = succ[i].getMin();

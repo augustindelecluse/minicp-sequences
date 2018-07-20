@@ -15,20 +15,17 @@
 
 package minicp.search;
 
-import minicp.reversible.StateManager;
-import minicp.reversible.Trail;
 import minicp.util.Procedure;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AbstractSearchNode implements SearchNode {
+public abstract class AbstractSearcher implements SearchObserver {
 
-    private final StateManager sm = new Trail();
     private List<Procedure> solutionListeners = new LinkedList<Procedure>();
     private List<Procedure> failureListeners = new LinkedList<Procedure>();
 
-
+    @Override
     public void notifySolution() {
         solutionListeners.forEach(s -> s.call());
     }
@@ -47,8 +44,4 @@ public abstract class AbstractSearchNode implements SearchNode {
         failureListeners.add(listener);
     }
 
-    @Override
-    public StateManager getStateManager() {
-        return sm;
-    }
 }

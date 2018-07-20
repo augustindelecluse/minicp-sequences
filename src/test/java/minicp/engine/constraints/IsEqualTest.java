@@ -40,11 +40,11 @@ public class IsEqualTest {
 
                 BoolVar b = isEqual(x, -2);
 
-                DFSearch search = new DFSearch(cp, firstFail(x));
+                DFSearch search = makeDfs(cp, firstFail(x));
 
                 SearchStatistics stats = search.solve();
 
-                cp.onSolution(() ->
+                search.onSolution(() ->
                         assertEquals(-2 == x.getMin(), b.isTrue())
                 );
 

@@ -97,7 +97,7 @@ public class RCPSP {
 
         DFSearch dfs = makeDfs(cp, firstFail(start));
 
-        cp.onSolution(() ->
+        dfs.onSolution(() ->
 
                 System.out.println("makespan:" + makespan)
         );

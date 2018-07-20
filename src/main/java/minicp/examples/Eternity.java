@@ -19,6 +19,7 @@ import minicp.cp.Factory;
 import minicp.engine.constraints.TableDecomp;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
+import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InputReader;
 
@@ -126,7 +127,19 @@ public class Eternity {
             equal(d[n-1][j],0);
         }
 
-        cp.onSolution(() -> {
+
+        // The search using the and combinator
+
+        DFSearch dfs = makeDfs(cp,
+                and(firstFail(flatten(id)),
+                        firstFail(flatten(u)),
+                        firstFail(flatten(r)),
+                        firstFail(flatten(d)),
+                        firstFail(flatten(l)))
+        );
+
+
+        dfs.onSolution(() -> {
             // Pretty Print
             for (int i = 0; i < n; i++) {
                 String line = "   ";
@@ -150,15 +163,7 @@ public class Eternity {
         });
 
 
-        // The search using the and combinator
-
-        SearchStatistics stats = makeDfs(cp,
-                and(firstFail(flatten(id)),
-                        firstFail(flatten(u)),
-                        firstFail(flatten(r)),
-                        firstFail(flatten(d)),
-                        firstFail(flatten(l)))
-        ).solve(statistics -> statistics.nSolutions == 1);
+        SearchStatistics stats =        dfs.solve(statistics -> statistics.nSolutions == 1);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);

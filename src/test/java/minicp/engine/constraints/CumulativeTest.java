@@ -121,11 +121,11 @@ public class CumulativeTest {
 
             cp.post(new Cumulative(s,d,r,12));
 
-            DFSearch search = new DFSearch(cp, firstFail(s));
+            DFSearch search = makeDfs(cp, firstFail(s));
 
             SearchStatistics stats = search.solve();
 
-            cp.onSolution(() -> {
+            search.onSolution(() -> {
                 Rectangle[] rects = IntStream.range(0, s.length).mapToObj(i -> {
                     int start = s[i].getMin();
                     int end = start + d[i];
@@ -157,7 +157,7 @@ public class CumulativeTest {
             int[] d = new int[] {5,10,3,6,1};
             int[] r = new int[] {3, 7,1,4,8};
 
-            DFSearch search = new DFSearch(cp, firstFail(s));
+            DFSearch search = makeDfs(cp,firstFail(s));
 
             cp.getStateManager().save();
 

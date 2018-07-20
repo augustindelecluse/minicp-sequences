@@ -22,6 +22,7 @@ import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import org.junit.Test;
 
+import static minicp.cp.Factory.makeDfs;
 import static minicp.cp.Factory.makeIntVar;
 import static minicp.cp.Factory.makeSolver;
 import static minicp.cp.Heuristics.firstFail;
@@ -105,8 +106,8 @@ public class Element2DTest {
 
             cp.post(new Element2D(T, x, y, z));
 
-            DFSearch dfs = new DFSearch(cp, firstFail(x, y, z));
-            cp.onSolution(() ->
+            DFSearch dfs = makeDfs(cp, firstFail(x, y, z));
+            dfs.onSolution(() ->
                     assertEquals(T[x.getMin()][y.getMin()], z.getMin())
             );
             SearchStatistics stats = dfs.solve();

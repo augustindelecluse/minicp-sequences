@@ -17,6 +17,7 @@ package minicp.examples;
 
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
+import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 
 import java.util.Arrays;
@@ -46,30 +47,36 @@ public class NQueensPerformance {
                 cp.post(notEqual(minus(q[i], j - i), q[j]));
             }
 
-        cp.onSolution(() ->
-                System.out.println("solution:"+ Arrays.toString(q))
-        );
 
         long t0 = System.currentTimeMillis();
-        SearchStatistics stats = makeDfs(cp,
+
+
+        DFSearch dfs = makeDfs(cp,
                 selectMin(q,
                         qi -> qi.getSize() > 1,
                         qi -> qi.getSize(),
                         qi -> {
                             int v = qi.getMin();
-                            return branch(() -> equal(qi,v),
-                                          () -> notEqual(qi,v));
+                            return branch(() -> equal(qi, v),
+                                    () -> notEqual(qi, v));
                         }
                 )
-        ).solve(statistics -> {
-           if ((statistics.nNodes/2) % 10000 == 0) {
-               //System.out.println("failures:"+statistics.nFailures);
-               System.out.println("nodes:"+(statistics.nNodes/2));
-           }
-           return statistics.nFailures > 500000 || statistics.nSolutions > 0;
+        );
+
+        dfs.onSolution(() ->
+                System.out.println("solution:" + Arrays.toString(q))
+        );
+
+
+        SearchStatistics stats = dfs.solve(statistics -> {
+            if ((statistics.nNodes / 2) % 10000 == 0) {
+                //System.out.println("failures:"+statistics.nFailures);
+                System.out.println("nodes:" + (statistics.nNodes / 2));
+            }
+            return statistics.nFailures > 500000 || statistics.nSolutions > 0;
         });
 
-        System.out.println("time:"+(System.currentTimeMillis()-t0));
+        System.out.println("time:" + (System.currentTimeMillis() - t0));
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);
 

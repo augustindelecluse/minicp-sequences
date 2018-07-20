@@ -82,7 +82,7 @@ public class Trail implements StateManager {
      *  Notice that you'll probably want to save after this operation.
      */
     public void restoreAll() {
-        popUntil(-1);
+        restoreUntil(-1);
         trail.clear();
     }
 
@@ -90,7 +90,7 @@ public class Trail implements StateManager {
      *  Restores the state as it was at level
      *  @param level
      */
-    public void popUntil(int level) {
+    public void restoreUntil(int level) {
         while (getLevel() > level) {
             restore();
         }

@@ -70,9 +70,10 @@ public class QAP {
 
         minimize(objective);
 
-        cp.onSolution(() -> System.out.println("objective:"+objective.getMin()));
 
         DFSearch dfs = makeDfs(cp,firstFail(x));
+
+        dfs.onSolution(() -> System.out.println("objective:"+objective.getMin()));
 
         SearchStatistics stats = dfs.solve();
 

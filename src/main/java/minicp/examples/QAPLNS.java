@@ -83,7 +83,7 @@ public class QAPLNS {
             xBest[i] = i;
         }
 
-        cp.onSolution(() -> {
+        dfs.onSolution(() -> {
             // Update the current best solution
             for (int i = 0; i < n; i++) {
                 xBest[i] = x[i].getMin();

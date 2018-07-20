@@ -203,7 +203,7 @@ public class ReversibleIntTest {
         a.setValue(8);
         b.setValue(10);
 
-        trail.popUntil(0);
+        trail.restoreUntil(0);
 
         assertEquals(0,trail.getLevel());
 
@@ -219,7 +219,7 @@ public class ReversibleIntTest {
         b.setValue(8);
         b.setValue(10);
 
-        trail.popUntil(0);
+        trail.restoreUntil(0);
 
         assertEquals(0,trail.getLevel());
         assertEquals(5,a.getValue());

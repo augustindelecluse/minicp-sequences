@@ -78,14 +78,14 @@ public class MagicSquare {
         cp.post(sum(diagonalLeft, M));
         cp.post(sum(diagonalRight, M));
 
-        cp.onSolution(() -> {
+        DFSearch dfs = makeDfs(cp,firstFail(xFlat));
+
+        dfs.onSolution(() -> {
                     for (int i = 0; i < n; i++) {
                         System.out.println(Arrays.toString(x[i]));
                     }
                 }
         );
-
-        DFSearch dfs = makeDfs(cp,firstFail(xFlat));
 
         SearchStatistics stats = dfs.solve(stat -> stat.nSolutions >= 1); // stop on first solution
 

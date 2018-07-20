@@ -40,7 +40,7 @@ public class Minimize extends AbstractConstraint {
     public void post()  {
         x.propagateOnBoundChange(this);
         // Ensure that the constraint is scheduled on backtrack
-        x.getSolver().onSolution(() -> {
+        x.getSolver().getSearchObserver().onSolution(() -> {
             tighten();
             cp.schedule(this);
         });

@@ -44,11 +44,11 @@ public class IsLessOrEqualVarTest {
 
                 cp.post(new IsLessOrEqualVar(b,x,y));
 
-                DFSearch search = new DFSearch(cp, firstFail(x,y));
+                DFSearch search = makeDfs(cp, firstFail(x,y));
 
                 SearchStatistics stats = search.solve();
 
-                cp.onSolution(() ->
+                search.onSolution(() ->
                         assertTrue(x.getMin() <= y.getMin() && b.isTrue() || x.getMin() > y.getMin() && b.isFalse())
                 );
 

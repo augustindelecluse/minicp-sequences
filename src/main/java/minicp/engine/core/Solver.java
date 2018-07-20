@@ -17,14 +17,18 @@ package minicp.engine.core;
 
 import minicp.cp.Factory;
 import minicp.engine.constraints.Minimize;
-import minicp.search.SearchNode;
+import minicp.reversible.StateManager;
+import minicp.search.SearchObserver;
 import minicp.util.Procedure;
 
-public interface Solver extends SearchNode {
+public interface Solver {
     void post(Constraint c);
     void schedule(Constraint c);
     void post(Constraint c, boolean enforceFixPoint);
     void fixPoint();
+
+    SearchObserver getSearchObserver();
+    StateManager getStateManager();
 
     public void onFixPoint(Procedure listener);
 

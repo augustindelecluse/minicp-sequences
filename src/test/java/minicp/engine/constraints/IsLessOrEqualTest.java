@@ -43,9 +43,9 @@ public class IsLessOrEqualTest {
 
                 cp.post(new IsLessOrEqual(b,x,3));
 
-                DFSearch search = new DFSearch(cp, firstFail(x));
+                DFSearch search = makeDfs(cp, firstFail(x));
 
-                cp.onSolution(() ->
+                search.onSolution(() ->
                         assertTrue(x.getMin() <= 3 && b.isTrue() || x.getMin() > 3 && b.isFalse())
                 );
 

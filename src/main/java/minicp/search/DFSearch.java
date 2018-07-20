@@ -15,6 +15,7 @@
 
 package minicp.search;
 
+import minicp.reversible.StateManager;
 import minicp.util.Procedure;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
@@ -25,16 +26,27 @@ import java.util.function.Supplier;
 public class DFSearch {
 
     private Supplier<Procedure[]> branching;
-    private SearchNode node;
+    private SearchObserver searchObserver;
+    private StateManager sm;
 
-
-    public DFSearch(SearchNode root, Supplier<Procedure[]> branching) {
-        this.node    = root;
+    public DFSearch(StateManager sm, SearchObserver observer, Supplier<Procedure[]> branching) {
+        this.sm = sm;
+        this.searchObserver = new AbstractSearcher() {};
+        searchObserver.onFailure(() -> observer.notifyFailure());
+        searchObserver.onSolution(() -> observer.notifySolution());
         this.branching = branching;
     }
 
+    public void onSolution(Procedure listener) {
+        searchObserver.onSolution(listener);
+    }
+
+    public void onFailure(Procedure listener) {
+        searchObserver.onFailure(listener);
+    }
+
     private SearchStatistics solve(SearchStatistics statistics,SearchLimit limit) {
-        node.getStateManager().withNewState( ()-> {
+        sm.withNewState( ()-> {
                 try {
                     dfs(statistics,limit);
                     statistics.completed = true;
@@ -47,6 +59,7 @@ public class DFSearch {
         return statistics;
     }
 
+
     public SearchStatistics solve() {
         SearchStatistics statistics = new SearchStatistics();
         return solve(statistics,stats -> false);
@@ -58,7 +71,7 @@ public class DFSearch {
 
     public SearchStatistics solveSubjectTo(SearchLimit limit, Procedure subjectTo) {
         SearchStatistics statistics = new SearchStatistics();
-        node.getStateManager().withNewState(() -> {
+        sm.withNewState(() -> {
             try {
                 subjectTo.call();
                 solve(statistics,limit);
@@ -72,17 +85,17 @@ public class DFSearch {
         Procedure[] alts = branching.get();
         if (alts.length == 0) {
             statistics.nSolutions++;
-            node.notifySolution();
+            searchObserver.notifySolution();
         } else {
             for (int i = alts.length-1; i >= 0; i--) {
                 Procedure a = alts[i];
-                alternatives.push(() -> node.getStateManager().restore());
+                alternatives.push(() -> sm.restore());
                 alternatives.push(() -> {
                     statistics.nNodes++;
                     a.call();
                     expandNode(alternatives, statistics);
                 });
-                alternatives.push(() -> node.getStateManager().save());
+                alternatives.push(() -> sm.save());
             }
         }
     }
@@ -98,7 +111,7 @@ public class DFSearch {
                 alternatives.pop().call();
             } catch (InconsistencyException e) {
                 statistics.nFailures++;
-                node.notifyFailure();
+                searchObserver.notifyFailure();
             }
         }
 
@@ -110,18 +123,18 @@ public class DFSearch {
         Procedure[] branches = branching.get();
         if (branches.length == 0) {
             statistics.nSolutions++;
-            node.notifySolution();
+            searchObserver.notifySolution();
         }
         else {
             for (Procedure b : branches) {
-                node.getStateManager().withNewState( ()-> {
+                sm.withNewState( ()-> {
                         try {
                             statistics.nNodes++;
                             b.call();
                             dfs2(statistics,limit);
                         } catch (InconsistencyException e) {
                             statistics.nFailures++;
-                            node.notifyFailure();
+                            searchObserver.notifyFailure();
                         }
                     });
             }

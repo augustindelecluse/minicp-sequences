@@ -17,6 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.Solver;
+import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
@@ -65,7 +66,10 @@ public class OrTest {
                 BoolVar [] x = new BoolVar[] {makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp),makeBoolVar(cp)};
                 cp.post(new Or(x));
 
-                cp.onSolution(() -> {
+
+                DFSearch dfs = makeDfs(cp,firstFail(x));
+
+                dfs.onSolution(() -> {
                             int nTrue = 0;
                             for (BoolVar xi: x) {
                                 if (xi.isTrue()) nTrue++;
@@ -75,7 +79,8 @@ public class OrTest {
                         }
                 );
 
-                SearchStatistics stats = makeDfs(cp,firstFail(x)).solve();
+                SearchStatistics stats = dfs.solve();
+
                 assertEquals(15,stats.nSolutions);
 
             } catch (InconsistencyException e) {

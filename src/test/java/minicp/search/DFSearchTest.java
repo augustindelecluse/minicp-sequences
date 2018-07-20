@@ -37,17 +37,18 @@ import static minicp.cp.Factory.*;
 
 public class DFSearchTest {
 
-    public static SearchNode makeSearchNode() {
-        return new AbstractSearchNode() {};
+    public static SearchObserver makeSearchObserver() {
+        return new AbstractSearcher() {};
     }
 
     @Test
     public void testExample1() {
-        SearchNode r = makeSearchNode();
-        StateInt i = r.getStateManager().makeStateInt(0);
+        SearchObserver r = makeSearchObserver();
+        StateManager sm = new Trail();
+        StateInt i = sm.makeStateInt(0);
         int [] values = new int[3];
 
-        DFSearch dfs = new DFSearch(r,() -> {
+        DFSearch dfs = new DFSearch(sm, r,() -> {
             if (i.getValue() >= values.length)
                 return EMPTY;
             else return branch(
@@ -75,7 +76,7 @@ public class DFSearchTest {
         Solver cp = makeSolver();
         IntVar[] values = makeIntVarArray(cp,3,2);
 
-        DFSearch dfs = new DFSearch(cp,() -> {
+        DFSearch dfs = makeDfs(cp,() -> {
             int sel = -1;
             for(int i = 0 ; i < values.length;i++)
                 if (values[i].getSize() > 1 && sel == -1)
@@ -97,11 +98,12 @@ public class DFSearchTest {
 
     @Test
     public void testExample3() {
-        SearchNode r = makeSearchNode();
-        StateInt i = r.getStateManager().makeStateInt(0);
+        SearchObserver r = makeSearchObserver();
+        StateManager sm = new Trail();
+        StateInt i = sm.makeStateInt(0);
         int [] values = new int[3];
 
-        DFSearch dfs = new DFSearch(r,() -> {
+        DFSearch dfs = new DFSearch(sm,r,() -> {
             if (i.getValue() >= values.length)
                 return EMPTY;
             else return branch(
@@ -132,14 +134,15 @@ public class DFSearchTest {
 
     @Test
     public void testDFS() {
-        SearchNode r = makeSearchNode();
-        StateInt i = r.getStateManager().makeStateInt(0);
+        SearchObserver r = makeSearchObserver();
+        StateManager sm = new Trail();
+        StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[4];
 
         Counter nSols = new Counter();
 
 
-        DFSearch dfs = new DFSearch(r,() -> {
+        DFSearch dfs = new DFSearch(sm, r,() -> {
             if (i.getValue() >= values.length)
                 return EMPTY;
             else return branch (
@@ -174,11 +177,13 @@ public class DFSearchTest {
 
     @Test
     public void testDFSSearchLimit() {
-        SearchNode r = makeSearchNode();
-        StateInt i = r.getStateManager().makeStateInt(0);
+        SearchObserver r = makeSearchObserver();
+        StateManager sm = new Trail();
+
+        StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[4];
 
-        DFSearch dfs = new DFSearch(r,() -> {
+        DFSearch dfs = new DFSearch(sm,r,() -> {
             if (i.getValue() >= values.length) {
                 return branch(() -> {throw new InconsistencyException();});
             }
@@ -213,11 +218,12 @@ public class DFSearchTest {
 
     @Test
     public void testDeepDFS() {
-        SearchNode r = makeSearchNode();
-        StateInt i = r.getStateManager().makeStateInt(0);
+        SearchObserver r = makeSearchObserver();
+        StateManager sm = new Trail();
+        StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[10000];
 
-        DFSearch dfs = new DFSearch(r,() -> {
+        DFSearch dfs = new DFSearch(sm,r,() -> {
             if (i.getValue() >= values.length) {
                 return EMPTY;
             }

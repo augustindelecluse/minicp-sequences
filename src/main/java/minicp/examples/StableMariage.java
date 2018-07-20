@@ -149,17 +149,15 @@ public class StableMariage {
             }
         }
 
-        cp.onSolution(() -> {
-                    System.out.println(Arrays.toString(wife));
-                    System.out.println(Arrays.toString(husband));
-                }
-        );
-
 
         DFSearch dfs = makeDfs(cp,
                 and(firstFail(wife), firstFail(husband)));
 
-
+        dfs.onSolution(() -> {
+                    System.out.println(Arrays.toString(wife));
+                    System.out.println(Arrays.toString(husband));
+                }
+        );
 
 
         SearchStatistics stats = dfs.solve();

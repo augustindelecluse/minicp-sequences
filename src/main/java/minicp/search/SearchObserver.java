@@ -19,7 +19,7 @@ package minicp.search;
 import minicp.reversible.StateManager;
 import minicp.util.Procedure;
 
-public interface SearchNode {
+public interface SearchObserver {
 
     public void notifySolution();
     public void onSolution(Procedure listener);
@@ -27,5 +27,4 @@ public interface SearchNode {
     public void notifyFailure();
     public void onFailure(Procedure listener);
 
-    public StateManager getStateManager();
 }

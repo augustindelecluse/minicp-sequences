@@ -106,7 +106,7 @@ public class CircuitTest {
                 IntVar [] x = makeIntVarArray(cp,5,5);
                 cp.post(new Circuit(x));
 
-                cp.onSolution(() -> {
+                cp.getSearchObserver().onSolution(() -> {
                             int[] sol = new int[x.length];
                             for (int i = 0; i < x.length; i++) {
                                 sol[i] = x[i].getMin();

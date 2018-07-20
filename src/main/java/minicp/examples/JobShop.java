@@ -115,7 +115,7 @@ public class JobShop {
             DFSearch dfs = makeDfs(cp, firstFail(flatten(start)));
 
 
-            cp.onSolution(() ->
+            cp.getSearchObserver().onSolution(() ->
                     System.out.println("makespan:" + makespan)
             );
 

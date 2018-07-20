@@ -156,7 +156,7 @@ public class Steel {
             );
 
 
-            cp.onSolution(() -> {
+            dfs.onSolution(() -> {
                 System.out.println("---");
                 System.out.println(totLoss);
 

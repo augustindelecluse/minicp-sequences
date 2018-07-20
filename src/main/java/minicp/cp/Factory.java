@@ -17,6 +17,7 @@ package minicp.cp;
 
 import minicp.engine.constraints.*;
 import minicp.engine.core.*;
+import minicp.reversible.Trail;
 import minicp.search.DFSearch;
 import minicp.util.InconsistencyException;
 import minicp.util.Procedure;
@@ -31,7 +32,7 @@ import java.util.stream.IntStream;
 public class Factory {
 
     static public Solver makeSolver() {
-        return new MiniCP();
+        return new MiniCP(new Trail());
     }
 
     static public IntVar mul(IntVar x, int a) {
@@ -114,7 +115,7 @@ public class Factory {
     }
 
     static public DFSearch makeDfs(Solver cp, Supplier<Procedure[]> branching) {
-        return new DFSearch(cp,branching);
+        return new DFSearch(cp.getStateManager(),cp.getSearchObserver(),branching);
     }
 
 

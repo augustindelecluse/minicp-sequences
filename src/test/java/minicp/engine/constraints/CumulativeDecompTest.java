@@ -120,11 +120,11 @@ public class CumulativeDecompTest {
 
             cp.post(new CumulativeDecomposition(s,d,r,12));
 
-            DFSearch search = new DFSearch(cp, firstFail(s));
+            DFSearch search = makeDfs(cp, firstFail(s));
 
             SearchStatistics stats = search.solve();
 
-            cp.onSolution(() -> {
+            search.onSolution(() -> {
                 Rectangle[] rects = IntStream.range(0, s.length).mapToObj(i -> {
                     int start = s[i].getMin();
                     int end = start + d[i];

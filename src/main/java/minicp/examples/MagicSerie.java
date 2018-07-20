@@ -18,6 +18,7 @@ package minicp.examples;
 import minicp.cp.Factory;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
+import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 
 import java.util.Arrays;
@@ -44,22 +45,24 @@ public class MagicSerie {
         cp.post(sum(Factory.makeIntVarArray(0,n-1, i -> mul(s[i],i)),n));
         //cp.post(sum(makeIntVarArray(0,n-1,i -> mul(s[i],i-1)),0));
 
-        cp.onSolution(() ->
-                System.out.println("solution:"+ Arrays.toString(s))
-        );
-
         long t0 = System.currentTimeMillis();
-        SearchStatistics stats = makeDfs(cp,
+        DFSearch dfs = makeDfs(cp,
                 selectMin(s,
                         si -> si.getSize() > 1,
                         si -> -si.getSize(),
                         si -> {
                             int v = si.getMin();
-                            return branch(() -> equal(si,v),
-                                          () -> notEqual(si,v));
+                            return branch(() -> equal(si, v),
+                                    () -> notEqual(si, v));
                         }
                 )
-        ).solve();
+        );
+
+        dfs.onSolution(() ->
+                System.out.println("solution:" + Arrays.toString(s))
+        );
+
+        SearchStatistics stats = dfs.solve();
 
         long t1 = System.currentTimeMillis();
 
