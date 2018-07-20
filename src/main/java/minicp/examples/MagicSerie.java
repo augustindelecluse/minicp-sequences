@@ -33,7 +33,7 @@ public class MagicSerie {
     public static void main(String[] args)  {
 
         int n = 50;
-        Solver cp = makeSolver(false);
+        Solver cp = makeSolver(true);
 
         IntVar[] s = makeIntVarArray(cp, n, n);
 

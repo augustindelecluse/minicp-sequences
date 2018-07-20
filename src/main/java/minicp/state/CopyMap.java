@@ -17,13 +17,12 @@ public class CopyMap<K,V> implements Storage,StateMap<K,V> {
     }
 
     @Override
-    public Storage saveTo() {
+    public Storage save() {
         return new CopyMap(null);
     }
 
-    @Override
-    public void restoreFrom(Storage s) {
-        CopyMap<K,V> ts = (CopyMap<K,V>)s;
-        map = ts.map;
-    }
+    @Override public void restore(Storage s) { map = s.getMap();}
+    @Override public int  getInt() { return 0;}
+    @Override public boolean  getBool() { return false;}
+    @Override public Map getMap() { return map;}
 }

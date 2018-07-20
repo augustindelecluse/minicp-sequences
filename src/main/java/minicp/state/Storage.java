@@ -1,6 +1,11 @@
 package minicp.state;
 
+import java.util.Map;
+
 public interface Storage {
-    Storage saveTo();
-    void  restoreFrom(Storage s);
+    Storage save();
+    void restore(Storage s);
+    int  getInt();
+    boolean  getBool();
+    Map      getMap();
 }

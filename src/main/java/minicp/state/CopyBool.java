@@ -1,5 +1,7 @@
 package minicp.state;
 
+import java.util.Map;
+
 public class CopyBool implements Storage,StateBool {
     private boolean _value;
     public CopyBool(Copier cs,boolean initial) {
@@ -16,12 +18,14 @@ public class CopyBool implements Storage,StateBool {
     }
 
     @Override
-    public Storage saveTo() {
+    public Storage save() {
         return new CopyBool(null,_value);
     }
 
-    @Override
-    public void restoreFrom(Storage s) {
-        _value = ((StateBool)s).getValue();
+    @Override public void restore(Storage s) {
+        _value = s.getBool();
     }
+    @Override public int  getInt() { return 0;}
+    @Override public boolean  getBool() { return _value;}
+    @Override public Map getMap() { return null;}
 }

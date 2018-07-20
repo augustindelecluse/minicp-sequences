@@ -14,24 +14,21 @@ public class Copier implements StateManager {
         _priorStates = new Stack<ArrayList>();
     }
 
-    @Override
-    public void save() {
+    @Override public void save() {
         ArrayList<Storage> copy = new ArrayList<Storage>(_store.size());
         for(Storage s : _store)
-            copy.add(s.saveTo());
+            copy.add(s.save());
         _priorStates.push(copy);
     }
 
-    @Override
-    public void restore() {
+    @Override public void restore() {
         ArrayList<Storage> last = _priorStates.pop();
         Iterator<Storage> i = last.iterator();
         for(Storage s : _store)
-            s.restoreFrom(i.next());
+            s.restore(i.next());
     }
 
-    @Override
-    public void restoreAll() {
+    @Override public void restoreAll() {
         while(!_priorStates.empty())
             restore();
     }
