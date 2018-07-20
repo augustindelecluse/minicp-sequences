@@ -18,18 +18,12 @@ public class MiniCP implements Solver  {
     private List<Procedure> fixPointListeners = new LinkedList<Procedure>();
 
     private final StateManager sm;
-    private final SearchObserver searcher;
 
     private final StateStack<IntVar> vars;
 
     public MiniCP(StateManager sm) {
         this.sm = sm;
-        searcher = new AbstractSearcher(){};
         vars = new StateStack<>(sm);
-    }
-
-    public SearchObserver getSearchObserver() {
-        return searcher;
     }
 
     public StateManager getStateManager() {

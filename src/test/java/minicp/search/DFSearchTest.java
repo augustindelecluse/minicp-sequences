@@ -48,7 +48,7 @@ public class DFSearchTest {
         StateInt i = sm.makeStateInt(0);
         int [] values = new int[3];
 
-        DFSearch dfs = new DFSearch(sm, r,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length)
                 return EMPTY;
             else return branch(
@@ -103,7 +103,7 @@ public class DFSearchTest {
         StateInt i = sm.makeStateInt(0);
         int [] values = new int[3];
 
-        DFSearch dfs = new DFSearch(sm,r,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length)
                 return EMPTY;
             else return branch(
@@ -134,7 +134,6 @@ public class DFSearchTest {
 
     @Test
     public void testDFS() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = new Trail();
         StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[4];
@@ -142,7 +141,7 @@ public class DFSearchTest {
         Counter nSols = new Counter();
 
 
-        DFSearch dfs = new DFSearch(sm, r,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length)
                 return EMPTY;
             else return branch (
@@ -159,7 +158,7 @@ public class DFSearchTest {
             );
         });
 
-        r.onSolution(() -> {
+        dfs.onSolution(() -> {
            nSols.incr();
         });
 
@@ -168,10 +167,10 @@ public class DFSearchTest {
         SearchStatistics stats = dfs.solve();
 
 
-        assert(nSols.getValue() == 16);
-        assert(stats.nSolutions == 16);
-        assert(stats.nFailures == 0);
-        assert(stats.nNodes == (16+8+4+2));
+        assertEquals(16, nSols.getValue());
+        assertEquals(16, stats.nSolutions);
+        assertEquals(0,stats.nFailures );
+        assertEquals((16+8+4+2), stats.nNodes);
 
     }
 
@@ -183,7 +182,7 @@ public class DFSearchTest {
         StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[4];
 
-        DFSearch dfs = new DFSearch(sm,r,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length) {
                 return branch(() -> {throw new InconsistencyException();});
             }
@@ -223,7 +222,7 @@ public class DFSearchTest {
         StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[10000];
 
-        DFSearch dfs = new DFSearch(sm,r,() -> {
+        DFSearch dfs = new DFSearch(sm,() -> {
             if (i.getValue() >= values.length) {
                 return EMPTY;
             }

@@ -29,11 +29,9 @@ public class DFSearch {
     private SearchObserver searchObserver;
     private StateManager sm;
 
-    public DFSearch(StateManager sm, SearchObserver observer, Supplier<Procedure[]> branching) {
+    public DFSearch(StateManager sm, Supplier<Procedure[]> branching) {
         this.sm = sm;
         this.searchObserver = new AbstractSearcher() {};
-        searchObserver.onFailure(() -> observer.notifyFailure());
-        searchObserver.onSolution(() -> observer.notifySolution());
         this.branching = branching;
     }
 
@@ -59,17 +57,40 @@ public class DFSearch {
         return statistics;
     }
 
+    public SearchStatistics optimize(Objective obj) {
+        SearchStatistics statistics = new SearchStatistics();
+        return optimize(obj,stats -> false);
+    }
+
+    public SearchStatistics optimize(Objective obj, SearchLimit limit) {
+        SearchStatistics statistics = new SearchStatistics();
+        onSolution(() -> obj.tighten());
+        return solve(statistics,stats -> false);
+    }
+
 
     public SearchStatistics solve() {
         SearchStatistics statistics = new SearchStatistics();
         return solve(statistics,stats -> false);
     }
+
     public SearchStatistics solve(SearchLimit limit) {
         SearchStatistics statistics = new SearchStatistics();
         return solve(statistics,limit);
     }
 
     public SearchStatistics solveSubjectTo(SearchLimit limit, Procedure subjectTo) {
+        SearchStatistics statistics = new SearchStatistics();
+        sm.withNewState(() -> {
+            try {
+                subjectTo.call();
+                solve(statistics,limit);
+            } catch (InconsistencyException e) {}
+        });
+        return  statistics;
+    }
+
+    public SearchStatistics optimizeSubjectTo(Objective obj, SearchLimit limit, Procedure subjectTo) {
         SearchStatistics statistics = new SearchStatistics();
         sm.withNewState(() -> {
             try {

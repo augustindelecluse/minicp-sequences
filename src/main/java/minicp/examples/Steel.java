@@ -21,6 +21,7 @@ import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
+import minicp.search.Objective;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.InputReader;
@@ -126,7 +127,7 @@ public class Steel {
             IntVar[] losses = Factory.makeIntVarArray(nSlab, j -> element(loss, l[j]));
             IntVar totLoss = sum(losses);
 
-            minimize(totLoss);
+            Objective obj = minimization(totLoss);
 
             //DFSearch dfs = makeDfs(cp,firstFail(x));
 
@@ -174,7 +175,7 @@ public class Steel {
                 }
             });
 
-            SearchStatistics statistics = dfs.solve();
+            SearchStatistics statistics = dfs.optimize(obj);
             System.out.println(statistics);
 
         } catch (InconsistencyException e) {

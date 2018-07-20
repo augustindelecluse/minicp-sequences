@@ -20,8 +20,9 @@ import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
+import minicp.search.Objective;
 
-public class Minimize extends AbstractConstraint {
+public class Minimize extends AbstractConstraint implements Objective {
 
     public int bound = Integer.MAX_VALUE;
     private final IntVar x;
@@ -31,19 +32,16 @@ public class Minimize extends AbstractConstraint {
         this.x = x;
     }
 
-    protected void tighten() {
+    public void tighten() {
         if (!x.isBound()) throw new RuntimeException("objective not bound");
         this.bound = x.getMax() - 1;
+        cp.schedule(this);
     }
 
     @Override
     public void post()  {
         x.propagateOnBoundChange(this);
         // Ensure that the constraint is scheduled on backtrack
-        x.getSolver().getSearchObserver().onSolution(() -> {
-            tighten();
-            cp.schedule(this);
-        });
         x.getSolver().onFixPoint(() -> {
             cp.schedule(this);
         });

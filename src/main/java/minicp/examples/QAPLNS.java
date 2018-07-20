@@ -18,6 +18,7 @@ package minicp.examples;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
+import minicp.search.Objective;
 import minicp.util.InputReader;
 
 import java.util.Random;
@@ -69,8 +70,8 @@ public class QAPLNS {
                 ind++;
             }
         }
-        IntVar objective = sum(weightedDist);
-        minimize(objective);
+        IntVar totCost = sum(weightedDist);
+        Objective obj = minimization(totCost);
 
         DFSearch dfs = makeDfs(cp,firstFail(x));
 
@@ -88,7 +89,7 @@ public class QAPLNS {
             for (int i = 0; i < n; i++) {
                 xBest[i] = x[i].getMin();
             }
-            System.out.println("objective:"+objective.getMin());
+            System.out.println("objective:"+totCost.getMin());
         });
 
 

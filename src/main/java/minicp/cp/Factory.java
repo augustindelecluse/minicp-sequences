@@ -19,6 +19,7 @@ import minicp.engine.constraints.*;
 import minicp.engine.core.*;
 import minicp.reversible.Trail;
 import minicp.search.DFSearch;
+import minicp.search.Objective;
 import minicp.util.InconsistencyException;
 import minicp.util.Procedure;
 
@@ -115,7 +116,17 @@ public class Factory {
     }
 
     static public DFSearch makeDfs(Solver cp, Supplier<Procedure[]> branching) {
-        return new DFSearch(cp.getStateManager(),cp.getSearchObserver(),branching);
+        return new DFSearch(cp.getStateManager(),branching);
+    }
+
+    static public Objective minimization(IntVar obj) {
+        Minimize c = new Minimize(obj);
+        obj.getSolver().post(c);
+        return c;
+    }
+
+    static public Objective maximization(IntVar obj) {
+        return minimization(minus(obj));
     }
 
 
@@ -148,14 +159,6 @@ public class Factory {
     static public void notEqual(IntVar x, int v) {
         x.remove(v);
         x.getSolver().fixPoint();
-    }
-
-    static public void minimize(IntVar x) {
-        x.getSolver().post(new Minimize(x));
-    }
-
-    static public void maximize(IntVar x) {
-        x.getSolver().post(new Minimize(minus(x)));
     }
 
     static public Constraint notEqual(IntVar x, IntVar y) {

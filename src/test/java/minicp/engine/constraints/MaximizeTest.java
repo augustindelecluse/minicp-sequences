@@ -18,6 +18,7 @@ package minicp.engine.constraints;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
+import minicp.search.Objective;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
@@ -41,7 +42,7 @@ public class MaximizeTest {
                 IntVar[] x = new IntVar[]{y};
                 DFSearch dfs = makeDfs(cp,() -> y.isBound() ? EMPTY : branch(() -> equal(y,y.getMin()),() -> notEqual(y,y.getMin())));
 
-                maximize(y);
+                Objective obj = maximization(y);
 
                 SearchStatistics stats = dfs.solve();
 

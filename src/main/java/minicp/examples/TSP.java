@@ -20,6 +20,7 @@ import minicp.engine.constraints.Element1D;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
+import minicp.search.Objective;
 
 import java.util.Random;
 
@@ -83,7 +84,7 @@ public class TSP {
 
         IntVar totalDist = sum(distSucc);
 
-        minimize(totalDist);
+        Objective obj = minimization(totalDist);
 
         //DFSearch dfs = makeDfs(cp, firstFail(succ));
 
@@ -137,7 +138,7 @@ public class TSP {
         for (int i = 0; i < nRestarts; i++) {
             //System.out.println("restart number #"+i);
             // Record the state such that the fragment constraints can be cancelled
-            dfs.solveSubjectTo(statistics -> statistics.nFailures >= failureLimit,
+            dfs.optimizeSubjectTo(obj,statistics -> statistics.nFailures >= failureLimit,
                     () -> {
                         // Assign the fragment 5% of the variables randomly chosen
                         for (int j = 0; j < n; j++) {

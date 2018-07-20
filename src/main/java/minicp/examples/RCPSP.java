@@ -19,6 +19,7 @@ import minicp.engine.constraints.Cumulative;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
+import minicp.search.Objective;
 import minicp.search.SearchStatistics;
 import minicp.util.InputReader;
 
@@ -93,7 +94,7 @@ public class RCPSP {
 
         IntVar makespan = maximum(end);
 
-        minimize(makespan);
+        Objective obj = minimization(makespan);
 
         DFSearch dfs = makeDfs(cp, firstFail(start));
 
@@ -102,7 +103,7 @@ public class RCPSP {
                 System.out.println("makespan:" + makespan)
         );
 
-        SearchStatistics stats = dfs.solve();
+        SearchStatistics stats = dfs.optimize(obj);
 
         System.out.format("Statistics: %s\n", stats);
 

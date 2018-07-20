@@ -18,6 +18,7 @@ package minicp.examples;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
+import minicp.search.Objective;
 import minicp.search.SearchStatistics;
 import minicp.util.InputReader;
 
@@ -66,16 +67,16 @@ public class QAP {
                 k++;
             }
         }
-        IntVar objective = sum(weightedDist);
+        IntVar totCost = sum(weightedDist);
 
-        minimize(objective);
+        Objective obj = minimization(totCost);
 
 
         DFSearch dfs = makeDfs(cp,firstFail(x));
 
-        dfs.onSolution(() -> System.out.println("objective:"+objective.getMin()));
+        dfs.onSolution(() -> System.out.println("objective:"+totCost.getMin()));
 
-        SearchStatistics stats = dfs.solve();
+        SearchStatistics stats = dfs.optimize(obj);
 
         System.out.println(stats);
 

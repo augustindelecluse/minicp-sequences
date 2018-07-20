@@ -27,7 +27,6 @@ public interface Solver {
     void post(Constraint c, boolean enforceFixPoint);
     void fixPoint();
 
-    SearchObserver getSearchObserver();
     StateManager getStateManager();
 
     public void onFixPoint(Procedure listener);

@@ -17,6 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
+import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
@@ -106,7 +107,10 @@ public class CircuitTest {
                 IntVar [] x = makeIntVarArray(cp,5,5);
                 cp.post(new Circuit(x));
 
-                cp.getSearchObserver().onSolution(() -> {
+
+                DFSearch dfs = makeDfs(cp,firstFail(x));
+
+                dfs.onSolution(() -> {
                             int[] sol = new int[x.length];
                             for (int i = 0; i < x.length; i++) {
                                 sol[i] = x[i].getMin();
@@ -114,7 +118,7 @@ public class CircuitTest {
                             assertTrue("Solution is not an hamiltonian Circuit", checkHamiltonian(sol));
                         }
                 );
-                SearchStatistics stats = makeDfs(cp,firstFail(x)).solve();
+                SearchStatistics stats = dfs.solve();
             } catch (InconsistencyException e) { fail("should not fail");}
         } catch (NotImplementedException e) {
             e.print();
