@@ -15,7 +15,7 @@
 
 package minicp.search;
 
-import minicp.reversible.StateManager;
+import minicp.state.StateManager;
 import minicp.util.Procedure;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
@@ -152,7 +152,7 @@ public class DFSearch {
                         try {
                             statistics.nNodes++;
                             b.call();
-                            dfs2(statistics,limit);
+                            dfs(statistics,limit);
                         } catch (InconsistencyException e) {
                             statistics.nFailures++;
                             searchObserver.notifyFailure();

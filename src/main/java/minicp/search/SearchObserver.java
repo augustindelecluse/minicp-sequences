@@ -16,7 +16,6 @@
 
 package minicp.search;
 
-import minicp.reversible.StateManager;
 import minicp.util.Procedure;
 
 public interface SearchObserver {

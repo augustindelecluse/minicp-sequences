@@ -13,7 +13,7 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 import minicp.util.NotImplementedException;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class StateSparseSetTest {
     @Test
     public void testExample() {
 
-        StateManager sm = new Trail();
+        StateManager sm = new Trailer();
         StateSparseSet set = new StateSparseSet(sm,9,0);
 
         sm.save();
@@ -52,7 +52,7 @@ public class StateSparseSetTest {
     @Test
     public void testReversibleSparseSet() {
 
-        StateManager sm = new Trail();
+        StateManager sm = new Trailer();
         StateSparseSet set = new StateSparseSet(sm,10,0);
 
         assertTrue(toSet(set.toArray()).equals(toSet(new int[]{0,1,2,3,4,5,6,7,8,9})));
@@ -111,7 +111,7 @@ public class StateSparseSetTest {
 
         try {
 
-            StateManager sm = new Trail();
+            StateManager sm = new Trailer();
             StateSparseSet set = new StateSparseSet(sm,10,0);
 
             for (int i = 0; i < 10; i++) {
@@ -152,7 +152,7 @@ public class StateSparseSetTest {
 
         //try {
 
-            StateManager sm = new Trail();
+            StateManager sm = new Trailer();
             StateSparseSet set = new StateSparseSet(sm,10,0);
 
             for (int i = 0; i < 10; i++) {
@@ -192,7 +192,7 @@ public class StateSparseSetTest {
 
         try {
 
-            StateManager sm = new Trail();
+            StateManager sm = new Trailer();
             StateSparseSet set = new StateSparseSet(sm,10,0);
 
             for (int i = 0; i < 10; i++) {

@@ -13,7 +13,7 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 
 import org.junit.Test;
@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 public class ReversibleIntTest {
 
     {
-        StateManager trail = new Trail();
+        StateManager trail = new Trailer();
         StateInt a = trail.makeStateInt(7);
         StateInt b = trail.makeStateInt(13);
 
@@ -41,7 +41,7 @@ public class ReversibleIntTest {
     @Test
     public void testExample() {
 
-        StateManager trail = new Trail();
+        Trailer trail = new Trailer();
 
         // Two reversible int's inside the trail
         StateInt a = trail.makeStateInt(5);
@@ -86,7 +86,7 @@ public class ReversibleIntTest {
 
     @Test
     public void testReversibleInt() {
-        StateManager trail = new Trail();
+        StateManager trail = new Trailer();
         StateInt a = trail.makeStateInt(5);
         StateInt b = trail.makeStateInt(5);
         assertTrue(a.getValue() == 5);
@@ -112,7 +112,7 @@ public class ReversibleIntTest {
     @Test
     public void testPopAll() {
 
-        StateManager trail = new Trail();
+        StateManager trail = new Trailer();
         StateInt a = trail.makeStateInt(5);
         StateInt b = trail.makeStateInt(5);
 
@@ -171,7 +171,7 @@ public class ReversibleIntTest {
     @Test
     public void testPopUntill() {
 
-        StateManager trail = new Trail();
+        Trailer trail = new Trailer();
         StateInt a = trail.makeStateInt(5);
         StateInt b = trail.makeStateInt(5);
 

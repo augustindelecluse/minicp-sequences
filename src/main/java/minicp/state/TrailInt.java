@@ -13,7 +13,7 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 
 public class TrailInt implements StateInt {
@@ -24,11 +24,11 @@ public class TrailInt implements StateInt {
         }
         public void restore()       { TrailInt.this.v = v;}
     }
-    private Trail trail;
+    private Trailer trail;
     private int v;
     private long lastMagic = -1L;
 
-    protected TrailInt(Trail trail, int initial) {
+    protected TrailInt(Trailer trail, int initial) {
         this.trail = trail;
         v = initial;
         lastMagic = trail.getMagic() - 1;

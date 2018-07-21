@@ -15,7 +15,7 @@
 
 package minicp.engine.core;
 
-import minicp.reversible.StateStack;
+import minicp.state.StateStack;
 import minicp.util.InconsistencyException;
 
 import java.security.InvalidParameterException;

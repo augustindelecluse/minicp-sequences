@@ -17,7 +17,6 @@ package minicp.search;
 
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.reversible.*;
 
 import java.util.Arrays;
 
@@ -25,6 +24,9 @@ import static minicp.cp.Factory.makeSolver;
 import static minicp.cp.Heuristics.firstFail;
 import static minicp.search.Selector.*;
 
+import minicp.state.StateInt;
+import minicp.state.StateManager;
+import minicp.state.Trailer;
 import minicp.util.Counter;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
@@ -44,7 +46,7 @@ public class DFSearchTest {
     @Test
     public void testExample1() {
         SearchObserver r = makeSearchObserver();
-        StateManager sm = new Trail();
+        StateManager sm = new Trailer();
         StateInt i = sm.makeStateInt(0);
         int [] values = new int[3];
 
@@ -99,7 +101,7 @@ public class DFSearchTest {
     @Test
     public void testExample3() {
         SearchObserver r = makeSearchObserver();
-        StateManager sm = new Trail();
+        StateManager sm = new Trailer();
         StateInt i = sm.makeStateInt(0);
         int [] values = new int[3];
 
@@ -134,7 +136,7 @@ public class DFSearchTest {
 
     @Test
     public void testDFS() {
-        StateManager sm = new Trail();
+        StateManager sm = new Trailer();
         StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[4];
 
@@ -177,7 +179,7 @@ public class DFSearchTest {
     @Test
     public void testDFSSearchLimit() {
         SearchObserver r = makeSearchObserver();
-        StateManager sm = new Trail();
+        StateManager sm = new Trailer();
 
         StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[4];
@@ -218,7 +220,7 @@ public class DFSearchTest {
     @Test
     public void testDeepDFS() {
         SearchObserver r = makeSearchObserver();
-        StateManager sm = new Trail();
+        StateManager sm = new Trailer();
         StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[10000];
 

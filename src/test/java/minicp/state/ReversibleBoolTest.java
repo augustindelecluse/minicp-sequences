@@ -13,7 +13,7 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 import org.junit.Test;
 
@@ -25,7 +25,7 @@ public class  ReversibleBoolTest {
 
     @Test
     public void testReversibleBool() {
-        StateManager trail = new Trail();
+        StateManager trail = new Trailer();
 
         StateBool b1 = trail.makeStateBool(true);
         StateBool b2 = trail.makeStateBool(false);

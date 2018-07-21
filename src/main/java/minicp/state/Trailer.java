@@ -13,12 +13,14 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
+
+import minicp.util.Procedure;
 
 import java.util.Stack;
 
 
-public class Trail implements StateManager {
+public class Trailer implements StateManager {
 
     private long magic = 0;
     private Stack<TrailEntry> trail = new Stack<TrailEntry>();
@@ -28,7 +30,7 @@ public class Trail implements StateManager {
      * Initialize a reversible context
      * The current level is -1
      */
-    public Trail() {}
+    public Trailer() {}
 
     public long getMagic() { return magic;}
 
@@ -96,16 +98,21 @@ public class Trail implements StateManager {
         }
     }
 
+    public void withNewState(Procedure body) {
+        int level = getLevel();
+        save();
+        body.call();
+        restoreUntil(level);
+    }
+
     @Override
     public StateInt makeStateInt(int initValue) {
         return new TrailInt(this, initValue);
     }
-
     @Override
     public StateBool makeStateBool(boolean initValue) {
         return new TrailBool(this, initValue);
     }
-
     @Override
     public StateMap makeStateMap() {
         return new TrailMap(this);

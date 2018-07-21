@@ -17,7 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
-import minicp.reversible.StateInt;
+import minicp.state.StateInt;
 
 import static minicp.util.InconsistencyException.*;
 

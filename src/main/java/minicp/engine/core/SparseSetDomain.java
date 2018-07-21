@@ -15,8 +15,8 @@
 
 package minicp.engine.core;
 
-import minicp.reversible.StateManager;
-import minicp.reversible.StateSparseSet;
+import minicp.state.StateManager;
+import minicp.state.StateSparseSet;
 
 
 public class SparseSetDomain implements IntDomain {

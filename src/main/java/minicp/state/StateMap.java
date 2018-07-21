@@ -13,14 +13,10 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 
-public interface StateInt {
-    int setValue(int v);
-    int getValue();
-    int increment();
-    int decrement();
-    @Override
-    String toString();
+public interface StateMap<K,V> {
+    public void put(K k, V v);
+    public V get(K k);
 }

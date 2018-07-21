@@ -13,57 +13,54 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.reversible;
+package minicp.state;
 
 import minicp.util.Procedure;
 
-
 public interface StateManager {
-
-    /**
-     * @return The current level
-     */
-    public int getLevel();
 
     /**
      * Stores the current state
      * such that it can be recovered using restore()
      * Increase the level by 1
      */
-    public void save();
-
+    void save();
 
     /**
      *  Restores state as it was at getLevel()-1
      *  Decrease the level by 1
      */
-    public void restore();
+    void restore();
 
     /**
      *  Restores the state as it was at level 0 (first save)
      *  The level is now -1.
      *  Notice that you'll probably want to save after this operation.
      */
-    public void restoreAll();
+    void restoreAll();
 
     /**
-     *  Restores the state as it was at level
-     *  @param level
+     * Creates a Stateful integer (restorable)
+     * @param initValue the initial value
+     * @return a reference to the integer.
      */
-    public void restoreUntil(int level);
+    StateInt makeStateInt(int initValue);
+    /**
+     * Creates a Stateful boolean (restorable)
+     * @param initValue the initial value
+     * @return a reference to the boolean.
+     */
+    StateBool makeStateBool(boolean initValue);
+    /**
+     * Creates a Stateful map (restorable)
+     * @return a reference to the map.
+     */
+    StateMap makeStateMap();
 
-    public StateInt makeStateInt(int initValue);
-
-    public StateBool makeStateBool(boolean initValue);
-
-    public StateMap makeStateMap();
-
-    default void withNewState(Procedure body) {
-        int level = getLevel();
-        save();
-        body.call();
-        restoreUntil(level);
-    }
-
+    /**
+     * Higher-order function that preserves the state prior to calling body and restores it after.
+     * @param body the first-order function to execute.
+     */
+    void withNewState(Procedure body);
 }
 
