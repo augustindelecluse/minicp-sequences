@@ -42,7 +42,7 @@ public class MaximizeTest {
                 IntVar[] x = new IntVar[]{y};
                 DFSearch dfs = makeDfs(cp,() -> y.isBound() ? EMPTY : branch(() -> equal(y,y.getMin()),() -> notEqual(y,y.getMin())));
 
-                Objective obj = maximization(y);
+                Objective obj = cp.maximize(y);
 
                 SearchStatistics stats = dfs.solve();
 

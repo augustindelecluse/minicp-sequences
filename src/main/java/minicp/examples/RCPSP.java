@@ -94,7 +94,7 @@ public class RCPSP {
 
         IntVar makespan = maximum(end);
 
-        Objective obj = minimization(makespan);
+        Objective obj = cp.minimize(makespan);
 
         DFSearch dfs = makeDfs(cp, firstFail(start));
 

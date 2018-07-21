@@ -123,17 +123,6 @@ public class Factory {
         return new DFSearch(cp.getStateManager(),branching);
     }
 
-    static public Objective minimization(IntVar obj) {
-        Minimize c = new Minimize(obj);
-        obj.getSolver().post(c);
-        return c;
-    }
-
-    static public Objective maximization(IntVar obj) {
-        return minimization(minus(obj));
-    }
-
-
     // -------------- constraints -----------------------
 
     static public IntVar maximum(IntVar ... x) {

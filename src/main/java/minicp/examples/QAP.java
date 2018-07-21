@@ -68,9 +68,7 @@ public class QAP {
             }
         }
         IntVar totCost = sum(weightedDist);
-
-        Objective obj = minimization(totCost);
-
+        Objective obj = cp.minimize(totCost);
 
         DFSearch dfs = makeDfs(cp,firstFail(x));
 

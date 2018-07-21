@@ -17,6 +17,7 @@ package minicp.engine.core;
 
 import minicp.cp.Factory;
 import minicp.engine.constraints.Minimize;
+import minicp.search.Objective;
 import minicp.state.StateManager;
 import minicp.search.SearchObserver;
 import minicp.util.Procedure;
@@ -29,10 +30,10 @@ public interface Solver {
 
     StateManager getStateManager();
 
-    public void onFixPoint(Procedure listener);
+    void onFixPoint(Procedure listener);
 
-    default void minimize(IntVar x) { post(new Minimize(x)); }
-    default void maximize(IntVar x) { minimize(Factory.minus(x)); }
+    Objective minimize(IntVar x);
+    Objective maximize(IntVar x);
 
     // ugly
     void post(BoolVar b);

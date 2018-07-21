@@ -71,7 +71,7 @@ public class QAPLNS {
             }
         }
         IntVar totCost = sum(weightedDist);
-        Objective obj = minimization(totCost);
+        Objective obj = cp.minimize(totCost);
 
         DFSearch dfs = makeDfs(cp,firstFail(x));
 
@@ -94,13 +94,14 @@ public class QAPLNS {
 
 
         int nRestarts = 1000;
-        int failureLimit = 50;
+        int failureLimit = 100;
         Random rand = new java.util.Random(0);
 
         for (int i = 0; i < nRestarts; i++) {
-            System.out.println("restart number #"+i);
+            if (i % 10 == 0)
+                System.out.println("restart number #"+i);
 
-            dfs.solveSubjectTo(statistics -> statistics.nFailures >= failureLimit, () -> {
+            dfs.optimizeSubjectTo(obj,statistics -> statistics.nFailures >= failureLimit, () -> {
                         // Assign the fragment 5% of the variables randomly chosen
                         for (int j = 0; j < n; j++) {
                             if (rand.nextInt(100) < 5) {

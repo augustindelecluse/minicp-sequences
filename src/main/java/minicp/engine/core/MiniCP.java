@@ -1,7 +1,8 @@
 package minicp.engine.core;
 
-import minicp.search.AbstractSearcher;
-import minicp.search.SearchObserver;
+import minicp.cp.Factory;
+import minicp.engine.constraints.Minimize;
+import minicp.search.Objective;
 import minicp.state.StateManager;
 import minicp.state.StateStack;
 import minicp.util.InconsistencyException;
@@ -16,7 +17,7 @@ import java.util.Queue;
 public class MiniCP implements Solver  {
 
     private Queue<Constraint> propagationQueue = new ArrayDeque<>();
-    private List<Procedure> fixPointListeners = new LinkedList<Procedure>();
+    private List<Procedure> fixPointListeners  = new LinkedList<>();
 
     private final StateManager sm;
 
@@ -57,9 +58,8 @@ public class MiniCP implements Solver  {
             while (!propagationQueue.isEmpty()) {
                 Constraint c = propagationQueue.remove();
                 c.setScheduled(false);
-                if (c.isActive()) {
+                if (c.isActive())
                     c.propagate();
-                }
             }
         } catch (InconsistencyException e) {
             // empty the queue and unset the scheduled status
@@ -68,6 +68,10 @@ public class MiniCP implements Solver  {
             throw e;
         }
     }
+
+    public Objective minimize(IntVar x) { Minimize obj = new Minimize(x);post(obj);return obj; }
+    public Objective maximize(IntVar x) { return minimize(Factory.minus(x)); }
+
 
     public void post(Constraint c) {
         post(c,true);

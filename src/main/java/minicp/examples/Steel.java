@@ -127,7 +127,7 @@ public class Steel {
             IntVar[] losses = Factory.makeIntVarArray(nSlab, j -> element(loss, l[j]));
             IntVar totLoss = sum(losses);
 
-            Objective obj = minimization(totLoss);
+            Objective obj = cp.minimize(totLoss);
 
             //DFSearch dfs = makeDfs(cp,firstFail(x));
 

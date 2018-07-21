@@ -84,7 +84,7 @@ public class TSP {
 
         IntVar totalDist = sum(distSucc);
 
-        Objective obj = minimization(totalDist);
+        Objective obj = cp.minimize(totalDist);
 
         //DFSearch dfs = makeDfs(cp, firstFail(succ));
 
@@ -132,11 +132,12 @@ public class TSP {
 
 
         int nRestarts = 1000;
-        int failureLimit = 50;
+        int failureLimit = 100;
         Random rand = new java.util.Random(0);
 
         for (int i = 0; i < nRestarts; i++) {
-            //System.out.println("restart number #"+i);
+            if (i%10==0)
+                System.out.println("restart number #"+i);
             // Record the state such that the fragment constraints can be cancelled
             dfs.optimizeSubjectTo(obj,statistics -> statistics.nFailures >= failureLimit,
                     () -> {

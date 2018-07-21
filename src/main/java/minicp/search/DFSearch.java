@@ -65,7 +65,7 @@ public class DFSearch {
     public SearchStatistics optimize(Objective obj, SearchLimit limit) {
         SearchStatistics statistics = new SearchStatistics();
         onSolution(() -> obj.tighten());
-        return solve(statistics,stats -> false);
+        return solve(statistics,limit);
     }
 
 
@@ -95,7 +95,7 @@ public class DFSearch {
         sm.withNewState(() -> {
             try {
                 subjectTo.call();
-                solve(statistics,limit);
+                optimize(obj,limit);
             } catch (InconsistencyException e) {}
         });
         return  statistics;

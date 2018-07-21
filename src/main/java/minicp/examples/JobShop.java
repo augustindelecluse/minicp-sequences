@@ -112,7 +112,7 @@ public class JobShop {
             IntVar makespan = maximum(endLast);
 
 
-            Objective obj = minimization(makespan);
+            Objective obj = cp.minimize(makespan);
 
             DFSearch dfs = makeDfs(cp, firstFail(flatten(start)));
 

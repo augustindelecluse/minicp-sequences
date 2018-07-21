@@ -16,8 +16,6 @@
 
 package minicp.search;
 
-import minicp.util.Procedure;
-
 public interface Objective {
 
     void tighten();
