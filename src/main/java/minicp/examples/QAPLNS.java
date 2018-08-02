@@ -22,6 +22,7 @@ import minicp.search.Objective;
 import minicp.util.InputReader;
 
 import java.util.Random;
+import java.util.stream.*;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Heuristics.firstFail;
@@ -79,10 +80,11 @@ public class QAPLNS {
         // --- Large Neighborhood Search ---
 
         // Current best solution
-        int[] xBest = new int[n];
+        int[] xBest = IntStream.range(0,n).toArray();
+        /*        int[] xBest = new int[n];
         for (int i = 0; i < n; i++) {
             xBest[i] = i;
-        }
+            }*/
 
         dfs.onSolution(() -> {
             // Update the current best solution

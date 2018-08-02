@@ -21,9 +21,9 @@ import minicp.state.StateInt;
 import minicp.util.InconsistencyException;
 
 import java.util.Arrays;
+import java.util.stream.*;
 
 public class Sum extends AbstractConstraint {
-
     private  int[] unBounds;
     private StateInt nUnBounds;
     private StateInt sumBounds;
@@ -34,13 +34,10 @@ public class Sum extends AbstractConstraint {
         this(Arrays.copyOf(x, x.length + 1));
         this.x[x.length] = Factory.minus(y);
     }
-
-
     public Sum(IntVar [] x, int y) {
         this(Arrays.copyOf(x, x.length + 1));
         this.x[x.length] = new IntVarImpl(cp,-y,-y);
     }
-
     /**
      * Create a sum constraint that holds iff
      * x[0]+x[1]+...+x[x.length-1] = 0
@@ -52,36 +49,24 @@ public class Sum extends AbstractConstraint {
         this.n = x.length;
         nUnBounds = cp.getStateManager().makeStateInt(n);
         sumBounds = cp.getStateManager().makeStateInt(0);
-        unBounds = new int[n];
-        for (int i = 0; i < n; i++) {
-            unBounds[i] = i;
-        }
+        unBounds  = IntStream.range(0,n).toArray();
     }
 
-    @Override
-    public void post() throws InconsistencyException {
-
-
-        for (IntVar var: x) {
+    @Override public void post() {
+        for (IntVar var: x) 
             var.propagateOnBoundChange(this);
-            //var.propagateOnDomainChange(this);
-        }
         propagate();
     }
 
-    @Override
-    public void propagate() throws InconsistencyException {
+    @Override public void propagate() {
         // Filter the unbound vars and update the partial sum
         int nU = nUnBounds.getValue();
         int partialSum = sumBounds.getValue();
         for (int i = nU - 1; i >= 0; i--) {
             int idx = unBounds[i];
-            IntVar y = x[idx];
-            if (y.isBound()) {
-                // Update partial sum
-                partialSum += y.getMin();
-                // Swap the variable
-                unBounds[i] = unBounds[nU - 1];
+            if (x[idx].isBound()) {                
+                partialSum += x[idx].getMin(); // Update partial sum                
+                unBounds[i] = unBounds[nU - 1];// Swap the variables
                 unBounds[nU - 1] = idx;
                 nU--;
             }
@@ -89,8 +74,7 @@ public class Sum extends AbstractConstraint {
         sumBounds.setValue(partialSum);
         nUnBounds.setValue(nU);
 
-        int sumMax = partialSum;
-        int sumMin = partialSum;
+        int sumMax = partialSum,sumMin = partialSum;
         for (int i = nU - 1; i >= 0; i--) {
             int idx = unBounds[i];
             sumMax += x[idx].getMax();
@@ -103,7 +87,5 @@ public class Sum extends AbstractConstraint {
             x[idx].removeAbove(-(sumMin-x[idx].getMin()));
             x[idx].removeBelow(-(sumMax-x[idx].getMax()));
         }
-
     }
-
 }

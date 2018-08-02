@@ -19,14 +19,14 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 import minicp.state.StateInt;
+import minicp.state.StateManager;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.*;
 
 public class Element2D extends AbstractConstraint {
-
-
     private final int[][] T;
     private final IntVar x, y, z;
     private int n, m;
@@ -35,19 +35,16 @@ public class Element2D extends AbstractConstraint {
 
     private final StateInt low;
     private final StateInt up;
-    private final ArrayList<Tripple> xyz;
+    private final ArrayList<Triple> xyz;
 
-    private class Tripple implements Comparable<Tripple> {
+    private class Triple implements Comparable<Triple> {
         protected final int x,y,z;
-
-        private Tripple(int x, int y, int z) {
+        private Triple(int x, int y, int z) {
             this.x = x;
             this.y = y;
             this.z = z;
         }
-
-        @Override
-        public int compareTo(Tripple t) {
+        @Override public int compareTo(Triple t) {
             return z - t.z;
         }
     }
@@ -68,25 +65,18 @@ public class Element2D extends AbstractConstraint {
         n = T.length;
         m = T[0].length;
 
-        this.xyz = new ArrayList<Tripple>();
+        this.xyz = new ArrayList<Triple>();
         for (int i = 0; i < T.length; i++) {
             assert (T[i].length == m); // n x m matrix expected
-            for (int j = 0; j < T[i].length; j++) {
-                xyz.add(new Tripple(i,j,T[i][j]));
-            }
+            for (int j = 0; j < T[i].length; j++) 
+                xyz.add(new Triple(i,j,T[i][j]));            
         }
         Collections.sort(xyz);
-        low = cp.getStateManager().makeStateInt(0);
-        up = cp.getStateManager().makeStateInt(xyz.size()-1);
-
-        nColsSup = new StateInt[n];
-        nRowsSup = new StateInt[m];
-        for (int i = 0; i < n; i++) {
-            nColsSup[i] = cp.getStateManager().makeStateInt(m);
-        }
-        for (int j = 0; j < m; j++) {
-            nRowsSup[j] = cp.getStateManager().makeStateInt(n);
-        }
+        StateManager sm = cp.getStateManager();
+        low = sm.makeStateInt(0);
+        up  = sm.makeStateInt(xyz.size()-1);
+        nColsSup = IntStream.range(0,n).mapToObj(i -> sm.makeStateInt(m)).toArray(StateInt[]::new);
+        nRowsSup = IntStream.range(0,m).mapToObj(i -> sm.makeStateInt(n)).toArray(StateInt[]::new);
     }
 
     @Override
