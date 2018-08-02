@@ -19,6 +19,7 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import static minicp.cp.Factory.makeSolver;
 import static minicp.cp.Heuristics.firstFail;

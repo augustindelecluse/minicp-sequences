@@ -22,6 +22,7 @@ import minicp.util.NotImplementedException;
 
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.function.Predicate;
 
 public class DFSearch {
 
@@ -43,7 +44,7 @@ public class DFSearch {
         searchObserver.onFailure(listener);
     }
 
-    private SearchStatistics solve(SearchStatistics statistics,SearchLimit limit) {
+    private SearchStatistics solve(SearchStatistics statistics,Predicate<SearchStatistics> limit) {
         sm.withNewState( ()-> {
                 try {
                     dfs(statistics,limit);
@@ -62,7 +63,7 @@ public class DFSearch {
         return optimize(obj,stats -> false);
     }
 
-    public SearchStatistics optimize(Objective obj, SearchLimit limit) {
+    public SearchStatistics optimize(Objective obj, Predicate<SearchStatistics> limit) {
         SearchStatistics statistics = new SearchStatistics();
         onSolution(() -> obj.tighten());
         return solve(statistics,limit);
@@ -74,12 +75,12 @@ public class DFSearch {
         return solve(statistics,stats -> false);
     }
 
-    public SearchStatistics solve(SearchLimit limit) {
+    public SearchStatistics solve(Predicate<SearchStatistics> limit) {
         SearchStatistics statistics = new SearchStatistics();
         return solve(statistics,limit);
     }
 
-    public SearchStatistics solveSubjectTo(SearchLimit limit, Procedure subjectTo) {
+    public SearchStatistics solveSubjectTo(Predicate<SearchStatistics> limit, Procedure subjectTo) {
         SearchStatistics statistics = new SearchStatistics();
         sm.withNewState(() -> {
             try {
@@ -90,7 +91,7 @@ public class DFSearch {
         return  statistics;
     }
 
-    public SearchStatistics optimizeSubjectTo(Objective obj, SearchLimit limit, Procedure subjectTo) {
+    public SearchStatistics optimizeSubjectTo(Objective obj, Predicate<SearchStatistics> limit, Procedure subjectTo) {
         SearchStatistics statistics = new SearchStatistics();
         sm.withNewState(() -> {
             try {
@@ -123,11 +124,11 @@ public class DFSearch {
 
 
 
-    private void dfs2(SearchStatistics statistics, SearchLimit limit) {
+    private void dfs2(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
         Stack<Procedure> alternatives = new Stack<Procedure>();
         expandNode(alternatives,statistics);
         while (!alternatives.isEmpty()) {
-            if (limit.stopSearch(statistics)) throw new StopSearchException();
+            if (limit.test(statistics)) throw new StopSearchException();
             try {
                 alternatives.pop().call();
             } catch (InconsistencyException e) {
@@ -138,8 +139,8 @@ public class DFSearch {
 
     }
 
-    private void dfs(SearchStatistics statistics, SearchLimit limit) {
-        if (limit.stopSearch(statistics))
+    private void dfs(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
+        if (limit.test(statistics))
             throw new StopSearchException();
         Procedure[] branches = branching.get();
         if (branches.length == 0) {

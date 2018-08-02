@@ -23,7 +23,6 @@ import minicp.search.DFSearch;
 import minicp.search.Objective;
 
 public class Minimize extends AbstractConstraint implements Objective {
-
     public int bound = Integer.MAX_VALUE;
     private final IntVar x;
 
@@ -31,24 +30,19 @@ public class Minimize extends AbstractConstraint implements Objective {
         super(x.getSolver());
         this.x = x;
     }
-
     public void tighten() {
         if (!x.isBound()) throw new RuntimeException("objective not bound");
         this.bound = x.getMax() - 1;
         cp.schedule(this);
     }
-
-    @Override
-    public void post()  {
+    @Override public void post()  {
         x.propagateOnBoundChange(this);
         // Ensure that the constraint is scheduled on backtrack
         x.getSolver().onFixPoint(() -> {
             cp.schedule(this);
         });
     }
-
-    @Override
-    public void propagate()  {
+    @Override public void propagate()  {
         x.removeAbove(bound);
     }
 }
