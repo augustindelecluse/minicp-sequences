@@ -25,6 +25,7 @@ import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 
 import java.util.Arrays;
+import java.util.stream.*;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Heuristics.and;
@@ -150,8 +151,9 @@ public class StableMariage {
         }
 
 
-        DFSearch dfs = makeDfs(cp,
-                and(firstFail(wife), firstFail(husband)));
+        DFSearch dfs = makeDfs(cp,and(firstFail(wife), firstFail(husband)));
+        //IntVar[] av = Stream.concat(Arrays.stream(wife),Arrays.stream(husband)).toArray(IntVar[]::new);
+        //DFSearch dfs = makeDfs(cp,firstFail(av));
 
         dfs.onSolution(() -> {
                     System.out.println(Arrays.toString(wife));

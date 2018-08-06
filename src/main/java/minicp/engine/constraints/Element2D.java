@@ -98,7 +98,7 @@ public class Element2D extends AbstractConstraint {
        }
        while (xyz.get(u).z > zMax || !x.contains(xyz.get(u).x) || !y.contains(xyz.get(u).y)) {
           updateSupports(u--);
-            if (l > u) throw new InconsistencyException();
+          if (l > u) throw new InconsistencyException();
        }
        z.removeBelow(xyz.get(l).z);
        z.removeAbove(xyz.get(u).z);
