@@ -40,21 +40,21 @@ public class Copier implements StateManager {
 
     @Override
     public StateInt makeStateInt(int initValue) {
-        CopyInt s = new CopyInt(this,initValue);
+        CopyInt s = new CopyInt(initValue);
         _store.add(s);
         return s;
     }
 
     @Override
     public StateBool makeStateBool(boolean initValue) {
-        CopyBool s = new CopyBool(this,initValue);
+        CopyBool s = new CopyBool(initValue);
         _store.add(s);
         return s;
     }
 
     @Override
     public StateMap makeStateMap() {
-        CopyMap s = new CopyMap<>(this);
+        CopyMap s = new CopyMap<>();
         _store.add(s);
         return s;
     }
