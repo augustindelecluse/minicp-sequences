@@ -1,7 +1,6 @@
 package minicp.state;
 
 import minicp.util.Procedure;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;

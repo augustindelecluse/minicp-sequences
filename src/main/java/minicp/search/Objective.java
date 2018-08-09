@@ -17,7 +17,5 @@
 package minicp.search;
 
 public interface Objective {
-
     void tighten();
-
 }

@@ -69,13 +69,9 @@ public class MiniCP implements Solver  {
         }
     }
 
-    public Objective minimize(IntVar x) { Minimize obj = new Minimize(x);post(obj);return obj; }
+    public Objective minimize(IntVar x) { return new Minimize(x); }
     public Objective maximize(IntVar x) { return minimize(Factory.minus(x)); }
-
-
-    public void post(Constraint c) {
-        post(c,true);
-    }
+    public void post(Constraint c) { post(c,true);}
 
     public void post(Constraint c, boolean enforceFixPoint)  {
         c.post();

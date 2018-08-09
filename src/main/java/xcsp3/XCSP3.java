@@ -687,7 +687,7 @@ public class XCSP3 implements XCallbacks2 {
 
         if (objectiveMinimize.isPresent()) {
             try {
-                minicp.post(new Minimize(objectiveMinimize.get()));
+                minicp.minimize(objectiveMinimize.get());
             } catch (InconsistencyException e) {
                 hasFailed = true;
             }
