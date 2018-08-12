@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.firstFail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

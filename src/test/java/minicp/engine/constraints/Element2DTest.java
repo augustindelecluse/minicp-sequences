@@ -25,7 +25,7 @@ import org.junit.Test;
 import static minicp.cp.Factory.makeDfs;
 import static minicp.cp.Factory.makeIntVar;
 import static minicp.cp.Factory.makeSolver;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.firstFail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 

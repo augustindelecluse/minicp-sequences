@@ -25,8 +25,7 @@ import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Factory.notEqual;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
+import static minicp.cp.BranchingScheme.*;
 
 
 public class MagicSerie {
@@ -46,17 +45,17 @@ public class MagicSerie {
         //cp.post(sum(makeIntVarArray(0,n-1,i -> mul(s[i],i-1)),0));
 
         long t0 = System.currentTimeMillis();
-        DFSearch dfs = makeDfs(cp,
-                selectMin(s,
-                        si -> si.getSize() > 1,
-                        si -> -si.getSize(),
-                        si -> {
-                            int v = si.getMin();
-                            return branch(() -> equal(si, v),
-                                    () -> notEqual(si, v));
-                        }
-                )
-        );
+        DFSearch dfs = makeDfs(cp,() -> {
+                IntVar sv = selectMin(s,
+                                      si -> si.getSize() > 1,
+                                      si -> -si.getSize());
+                if (sv==null) return EMPTY;
+                else {
+                    int v = sv.getMin();
+                    return branch(() -> equal(sv, v),
+                                  () -> notEqual(sv, v));
+                }
+            });
 
         dfs.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(s))

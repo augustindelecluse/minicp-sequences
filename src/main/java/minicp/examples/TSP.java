@@ -25,8 +25,7 @@ import minicp.search.Objective;
 import java.util.Random;
 
 import static minicp.cp.Factory.*;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
+import static minicp.cp.BranchingScheme.*;
 
 public class TSP {
     public static void main(String[] args) {
@@ -88,20 +87,7 @@ public class TSP {
 
         //DFSearch dfs = makeDfs(cp, firstFail(succ));
 
-        DFSearch dfs = makeDfs(cp,
-                selectMin(succ,
-                        succi -> succi.getSize() > 1, // filter
-                        succi -> succi.getSize(), // variable selector
-                        qi -> {
-                            int v = qi.getMin(); // value selector (TODO)
-                            return branch(() -> equal(qi,v),
-                                    () -> notEqual(qi,v));
-                        }
-                ));
-
-
-
-
+        DFSearch dfs = makeDfs(cp,firstFail(succ));
 
         /*
         dfs.onSolution(() ->

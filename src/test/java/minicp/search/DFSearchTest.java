@@ -22,8 +22,7 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 import static minicp.cp.Factory.makeSolver;
-import static minicp.cp.Heuristics.firstFail;
-import static minicp.search.Selector.*;
+import static minicp.cp.BranchingScheme.*;
 
 import minicp.state.StateInt;
 import minicp.state.StateManager;

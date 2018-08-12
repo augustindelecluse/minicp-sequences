@@ -28,8 +28,7 @@ import java.util.Arrays;
 import java.util.stream.*;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.and;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.*;
 
 /**
  * Stable Marriage problem:

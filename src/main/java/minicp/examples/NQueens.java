@@ -22,7 +22,7 @@ import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import java.util.Arrays;
 
-import static minicp.search.Selector.*;
+import static minicp.cp.BranchingScheme.*;
 
 public class NQueens {
     public static void main(String[] args) {
@@ -44,16 +44,17 @@ public class NQueens {
         cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(n, i -> Factory.plus(q[i],i))));
 
 
-        DFSearch search = Factory.makeDfs(cp,
-                selectMin(q,
-                        qi -> qi.getSize() > 1,
-                        qi -> qi.getSize(),
-                        qi -> {
-                            int v = qi.getMin();
-                            return branch(() -> Factory.equal(qi, v),
-                                          () -> Factory.notEqual(qi, v));
-                        }
-                ));
+        DFSearch search = Factory.makeDfs(cp,() -> {
+                IntVar qs = selectMin(q,
+                                      qi -> qi.getSize() > 1,
+                                      qi -> qi.getSize());
+                if (qs==null) return EMPTY;
+                else {
+                    int v = qs.getMin();
+                    return branch(() -> Factory.equal(qs, v),
+                                  () -> Factory.notEqual(qs, v));
+                }
+            });
 
         search.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(q))

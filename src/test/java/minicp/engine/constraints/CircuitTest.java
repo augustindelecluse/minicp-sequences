@@ -25,7 +25,7 @@ import org.junit.Test;
 
 import static minicp.cp.Factory.*;
 import static minicp.cp.Factory.notEqual;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.firstFail;
 import static org.junit.Assert.*;
 
 

@@ -26,7 +26,7 @@ import static minicp.cp.Factory.*;
 
 import java.util.Arrays;
 
-import static minicp.cp.Heuristics.*;
+import static minicp.cp.BranchingScheme.*;
 
 public class MagicSquare {
 

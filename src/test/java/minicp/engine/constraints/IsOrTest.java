@@ -1,4 +1,4 @@
-/*
+ /*
  * mini-cp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License  v3
  * as published by the Free Software Foundation.
@@ -24,7 +24,7 @@ import minicp.util.NotImplementedException;
 import org.junit.Test;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.firstFail;
 import static org.junit.Assert.*;
 
 

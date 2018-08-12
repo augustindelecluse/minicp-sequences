@@ -22,7 +22,7 @@ import minicp.util.InconsistencyException;
 import org.junit.Test;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 

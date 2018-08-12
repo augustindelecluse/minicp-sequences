@@ -25,9 +25,7 @@ public class Minimize implements Objective {
     private final IntVar x;
     public Minimize(IntVar x) {
         this.x = x;
-        x.getSolver().onFixPoint(() -> {
-                x.removeAbove(bound);
-        });
+        x.getSolver().onFixPoint(() -> x.removeAbove(bound));
     }
     public void tighten() {
         if (!x.isBound()) throw new RuntimeException("objective not bound");

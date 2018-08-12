@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.firstFail;
 import static org.junit.Assert.*;
 
 public class NegTableTest {

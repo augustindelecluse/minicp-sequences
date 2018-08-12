@@ -29,7 +29,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.*;
 
 /**
  * JobShop Problem

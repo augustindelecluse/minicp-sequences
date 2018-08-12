@@ -16,6 +16,7 @@
 package minicp.search;
 import minicp.util.Procedure;
 import java.util.function.Supplier;
+import minicp.cp.BranchingScheme;
 
 public class Sequencer implements Supplier<Procedure[]> {
     private Supplier<Procedure[]>[] choices;
@@ -28,6 +29,6 @@ public class Sequencer implements Supplier<Procedure[]> {
             if (alts.length != 0) 
                 return alts;            
         }
-        return Selector.EMPTY;
+        return BranchingScheme.EMPTY;
     }
 }

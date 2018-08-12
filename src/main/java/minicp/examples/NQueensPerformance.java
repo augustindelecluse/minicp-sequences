@@ -23,8 +23,7 @@ import minicp.search.SearchStatistics;
 import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
+import static minicp.cp.BranchingScheme.*;
 
 public class NQueensPerformance {
     public static void main(String[] args) {
@@ -51,18 +50,19 @@ public class NQueensPerformance {
         long t0 = System.currentTimeMillis();
 
 
-        DFSearch dfs = makeDfs(cp,
-                selectMin(q,
-                        qi -> qi.getSize() > 1,
-                        qi -> qi.getSize(),
-                        qi -> {
-                            int v = qi.getMin();
-                            return branch(() -> equal(qi, v),
-                                    () -> notEqual(qi, v));
-                        }
-                )
-        );
-
+        DFSearch dfs = makeDfs(cp,() -> {
+                IntVar qs = selectMin(q,
+                                      qi -> qi.getSize() > 1,
+                                      qi -> qi.getSize());
+                if (qs==null)
+                    return EMPTY;
+                else {
+                    int v = qs.getMin();
+                    return branch(() -> equal(qs, v),
+                                  () -> notEqual(qs, v));
+                }
+            });
+        
         dfs.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(q))
         );

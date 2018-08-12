@@ -18,6 +18,9 @@ package minicp.engine.core;
 import minicp.state.StateManager;
 import minicp.state.StateSparseSet;
 
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 
 public class SparseSetDomain implements IntDomain {
     private StateSparseSet domain;
@@ -113,12 +116,9 @@ public class SparseSetDomain implements IntDomain {
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("{");
-        for (int i = getMin(); i <= getMax() - 1; i++) {
-            if (contains((i))) {
-                b.append(i);
-                b.append(',');
-            }
-        }
+        for (int i = getMin(); i <= getMax() - 1; i++)
+            if (contains((i)))
+                b.append(i).append(',');
         if (getSize() > 0) b.append(getMax());
         b.append("}");
         return b.toString();

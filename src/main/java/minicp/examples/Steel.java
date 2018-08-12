@@ -33,8 +33,7 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 import static minicp.cp.Factory.*;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
+import static minicp.cp.BranchingScheme.*;
 
 
 public class Steel {
@@ -44,7 +43,7 @@ public class Steel {
 
         // Reading the data
 
-        InputReader reader = new InputReader("data/steel/bench_20_0");
+        InputReader reader = new InputReader("data/steel/bench_19_10");
         int nCapa = reader.getInt();
         int[] capa = new int[nCapa];
         for (int i = 0; i < nCapa; i++) {
@@ -136,26 +135,24 @@ public class Steel {
 
             // TODO implement a dynamic symmetry breaking during search
             DFSearch dfs = makeDfs(cp,
-                    selectMin(x,
-                            xi -> xi.getSize() > 1,
-                            xi -> xi.getSize(),
-                            xi -> {
-                                int maxUsed = -1;
-                                for (IntVar x_ : x) {
-                                    if (x_.isBound() && x_.getMin() > maxUsed) {
-                                        maxUsed = x_.getMin();
-                                    }
-                                }
-                                Procedure[] branches = new Procedure[maxUsed+2];
-                                for (int i = 0; i <= maxUsed+1; i++) {
-                                    int slab = i;
-                                    branches[i] = () -> equal(xi,slab);
-                                }
-                                return branch(branches);
-                            }
-                    )
-            );
-
+                                   () -> {
+                                       IntVar xs = selectMin(x,
+                                                             xi -> xi.getSize() > 1,
+                                                             xi -> xi.getSize());
+                                       if (xs == null) return EMPTY;
+                                       else {
+                                           int maxUsed = -1;
+                                           for (IntVar x_ : x) 
+                                               if (x_.isBound() && x_.getMin() > maxUsed) 
+                                                   maxUsed = x_.getMin();
+                                           Procedure[] branches = new Procedure[maxUsed+2];
+                                           for (int i = 0; i <= maxUsed+1; i++) {
+                                               final int slab = i;
+                                               branches[i] = () -> equal(xs,slab);
+                                           }
+                                           return branch(branches);
+                                       }
+                                   });            
 
             dfs.onSolution(() -> {
                 System.out.println("---");

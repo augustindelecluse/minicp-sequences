@@ -26,7 +26,7 @@ import minicp.util.InputReader;
 import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.*;
+import static minicp.cp.BranchingScheme.*;
 
 
 public class Eternity {

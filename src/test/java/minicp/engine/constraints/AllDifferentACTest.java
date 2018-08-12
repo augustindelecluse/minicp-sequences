@@ -26,9 +26,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
+import static minicp.cp.BranchingScheme.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -151,21 +149,24 @@ public class AllDifferentACTest {
 
             cp.post(new AllDifferentAC(x));
 
-            DFSearch dfs = makeDfs(cp,selectMin(x,
-                    xi -> xi.getSize() > 1,
-                    xi -> (float)-xi.getSize(),
-                    xi -> {
-                        int v = xi.getMin();
+            DFSearch dfs = makeDfs(cp,() -> {
+                    IntVar xs = selectMin(x,
+                                          xi -> xi.getSize() > 1,
+                                          xi -> (float)-xi.getSize());
+                    if (xs == null)
+                        return EMPTY;
+                    else {
+                        int v = xs.getMin();
                         return branch(
                                 () -> {
-                                    equal(xi,v);
+                                    equal(xs,v);
                                 },
                                 () -> {
-                                    notEqual(xi,v);
-                                }
-                        );
+                                    notEqual(xs,v);
+                                });                       
                     }
-            ));
+                });
+
             SearchStatistics stats = dfs.solve();
             // GAC filter with a single constraint should have no fail
             assertEquals(0,stats.nFailures);

@@ -23,7 +23,7 @@ import minicp.search.SearchStatistics;
 import minicp.util.InputReader;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.*;
 
 public class QAP {
 

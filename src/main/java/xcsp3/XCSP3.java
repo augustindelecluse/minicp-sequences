@@ -6,7 +6,7 @@ import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 
-import static minicp.cp.Heuristics.*;
+import static minicp.cp.BranchingScheme.*;
 import static minicp.cp.Factory.*;
 
 import minicp.search.DFSearch;

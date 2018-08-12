@@ -15,29 +15,47 @@
 
 package minicp.cp;
 
-
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.Sequencer;
 import minicp.util.Procedure;
 
 import java.util.function.Supplier;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
-import static minicp.search.Selector.branch;
-import static minicp.search.Selector.selectMin;
 import static minicp.cp.Factory.*;
 
-public class Heuristics {
+public class BranchingScheme {
+    public static final Procedure[] EMPTY = new Procedure[0];
+
+    public static Procedure[] branch(Procedure... branches) {
+        return branches;
+    }
+
+    public static <T,N extends Comparable<N> > T selectMin(T[] x,Predicate<T> p,Function<T,N> f) {
+        T sel = null;
+        for (T xi : x) {
+            if (p.test(xi)) {
+                sel = sel == null || f.apply(xi).compareTo(f.apply(sel)) < 0 ? xi : sel;
+            }
+        }
+        return sel;
+    }
+
     public static Supplier<Procedure[]> firstFail(IntVar... x) {
-        return selectMin(x,
-                xi -> xi.getSize() > 1,
-                xi -> xi.getSize(),
-                xi -> {
-                    int v = xi.getMin();
-                    return branch(() -> equal(xi,v),
-                                  () -> notEqual(xi,v));
-                }
-        );
+        return () ->  {
+            IntVar xs = selectMin(x,
+                                  xi -> xi.getSize() > 1,
+                                  xi -> xi.getSize());
+            if (xs == null)
+                return EMPTY;
+            else {
+                int v = xs.getMin();
+                return branch(() -> equal(xs,v),
+                              () -> notEqual(xs,v));
+            }
+        };
     }
     public static Supplier<Procedure[]> and(Supplier<Procedure[]>... choices) {
         return new Sequencer(choices);

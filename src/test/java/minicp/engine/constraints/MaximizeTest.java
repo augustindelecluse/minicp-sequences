@@ -27,7 +27,7 @@ import org.junit.Test;
 import static minicp.cp.Factory.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static minicp.search.Selector.*;
+import static minicp.cp.BranchingScheme.*;
 
 public class MaximizeTest {
 

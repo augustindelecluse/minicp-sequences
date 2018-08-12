@@ -25,7 +25,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static minicp.cp.Heuristics.*;
+import static minicp.cp.BranchingScheme.*;
 import static minicp.cp.Factory.*;
 import minicp.util.InconsistencyException;
 

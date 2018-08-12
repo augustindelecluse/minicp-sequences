@@ -25,7 +25,7 @@ import java.util.Random;
 import java.util.stream.*;
 
 import static minicp.cp.Factory.*;
-import static minicp.cp.Heuristics.firstFail;
+import static minicp.cp.BranchingScheme.*;
 
 public class QAPLNS {
 
