@@ -28,10 +28,7 @@ import static minicp.cp.Factory.*;
 
 public class BranchingScheme {
     public static final Procedure[] EMPTY = new Procedure[0];
-
-    public static Procedure[] branch(Procedure... branches) {
-        return branches;
-    }
+    public static Procedure[] branch(Procedure... branches) { return branches;}
 
     public static <T,N extends Comparable<N> > T selectMin(T[] x,Predicate<T> p,Function<T,N> f) {
         T sel = null;
