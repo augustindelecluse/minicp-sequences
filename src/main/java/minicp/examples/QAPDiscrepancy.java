@@ -69,20 +69,13 @@ public class QAPDiscrepancy {
             }
         }
         IntVar totCost = sum(weightedDist);
+
+
         Objective obj = cp.minimize(totCost);
-
-
         // Iterative Discrepancy Search
         for (int dL = 0; dL < x.length; dL++) {
-
             DFSearch dfs = makeDfs(cp,limitedDiscrepancy(firstFail(x),dL));
-
-            dfs.onSolution(() -> System.out.println("objective:"+totCost.getMin()));
-
             SearchStatistics stats = dfs.optimize(obj);
-
-            //System.out.println(stats);
-
         }
 
 
