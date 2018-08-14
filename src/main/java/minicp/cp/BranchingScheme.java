@@ -17,6 +17,7 @@ package minicp.cp;
 
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
+import minicp.search.LimitedDiscrepancyBranching;
 import minicp.search.Sequencer;
 import minicp.util.Procedure;
 
@@ -56,6 +57,10 @@ public class BranchingScheme {
     }
     public static Supplier<Procedure[]> and(Supplier<Procedure[]>... choices) {
         return new Sequencer(choices);
+    }
+
+    public static Supplier<Procedure[]> limitedDiscrepancy(Supplier<Procedure[]> branching,int maxDiscrepancy) {
+        return new LimitedDiscrepancyBranching(branching,maxDiscrepancy);
     }
 
 }
