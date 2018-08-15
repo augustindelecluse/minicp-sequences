@@ -39,7 +39,11 @@ public class TrailInt implements StateInt {
         if (lastMagic != trailMagic) {
             lastMagic = trailMagic;
             trail.pushOnTrail(new TrailEntryInt(v));
-        }
+        } /* else {
+            System.out.format("Skipping trailing because of magic [%d].... (%d)\n",
+                              trailMagic,
+                              System.identityHashCode(this));
+                              }*/
     }
 
     public int setValue(int v) {

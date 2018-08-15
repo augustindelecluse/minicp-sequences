@@ -116,7 +116,8 @@ public class TSP {
             System.out.println("objective:"+totalDist.getMin());
         });
 
-
+        dfs.optimize(obj);
+        /*
         int nRestarts = 1000;
         int failureLimit = 100;
         Random rand = new java.util.Random(0);
@@ -125,7 +126,7 @@ public class TSP {
             if (i%10==0)
                 System.out.println("restart number #"+i);
             // Record the state such that the fragment constraints can be cancelled
-            dfs.optimizeSubjectTo(obj,statistics -> statistics.nFailures >= failureLimit,
+            dfs.optimizeSubjectTo(obj,statistics -> false, //statistics.nFailures >= failureLimit,
                     () -> {
                         // Assign the fragment 5% of the variables randomly chosen
                         for (int j = 0; j < n; j++) {
@@ -135,6 +136,6 @@ public class TSP {
                         }
                     });
         }
-
+        */
     }
 }

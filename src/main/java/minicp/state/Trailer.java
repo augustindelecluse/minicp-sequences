@@ -30,7 +30,10 @@ public class Trailer implements StateManager {
      * Initialize a reversible context
      * The current level is -1
      */
-    public Trailer() {}
+    public Trailer() {
+        trail.ensureCapacity(1000000);
+        trailLimit.ensureCapacity(1000000);
+    }
 
     public long getMagic() { return magic;}
 

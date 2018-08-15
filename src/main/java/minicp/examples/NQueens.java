@@ -27,7 +27,7 @@ import static minicp.cp.BranchingScheme.*;
 public class NQueens {
     public static void main(String[] args) {
         int n = 8;
-        Solver cp = Factory.makeSolver(true);
+        Solver cp = Factory.makeSolver(false);
         IntVar[] q = Factory.makeIntVarArray(cp, n, n);
 
 

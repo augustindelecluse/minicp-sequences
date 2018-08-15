@@ -23,8 +23,10 @@ public class Copier implements StateManager {
     @Override public void restore() {
         ArrayList<Storage> last = _priorStates.pop();
         Iterator<Storage> i = last.iterator();
-        for(Storage s : _store)
-            s.restore(i.next());
+        for(Storage s : _store) {
+            if (i.hasNext())
+                s.restore(i.next());
+        }
     }
 
     @Override public void restoreAll() {
@@ -41,6 +43,10 @@ public class Copier implements StateManager {
     public StateInt makeStateInt(int initValue) {
         CopyInt s = new CopyInt(initValue);
         _store.add(s);
+        _priorStates.stream().forEach(b -> {
+            if (b.size() != _store.size())
+                b.add(new CopyInt(initValue));
+        });
         return s;
     }
 

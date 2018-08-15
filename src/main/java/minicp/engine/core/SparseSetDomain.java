@@ -15,6 +15,7 @@
 
 package minicp.engine.core;
 
+import minicp.state.StateLazySparseSet;
 import minicp.state.StateManager;
 import minicp.state.StateSparseSet;
 
@@ -23,14 +24,14 @@ import java.util.stream.Stream;
 
 
 public class SparseSetDomain implements IntDomain {
-    private StateSparseSet domain;
+    private StateLazySparseSet domain;
 
     public int fillArray(int[] dest) {
         return domain.fillArray(dest);
     }
 
     public SparseSetDomain(StateManager sm, int min, int max) {
-        domain = new StateSparseSet(sm, max - min + 1,min);
+        domain = new StateLazySparseSet(sm, max - min + 1,min);
     }
 
     public int getMin() {
