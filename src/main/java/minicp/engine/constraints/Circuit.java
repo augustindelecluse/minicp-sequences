@@ -70,6 +70,11 @@ public class Circuit extends AbstractConstraint {
 
 
     private void bind(int i) {
+        /*
+          try {
+            Thread.sleep(1);
+        } catch(InterruptedException x) {}
+        */
         int j = x[i].getMin();
         int orig_i = orig[i].getValue();
         int dest_j = dest[j].getValue();

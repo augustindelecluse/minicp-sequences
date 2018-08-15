@@ -1,7 +1,12 @@
 package minicp.engine.core;
 
+import java.util.Queue;
+
 public interface Constraint {
 
+    void schedule(Queue<Constraint> q);
+    void process();
+    
     /**
      * Initialize the constraint when it is posted to the solver.
      *

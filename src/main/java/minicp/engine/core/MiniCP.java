@@ -33,10 +33,13 @@ public class MiniCP implements Solver  {
     }
 
     public void schedule(Constraint c) {
+        c.schedule(propagationQueue);
+        /*
         if (c.isActive() && !c.isScheduled()) {
             c.setScheduled(true);
             propagationQueue.add(c);
         }
+        */
     }
 
     public int registerVar(IntVar x) {
@@ -56,10 +59,13 @@ public class MiniCP implements Solver  {
         notifyFixPoint();
         try {
             while (!propagationQueue.isEmpty()) {
+                propagationQueue.remove().process();
+                /*
                 Constraint c = propagationQueue.remove();
                 c.setScheduled(false);
                 if (c.isActive())
                     c.propagate();
+                */
             }
         } catch (InconsistencyException e) {
             // empty the queue and unset the scheduled status
