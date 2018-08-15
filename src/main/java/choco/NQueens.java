@@ -43,19 +43,5 @@ public class NQueens {
 
         solver.solve();
 
-
     }
-
-    /*
-    int n = 88;
-    Solver cp = makeSolver();
-    IntVar[] q = makeIntVarArray(cp, n, n);
-
-        for (int i = 0; i < n; i++)
-            for (int j = i + 1; j < n; j++) {
-        cp.post(notEqual(q[i], q[j]));
-        cp.post(notEqual(plus(q[i], j - i), q[j]));
-        cp.post(notEqual(minus(q[i], j - i), q[j]));
-    }
-    */
 }
