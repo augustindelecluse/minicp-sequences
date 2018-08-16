@@ -32,7 +32,7 @@ public class IsEqual extends AbstractConstraint { // b <=> x == c
         this.x = x;
         this.c = c;
     }
-
+    /*
     @Override
     public void post() {
         if (b.isTrue()) {
@@ -58,6 +58,32 @@ public class IsEqual extends AbstractConstraint { // b <=> x == c
                 if (!x.contains(c))
                     b.assign(0);
             });
+        }
+    }*/
+
+    @Override
+    public void post() {
+        propagate();
+        if(isActive()) {
+            x.propagateOnDomainChange(this);
+            b.propagateOnBind(this);
+        }
+    }
+
+    @Override
+    public void propagate() {
+        if (b.isTrue()) {
+            x.assign(c);
+            setActive(false);
+        } else if (b.isFalse()) {
+            x.remove(c);
+            setActive(false);
+        } else if (!x.contains(c)) {
+            b.assign(false);
+            setActive(false);
+        } else if (x.isBound()) {
+            b.assign(true);
+            setActive(false);
         }
     }
 }
