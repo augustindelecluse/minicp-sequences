@@ -31,7 +31,7 @@ public class QAP {
 
         // ---- read the instance -----
 
-        /*
+
         InputReader reader = new InputReader("data/qap.txt");
 
         int n = reader.getInt();
@@ -84,7 +84,7 @@ public class QAP {
 
         System.out.println("t="+(t1-t0));
 
-        */
+
 
     }
 }

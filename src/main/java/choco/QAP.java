@@ -71,7 +71,7 @@ public class QAP {
         Model model = new Model(n + "QAP");
         IntVar[] x = new IntVar[n];
         for (int i = 0; i < n; i++) {
-            x[i] = model.intVar("X_" + i, 0, n - 1);
+            x[i] = model.intVar("X_" + i, 0, n - 1,false);
         }
 
         for (int i = 0; i < n; i++) {
@@ -93,12 +93,12 @@ public class QAP {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 wdist[k] = w[i][j];
-                dist[k] = model.intVar("D_" + i, 0, maxDist);
+                dist[k] = model.intVar("D_" + i, 0, maxDist,false);
                 model.table(new IntVar[]{x[i],x[j],dist[k]},tuples).post();
                 k++;
             }
         }
-        IntVar totCost = model.intVar("obj",0,100000,true);
+        IntVar totCost = model.intVar("obj",0,100000,false);
         model.scalar(dist,wdist,"=",totCost).post();
 
 

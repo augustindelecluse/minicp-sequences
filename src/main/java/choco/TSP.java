@@ -58,8 +58,8 @@ public class TSP {
         IntVar[] succ = new IntVar[n];
         IntVar[] dist = new IntVar[n];
         for (int i = 0; i < n; i++) {
-            succ[i] = model.intVar("succ_" + i, 0, n - 1);
-            dist[i] = model.intVar("dist_" + i, 0, 1000,true);
+            succ[i] = model.intVar("succ_" + i, 0, n - 1,false);
+            dist[i] = model.intVar("dist_" + i, 0, 1000,false);
         }
 
         for (int i = 0; i < n; i++) {
@@ -72,7 +72,7 @@ public class TSP {
         (new Constraint("circuit",new Propagator[]{new PropNoSubtour(succ,0)})).post();
 
 
-        IntVar totDist = model.intVar("totDist_" , 0, 1000000,true);
+        IntVar totDist = model.intVar("totDist_" , 0, 1000000,false);
 
         model.sum(dist,"=",totDist).post();
 

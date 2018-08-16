@@ -39,7 +39,7 @@ public class MagicSerie {
         Model model = new Model(n + "-magic series problem");
         IntVar[] s = new IntVar[n];
         for (int i = 0; i < n; i++) {
-            s[i] = model.intVar("s_" + i, 0, n - 1);
+            s[i] = model.intVar("s_" + i, 0, n - 1,false);
         }
 
         model.sum(s,"=",n).post();

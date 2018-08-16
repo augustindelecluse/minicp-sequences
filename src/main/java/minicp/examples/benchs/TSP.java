@@ -59,7 +59,7 @@ public class TSP {
 
         Solver cp = makeSolver();
         IntVar[] succ = makeIntVarArray(cp, n, n);
-        IntVar[] distSucc = makeIntVarArray(cp, n, 1000);
+        IntVar[] distSucc = makeIntVarArray(cp, n, 745);
 
         cp.post(new Circuit(succ));
 

@@ -19,7 +19,7 @@ public class NQueens {
         IntVar[] q = new IntVar[n];
 
         for(int i = 0; i < n; i++){
-            q[i] = model.intVar("Q_"+i, 1, n);
+            q[i] = model.intVar("Q_"+i, 1, n,false);
         }
 
         for (int i = 0; i < n; i++) {

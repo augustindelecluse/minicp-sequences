@@ -24,14 +24,15 @@ import java.util.stream.Stream;
 
 
 public class SparseSetDomain implements IntDomain {
-    private StateLazySparseSet domain;
+    //private StateLazySparseSet domain;
+    private StateSparseSet domain;
 
     public int fillArray(int[] dest) {
         return domain.fillArray(dest);
     }
 
     public SparseSetDomain(StateManager sm, int min, int max) {
-        domain = new StateLazySparseSet(sm, max - min + 1,min);
+        domain = new StateSparseSet(sm, max - min + 1,min); //new StateLazySparseSet(sm, max - min + 1,min);
     }
 
     public int getMin() {
