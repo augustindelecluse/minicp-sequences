@@ -35,7 +35,7 @@ public abstract class AbstractStateManager implements StateManager {
     }
 
 
-    public void pushOnTrail(StateEntry entry) {
+    public void pushState(StateEntry entry) {
         stateEntries.push(entry);
     }
 

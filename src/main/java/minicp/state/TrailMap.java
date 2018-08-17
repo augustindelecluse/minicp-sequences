@@ -29,7 +29,7 @@ public class TrailMap<K,V> implements StateMap<K,V> {
 
     public void put(K k, V v) {
         if (!map.containsKey(k)) {
-            trail.pushOnTrail(new StateEntry() {
+            trail.pushState(new StateEntry() {
                 @Override
                 public void restore() {
                     map.remove(k);
@@ -37,7 +37,7 @@ public class TrailMap<K,V> implements StateMap<K,V> {
             });
         } else {
             V vOld = map.get(k);
-            trail.pushOnTrail(new StateEntry() {
+            trail.pushState(new StateEntry() {
                 @Override
                 public void restore() {
                     map.put(k,vOld);

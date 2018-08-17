@@ -46,8 +46,8 @@ public class TrailBool implements StateEntry, StateBool {
         long contextMagic = trail.getMagic();
         if (lastMagic != contextMagic) {
             lastMagic = contextMagic;
-            if (v) trail.pushOnTrail(restoreTrue);
-            else trail.pushOnTrail(restoreFalse);
+            if (v) trail.pushState(restoreTrue);
+            else trail.pushState(restoreFalse);
         }
     }
 

@@ -1,9 +1,6 @@
 package minicp.state;
 
-import minicp.util.Procedure;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Stack;
 
 public class Copier extends AbstractStateManager {
 
@@ -16,7 +13,7 @@ public class Copier extends AbstractStateManager {
     @Override public void save() {
         super.save();
         for (Storage s : store) {
-            pushOnTrail(s.save());
+            pushState(s.save());
         }
     }
 
