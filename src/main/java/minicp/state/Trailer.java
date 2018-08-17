@@ -20,45 +20,20 @@ import minicp.util.Procedure;
 import java.util.Stack;
 
 
-public class Trailer implements StateManager {
+public class Trailer extends AbstractStateManager {
 
     private long magic = 0;
-    private Stack<StateEntry> trail = new Stack<StateEntry>();
-    private Stack<Integer>    trailLimit = new Stack<Integer>();
 
     /**
      * Initialize a reversible context
      * The current level is -1
      */
     public Trailer() {
-        trail.ensureCapacity(1000000);
-        trailLimit.ensureCapacity(1000000);
+        super();
     }
 
     public long getMagic() { return magic;}
 
-    public void pushOnTrail(StateEntry entry) {
-        trail.push(entry);
-    }
-
-    /**
-     *
-     * Restore all the entries from the top of the trailStack
-     * to the limit (excluded)
-     */
-    private void restoreToSize(int size) {
-        int n = trail.size() - size;
-        for (int i = 0; i < n; i++) {
-            trail.pop().restore();
-        }
-    }
-
-    /**
-     * @return The current level
-     */
-    public int getLevel() {
-        return trailLimit.size()-1;
-    }
 
     /**
      * Stores the current state
@@ -66,47 +41,20 @@ public class Trailer implements StateManager {
      * Increase the level by 1
      */
     public void save() {
+        super.save();
         magic++;
-        trailLimit.push(trail.size());
     }
-
 
     /**
      *  Restores state as it was at getLevel()-1
      *  Decrease the level by 1
      */
     public void restore() {
-        restoreToSize(trailLimit.pop());
-        // Increments the magic because we want to trail again
+        super.restore();
         magic++;
     }
 
-    /**
-     *  Restores the state as it was at level 0 (first save)
-     *  The level is now -1.
-     *  Notice that you'll probably want to save after this operation.
-     */
-    public void restoreAll() {
-        restoreUntil(-1);
-        trail.clear();
-    }
 
-    /**
-     *  Restores the state as it was at level
-     *  @param level
-     */
-    public void restoreUntil(int level) {
-        while (getLevel() > level) {
-            restore();
-        }
-    }
-
-    public void withNewState(Procedure body) {
-        int level = getLevel();
-        save();
-        body.call();
-        restoreUntil(level);
-    }
 
     @Override
     public StateInt makeStateInt(int initValue) {
