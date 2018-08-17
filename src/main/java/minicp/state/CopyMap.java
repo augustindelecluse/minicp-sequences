@@ -4,6 +4,19 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 public class CopyMap<K,V> implements Storage,StateMap<K,V> {
+
+    class CopyMapStateEntry implements StateEntry {
+        private final Map<K,V> map;
+
+        public CopyMapStateEntry(Map<K,V> map) {
+            this.map = map;
+        }
+
+        public void restore() {
+            CopyMap.this.map = map;
+        }
+    }
+
     protected Map<K,V> map;
     protected CopyMap() {
         map = new IdentityHashMap<>();
@@ -15,6 +28,12 @@ public class CopyMap<K,V> implements Storage,StateMap<K,V> {
     }
     public void put(K k, V v)                { map.put(k,v);}
     public V get(K k)                        { return map.get(k);}
-    @Override public Storage save()          { return new CopyMap(map);}
-    @Override public void restore(Storage s) { map = ((CopyMap)s).map;}
+    @Override public StateEntry save()          {
+        Map<K,V> mapCopy = new IdentityHashMap<>();
+        for (Map.Entry<K,V> me : map.entrySet())
+            mapCopy.put(me.getKey(),me.getValue());
+        return new CopyMapStateEntry(mapCopy);
+
+    }
+
 }

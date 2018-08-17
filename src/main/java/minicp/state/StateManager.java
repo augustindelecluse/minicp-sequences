@@ -39,6 +39,8 @@ public interface StateManager {
      */
     void restoreAll();
 
+    void restoreUntil(int level);
+
     /**
      * Creates a Stateful integer (restorable)
      * @param initValue the initial value

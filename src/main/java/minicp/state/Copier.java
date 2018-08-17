@@ -7,25 +7,24 @@ import java.util.Stack;
 
 public class Copier implements StateManager {
     private ArrayList<Storage> _store;
-    Stack<ArrayList> _priorStates;
+    Stack<ArrayList<StateEntry>> _priorStates;
+
     public Copier() {
         _store = new ArrayList<>();
-        _priorStates = new Stack<ArrayList>();
+        _priorStates = new Stack<ArrayList<StateEntry>>();
     }
 
     @Override public void save() {
-        ArrayList<Storage> copy = new ArrayList<Storage>(_store.size());
+        ArrayList<StateEntry> copy = new ArrayList<StateEntry>(_store.size());
         for(Storage s : _store)
             copy.add(s.save());
         _priorStates.push(copy);
     }
 
     @Override public void restore() {
-        ArrayList<Storage> last = _priorStates.pop();
-        Iterator<Storage> i = last.iterator();
-        for(Storage s : _store) {
-            if (i.hasNext())
-                s.restore(i.next());
+        ArrayList<StateEntry> last = _priorStates.pop();
+        for (StateEntry state: last) {
+            state.restore();
         }
     }
 
@@ -34,7 +33,7 @@ public class Copier implements StateManager {
             restore();
     }
 
-    private void restoreUntil(int level) {
+    @Override public void restoreUntil(int level) {
         while (_priorStates.size() != level)
             restore();
     }
@@ -43,10 +42,8 @@ public class Copier implements StateManager {
     public StateInt makeStateInt(int initValue) {
         CopyInt s = new CopyInt(initValue);
         _store.add(s);
-        _priorStates.stream().forEach(b -> {
-            if (b.size() != _store.size())
-                b.add(new CopyInt(initValue));
-        });
+        // I don't understand this, you add it everywhere, why and why not booleans, why not only on the last one ?
+        //_priorStates.peek().add(s.save());
         return s;
     }
 
