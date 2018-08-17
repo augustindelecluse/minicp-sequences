@@ -1,13 +1,20 @@
 package minicp.state;
 
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class Copier extends AbstractStateManager {
 
-    private ArrayList<Storage> store;
+    private Stack<Storage> store;
+
+    private StateEntry popStore = new StateEntry() {
+        @Override
+        public void restore() {
+            store.pop();
+        }
+    };
 
     public Copier() {
-        store = new ArrayList<>();
+        store = new Stack<>();
     }
 
     @Override public void save() {
@@ -17,21 +24,28 @@ public class Copier extends AbstractStateManager {
         }
     }
 
+    public int storeSize() {
+        return store.size();
+    };
+
     public StateInt makeStateInt(int initValue) {
         CopyInt s = new CopyInt(initValue);
         store.add(s);
+        pushState(popStore);
         return s;
     }
 
     public StateBool makeStateBool(boolean initValue) {
         CopyBool s = new CopyBool(initValue);
         store.add(s);
+        pushState(popStore);
         return s;
     }
 
     public StateMap makeStateMap() {
         CopyMap s = new CopyMap<>();
         store.add(s);
+        pushState(popStore);
         return s;
     }
 
