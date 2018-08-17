@@ -24,22 +24,33 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import java.util.function.Supplier;
 
 @RunWith(Parameterized.class)
 public class StateIntTest {
 
-
     @Parameters
     public static Object[] data() {
-        return new Object[] { new Trailer(),new Copier() };
+        return new Object[]{new Supplier<StateManager>() {
+            @Override
+            public StateManager get() {
+                return new Trailer();
+            }
+        }, new Supplier<StateManager>() {
+            @Override
+            public StateManager get() {
+                return new Copier();
+            }
+        }};
     }
 
+
     @Parameter
-    public StateManager sm;
+    public Supplier<StateManager> stateFactory;
 
     @Test
     public void testExample() {
-
+        StateManager sm = stateFactory.get();
 
         // Two reversible int's inside the sm
         StateInt a = sm.makeStateInt(5);
@@ -84,6 +95,8 @@ public class StateIntTest {
 
     @Test
     public void testReversibleInt() {
+        StateManager sm = stateFactory.get();
+
         StateInt a = sm.makeStateInt(5);
         StateInt b = sm.makeStateInt(5);
         assertTrue(a.getValue() == 5);
@@ -108,6 +121,7 @@ public class StateIntTest {
 
     @Test
     public void testPopAll() {
+        StateManager sm = stateFactory.get();
 
         StateInt a = sm.makeStateInt(5);
         StateInt b = sm.makeStateInt(5);
@@ -166,6 +180,7 @@ public class StateIntTest {
 
     @Test
     public void testPopUntill() {
+        StateManager sm = stateFactory.get();
 
         StateInt a = sm.makeStateInt(5);
         StateInt b = sm.makeStateInt(5);
@@ -224,4 +239,51 @@ public class StateIntTest {
 
     }
 
+
+    @Test
+    public void testPopUntillEasy() {
+        StateManager sm = stateFactory.get();
+
+        StateInt a = sm.makeStateInt(5);
+
+        a.setValue(7);
+        a.setValue(13);
+
+        sm.save(); // level 0
+
+        a.setValue(6);
+
+
+        sm.save(); // level 1
+
+        a.setValue(8);
+
+        sm.save(); // level 2
+
+        a.setValue(10);
+
+        sm.save(); // level 3
+
+        a.setValue(8);
+
+        sm.restoreUntil(0);
+
+        //assertEquals(0,sm.getLevel());
+
+        sm.save(); // level 1
+
+        //assertEquals(1,sm.getLevel());
+        assertEquals(6,a.getValue());
+
+
+        a.setValue(8);
+
+        sm.restoreUntil(0);
+
+        //assertEquals(0,sm.getLevel());
+        assertEquals(6,a.getValue());
+
+
+
+    }
 }

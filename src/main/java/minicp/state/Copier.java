@@ -34,7 +34,7 @@ public class Copier implements StateManager {
     }
 
     @Override public void restoreUntil(int level) {
-        while (_priorStates.size() != level)
+        while (_priorStates.size()-1 > level)
             restore();
     }
 

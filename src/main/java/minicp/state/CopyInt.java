@@ -67,6 +67,7 @@ public class CopyInt implements Storage, StateInt {
 
     @Override
     public StateEntry save() {
+        System.out.println("saving value:"+v);
         return new CopyIntStateEntry(v);
     }
 }
