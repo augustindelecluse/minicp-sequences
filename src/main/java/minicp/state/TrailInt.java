@@ -17,9 +17,9 @@ package minicp.state;
 
 
 public class TrailInt implements StateInt {
-    class TrailEntryInt implements TrailEntry {
+    class StateEntryInt implements StateEntry {
         private final int v;
-        public TrailEntryInt(int v) {
+        public StateEntryInt(int v) {
             this.v = v;
         }
         public void restore()       { TrailInt.this.v = v;}
@@ -38,7 +38,7 @@ public class TrailInt implements StateInt {
         long trailMagic = trail.getMagic();
         if (lastMagic != trailMagic) {
             lastMagic = trailMagic;
-            trail.pushOnTrail(new TrailEntryInt(v));
+            trail.pushOnTrail(new StateEntryInt(v));
         } /* else {
             System.out.format("Skipping trailing because of magic [%d].... (%d)\n",
                               trailMagic,

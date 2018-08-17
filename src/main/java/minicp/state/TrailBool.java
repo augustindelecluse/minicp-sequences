@@ -16,16 +16,16 @@
 package minicp.state;
 
 
-public class TrailBool implements TrailEntry, StateBool {
+public class TrailBool implements StateEntry, StateBool {
 
-    final TrailEntry restoreTrue = new TrailEntry() {
+    final StateEntry restoreTrue = new StateEntry() {
         @Override
         public void restore() {
             v = true;
         }
     };
 
-    final TrailEntry restoreFalse = new TrailEntry() {
+    final StateEntry restoreFalse = new StateEntry() {
         @Override
         public void restore() {
             v = false;

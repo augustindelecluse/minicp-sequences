@@ -42,8 +42,6 @@ public class Copier implements StateManager {
     public StateInt makeStateInt(int initValue) {
         CopyInt s = new CopyInt(initValue);
         _store.add(s);
-        // I don't understand this, you add it everywhere, why and why not booleans, why not only on the last one ?
-        //_priorStates.peek().add(s.save());
         return s;
     }
 

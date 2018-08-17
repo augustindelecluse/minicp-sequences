@@ -16,9 +16,8 @@
 package minicp.state;
 
 /**
- * A TrailEntry is aimed to be
- * stacked on a StateManager
- * through the method @see {@link StateManager#pushOnTrail(StateEntry)}
+ * A StateEntry is aimed to be
+ * stacked on a StateManager to revert some state
  */
 public interface StateEntry {
     public void restore();

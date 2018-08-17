@@ -23,7 +23,7 @@ import java.util.Stack;
 public class Trailer implements StateManager {
 
     private long magic = 0;
-    private Stack<TrailEntry> trail = new Stack<TrailEntry>();
+    private Stack<StateEntry> trail = new Stack<StateEntry>();
     private Stack<Integer>    trailLimit = new Stack<Integer>();
 
     /**
@@ -37,7 +37,7 @@ public class Trailer implements StateManager {
 
     public long getMagic() { return magic;}
 
-    public void pushOnTrail(TrailEntry entry) {
+    public void pushOnTrail(StateEntry entry) {
         trail.push(entry);
     }
 

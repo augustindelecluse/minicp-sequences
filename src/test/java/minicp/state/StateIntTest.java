@@ -31,12 +31,13 @@ public class StateIntTest {
 
     @Parameters
     public static Object[] data() {
-        return new Object[]{new Supplier<StateManager>() {
-            @Override
-            public StateManager get() {
-                return new Trailer();
-            }
-        }, new Supplier<StateManager>() {
+        return new Object[]{
+                new Supplier<StateManager>() {
+                    @Override
+                    public StateManager get() {
+                        return new Trailer();
+                    }
+                }, new Supplier<StateManager>() {
             @Override
             public StateManager get() {
                 return new Copier();
