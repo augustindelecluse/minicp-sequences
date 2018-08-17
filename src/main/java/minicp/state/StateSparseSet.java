@@ -169,6 +169,7 @@ public class StateSparseSet {
         int s = size.getValue();
         exchangePositions(val, values[s-1]);
         size.decrement();
+        updateBoundsValRemoved(val);
     }
 
     /**
@@ -241,22 +242,13 @@ public class StateSparseSet {
     public void removeAbove(int value) {
         if (min.getValue()+ofs > value) {
             removeAll();
-        }
-        else {
+        } else {
             int oldMax = this.max.getValue()+ofs;
             final int sz = size.getValue();
             for (int v = value + 1; v <= oldMax; v++) {
                 if (indexes[v-ofs] < sz)
                     removeInternal(v);
             }
-            if (!isEmpty() && oldMax  != value) {
-                for (int v = value; v >= min.getValue(); v--) {
-                    if (contains(v)) {
-                        max.setValue(v - ofs);
-                        return;
-                    }
-                }
-            }            
         }
     }
 
