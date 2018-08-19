@@ -48,14 +48,16 @@ public class StateSparseSet {
 
 
     private void exchangePositions(int val1, int val2) {
-        //assert(checkVal(val1));
-        //assert(checkVal(val2));
-        int i1 = indexes[val1];
-        int i2 = indexes[val2];
-        values[i1] = val2;
-        values[i2] = val1;
-        indexes[val1] = i2;
-        indexes[val2] = i1;
+        assert(checkVal(val1));
+        assert(checkVal(val2));
+        int v1 = val1;
+        int v2 = val2;
+        int i1 = indexes[v1];
+        int i2 = indexes[v2];
+        values[i1] = v2;
+        values[i2] = v1;
+        indexes[v1] = i2;
+        indexes[v2] = i1;
     }
 
     private boolean checkVal(int val) {
@@ -123,7 +125,7 @@ public class StateSparseSet {
 
     private void updateMaxValRemoved(int val) {
         if (!isEmpty() && max.getValue() == val) {
-            //assert(!internalContains(val));
+            assert(!internalContains(val));
             //the maximum was removed, search the new one
             for (int v = val-1; v >= min.getValue(); v--) {
                 if (internalContains(v)) {
@@ -136,7 +138,7 @@ public class StateSparseSet {
 
     private void updateMinValRemoved(int val) {
         if (!isEmpty() && min.getValue() == val) {
-            //assert(!internalContains(val));
+            assert(!internalContains(val));
             //the minimum was removed, search the new one
             for (int v = val+1; v <= max.getValue(); v++) {
                 if (internalContains(v)) {
@@ -156,20 +158,12 @@ public class StateSparseSet {
         if (!contains(val))
             return false; //the value has already been removed
         val -= ofs;
-        //assert(checkVal(val));
+        assert(checkVal(val));
         int s = getSize();
         exchangePositions(val, values[s-1]);
         size.decrement();
         updateBoundsValRemoved(val);
         return true;
-    }
-
-    private void removeInternal(int val) {
-        val -= ofs;  // no need to check whether value is in domain.
-        int s = size.getValue();
-        exchangePositions(val, values[s-1]);
-        size.decrement();
-        updateBoundsValRemoved(val);
     }
 
     /**
@@ -181,7 +175,7 @@ public class StateSparseSet {
         if (val < 0 || val >= n)
             return false;
         else
-            return indexes[val] < size.getValue();
+            return indexes[val] < getSize();
     }
     /**
      * Check if the value val is in the set
@@ -193,7 +187,7 @@ public class StateSparseSet {
         if (val < 0 || val >= n)
             return false;
         else
-            return indexes[val] < size.getValue();
+            return indexes[val] < getSize();
     }
 
     /**
@@ -202,9 +196,9 @@ public class StateSparseSet {
      */
     public void removeAllBut(int v) {
         // we only have to put in first position this value and set the size to 1
-        //assert(contains(v));
+        assert(contains(v));
         v -= ofs;
-        //assert(checkVal(v));
+        assert(checkVal(v));
         int val = values[0];
         int index = indexes[v];
         indexes[v] = 0;
@@ -228,11 +222,12 @@ public class StateSparseSet {
      * @param value
      */
     public void removeBelow(int value) {
-        if (this.max.getValue()+ofs < value) {
+        if (getMax() < value) {
             removeAll();
         } else {
-            for (int v = this.min.getValue()+ofs; v < value; v++) 
-                remove(v);            
+            for (int v = getMin(); v < value; v++) {
+                remove(v);
+            }
         }
     }
 
@@ -240,14 +235,13 @@ public class StateSparseSet {
      * Remove all the values > value in the set
      */
     public void removeAbove(int value) {
-        if (min.getValue()+ofs > value) {
+        if (getMin() > value) {
             removeAll();
-        } else {
-            int oldMax = this.max.getValue()+ofs;
-            final int sz = size.getValue();
-            for (int v = value + 1; v <= oldMax; v++) {
-                if (indexes[v-ofs] < sz)
-                    removeInternal(v);
+        }
+        else {
+            int max = getMax();
+            for (int v = value + 1; v <= max; v++) {
+                remove(v);
             }
         }
     }
@@ -266,4 +260,3 @@ public class StateSparseSet {
         return b.toString();
     }
 }
-

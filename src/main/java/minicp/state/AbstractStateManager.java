@@ -17,6 +17,8 @@ package minicp.state;
 
 import minicp.util.Procedure;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 
@@ -24,6 +26,30 @@ public abstract class AbstractStateManager implements StateManager {
 
     private Stack<StateEntry> stateEntries = new Stack<StateEntry>();
     private Stack<Integer> limits = new Stack<Integer>();
+
+    private List<Procedure> restoreListeners  = new LinkedList<>();
+    private List<Procedure> saveListeners  = new LinkedList<>();
+
+    protected void notifyRestore() {
+        for (Procedure p: restoreListeners) {
+            p.call();
+        }
+    }
+
+    protected void notifySave() {
+        for (Procedure p: saveListeners) {
+            p.call();
+        }
+    }
+
+
+    public void onRestore(Procedure listener) {
+        restoreListeners.add(listener);
+    }
+
+    public void onSave(Procedure listener) {
+        saveListeners.add(listener);
+    }
 
     /**
      * Initialize a reversible context
@@ -74,6 +100,7 @@ public abstract class AbstractStateManager implements StateManager {
      */
     public void restore() {
         restoreToSize(limits.pop());
+        notifyRestore();
     }
 
     /**

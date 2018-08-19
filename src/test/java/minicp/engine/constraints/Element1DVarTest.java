@@ -90,7 +90,6 @@ public class Element1DVarTest {
             assertEquals(0, y.getMin());
             assertEquals(4, y.getMax());
 
-            System.out.println(z);
             assertEquals(1, z.getMin());
             assertEquals(10, z.getMax());
 

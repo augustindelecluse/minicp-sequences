@@ -26,6 +26,7 @@ public interface StateManager {
      */
     void save();
 
+
     /**
      *  Restores state as it was at getLevel()-1
      *  Decrease the level by 1
@@ -40,6 +41,9 @@ public interface StateManager {
     void restoreAll();
 
     void restoreUntil(int level);
+
+    void onRestore(Procedure listener);
+    void onSave(Procedure listener);
 
     /**
      * Creates a Stateful integer (restorable)

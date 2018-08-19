@@ -43,6 +43,7 @@ public class Trailer extends AbstractStateManager {
     public void save() {
         super.save();
         magic++;
+        notifySave();
     }
 
     /**
@@ -50,8 +51,8 @@ public class Trailer extends AbstractStateManager {
      *  Decrease the level by 1
      */
     public void restore() {
-        super.restore();
         magic++;
+        super.restore();
     }
 
 

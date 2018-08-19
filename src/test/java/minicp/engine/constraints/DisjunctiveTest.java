@@ -90,6 +90,7 @@ public class DisjunctiveTest {
             int[] d = new int[] {5,4,6,7};
             DFSearch dfs = makeDfs(cp, firstFail(s));
 
+
             cp.getStateManager().save();
 
             cp.post(new Disjunctive(s,d));
@@ -101,6 +102,7 @@ public class DisjunctiveTest {
             decomposeDisjunctive(s,d);
 
             SearchStatistics stat2 = dfs.solve();
+
 
             assertEquals(stat1.nSolutions, stat2.nSolutions);
 

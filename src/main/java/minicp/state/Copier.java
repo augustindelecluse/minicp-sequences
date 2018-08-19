@@ -22,6 +22,7 @@ public class Copier extends AbstractStateManager {
         for (Storage s : store) {
             pushState(s.save());
         }
+        notifySave();
     }
 
     public int storeSize() {
