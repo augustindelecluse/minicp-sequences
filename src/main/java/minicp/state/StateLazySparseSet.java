@@ -46,9 +46,8 @@ public class StateLazySparseSet {
             if (switched && isInterval()) buildSparse();
         });
     }
-    int sparseCount = 0;
+
     private void buildSparse() {
-        System.out.println("build sparse:"+ ++sparseCount);
         sparse = new StateSparseSet(sm, getMax() - getMin() + 1, getMin());
         intervalRep.setValue(false);
         switched = true;
