@@ -28,11 +28,9 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static minicp.cp.Factory.*;
 import static minicp.cp.BranchingScheme.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static minicp.cp.Factory.*;
+import static org.junit.Assert.*;
 
 
 public class AllDifferentACTest extends SolverTest {

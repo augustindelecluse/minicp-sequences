@@ -21,9 +21,11 @@ import minicp.util.Procedure;
 public interface SearchObserver {
 
     public void notifySolution();
+
     public void onSolution(Procedure listener);
 
     public void notifyFailure();
+
     public void onFailure(Procedure listener);
 
 }

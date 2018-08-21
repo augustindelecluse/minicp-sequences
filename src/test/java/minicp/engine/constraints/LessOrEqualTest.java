@@ -23,8 +23,9 @@ import minicp.util.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
-import static minicp.cp.Factory.*;
-import static org.junit.Assert.*;
+import static minicp.cp.Factory.makeIntVar;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 
 public class LessOrEqualTest extends SolverTest {

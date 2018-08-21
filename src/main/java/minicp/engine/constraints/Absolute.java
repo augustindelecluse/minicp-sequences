@@ -1,9 +1,7 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
 
 public class Absolute extends AbstractConstraint {
 
@@ -22,7 +20,7 @@ public class Absolute extends AbstractConstraint {
         this.y = y;
     }
 
-    public void post()  {
+    public void post() {
         y.removeBelow(0);
         x.propagateOnBoundChange(this);
         y.propagateOnBoundChange(this);

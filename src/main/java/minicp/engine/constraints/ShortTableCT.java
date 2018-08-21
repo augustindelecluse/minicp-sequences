@@ -16,9 +16,7 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
 
 import java.util.BitSet;
 
@@ -37,7 +35,7 @@ public class ShortTableCT extends AbstractConstraint {
      *
      * @param x     variables to constraint. x.length must be > 0.
      * @param table array of valid solutions (second dimension must be of same size as the array x)
-     * @param star the symbol representing "any" value in the table
+     * @param star  the symbol representing "any" value in the table
      */
     public ShortTableCT(IntVar[] x, int[][] table, int star) {
         super(x[0].getSolver());
@@ -47,7 +45,7 @@ public class ShortTableCT extends AbstractConstraint {
         // Allocate supportedByVarVal
         supports = new BitSet[x.length][];
         for (int i = 0; i < x.length; i++) {
-            this.x[i] = minus(x[i],x[i].getMin()); // map the variables domain to start at 0
+            this.x[i] = minus(x[i], x[i].getMin()); // map the variables domain to start at 0
             supports[i] = new BitSet[x[i].getMax() - x[i].getMin() + 1];
             for (int j = 0; j < supports[i].length; j++)
                 supports[i][j] = new BitSet();
@@ -60,8 +58,7 @@ public class ShortTableCT extends AbstractConstraint {
                     for (int v = 0; v < x[j].getSize(); v++) {
                         supports[j][v].set(i);
                     }
-                }
-                else if (x[j].contains(table[i][j])) {
+                } else if (x[j].contains(table[i][j])) {
                     supports[j][table[i][j] - x[j].getMin()].set(i);
                 }
             }
@@ -69,7 +66,7 @@ public class ShortTableCT extends AbstractConstraint {
     }
 
     @Override
-    public void post()  {
+    public void post() {
         for (IntVar var : x)
             var.propagateOnDomainChange(this);
         propagate();
@@ -86,7 +83,7 @@ public class ShortTableCT extends AbstractConstraint {
 
         // Bit-set of tuple indices all set to 0
         BitSet supportedTuples = new BitSet(table.length);
-        supportedTuples.flip(0,table.length);
+        supportedTuples.flip(0, table.length);
 
         // TODO 1: compute supportedTuples as
         // supportedTuples = (supports[0][x[0].getMin()] | ... | supports[0][x[0].getMax()] ) & ... &

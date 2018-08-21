@@ -28,11 +28,15 @@ public class StateStack<E> {
     }
 
     public void push(E elem) {
-        stack.add(size.getValue(),elem);
+        stack.add(size.getValue(), elem);
         size.increment();
     }
 
-    public int size() { return size.getValue(); }
+    public int size() {
+        return size.getValue();
+    }
 
-    public E get(int index) { return stack.get(index); }
+    public E get(int index) {
+        return stack.get(index);
+    }
 }

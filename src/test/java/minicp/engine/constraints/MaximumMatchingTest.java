@@ -25,17 +25,17 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static minicp.cp.Factory.*;
+import static minicp.cp.Factory.makeIntVar;
 import static org.junit.Assert.*;
 
 
 public class MaximumMatchingTest extends SolverTest {
 
-    private static IntVar makeIVar(Solver cp, Integer ... values) {
-        return makeIntVar(cp,new HashSet<>(Arrays.asList(values)));
+    private static IntVar makeIVar(Solver cp, Integer... values) {
+        return makeIntVar(cp, new HashSet<>(Arrays.asList(values)));
     }
 
-    private void check(IntVar [] x, int [] matching, int size, int expectedSize) {
+    private void check(IntVar[] x, int[] matching, int size, int expectedSize) {
         Set<Integer> values = new HashSet<>();
         for (int i = 0; i < x.length; i++) {
             if (matching[i] != MaximumMatching.NONE) {
@@ -44,8 +44,8 @@ public class MaximumMatchingTest extends SolverTest {
             }
 
         }
-        assertEquals(size,values.size());
-        assertEquals(expectedSize,size);
+        assertEquals(size, values.size());
+        assertEquals(expectedSize, size);
     }
 
     @Test
@@ -60,17 +60,15 @@ public class MaximumMatchingTest extends SolverTest {
             MaximumMatching maximumMatching = new MaximumMatching(x);
 
 
-            check(x,matching,maximumMatching.compute(matching),3);
+            check(x, matching, maximumMatching.compute(matching), 3);
 
 
             x[2].remove(3);
-            check(x,matching,maximumMatching.compute(matching),3);
-
+            check(x, matching, maximumMatching.compute(matching), 3);
 
 
             x[2].remove(4);
-            check(x,matching,maximumMatching.compute(matching),2);
-
+            check(x, matching, maximumMatching.compute(matching), 2);
 
 
         } catch (InconsistencyException e) {
@@ -78,7 +76,6 @@ public class MaximumMatchingTest extends SolverTest {
         }
 
     }
-
 
 
     @Test
@@ -96,16 +93,16 @@ public class MaximumMatchingTest extends SolverTest {
             MaximumMatching maximumMatching = new MaximumMatching(x);
             int[] matching = new int[x.length];
 
-            check(x,matching,maximumMatching.compute(matching),6);
+            check(x, matching, maximumMatching.compute(matching), 6);
 
             x[5].remove(5);
 
-            check(x,matching,maximumMatching.compute(matching),6);
+            check(x, matching, maximumMatching.compute(matching), 6);
 
             x[0].remove(5);
             x[3].remove(5);
 
-            check(x,matching,maximumMatching.compute(matching),5);
+            check(x, matching, maximumMatching.compute(matching), 5);
 
 
         } catch (InconsistencyException e) {
@@ -113,7 +110,6 @@ public class MaximumMatchingTest extends SolverTest {
         }
 
     }
-
 
 
 }

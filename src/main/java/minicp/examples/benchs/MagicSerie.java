@@ -22,12 +22,12 @@ import minicp.search.SearchStatistics;
 
 import java.util.Arrays;
 
-import static minicp.cp.BranchingScheme.*;
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
 
 public class MagicSerie {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
         int n = 300;
         Solver cp = makeSolver(false);
@@ -35,15 +35,15 @@ public class MagicSerie {
         IntVar[] s = makeIntVarArray(cp, n, n);
 
 
-        cp.post(sum(s,n));
+        cp.post(sum(s, n));
 
         for (int i = 0; i < n; i++) {
             final int fi = i;
-            cp.post(sum(makeIntVarArray(0,n-1, j -> isEqual(s[j],fi)),s[i]));
+            cp.post(sum(makeIntVarArray(0, n - 1, j -> isEqual(s[j], fi)), s[i]));
         }
 
         long t0 = System.currentTimeMillis();
-        DFSearch dfs = makeDfs(cp,firstFail(s));
+        DFSearch dfs = makeDfs(cp, firstFail(s));
 
         dfs.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(s))
@@ -54,9 +54,10 @@ public class MagicSerie {
 
         long t1 = System.currentTimeMillis();
 
-        System.out.println(t1-t0);
+        System.out.println(t1 - t0);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);
 
-    }}
+    }
+}

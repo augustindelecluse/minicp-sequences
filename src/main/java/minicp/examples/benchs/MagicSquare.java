@@ -23,15 +23,13 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 
-import java.util.Arrays;
-
-import static minicp.cp.BranchingScheme.*;
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
 public class MagicSquare {
 
     // https://en.wikipedia.org/wiki/Magic_square
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
 
         int n = 5;
@@ -42,14 +40,14 @@ public class MagicSquare {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                x[i][j] = makeIntVar(cp, 1, n*n);
+                x[i][j] = makeIntVar(cp, 1, n * n);
             }
         }
 
 
-        IntVar [] xFlat = new IntVar[x.length * x.length];
+        IntVar[] xFlat = new IntVar[x.length * x.length];
         for (int i = 0; i < x.length; i++) {
-            System.arraycopy(x[i],0,xFlat,i * x.length,x.length);
+            System.arraycopy(x[i], 0, xFlat, i * x.length, x.length);
         }
 
 
@@ -58,7 +56,7 @@ public class MagicSquare {
 
         // Sum on lines
         for (int i = 0; i < n; i++) {
-            cp.post(sum(x[i],M));
+            cp.post(sum(x[i], M));
         }
 
         // Sum on columns
@@ -66,7 +64,7 @@ public class MagicSquare {
             IntVar[] column = new IntVar[n];
             for (int i = 0; i < x.length; i++)
                 column[i] = x[i][j];
-            cp.post(sum(column,M));
+            cp.post(sum(column, M));
         }
 
         // Sum on diagonals
@@ -74,22 +72,22 @@ public class MagicSquare {
         IntVar[] diagonalRight = new IntVar[n];
         for (int i = 0; i < x.length; i++) {
             diagonalLeft[i] = x[i][i];
-            diagonalRight[i] = x[n-i-1][i];
+            diagonalRight[i] = x[n - i - 1][i];
         }
         cp.post(sum(diagonalLeft, M));
         cp.post(sum(diagonalRight, M));
 
-        cp.post(new LessOrEqual(x[0][n - 1],minus(x[n - 1][0],1)));
-        cp.post(new LessOrEqual(x[0][0],minus(x[n - 1][n - 1],1)));
-        cp.post(new LessOrEqual(x[0][0],minus(x[n - 1][0],1)));
+        cp.post(new LessOrEqual(x[0][n - 1], minus(x[n - 1][0], 1)));
+        cp.post(new LessOrEqual(x[0][0], minus(x[n - 1][n - 1], 1)));
+        cp.post(new LessOrEqual(x[0][0], minus(x[n - 1][0], 1)));
 
 
-        DFSearch dfs = makeDfs(cp,firstFail(xFlat));
+        DFSearch dfs = makeDfs(cp, firstFail(xFlat));
 
         long t0 = System.currentTimeMillis();
         SearchStatistics stats = dfs.solve(stat -> stat.nSolutions >= 10000); // stop on first solution
         System.out.println(stats);
-        System.out.println("time:"+(System.currentTimeMillis()-t0));
+        System.out.println("time:" + (System.currentTimeMillis() - t0));
     }
 
 }

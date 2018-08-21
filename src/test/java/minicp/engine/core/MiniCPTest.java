@@ -18,20 +18,11 @@ package minicp.engine.core;
 import minicp.engine.SolverTest;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
-import static minicp.cp.BranchingScheme.EMPTY;
-import static minicp.cp.BranchingScheme.branch;
-import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.BranchingScheme.*;
 import static minicp.cp.Factory.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class MiniCPTest extends SolverTest {
@@ -40,20 +31,20 @@ public class MiniCPTest extends SolverTest {
     @Test
     public void testSolveSubjectTo() {
         Solver cp = makeSolver();
-        IntVar[] x = makeIntVarArray(cp,3,2);
+        IntVar[] x = makeIntVarArray(cp, 3, 2);
 
-        DFSearch dfs = makeDfs(cp,firstFail(x));
+        DFSearch dfs = makeDfs(cp, firstFail(x));
 
 
         SearchStatistics stats1 = dfs.solveSubjectTo(l -> false, () -> {
-            equal(x[0],0);
+            equal(x[0], 0);
         });
 
-        assertEquals(4,stats1.nSolutions);
+        assertEquals(4, stats1.nSolutions);
 
         SearchStatistics stats2 = dfs.solve(l -> false);
 
-        assertEquals(8,stats2.nSolutions);
+        assertEquals(8, stats2.nSolutions);
 
 
     }
@@ -61,26 +52,26 @@ public class MiniCPTest extends SolverTest {
     @Test
     public void testDFS() {
         Solver cp = solverFactory.get();
-        IntVar[] values = makeIntVarArray(cp,3,2);
+        IntVar[] values = makeIntVarArray(cp, 3, 2);
 
-        DFSearch dfs = makeDfs(cp,() -> {
+        DFSearch dfs = makeDfs(cp, () -> {
             int sel = -1;
-            for(int i = 0 ; i < values.length;i++)
+            for (int i = 0; i < values.length; i++)
                 if (values[i].getSize() > 1 && sel == -1)
                     sel = i;
             final int i = sel;
             if (i == -1)
                 return EMPTY;
-            else return branch(()-> equal(values[i],0),
-                    ()-> equal(values[i],1));
+            else return branch(() -> equal(values[i], 0),
+                    () -> equal(values[i], 1));
         });
 
 
         SearchStatistics stats = dfs.solve();
 
-        assert(stats.nSolutions == 8);
-        assert(stats.nFailures == 0);
-        assert(stats.nNodes == (8+4+2));
+        assert (stats.nSolutions == 8);
+        assert (stats.nFailures == 0);
+        assert (stats.nNodes == (8 + 4 + 2));
     }
 
 

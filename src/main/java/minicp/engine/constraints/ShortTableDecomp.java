@@ -16,9 +16,7 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
 
 public class ShortTableDecomp extends AbstractConstraint {
 
@@ -32,7 +30,7 @@ public class ShortTableDecomp extends AbstractConstraint {
      *
      * @param x     variables to constraint. x.length must be > 0.
      * @param table array of valid solutions (second dimension must be of same size as the array x)
-     * @param star the symbol representing "any" value in the table
+     * @param star  the symbol representing "any" value in the table
      */
     public ShortTableDecomp(IntVar[] x, int[][] table, int star) {
         super(x[0].getSolver());
@@ -42,7 +40,7 @@ public class ShortTableDecomp extends AbstractConstraint {
     }
 
     @Override
-    public void post()  {
+    public void post() {
         for (IntVar var : x)
             var.propagateOnDomainChange(this);
         propagate();

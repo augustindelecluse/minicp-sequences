@@ -25,13 +25,14 @@ import minicp.util.InputReader;
 
 import java.util.Arrays;
 
+import static minicp.cp.BranchingScheme.and;
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
-import static minicp.cp.BranchingScheme.*;
 
 
 public class Eternity {
 
-    public static IntVar[] flatten(IntVar [][] x) {
+    public static IntVar[] flatten(IntVar[][] x) {
         return Arrays.stream(x).flatMap(Arrays::stream).toArray(IntVar[]::new);
     }
 
@@ -44,10 +45,10 @@ public class Eternity {
         int n = reader.getInt();
         int m = reader.getInt();
 
-        int [][] pieces = new int[n*m][4];
+        int[][] pieces = new int[n * m][4];
         int max_ = 0;
 
-        for (int i = 0; i < n*m; i++) {
+        for (int i = 0; i < n * m; i++) {
             for (int j = 0; j < 4; j++) {
                 pieces[i][j] = reader.getInt();
                 if (pieces[i][j] > max_)
@@ -61,15 +62,15 @@ public class Eternity {
 
         // Table with makeIntVarArray pieces and for each their 4 possible rotations
 
-        int [][] table = new int[4*n*m][5];
+        int[][] table = new int[4 * n * m][5];
 
         for (int i = 0; i < pieces.length; i++) {
             for (int r = 0; r < 4; r++) {
-                table[i*4+r][0] = i;
-                table[i*4+r][1] = pieces[i][(r+0)%4];
-                table[i*4+r][2] = pieces[i][(r+1)%4];
-                table[i*4+r][3] = pieces[i][(r+2)%4];
-                table[i*4+r][4] = pieces[i][(r+3)%4];
+                table[i * 4 + r][0] = i;
+                table[i * 4 + r][1] = pieces[i][(r + 0) % 4];
+                table[i * 4 + r][2] = pieces[i][(r + 1) % 4];
+                table[i * 4 + r][3] = pieces[i][(r + 2) % 4];
+                table[i * 4 + r][4] = pieces[i][(r + 3) % 4];
             }
         }
 
@@ -84,23 +85,23 @@ public class Eternity {
         IntVar[][] l = new IntVar[n][m];  // left
 
         for (int i = 0; i < n; i++) {
-            u[i] = Factory.makeIntVarArray(m, j -> makeIntVar(cp,0,max));
-            id[i] = makeIntVarArray(cp,m,n*m);
+            u[i] = Factory.makeIntVarArray(m, j -> makeIntVar(cp, 0, max));
+            id[i] = makeIntVarArray(cp, m, n * m);
         }
         for (int k = 0; k < n; k++) {
             final int i = k;
-            if (i < n-1) d[i] = u[i+1];
-            else d[i] = Factory.makeIntVarArray(m, j -> makeIntVar(cp,0,max));
+            if (i < n - 1) d[i] = u[i + 1];
+            else d[i] = Factory.makeIntVarArray(m, j -> makeIntVar(cp, 0, max));
         }
         for (int j = 0; j < m; j++) {
             for (int i = 0; i < n; i++) {
-                l[i][j] = makeIntVar(cp,0,max);
+                l[i][j] = makeIntVar(cp, 0, max);
             }
         }
         for (int j = 0; j < m; j++) {
             for (int i = 0; i < n; i++) {
-                if (j < m-1) r[i][j] = l[i][j+1];
-                else r[i][j] = makeIntVar(cp,0,max);
+                if (j < m - 1) r[i][j] = l[i][j + 1];
+                else r[i][j] = makeIntVar(cp, 0, max);
             }
         }
 
@@ -113,18 +114,18 @@ public class Eternity {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 //cp.post(new TableCT(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
-                cp.post(new TableDecomp(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
+                cp.post(new TableDecomp(new IntVar[]{id[i][j], u[i][j], r[i][j], d[i][j], l[i][j]}, table));
             }
         }
 
         // 0 on the border
         for (int i = 0; i < n; i++) {
-            equal(l[i][0],0);
-            equal(r[i][m-1],0);
+            equal(l[i][0], 0);
+            equal(r[i][m - 1], 0);
         }
         for (int j = 0; j < m; j++) {
-            equal(u[0][j],0);
-            equal(d[n-1][j],0);
+            equal(u[0][j], 0);
+            equal(d[n - 1][j], 0);
         }
 
 
@@ -163,7 +164,7 @@ public class Eternity {
         });
 
 
-        SearchStatistics stats =        dfs.solve(statistics -> statistics.nSolutions == 1);
+        SearchStatistics stats = dfs.solve(statistics -> statistics.nSolutions == 1);
 
         System.out.format("#Solutions: %s\n", stats.nSolutions);
         System.out.format("Statistics: %s\n", stats);

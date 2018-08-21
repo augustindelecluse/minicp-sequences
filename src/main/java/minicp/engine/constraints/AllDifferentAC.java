@@ -16,10 +16,9 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.util.GraphUtil;
-import minicp.util.GraphUtil.*;
+import minicp.util.GraphUtil.Graph;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;
@@ -37,13 +36,19 @@ public class AllDifferentAC extends AbstractConstraint {
     private int nNodes;
     Graph g = new Graph() {
         @Override
-        public int n() { return nNodes; }
+        public int n() {
+            return nNodes;
+        }
 
         @Override
-        public Iterable<Integer> in(int idx) { return in[idx]; }
+        public Iterable<Integer> in(int idx) {
+            return in[idx];
+        }
 
         @Override
-        public Iterable<Integer> out(int idx) { return out[idx]; }
+        public Iterable<Integer> out(int idx) {
+            return out[idx];
+        }
     };
 
     private int[] match;
@@ -63,7 +68,7 @@ public class AllDifferentAC extends AbstractConstraint {
     }
 
     @Override
-    public void post()  {
+    public void post() {
         for (int i = 0; i < nVar; i++) {
             x[i].propagateOnDomainChange(this);
         }
@@ -81,14 +86,14 @@ public class AllDifferentAC extends AbstractConstraint {
         propagate();
     }
 
-    public void updateRange()  {
+    public void updateRange() {
         minVal = Integer.MAX_VALUE;
         maxVal = Integer.MIN_VALUE;
         for (int i = 0; i < nVar; i++) {
             minVal = Math.min(minVal, x[i].getMin());
             maxVal = Math.max(maxVal, x[i].getMax());
         }
-        nVal = maxVal - minVal +1;
+        nVal = maxVal - minVal + 1;
     }
 
 
@@ -99,7 +104,7 @@ public class AllDifferentAC extends AbstractConstraint {
             in[i].clear();
             out[i].clear();
         }
-        Arrays.fill(matched,0,nVal,false);
+        Arrays.fill(matched, 0, nVal, false);
         for (int i = 0; i < x.length; i++) {
             in[i].add(match[i] - minVal + x.length);
             out[match[i] - minVal + nVar].add(i);

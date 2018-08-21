@@ -5,11 +5,11 @@ import java.util.Queue;
 public interface Constraint {
 
     void schedule(Queue<Constraint> q);
+
     void process();
-    
+
     /**
      * Initialize the constraint when it is posted to the solver.
-     *
      */
     void post();
 
@@ -21,6 +21,7 @@ public interface Constraint {
     /**
      * Called by the solver when the constraint
      * is enqueued in the propagation queue
+     *
      * @param scheduled is true when the constraint is enqueued in the propagation queue,
      *                  false when dequeued,
      */
@@ -34,6 +35,7 @@ public interface Constraint {
     /**
      * Typically called by the Constraint to ask that it should not be scheduled any more.
      * For instance in case it is subsumed
+     *
      * @param active
      */
     void setActive(boolean active);

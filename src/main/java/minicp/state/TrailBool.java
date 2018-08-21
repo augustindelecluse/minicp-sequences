@@ -58,8 +58,11 @@ public class TrailBool implements StateBool {
             this.v = v;
         }
     }
+
     @Override
-    public boolean getValue() { return this.v; }
+    public boolean getValue() {
+        return this.v;
+    }
 
 
 }

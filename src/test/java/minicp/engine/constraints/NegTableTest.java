@@ -28,23 +28,23 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static minicp.cp.Factory.*;
 import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
-public class NegTableTest extends SolverTest{
+public class NegTableTest extends SolverTest {
 
     private int[][] randomTuples(Random rand, int arity, int nTuples, int minvalue, int maxvalue, boolean noDuplicates) {
         int[][] r = new int[nTuples][arity];
         for (int i = 0; i < nTuples; i++)
             for (int j = 0; j < arity; j++)
                 r[i][j] = rand.nextInt(maxvalue - minvalue) + minvalue;
-        return noDuplicates? removeDuplicates(r): r;
+        return noDuplicates ? removeDuplicates(r) : r;
     }
 
-    public int[][] removeDuplicates(int [][] table) {
+    public int[][] removeDuplicates(int[][] table) {
         ArrayList<int[]> tableList = new ArrayList<>();
-        boolean [] duplicate = new boolean[table.length];
+        boolean[] duplicate = new boolean[table.length];
         for (int i = 0; i < table.length; i++) {
             if (!duplicate[i]) {
                 tableList.add(table[i]);
@@ -78,7 +78,7 @@ public class NegTableTest extends SolverTest{
                                         add = false;
                                     }
                                 }
-                                if (add) posTableList.add(new int[]{i,j,k});
+                                if (add) posTableList.add(new int[]{i, j, k});
                             }
                         }
                     }
@@ -105,9 +105,9 @@ public class NegTableTest extends SolverTest{
                         {0, 0, 1}};
                 cp.post(new NegTableCT(x, table));
                 //cp.post(new TableCT(x, toPositive(x[0],x[1],x[2],table)));
-                assertEquals(1,x[0].getMin());
-                assertEquals(1,x[1].getMin());
-                assertEquals(1,x[2].getMin());
+                assertEquals(1, x[0].getMin());
+                assertEquals(1, x[1].getMin());
+                assertEquals(1, x[2].getMin());
 
             } catch (InconsistencyException e) {
                 fail("should not fail");
@@ -123,11 +123,11 @@ public class NegTableTest extends SolverTest{
             try {
                 Solver cp = solverFactory.get();
                 IntVar[] x = makeIntVarArray(cp, 3, 2);
-                int[][] table = new int[][]{{1,1,1}};
+                int[][] table = new int[][]{{1, 1, 1}};
                 cp.post(new NegTableCT(x, table));
-                DFSearch dfs = makeDfs(cp,firstFail(x));
+                DFSearch dfs = makeDfs(cp, firstFail(x));
                 SearchStatistics stats = dfs.solve();
-                assertEquals(7,stats.nSolutions);
+                assertEquals(7, stats.nSolutions);
 
             } catch (InconsistencyException e) {
                 fail("should not fail");
@@ -143,11 +143,11 @@ public class NegTableTest extends SolverTest{
             try {
                 Solver cp = solverFactory.get();
                 IntVar[] x = makeIntVarArray(cp, 3, 2);
-                int[][] table = new int[][]{{1,1,1},{1,1,1},{1,1,1}};
+                int[][] table = new int[][]{{1, 1, 1}, {1, 1, 1}, {1, 1, 1}};
                 cp.post(new NegTableCT(x, table));
-                DFSearch dfs = makeDfs(cp,firstFail(x));
+                DFSearch dfs = makeDfs(cp, firstFail(x));
                 SearchStatistics stats = dfs.solve();
-                assertEquals(7,stats.nSolutions);
+                assertEquals(7, stats.nSolutions);
 
             } catch (InconsistencyException e) {
                 fail("should not fail");
@@ -181,7 +181,7 @@ public class NegTableTest extends SolverTest{
         for (int i = 0; i < 20; i++) {
             int[][] tuples1 = randomTuples(rand, 3, 50, 2, 8, false);
             int[][] tuples2 = randomTuples(rand, 3, 50, 1, 3, false);
-            int[][] tuples3 = randomTuples(rand, 3, 80, 0, 6, false );
+            int[][] tuples3 = randomTuples(rand, 3, 80, 0, 6, false);
             try {
                 testTable(tuples1, tuples2, tuples3);
             } catch (NotImplementedException e) {
@@ -199,9 +199,9 @@ public class NegTableTest extends SolverTest{
             Solver cp = solverFactory.get();
             IntVar[] x = makeIntVarArray(cp, 5, 9);
             cp.post(allDifferent(x));
-            cp.post(new TableCT(new IntVar[]{x[0], x[1], x[2]}, toPositive(x[0], x[1], x[2],t1)));
-            cp.post(new TableCT(new IntVar[]{x[2], x[3], x[4]}, toPositive(x[2], x[3], x[4],t2)));
-            cp.post(new TableCT(new IntVar[]{x[0], x[2], x[4]}, toPositive(x[0], x[2], x[4],t3)));
+            cp.post(new TableCT(new IntVar[]{x[0], x[1], x[2]}, toPositive(x[0], x[1], x[2], t1)));
+            cp.post(new TableCT(new IntVar[]{x[2], x[3], x[4]}, toPositive(x[2], x[3], x[4], t2)));
+            cp.post(new TableCT(new IntVar[]{x[0], x[2], x[4]}, toPositive(x[0], x[2], x[4], t3)));
             statsDecomp = makeDfs(cp, firstFail(x)).solve();
         } catch (InconsistencyException e) {
             statsDecomp = null;

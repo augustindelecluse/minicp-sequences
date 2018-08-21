@@ -16,15 +16,11 @@
 package minicp.state;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.function.Supplier;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class StateBoolTest extends StateManagerTest{
+public class StateBoolTest extends StateManagerTest {
 
 
     @Test
@@ -49,7 +45,6 @@ public class StateBoolTest extends StateManagerTest{
         assertFalse(b2.getValue());
 
     }
-
 
 
 }

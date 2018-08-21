@@ -28,15 +28,15 @@ public interface StateManager {
 
 
     /**
-     *  Restores state as it was at getLevel()-1
-     *  Decrease the level by 1
+     * Restores state as it was at getLevel()-1
+     * Decrease the level by 1
      */
     void restore();
 
     /**
-     *  Restores the state as it was at level 0 (first save)
-     *  The level is now -1.
-     *  Notice that you'll probably want to save after this operation.
+     * Restores the state as it was at level 0 (first save)
+     * The level is now -1.
+     * Notice that you'll probably want to save after this operation.
      */
     void restoreAll();
 
@@ -51,24 +51,30 @@ public interface StateManager {
 
     /**
      * Creates a Stateful integer (restorable)
+     *
      * @param initValue the initial value
      * @return a reference to the integer.
      */
     StateInt makeStateInt(int initValue);
+
     /**
      * Creates a Stateful boolean (restorable)
+     *
      * @param initValue the initial value
      * @return a reference to the boolean.
      */
     StateBool makeStateBool(boolean initValue);
+
     /**
      * Creates a Stateful map (restorable)
+     *
      * @return a reference to the map.
      */
     StateMap makeStateMap();
 
     /**
      * Higher-order function that preserves the state prior to calling body and restores it after.
+     *
      * @param body the first-order function to execute.
      */
     void withNewState(Procedure body);

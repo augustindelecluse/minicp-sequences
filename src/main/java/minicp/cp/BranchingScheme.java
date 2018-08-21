@@ -16,22 +16,25 @@
 package minicp.cp;
 
 import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
 import minicp.search.LimitedDiscrepancyBranching;
 import minicp.search.Sequencer;
 import minicp.util.Procedure;
 
-import java.util.function.Supplier;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
-import static minicp.cp.Factory.*;
+import static minicp.cp.Factory.equal;
+import static minicp.cp.Factory.notEqual;
 
 public class BranchingScheme {
     public static final Procedure[] EMPTY = new Procedure[0];
-    public static Procedure[] branch(Procedure... branches) { return branches;}
 
-    public static <T,N extends Comparable<N> > T selectMin(T[] x,Predicate<T> p,Function<T,N> f) {
+    public static Procedure[] branch(Procedure... branches) {
+        return branches;
+    }
+
+    public static <T, N extends Comparable<N>> T selectMin(T[] x, Predicate<T> p, Function<T, N> f) {
         T sel = null;
         for (T xi : x) {
             if (p.test(xi)) {
@@ -42,25 +45,26 @@ public class BranchingScheme {
     }
 
     public static Supplier<Procedure[]> firstFail(IntVar... x) {
-        return () ->  {
+        return () -> {
             IntVar xs = selectMin(x,
-                                  xi -> xi.getSize() > 1,
-                                  xi -> xi.getSize());
+                    xi -> xi.getSize() > 1,
+                    xi -> xi.getSize());
             if (xs == null)
                 return EMPTY;
             else {
                 int v = xs.getMin();
-                return branch(() -> equal(xs,v),
-                              () -> notEqual(xs,v));
+                return branch(() -> equal(xs, v),
+                        () -> notEqual(xs, v));
             }
         };
     }
+
     public static Supplier<Procedure[]> and(Supplier<Procedure[]>... choices) {
         return new Sequencer(choices);
     }
 
-    public static Supplier<Procedure[]> limitedDiscrepancy(Supplier<Procedure[]> branching,int maxDiscrepancy) {
-        return new LimitedDiscrepancyBranching(branching,maxDiscrepancy);
+    public static Supplier<Procedure[]> limitedDiscrepancy(Supplier<Procedure[]> branching, int maxDiscrepancy) {
+        return new LimitedDiscrepancyBranching(branching, maxDiscrepancy);
     }
 
 }

@@ -35,34 +35,34 @@ public class NQueensVerbose {
         IntVar[] q = makeIntVarArray(cp, n, n);
 
 
-        for(int i=0;i < n;i++)
-            for(int j=i+1;j < n;j++) {
-                cp.post(notEqual(q[i],q[j]));
-                cp.post(notEqual(q[i],q[j],j-i));
-                cp.post(notEqual(q[i],q[j],i-j));
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++) {
+                cp.post(notEqual(q[i], q[j]));
+                cp.post(notEqual(q[i], q[j], j - i));
+                cp.post(notEqual(q[i], q[j], i - j));
             }
 
 
         cp.post(new AllDifferentAC(q));
-        cp.post(new AllDifferentAC( Factory.makeIntVarArray(n, i -> minus(q[i],i))));
-        cp.post(new AllDifferentAC( Factory.makeIntVarArray(n, i -> plus(q[i],i))));
+        cp.post(new AllDifferentAC(Factory.makeIntVarArray(n, i -> minus(q[i], i))));
+        cp.post(new AllDifferentAC(Factory.makeIntVarArray(n, i -> plus(q[i], i))));
 
 
         DFSearch dfs = makeDfs(cp, () -> {
-                IntVar qi = Arrays.stream(q).reduce(null,(a,b) -> b.getSize()>1 && a==null ? b : a);
-                if (qi == null) {
-                    return new Procedure[0];
-                } else {
-                    int v = qi.getMin();
-                    Procedure left = () -> equal(qi, v);
-                    Procedure right = () -> notEqual(qi, v);
-                    return new Procedure[]{left,right};
+                    IntVar qi = Arrays.stream(q).reduce(null, (a, b) -> b.getSize() > 1 && a == null ? b : a);
+                    if (qi == null) {
+                        return new Procedure[0];
+                    } else {
+                        int v = qi.getMin();
+                        Procedure left = () -> equal(qi, v);
+                        Procedure right = () -> notEqual(qi, v);
+                        return new Procedure[]{left, right};
+                    }
                 }
-             }
         );
 
         dfs.onSolution(() ->
-                System.out.println("solution:"+ Arrays.toString(q))
+                System.out.println("solution:" + Arrays.toString(q))
         );
 
         SearchStatistics stats = dfs.solve(statistics -> statistics.nSolutions == 1000);

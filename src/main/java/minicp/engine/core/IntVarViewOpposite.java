@@ -30,13 +30,19 @@ public class IntVarViewOpposite implements IntVar {
     }
 
     @Override
-    public void whenBind(ConstraintClosure.Filtering f) { x.whenBind(f); }
+    public void whenBind(ConstraintClosure.Filtering f) {
+        x.whenBind(f);
+    }
 
     @Override
-    public void whenBoundsChange(ConstraintClosure.Filtering f) { x.whenBoundsChange(f); }
+    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+        x.whenBoundsChange(f);
+    }
 
     @Override
-    public void whenDomainChange(ConstraintClosure.Filtering f) { x.whenDomainChange(f); }
+    public void whenDomainChange(ConstraintClosure.Filtering f) {
+        x.whenDomainChange(f);
+    }
 
     @Override
     public void propagateOnDomainChange(Constraint c) {
@@ -88,17 +94,17 @@ public class IntVarViewOpposite implements IntVar {
     }
 
     @Override
-    public void remove(int v)  {
+    public void remove(int v) {
         x.remove(-v);
     }
 
     @Override
-    public void assign(int v)  {
+    public void assign(int v) {
         x.assign(-v);
     }
 
     @Override
-    public void removeBelow(int v)  {
+    public void removeBelow(int v) {
         x.removeAbove(-v);
     }
 

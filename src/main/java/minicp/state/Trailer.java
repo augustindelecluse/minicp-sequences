@@ -15,11 +15,6 @@
 
 package minicp.state;
 
-import minicp.util.Procedure;
-
-import java.util.Stack;
-
-
 public class Trailer extends AbstractStateManager {
 
     private long magic = 0;
@@ -32,7 +27,9 @@ public class Trailer extends AbstractStateManager {
         super();
     }
 
-    public long getMagic() { return magic;}
+    public long getMagic() {
+        return magic;
+    }
 
     /**
      * Stores the current state
@@ -47,8 +44,8 @@ public class Trailer extends AbstractStateManager {
     }
 
     /**
-     *  Restores state as it was at getLevel()-1
-     *  Decrease the level by 1
+     * Restores state as it was at getLevel()-1
+     * Decrease the level by 1
      */
     @Override
     public void restore() {
@@ -57,15 +54,16 @@ public class Trailer extends AbstractStateManager {
     }
 
 
-
     @Override
     public StateInt makeStateInt(int initValue) {
         return new TrailInt(this, initValue);
     }
+
     @Override
     public StateBool makeStateBool(boolean initValue) {
         return new TrailBool(this, initValue);
     }
+
     @Override
     public StateMap makeStateMap() {
         return new TrailMap(this);

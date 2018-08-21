@@ -15,13 +15,11 @@
 
 package minicp.engine.core;
 
-import minicp.cp.Factory;
 import minicp.engine.SolverTest;
 import minicp.util.InconsistencyException;
 import org.junit.Test;
 
 import static minicp.cp.Factory.makeIntVar;
-import static minicp.cp.Factory.makeSolver;
 import static minicp.cp.Factory.plus;
 import static org.junit.Assert.*;
 
@@ -32,13 +30,13 @@ public class IntVarViewOffsetTest extends SolverTest {
 
     @Test
     public void testIntVar() {
-        Solver cp  = solverFactory.get();
+        Solver cp = solverFactory.get();
 
-        IntVar x = plus(makeIntVar(cp,-3,4),3); // domain is {0,1,2,3,4,5,6,7}
+        IntVar x = plus(makeIntVar(cp, -3, 4), 3); // domain is {0,1,2,3,4,5,6,7}
 
-        assertEquals(0,x.getMin());
-        assertEquals(7,x.getMax());
-        assertEquals(8,x.getSize());
+        assertEquals(0, x.getMin());
+        assertEquals(7, x.getMax());
+        assertEquals(8, x.getSize());
 
         cp.getStateManager().save();
 
@@ -52,15 +50,14 @@ public class IntVarViewOffsetTest extends SolverTest {
             x.remove(3);
             assertTrue(x.contains(1));
             assertTrue(x.contains(2));
-            assertEquals(6,x.getSize());
+            assertEquals(6, x.getSize());
             x.removeAbove(6);
-            assertEquals(6,x.getMax());
+            assertEquals(6, x.getMax());
             x.removeBelow(3);
-            assertEquals(4,x.getMin());
+            assertEquals(4, x.getMin());
             x.assign(5);
             assertTrue(x.isBound());
-            assertEquals(5,x.getMax());
-
+            assertEquals(5, x.getMax());
 
 
         } catch (InconsistencyException e) {
@@ -70,25 +67,25 @@ public class IntVarViewOffsetTest extends SolverTest {
 
         try {
             x.assign(4);
-            fail( "should have failed" );
-        } catch (InconsistencyException expectedException) {}
+            fail("should have failed");
+        } catch (InconsistencyException expectedException) {
+        }
 
         cp.getStateManager().restore();
 
-        assertEquals(8,x.getSize());
+        assertEquals(8, x.getSize());
         assertFalse(x.contains(-1));
 
     }
 
 
-
     @Test
     public void onDomainChangeOnBind() {
         propagateCalled = false;
-        Solver cp  = solverFactory.get();
+        Solver cp = solverFactory.get();
 
-        IntVar x = plus(makeIntVar(cp,10),1); // 1..11
-        IntVar y = plus(makeIntVar(cp,10),1); // 1..11
+        IntVar x = plus(makeIntVar(cp, 10), 1); // 1..11
+        IntVar y = plus(makeIntVar(cp, 10), 1); // 1..11
 
         Constraint cons = new AbstractConstraint(cp) {
 
@@ -124,16 +121,16 @@ public class IntVarViewOffsetTest extends SolverTest {
     @Test
     public void onBoundChange() {
 
-        Solver cp  = solverFactory.get();
+        Solver cp = solverFactory.get();
 
-        IntVar x = plus(makeIntVar(cp, 10),1);
-        IntVar y = plus(makeIntVar(cp, 10),1);
+        IntVar x = plus(makeIntVar(cp, 10), 1);
+        IntVar y = plus(makeIntVar(cp, 10), 1);
 
         Constraint cons = new AbstractConstraint(cp) {
 
             @Override
             public void post() {
-                x.whenBind(() -> propagateCalled  = true);
+                x.whenBind(() -> propagateCalled = true);
                 y.whenDomainChange(() -> propagateCalled = true);
             }
         };

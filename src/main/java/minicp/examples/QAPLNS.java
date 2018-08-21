@@ -22,30 +22,30 @@ import minicp.search.Objective;
 import minicp.util.InputReader;
 
 import java.util.Random;
-import java.util.stream.*;
+import java.util.stream.IntStream;
 
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
-import static minicp.cp.BranchingScheme.*;
 
 public class QAPLNS {
 
     public static void main(String[] args) {
-        
+
         // ---- read the instance -----
 
         InputReader reader = new InputReader("data/qap.txt");
 
         int n = reader.getInt();
         // Weights
-        int [][] w = new int[n][n];
-        for (int i = 0; i < n ; i++) {
+        int[][] w = new int[n][n];
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 w[i][j] = reader.getInt();
             }
         }
         // Distance
-        int [][] d = new int[n][n];
-        for (int i = 0; i < n ; i++) {
+        int[][] d = new int[n][n];
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 d[i][j] = reader.getInt();
             }
@@ -59,28 +59,26 @@ public class QAPLNS {
         cp.post(allDifferent(x));
 
 
-
-
         // build the objective function
-        IntVar[] weightedDist = new IntVar[n*n];
+        IntVar[] weightedDist = new IntVar[n * n];
         int ind = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                IntVar d_xixj = element(d,x[i],x[j]);
-                weightedDist[ind] = mul(d_xixj,w[i][j]);
+                IntVar d_xixj = element(d, x[i], x[j]);
+                weightedDist[ind] = mul(d_xixj, w[i][j]);
                 ind++;
             }
         }
         IntVar totCost = sum(weightedDist);
         Objective obj = cp.minimize(totCost);
 
-        DFSearch dfs = makeDfs(cp,firstFail(x));
+        DFSearch dfs = makeDfs(cp, firstFail(x));
 
 
         // --- Large Neighborhood Search ---
 
         // Current best solution
-        int[] xBest = IntStream.range(0,n).toArray();
+        int[] xBest = IntStream.range(0, n).toArray();
         /*        int[] xBest = new int[n];
         for (int i = 0; i < n; i++) {
             xBest[i] = i;
@@ -91,7 +89,7 @@ public class QAPLNS {
             for (int i = 0; i < n; i++) {
                 xBest[i] = x[i].getMin();
             }
-            System.out.println("objective:"+totCost.getMin());
+            System.out.println("objective:" + totCost.getMin());
         });
 
 
@@ -101,9 +99,9 @@ public class QAPLNS {
 
         for (int i = 0; i < nRestarts; i++) {
             if (i % 10 == 0)
-                System.out.println("restart number #"+i);
+                System.out.println("restart number #" + i);
 
-            dfs.optimizeSubjectTo(obj,statistics -> statistics.nFailures >= failureLimit, () -> {
+            dfs.optimizeSubjectTo(obj, statistics -> statistics.nFailures >= failureLimit, () -> {
                         // Assign the fragment 5% of the variables randomly chosen
                         for (int j = 0; j < n; j++) {
                             if (rand.nextInt(100) < 5) {

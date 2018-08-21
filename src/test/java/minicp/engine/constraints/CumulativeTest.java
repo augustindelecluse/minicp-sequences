@@ -16,8 +16,8 @@
 package minicp.engine.constraints;
 
 import minicp.engine.SolverTest;
+import minicp.engine.constraints.Profile.Rectangle;
 import minicp.engine.core.IntVar;
-import minicp.engine.constraints.Profile.*;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
@@ -26,12 +26,11 @@ import minicp.util.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
-
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import static minicp.cp.Factory.*;
 import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.Factory.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

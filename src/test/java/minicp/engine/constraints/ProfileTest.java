@@ -16,6 +16,7 @@
 package minicp.engine.constraints;
 
 
+import minicp.engine.constraints.Profile.Rectangle;
 import minicp.util.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
@@ -23,9 +24,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
-
-
-import minicp.engine.constraints.Profile.Rectangle;
 
 
 public class ProfileTest {

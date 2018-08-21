@@ -19,11 +19,16 @@ package minicp.state;
 public class TrailInt implements StateInt {
     class StateEntryInt implements StateEntry {
         private final int v;
+
         public StateEntryInt(int v) {
             this.v = v;
         }
-        public void restore()       { TrailInt.this.v = v;}
+
+        public void restore() {
+            TrailInt.this.v = v;
+        }
     }
+
     private Trailer trail;
     private int v;
     private long lastMagic = -1L;
@@ -54,12 +59,20 @@ public class TrailInt implements StateInt {
         return this.v;
     }
 
-    public int increment() { return setValue(getValue()+1);}
-    public int decrement() { return setValue(getValue()-1);}
-    public int getValue()  { return this.v; }
+    public int increment() {
+        return setValue(getValue() + 1);
+    }
+
+    public int decrement() {
+        return setValue(getValue() - 1);
+    }
+
+    public int getValue() {
+        return this.v;
+    }
 
     @Override
     public String toString() {
-        return ""+v;
+        return "" + v;
     }
 }

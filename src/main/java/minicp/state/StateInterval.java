@@ -16,7 +16,7 @@
 package minicp.state;
 
 public class StateInterval {
-    private StateManager     sm;
+    private StateManager sm;
 
     private StateInt min;
     private StateInt max;
@@ -33,35 +33,42 @@ public class StateInterval {
     public boolean isEmpty() {
         return min.getValue() > max.getValue();
     }
+
     /**
      * @return the size of the set
      */
     public int getSize() {
-        return Math.max(max.getValue() - min.getValue() + 1,0);
+        return Math.max(max.getValue() - min.getValue() + 1, 0);
     }
+
     /**
      * @return the minimum value in the set
      */
     public int getMin() {
         return min.getValue();
     }
+
     /**
      * @return the maximum value in the set
      */
     public int getMax() {
         return max.getValue();
     }
+
     /**
      * Check if the value val is in the set
+     *
      * @param val the original value to check.
      * @return true <-> (val-ofs) IN S
      */
     public boolean contains(int val) {
         return min.getValue() <= val && val <= max.getValue();
     }
+
     /**
      * set the first values of <code>dest</code> to the ones
      * present in the set
+     *
      * @param dest, an array large enough dest.length >= getSize()
      * @return the size of the set
      */
@@ -76,6 +83,7 @@ public class StateInterval {
 
     /**
      * Removes all the element from the set except v
+     *
      * @param v is an element in the set
      */
     public void removeAllBut(int v) {
@@ -84,14 +92,17 @@ public class StateInterval {
         max.setValue(v);
 
     }
+
     /**
      * Remove all the values in the set
      */
     public void removeAll() {
         min.setValue(max.getValue() + 1);
     }
+
     /**
      * Remove all the values < value in the set
+     *
      * @param value
      */
     public void removeBelow(int value) {

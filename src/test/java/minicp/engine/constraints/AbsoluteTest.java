@@ -23,7 +23,8 @@ import minicp.util.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
-import static minicp.cp.Factory.*;
+import static minicp.cp.Factory.makeIntVar;
+import static minicp.cp.Factory.notEqual;
 import static org.junit.Assert.*;
 
 public class AbsoluteTest extends SolverTest {
@@ -55,7 +56,7 @@ public class AbsoluteTest extends SolverTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
-        }  catch (NotImplementedException e) {
+        } catch (NotImplementedException e) {
             NotImplementedExceptionAssume.fail(e);
         }
     }

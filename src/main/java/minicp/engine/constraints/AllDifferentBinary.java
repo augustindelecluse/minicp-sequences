@@ -16,15 +16,14 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 
 public class AllDifferentBinary extends AbstractConstraint {
 
-    private IntVar [] x;
+    private IntVar[] x;
 
-    public AllDifferentBinary(IntVar ... x) {
+    public AllDifferentBinary(IntVar... x) {
         super(x[0].getSolver());
         this.x = x;
     }
@@ -33,8 +32,8 @@ public class AllDifferentBinary extends AbstractConstraint {
     public void post() {
         Solver cp = x[0].getSolver();
         for (int i = 0; i < x.length; i++) {
-            for (int j = i+1; j < x.length; j++) {
-                cp.post(new NotEqual(x[i],x[j]),false);
+            for (int j = i + 1; j < x.length; j++) {
+                cp.post(new NotEqual(x[i], x[j]), false);
             }
         }
     }

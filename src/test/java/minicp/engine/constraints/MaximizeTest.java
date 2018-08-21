@@ -25,10 +25,11 @@ import minicp.util.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
+import static minicp.cp.BranchingScheme.EMPTY;
+import static minicp.cp.BranchingScheme.branch;
 import static minicp.cp.Factory.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static minicp.cp.BranchingScheme.*;
 
 public class MaximizeTest {
 
@@ -38,16 +39,16 @@ public class MaximizeTest {
             try {
 
                 Solver cp = makeSolver();
-                IntVar y = makeIntVar(cp, 10,20);
+                IntVar y = makeIntVar(cp, 10, 20);
 
                 IntVar[] x = new IntVar[]{y};
-                DFSearch dfs = makeDfs(cp,() -> y.isBound() ? EMPTY : branch(() -> equal(y,y.getMin()),() -> notEqual(y,y.getMin())));
+                DFSearch dfs = makeDfs(cp, () -> y.isBound() ? EMPTY : branch(() -> equal(y, y.getMin()), () -> notEqual(y, y.getMin())));
 
                 Objective obj = cp.maximize(y);
 
                 SearchStatistics stats = dfs.solve();
 
-                assertEquals(stats.nSolutions,11);
+                assertEquals(stats.nSolutions, 11);
 
 
             } catch (InconsistencyException e) {
@@ -58,10 +59,6 @@ public class MaximizeTest {
         }
 
     }
-
-
-
-
 
 
 }

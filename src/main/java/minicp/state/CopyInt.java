@@ -15,8 +15,6 @@
 
 package minicp.state;
 
-import java.util.Map;
-
 public class CopyInt implements Storage, StateInt {
 
     class CopyIntStateEntry implements StateEntry {

@@ -16,9 +16,6 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.IntVar;
-import minicp.util.InconsistencyException;
-
-import static minicp.util.InconsistencyException.*;
 
 public class MaximumMatching {
 
@@ -42,9 +39,9 @@ public class MaximumMatching {
 
     private int magic;
 
-    private IntVar [] x;
+    private IntVar[] x;
 
-    public MaximumMatching(IntVar ... x) {
+    public MaximumMatching(IntVar... x) {
         this.x = x;
 
         // find value ranges
@@ -74,7 +71,7 @@ public class MaximumMatching {
     }
 
 
-    public int compute(int [] result) {
+    public int compute(int[] result) {
         for (int k = 0; k < x.length; k++) {
             if (match[k] != NONE) {
                 if (!x[k].contains(match[k])) {
@@ -90,7 +87,6 @@ public class MaximumMatching {
         }
         return sizeMatching;
     }
-
 
 
     private void findInitialMatching() { //returns the size of the maximum matching

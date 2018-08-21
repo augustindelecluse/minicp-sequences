@@ -16,7 +16,6 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 
 public class TableDecomp extends AbstractConstraint {
@@ -37,7 +36,7 @@ public class TableDecomp extends AbstractConstraint {
     }
 
     @Override
-    public void post()  {
+    public void post() {
         for (IntVar var : x)
             var.propagateOnDomainChange(this);
         propagate();

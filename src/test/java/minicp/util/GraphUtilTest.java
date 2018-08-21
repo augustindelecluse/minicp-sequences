@@ -20,21 +20,19 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static minicp.util.GraphUtil.*;
-
+import static minicp.util.GraphUtil.Graph;
+import static minicp.util.GraphUtil.stronglyConnectedComponents;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.fail;
 
 public class GraphUtilTest {
-
 
 
     @Test
     public void simpleTest0() {
 
-        Integer [][] out = new Integer[][] {{1},{2},{0},{},{7},{4},{4},{6,8},{7}};
-        Integer [][] in  = inFromOut(out);
+        Integer[][] out = new Integer[][]{{1}, {2}, {0}, {}, {7}, {4}, {4}, {6, 8}, {7}};
+        Integer[][] in = inFromOut(out);
         Graph g = new Graph() {
             @Override
             public int n() {
@@ -52,7 +50,7 @@ public class GraphUtilTest {
             }
         };
 
-        int [] scc = stronglyConnectedComponents(g);
+        int[] scc = stronglyConnectedComponents(g);
 
         assertEquals(scc[0], scc[1]);
         assertEquals(scc[0], scc[2]);
@@ -72,8 +70,8 @@ public class GraphUtilTest {
     @Test
     public void simpleTest1() {
 
-        Integer [][] out = new Integer[][] {{1},{2},{0},{},{7},{4},{},{8},{7}};
-        Integer [][] in  = inFromOut(out);
+        Integer[][] out = new Integer[][]{{1}, {2}, {0}, {}, {7}, {4}, {}, {8}, {7}};
+        Integer[][] in = inFromOut(out);
         Graph g = new Graph() {
             @Override
             public int n() {
@@ -91,7 +89,7 @@ public class GraphUtilTest {
             }
         };
 
-        int [] scc = stronglyConnectedComponents(g);
+        int[] scc = stronglyConnectedComponents(g);
 
         System.out.println(Arrays.toString(scc));
         assertEquals(scc[0], scc[1]);
@@ -109,17 +107,17 @@ public class GraphUtilTest {
 
     public static Integer[][] inFromOut(Integer[][] out) {
         ArrayList<Integer>[] in = new ArrayList[out.length];
-        for(int i = 0; i < out.length; i++) {
+        for (int i = 0; i < out.length; i++) {
             in[i] = new ArrayList<Integer>();
         }
-        for(int i = 0; i < out.length; i++) {
-            for(int j = 0; j < out[i].length; j++) {
+        for (int i = 0; i < out.length; i++) {
+            for (int j = 0; j < out[i].length; j++) {
                 in[out[i][j]].add(i);
             }
         }
 
         Integer[][] inA = new Integer[out.length][];
-        for(int i = 0; i < out.length; i++) {
+        for (int i = 0; i < out.length; i++) {
             inA[i] = in[i].toArray(new Integer[0]);
         }
 

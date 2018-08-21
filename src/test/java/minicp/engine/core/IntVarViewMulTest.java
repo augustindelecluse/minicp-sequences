@@ -19,24 +19,24 @@ import minicp.engine.SolverTest;
 import minicp.util.InconsistencyException;
 import org.junit.Test;
 
-
-import static minicp.cp.Factory.*;
+import static minicp.cp.Factory.makeIntVar;
+import static minicp.cp.Factory.mul;
 import static org.junit.Assert.*;
 
 
-public class IntVarViewMulTest extends SolverTest{
+public class IntVarViewMulTest extends SolverTest {
 
     public boolean propagateCalled = false;
 
     @Test
     public void testIntVar() {
-        Solver cp  = solverFactory.get();
+        Solver cp = solverFactory.get();
 
-        IntVar x = mul(mul(makeIntVar(cp,-3,4),-3),-1); // domain is {-9,-6,-3,0,3,6,9,12}
+        IntVar x = mul(mul(makeIntVar(cp, -3, 4), -3), -1); // domain is {-9,-6,-3,0,3,6,9,12}
 
-        assertEquals(-9,x.getMin());
-        assertEquals(12,x.getMax());
-        assertEquals(8,x.getSize());
+        assertEquals(-9, x.getMin());
+        assertEquals(12, x.getMax());
+        assertEquals(8, x.getSize());
 
         cp.getStateManager().save();
 
@@ -50,15 +50,14 @@ public class IntVarViewMulTest extends SolverTest{
             x.remove(2);
             assertTrue(x.contains(0));
             assertTrue(x.contains(3));
-            assertEquals(7,x.getSize());
+            assertEquals(7, x.getSize());
             x.removeAbove(7);
-            assertEquals(6,x.getMax());
+            assertEquals(6, x.getMax());
             x.removeBelow(-8);
-            assertEquals(-3,x.getMin());
+            assertEquals(-3, x.getMin());
             x.assign(3);
             assertTrue(x.isBound());
-            assertEquals(3,x.getMax());
-
+            assertEquals(3, x.getMax());
 
 
         } catch (InconsistencyException e) {
@@ -68,12 +67,13 @@ public class IntVarViewMulTest extends SolverTest{
 
         try {
             x.assign(8);
-            fail( "should have failed" );
-        } catch (InconsistencyException expectedException) {}
+            fail("should have failed");
+        } catch (InconsistencyException expectedException) {
+        }
 
         cp.getStateManager().restore();
 
-        assertEquals(8,x.getSize());
+        assertEquals(8, x.getSize());
         assertFalse(x.contains(-1));
 
     }
@@ -82,15 +82,15 @@ public class IntVarViewMulTest extends SolverTest{
     @Test
     public void onDomainChangeOnBind() {
         propagateCalled = false;
-        Solver cp  = solverFactory.get();
+        Solver cp = solverFactory.get();
 
-        IntVar x = mul(makeIntVar(cp,10),1);
-        IntVar y = mul(makeIntVar(cp,10),1);
+        IntVar x = mul(makeIntVar(cp, 10), 1);
+        IntVar y = mul(makeIntVar(cp, 10), 1);
 
         Constraint cons = new AbstractConstraint(cp) {
 
             @Override
-            public void post()  {
+            public void post() {
                 x.whenBind(() -> propagateCalled = true);
                 y.whenDomainChange(() -> propagateCalled = true);
             }
@@ -121,16 +121,16 @@ public class IntVarViewMulTest extends SolverTest{
     @Test
     public void onBoundChange() {
 
-        Solver cp  = solverFactory.get();
+        Solver cp = solverFactory.get();
 
-        IntVar x = mul(makeIntVar(cp, 10),1);
-        IntVar y = mul(makeIntVar(cp, 10),1);
+        IntVar x = mul(makeIntVar(cp, 10), 1);
+        IntVar y = mul(makeIntVar(cp, 10), 1);
 
         Constraint cons = new AbstractConstraint(cp) {
 
             @Override
-            public void post()  {
-                x.whenBind(() -> propagateCalled  = true);
+            public void post() {
+                x.whenBind(() -> propagateCalled = true);
                 y.whenDomainChange(() -> propagateCalled = true);
             }
         };

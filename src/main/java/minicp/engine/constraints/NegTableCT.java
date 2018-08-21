@@ -16,7 +16,6 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 
@@ -48,7 +47,7 @@ public class NegTableCT extends AbstractConstraint {
 
         // remove duplicate (the negative ct algo does not support it)
         ArrayList<int[]> tableList = new ArrayList<>();
-        boolean [] duplicate = new boolean[table.length];
+        boolean[] duplicate = new boolean[table.length];
         for (int i = 0; i < table.length; i++) {
             if (!duplicate[i]) {
                 tableList.add(table[i]);
@@ -70,7 +69,7 @@ public class NegTableCT extends AbstractConstraint {
         // Allocate supportedByVarVal
         conflicts = new BitSet[x.length][];
         for (int i = 0; i < x.length; i++) {
-            this.x[i] = minus(x[i],x[i].getMin()); // map the variables domain to start at 0
+            this.x[i] = minus(x[i], x[i].getMin()); // map the variables domain to start at 0
             conflicts[i] = new BitSet[x[i].getMax() - x[i].getMin() + 1];
             for (int j = 0; j < conflicts[i].length; j++)
                 conflicts[i][j] = new BitSet();
@@ -87,7 +86,7 @@ public class NegTableCT extends AbstractConstraint {
     }
 
     @Override
-    public void post()  {
+    public void post() {
         for (IntVar var : x)
             var.propagateOnDomainChange(this);
         propagate();
@@ -104,7 +103,7 @@ public class NegTableCT extends AbstractConstraint {
 
         // Bit-set of tuple indices all set to 0
         BitSet menacing = new BitSet(table.length);
-        menacing.flip(0,table.length);
+        menacing.flip(0, table.length);
 
         // TODO 1: compute supportedTuples as
         // supportedTuples = (supports[0][x[0].getMin()] | ... | supports[0][x[0].getMax()] ) & ... &

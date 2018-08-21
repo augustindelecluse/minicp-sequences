@@ -15,12 +15,9 @@
 
 package minicp.state;
 
-import minicp.util.NotImplementedException;
 import org.junit.Test;
 
-import java.util.Set;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CopierTest {
 
@@ -32,7 +29,7 @@ public class CopierTest {
         StateInt a = copier.makeStateInt(5);
         StateInt b = copier.makeStateInt(5);
 
-        assertEquals(2,copier.storeSize());
+        assertEquals(2, copier.storeSize());
 
         copier.save();
 
@@ -45,11 +42,11 @@ public class CopierTest {
         a.setValue(5);
         b.setValue(10);
 
-        assertEquals(2,copier.storeSize());
+        assertEquals(2, copier.storeSize());
 
         StateInt c = copier.makeStateInt(5);
 
-        assertEquals(3,copier.storeSize());
+        assertEquals(3, copier.storeSize());
 
         copier.save();
 
@@ -57,16 +54,16 @@ public class CopierTest {
         b.setValue(1);
         c.setValue(10);
 
-        assertEquals(3,copier.storeSize());
+        assertEquals(3, copier.storeSize());
 
         copier.restoreAll();
         copier.save();
 
-        assertEquals(2,copier.storeSize());
+        assertEquals(2, copier.storeSize());
 
-        assertEquals(5,a.getValue());
-        assertEquals(5,b.getValue());
-        assertEquals(5,c.getValue());
+        assertEquals(5, a.getValue());
+        assertEquals(5, b.getValue());
+        assertEquals(5, c.getValue());
 
 
         a.setValue(10);
@@ -80,20 +77,20 @@ public class CopierTest {
 
         copier.restore();
 
-        assertEquals(2,copier.storeSize());
+        assertEquals(2, copier.storeSize());
 
 
-        assertEquals(10,a.getValue());
-        assertEquals(16,b.getValue());
-        assertEquals(5,c.getValue());
+        assertEquals(10, a.getValue());
+        assertEquals(16, b.getValue());
+        assertEquals(5, c.getValue());
 
         copier.restoreAll();
 
-        assertEquals(5,a.getValue());
-        assertEquals(5,b.getValue());
-        assertEquals(5,c.getValue());
+        assertEquals(5, a.getValue());
+        assertEquals(5, b.getValue());
+        assertEquals(5, c.getValue());
 
-        assertEquals(2,copier.storeSize());
+        assertEquals(2, copier.storeSize());
 
     }
 }

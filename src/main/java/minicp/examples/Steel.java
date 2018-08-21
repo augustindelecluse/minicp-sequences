@@ -32,14 +32,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import static minicp.cp.Factory.*;
 import static minicp.cp.BranchingScheme.*;
+import static minicp.cp.Factory.*;
 
 
 public class Steel {
 
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
         // Reading the data
 
@@ -65,7 +65,7 @@ public class Steel {
         int[] c = new int[nSlab];
         for (int i = 0; i < nSlab; i++) {
             w[i] = reader.getInt();
-            c[i] = reader.getInt()-1;
+            c[i] = reader.getInt() - 1;
         }
 
         // ---------------------------
@@ -100,11 +100,11 @@ public class Steel {
 
                     // TODO: model that presence[col] is true iff at least one order with color col is placed in slab j
 
-                    cp.post(new IsOr((BoolVar) presence[col],inSlabWithColor.toArray(new BoolVar[0])));
+                    cp.post(new IsOr((BoolVar) presence[col], inSlabWithColor.toArray(new BoolVar[0])));
 
                 }
                 // TODO: restrict the number of colors present in slab j to be <= 2
-                lessOrEqual(sum(presence),2);
+                lessOrEqual(sum(presence), 2);
             }
 
 
@@ -119,7 +119,7 @@ public class Steel {
 
             // TODO: add the redundant constraint that the sum of the loads is equal to the sum of elements
             cp.post(sum(l, IntStream.of(w).sum()));
-            System.out.println("total weights of items:"+IntStream.of(w).sum());
+            System.out.println("total weights of items:" + IntStream.of(w).sum());
 
 
             // TODO: model the objective function using element constraint + a sum constraint
@@ -135,24 +135,24 @@ public class Steel {
 
             // TODO implement a dynamic symmetry breaking during search
             DFSearch dfs = makeDfs(cp,
-                                   () -> {
-                                       IntVar xs = selectMin(x,
-                                                             xi -> xi.getSize() > 1,
-                                                             xi -> xi.getSize());
-                                       if (xs == null) return EMPTY;
-                                       else {
-                                           int maxUsed = -1;
-                                           for (IntVar x_ : x) 
-                                               if (x_.isBound() && x_.getMin() > maxUsed) 
-                                                   maxUsed = x_.getMin();
-                                           Procedure[] branches = new Procedure[maxUsed+2];
-                                           for (int i = 0; i <= maxUsed+1; i++) {
-                                               final int slab = i;
-                                               branches[i] = () -> equal(xs,slab);
-                                           }
-                                           return branch(branches);
-                                       }
-                                   });            
+                    () -> {
+                        IntVar xs = selectMin(x,
+                                xi -> xi.getSize() > 1,
+                                xi -> xi.getSize());
+                        if (xs == null) return EMPTY;
+                        else {
+                            int maxUsed = -1;
+                            for (IntVar x_ : x)
+                                if (x_.isBound() && x_.getMin() > maxUsed)
+                                    maxUsed = x_.getMin();
+                            Procedure[] branches = new Procedure[maxUsed + 2];
+                            for (int i = 0; i <= maxUsed + 1; i++) {
+                                final int slab = i;
+                                branches[i] = () -> equal(xs, slab);
+                            }
+                            return branch(branches);
+                        }
+                    });
 
             dfs.onSolution(() -> {
                 System.out.println("---");
@@ -167,7 +167,7 @@ public class Steel {
                 }
                 for (int j = 0; j < nSlab; j++) {
                     if (colorsInSlab[j].size() > 2) {
-                        System.out.println("problem, "+colorsInSlab[j].size()+" colors in slab "+j+" should be <= 2");
+                        System.out.println("problem, " + colorsInSlab[j].size() + " colors in slab " + j + " should be <= 2");
                     }
                 }
             });

@@ -21,29 +21,30 @@ import minicp.engine.core.Solver;
 import minicp.util.InconsistencyException;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static minicp.cp.Factory.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 
 public class NotEqualTest extends SolverTest {
 
     @Test
     public void notEqualTest() {
-        Solver cp  = solverFactory.get();
+        Solver cp = solverFactory.get();
 
-        IntVar x = makeIntVar(cp,10);
-        IntVar y = makeIntVar(cp,10);
+        IntVar x = makeIntVar(cp, 10);
+        IntVar y = makeIntVar(cp, 10);
 
         try {
-            cp.post(notEqual(x,y));
+            cp.post(notEqual(x, y));
 
-            equal(x,6);
+            equal(x, 6);
 
             assertFalse(y.contains(6));
-            assertEquals(9,y.getSize());
+            assertEquals(9, y.getSize());
 
         } catch (InconsistencyException e) {
-            assert(false);
+            assert (false);
         }
         assertFalse(y.contains(6));
     }

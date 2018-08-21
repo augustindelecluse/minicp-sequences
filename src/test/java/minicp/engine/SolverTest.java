@@ -4,7 +4,6 @@ package minicp.engine;
 import minicp.engine.core.MiniCP;
 import minicp.engine.core.Solver;
 import minicp.state.Copier;
-import minicp.state.StateManager;
 import minicp.state.Trailer;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

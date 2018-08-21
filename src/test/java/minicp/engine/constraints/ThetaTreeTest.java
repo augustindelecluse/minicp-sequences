@@ -18,27 +18,25 @@ package minicp.engine.constraints;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 public class ThetaTreeTest {
 
     @Test
     public void simpleTest0() {
         ThetaTree thetaTree = new ThetaTree(4);
-        thetaTree.insert(0,5,5);
-        assertEquals(5,thetaTree.getECT());
-        thetaTree.insert(1,31,6);
-        assertEquals(31,thetaTree.getECT());
-        thetaTree.insert(2,30,4);
-        assertEquals(35,thetaTree.getECT());
-        thetaTree.insert(3,42,10);
-        assertEquals(45,thetaTree.getECT());
+        thetaTree.insert(0, 5, 5);
+        assertEquals(5, thetaTree.getECT());
+        thetaTree.insert(1, 31, 6);
+        assertEquals(31, thetaTree.getECT());
+        thetaTree.insert(2, 30, 4);
+        assertEquals(35, thetaTree.getECT());
+        thetaTree.insert(3, 42, 10);
+        assertEquals(45, thetaTree.getECT());
         thetaTree.remove(3);
-        assertEquals(35,thetaTree.getECT());
+        assertEquals(35, thetaTree.getECT());
         thetaTree.reset();
-        assertEquals(Integer.MIN_VALUE,thetaTree.getECT());
+        assertEquals(Integer.MIN_VALUE, thetaTree.getECT());
     }
-
 
 
 }

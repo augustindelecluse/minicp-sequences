@@ -27,17 +27,17 @@ public abstract class AbstractStateManager implements StateManager {
     private Stack<StateEntry> stateEntries = new Stack<StateEntry>();
     private Stack<Integer> limits = new Stack<Integer>();
 
-    private List<Procedure> restoreListeners  = new LinkedList<>();
-    private List<Procedure> saveListeners  = new LinkedList<>();
+    private List<Procedure> restoreListeners = new LinkedList<>();
+    private List<Procedure> saveListeners = new LinkedList<>();
 
     protected void notifyRestore() {
-        for (Procedure p: restoreListeners) {
+        for (Procedure p : restoreListeners) {
             p.call();
         }
     }
 
     protected void notifySave() {
-        for (Procedure p: saveListeners) {
+        for (Procedure p : saveListeners) {
             p.call();
         }
     }
@@ -66,7 +66,6 @@ public abstract class AbstractStateManager implements StateManager {
     }
 
     /**
-     *
      * Restore all the entries from the top of the stateEntries stack
      * to the limit (excluded)
      */
@@ -81,7 +80,7 @@ public abstract class AbstractStateManager implements StateManager {
      * @return The current level
      */
     public int getLevel() {
-        return limits.size()-1;
+        return limits.size() - 1;
     }
 
     /**
@@ -95,8 +94,8 @@ public abstract class AbstractStateManager implements StateManager {
 
 
     /**
-     *  Restores state as it was at getLevel()-1
-     *  Decrease the level by 1
+     * Restores state as it was at getLevel()-1
+     * Decrease the level by 1
      */
     public void restore() {
         restoreToSize(limits.pop());
@@ -104,9 +103,9 @@ public abstract class AbstractStateManager implements StateManager {
     }
 
     /**
-     *  Restores the state as it was at level 0 (first save)
-     *  The level is now -1.
-     *  Notice that you'll probably want to save after this operation.
+     * Restores the state as it was at level 0 (first save)
+     * The level is now -1.
+     * Notice that you'll probably want to save after this operation.
      */
     public void restoreAll() {
         restoreUntil(-1);
@@ -114,8 +113,9 @@ public abstract class AbstractStateManager implements StateManager {
     }
 
     /**
-     *  Restores the state as it was at level
-     *  @param level
+     * Restores the state as it was at level
+     *
+     * @param level
      */
     public void restoreUntil(int level) {
         while (getLevel() > level) {
@@ -131,7 +131,9 @@ public abstract class AbstractStateManager implements StateManager {
     }
 
     public abstract StateInt makeStateInt(int initValue);
+
     public abstract StateBool makeStateBool(boolean initValue);
+
     public abstract StateMap makeStateMap();
 
 }

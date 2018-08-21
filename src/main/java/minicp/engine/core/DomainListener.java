@@ -18,8 +18,12 @@ package minicp.engine.core;
 
 public interface DomainListener {
     void empty();
+
     void bind();
+
     void change();
+
     void removeBelow();
+
     void removeAbove();
 }

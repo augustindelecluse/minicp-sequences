@@ -25,13 +25,10 @@ import minicp.util.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.makeDfs;
 import static minicp.cp.Factory.makeIntVar;
-import static minicp.cp.Factory.makeSolver;
-import static minicp.cp.BranchingScheme.firstFail;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 
 public class Element1DTest extends SolverTest {
@@ -41,7 +38,7 @@ public class Element1DTest extends SolverTest {
 
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, 2, 40);
 
@@ -81,7 +78,7 @@ public class Element1DTest extends SolverTest {
 
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, -20, 40);
 
@@ -109,7 +106,7 @@ public class Element1DTest extends SolverTest {
     public void element1dTest3() {
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar y = makeIntVar(cp, 0, 4);
             IntVar z = makeIntVar(cp, 5, 9);
 
@@ -137,7 +134,7 @@ public class Element1DTest extends SolverTest {
 
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar y = makeIntVar(cp, 0, 4);
             IntVar z = makeIntVar(cp, 5, 9);
 

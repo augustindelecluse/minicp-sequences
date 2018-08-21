@@ -27,8 +27,8 @@ import org.junit.Test;
 
 import java.util.Random;
 
-import static minicp.cp.Factory.*;
 import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
 public class ShortTableTest extends SolverTest {

@@ -51,19 +51,19 @@ public class QAP {
 
         int n = reader.getInt();
         // Weights
-        int [][] w = new int[n][n];
-        for (int i = 0; i < n ; i++) {
+        int[][] w = new int[n][n];
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 w[i][j] = reader.getInt();
             }
         }
         // Distance
         int maxDist = 0;
-        int [][] d = new int[n][n];
-        for (int i = 0; i < n ; i++) {
+        int[][] d = new int[n][n];
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 d[i][j] = reader.getInt();
-                maxDist = Math.max(maxDist,d[i][j]);
+                maxDist = Math.max(maxDist, d[i][j]);
             }
         }
 
@@ -71,7 +71,7 @@ public class QAP {
         Model model = new Model(n + "QAP");
         IntVar[] x = new IntVar[n];
         for (int i = 0; i < n; i++) {
-            x[i] = model.intVar("X_" + i, 0, n - 1,false);
+            x[i] = model.intVar("X_" + i, 0, n - 1, false);
         }
 
         for (int i = 0; i < n; i++) {
@@ -80,26 +80,26 @@ public class QAP {
             }
         }
 
-        IntVar[] dist = new IntVar[n*n];
+        IntVar[] dist = new IntVar[n * n];
         Tuples tuples = new Tuples();
 
-        int[] wdist = new int[n*n];
+        int[] wdist = new int[n * n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                tuples.add(i,j,d[i][j]);
+                tuples.add(i, j, d[i][j]);
             }
         }
         int k = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 wdist[k] = w[i][j];
-                dist[k] = model.intVar("D_" + i, 0, maxDist,false);
-                model.table(new IntVar[]{x[i],x[j],dist[k]},tuples).post();
+                dist[k] = model.intVar("D_" + i, 0, maxDist, false);
+                model.table(new IntVar[]{x[i], x[j], dist[k]}, tuples).post();
                 k++;
             }
         }
-        IntVar totCost = model.intVar("obj",0,100000,false);
-        model.scalar(dist,wdist,"=",totCost).post();
+        IntVar totCost = model.intVar("obj", 0, 100000, false);
+        model.scalar(dist, wdist, "=", totCost).post();
 
 
         Solver solver = model.getSolver();
@@ -114,7 +114,7 @@ public class QAP {
 
         solver.showShortStatistics();
         model.setObjective(false, totCost);
-        while(solver.solve()) {
+        while (solver.solve()) {
             System.out.println("solution");
             System.out.println(Arrays.toString(x));
             System.out.println(totCost);

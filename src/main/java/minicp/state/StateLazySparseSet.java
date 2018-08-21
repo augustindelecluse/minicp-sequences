@@ -16,7 +16,7 @@
 package minicp.state;
 
 public class StateLazySparseSet {
-    private StateManager     sm;
+    private StateManager sm;
 
     private StateSparseSet sparse;
     private StateInterval interval;
@@ -31,6 +31,7 @@ public class StateLazySparseSet {
 
     /**
      * Creates a StateSparseSet containing the elements {ofs,...,ofs + n - 1}.
+     *
      * @param sm
      * @param n
      * @param ofs
@@ -59,12 +60,14 @@ public class StateLazySparseSet {
     public boolean isEmpty() {
         return isInterval() ? interval.isEmpty() : sparse.isEmpty();
     }
+
     /**
      * @return the size of the set
      */
     public int getSize() {
         return isInterval() ? interval.getSize() : sparse.getSize();
     }
+
     /**
      * @return the minimum value in the set
      */
@@ -75,6 +78,7 @@ public class StateLazySparseSet {
             return sparse.getMin();
         }
     }
+
     /**
      * @return the maximum value in the set
      */
@@ -85,37 +89,41 @@ public class StateLazySparseSet {
             return sparse.getMax();
         }
     }
+
     /**
      * Check if the value val is in the set
+     *
      * @param val the original value to check.
      * @return true <-> (val-ofs) IN S
      */
     public boolean contains(int val) {
         if (isInterval()) {
             return interval.contains(val);
-        }
-        else {
+        } else {
             return sparse.contains(val);
         }
     }
+
     /**
      * set the first values of <code>dest</code> to the ones
      * present in the set
+     *
      * @param dest, an array large enough dest.length >= getSize()
      * @return the size of the set
      */
-    public int fillArray(int [] dest) {
+    public int fillArray(int[] dest) {
         if (isInterval()) {
             int s = getSize();
             int from = getMin();
-            for(int i=0;i < s;i++)
-                dest[i] = from+i;
+            for (int i = 0; i < s; i++)
+                dest[i] = from + i;
             return s;
         } else return sparse.fillArray(dest);
     }
 
     /**
      * Remove val from the set
+     *
      * @param val
      * @return true if val was in the set, false otherwise
      */
@@ -135,8 +143,10 @@ public class StateLazySparseSet {
             }
         } else return sparse.remove(val);
     }
+
     /**
      * Removes all the element from the set except v
+     *
      * @param v is an element in the set
      */
     public void removeAllBut(int v) {
@@ -146,6 +156,7 @@ public class StateLazySparseSet {
             sparse.removeAllBut(v);
         }
     }
+
     /**
      * Remove all the values in the set
      */
@@ -156,8 +167,10 @@ public class StateLazySparseSet {
             sparse.removeAll();
         }
     }
+
     /**
      * Remove all the values < value in the set
+     *
      * @param value
      */
     public void removeBelow(int value) {
@@ -179,7 +192,8 @@ public class StateLazySparseSet {
         }
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         if (isInterval()) {
             return interval.toString();
         } else {

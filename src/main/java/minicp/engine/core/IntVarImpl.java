@@ -34,18 +34,22 @@ public class IntVarImpl implements IntVar {
         public void empty() {
             throw InconsistencyException.INCONSISTENCY; // Integer Vars cannot be empty
         }
+
         @Override
         public void bind() {
             scheduleAll(onBind);
         }
+
         @Override
         public void change() {
             scheduleAll(onDomain);
         }
+
         @Override
         public void removeBelow() {
             scheduleAll(onBounds);
         }
+
         @Override
         public void removeAbove() {
             scheduleAll(onBounds);
@@ -131,7 +135,7 @@ public class IntVarImpl implements IntVar {
 
     private Constraint constraintClosure(ConstraintClosure.Filtering f) {
         Constraint c = new ConstraintClosure(cp, f);
-        getSolver().post(c,false);
+        getSolver().post(c, false);
         return c;
     }
 
@@ -139,10 +143,12 @@ public class IntVarImpl implements IntVar {
     public void propagateOnDomainChange(Constraint c) {
         onDomain.push(c);
     }
+
     @Override
     public void propagateOnBind(Constraint c) {
         onBind.push(c);
     }
+
     @Override
     public void propagateOnBoundChange(Constraint c) {
         onBounds.push(c);
@@ -157,9 +163,11 @@ public class IntVarImpl implements IntVar {
     public int getMin() {
         return domain.getMin();
     }
+
     public int getMax() {
         return domain.getMax();
     }
+
     public int getSize() {
         return domain.getSize();
     }
@@ -173,15 +181,18 @@ public class IntVarImpl implements IntVar {
         return domain.contains(v);
     }
 
-    public void remove(int v)  {
+    public void remove(int v) {
         domain.remove(v, domListener);
     }
+
     public void assign(int v) {
         domain.removeAllBut(v, domListener);
     }
-    public void removeBelow(int v)  {
+
+    public void removeBelow(int v) {
         domain.removeBelow(v, domListener);
     }
+
     public void removeAbove(int v) {
         domain.removeAbove(v, domListener);
     }

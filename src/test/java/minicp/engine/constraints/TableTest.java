@@ -31,8 +31,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.BiFunction;
 
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
-import static minicp.cp.BranchingScheme.*;
 import static org.junit.Assert.*;
 
 public class TableTest extends SolverTest {

@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Queue;
 
 
-public class MiniCP implements Solver  {
+public class MiniCP implements Solver {
 
     private Queue<Constraint> propagationQueue = new ArrayDeque<>();
-    private List<Procedure> fixPointListeners  = new LinkedList<>();
+    private List<Procedure> fixPointListeners = new LinkedList<>();
 
     private final StateManager sm;
 
@@ -75,16 +75,25 @@ public class MiniCP implements Solver  {
         }
     }
 
-    public Objective minimize(IntVar x) { return new Minimize(x); }
-    public Objective maximize(IntVar x) { return minimize(Factory.minus(x)); }
-    public void post(Constraint c) { post(c,true);}
+    public Objective minimize(IntVar x) {
+        return new Minimize(x);
+    }
 
-    public void post(Constraint c, boolean enforceFixPoint)  {
+    public Objective maximize(IntVar x) {
+        return minimize(Factory.minus(x));
+    }
+
+    public void post(Constraint c) {
+        post(c, true);
+    }
+
+    public void post(Constraint c, boolean enforceFixPoint) {
         c.post();
         if (enforceFixPoint) fixPoint();
     }
+
     public void post(BoolVar b) {
         b.assign(true);
         fixPoint();
-    }    
+    }
 }

@@ -16,12 +16,13 @@
 package minicp.state;
 
 
-import java.util.*;
+import java.util.IdentityHashMap;
+import java.util.Map;
 
-public class TrailMap<K,V> implements StateMap<K,V> {
+public class TrailMap<K, V> implements StateMap<K, V> {
 
     Trailer trail;
-    Map<K,V> map = new IdentityHashMap<>();
+    Map<K, V> map = new IdentityHashMap<>();
 
     protected TrailMap(Trailer trail) {
         this.trail = trail;
@@ -40,13 +41,14 @@ public class TrailMap<K,V> implements StateMap<K,V> {
             trail.pushState(new StateEntry() {
                 @Override
                 public void restore() {
-                    map.put(k,vOld);
+                    map.put(k, vOld);
                 }
             });
         }
-        map.put(k,v);
+        map.put(k, v);
 
     }
+
     public V get(K k) {
         return map.get(k);
     }

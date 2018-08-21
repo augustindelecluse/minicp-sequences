@@ -1,7 +1,5 @@
 package minicp.state;
 
-import minicp.engine.core.MiniCP;
-import minicp.engine.core.Solver;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 

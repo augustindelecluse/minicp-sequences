@@ -23,10 +23,9 @@ import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import org.junit.Test;
 
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.makeDfs;
 import static minicp.cp.Factory.makeIntVar;
-import static minicp.cp.Factory.makeSolver;
-import static minicp.cp.BranchingScheme.firstFail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -38,7 +37,7 @@ public class Element2DTest extends SolverTest {
 
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar x = makeIntVar(cp, -2, 40);
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, 2, 40);
@@ -93,7 +92,7 @@ public class Element2DTest extends SolverTest {
 
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar x = makeIntVar(cp, -2, 40);
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, -20, 40);

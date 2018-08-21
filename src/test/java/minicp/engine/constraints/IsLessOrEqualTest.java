@@ -26,8 +26,8 @@ import minicp.util.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
-import static minicp.cp.Factory.*;
 import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
 
@@ -37,7 +37,7 @@ public class IsLessOrEqualTest extends SolverTest {
     public void test1() {
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar x = makeIntVar(cp, -4, 7);
 
             BoolVar b = makeBoolVar(cp);
@@ -67,7 +67,7 @@ public class IsLessOrEqualTest extends SolverTest {
 
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar x = makeIntVar(cp, -4, 7);
 
             BoolVar b = makeBoolVar(cp);
@@ -95,7 +95,7 @@ public class IsLessOrEqualTest extends SolverTest {
     public void test3() {
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar x = makeIntVar(cp, -4, 7);
             equal(x, -2);
             {
@@ -120,7 +120,7 @@ public class IsLessOrEqualTest extends SolverTest {
     public void test4() {
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar x = makeIntVar(cp, -4, 7);
             BoolVar b = makeBoolVar(cp);
 

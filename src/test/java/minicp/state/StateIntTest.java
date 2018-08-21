@@ -17,16 +17,11 @@ package minicp.state;
 
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
 
-import java.util.function.Supplier;
-
-public class StateIntTest extends StateManagerTest{
+public class StateIntTest extends StateManagerTest {
 
     @Test
     public void testExample() {
@@ -41,7 +36,7 @@ public class StateIntTest extends StateManagerTest{
 
         // Record current state a=7, b=1 and increase the level to 0
         sm.save();
-        assertEquals(0,sm.getLevel());
+        assertEquals(0, sm.getLevel());
 
         a.setValue(10);
         b.setValue(13);
@@ -49,7 +44,7 @@ public class StateIntTest extends StateManagerTest{
 
         // Record current state a=11, b=13 and increase the level to 1
         sm.save();
-        assertEquals(1,sm.getLevel());
+        assertEquals(1, sm.getLevel());
 
         a.setValue(4);
         b.setValue(9);
@@ -58,17 +53,17 @@ public class StateIntTest extends StateManagerTest{
         // and remove the state of that level
         sm.restore();
 
-        assertEquals(11,a.getValue());
-        assertEquals(13,b.getValue());
-        assertEquals(0,sm.getLevel());
+        assertEquals(11, a.getValue());
+        assertEquals(13, b.getValue());
+        assertEquals(0, sm.getLevel());
 
         // Restore the state recorded at the top level 0: a=7, b=13
         // and remove the state of that level
         sm.restore();
 
-        assertEquals(7,a.getValue());
-        assertEquals(13,b.getValue());
-        assertEquals(-1,sm.getLevel());
+        assertEquals(7, a.getValue());
+        assertEquals(13, b.getValue());
+        assertEquals(-1, sm.getLevel());
 
     }
 
@@ -128,9 +123,9 @@ public class StateIntTest extends StateManagerTest{
         sm.restoreAll();
         sm.save();
 
-        assertEquals(5,a.getValue());
-        assertEquals(5,b.getValue());
-        assertEquals(5,c.getValue());
+        assertEquals(5, a.getValue());
+        assertEquals(5, b.getValue());
+        assertEquals(5, c.getValue());
 
 
         a.setValue(10);
@@ -145,15 +140,15 @@ public class StateIntTest extends StateManagerTest{
         sm.restore();
 
 
-        assertEquals(10,a.getValue());
-        assertEquals(16,b.getValue());
-        assertEquals(5,c.getValue());
+        assertEquals(10, a.getValue());
+        assertEquals(16, b.getValue());
+        assertEquals(5, c.getValue());
 
         sm.restoreAll();
 
-        assertEquals(5,a.getValue());
-        assertEquals(5,b.getValue());
-        assertEquals(5,c.getValue());
+        assertEquals(5, a.getValue());
+        assertEquals(5, b.getValue());
+        assertEquals(5, c.getValue());
 
     }
 
@@ -200,9 +195,9 @@ public class StateIntTest extends StateManagerTest{
         sm.save(); // level 1
 
         //assertEquals(1,sm.getLevel());
-        assertEquals(5,a.getValue());
-        assertEquals(10,b.getValue());
-        assertEquals(5,c.getValue());
+        assertEquals(5, a.getValue());
+        assertEquals(10, b.getValue());
+        assertEquals(5, c.getValue());
 
         a.setValue(8);
         b.setValue(10);
@@ -212,9 +207,9 @@ public class StateIntTest extends StateManagerTest{
         sm.restoreUntil(0);
 
         //assertEquals(0,sm.getLevel());
-        assertEquals(5,a.getValue());
-        assertEquals(10,b.getValue());
-        assertEquals(5,c.getValue());
+        assertEquals(5, a.getValue());
+        assertEquals(10, b.getValue());
+        assertEquals(5, c.getValue());
 
 
     }
@@ -253,7 +248,7 @@ public class StateIntTest extends StateManagerTest{
         sm.save(); // level 1
 
         //assertEquals(1,sm.getLevel());
-        assertEquals(6,a.getValue());
+        assertEquals(6, a.getValue());
 
 
         a.setValue(8);
@@ -261,8 +256,7 @@ public class StateIntTest extends StateManagerTest{
         sm.restoreUntil(0);
 
         //assertEquals(0,sm.getLevel());
-        assertEquals(6,a.getValue());
-
+        assertEquals(6, a.getValue());
 
 
     }

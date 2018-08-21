@@ -16,15 +16,15 @@
 
 package minicp.engine.constraints;
 
-import static minicp.cp.Factory.*;
-
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 import minicp.state.StateInt;
 
+import static minicp.cp.Factory.allDifferent;
+
 public class Circuit extends AbstractConstraint {
 
-    private final IntVar [] x;
+    private final IntVar[] x;
     private final StateInt[] dest;
     private final StateInt[] orig;
     private final StateInt[] lengthToDest;
@@ -32,9 +32,10 @@ public class Circuit extends AbstractConstraint {
     /**
      * x represents an Hamiltonian circuit on the cities {0..x.length-1}
      * where x[i] is the city visited after city i
+     *
      * @param x
      */
-    public Circuit(IntVar [] x) {
+    public Circuit(IntVar[] x) {
         super(x[0].getSolver());
         assert (x.length > 0);
         this.x = x;
@@ -50,7 +51,7 @@ public class Circuit extends AbstractConstraint {
 
 
     @Override
-    public void post()  {
+    public void post() {
         cp.post(allDifferent(x));
         if (x.length == 1) {
             x[0].assign(0);

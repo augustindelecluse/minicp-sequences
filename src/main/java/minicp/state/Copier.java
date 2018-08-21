@@ -17,7 +17,8 @@ public class Copier extends AbstractStateManager {
         store = new Stack<>();
     }
 
-    @Override public void save() {
+    @Override
+    public void save() {
         super.save();
         for (Storage s : store) {
             pushState(s.save());
@@ -27,7 +28,9 @@ public class Copier extends AbstractStateManager {
 
     public int storeSize() {
         return store.size();
-    };
+    }
+
+    ;
 
     @Override
     public StateInt makeStateInt(int initValue) {

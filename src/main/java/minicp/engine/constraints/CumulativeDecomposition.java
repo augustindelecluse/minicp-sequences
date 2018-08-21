@@ -17,7 +17,9 @@
 package minicp.engine.constraints;
 
 import minicp.cp.Factory;
-import minicp.engine.core.*;
+import minicp.engine.core.AbstractConstraint;
+import minicp.engine.core.BoolVar;
+import minicp.engine.core.IntVar;
 
 import java.util.Arrays;
 
@@ -32,20 +34,20 @@ public class CumulativeDecomposition extends AbstractConstraint {
     private final int capa;
 
 
-    public CumulativeDecomposition(IntVar[] start, int[] duration, int[] demand, int capa)  {
+    public CumulativeDecomposition(IntVar[] start, int[] duration, int[] demand, int capa) {
         super(start[0].getSolver());
         this.start = start;
         this.duration = duration;
-        this.end = Factory.makeIntVarArray(start.length, i -> plus(start[i],duration[i]));
+        this.end = Factory.makeIntVarArray(start.length, i -> plus(start[i], duration[i]));
         this.demand = demand;
         this.capa = capa;
     }
 
     @Override
-    public void post()  {
+    public void post() {
 
-        int min = Arrays.stream(start).map(s-> s.getMin()).min(Integer::compare).get();
-        int max = Arrays.stream(end).map(e-> e.getMax()).max(Integer::compare).get();
+        int min = Arrays.stream(start).map(s -> s.getMin()).min(Integer::compare).get();
+        int max = Arrays.stream(end).map(e -> e.getMax()).max(Integer::compare).get();
 
         for (int t = min; t < max; t++) {
 
@@ -55,15 +57,15 @@ public class CumulativeDecomposition extends AbstractConstraint {
                 BoolVar startsBefore = makeBoolVar(cp);
                 BoolVar endsAfter = makeBoolVar(cp);
 
-                cp.post(new IsLessOrEqual(startsBefore,start[i],t));
+                cp.post(new IsLessOrEqual(startsBefore, start[i], t));
 
-                cp.post(new IsLessOrEqual(endsAfter,minus(plus(start[i],duration[i]-1)),-t));
+                cp.post(new IsLessOrEqual(endsAfter, minus(plus(start[i], duration[i] - 1)), -t));
 
                 // overlaps = endsAfter & startsBefore
-                cp.post(new IsLessOrEqual(overlaps[i],minus(sum(new IntVar[]{startsBefore,endsAfter})),-2));
+                cp.post(new IsLessOrEqual(overlaps[i], minus(sum(new IntVar[]{startsBefore, endsAfter})), -2));
             }
 
-            IntVar[] overlapHeights = Factory.makeIntVarArray(start.length, i -> mul(overlaps[i],demand[i]));
+            IntVar[] overlapHeights = Factory.makeIntVarArray(start.length, i -> mul(overlaps[i], demand[i]));
             IntVar cumHeight = sum(overlapHeights);
             cumHeight.removeAbove(capa);
 

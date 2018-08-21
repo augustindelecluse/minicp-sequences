@@ -19,16 +19,12 @@ package choco;
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.Solver;
 import org.chocosolver.solver.search.strategy.Search;
-import org.chocosolver.solver.search.strategy.selectors.values.IntDomainMax;
 import org.chocosolver.solver.search.strategy.selectors.values.IntDomainMin;
 import org.chocosolver.solver.search.strategy.selectors.variables.FirstFail;
 import org.chocosolver.solver.search.strategy.selectors.variables.Smallest;
 import org.chocosolver.solver.search.strategy.selectors.variables.VariableSelectorWithTies;
-import org.chocosolver.solver.variables.BoolVar;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.util.tools.ArrayUtils;
-
-import java.util.Arrays;
 
 
 public class MagicSquare {
@@ -40,27 +36,27 @@ public class MagicSquare {
         IntVar[][] x = new IntVar[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                x[i][j] = model.intVar("x_" + i+","+j, 1, n*n,false);
+                x[i][j] = model.intVar("x_" + i + "," + j, 1, n * n, false);
             }
         }
 
 
-        IntVar [] xFlat = new IntVar[x.length * x.length];
+        IntVar[] xFlat = new IntVar[x.length * x.length];
         for (int i = 0; i < x.length; i++) {
-            System.arraycopy(x[i],0,xFlat,i * x.length,x.length);
+            System.arraycopy(x[i], 0, xFlat, i * x.length, x.length);
         }
 
 
         // AllDifferent
         for (int i = 0; i < xFlat.length; i++) {
-            for (int j = i+1; j < xFlat.length; j++) {
-                model.arithm(xFlat[i],"!=",xFlat[j]).post();
+            for (int j = i + 1; j < xFlat.length; j++) {
+                model.arithm(xFlat[i], "!=", xFlat[j]).post();
             }
         }
 
         // Sum on lines
         for (int i = 0; i < n; i++) {
-            model.sum(x[i],"=",M).post();
+            model.sum(x[i], "=", M).post();
         }
 
         // Sum on columns
@@ -68,7 +64,7 @@ public class MagicSquare {
             IntVar[] column = new IntVar[n];
             for (int i = 0; i < x.length; i++)
                 column[i] = x[i][j];
-            model.sum(column,"=",M).post();
+            model.sum(column, "=", M).post();
         }
 
         // Sum on diagonals
@@ -76,17 +72,16 @@ public class MagicSquare {
         IntVar[] diagonalRight = new IntVar[n];
         for (int i = 0; i < x.length; i++) {
             diagonalLeft[i] = x[i][i];
-            diagonalRight[i] = x[n-i-1][i];
+            diagonalRight[i] = x[n - i - 1][i];
         }
-        model.sum(diagonalLeft,"=",M).post();
-        model.sum(diagonalRight,"=", M).post();
+        model.sum(diagonalLeft, "=", M).post();
+        model.sum(diagonalRight, "=", M).post();
 
         // Symetries breaking
         //model.arithm(x[0][0],"=",1).post;
         model.arithm(x[0][n - 1], "<", x[n - 1][0]).post();
         model.arithm(x[0][0], "<", x[n - 1][n - 1]).post();
         model.arithm(x[0][0], "<", x[n - 1][0]).post();
-
 
 
         Solver solver = model.getSolver();
@@ -101,11 +96,12 @@ public class MagicSquare {
         solver.showShortStatistics();
         System.out.println("let's go");
         int nSol = 0;
-        while (nSol < 10000  && solver.solve()) {
+        while (nSol < 10000 && solver.solve()) {
             nSol++;
         }
 
-        System.out.println("solution");;
+        System.out.println("solution");
+        ;
 
     }
 }

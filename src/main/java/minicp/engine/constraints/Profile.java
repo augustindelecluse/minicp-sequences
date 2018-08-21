@@ -31,38 +31,38 @@ public class Profile {
         final int end;
 
         Rectangle(int start, int end, int height) {
-            assert(end > start);
+            assert (end > start);
             this.start = start;
             this.end = end;
-            this.dur = ((long) end) -start;
+            this.dur = ((long) end) - start;
             this.height = height;
         }
 
         @Override
         public String toString() {
-            return "[solve:"+start+" dur:"+dur+" end:"+(end)+"] h:"+height;
+            return "[solve:" + start + " dur:" + dur + " end:" + (end) + "] h:" + height;
         }
     }
 
-    final Rectangle [] profileRectangles;
+    final Rectangle[] profileRectangles;
 
 
-    public Profile(Rectangle ... rectangles) {
+    public Profile(Rectangle... rectangles) {
         ArrayList<Rectangle> profile = new ArrayList<Rectangle>();
-        Entry [] points = new Entry[2*rectangles.length+2];
+        Entry[] points = new Entry[2 * rectangles.length + 2];
         for (int i = 0; i < rectangles.length; i++) {
             Rectangle r = rectangles[i];
-            points[i] = new Entry(r.start,r.height);
-            points[rectangles.length+i] = new Entry(r.end,-r.height);
+            points[i] = new Entry(r.start, r.height);
+            points[rectangles.length + i] = new Entry(r.end, -r.height);
         }
-        points[2*rectangles.length] = new Entry(Integer.MIN_VALUE,0);
-        points[2*rectangles.length+1] = new Entry(Integer.MAX_VALUE,0);
+        points[2 * rectangles.length] = new Entry(Integer.MIN_VALUE, 0);
+        points[2 * rectangles.length + 1] = new Entry(Integer.MAX_VALUE, 0);
 
         Arrays.sort(points);
 
         int sweep_h = 0;
         int sweep_t = points[0].key;
-        for (Entry e: points) {
+        for (Entry e : points) {
             int t = e.key;
             int h = e.value;
             if (t != sweep_t) {
@@ -77,7 +77,6 @@ public class Profile {
     }
 
     /**
-     *
      * @param t
      * @return the rectangle r of the profileRectangles such that r.solve <= t and r.end > t
      */

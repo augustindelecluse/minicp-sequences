@@ -25,10 +25,9 @@ import minicp.util.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.makeDfs;
 import static minicp.cp.Factory.makeIntVar;
-import static minicp.cp.Factory.makeSolver;
-import static minicp.cp.BranchingScheme.firstFail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -40,11 +39,11 @@ public class Element1DVarTest extends SolverTest {
 
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, 2, 40);
 
-            IntVar[] T = new IntVar[]{makeIntVar(cp,9,9), makeIntVar(cp,8,8), makeIntVar(cp,7,7), makeIntVar(cp,5,5), makeIntVar(cp,6,6)};
+            IntVar[] T = new IntVar[]{makeIntVar(cp, 9, 9), makeIntVar(cp, 8, 8), makeIntVar(cp, 7, 7), makeIntVar(cp, 5, 5), makeIntVar(cp, 6, 6)};
 
             cp.post(new Element1DVar(T, y, z));
 
@@ -80,15 +79,15 @@ public class Element1DVarTest extends SolverTest {
 
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, -4, 40);
 
-            IntVar[] T = new IntVar[]{makeIntVar(cp,1,2),
-                                      makeIntVar(cp,3,4),
-                                      makeIntVar(cp,5,6),
-                                      makeIntVar(cp,7,8),
-                                      makeIntVar(cp,9,10)};
+            IntVar[] T = new IntVar[]{makeIntVar(cp, 1, 2),
+                    makeIntVar(cp, 3, 4),
+                    makeIntVar(cp, 5, 6),
+                    makeIntVar(cp, 7, 8),
+                    makeIntVar(cp, 9, 10)};
 
             cp.post(new Element1DVar(T, y, z));
 
@@ -110,7 +109,6 @@ public class Element1DVarTest extends SolverTest {
             assertEquals(6, z.getMax());
 
 
-
         } catch (InconsistencyException e) {
             fail("should not fail");
         } catch (NotImplementedException e) {
@@ -124,11 +122,11 @@ public class Element1DVarTest extends SolverTest {
 
         try {
 
-            Solver cp  = solverFactory.get();
+            Solver cp = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, -20, 40);
 
-            IntVar[] T = new IntVar[]{makeIntVar(cp,9,9), makeIntVar(cp,8,8), makeIntVar(cp,7,7), makeIntVar(cp,5,5), makeIntVar(cp,6,6)};
+            IntVar[] T = new IntVar[]{makeIntVar(cp, 9, 9), makeIntVar(cp, 8, 8), makeIntVar(cp, 7, 7), makeIntVar(cp, 5, 5), makeIntVar(cp, 6, 6)};
 
             cp.post(new Element1DVar(T, y, z));
 

@@ -32,13 +32,19 @@ public class IntVarViewOffset implements IntVar {
     }
 
     @Override
-    public void whenBind(ConstraintClosure.Filtering f) { x.whenBind(f); }
+    public void whenBind(ConstraintClosure.Filtering f) {
+        x.whenBind(f);
+    }
 
     @Override
-    public void whenBoundsChange(ConstraintClosure.Filtering f) { x.whenBoundsChange(f); }
+    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+        x.whenBoundsChange(f);
+    }
 
     @Override
-    public void whenDomainChange(ConstraintClosure.Filtering f) { x.whenDomainChange(f); }
+    public void whenDomainChange(ConstraintClosure.Filtering f) {
+        x.whenDomainChange(f);
+    }
 
     @Override
     public void propagateOnDomainChange(Constraint c) {
@@ -90,37 +96,38 @@ public class IntVarViewOffset implements IntVar {
     }
 
     @Override
-    public void remove(int v)  {
+    public void remove(int v) {
         x.remove(v - o);
     }
 
     @Override
-    public void assign(int v)  {
+    public void assign(int v) {
         x.assign(v - o);
     }
 
     @Override
-    public void removeBelow(int v)  {
+    public void removeBelow(int v) {
         x.removeBelow(v - o);
     }
+
     @Override
-    public void removeAbove(int v)  {
+    public void removeAbove(int v) {
         x.removeAbove(v - o);
     }
 
     @Override
     public String toString() {
-            StringBuilder b = new StringBuilder();
-            b.append("{");
-            for (int i = getMin(); i <= getMax() - 1; i++) {
-                if (contains((i))) {
-                    b.append(i);
-                    b.append(',');
-                }
+        StringBuilder b = new StringBuilder();
+        b.append("{");
+        for (int i = getMin(); i <= getMax() - 1; i++) {
+            if (contains((i))) {
+                b.append(i);
+                b.append(',');
             }
-            if (getSize() > 0) b.append(getMax());
-            b.append("}");
-            return b.toString();
+        }
+        if (getSize() > 0) b.append(getMax());
+        b.append("}");
+        return b.toString();
 
     }
 }

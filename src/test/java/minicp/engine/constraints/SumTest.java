@@ -20,17 +20,15 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
+import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static minicp.cp.BranchingScheme.*;
-import static minicp.cp.Factory.*;
-
-import minicp.util.InconsistencyException;
+import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.Factory.makeDfs;
+import static minicp.cp.Factory.makeIntVar;
+import static org.junit.Assert.*;
 
 
 public class SumTest extends SolverTest {

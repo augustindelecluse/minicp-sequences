@@ -1,9 +1,7 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
 
 public class Element1DVar extends AbstractConstraint {
 
@@ -11,7 +9,7 @@ public class Element1DVar extends AbstractConstraint {
     private final IntVar y;
     private final IntVar z;
 
-    private final int [] yValues;
+    private final int[] yValues;
 
     IntVar supMin;
     IntVar supMax;
@@ -27,11 +25,11 @@ public class Element1DVar extends AbstractConstraint {
     }
 
     @Override
-    public void post()  {
+    public void post() {
         y.removeBelow(0);
         y.removeAbove(T.length - 1);
 
-        for (IntVar t: T) {
+        for (IntVar t : T) {
             t.propagateOnBoundChange(this);
         }
         y.propagateOnDomainChange(this);
@@ -41,7 +39,7 @@ public class Element1DVar extends AbstractConstraint {
     }
 
     @Override
-    public void propagate()  {
+    public void propagate() {
         zMin = z.getMin();
         zMax = z.getMax();
         if (y.isBound()) equalityPropagate();
@@ -56,7 +54,7 @@ public class Element1DVar extends AbstractConstraint {
         }
     }
 
-    private void equalityPropagate()  {
+    private void equalityPropagate() {
         int id = y.getMin();
         IntVar tVar = T[id];
         tVar.removeBelow(zMin);

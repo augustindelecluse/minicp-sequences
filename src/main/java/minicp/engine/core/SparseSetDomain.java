@@ -17,10 +17,6 @@ package minicp.engine.core;
 
 import minicp.state.StateLazySparseSet;
 import minicp.state.StateManager;
-import minicp.state.StateSparseSet;
-
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 
 public class SparseSetDomain implements IntDomain {
@@ -33,7 +29,7 @@ public class SparseSetDomain implements IntDomain {
 
     public SparseSetDomain(StateManager sm, int min, int max) {
         //domain = new StateSparseSet(sm, max - min + 1,min);
-        domain = new StateLazySparseSet(sm, max - min + 1,min);
+        domain = new StateLazySparseSet(sm, max - min + 1, min);
     }
 
     public int getMin() {
@@ -93,8 +89,11 @@ public class SparseSetDomain implements IntDomain {
         if (domain.getMin() < value) {
             domain.removeBelow(value);
             switch (domain.getSize()) {
-                case 0: x.empty();break;
-                case 1: x.bind();
+                case 0:
+                    x.empty();
+                    break;
+                case 1:
+                    x.bind();
                 default:
                     x.removeBelow();
                     x.change();
@@ -106,9 +105,12 @@ public class SparseSetDomain implements IntDomain {
     public void removeAbove(int value, DomainListener x) {
         if (domain.getMax() > value) {
             domain.removeAbove(value);
-            switch(domain.getSize()) {
-                case 0: x.empty();break;
-                case 1: x.bind();
+            switch (domain.getSize()) {
+                case 0:
+                    x.empty();
+                    break;
+                case 1:
+                    x.bind();
                 default:
                     x.removeAbove();
                     x.change();
@@ -116,6 +118,7 @@ public class SparseSetDomain implements IntDomain {
             }
         }
     }
+
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("{");

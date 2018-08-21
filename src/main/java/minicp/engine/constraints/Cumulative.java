@@ -16,15 +16,16 @@
 
 package minicp.engine.constraints;
 
-import static minicp.cp.Factory.*;
-
 import minicp.cp.Factory;
+import minicp.engine.constraints.Profile.Rectangle;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
-import minicp.engine.constraints.Profile.Rectangle;
 import minicp.util.InconsistencyException;
 
 import java.util.ArrayList;
+
+import static minicp.cp.Factory.minus;
+import static minicp.cp.Factory.plus;
 
 public class Cumulative extends AbstractConstraint {
 
@@ -36,15 +37,15 @@ public class Cumulative extends AbstractConstraint {
     private final boolean postMirror;
 
 
-    public Cumulative(IntVar[] start, int[] duration, int[] demand, int capa)  {
+    public Cumulative(IntVar[] start, int[] duration, int[] demand, int capa) {
         this(start, duration, demand, capa, true);
     }
 
-    private Cumulative(IntVar[] start, int[] duration, int[] demand, int capa, boolean postMirror)  {
+    private Cumulative(IntVar[] start, int[] duration, int[] demand, int capa, boolean postMirror) {
         super(start[0].getSolver());
         this.start = start;
         this.duration = duration;
-        this.end = Factory.makeIntVarArray(start.length, i -> plus(start[i],duration[i]));
+        this.end = Factory.makeIntVarArray(start.length, i -> plus(start[i], duration[i]));
         this.demand = demand;
         this.capa = capa;
         this.postMirror = postMirror;
@@ -52,7 +53,7 @@ public class Cumulative extends AbstractConstraint {
 
 
     @Override
-    public void post()  {
+    public void post() {
         for (int i = 0; i < start.length; i++) {
             start[i].propagateOnBoundChange(this);
         }
@@ -66,7 +67,7 @@ public class Cumulative extends AbstractConstraint {
     }
 
     @Override
-    public void propagate()  {
+    public void propagate() {
         Profile profile = buildProfile();
         for (int i = 0; i < profile.size(); i++) {
             if (profile.get(i).height > capa) {

@@ -15,17 +15,17 @@
 
 package minicp.engine.core;
 
-import minicp.cp.Factory;
-import minicp.engine.constraints.Minimize;
 import minicp.search.Objective;
 import minicp.state.StateManager;
-import minicp.search.SearchObserver;
 import minicp.util.Procedure;
 
 public interface Solver {
     void post(Constraint c);
+
     void schedule(Constraint c);
+
     void post(Constraint c, boolean enforceFixPoint);
+
     void fixPoint();
 
     StateManager getStateManager();
@@ -33,10 +33,12 @@ public interface Solver {
     void onFixPoint(Procedure listener);
 
     Objective minimize(IntVar x);
+
     Objective maximize(IntVar x);
 
     // ugly
     void post(BoolVar b);
+
     int registerVar(IntVar x);
 }
 
