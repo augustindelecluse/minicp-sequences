@@ -15,21 +15,12 @@ import java.util.function.Supplier;
 public abstract class SolverTest {
 
     @Parameterized.Parameters
-    public static Object[] data() {
-        return new Object[]{
-                new Supplier<Solver>() {
-                    @Override
-                    public Solver get() {
-                        return new MiniCP(new Trailer());
-                    }
-                }, new Supplier<Solver>() {
-            @Override
-            public Solver get() {
-                return new MiniCP(new Copier());
-            }
-        }};
+    public static Supplier<Solver>[] data() {
+        return new Supplier[]{
+                () -> new MiniCP(new Trailer()),
+                () -> new MiniCP(new Copier()),
+        };
     }
-
 
     @Parameterized.Parameter
     public Supplier<Solver> solverFactory;
