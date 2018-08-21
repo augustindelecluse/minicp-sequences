@@ -7,15 +7,13 @@ public class Copier implements StateManager {
 
     class Backup extends Stack<StateEntry> {
         private int sz;
-        private Stack<Storage> toFix;
-        Backup(Stack<Storage> st) {
-            sz = st.size();
-            toFix = st;
-            for (Storage s : st)
+        Backup() {
+            sz = store.size();
+            for (Storage s : store)
                 add(s.save());
         }
         void restore() {
-            toFix.setSize(sz);
+            store.setSize(sz);
             for(StateEntry se : this)
                 se.restore();
         }
@@ -29,7 +27,7 @@ public class Copier implements StateManager {
     }
     public int getLevel()  { return prior.size()-1;}
     public int storeSize() { return store.size();}
-    public void save()     { prior.add(new Backup(store));}
+    public void save()     { prior.add(new Backup());}
     public void restore()  { prior.pop().restore();}
 
     public void withNewState(Procedure body) {
