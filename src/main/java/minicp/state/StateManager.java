@@ -40,9 +40,13 @@ public interface StateManager {
      */
     void restoreAll();
 
+    public int getLevel();
+
     void restoreUntil(int level);
 
     void onRestore(Procedure listener);
+
+
     void onSave(Procedure listener);
 
     /**

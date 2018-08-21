@@ -16,7 +16,7 @@
 package minicp.state;
 
 
-public class TrailBool implements StateEntry, StateBool {
+public class TrailBool implements StateBool {
 
     final StateEntry restoreTrue = new StateEntry() {
         @Override
@@ -51,17 +51,15 @@ public class TrailBool implements StateEntry, StateBool {
         }
     }
 
+    @Override
     public void setValue(boolean v) {
         if (v != this.v) {
             trail();
             this.v = v;
         }
     }
-
+    @Override
     public boolean getValue() { return this.v; }
 
-    public void restore() {
-        v = !v;
-    }
 
 }

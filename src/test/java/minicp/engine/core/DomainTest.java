@@ -15,6 +15,7 @@
 
 package minicp.engine.core;
 
+import minicp.engine.SolverTest;
 import org.junit.Test;
 
 import static minicp.cp.Factory.makeIntVar;
@@ -22,7 +23,7 @@ import static minicp.cp.Factory.makeSolver;
 import static org.junit.Assert.*;
 
 
-public class DomainTest {
+public class DomainTest extends SolverTest{
 
     private static class MyDomainListener implements DomainListener {
 
@@ -58,7 +59,7 @@ public class DomainTest {
 
     @Test
     public void testDomain1() {
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
         MyDomainListener dlistener = new MyDomainListener();
         IntDomain dom = new SparseSetDomain(cp.getStateManager(),5,10);
 
@@ -94,7 +95,7 @@ public class DomainTest {
 
     @Test
     public void testDomain2() {
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
         MyDomainListener dlistener = new MyDomainListener();
         IntDomain dom = new SparseSetDomain(cp.getStateManager(),5,10);
 
@@ -109,7 +110,7 @@ public class DomainTest {
 
     @Test
     public void testDomain3() {
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
         MyDomainListener dlistener = new MyDomainListener();
         IntDomain dom = new SparseSetDomain(cp.getStateManager(),5,10);
 

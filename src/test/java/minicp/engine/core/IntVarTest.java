@@ -15,6 +15,7 @@
 
 package minicp.engine.core;
 
+import minicp.engine.SolverTest;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
@@ -27,13 +28,13 @@ import static org.junit.Assert.*;
 import static minicp.cp.Factory.*;
 
 
-public class IntVarTest {
+public class IntVarTest extends SolverTest {
 
     public boolean propagateCalled = false;
 
     @Test
     public void testIntVar() {
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = makeIntVar(cp,10);
         IntVar y = makeIntVar(cp,10);
@@ -77,7 +78,7 @@ public class IntVarTest {
     @Test
     public void onDomainChangeOnBind() {
         propagateCalled = false;
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = makeIntVar(cp,10);
         IntVar y = makeIntVar(cp,10);
@@ -116,7 +117,7 @@ public class IntVarTest {
 
         try {
 
-            Solver cp  = makeSolver();
+            Solver cp  = solverFactory.get();
 
             IntVar x = makeIntVar(cp,-10,10);
 
@@ -166,7 +167,7 @@ public class IntVarTest {
 
         try {
 
-            Solver cp  = makeSolver();
+            Solver cp  = solverFactory.get();
 
             Set<Integer> dom = new HashSet<>(Arrays.asList(-7,-10,6,9,10,12));
 
@@ -209,7 +210,7 @@ public class IntVarTest {
     @Test
     public void onBoundChange() {
 
-        Solver cp = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = makeIntVar(cp, 10);
         IntVar y = makeIntVar(cp, 10);
@@ -256,7 +257,7 @@ public class IntVarTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
 
             IntVar x = makeIntVar(cp, 10);
 
@@ -296,7 +297,7 @@ public class IntVarTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
             IntVar x = makeIntVar(cp, 10);
 
             Constraint cons = new AbstractConstraint(cp) {
@@ -343,7 +344,7 @@ public class IntVarTest {
     public void fillArray() {
 
         try {
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
 
             IntVar x = plus(mul(minus(makeIntVar(cp, 5)), 3), 5); // D(x)= {-7,-4,-1,2,5}
             int[] values = new int[10];

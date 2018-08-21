@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.SearchStatistics;
@@ -27,12 +28,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 
-public class AllDifferentTest {
+public class AllDifferentTest extends SolverTest {
 
     @Test
     public void allDifferentTest1() {
 
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar [] x = makeIntVarArray(cp,5,5);
 
@@ -53,7 +54,7 @@ public class AllDifferentTest {
     @Test
     public void allDifferentTest2() {
 
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar [] x = makeIntVarArray(cp,5,5);
 

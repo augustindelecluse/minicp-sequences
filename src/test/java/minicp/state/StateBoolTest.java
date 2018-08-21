@@ -16,21 +16,25 @@
 package minicp.state;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.function.Supplier;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+public class StateBoolTest extends StateManagerTest{
 
-public class  ReversibleBoolTest {
 
     @Test
-    public void testReversibleBool() {
-        StateManager trail = new Trailer();
+    public void testStateBool() {
+        StateManager sm = stateFactory.get();
 
-        StateBool b1 = trail.makeStateBool(true);
-        StateBool b2 = trail.makeStateBool(false);
+        StateBool b1 = sm.makeStateBool(true);
+        StateBool b2 = sm.makeStateBool(false);
 
-        trail.save();
+        sm.save();
 
         b1.setValue(true);
         b1.setValue(false);
@@ -39,7 +43,7 @@ public class  ReversibleBoolTest {
         b2.setValue(false);
         b2.setValue(true);
 
-        trail.restore();
+        sm.restore();
 
         assertTrue(b1.getValue());
         assertFalse(b2.getValue());

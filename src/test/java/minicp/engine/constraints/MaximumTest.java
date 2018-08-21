@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
@@ -33,14 +34,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 
-public class MaximumTest {
+public class MaximumTest extends SolverTest{
 
     @Test
     public void maximumTest1() {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar[] x = makeIntVarArray(cp,3, 10);
             IntVar y = makeIntVar(cp, -5, 20);
             cp.post(new Maximum(x,y));
@@ -76,6 +77,8 @@ public class MaximumTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -84,7 +87,7 @@ public class MaximumTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar x1 = makeIntVar(cp,0,0);
             IntVar x2 = makeIntVar(cp,1,1);
             IntVar x3 = makeIntVar(cp,2,2);
@@ -96,6 +99,8 @@ public class MaximumTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -104,7 +109,7 @@ public class MaximumTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar x1 = makeIntVar(cp,0,10);
             IntVar x2 = makeIntVar(cp,0,10);
             IntVar x3 = makeIntVar(cp,-5,50);
@@ -120,6 +125,8 @@ public class MaximumTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -128,7 +135,7 @@ public class MaximumTest {
     public void maximumTest4() {
         try {
             try {
-                Solver cp = makeSolver();
+                Solver cp = solverFactory.get();
                 IntVar[] x = makeIntVarArray(cp, 4, 5);
                 IntVar y = makeIntVar(cp, -5, 20);
 
@@ -144,8 +151,6 @@ public class MaximumTest {
                 });
 
                 SearchStatistics stats = dfs.solve();
-
-
 
                 assertEquals(625, stats.nSolutions);
 

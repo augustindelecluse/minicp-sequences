@@ -29,6 +29,7 @@ public class Copier extends AbstractStateManager {
         return store.size();
     };
 
+    @Override
     public StateInt makeStateInt(int initValue) {
         CopyInt s = new CopyInt(initValue);
         store.add(s);
@@ -36,6 +37,7 @@ public class Copier extends AbstractStateManager {
         return s;
     }
 
+    @Override
     public StateBool makeStateBool(boolean initValue) {
         CopyBool s = new CopyBool(initValue);
         store.add(s);
@@ -43,6 +45,7 @@ public class Copier extends AbstractStateManager {
         return s;
     }
 
+    @Override
     public StateMap makeStateMap() {
         CopyMap s = new CopyMap<>();
         store.add(s);

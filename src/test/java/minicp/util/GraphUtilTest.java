@@ -54,7 +54,6 @@ public class GraphUtilTest {
 
         int [] scc = stronglyConnectedComponents(g);
 
-        System.out.println(Arrays.toString(scc));
         assertEquals(scc[0], scc[1]);
         assertEquals(scc[0], scc[2]);
 

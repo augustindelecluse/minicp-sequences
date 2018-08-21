@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
@@ -31,7 +32,7 @@ import static minicp.cp.Factory.*;
 import static minicp.cp.BranchingScheme.firstFail;
 import static org.junit.Assert.*;
 
-public class NegTableTest {
+public class NegTableTest extends SolverTest{
 
     private int[][] randomTuples(Random rand, int arity, int nTuples, int minvalue, int maxvalue, boolean noDuplicates) {
         int[][] r = new int[nTuples][arity];
@@ -92,7 +93,7 @@ public class NegTableTest {
     public void simpleTest0() {
         try {
             try {
-                Solver cp = makeSolver();
+                Solver cp = solverFactory.get();
                 IntVar[] x = makeIntVarArray(cp, 3, 2);
                 int[][] table = new int[][]{
                         {0, 0, 0},
@@ -120,7 +121,7 @@ public class NegTableTest {
     public void simpleTest1() {
         try {
             try {
-                Solver cp = makeSolver();
+                Solver cp = solverFactory.get();
                 IntVar[] x = makeIntVarArray(cp, 3, 2);
                 int[][] table = new int[][]{{1,1,1}};
                 cp.post(new NegTableCT(x, table));
@@ -140,7 +141,7 @@ public class NegTableTest {
     public void simpleTest2() {
         try {
             try {
-                Solver cp = makeSolver();
+                Solver cp = solverFactory.get();
                 IntVar[] x = makeIntVarArray(cp, 3, 2);
                 int[][] table = new int[][]{{1,1,1},{1,1,1},{1,1,1}};
                 cp.post(new NegTableCT(x, table));
@@ -195,7 +196,7 @@ public class NegTableTest {
         SearchStatistics statsAlgo;
 
         try {
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar[] x = makeIntVarArray(cp, 5, 9);
             cp.post(allDifferent(x));
             cp.post(new TableCT(new IntVar[]{x[0], x[1], x[2]}, toPositive(x[0], x[1], x[2],t1)));
@@ -207,7 +208,7 @@ public class NegTableTest {
         }
 
         try {
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar[] x = makeIntVarArray(cp, 5, 9);
             cp.post(allDifferent(x));
             cp.post(new NegTableCT(new IntVar[]{x[0], x[1], x[2]}, t1));

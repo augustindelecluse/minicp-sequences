@@ -26,28 +26,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 import java.util.function.Supplier;
 
-@RunWith(Parameterized.class)
-public class StateIntTest {
-
-    @Parameters
-    public static Object[] data() {
-        return new Object[]{
-                new Supplier<StateManager>() {
-                    @Override
-                    public StateManager get() {
-                        return new Trailer();
-                    }
-                }, new Supplier<StateManager>() {
-            @Override
-            public StateManager get() {
-                return new Copier();
-            }
-        }};
-    }
-
-
-    @Parameter
-    public Supplier<StateManager> stateFactory;
+public class StateIntTest extends StateManagerTest{
 
     @Test
     public void testExample() {
@@ -62,7 +41,7 @@ public class StateIntTest {
 
         // Record current state a=7, b=1 and increase the level to 0
         sm.save();
-        //assertEquals(0,sm.getLevel());
+        assertEquals(0,sm.getLevel());
 
         a.setValue(10);
         b.setValue(13);
@@ -70,7 +49,7 @@ public class StateIntTest {
 
         // Record current state a=11, b=13 and increase the level to 1
         sm.save();
-        //assertEquals(1,sm.getLevel());
+        assertEquals(1,sm.getLevel());
 
         a.setValue(4);
         b.setValue(9);
@@ -81,7 +60,7 @@ public class StateIntTest {
 
         assertEquals(11,a.getValue());
         assertEquals(13,b.getValue());
-        //assertEquals(0,sm.getLevel());
+        assertEquals(0,sm.getLevel());
 
         // Restore the state recorded at the top level 0: a=7, b=13
         // and remove the state of that level
@@ -89,7 +68,7 @@ public class StateIntTest {
 
         assertEquals(7,a.getValue());
         assertEquals(13,b.getValue());
-        //assertEquals(-1,sm.getLevel());
+        assertEquals(-1,sm.getLevel());
 
     }
 

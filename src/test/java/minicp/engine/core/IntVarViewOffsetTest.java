@@ -16,6 +16,7 @@
 package minicp.engine.core;
 
 import minicp.cp.Factory;
+import minicp.engine.SolverTest;
 import minicp.util.InconsistencyException;
 import org.junit.Test;
 
@@ -25,13 +26,13 @@ import static minicp.cp.Factory.plus;
 import static org.junit.Assert.*;
 
 
-public class IntVarViewOffsetTest {
+public class IntVarViewOffsetTest extends SolverTest {
 
     public boolean propagateCalled = false;
 
     @Test
     public void testIntVar() {
-        Solver cp  = Factory.makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = plus(makeIntVar(cp,-3,4),3); // domain is {0,1,2,3,4,5,6,7}
 
@@ -84,7 +85,7 @@ public class IntVarViewOffsetTest {
     @Test
     public void onDomainChangeOnBind() {
         propagateCalled = false;
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = plus(makeIntVar(cp,10),1); // 1..11
         IntVar y = plus(makeIntVar(cp,10),1); // 1..11
@@ -123,7 +124,7 @@ public class IntVarViewOffsetTest {
     @Test
     public void onBoundChange() {
 
-        Solver cp = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = plus(makeIntVar(cp, 10),1);
         IntVar y = plus(makeIntVar(cp, 10),1);

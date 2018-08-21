@@ -15,12 +15,15 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.constraints.Profile.Rectangle;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
+import minicp.util.NotImplementedException;
+import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -32,31 +35,31 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-public class CumulativeDecompTest {
+public class CumulativeDecompTest extends SolverTest {
 
-
-    //private void decomposeCumulative()
 
     @Test
     public void testAllDiffWithCumulative() {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
 
             IntVar[] s = makeIntVarArray(cp, 5, 5);
             int[] d = new int[5];
-            Arrays.fill(d,1);
+            Arrays.fill(d, 1);
             int[] r = new int[5];
-            Arrays.fill(r,100);
+            Arrays.fill(r, 100);
 
-            cp.post(new CumulativeDecomposition(s,d,r,100));
+            cp.post(new CumulativeDecomposition(s, d, r, 100));
 
-            SearchStatistics stats = makeDfs(cp,firstFail(s)).solve();
-            assertEquals("cumulative alldiff expect makeIntVarArray permutations",120, stats.nSolutions);
+            SearchStatistics stats = makeDfs(cp, firstFail(s)).solve();
+            assertEquals("cumulative alldiff expect makeIntVarArray permutations", 120, stats.nSolutions);
 
         } catch (InconsistencyException e) {
             assert (false);
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
 
     }
@@ -66,19 +69,21 @@ public class CumulativeDecompTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
 
             IntVar[] s = makeIntVarArray(cp, 2, 10);
-            int[] d = new int[] {5,5};
-            int[] r = new int[] {1,1};
+            int[] d = new int[]{5, 5};
+            int[] r = new int[]{1, 1};
 
-            cp.post(new CumulativeDecomposition(s,d,r,1));
-            equal(s[0],0);
+            cp.post(new CumulativeDecomposition(s, d, r, 1));
+            equal(s[0], 0);
 
             assertEquals(5, s[1].getMin());
 
         } catch (InconsistencyException e) {
             assert (false);
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -88,23 +93,24 @@ public class CumulativeDecompTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
 
             IntVar[] s = makeIntVarArray(cp, 2, 10);
-            int[] d = new int[] {5,5};
-            int[] r = new int[] {1,1};
+            int[] d = new int[]{5, 5};
+            int[] r = new int[]{1, 1};
 
-            cp.post(new CumulativeDecomposition(s,d,r,1));
+            cp.post(new CumulativeDecomposition(s, d, r, 1));
 
-            equal(s[0],5);
+            equal(s[0], 5);
 
             assertEquals(0, s[1].getMax());
 
         } catch (InconsistencyException e) {
             assert (false);
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
-
 
 
     @Test
@@ -112,13 +118,13 @@ public class CumulativeDecompTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
 
             IntVar[] s = makeIntVarArray(cp, 5, 10);
-            int[] d = new int[] {5,10,3,6,1};
-            int[] r = new int[] {3, 7,1,4,8};
+            int[] d = new int[]{5, 10, 3, 6, 1};
+            int[] r = new int[]{3, 7, 1, 4, 8};
 
-            cp.post(new CumulativeDecomposition(s,d,r,12));
+            cp.post(new CumulativeDecomposition(s, d, r, 12));
 
             DFSearch search = makeDfs(cp, firstFail(s));
 
@@ -137,11 +143,10 @@ public class CumulativeDecompTest {
                 }
             });
 
-
-
-
         } catch (InconsistencyException e) {
             assert (false);
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -149,12 +154,12 @@ public class CumulativeDecompTest {
     private static int[] discreteProfile(Rectangle... rectangles) {
         int min = Arrays.stream(rectangles).filter(r -> r.height > 0).map(r -> r.start).min(Integer::compare).get();
         int max = Arrays.stream(rectangles).filter(r -> r.height > 0).map(r -> r.end).max(Integer::compare).get();
-        int[] heights = new int[max-min];
+        int[] heights = new int[max - min];
         // discrete profileRectangles of rectangles
-        for (Rectangle r: rectangles) {
+        for (Rectangle r : rectangles) {
             if (r.height > 0) {
                 for (int i = r.start; i < r.end; i++) {
-                    heights[i-min] += r.height;
+                    heights[i - min] += r.height;
                 }
             }
         }

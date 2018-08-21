@@ -15,6 +15,7 @@
 
 package minicp.engine.core;
 
+import minicp.engine.SolverTest;
 import minicp.util.InconsistencyException;
 import org.junit.Test;
 
@@ -23,13 +24,13 @@ import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
 
-public class IntVarViewMulTest {
+public class IntVarViewMulTest extends SolverTest{
 
     public boolean propagateCalled = false;
 
     @Test
     public void testIntVar() {
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = mul(mul(makeIntVar(cp,-3,4),-3),-1); // domain is {-9,-6,-3,0,3,6,9,12}
 
@@ -81,7 +82,7 @@ public class IntVarViewMulTest {
     @Test
     public void onDomainChangeOnBind() {
         propagateCalled = false;
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = mul(makeIntVar(cp,10),1);
         IntVar y = mul(makeIntVar(cp,10),1);
@@ -120,7 +121,7 @@ public class IntVarViewMulTest {
     @Test
     public void onBoundChange() {
 
-        Solver cp = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = mul(makeIntVar(cp, 10),1);
         IntVar y = mul(makeIntVar(cp, 10),1);

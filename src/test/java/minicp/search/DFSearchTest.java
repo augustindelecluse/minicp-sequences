@@ -26,6 +26,7 @@ import static minicp.cp.BranchingScheme.*;
 
 import minicp.state.StateInt;
 import minicp.state.StateManager;
+import minicp.state.StateManagerTest;
 import minicp.state.Trailer;
 import minicp.util.Counter;
 import minicp.util.InconsistencyException;
@@ -37,7 +38,7 @@ import static org.junit.Assert.*;
 import static minicp.cp.Factory.*;
 
 
-public class DFSearchTest {
+public class DFSearchTest extends StateManagerTest {
 
     public static SearchObserver makeSearchObserver() {
         return new AbstractSearcher() {};
@@ -46,7 +47,7 @@ public class DFSearchTest {
     @Test
     public void testExample1() {
         SearchObserver r = makeSearchObserver();
-        StateManager sm = new Trailer();
+        StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         int [] values = new int[3];
 
@@ -73,35 +74,11 @@ public class DFSearchTest {
         assert(stats.nNodes == (8+4+2));
     }
 
-    @Test
-    public void testExample2() {
-        Solver cp = makeSolver();
-        IntVar[] values = makeIntVarArray(cp,3,2);
-
-        DFSearch dfs = makeDfs(cp,() -> {
-            int sel = -1;
-            for(int i = 0 ; i < values.length;i++)
-                if (values[i].getSize() > 1 && sel == -1)
-                    sel = i;
-            final int i = sel;
-            if (i == -1)
-                return EMPTY;
-            else return branch(()-> equal(values[i],0),
-                               ()-> equal(values[i],1));
-        });
-
-
-        SearchStatistics stats = dfs.solve();
-
-        assert(stats.nSolutions == 8);
-        assert(stats.nFailures == 0);
-        assert(stats.nNodes == (8+4+2));
-    }
 
     @Test
     public void testExample3() {
         SearchObserver r = makeSearchObserver();
-        StateManager sm = new Trailer();
+        StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         int [] values = new int[3];
 
@@ -136,7 +113,7 @@ public class DFSearchTest {
 
     @Test
     public void testDFS() {
-        StateManager sm = new Trailer();
+        StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[4];
 
@@ -179,7 +156,7 @@ public class DFSearchTest {
     @Test
     public void testDFSSearchLimit() {
         SearchObserver r = makeSearchObserver();
-        StateManager sm = new Trailer();
+        StateManager sm = stateFactory.get();
 
         StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[4];
@@ -220,7 +197,7 @@ public class DFSearchTest {
     @Test
     public void testDeepDFS() {
         SearchObserver r = makeSearchObserver();
-        StateManager sm = new Trailer();
+        StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         boolean [] values = new boolean[10000];
 
@@ -252,26 +229,6 @@ public class DFSearchTest {
     }
 
 
-    @Test
-    public void testSolveSubjectTo() {
-        Solver cp = makeSolver();
-        IntVar[] x = makeIntVarArray(cp,3,2);
-
-        DFSearch dfs = makeDfs(cp,firstFail(x));
-
-
-        SearchStatistics stats1 = dfs.solveSubjectTo(l -> false, () -> {
-            equal(x[0],0);
-        });
-
-        assertEquals(4,stats1.nSolutions);
-
-        SearchStatistics stats2 = dfs.solve(l -> false);
-
-        assertEquals(8,stats2.nSolutions);
-
-
-    }
 
 
 

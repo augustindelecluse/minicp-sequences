@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -34,7 +35,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-public class DisjunctiveTest {
+public class DisjunctiveTest extends SolverTest {
 
 
     private static void decomposeDisjunctive(IntVar[] start, int[] duration) {
@@ -62,7 +63,7 @@ public class DisjunctiveTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
 
             IntVar[] s = makeIntVarArray(cp, 5, 5);
             int[] d = new int[5];
@@ -75,6 +76,8 @@ public class DisjunctiveTest {
 
         } catch (InconsistencyException e) {
             assert (false);
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
 
     }
@@ -84,7 +87,7 @@ public class DisjunctiveTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
 
             IntVar[] s = makeIntVarArray(cp, 4, 20);
             int[] d = new int[] {5,4,6,7};
@@ -106,16 +109,17 @@ public class DisjunctiveTest {
 
             assertEquals(stat1.nSolutions, stat2.nSolutions);
 
-            System.out.println(stat1.nSolutions+" "+stat2.nSolutions);
 
         } catch (InconsistencyException e) {
             assert (false);
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
     @Test
     public void testBinaryDecomposition() {
-        Solver cp = makeSolver();
+        Solver cp  = solverFactory.get();
         IntVar s1 = makeIntVar(cp,0,10);
         int d1 = 10;
         IntVar s2 = makeIntVar(cp,6,15);
@@ -135,7 +139,7 @@ public class DisjunctiveTest {
 
     @Test
     public void testOverloadChecker() {
-        Solver cp = makeSolver();
+        Solver cp  = solverFactory.get();
         IntVar sA = makeIntVar(cp,0,9);
         int d1 = 5;
         IntVar sB = makeIntVar(cp,1,10);
@@ -157,7 +161,7 @@ public class DisjunctiveTest {
 
     @Test
     public void testDetectablePrecedence() {
-        Solver cp = makeSolver();
+        Solver cp  = solverFactory.get();
         IntVar sA = makeIntVar(cp,0,9);
         int d1 = 5;
         IntVar sB = makeIntVar(cp,1,10);
@@ -177,7 +181,7 @@ public class DisjunctiveTest {
 
     @Test
     public void testNotLast() {
-        Solver cp = makeSolver();
+        Solver cp  = solverFactory.get();
         IntVar sA = makeIntVar(cp,0,9);
         int d1 = 5;
         IntVar sB = makeIntVar(cp,1,10);

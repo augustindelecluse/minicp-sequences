@@ -15,11 +15,14 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
+import minicp.util.NotImplementedException;
+import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
 import static minicp.cp.Factory.makeDfs;
@@ -30,14 +33,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 
-public class Element1DVarTest {
+public class Element1DVarTest extends SolverTest {
 
     @Test
     public void element1dVarTest1() {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, 2, 40);
 
@@ -67,6 +70,8 @@ public class Element1DVarTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -75,7 +80,7 @@ public class Element1DVarTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, -4, 40);
 
@@ -108,6 +113,8 @@ public class Element1DVarTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -117,7 +124,7 @@ public class Element1DVarTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, -20, 40);
 
@@ -136,6 +143,8 @@ public class Element1DVarTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 

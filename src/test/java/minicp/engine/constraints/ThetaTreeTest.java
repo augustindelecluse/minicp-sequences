@@ -22,8 +22,6 @@ import static org.junit.Assert.fail;
 
 public class ThetaTreeTest {
 
-
-
     @Test
     public void simpleTest0() {
         ThetaTree thetaTree = new ThetaTree(4);

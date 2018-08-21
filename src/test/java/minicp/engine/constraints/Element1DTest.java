@@ -15,11 +15,14 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
+import minicp.util.NotImplementedException;
+import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
 import static minicp.cp.Factory.makeDfs;
@@ -27,17 +30,18 @@ import static minicp.cp.Factory.makeIntVar;
 import static minicp.cp.Factory.makeSolver;
 import static minicp.cp.BranchingScheme.firstFail;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 
-public class Element1DTest {
+public class Element1DTest extends SolverTest {
 
     @Test
     public void element1dTest1() {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, 2, 40);
 
@@ -67,6 +71,8 @@ public class Element1DTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -75,7 +81,7 @@ public class Element1DTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp  = solverFactory.get();
             IntVar y = makeIntVar(cp, -3, 10);
             IntVar z = makeIntVar(cp, -20, 40);
 
@@ -91,9 +97,65 @@ public class Element1DTest {
 
             assertEquals(5, stats.nSolutions);
 
-
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
+    }
+
+
+    @Test
+    public void element1dTest3() {
+        try {
+
+            Solver cp  = solverFactory.get();
+            IntVar y = makeIntVar(cp, 0, 4);
+            IntVar z = makeIntVar(cp, 5, 9);
+
+
+            int[] T = new int[]{9, 8, 7, 5, 6};
+
+            cp.post(new Element1D(T, y, z));
+
+            y.remove(3); //T[4]=5
+            y.remove(0); //T[0]=9
+
+            cp.fixPoint();
+
+            assertEquals(6, z.getMin());
+            assertEquals(8, z.getMax());
+        } catch (InconsistencyException e) {
+            fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
+    }
+
+    @Test
+    public void element1dTest4() {
+
+        try {
+
+            Solver cp  = solverFactory.get();
+            IntVar y = makeIntVar(cp, 0, 4);
+            IntVar z = makeIntVar(cp, 5, 9);
+
+
+            int[] T = new int[]{9, 8, 7, 5, 6};
+
+            cp.post(new Element1D(T, y, z));
+
+            z.remove(9); //new max is 8
+            z.remove(5); //new min is 6
+            cp.fixPoint();
+
+            assertFalse(y.contains(0));
+            assertFalse(y.contains(3));
+        } catch (InconsistencyException e) {
+            fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 

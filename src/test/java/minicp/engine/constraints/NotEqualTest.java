@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.util.InconsistencyException;
@@ -24,11 +25,11 @@ import static org.junit.Assert.*;
 import static minicp.cp.Factory.*;
 
 
-public class NotEqualTest {
+public class NotEqualTest extends SolverTest {
 
     @Test
     public void notEqualTest() {
-        Solver cp  = makeSolver();
+        Solver cp  = solverFactory.get();
 
         IntVar x = makeIntVar(cp,10);
         IntVar y = makeIntVar(cp,10);

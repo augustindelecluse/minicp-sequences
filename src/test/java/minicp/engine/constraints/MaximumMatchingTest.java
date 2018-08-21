@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.util.InconsistencyException;
@@ -28,7 +29,7 @@ import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
 
-public class MaximumMatchingTest {
+public class MaximumMatchingTest extends SolverTest {
 
     private static IntVar makeIVar(Solver cp, Integer ... values) {
         return makeIntVar(cp,new HashSet<>(Arrays.asList(values)));
@@ -50,7 +51,7 @@ public class MaximumMatchingTest {
     @Test
     public void test1() {
         try {
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar[] x = new IntVar[]{
                     makeIVar(cp, 1, 2),
                     makeIVar(cp, 1, 2),
@@ -83,7 +84,7 @@ public class MaximumMatchingTest {
     @Test
     public void test2() {
         try {
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar[] x = new IntVar[]{
                     makeIVar(cp, 1, 4, 5),
                     makeIVar(cp, 9, 10), // will be 10
