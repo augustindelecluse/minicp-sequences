@@ -71,7 +71,7 @@ public class TSP {
         */
         int n = distanceMatrix.length;
 
-        Solver cp = makeSolver();
+        Solver cp = makeSolver(false);
         IntVar[] succ = makeIntVarArray(cp, n, n);
         IntVar[] distSucc = makeIntVarArray(cp, n, 1000);
 

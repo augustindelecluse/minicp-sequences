@@ -5,38 +5,32 @@ import java.util.Stack;
 
 public class Copier implements StateManager {
 
+    class Backup extends Stack<StateEntry> {
+        private int sz;
+        private Stack<Storage> toFix;
+        Backup(Stack<Storage> st) {
+            sz = st.size();
+            toFix = st;
+            for (Storage s : st)
+                add(s.save());
+        }
+        void restore() {
+            toFix.setSize(sz);
+            for(StateEntry se : this)
+                se.restore();
+        }
+    }
     private Stack<Storage> store;
-    private Stack<Stack<StateEntry>> prior;
-    private Stack<StateEntry> backup;
+    private Stack<Backup> prior;
 
     public Copier() {
         store = new Stack<Storage>();
-        prior = new Stack<Stack<StateEntry>>();
-        backup = new Stack<StateEntry>();
+        prior = new Stack<Backup>();
     }
     public int getLevel()  { return prior.size()-1;}
     public int storeSize() { return store.size();}
-
-    public void save() {
-        for (Storage s : store)
-            backup.add(s.save());
-        prior.add(backup);
-        backup = prepare();
-    }
-    private Stack<StateEntry> prepare() {
-        Stack<StateEntry> backup = new Stack<>();
-        final int curSize = store.size();
-        backup.add(new StateEntry() {
-            public void restore() { store.setSize(curSize);}
-        });
-        return backup;
-    }
-    public void restore() {
-        Stack<StateEntry> toRestore = prior.pop();
-        for(StateEntry se : toRestore)
-            se.restore();
-        backup = prepare();
-    }
+    public void save()     { prior.add(new Backup(store));}
+    public void restore()  { prior.pop().restore();}
 
     public void withNewState(Procedure body) {
         final int level = getLevel();
