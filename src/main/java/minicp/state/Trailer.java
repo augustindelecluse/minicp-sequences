@@ -33,12 +33,12 @@ public class Trailer extends AbstractStateManager {
 
     /**
      * Stores the current state
-     * such that it can be recovered using restore()
+     * such that it can be recovered using restoreState()
      * Increase the level by 1
      */
     @Override
-    public void save() {
-        super.save();
+    public void saveState() {
+        super.saveState();
         magic++;
         notifySave();
     }
@@ -48,9 +48,9 @@ public class Trailer extends AbstractStateManager {
      * Decrease the level by 1
      */
     @Override
-    public void restore() {
+    public void restoreState() {
         magic++;
-        super.restore();
+        super.restoreState();
     }
 
 

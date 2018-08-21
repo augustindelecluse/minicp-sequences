@@ -93,13 +93,13 @@ public class DisjunctiveTest extends SolverTest {
             DFSearch dfs = makeDfs(cp, firstFail(s));
 
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
 
             cp.post(new Disjunctive(s, d));
 
             SearchStatistics stat1 = dfs.solve();
 
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
             decomposeDisjunctive(s, d);
 

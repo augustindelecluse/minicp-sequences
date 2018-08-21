@@ -165,12 +165,12 @@ public class CumulativeTest extends SolverTest {
 
             DFSearch search = makeDfs(cp, firstFail(s));
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
 
             cp.post(new Cumulative(s, d, r, 12));
             SearchStatistics stats1 = search.solve();
 
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
             cp.post(new CumulativeDecomposition(s, d, r, 12));
             SearchStatistics stats2 = search.solve();

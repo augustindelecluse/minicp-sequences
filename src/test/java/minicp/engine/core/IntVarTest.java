@@ -40,7 +40,7 @@ public class IntVarTest extends SolverTest {
         IntVar x = makeIntVar(cp, 10);
         IntVar y = makeIntVar(cp, 10);
 
-        cp.getStateManager().save();
+        cp.getStateManager().saveState();
 
 
         try {
@@ -65,8 +65,8 @@ public class IntVarTest extends SolverTest {
         }
 
 
-        cp.getStateManager().restore();
-        cp.getStateManager().save();
+        cp.getStateManager().restoreState();
+        cp.getStateManager().saveState();
 
         assertFalse(x.isBound());
         assertEquals(10, x.getSize());
@@ -124,7 +124,7 @@ public class IntVarTest extends SolverTest {
 
             IntVar x = makeIntVar(cp, -10, 10);
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
 
 
             try {
@@ -151,7 +151,7 @@ public class IntVarTest extends SolverTest {
             }
 
 
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
             assertEquals(21, x.getSize());
 
@@ -178,7 +178,7 @@ public class IntVarTest extends SolverTest {
 
             IntVar x = makeIntVar(cp, dom);
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
 
             try {
 
@@ -200,7 +200,7 @@ public class IntVarTest extends SolverTest {
             }
 
 
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
             for (int i = -15; i < 15; i++) {
                 if (dom.contains(i)) assertTrue(x.contains(i));

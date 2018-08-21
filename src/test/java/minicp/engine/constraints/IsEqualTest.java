@@ -67,15 +67,15 @@ public class IsEqualTest extends SolverTest {
 
             BoolVar b = isEqual(x, -2);
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
             equal(b, 1);
             assertEquals(-2, x.getMin());
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
             equal(b, 0);
             assertFalse(x.contains(-2));
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
         } catch (InconsistencyException e) {
             fail("should not fail");
@@ -118,17 +118,17 @@ public class IsEqualTest extends SolverTest {
             IntVar x = makeIntVar(cp, -4, 7);
             BoolVar b = makeBoolVar(cp);
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
             equal(b, 1);
             cp.post(new IsEqual(b, x, -2));
             assertEquals(-2, x.getMin());
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
             equal(b, 0);
             cp.post(new IsEqual(b, x, -2));
             assertFalse(x.contains(-2));
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
 
         } catch (InconsistencyException e) {

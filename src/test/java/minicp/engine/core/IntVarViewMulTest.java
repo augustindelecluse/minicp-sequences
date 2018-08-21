@@ -38,7 +38,7 @@ public class IntVarViewMulTest extends SolverTest {
         assertEquals(12, x.getMax());
         assertEquals(8, x.getSize());
 
-        cp.getStateManager().save();
+        cp.getStateManager().saveState();
 
 
         try {
@@ -71,7 +71,7 @@ public class IntVarViewMulTest extends SolverTest {
         } catch (InconsistencyException expectedException) {
         }
 
-        cp.getStateManager().restore();
+        cp.getStateManager().restoreState();
 
         assertEquals(8, x.getSize());
         assertFalse(x.contains(-1));

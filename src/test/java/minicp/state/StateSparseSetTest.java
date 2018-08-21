@@ -31,7 +31,7 @@ public class StateSparseSetTest extends StateManagerTest {
         StateManager sm = stateFactory.get();
         StateSparseSet set = new StateSparseSet(sm, 9, 0);
 
-        sm.save();
+        sm.saveState();
 
         set.remove(4);
         set.remove(6);
@@ -39,7 +39,7 @@ public class StateSparseSetTest extends StateManagerTest {
         assertFalse(set.contains(4));
         assertFalse(set.contains(6));
 
-        sm.restore();
+        sm.restoreState();
 
         assertTrue(set.contains(4));
         assertTrue(set.contains(6));
@@ -54,7 +54,7 @@ public class StateSparseSetTest extends StateManagerTest {
 
         assertTrue(toSet(set.toArray()).equals(toSet(new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9})));
 
-        sm.save();
+        sm.saveState();
 
         set.remove(1);
         set.remove(0);
@@ -67,8 +67,8 @@ public class StateSparseSetTest extends StateManagerTest {
         assertTrue(toSet(set.toArray()).equals(toSet(new int[]{2, 3, 4, 5, 6, 7})));
         assertTrue(set.getMax() == 7);
 
-        sm.restore();
-        sm.save();
+        sm.restoreState();
+        sm.saveState();
 
         assertEquals(10, set.getSize());
 
@@ -89,8 +89,8 @@ public class StateSparseSetTest extends StateManagerTest {
         assertTrue(toSet(set.toArray()).equals(toSet(new int[]{2})));
 
 
-        sm.restore();
-        sm.save();
+        sm.restoreState();
+        sm.saveState();
 
         assertEquals(10, set.getSize());
 
@@ -116,7 +116,7 @@ public class StateSparseSetTest extends StateManagerTest {
                 assertTrue(set.contains(i));
             }
 
-            sm.save();
+            sm.saveState();
 
             set.remove(4);
             set.remove(5);
@@ -126,15 +126,15 @@ public class StateSparseSetTest extends StateManagerTest {
             assertEquals(2, set.getMin());
             assertEquals(9, set.getMax());
 
-            sm.save();
+            sm.saveState();
 
             set.removeAllBut(7);
             assertEquals(7, set.getMin());
             assertEquals(7, set.getMax());
 
 
-            sm.restore();
-            sm.restore();
+            sm.restoreState();
+            sm.restoreState();
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));
@@ -157,7 +157,7 @@ public class StateSparseSetTest extends StateManagerTest {
             assertTrue(set.contains(i));
         }
 
-        sm.save();
+        sm.saveState();
 
 
         set.removeBelow(5);
@@ -166,15 +166,15 @@ public class StateSparseSetTest extends StateManagerTest {
         assertEquals(5, set.getMin());
         assertEquals(9, set.getMax());
 
-        sm.save();
+        sm.saveState();
 
         set.remove(7);
         set.removeBelow(7);
 
         assertEquals(8, set.getMin());
 
-        sm.restore();
-        sm.restore();
+        sm.restoreState();
+        sm.restoreState();
 
         for (int i = 0; i < 10; i++) {
             assertTrue(set.contains(i));
@@ -195,7 +195,7 @@ public class StateSparseSetTest extends StateManagerTest {
                 assertTrue(set.contains(i));
             }
 
-            sm.save();
+            sm.saveState();
 
 
             set.remove(1);
@@ -206,14 +206,14 @@ public class StateSparseSetTest extends StateManagerTest {
             assertEquals(0, set.getMin());
             assertEquals(7, set.getMax());
 
-            sm.save();
+            sm.saveState();
 
             set.removeAbove(2);
 
             assertEquals(0, set.getMax());
 
-            sm.restore();
-            sm.restore();
+            sm.restoreState();
+            sm.restoreState();
 
             for (int i = 0; i < 10; i++) {
                 assertTrue(set.contains(i));

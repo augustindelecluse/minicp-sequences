@@ -45,38 +45,38 @@
                  assertTrue(!xi.isBound());
              }
 
-             cp.getStateManager().save();
+             cp.getStateManager().saveState();
              equal(x[1], 0);
              equal(x[2], 0);
              equal(x[3], 0);
              assertTrue(!b.isBound());
              equal(x[0], 0);
              assertTrue(b.isFalse());
-             cp.getStateManager().restore();
+             cp.getStateManager().restoreState();
 
-             cp.getStateManager().save();
+             cp.getStateManager().saveState();
              equal(x[1], 0);
              equal(x[2], 1);
              assertTrue(b.isTrue());
-             cp.getStateManager().restore();
+             cp.getStateManager().restoreState();
 
-             cp.getStateManager().save();
+             cp.getStateManager().saveState();
              equal(b, 1);
              equal(x[1], 0);
              equal(x[2], 0);
              assertTrue(!x[0].isBound());
              equal(x[3], 0);
              assertTrue(x[0].isTrue());
-             cp.getStateManager().restore();
+             cp.getStateManager().restoreState();
 
 
-             cp.getStateManager().save();
+             cp.getStateManager().saveState();
              equal(b, 0);
              assertTrue(x[0].isFalse());
              assertTrue(x[1].isFalse());
              assertTrue(x[2].isFalse());
              assertTrue(x[3].isFalse());
-             cp.getStateManager().restore();
+             cp.getStateManager().restoreState();
 
 
          } catch (InconsistencyException e) {

@@ -18,8 +18,8 @@ public class Copier extends AbstractStateManager {
     }
 
     @Override
-    public void save() {
-        super.save();
+    public void saveState() {
+        super.saveState();
         for (Storage s : store) {
             pushState(s.save());
         }
@@ -30,7 +30,6 @@ public class Copier extends AbstractStateManager {
         return store.size();
     }
 
-    ;
 
     @Override
     public StateInt makeStateInt(int initValue) {

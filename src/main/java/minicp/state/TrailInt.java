@@ -24,6 +24,7 @@ public class TrailInt implements StateInt {
             this.v = v;
         }
 
+        @Override
         public void restore() {
             TrailInt.this.v = v;
         }
@@ -44,13 +45,10 @@ public class TrailInt implements StateInt {
         if (lastMagic != trailMagic) {
             lastMagic = trailMagic;
             trail.pushState(new StateEntryInt(v));
-        } /* else {
-            System.out.format("Skipping trailing because of magic [%d].... (%d)\n",
-                              trailMagic,
-                              System.identityHashCode(this));
-                              }*/
+        }
     }
 
+    @Override
     public int setValue(int v) {
         if (v != this.v) {
             trail();
@@ -59,14 +57,17 @@ public class TrailInt implements StateInt {
         return this.v;
     }
 
+    @Override
     public int increment() {
         return setValue(getValue() + 1);
     }
 
+    @Override
     public int decrement() {
         return setValue(getValue() - 1);
     }
 
+    @Override
     public int getValue() {
         return this.v;
     }

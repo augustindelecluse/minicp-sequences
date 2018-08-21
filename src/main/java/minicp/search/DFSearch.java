@@ -113,13 +113,13 @@ public class DFSearch {
         } else {
             for (int i = alts.length - 1; i >= 0; i--) {
                 Procedure a = alts[i];
-                alternatives.push(() -> sm.restore());
+                alternatives.push(() -> sm.restoreState());
                 alternatives.push(() -> {
                     statistics.nNodes++;
                     a.call();
                     expandNode(alternatives, statistics);
                 });
-                alternatives.push(() -> sm.save());
+                alternatives.push(() -> sm.saveState());
             }
         }
     }

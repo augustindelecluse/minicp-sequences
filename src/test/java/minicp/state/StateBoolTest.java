@@ -30,7 +30,7 @@ public class StateBoolTest extends StateManagerTest {
         StateBool b1 = sm.makeStateBool(true);
         StateBool b2 = sm.makeStateBool(false);
 
-        sm.save();
+        sm.saveState();
 
         b1.setValue(true);
         b1.setValue(false);
@@ -39,7 +39,7 @@ public class StateBoolTest extends StateManagerTest {
         b2.setValue(false);
         b2.setValue(true);
 
-        sm.restore();
+        sm.restoreState();
 
         assertTrue(b1.getValue());
         assertFalse(b2.getValue());

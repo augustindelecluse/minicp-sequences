@@ -24,8 +24,8 @@ import java.util.Stack;
 
 public abstract class AbstractStateManager implements StateManager {
 
-    private Stack<StateEntry> stateEntries = new Stack<StateEntry>();
-    private Stack<Integer> limits = new Stack<Integer>();
+    private Stack<StateEntry> entryStack = new Stack<StateEntry>();
+    private Stack<Integer> stateStack = new Stack<Integer>();
 
     private List<Procedure> restoreListeners = new LinkedList<>();
     private List<Procedure> saveListeners = new LinkedList<>();
@@ -56,23 +56,23 @@ public abstract class AbstractStateManager implements StateManager {
      * The current level is -1
      */
     public AbstractStateManager() {
-        stateEntries.ensureCapacity(1000000);
-        limits.ensureCapacity(1000000);
+        entryStack.ensureCapacity(1000000);
+        stateStack.ensureCapacity(1000000);
     }
 
 
     public void pushState(StateEntry entry) {
-        stateEntries.push(entry);
+        entryStack.push(entry);
     }
 
     /**
-     * Restore all the entries from the top of the stateEntries stack
+     * Restore all the entries from the top of the entryStack stack
      * to the limit (excluded)
      */
     private void restoreToSize(int size) {
-        int n = stateEntries.size() - size;
+        int n = entryStack.size() - size;
         for (int i = 0; i < n; i++) {
-            stateEntries.pop().restore();
+            entryStack.pop().restore();
         }
     }
 
@@ -80,16 +80,16 @@ public abstract class AbstractStateManager implements StateManager {
      * @return The current level
      */
     public int getLevel() {
-        return limits.size() - 1;
+        return stateStack.size() - 1;
     }
 
     /**
      * Stores the current state
-     * such that it can be recovered using restore()
+     * such that it can be recovered using restoreState()
      * Increase the level by 1
      */
-    public void save() {
-        limits.push(stateEntries.size());
+    public void saveState() {
+        stateStack.push(entryStack.size());
     }
 
 
@@ -97,19 +97,19 @@ public abstract class AbstractStateManager implements StateManager {
      * Restores state as it was at getLevel()-1
      * Decrease the level by 1
      */
-    public void restore() {
-        restoreToSize(limits.pop());
+    public void restoreState() {
+        restoreToSize(stateStack.pop());
         notifyRestore();
     }
 
     /**
-     * Restores the state as it was at level 0 (first save)
+     * Restores the state as it was at level 0 (first saveState)
      * The level is now -1.
-     * Notice that you'll probably want to save after this operation.
+     * Notice that you'll probably want to saveState after this operation.
      */
-    public void restoreAll() {
-        restoreUntil(-1);
-        stateEntries.clear();
+    public void restoreAllState() {
+        restoreStateUntil(-1);
+        entryStack.clear();
     }
 
     /**
@@ -117,17 +117,17 @@ public abstract class AbstractStateManager implements StateManager {
      *
      * @param level
      */
-    public void restoreUntil(int level) {
+    public void restoreStateUntil(int level) {
         while (getLevel() > level) {
-            restore();
+            restoreState();
         }
     }
 
     public void withNewState(Procedure body) {
         int level = getLevel();
-        save();
+        saveState();
         body.call();
-        restoreUntil(level);
+        restoreStateUntil(level);
     }
 
     public abstract StateInt makeStateInt(int initValue);

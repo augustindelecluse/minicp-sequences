@@ -21,28 +21,28 @@ public interface StateManager {
 
     /**
      * Stores the current state
-     * such that it can be recovered using restore()
+     * such that it can be recovered using restoreState()
      * Increase the level by 1
      */
-    void save();
+    void saveState();
 
 
     /**
      * Restores state as it was at getLevel()-1
      * Decrease the level by 1
      */
-    void restore();
+    void restoreState();
 
     /**
-     * Restores the state as it was at level 0 (first save)
+     * Restores the state as it was at level 0 (first saveState)
      * The level is now -1.
-     * Notice that you'll probably want to save after this operation.
+     * Notice that you'll probably want to saveState after this operation.
      */
-    void restoreAll();
+    void restoreAllState();
 
     public int getLevel();
 
-    void restoreUntil(int level);
+    void restoreStateUntil(int level);
 
     void onRestore(Procedure listener);
 

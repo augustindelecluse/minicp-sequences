@@ -24,6 +24,7 @@ public class CopyInt implements Storage, StateInt {
             this.v = v;
         }
 
+        @Override
         public void restore() {
             CopyInt.this.v = v;
         }
@@ -31,7 +32,7 @@ public class CopyInt implements Storage, StateInt {
 
     private int v;
 
-    public CopyInt(int initial) {
+    protected CopyInt(int initial) {
         v = initial;
     }
 
