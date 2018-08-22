@@ -54,7 +54,7 @@ public class IsLessOrEqualVarTest extends SolverTest {
                     assertTrue(x.getMin() <= y.getMin() && b.isTrue() || x.getMin() > y.getMin() && b.isFalse())
             );
 
-            assertEquals(36, stats.nSolutions);
+            assertEquals(36, stats.numberOfSolutions());
 
         } catch (InconsistencyException e) {
             fail("should not fail");

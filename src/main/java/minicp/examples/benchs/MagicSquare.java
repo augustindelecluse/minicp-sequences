@@ -85,7 +85,7 @@ public class MagicSquare {
         DFSearch dfs = makeDfs(cp, firstFail(xFlat));
 
         long t0 = System.currentTimeMillis();
-        SearchStatistics stats = dfs.solve(stat -> stat.nSolutions >= 10000); // stop on first solution
+        SearchStatistics stats = dfs.solve(stat -> stat.numberOfSolutions() >= 10000); // stop on first solution
         System.out.println(stats);
         System.out.println("time:" + (System.currentTimeMillis() - t0));
     }

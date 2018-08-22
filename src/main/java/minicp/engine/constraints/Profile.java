@@ -44,7 +44,11 @@ public class Profile {
         }
     }
 
-    final Rectangle[] profileRectangles;
+    private final Rectangle[] profileRectangles;
+
+    public Rectangle[] rectangles() {
+        return profileRectangles;
+    }
 
 
     public Profile(Rectangle... rectangles) {
@@ -60,17 +64,17 @@ public class Profile {
 
         Arrays.sort(points);
 
-        int sweep_h = 0;
-        int sweep_t = points[0].key;
+        int sweepHeight = 0;
+        int sweepTime = points[0].key;
         for (Entry e : points) {
             int t = e.key;
             int h = e.value;
-            if (t != sweep_t) {
+            if (t != sweepTime) {
                 //System.out.println(sweep_t+" "+t);
-                profile.add(new Rectangle(sweep_t, t, sweep_h));
-                sweep_t = t;
+                profile.add(new Rectangle(sweepTime, t, sweepHeight));
+                sweepTime = t;
             }
-            sweep_h += h;
+            sweepHeight += h;
         }
         this.profileRectangles = profile.toArray(new Rectangle[0]);
 

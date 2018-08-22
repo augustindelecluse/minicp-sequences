@@ -5,20 +5,20 @@ import minicp.engine.core.IntVar;
 
 public class Element1DVar extends AbstractConstraint {
 
-    private final IntVar[] T;
+    private final IntVar[] array;
     private final IntVar y;
     private final IntVar z;
 
     private final int[] yValues;
 
-    IntVar supMin;
-    IntVar supMax;
-    int zMin;
-    int zMax;
+    private IntVar supMin;
+    private IntVar supMax;
+    private int zMin;
+    private int zMax;
 
-    public Element1DVar(IntVar[] T, IntVar y, IntVar z) {
+    public Element1DVar(IntVar[] array, IntVar y, IntVar z) {
         super(y.getSolver());
-        this.T = T;
+        this.array = array;
         this.y = y;
         this.z = z;
         yValues = new int[y.getSize()];
@@ -27,9 +27,9 @@ public class Element1DVar extends AbstractConstraint {
     @Override
     public void post() {
         y.removeBelow(0);
-        y.removeAbove(T.length - 1);
+        y.removeAbove(array.length - 1);
 
-        for (IntVar t : T) {
+        for (IntVar t : array) {
             t.propagateOnBoundChange(this);
         }
         y.propagateOnDomainChange(this);
@@ -56,7 +56,7 @@ public class Element1DVar extends AbstractConstraint {
 
     private void equalityPropagate() {
         int id = y.getMin();
-        IntVar tVar = T[id];
+        IntVar tVar = array[id];
         tVar.removeBelow(zMin);
         tVar.removeAbove(zMax);
         z.removeBelow(tVar.getMin());
@@ -71,7 +71,7 @@ public class Element1DVar extends AbstractConstraint {
         while (i > 0) {
             i -= 1;
             int id = yValues[i];
-            IntVar tVar = T[id];
+            IntVar tVar = array[id];
             int tMin = tVar.getMin();
             int tMax = tVar.getMax();
             if (tMax < zMin || tMin > zMax) {

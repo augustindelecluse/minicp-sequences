@@ -18,10 +18,10 @@ package minicp.engine.core;
 
 public interface BoolVar extends IntVar {
 
-    public boolean isTrue();
+    boolean isTrue();
 
-    public boolean isFalse();
+    boolean isFalse();
 
-    public void assign(boolean b);
+    void assign(boolean b);
 
 }

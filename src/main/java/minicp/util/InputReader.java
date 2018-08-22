@@ -59,6 +59,18 @@ public class InputReader {
         return Integer.parseInt(tokenizer.nextToken());
     }
 
+    public int[][] getMatrix(int n, int m) throws RuntimeException {
+        int [][] matrix = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                matrix[i][j] = getInt();
+            }
+        }
+        return matrix;
+    }
+
+
+
     public Integer[] getIntLine() throws RuntimeException {
         if (!tokenizer.hasMoreTokens()) {
             try {

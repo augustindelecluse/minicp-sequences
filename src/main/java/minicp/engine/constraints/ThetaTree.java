@@ -27,7 +27,7 @@ public class ThetaTree {
         private int sump;
         private int ect;
 
-        public Node() {
+        Node() {
             reset();
         }
 

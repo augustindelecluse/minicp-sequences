@@ -86,7 +86,7 @@ public class MagicSquare {
                 }
         );
 
-        SearchStatistics stats = dfs.solve(stat -> stat.nSolutions >= 1); // stop on first solution
+        SearchStatistics stats = dfs.solve(stat -> stat.numberOfSolutions() >= 1); // stop on first solution
 
         System.out.println(stats);
     }

@@ -127,7 +127,7 @@ public class NegTableTest extends SolverTest {
                 cp.post(new NegTableCT(x, table));
                 DFSearch dfs = makeDfs(cp, firstFail(x));
                 SearchStatistics stats = dfs.solve();
-                assertEquals(7, stats.nSolutions);
+                assertEquals(7, stats.numberOfSolutions());
 
             } catch (InconsistencyException e) {
                 fail("should not fail");
@@ -147,7 +147,7 @@ public class NegTableTest extends SolverTest {
                 cp.post(new NegTableCT(x, table));
                 DFSearch dfs = makeDfs(cp, firstFail(x));
                 SearchStatistics stats = dfs.solve();
-                assertEquals(7, stats.nSolutions);
+                assertEquals(7, stats.numberOfSolutions());
 
             } catch (InconsistencyException e) {
                 fail("should not fail");
@@ -221,9 +221,9 @@ public class NegTableTest extends SolverTest {
 
         assertTrue((statsDecomp == null && statsAlgo == null) || (statsDecomp != null && statsAlgo != null));
         if (statsDecomp != null) {
-            assertEquals(statsDecomp.nSolutions, statsAlgo.nSolutions);
-            assertEquals(statsDecomp.nFailures, statsAlgo.nFailures);
-            assertEquals(statsDecomp.nNodes, statsAlgo.nNodes);
+            assertEquals(statsDecomp.numberOfSolutions(), statsAlgo.numberOfSolutions());
+            assertEquals(statsDecomp.numberOfFailures(), statsAlgo.numberOfFailures());
+            assertEquals(statsDecomp.numberOfNodes(), statsAlgo.numberOfNodes());
         }
     }
 }

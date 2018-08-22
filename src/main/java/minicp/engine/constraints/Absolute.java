@@ -5,8 +5,8 @@ import minicp.engine.core.IntVar;
 
 public class Absolute extends AbstractConstraint {
 
-    private IntVar x;
-    private IntVar y;
+    private final IntVar x;
+    private final IntVar y;
 
     /**
      * Build a constraint y = |x|

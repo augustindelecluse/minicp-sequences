@@ -54,7 +54,7 @@ public class CumulativeTest extends SolverTest {
             cp.post(new Cumulative(s, d, r, 100));
 
             SearchStatistics stats = makeDfs(cp, firstFail(s)).solve();
-            assertEquals("cumulative alldiff expect makeIntVarArray permutations", 120, stats.nSolutions);
+            assertEquals("cumulative alldiff expect makeIntVarArray permutations", 120, stats.numberOfSolutions());
 
         } catch (InconsistencyException e) {
             assert (false);
@@ -176,8 +176,8 @@ public class CumulativeTest extends SolverTest {
             SearchStatistics stats2 = search.solve();
 
 
-            assertEquals(stats1.nSolutions, stats2.nSolutions);
-            assertEquals(stats1.nFailures, stats2.nFailures);
+            assertEquals(stats1.numberOfSolutions(), stats2.numberOfSolutions());
+            assertEquals(stats1.numberOfFailures(), stats2.numberOfFailures());
 
 
         } catch (InconsistencyException e) {

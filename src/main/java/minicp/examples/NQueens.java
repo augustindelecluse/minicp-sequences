@@ -60,9 +60,9 @@ public class NQueens {
         search.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(q))
         );
-        SearchStatistics stats = search.solve(statistics -> statistics.nSolutions == 1000);
+        SearchStatistics stats = search.solve(statistics -> statistics.numberOfSolutions() == 1000);
 
-        System.out.format("#Solutions: %s\n", stats.nSolutions);
+        System.out.format("#Solutions: %s\n", stats.numberOfSolutions());
         System.out.format("Statistics: %s\n", stats);
 
     }

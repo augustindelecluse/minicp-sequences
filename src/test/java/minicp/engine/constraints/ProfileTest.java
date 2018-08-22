@@ -31,15 +31,15 @@ public class ProfileTest {
 
     private boolean checkProfile(Rectangle... rectangles) {
         Profile p = new Profile(rectangles);
-        int[] discreteProfile_p = discreteProfile(p.profileRectangles);
+        int[] discreteProfile_p = discreteProfile(p.rectangles());
         int[] discreteProfile_r = discreteProfile(rectangles);
         if (!Arrays.equals(discreteProfile_p, discreteProfile_r)) {
             System.out.println("not same profile");
             return false;
         }
-
-        for (int i = 0; i < p.profileRectangles.length - 1; i++) {
-            if (p.profileRectangles[i].end != p.profileRectangles[i + 1].start) {
+        Rectangle [] rects = p.rectangles();
+        for (int i = 0; i < rects.length - 1; i++) {
+            if (rects[i].end != rects[i + 1].start) {
                 System.out.println("not continuous rectangles");
                 return false;
             }

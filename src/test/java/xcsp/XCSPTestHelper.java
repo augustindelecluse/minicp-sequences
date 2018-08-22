@@ -1,4 +1,4 @@
-package xcsp3;
+package xcsp;
 
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
@@ -12,10 +12,10 @@ import java.util.List;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public abstract class XCSP3TestHelper {
+public abstract class XCSPTestHelper {
     private String path;
 
-    public XCSP3TestHelper(String path) {
+    public XCSPTestHelper(String path) {
         this.path = path;
     }
 
@@ -24,11 +24,11 @@ public abstract class XCSP3TestHelper {
         boolean shouldBeSat = !path.contains("unsat");
         try {
             System.out.println(path);
-            XCSP3 xcsp3 = new XCSP3(path);
-            String solution = xcsp3.solve(1, 3);
+            XCSP xcsp = new XCSP(path);
+            String solution = xcsp.solve(1, 3);
 
             if (shouldBeSat) {
-                List<String> violatedCtrs = xcsp3.getViolatedCtrs(solution);
+                List<String> violatedCtrs = xcsp.getViolatedCtrs(solution);
                 assertTrue(violatedCtrs.isEmpty());
             } else {
                 assertTrue(solution.equals(""));

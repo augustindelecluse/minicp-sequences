@@ -40,11 +40,11 @@ public class MiniCPTest extends SolverTest {
             equal(x[0], 0);
         });
 
-        assertEquals(4, stats1.nSolutions);
+        assertEquals(4, stats1.numberOfSolutions());
 
         SearchStatistics stats2 = dfs.solve(l -> false);
 
-        assertEquals(8, stats2.nSolutions);
+        assertEquals(8, stats2.numberOfSolutions());
 
 
     }
@@ -69,9 +69,9 @@ public class MiniCPTest extends SolverTest {
 
         SearchStatistics stats = dfs.solve();
 
-        assert (stats.nSolutions == 8);
-        assert (stats.nFailures == 0);
-        assert (stats.nNodes == (8 + 4 + 2));
+        assertEquals (8,stats.numberOfSolutions());
+        assertEquals (0,stats.numberOfFailures());
+        assertEquals ((8 + 4 + 2),stats.numberOfNodes());
     }
 
 

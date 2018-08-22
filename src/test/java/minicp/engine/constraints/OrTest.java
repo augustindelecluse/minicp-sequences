@@ -80,7 +80,7 @@ public class OrTest extends SolverTest {
 
             SearchStatistics stats = dfs.solve();
 
-            assertEquals(15, stats.nSolutions);
+            assertEquals(15, stats.numberOfSolutions());
 
         } catch (InconsistencyException e) {
             fail("should not fail");

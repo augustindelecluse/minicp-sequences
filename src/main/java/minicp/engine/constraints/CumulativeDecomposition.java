@@ -61,8 +61,9 @@ public class CumulativeDecomposition extends AbstractConstraint {
 
                 cp.post(new IsLessOrEqual(endsAfter, minus(plus(start[i], duration[i] - 1)), -t));
 
+                final int capa = -2;
                 // overlaps = endsAfter & startsBefore
-                cp.post(new IsLessOrEqual(overlaps[i], minus(sum(new IntVar[]{startsBefore, endsAfter})), -2));
+                cp.post(new IsLessOrEqual(overlaps[i], minus(sum(new IntVar[]{startsBefore, endsAfter})), capa));
             }
 
             IntVar[] overlapHeights = Factory.makeIntVarArray(start.length, i -> mul(overlaps[i], demand[i]));

@@ -164,9 +164,9 @@ public class Eternity {
         });
 
 
-        SearchStatistics stats = dfs.solve(statistics -> statistics.nSolutions == 1);
+        SearchStatistics stats = dfs.solve(statistics -> statistics.numberOfSolutions() == 1);
 
-        System.out.format("#Solutions: %s\n", stats.nSolutions);
+        System.out.format("#Solutions: %s\n", stats.numberOfSolutions());
         System.out.format("Statistics: %s\n", stats);
 
     }

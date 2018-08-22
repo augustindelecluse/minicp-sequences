@@ -31,15 +31,19 @@ import java.util.stream.IntStream;
 
 public class Factory {
 
-    static public Solver makeSolver() {
+    private Factory() {
+        throw new UnsupportedOperationException();
+    }
+
+    public static Solver makeSolver() {
         return new MiniCP(new Trailer());
     }
 
-    static public Solver makeSolver(boolean byCopy) {
+    public static Solver makeSolver(boolean byCopy) {
         return new MiniCP(byCopy ? new Copier() : new Trailer());
     }
 
-    static public IntVar mul(IntVar x, int a) {
+    public static IntVar mul(IntVar x, int a) {
         if (a == 0) return makeIntVar(x.getSolver(), 0, 0);
         else if (a == 1) return x;
         else if (a < 0) {
@@ -49,19 +53,19 @@ public class Factory {
         }
     }
 
-    static public IntVar minus(IntVar x) {
+    public static IntVar minus(IntVar x) {
         return new IntVarViewOpposite(x);
     }
 
-    static public IntVar plus(IntVar x, int v) {
+    public static IntVar plus(IntVar x, int v) {
         return new IntVarViewOffset(x, v);
     }
 
-    static public IntVar minus(IntVar x, int v) {
+    public static IntVar minus(IntVar x, int v) {
         return new IntVarViewOffset(x, -v);
     }
 
-    static public IntVar abs(IntVar x) {
+    public static IntVar abs(IntVar x) {
         IntVar r = makeIntVar(x.getSolver(), 0, x.getMax());
         x.getSolver().post(new Absolute(x, r));
         return r;
@@ -74,7 +78,7 @@ public class Factory {
      * @param cp
      * @param sz > 0
      */
-    static public IntVar makeIntVar(Solver cp, int sz) {
+    public static IntVar makeIntVar(Solver cp, int sz) {
         return new IntVarImpl(cp, sz);
     }
 
@@ -86,33 +90,33 @@ public class Factory {
      * @param min
      * @param max > min
      */
-    static public IntVar makeIntVar(Solver cp, int min, int max) {
+    public static IntVar makeIntVar(Solver cp, int min, int max) {
         return new IntVarImpl(cp, min, max);
     }
 
-    static public IntVar makeIntVar(Solver cp, Set<Integer> values) {
+    public static IntVar makeIntVar(Solver cp, Set<Integer> values) {
         return new IntVarImpl(cp, values);
     }
 
-    static public BoolVar makeBoolVar(Solver cp) {
+    public static BoolVar makeBoolVar(Solver cp) {
         return new BoolVarImpl(cp);
     }
 
     // Factory
-    static public IntVar[] makeIntVarArray(Solver cp, int n, int sz) {
+    public static IntVar[] makeIntVarArray(Solver cp, int n, int sz) {
         return makeIntVarArray(n, i -> makeIntVar(cp, sz));
     }
 
     // Factory
-    static public IntVar[] makeIntVarArray(Solver cp, int n, int min, int max) {
+    public static IntVar[] makeIntVarArray(Solver cp, int n, int min, int max) {
         return makeIntVarArray(n, i -> makeIntVar(cp, min, max));
     }
 
-    static public IntVar[] makeIntVarArray(int n, Function<Integer, IntVar> body) {
+    public static IntVar[] makeIntVarArray(int n, Function<Integer, IntVar> body) {
         return makeIntVarArray(0, n - 1, body);
     }
 
-    static public IntVar[] makeIntVarArray(int low, int up, Function<Integer, IntVar> body) {
+    public static IntVar[] makeIntVarArray(int low, int up, Function<Integer, IntVar> body) {
         int sz = up - low + 1;
         IntVar[] t = new IntVar[sz];
         for (int i = low; i <= up; i++)
@@ -120,13 +124,13 @@ public class Factory {
         return t;
     }
 
-    static public DFSearch makeDfs(Solver cp, Supplier<Procedure[]> branching) {
+    public static DFSearch makeDfs(Solver cp, Supplier<Procedure[]> branching) {
         return new DFSearch(cp.getStateManager(), branching);
     }
 
     // -------------- constraints -----------------------
 
-    static public IntVar maximum(IntVar... x) {
+    public static IntVar maximum(IntVar... x) {
         Solver cp = x[0].getSolver();
         int min = Arrays.stream(x).mapToInt(IntVar::getMin).min().getAsInt();
         int max = Arrays.stream(x).mapToInt(IntVar::getMax).max().getAsInt();
@@ -135,35 +139,35 @@ public class Factory {
         return y;
     }
 
-    static public IntVar minimum(IntVar... x) {
+    public static IntVar minimum(IntVar... x) {
         IntVar[] minusX = Arrays.stream(x).map(Factory::minus).toArray(IntVar[]::new);
         return minus(maximum(minusX));
     }
 
-    static public void equal(IntVar x, int v) {
+    public static void equal(IntVar x, int v) {
         x.assign(v);
         x.getSolver().fixPoint();
     }
 
-    static public void lessOrEqual(IntVar x, int v) {
+    public static void lessOrEqual(IntVar x, int v) {
         x.removeAbove(v);
         x.getSolver().fixPoint();
     }
 
-    static public void notEqual(IntVar x, int v) {
+    public static void notEqual(IntVar x, int v) {
         x.remove(v);
         x.getSolver().fixPoint();
     }
 
-    static public Constraint notEqual(IntVar x, IntVar y) {
+    public static Constraint notEqual(IntVar x, IntVar y) {
         return new NotEqual(x, y);
     }
 
-    static public Constraint notEqual(IntVar x, IntVar y, int c) {
+    public static Constraint notEqual(IntVar x, IntVar y, int c) {
         return new NotEqual(x, y, c);
     }
 
-    static public BoolVar isEqual(IntVar x, final int c) {
+    public static BoolVar isEqual(IntVar x, final int c) {
         BoolVar b = makeBoolVar(x.getSolver());
         Solver cp = x.getSolver();
         try {
@@ -174,56 +178,56 @@ public class Factory {
         return b;
     }
 
-    static public BoolVar isLessOrEqual(IntVar x, final int c) {
+    public static BoolVar isLessOrEqual(IntVar x, final int c) {
         BoolVar b = makeBoolVar(x.getSolver());
         Solver cp = x.getSolver();
         cp.post(new IsLessOrEqual(b, x, c));
         return b;
     }
 
-    static public BoolVar isLess(IntVar x, final int c) {
+    public static BoolVar isLess(IntVar x, final int c) {
         return isLessOrEqual(x, c - 1);
     }
 
-    static public BoolVar isLargerOrEqual(IntVar x, final int c) {
+    public static BoolVar isLargerOrEqual(IntVar x, final int c) {
         return isLessOrEqual(minus(x), -c);
     }
 
-    static public BoolVar isLarger(IntVar x, final int c) {
+    public static BoolVar isLarger(IntVar x, final int c) {
         return isLargerOrEqual(x, c + 1);
     }
 
-    static public Constraint lessOrEqual(IntVar x, IntVar y) {
+    public static Constraint lessOrEqual(IntVar x, IntVar y) {
         return new LessOrEqual(x, y);
     }
 
-    static public Constraint largerOrEqual(IntVar x, IntVar y) {
+    public static Constraint largerOrEqual(IntVar x, IntVar y) {
         return new LessOrEqual(y, x);
     }
 
 
-    static public IntVar element(int[] T, IntVar y) {
+    public static IntVar element(int[] array, IntVar y) {
         Solver cp = y.getSolver();
-        IntVar z = makeIntVar(cp, IntStream.of(T).min().getAsInt(), IntStream.of(T).max().getAsInt());
-        cp.post(new Element1D(T, y, z));
+        IntVar z = makeIntVar(cp, IntStream.of(array).min().getAsInt(), IntStream.of(array).max().getAsInt());
+        cp.post(new Element1D(array, y, z));
         return z;
     }
 
-    static public IntVar element(int[][] T, IntVar x, IntVar y) {
+    public static IntVar element(int[][] matrix, IntVar x, IntVar y) {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
-        for (int i = 0; i < T.length; i++) {
-            for (int j = 0; j < T[i].length; j++) {
-                min = Math.min(min, T[i][j]);
-                max = Math.max(max, T[i][j]);
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                min = Math.min(min, matrix[i][j]);
+                max = Math.max(max, matrix[i][j]);
             }
         }
         IntVar z = makeIntVar(x.getSolver(), min, max);
-        x.getSolver().post(new Element2D(T, x, y, z));
+        x.getSolver().post(new Element2D(matrix, x, y, z));
         return z;
     }
 
-    static public IntVar sum(IntVar... x) {
+    public static IntVar sum(IntVar... x) {
         int sumMin = 0;
         int sumMax = 0;
         for (int i = 0; i < x.length; i++) {
@@ -236,19 +240,19 @@ public class Factory {
         return s;
     }
 
-    static public Constraint sum(IntVar[] x, IntVar y) {
+    public static Constraint sum(IntVar[] x, IntVar y) {
         return new Sum(x, y);
     }
 
-    static public Constraint sum(IntVar[] x, int y) {
+    public static Constraint sum(IntVar[] x, int y) {
         return new Sum(x, y);
     }
 
-    static public Constraint allDifferent(IntVar[] x) {
+    public static Constraint allDifferent(IntVar[] x) {
         return new AllDifferentBinary(x);
     }
 
-    static public Constraint allDifferentAC(IntVar[] x) {
+    public static Constraint allDifferentAC(IntVar[] x) {
         return new AllDifferentAC(x);
     }
 }

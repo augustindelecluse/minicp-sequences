@@ -30,12 +30,12 @@ public class Element1D extends Element2D {
     /**
      * T[y] = z
      *
-     * @param T
+     * @param array
      * @param y
      * @param z
      */
-    public Element1D(int[] T, IntVar y, IntVar z) {
-        super(to2d(T), Factory.makeIntVar(y.getSolver(), 0, 0), y, z);
+    public Element1D(int[] array, IntVar y, IntVar z) {
+        super(to2d(array), Factory.makeIntVar(y.getSolver(), 0, 0), y, z);
     }
 
 }

@@ -53,7 +53,7 @@ public class IsLessOrEqualTest extends SolverTest {
             SearchStatistics stats = search.solve();
 
 
-            assertEquals(12, stats.nSolutions);
+            assertEquals(12, stats.numberOfSolutions());
 
         } catch (InconsistencyException e) {
             fail("should not fail");

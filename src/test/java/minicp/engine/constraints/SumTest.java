@@ -219,7 +219,7 @@ public class SumTest extends SolverTest {
 
             SearchStatistics stats = search.solve();
 
-            assertEquals(37, stats.nSolutions);
+            assertEquals(37, stats.numberOfSolutions());
 
 
         } catch (InconsistencyException e) {

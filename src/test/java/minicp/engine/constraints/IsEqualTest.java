@@ -50,7 +50,7 @@ public class IsEqualTest extends SolverTest {
                     assertEquals(-2 == x.getMin(), b.isTrue())
             );
 
-            assertEquals(12, stats.nSolutions);
+            assertEquals(12, stats.numberOfSolutions());
 
 
         } catch (NotImplementedException e) {

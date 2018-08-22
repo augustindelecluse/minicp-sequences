@@ -61,7 +61,7 @@ public class AllDifferentTest extends SolverTest {
             cp.post(allDifferent(x));
 
             SearchStatistics stats = makeDfs(cp, firstFail(x)).solve();
-            assertEquals(120, stats.nSolutions);
+            assertEquals(120, stats.numberOfSolutions());
 
         } catch (InconsistencyException e) {
             assert (false);

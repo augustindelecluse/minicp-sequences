@@ -150,9 +150,9 @@ public class TableTest extends SolverTest {
 
         assertTrue((statsDecomp == null && statsAlgo == null) || (statsDecomp != null && statsAlgo != null));
         if (statsDecomp != null) {
-            assertEquals(statsDecomp.nSolutions, statsAlgo.nSolutions);
-            assertEquals(statsDecomp.nFailures, statsAlgo.nFailures);
-            assertEquals(statsDecomp.nNodes, statsAlgo.nNodes);
+            assertEquals(statsDecomp.numberOfSolutions(), statsAlgo.numberOfSolutions());
+            assertEquals(statsDecomp.numberOfFailures(), statsAlgo.numberOfFailures());
+            assertEquals(statsDecomp.numberOfNodes(), statsAlgo.numberOfNodes());
         }
     }
 }

@@ -96,14 +96,14 @@ public class Disjunctive extends AbstractConstraint {
 
         if (postMirror) {
             for (int i = 0; i < start.length; i++) {
-                IntVar end_i = plus(start[i], duration[i]);
+                IntVar endi = plus(start[i], duration[i]);
                 for (int j = i + 1; j < start.length; j++) {
-                    IntVar end_j = plus(start[j], duration[j]);
+                    IntVar endj = plus(start[j], duration[j]);
                     BoolVar iBeforej = makeBoolVar(cp);
                     BoolVar jBeforei = makeBoolVar(cp);
 
-                    cp.post(new IsLessOrEqualVar(iBeforej, end_i, start[j]));
-                    cp.post(new IsLessOrEqualVar(jBeforei, end_j, start[i]));
+                    cp.post(new IsLessOrEqualVar(iBeforej, endi, start[j]));
+                    cp.post(new IsLessOrEqualVar(jBeforei, endj, start[i]));
                     cp.post(new NotEqual(iBeforej, jBeforei), false);
 
                     // TODO i before j or j before i
@@ -159,22 +159,22 @@ public class Disjunctive extends AbstractConstraint {
         Arrays.sort(permLst, Comparator.comparingInt(i -> start[i].getMax()));
         Arrays.sort(permEct, Comparator.comparingInt(i -> end[i].getMin()));
         Arrays.fill(inserted, false);
-        int idx_j = 0;
-        int j = permLst[idx_j];
+        int idxj = 0;
+        int j = permLst[idxj];
         thetaTree.reset();
-        for (int act_i : permEct) {
-            while (idx_j < start.length && end[act_i].getMin() > start[permLst[idx_j]].getMax()) {
-                j = permLst[idx_j];
+        for (int acti : permEct) {
+            while (idxj < start.length && end[acti].getMin() > start[permLst[idxj]].getMax()) {
+                j = permLst[idxj];
                 inserted[j] = true;
                 thetaTree.insert(rankEst[j], end[j].getMin(), duration[j]);
-                idx_j++;
+                idxj++;
             }
-            if (inserted[act_i]) {
-                thetaTree.remove(rankEst[act_i]);
-                startMin[act_i] = Math.max(startMin[act_i], thetaTree.getECT());
-                thetaTree.insert(rankEst[act_i], end[act_i].getMin(), duration[act_i]);
+            if (inserted[acti]) {
+                thetaTree.remove(rankEst[acti]);
+                startMin[acti] = Math.max(startMin[acti], thetaTree.getECT());
+                thetaTree.insert(rankEst[acti], end[acti].getMin(), duration[acti]);
             } else {
-                startMin[act_i] = Math.max(startMin[act_i], thetaTree.getECT());
+                startMin[acti] = Math.max(startMin[acti], thetaTree.getECT());
             }
         }
 
@@ -193,15 +193,15 @@ public class Disjunctive extends AbstractConstraint {
         Arrays.sort(permLst, Comparator.comparingInt(i -> start[i].getMax()));
         Arrays.sort(permLct, Comparator.comparingInt(i -> end[i].getMax()));
         Arrays.fill(inserted, false);
-        int idx_j = 0;
-        int j = permLst[idx_j];
+        int idxj = 0;
+        int j = permLst[idxj];
         thetaTree.reset();
         for (int act_i : permLct) {
-            while (idx_j < start.length && end[act_i].getMax() > start[permLst[idx_j]].getMax()) {
-                j = permLst[idx_j];
+            while (idxj < start.length && end[act_i].getMax() > start[permLst[idxj]].getMax()) {
+                j = permLst[idxj];
                 inserted[j] = true;
                 thetaTree.insert(rankEst[j], end[j].getMin(), duration[j]);
-                idx_j++;
+                idxj++;
             }
             if (inserted[act_i]) {
                 thetaTree.remove(rankEst[act_i]);

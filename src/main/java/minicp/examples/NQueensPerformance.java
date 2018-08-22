@@ -69,15 +69,14 @@ public class NQueensPerformance {
 
 
         SearchStatistics stats = dfs.solve(statistics -> {
-            if ((statistics.nNodes / 2) % 100000 == 0) {
-                //System.out.println("failures:"+statistics.nFailures);
-                System.out.println("nodes:" + (statistics.nNodes / 2));
+            if ((statistics.numberOfNodes() / 2) % 100000 == 0) {
+                System.out.println("nodes:" + (statistics.numberOfNodes() / 2));
             }
-            return statistics.nSolutions > 0;//statistics.nFailures > 500000 || statistics.nSolutions > 0;
+            return statistics.numberOfSolutions() > 0;
         });
 
         System.out.println("time:" + (System.currentTimeMillis() - t0));
-        System.out.format("#Solutions: %s\n", stats.nSolutions);
+        System.out.format("#Solutions: %s\n", stats.numberOfSolutions());
         System.out.format("Statistics: %s\n", stats);
 
     }

@@ -1,4 +1,4 @@
-package xcsp3;
+package xcsp;
 
 import minicp.cp.Factory;
 import minicp.engine.constraints.*;
@@ -29,7 +29,7 @@ import static minicp.cp.BranchingScheme.and;
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
-public class XCSP3 implements XCallbacks2 {
+public class XCSP implements XCallbacks2 {
 
     private Implem implem = new Implem(this);
 
@@ -54,7 +54,7 @@ public class XCSP3 implements XCallbacks2 {
         return implem;
     }
 
-    public XCSP3(String fileName) throws Exception {
+    public XCSP(String fileName) throws Exception {
         this.fileName = fileName;
         hasFailed = false;
 
@@ -657,7 +657,7 @@ public class XCSP3 implements XCallbacks2 {
             lastSolution.set(solution);
         }, ss -> {
             int nSols = isCOP() ? nSolution : 1;
-            return (System.currentTimeMillis() - t0 >= timeOut * 1000 || ss.nSolutions >= nSols);
+            return (System.currentTimeMillis() - t0 >= timeOut * 1000 || ss.numberOfSolutions() >= nSols);
         });
 
         return lastSolution.get();
@@ -714,9 +714,9 @@ public class XCSP3 implements XCallbacks2 {
 
     public static void main(String[] args) {
         try {
-            XCSP3 xcsp3 = new XCSP3(args[0]);
-            String solution = xcsp3.solve(Integer.MAX_VALUE, 100);
-            List<String> violatedCtrs = xcsp3.getViolatedCtrs(solution);
+            XCSP xcsp = new XCSP(args[0]);
+            String solution = xcsp.solve(Integer.MAX_VALUE, 100);
+            List<String> violatedCtrs = xcsp.getViolatedCtrs(solution);
             System.out.println(violatedCtrs);
         } catch (Exception e) {
             e.printStackTrace();

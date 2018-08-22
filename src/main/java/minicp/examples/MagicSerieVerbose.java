@@ -76,7 +76,7 @@ public class MagicSerieVerbose {
 
         System.out.println(t1 - t0);
 
-        System.out.format("#Solutions: %s\n", stats.nSolutions);
+        System.out.format("#Solutions: %s\n", stats.numberOfSolutions());
         System.out.format("Statistics: %s\n", stats);
 
     }

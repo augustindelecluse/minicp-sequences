@@ -69,7 +69,7 @@ public class AllDifferentACTest extends SolverTest {
             cp.post(new AllDifferentAC(x));
 
             SearchStatistics stats = makeDfs(cp, firstFail(x)).solve();
-            assertEquals(120, stats.nSolutions);
+            assertEquals(120, stats.numberOfSolutions());
 
         } catch (InconsistencyException e) {
             assert (false);
@@ -177,8 +177,8 @@ public class AllDifferentACTest extends SolverTest {
 
             SearchStatistics stats = dfs.solve();
             // GAC filter with a single constraint should have no fail
-            assertEquals(0, stats.nFailures);
-            assertEquals(80, stats.nSolutions);
+            assertEquals(0, stats.numberOfFailures());
+            assertEquals(80, stats.numberOfSolutions());
 
 
         } catch (InconsistencyException e) {

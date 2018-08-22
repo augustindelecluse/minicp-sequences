@@ -17,10 +17,11 @@ package minicp.search;
 
 
 public class SearchStatistics {
-    public int nFailures = 0;
-    public int nNodes = 0;
-    public int nSolutions = 0;
-    public boolean completed = false;
+
+    protected int nFailures = 0;
+    protected int nNodes = 0;
+    protected int nSolutions = 0;
+    protected boolean completed = false;
 
     public String toString() {
         return "\n\t#choice: " + nNodes +
@@ -28,4 +29,10 @@ public class SearchStatistics {
                 "\n\t#sols : " + nSolutions +
                 "\n\tcompleted : " + completed + "\n";
     }
+
+    public int numberOfFailures() { return nFailures; }
+    public int numberOfNodes() { return nNodes; }
+    public int numberOfSolutions() { return nSolutions; }
+    public boolean isCompleted() { return completed; }
+
 }

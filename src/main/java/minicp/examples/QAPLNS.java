@@ -101,7 +101,7 @@ public class QAPLNS {
             if (i % 10 == 0)
                 System.out.println("restart number #" + i);
 
-            dfs.optimizeSubjectTo(obj, statistics -> statistics.nFailures >= failureLimit, () -> {
+            dfs.optimizeSubjectTo(obj, statistics -> statistics.numberOfFailures() >= failureLimit, () -> {
                         // Assign the fragment 5% of the variables randomly chosen
                         for (int j = 0; j < n; j++) {
                             if (rand.nextInt(100) < 5) {

@@ -160,14 +160,17 @@ public class IntVarImpl implements IntVar {
             cp.schedule(constraints.get(i));
     }
 
+    @Override
     public int getMin() {
         return domain.getMin();
     }
 
+    @Override
     public int getMax() {
         return domain.getMax();
     }
 
+    @Override
     public int getSize() {
         return domain.getSize();
     }
@@ -177,22 +180,27 @@ public class IntVarImpl implements IntVar {
         return domain.fillArray(dest);
     }
 
+    @Override
     public boolean contains(int v) {
         return domain.contains(v);
     }
 
+    @Override
     public void remove(int v) {
         domain.remove(v, domListener);
     }
 
+    @Override
     public void assign(int v) {
         domain.removeAllBut(v, domListener);
     }
 
+    @Override
     public void removeBelow(int v) {
         domain.removeBelow(v, domListener);
     }
 
+    @Override
     public void removeAbove(int v) {
         domain.removeAbove(v, domListener);
     }

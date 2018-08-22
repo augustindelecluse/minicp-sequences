@@ -71,7 +71,7 @@ public class DisjunctiveTest extends SolverTest {
             cp.post(new Disjunctive(s, d));
 
             SearchStatistics stats = makeDfs(cp, firstFail(s)).solve();
-            assertEquals("disjunctive alldiff expect makeIntVarArray permutations", 120, stats.nSolutions);
+            assertEquals("disjunctive alldiff expect makeIntVarArray permutations", 120, stats.numberOfSolutions());
 
         } catch (InconsistencyException e) {
             assert (false);
@@ -106,7 +106,7 @@ public class DisjunctiveTest extends SolverTest {
             SearchStatistics stat2 = dfs.solve();
 
 
-            assertEquals(stat1.nSolutions, stat2.nSolutions);
+            assertEquals(stat1.numberOfSolutions(), stat2.numberOfSolutions());
 
 
         } catch (InconsistencyException e) {

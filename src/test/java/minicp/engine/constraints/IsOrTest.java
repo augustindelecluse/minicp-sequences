@@ -107,7 +107,7 @@
              );
 
              SearchStatistics stats = dfs.solve();
-             assertEquals(16, stats.nSolutions);
+             assertEquals(16, stats.numberOfSolutions());
 
          } catch (InconsistencyException e) {
              fail("should not fail");

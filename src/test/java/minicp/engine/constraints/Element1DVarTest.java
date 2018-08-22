@@ -136,7 +136,7 @@ public class Element1DVarTest extends SolverTest {
             );
             SearchStatistics stats = dfs.solve();
 
-            assertEquals(5, stats.nSolutions);
+            assertEquals(5, stats.numberOfSolutions());
 
 
         } catch (InconsistencyException e) {

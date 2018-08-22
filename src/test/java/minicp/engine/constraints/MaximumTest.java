@@ -152,7 +152,7 @@ public class MaximumTest extends SolverTest {
 
                 SearchStatistics stats = dfs.solve();
 
-                assertEquals(625, stats.nSolutions);
+                assertEquals(625, stats.numberOfSolutions());
 
             } catch (InconsistencyException e) {
                 fail("should not fail");

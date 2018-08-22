@@ -48,7 +48,7 @@ public class MaximizeTest {
 
                 SearchStatistics stats = dfs.solve();
 
-                assertEquals(stats.nSolutions, 11);
+                assertEquals(11,stats.numberOfSolutions());
 
 
             } catch (InconsistencyException e) {

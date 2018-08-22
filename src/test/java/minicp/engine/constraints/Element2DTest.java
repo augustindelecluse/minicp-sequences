@@ -112,7 +112,7 @@ public class Element2DTest extends SolverTest {
             );
             SearchStatistics stats = dfs.solve();
 
-            assertEquals(20, stats.nSolutions);
+            assertEquals(20, stats.numberOfSolutions());
 
 
         } catch (InconsistencyException e) {

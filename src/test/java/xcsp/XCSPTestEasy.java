@@ -1,11 +1,11 @@
-package xcsp3;
+package xcsp;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
-public class XCSP3TestEasy extends XCSP3TestHelper {
-    public XCSP3TestEasy(String path) {
+public class XCSPTestEasy extends XCSPTestHelper {
+    public XCSPTestEasy(String path) {
         super(path);
     }
 
