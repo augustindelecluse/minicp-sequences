@@ -1,73 +1,85 @@
-/*
- * mini-cp is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License  v3
- * as published by the Free Software Foundation.
- *
- * mini-cp is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY.
- * See the GNU Lesser General Public License  for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
- *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
- */
-
 package minicp.state;
 
 import minicp.util.Procedure;
 
 import java.util.Stack;
 
+public class Trailer implements StateManager {
 
-public class Trailer extends AbstractStateManager {
+    class Backup extends Stack<StateEntry> {
+        Backup() {}
+        void restore() {
+            for (StateEntry se : this)
+                se.restore();
+        }
+    }
 
-    private long magic = 0;
+    private Stack<Backup> prior;
+    private Backup current;
+    private long magic = 0L;
 
-    /**
-     * Initialize a reversible context
-     * The current level is -1
-     */
     public Trailer() {
-        super();
+        prior = new Stack<Backup>();
+        current = new Backup();
     }
 
     public long getMagic() { return magic;}
 
+    public void pushState(StateEntry entry) {
+        current.push(entry);
+    }
 
-    /**
-     * Stores the current state
-     * such that it can be recovered using restore()
-     * Increase the level by 1
-     */
+    @Override
+    public int getLevel() {
+        return prior.size() - 1;
+    }
+
+
+    @Override
     public void save() {
-        super.save();
+        prior.add(current);
+        current = new Backup();
         magic++;
     }
 
-    /**
-     *  Restores state as it was at getLevel()-1
-     *  Decrease the level by 1
-     */
+    @Override
     public void restore() {
-        super.restore();
+        prior.pop().restore();
         magic++;
     }
 
+    @Override
+    public void withNewState(Procedure body) {
+        final int level = getLevel();
+        save();
+        body.call();
+        restoreUntil(level);
+    }
 
+    @Override
+    public void restoreAll() {
+        while (!prior.isEmpty())
+            restore();
+    }
+
+    @Override
+    public void restoreUntil(int level) {
+        while (getLevel() > level)
+            restore();
+    }
 
     @Override
     public StateInt makeStateInt(int initValue) {
-        return new TrailInt(this, initValue);
+        return new TrailInt(this,initValue);
     }
+
     @Override
     public StateBool makeStateBool(boolean initValue) {
-        return new TrailBool(this, initValue);
+        return new TrailBool(this,initValue);
     }
+
     @Override
     public StateMap makeStateMap() {
         return new TrailMap(this);
     }
-
 }
-
