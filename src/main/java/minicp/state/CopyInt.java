@@ -15,8 +15,6 @@
 
 package minicp.state;
 
-import java.util.Map;
-
 public class CopyInt implements Storage, StateInt {
 
     class CopyIntStateEntry implements StateEntry {
@@ -26,6 +24,7 @@ public class CopyInt implements Storage, StateInt {
             this.v = v;
         }
 
+        @Override
         public void restore() {
             CopyInt.this.v = v;
         }
@@ -33,7 +32,7 @@ public class CopyInt implements Storage, StateInt {
 
     private int v;
 
-    public CopyInt(int initial) {
+    protected CopyInt(int initial) {
         v = initial;
     }
 
@@ -67,7 +66,6 @@ public class CopyInt implements Storage, StateInt {
 
     @Override
     public StateEntry save() {
-        //System.out.println("saving value:"+v);
         return new CopyIntStateEntry(v);
     }
 }

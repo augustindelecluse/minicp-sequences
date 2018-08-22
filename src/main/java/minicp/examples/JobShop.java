@@ -28,8 +28,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
-import static minicp.cp.BranchingScheme.*;
 
 /**
  * JobShop Problem
@@ -37,7 +37,7 @@ import static minicp.cp.BranchingScheme.*;
  */
 public class JobShop {
 
-    public static IntVar[] flatten(IntVar [][] x) {
+    public static IntVar[] flatten(IntVar[][] x) {
         return Arrays.stream(x).flatMap(Arrays::stream).toArray(IntVar[]::new);
     }
 
@@ -72,41 +72,41 @@ public class JobShop {
 
             IntVar[][] start = new IntVar[nJobs][nMachines];
             IntVar[][] end = new IntVar[nJobs][nMachines];
-            ArrayList<IntVar> [] startOnMachine = new ArrayList[nMachines];
-            ArrayList<Integer> [] durationsOnMachine = new ArrayList[nMachines];
+            ArrayList<IntVar>[] startOnMachine = new ArrayList[nMachines];
+            ArrayList<Integer>[] durationsOnMachine = new ArrayList[nMachines];
             for (int m = 0; m < nMachines; m++) {
                 startOnMachine[m] = new ArrayList<IntVar>();
                 durationsOnMachine[m] = new ArrayList<Integer>();
             }
 
-            IntVar [] endLast = new IntVar[nJobs];
+            IntVar[] endLast = new IntVar[nJobs];
             for (int i = 0; i < nJobs; i++) {
 
                 for (int j = 0; j < nMachines; j++) {
 
-                    start[i][j] = makeIntVar(cp,0,H);
-                    end[i][j] = plus(start[i][j],duration[i][j]);
+                    start[i][j] = makeIntVar(cp, 0, H);
+                    end[i][j] = plus(start[i][j], duration[i][j]);
                     int m = machine[i][j];
                     startOnMachine[m].add(start[i][j]);
                     durationsOnMachine[m].add(duration[i][j]);
 
                     if (j > 0) {
                         // precedence constraint
-                        cp.post(lessOrEqual(end[i][j-1],start[i][j]));
+                        cp.post(lessOrEqual(end[i][j - 1], start[i][j]));
                     }
                 }
-                endLast[i] = end[i][nMachines-1];
+                endLast[i] = end[i][nMachines - 1];
             }
 
 
             for (int m = 0; m < nMachines; m++) {
 
-                int [] durations = new int[nJobs];
+                int[] durations = new int[nJobs];
                 for (int i = 0; i < nJobs; i++) {
                     durations[i] = durationsOnMachine[m].get(i);
                 }
-                IntVar [] starts = startOnMachine[m].toArray(new IntVar[]{});
-                cp.post(new Disjunctive(starts,durations));
+                IntVar[] starts = startOnMachine[m].toArray(new IntVar[]{});
+                cp.post(new Disjunctive(starts, durations));
             }
 
             IntVar makespan = maximum(endLast);

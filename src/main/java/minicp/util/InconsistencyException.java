@@ -22,7 +22,9 @@ public class InconsistencyException extends RuntimeException {
 
     private static final long serialVersionUID = 1240061199250453776L;
 
-    public String toString() { return "inconsistency";}
+    public String toString() {
+        return "inconsistency";
+    }
 
     @Override
     public synchronized Throwable fillInStackTrace() {

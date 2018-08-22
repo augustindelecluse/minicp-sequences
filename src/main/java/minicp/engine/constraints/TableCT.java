@@ -16,12 +16,11 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 
-import static minicp.cp.Factory.*;
-
 import java.util.BitSet;
+
+import static minicp.cp.Factory.minus;
 
 public class TableCT extends AbstractConstraint {
     private IntVar[] x; //variables
@@ -45,7 +44,7 @@ public class TableCT extends AbstractConstraint {
         // Allocate supportedByVarVal
         supports = new BitSet[x.length][];
         for (int i = 0; i < x.length; i++) {
-            this.x[i] = minus(x[i],x[i].getMin()); // map the variables domain to start at 0
+            this.x[i] = minus(x[i], x[i].getMin()); // map the variables domain to start at 0
             supports[i] = new BitSet[x[i].getMax() - x[i].getMin() + 1];
             for (int j = 0; j < supports[i].length; j++)
                 supports[i][j] = new BitSet();
@@ -62,7 +61,7 @@ public class TableCT extends AbstractConstraint {
     }
 
     @Override
-    public void post()  {
+    public void post() {
         for (IntVar var : x)
             var.propagateOnDomainChange(this);
         propagate();
@@ -79,7 +78,7 @@ public class TableCT extends AbstractConstraint {
 
         // Bit-set of tuple indices all set to 0
         BitSet supportedTuples = new BitSet(table.length);
-        supportedTuples.flip(0,table.length);
+        supportedTuples.flip(0, table.length);
 
         // TODO 1: compute supportedTuples as
         // supportedTuples = (supports[0][x[0].getMin()] | ... | supports[0][x[0].getMax()] ) & ... &
@@ -110,8 +109,6 @@ public class TableCT extends AbstractConstraint {
                 }
             }
         }
-
-
 
 
         //throw new NotImplementedException("TableCT");

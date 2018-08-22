@@ -2,9 +2,13 @@ package minicp.state;
 
 import minicp.util.Procedure;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 public class Copier implements StateManager {
+
+
 
     class Backup extends Stack<StateEntry> {
         private int sz;
@@ -24,10 +28,23 @@ public class Copier implements StateManager {
 
     private Stack<Storage> store;
     private Stack<Backup> prior;
+    private List<Procedure> onRestoreListeners;
 
     public Copier() {
         store = new Stack<Storage>();
         prior = new Stack<Backup>();
+        onRestoreListeners = new LinkedList<Procedure>();
+    }
+
+    private void notifyRestore() {
+        for (Procedure l: onRestoreListeners) {
+            l.call();
+        }
+    }
+
+    @Override
+    public void onRestore(Procedure listener) {
+        onRestoreListeners.add(listener);
     }
 
     public int getLevel() {
@@ -40,21 +57,22 @@ public class Copier implements StateManager {
     }
 
     @Override
-    public void save() {
+    public void saveState() {
         prior.add(new Backup());
     }
 
     @Override
-    public void restore() {
+    public void restoreState() {
         prior.pop().restore();
+        notifyRestore();
     }
 
     @Override
     public void withNewState(Procedure body) {
         final int level = getLevel();
-        save();
+        saveState();
         body.call();
-        restoreUntil(level);
+        restoreStateUntil(level);
     }
 
     /**
@@ -63,15 +81,15 @@ public class Copier implements StateManager {
      * Notice that you'll probably want to save after this operation.
      */
     @Override
-    public void restoreAll() {
+    public void restoreAllState() {
         while (!prior.isEmpty())
-            restore();
+            restoreState();
     }
 
     @Override
-    public void restoreUntil(int level) {
+    public void restoreStateUntil(int level) {
         while (getLevel() > level)
-            restore();
+            restoreState();
     }
 
     @Override

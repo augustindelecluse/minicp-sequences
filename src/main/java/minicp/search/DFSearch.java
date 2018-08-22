@@ -16,13 +16,13 @@
 package minicp.search;
 
 import minicp.state.StateManager;
-import minicp.util.Procedure;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
+import minicp.util.Procedure;
 
-import java.util.*;
-import java.util.function.Supplier;
+import java.util.Stack;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class DFSearch {
 
@@ -32,7 +32,8 @@ public class DFSearch {
 
     public DFSearch(StateManager sm, Supplier<Procedure[]> branching) {
         this.sm = sm;
-        this.searchObserver = new AbstractSearcher() {};
+        this.searchObserver = new AbstractSearcher() {
+        };
         this.branching = branching;
     }
 
@@ -44,40 +45,39 @@ public class DFSearch {
         searchObserver.onFailure(listener);
     }
 
-    private SearchStatistics solve(SearchStatistics statistics,Predicate<SearchStatistics> limit) {
-        sm.withNewState( ()-> {
-                try {
-                    dfs(statistics,limit);
-                    statistics.completed = true;
-                }
-                catch (StopSearchException ignored) {}
-                catch (StackOverflowError e) {
-                    throw new NotImplementedException("dfs with explicit stack needed to pass this test");
-                }
-            });
+    private SearchStatistics solve(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
+        sm.withNewState(() -> {
+            try {
+                dfs(statistics, limit);
+                statistics.completed = true;
+            } catch (StopSearchException ignored) {
+            } catch (StackOverflowError e) {
+                throw new NotImplementedException("dfs with explicit stack needed to pass this test");
+            }
+        });
         return statistics;
     }
 
     public SearchStatistics optimize(Objective obj) {
         SearchStatistics statistics = new SearchStatistics();
-        return optimize(obj,stats -> false);
+        return optimize(obj, stats -> false);
     }
 
     public SearchStatistics optimize(Objective obj, Predicate<SearchStatistics> limit) {
         SearchStatistics statistics = new SearchStatistics();
         onSolution(() -> obj.tighten());
-        return solve(statistics,limit);
+        return solve(statistics, limit);
     }
 
 
     public SearchStatistics solve() {
         SearchStatistics statistics = new SearchStatistics();
-        return solve(statistics,stats -> false);
+        return solve(statistics, stats -> false);
     }
 
     public SearchStatistics solve(Predicate<SearchStatistics> limit) {
         SearchStatistics statistics = new SearchStatistics();
-        return solve(statistics,limit);
+        return solve(statistics, limit);
     }
 
     public SearchStatistics solveSubjectTo(Predicate<SearchStatistics> limit, Procedure subjectTo) {
@@ -85,10 +85,11 @@ public class DFSearch {
         sm.withNewState(() -> {
             try {
                 subjectTo.call();
-                solve(statistics,limit);
-            } catch (InconsistencyException e) {}
+                solve(statistics, limit);
+            } catch (InconsistencyException e) {
+            }
         });
-        return  statistics;
+        return statistics;
     }
 
     public SearchStatistics optimizeSubjectTo(Objective obj, Predicate<SearchStatistics> limit, Procedure subjectTo) {
@@ -96,10 +97,11 @@ public class DFSearch {
         sm.withNewState(() -> {
             try {
                 subjectTo.call();
-                optimize(obj,limit);
-            } catch (InconsistencyException e) {}
+                optimize(obj, limit);
+            } catch (InconsistencyException e) {
+            }
         });
-        return  statistics;
+        return statistics;
     }
 
 
@@ -109,24 +111,23 @@ public class DFSearch {
             statistics.nSolutions++;
             searchObserver.notifySolution();
         } else {
-            for (int i = alts.length-1; i >= 0; i--) {
+            for (int i = alts.length - 1; i >= 0; i--) {
                 Procedure a = alts[i];
-                alternatives.push(() -> sm.restore());
+                alternatives.push(() -> sm.restoreState());
                 alternatives.push(() -> {
                     statistics.nNodes++;
                     a.call();
                     expandNode(alternatives, statistics);
                 });
-                alternatives.push(() -> sm.save());
+                alternatives.push(() -> sm.saveState());
             }
         }
     }
 
 
-
     private void dfs2(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
         Stack<Procedure> alternatives = new Stack<Procedure>();
-        expandNode(alternatives,statistics);
+        expandNode(alternatives, statistics);
         while (!alternatives.isEmpty()) {
             if (limit.test(statistics)) throw new StopSearchException();
             try {
@@ -146,19 +147,18 @@ public class DFSearch {
         if (branches.length == 0) {
             statistics.nSolutions++;
             searchObserver.notifySolution();
-        }
-        else {
+        } else {
             for (Procedure b : branches) {
-                sm.withNewState( ()-> {
-                        try {
-                            statistics.nNodes++;
-                            b.call();
-                            dfs(statistics,limit);
-                        } catch (InconsistencyException e) {
-                            statistics.nFailures++;
-                            searchObserver.notifyFailure();
-                        }
-                    });
+                sm.withNewState(() -> {
+                    try {
+                        statistics.nNodes++;
+                        b.call();
+                        dfs(statistics, limit);
+                    } catch (InconsistencyException e) {
+                        statistics.nFailures++;
+                        searchObserver.notifyFailure();
+                    }
+                });
             }
         }
     }

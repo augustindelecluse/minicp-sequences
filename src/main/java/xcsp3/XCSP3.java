@@ -5,10 +5,6 @@ import minicp.engine.constraints.*;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-
-import static minicp.cp.BranchingScheme.*;
-import static minicp.cp.Factory.*;
-
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.Box;
@@ -20,13 +16,18 @@ import org.xcsp.common.Constants;
 import org.xcsp.common.Types;
 import org.xcsp.common.predicates.XNodeParent;
 import org.xcsp.parser.XCallbacks2;
-import org.xcsp.parser.entries.XVariables.*;
+import org.xcsp.parser.entries.XVariables.XVarInteger;
+import org.xcsp.parser.entries.XVariables.XVarSymbolic;
 
 import java.io.ByteArrayInputStream;
 import java.security.InvalidParameterException;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
+
+import static minicp.cp.BranchingScheme.and;
+import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.Factory.*;
 
 public class XCSP3 implements XCallbacks2 {
 
@@ -106,10 +107,10 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrExtension(String id, XVarInteger x, int[] values, boolean positive, Set<Types.TypeFlag> flags) {
-        if(hasFailed)
+        if (hasFailed)
             return;
         int[][] table = new int[values.length][1];
-        for(int i = 0; i < values.length; i++)
+        for (int i = 0; i < values.length; i++)
             table[i][0] = values[i];
         buildCtrExtension(id, new XVarInteger[]{x}, table, positive, flags);
     }
@@ -118,7 +119,7 @@ public class XCSP3 implements XCallbacks2 {
     public void buildCtrExtension(String id, XVarInteger[] list, int[][] tuples, boolean positive, Set<Types.TypeFlag> flags) {
 
 
-        if(hasFailed)
+        if (hasFailed)
             return;
 
 
@@ -133,8 +134,7 @@ public class XCSP3 implements XCallbacks2 {
 
             if (!positive) {
                 minicp.post(new NegTableCT(trVars(list), tuples));
-            }
-            else {
+            } else {
                 if (flags.contains(Types.TypeFlag.STARRED_TUPLES)) {
                     minicp.fixPoint();
                     minicp.post(new ShortTableCT(trVars(list), tuples, Constants.STAR_INT));
@@ -150,7 +150,7 @@ public class XCSP3 implements XCallbacks2 {
     }
 
     private void relConstraintVal(IntVar x, Types.TypeConditionOperatorRel operator, int k) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         try {
@@ -184,7 +184,7 @@ public class XCSP3 implements XCallbacks2 {
     }
 
     private void relConstraintVar(IntVar x, Types.TypeConditionOperatorRel operator, IntVar y) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         try {
@@ -192,10 +192,10 @@ public class XCSP3 implements XCallbacks2 {
                 case EQ:
                     // TODO: implement equal
                     minicp.post(new LessOrEqual(x, y));
-                    minicp.post(new LessOrEqual(y,x));
+                    minicp.post(new LessOrEqual(y, x));
                     break;
                 case GE:
-                    minicp.post(new LessOrEqual(y,x));
+                    minicp.post(new LessOrEqual(y, x));
                     break;
                 case GT:
                     minicp.post(new LessOrEqual(minus(y, 1), x));
@@ -207,7 +207,7 @@ public class XCSP3 implements XCallbacks2 {
                     minicp.post(new LessOrEqual(minus(x, 1), y));
                     break;
                 case NE:
-                    minicp.post(notEqual(x,y));
+                    minicp.post(notEqual(x, y));
                     break;
                 default:
                     throw new InvalidParameterException("unknown condition");
@@ -219,15 +219,15 @@ public class XCSP3 implements XCallbacks2 {
 
 
     private void _buildCrtWithCondition(String id, IntVar expr, Condition operator) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         if (operator instanceof Condition.ConditionVal) {
             Condition.ConditionVal op = (Condition.ConditionVal) operator;
-            relConstraintVal(expr,op.operator,(int) op.k);
+            relConstraintVal(expr, op.operator, (int) op.k);
         } else if (operator instanceof Condition.ConditionVar) {
             Condition.ConditionVar op = (Condition.ConditionVar) operator;
-            relConstraintVar(expr,op.operator,mapVar.get(op.x));
+            relConstraintVar(expr, op.operator, mapVar.get(op.x));
         } else if (operator instanceof Condition.ConditionIntvl) {
             Condition.ConditionIntvl op = (Condition.ConditionIntvl) operator;
             try {
@@ -257,13 +257,13 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrElement(String id, int[] list, int startIndex, XVarInteger index, Types.TypeRank rank, XVarInteger value) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         if (rank != Types.TypeRank.ANY)
             throw new IllegalArgumentException("Element constraint only supports ANY as position for the index");
-        IntVar idx = minus(mapVar.get(index),startIndex);
-        IntVar z =  mapVar.get(value);
+        IntVar idx = minus(mapVar.get(index), startIndex);
+        IntVar z = mapVar.get(value);
         try {
             minicp.post(new Element1D(list, idx, z));
             decisionVars.add(idx);
@@ -274,14 +274,14 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrElement(String id, XVarInteger[] list, int startIndex, XVarInteger index, Types.TypeRank rank, int value) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         if (rank != Types.TypeRank.ANY)
             throw new IllegalArgumentException("Element constraint only supports ANY as position for the index");
-        IntVar idx = minus(mapVar.get(index),startIndex);
+        IntVar idx = minus(mapVar.get(index), startIndex);
         decisionVars.add(idx);
-        IntVar z =  makeIntVar(minicp,value,value);
+        IntVar z = makeIntVar(minicp, value, value);
         try {
             minicp.post(new Element1DVar(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new), idx, z));
         } catch (InconsistencyException e) {
@@ -291,14 +291,14 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrElement(String id, XVarInteger[] list, int startIndex, XVarInteger index, Types.TypeRank rank, XVarInteger value) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         if (rank != Types.TypeRank.ANY)
             throw new IllegalArgumentException("Element constraint only supports ANY as position for the index");
-        IntVar idx = minus(mapVar.get(index),startIndex);
+        IntVar idx = minus(mapVar.get(index), startIndex);
         decisionVars.add(idx);
-        IntVar z =  mapVar.get(value);
+        IntVar z = mapVar.get(value);
         try {
             minicp.post(new Element1DVar(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new), idx, z));
         } catch (InconsistencyException e) {
@@ -309,19 +309,19 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeConditionOperatorRel op, int k) {
-        if(hasFailed)
+        if (hasFailed)
             return;
-        relConstraintVal(mapVar.get(x), op,k);
+        relConstraintVal(mapVar.get(x), op, k);
     }
 
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeUnaryArithmeticOperator aop, XVarInteger y) {
-        if(hasFailed)
+        if (hasFailed)
             return;
         try {
-            IntVar r = unaryArithmeticOperatorConstraint(mapVar.get(y),aop);
-            relConstraintVar(mapVar.get(x),Types.TypeConditionOperatorRel.EQ,r);
+            IntVar r = unaryArithmeticOperatorConstraint(mapVar.get(y), aop);
+            relConstraintVar(mapVar.get(x), Types.TypeConditionOperatorRel.EQ, r);
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -329,12 +329,12 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeArithmeticOperator aop, int p, Types.TypeConditionOperatorRel op, int k) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         try {
             IntVar r = arithmeticOperatorConstraintVal(mapVar.get(x), aop, p);
-            relConstraintVal(r,op,k);
+            relConstraintVal(r, op, k);
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -342,11 +342,11 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeArithmeticOperator aop, int p, Types.TypeConditionOperatorRel op, XVarInteger y) {
-        if(hasFailed)
+        if (hasFailed)
             return;
         try {
             IntVar r = arithmeticOperatorConstraintVal(mapVar.get(x), aop, p);
-            relConstraintVar(r,op,mapVar.get(y));
+            relConstraintVar(r, op, mapVar.get(y));
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -354,7 +354,7 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x_, Types.TypeArithmeticOperator aop, XVarInteger y_, Types.TypeConditionOperatorRel op, int k) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         IntVar x = mapVar.get(x_);
@@ -370,18 +370,18 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeArithmeticOperator aop, XVarInteger y, Types.TypeConditionOperatorRel op, XVarInteger z) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         try {
-            IntVar r = arithmeticOperatorConstraintVar(mapVar.get(x),aop,mapVar.get(y));
-            relConstraintVar(r,op,mapVar.get(z));
+            IntVar r = arithmeticOperatorConstraintVar(mapVar.get(x), aop, mapVar.get(y));
+            relConstraintVar(r, op, mapVar.get(z));
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
     }
 
-    private IntVar unaryArithmeticOperatorConstraint(IntVar x,Types.TypeUnaryArithmeticOperator aop)  {
+    private IntVar unaryArithmeticOperatorConstraint(IntVar x, Types.TypeUnaryArithmeticOperator aop) {
         switch (aop) {
             case NEG:
                 return Factory.minus(x);
@@ -397,7 +397,7 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
-    private IntVar arithmeticOperatorConstraintVal(IntVar x,Types.TypeArithmeticOperator aop, int p)  {
+    private IntVar arithmeticOperatorConstraintVal(IntVar x, Types.TypeArithmeticOperator aop, int p) {
         switch (aop) {
             case ADD:
                 return Factory.plus(x, p);
@@ -421,7 +421,7 @@ public class XCSP3 implements XCallbacks2 {
         }
     }
 
-    private IntVar arithmeticOperatorConstraintVar(IntVar x,Types.TypeArithmeticOperator aop,IntVar y)  {
+    private IntVar arithmeticOperatorConstraintVar(IntVar x, Types.TypeArithmeticOperator aop, IntVar y) {
         switch (aop) {
             case ADD:
                 return sum(x, y);
@@ -448,7 +448,7 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrSum(String id, XVarInteger[] list, Condition condition) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         try {
@@ -461,13 +461,13 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrSum(String id, XVarInteger[] list, int[] coeffs, Condition condition) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         try {
-            IntVar [] wx = new IntVar[list.length];
+            IntVar[] wx = new IntVar[list.length];
             for (int i = 0; i < list.length; i++) {
-                wx[i] = mul(mapVar.get(list[i]),coeffs[i]);
+                wx[i] = mul(mapVar.get(list[i]), coeffs[i]);
             }
             IntVar s = sum(wx);
             _buildCrtWithCondition(id, s, condition);
@@ -480,13 +480,13 @@ public class XCSP3 implements XCallbacks2 {
     @Override
     public void buildCtrAllDifferent(String id, XVarInteger[] list) {
 
-        if(hasFailed)
+        if (hasFailed)
             return;
         // Constraints
         try {
-            IntVar [] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
+            IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
             minicp.post(allDifferent(xs));
-            for (IntVar x: xs) {
+            for (IntVar x : xs) {
                 decisionVars.add(x);
             }
         } catch (InconsistencyException e) {
@@ -504,7 +504,7 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildObjToMinimize(String id, XVarInteger x) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         setObj(mapVar.get(x), true);
@@ -534,12 +534,12 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildObjToMinimize(String id, Types.TypeObjective type, XVarInteger[] list, int[] coeffs) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
-        IntVar [] wx = new IntVar[list.length];
+        IntVar[] wx = new IntVar[list.length];
         for (int i = 0; i < list.length; i++) {
-            wx[i] = mul(mapVar.get(list[i]),coeffs[i]);
+            wx[i] = mul(mapVar.get(list[i]), coeffs[i]);
         }
         try {
             IntVar s = sum(wx);
@@ -551,7 +551,7 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildObjToMaximize(String id, XVarInteger x) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         setObj(mapVar.get(x), false);
@@ -559,7 +559,7 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildObjToMaximize(String id, Types.TypeObjective type, XVarInteger[] list) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
         try {
@@ -582,12 +582,12 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildObjToMaximize(String id, Types.TypeObjective type, XVarInteger[] list, int[] coeffs) {
-        if(hasFailed)
+        if (hasFailed)
             return;
 
-        IntVar [] wx = new IntVar[list.length];
+        IntVar[] wx = new IntVar[list.length];
         for (int i = 0; i < list.length; i++) {
-            wx[i] = mul(mapVar.get(list[i]),coeffs[i]);
+            wx[i] = mul(mapVar.get(list[i]), coeffs[i]);
         }
         try {
             IntVar s = sum(wx);
@@ -599,14 +599,14 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrIntension(String id, XVarInteger[] scope, XNodeParent<XVarInteger> tree) {
-        if(hasFailed)
+        if (hasFailed)
             return;
         throw new NotImplementedException();
     }
 
     @Override
     public void buildCtrIntension(String id, XVarSymbolic[] scope, XNodeParent<XVarSymbolic> syntaxTreeRoot) {
-        if(hasFailed)
+        if (hasFailed)
             return;
         //Not needed
         throw new NotImplementedException();
@@ -614,11 +614,11 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrMaximum(String id, XVarInteger[] list, Condition condition) {
-        if(hasFailed)
+        if (hasFailed)
             return;
         // Constraints
         try {
-            IntVar [] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
+            IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
             IntVar s = Factory.maximum(xs);
             _buildCrtWithCondition(id, s, condition);
         } catch (InconsistencyException e) {
@@ -629,11 +629,11 @@ public class XCSP3 implements XCallbacks2 {
 
     @Override
     public void buildCtrMinimum(String id, XVarInteger[] list, Condition condition) {
-        if(hasFailed)
+        if (hasFailed)
             return;
         // Constraints
         try {
-            IntVar [] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
+            IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
             IntVar s = Factory.minimum(xs);
             _buildCrtWithCondition(id, s, condition);
         } catch (InconsistencyException e) {
@@ -653,11 +653,11 @@ public class XCSP3 implements XCallbacks2 {
         Long t0 = System.currentTimeMillis();
 
         solve((solution, value) -> {
-            System.out.println("solfound "+(value == Integer.MAX_VALUE ? value: "solution"));
+            System.out.println("solfound " + (value == Integer.MAX_VALUE ? value : "solution"));
             lastSolution.set(solution);
         }, ss -> {
             int nSols = isCOP() ? nSolution : 1;
-            return (System.currentTimeMillis()-t0 >= timeOut*1000 || ss.nSolutions >= nSols);
+            return (System.currentTimeMillis() - t0 >= timeOut * 1000 || ss.nSolutions >= nSols);
         });
 
         return lastSolution.get();
@@ -673,8 +673,7 @@ public class XCSP3 implements XCallbacks2 {
      * @param shouldStop: boolean shouldStop(stats, isCOP).
      * @return Stats
      */
-    public SearchStatistics solve(BiConsumer<String, Integer> onSolution, Function<SearchStatistics, Boolean> shouldStop)
-             {
+    public SearchStatistics solve(BiConsumer<String, Integer> onSolution, Function<SearchStatistics, Boolean> shouldStop) {
 
         IntVar[] vars = mapVar.entrySet().stream().sorted(new EntryComparator()).map(Map.Entry::getValue).toArray(IntVar[]::new);
         DFSearch search;
@@ -716,7 +715,7 @@ public class XCSP3 implements XCallbacks2 {
     public static void main(String[] args) {
         try {
             XCSP3 xcsp3 = new XCSP3(args[0]);
-            String solution = xcsp3.solve(Integer.MAX_VALUE,100);
+            String solution = xcsp3.solve(Integer.MAX_VALUE, 100);
             List<String> violatedCtrs = xcsp3.getViolatedCtrs(solution);
             System.out.println(violatedCtrs);
         } catch (Exception e) {

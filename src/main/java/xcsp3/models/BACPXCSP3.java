@@ -15,8 +15,7 @@ class BACPXCSP3 implements ProblemAPI {
     }
 
 
-
-    public static Var[] flatten(Var [][] x) {
+    public static Var[] flatten(Var[][] x) {
         return Arrays.stream(x).flatMap(Arrays::stream).toArray(Var[]::new);
     }
 
@@ -30,28 +29,26 @@ class BACPXCSP3 implements ProblemAPI {
         int maxCredits = reader.getInt();
         int nbPre = reader.getInt();
 
-        int [] credits = new int[nbCourses];
+        int[] credits = new int[nbCourses];
         for (int i = 0; i < credits.length; i++) {
             credits[i] = reader.getInt();
         }
-        int [][] prerequisites = new int[nbPre][2];
+        int[][] prerequisites = new int[nbPre][2];
         for (int i = 0; i < nbPre; i++) {
             prerequisites[i][0] = reader.getInt();
             prerequisites[i][1] = reader.getInt();
         }
 
-        Var[] x = array("x",size(nbCourses),dom(range(0,nbPeriods-1)));
-        Var[] l = array("l",size(nbCourses),dom(range(0,IntStream.of(credits).sum())));
-        Var[][] y = array("y",Size.Size2D.build(nbPeriods,nbCourses), dom(0,1));
-        forall(range(nbPeriods).range(nbCourses), (b,i) -> intension(iff(y[b][i],eq(x[i],b))));
-        forall(range(nbPeriods), j -> sum(y[j],credits,EQ,l[j]));
-        sum(l,EQ, IntStream.of(credits).sum());
+        Var[] x = array("x", size(nbCourses), dom(range(0, nbPeriods - 1)));
+        Var[] l = array("l", size(nbCourses), dom(range(0, IntStream.of(credits).sum())));
+        Var[][] y = array("y", Size.Size2D.build(nbPeriods, nbCourses), dom(0, 1));
+        forall(range(nbPeriods).range(nbCourses), (b, i) -> intension(iff(y[b][i], eq(x[i], b))));
+        forall(range(nbPeriods), j -> sum(y[j], credits, EQ, l[j]));
+        sum(l, EQ, IntStream.of(credits).sum());
 
-        forall(range(nbPre), j -> lessThan(x[prerequisites[j][0]],x[prerequisites[j][1]]));
+        forall(range(nbPre), j -> lessThan(x[prerequisites[j][0]], x[prerequisites[j][1]]));
 
-        minimize(MAXIMUM,l);
-
-
+        minimize(MAXIMUM, l);
 
 
     }

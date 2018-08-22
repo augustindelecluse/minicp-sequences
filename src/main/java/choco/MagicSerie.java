@@ -19,12 +19,10 @@ package choco;
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.Solver;
 import org.chocosolver.solver.search.strategy.Search;
-import org.chocosolver.solver.search.strategy.selectors.values.IntDomainMiddle;
 import org.chocosolver.solver.search.strategy.selectors.values.IntDomainMin;
 import org.chocosolver.solver.search.strategy.selectors.variables.FirstFail;
 import org.chocosolver.solver.search.strategy.selectors.variables.Smallest;
 import org.chocosolver.solver.search.strategy.selectors.variables.VariableSelectorWithTies;
-import org.chocosolver.solver.search.strategy.strategy.IntStrategy;
 import org.chocosolver.solver.variables.BoolVar;
 import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.util.tools.ArrayUtils;
@@ -39,19 +37,19 @@ public class MagicSerie {
         Model model = new Model(n + "-magic series problem");
         IntVar[] s = new IntVar[n];
         for (int i = 0; i < n; i++) {
-            s[i] = model.intVar("s_" + i, 0, n - 1,false);
+            s[i] = model.intVar("s_" + i, 0, n - 1, false);
         }
 
-        model.sum(s,"=",n).post();
+        model.sum(s, "=", n).post();
 
 
         for (int i = 0; i < n; i++) {
             final int fi = i;
             BoolVar[] b = new BoolVar[n];
             for (int k = 0; k < n; k++) {
-                b[k] = model.arithm(s[k],"=",i).reify();
+                b[k] = model.arithm(s[k], "=", i).reify();
             }
-            model.sum(b,"=",s[i]).post();
+            model.sum(b, "=", s[i]).post();
         }
 
         Solver solver = model.getSolver();
@@ -64,9 +62,10 @@ public class MagicSerie {
         );
 
         solver.showShortStatistics();
-        while(solver.solve()) {
+        while (solver.solve()) {
             System.out.println(Arrays.toString(s));
-            System.out.println("solution");;
+            System.out.println("solution");
+            ;
         }
     }
 }

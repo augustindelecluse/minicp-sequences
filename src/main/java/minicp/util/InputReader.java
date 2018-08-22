@@ -76,7 +76,7 @@ public class InputReader {
                 throw new RuntimeException(e.toString());
             }
         }
-        Integer [] res = new Integer[tokenizer.countTokens()];
+        Integer[] res = new Integer[tokenizer.countTokens()];
         for (int i = 0; i < res.length; i++) {
             res[i] = Integer.parseInt(tokenizer.nextToken());
         }

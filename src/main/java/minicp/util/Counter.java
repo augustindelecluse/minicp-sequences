@@ -23,7 +23,7 @@ public class Counter extends Box<Integer> {
     }
 
     public void incr() {
-        set(get()+1);
+        set(get() + 1);
     }
 
     public int getValue() {

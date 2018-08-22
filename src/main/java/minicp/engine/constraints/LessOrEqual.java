@@ -16,9 +16,7 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
 
 public class LessOrEqual extends AbstractConstraint { // x <= y
 
@@ -30,17 +28,19 @@ public class LessOrEqual extends AbstractConstraint { // x <= y
         this.x = x;
         this.y = y;
     }
+
     @Override
-    public void post()  {
+    public void post() {
         x.propagateOnBoundChange(this);
         y.propagateOnBoundChange(this);
         propagate();
     }
+
     @Override
-    public void propagate()  {
+    public void propagate() {
         x.removeAbove(y.getMax());
         y.removeBelow(x.getMin());
-        if (x.getMax() <= y.getMin()) 
+        if (x.getMax() <= y.getMin())
             setActive(false);
     }
 }

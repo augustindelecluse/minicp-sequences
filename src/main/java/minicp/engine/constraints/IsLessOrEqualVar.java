@@ -15,9 +15,13 @@
 
 package minicp.engine.constraints;
 
-import minicp.engine.core.*;
+import minicp.engine.core.AbstractConstraint;
+import minicp.engine.core.BoolVar;
+import minicp.engine.core.Constraint;
+import minicp.engine.core.IntVar;
 
-import static minicp.cp.Factory.*;
+import static minicp.cp.Factory.lessOrEqual;
+import static minicp.cp.Factory.plus;
 
 public class IsLessOrEqualVar extends AbstractConstraint { // b <=> x <= y
 
@@ -33,12 +37,12 @@ public class IsLessOrEqualVar extends AbstractConstraint { // b <=> x <= y
         this.b = b;
         this.x = x;
         this.y = y;
-        lEqC = lessOrEqual(x,y);
-        grC = lessOrEqual(plus(y,1),x);
+        lEqC = lessOrEqual(x, y);
+        grC = lessOrEqual(plus(y, 1), x);
     }
 
     @Override
-    public void post()  {
+    public void post() {
         x.propagateOnBoundChange(this);
         y.propagateOnBoundChange(this);
         b.propagateOnBind(this);
@@ -47,12 +51,12 @@ public class IsLessOrEqualVar extends AbstractConstraint { // b <=> x <= y
     }
 
     @Override
-    public void propagate()  {
+    public void propagate() {
         if (b.isTrue()) {
-            cp.post(lEqC,false);
+            cp.post(lEqC, false);
             setActive(false);
         } else if (b.isFalse()) {
-            cp.post(grC,false);
+            cp.post(grC, false);
             setActive(false);
         } else {
             if (x.getMax() <= y.getMin()) {

@@ -17,7 +17,6 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 
 public class IsEqual extends AbstractConstraint { // b <=> x == c
@@ -64,7 +63,7 @@ public class IsEqual extends AbstractConstraint { // b <=> x == c
     @Override
     public void post() {
         propagate();
-        if(isActive()) {
+        if (isActive()) {
             x.propagateOnDomainChange(this);
             b.propagateOnBind(this);
         }

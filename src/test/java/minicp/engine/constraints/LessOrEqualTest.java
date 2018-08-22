@@ -15,49 +15,49 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
+import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
-import static minicp.cp.Factory.*;
-import static org.junit.Assert.*;
+import static minicp.cp.Factory.makeIntVar;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 
-public class LessOrEqualTest {
+public class LessOrEqualTest extends SolverTest {
 
 
     @Test
     public void simpleTest0() {
         try {
-            try {
-                Solver cp = makeSolver();
-                IntVar x = makeIntVar(cp,-5,5);
-                IntVar y = makeIntVar(cp,-10,10);
+            Solver cp = solverFactory.get();
+            IntVar x = makeIntVar(cp, -5, 5);
+            IntVar y = makeIntVar(cp, -10, 10);
 
-                cp.post(new LessOrEqual(x,y));
+            cp.post(new LessOrEqual(x, y));
 
-                assertEquals(-5,y.getMin());
+            assertEquals(-5, y.getMin());
 
-                y.removeAbove(3);
-                cp.fixPoint();
+            y.removeAbove(3);
+            cp.fixPoint();
 
-                assertEquals(9,x.getSize());
-                assertEquals(3,x.getMax());
+            assertEquals(9, x.getSize());
+            assertEquals(3, x.getMax());
 
-                x.removeBelow(-4);
-                cp.fixPoint();
+            x.removeBelow(-4);
+            cp.fixPoint();
 
-                assertEquals(-4,y.getMin());
-
+            assertEquals(-4, y.getMin());
 
 
-            } catch (InconsistencyException e) {
-                fail("should not fail");
-            }
+        } catch (InconsistencyException e) {
+            fail("should not fail");
         } catch (NotImplementedException e) {
-            // pass
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 

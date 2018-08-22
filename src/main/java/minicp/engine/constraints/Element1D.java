@@ -21,20 +21,21 @@ import minicp.engine.core.IntVar;
 
 public class Element1D extends Element2D {
 
-    private static int [][] to2d(int [] t) {
-        int [][] t2 = new int[1][t.length];
-        System.arraycopy(t,0,t2[0],0,t.length);
+    private static int[][] to2d(int[] t) {
+        int[][] t2 = new int[1][t.length];
+        System.arraycopy(t, 0, t2[0], 0, t.length);
         return t2;
     }
 
     /**
      * T[y] = z
+     *
      * @param T
      * @param y
      * @param z
      */
     public Element1D(int[] T, IntVar y, IntVar z) {
-        super(to2d(T), Factory.makeIntVar(y.getSolver(),0,0),y,z);
+        super(to2d(T), Factory.makeIntVar(y.getSolver(), 0, 0), y, z);
     }
 
 }

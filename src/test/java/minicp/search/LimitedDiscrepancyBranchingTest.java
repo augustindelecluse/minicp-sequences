@@ -16,29 +16,23 @@
 package minicp.search;
 
 import minicp.cp.BranchingScheme;
-import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
 import minicp.state.StateInt;
 import minicp.state.StateManager;
 import minicp.state.Trailer;
-import minicp.util.Counter;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
 import minicp.util.Procedure;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.function.Supplier;
 
-import static minicp.cp.Factory.*;
 import static org.junit.Assert.assertEquals;
 
 
 public class LimitedDiscrepancyBranchingTest {
 
     public static SearchObserver makeSearchObserver() {
-        return new AbstractSearcher() {};
+        return new AbstractSearcher() {
+        };
     }
 
     @Test
@@ -46,26 +40,26 @@ public class LimitedDiscrepancyBranchingTest {
         SearchObserver r = makeSearchObserver();
         StateManager sm = new Trailer();
         StateInt i = sm.makeStateInt(0);
-        int [] values = new int[4];
+        int[] values = new int[4];
 
         Supplier<Procedure[]> bs = () -> {
             if (i.getValue() >= values.length)
                 return BranchingScheme.EMPTY;
             else return BranchingScheme.branch(
-                    ()-> { // left branch
+                    () -> { // left branch
                         values[i.getValue()] = 0;
                         i.increment();
                     },
-                    ()-> { // right branch
+                    () -> { // right branch
                         values[i.getValue()] = 1;
                         i.increment();
                     });
         };
 
         LimitedDiscrepancyBranching bsDiscrepancy =
-                new LimitedDiscrepancyBranching(bs,2);
+                new LimitedDiscrepancyBranching(bs, 2);
 
-        DFSearch dfs = new DFSearch(sm,bsDiscrepancy);
+        DFSearch dfs = new DFSearch(sm, bsDiscrepancy);
 
         dfs.onSolution(() -> {
             int n1 = 0;
@@ -78,12 +72,9 @@ public class LimitedDiscrepancyBranchingTest {
         SearchStatistics stats = dfs.solve();
 
         assertEquals(11, stats.nSolutions);
-        assertEquals(0,stats.nFailures);
-        assertEquals(24,stats.nNodes); // root node does not count
+        assertEquals(0, stats.nFailures);
+        assertEquals(24, stats.nNodes); // root node does not count
     }
-
-
-
 
 
 }

@@ -17,7 +17,6 @@ package minicp.search;
 
 
 import minicp.cp.BranchingScheme;
-import minicp.state.StateManager;
 import minicp.util.Procedure;
 
 import java.util.function.Supplier;
@@ -50,13 +49,13 @@ public class LimitedDiscrepancyBranching implements Supplier<Procedure[]> {
         // +0 for alts[0], ..., +i for alts[i]
         //throw new NotImplementedException();
 
-        Procedure [] branches = bs.get();
+        Procedure[] branches = bs.get();
 
         int k = Math.min(maxD - curD + 1, branches.length);
 
         if (k == 0) return BranchingScheme.EMPTY;
 
-        Procedure [] branches_k = new Procedure[k];
+        Procedure[] branches_k = new Procedure[k];
         for (int i = 0; i < k; i++) {
             int bi = i;
             int d = curD + bi; // branch index

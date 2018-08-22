@@ -23,8 +23,6 @@ import minicp.search.DFSearch;
 import minicp.search.Objective;
 import minicp.search.SearchStatistics;
 
-import java.util.Random;
-
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
@@ -54,7 +52,6 @@ public class TSP {
                 {121, 518, 142, 84, 297, 35, 29, 36, 236, 390, 238, 301, 55, 96, 153, 336, 0}};
 
 
-
         int n = distanceMatrix.length;
 
         Solver cp = makeSolver();
@@ -72,7 +69,7 @@ public class TSP {
         Objective obj = cp.minimize(totalDist);
 
 
-        DFSearch dfs = makeDfs(cp,firstFail(succ));
+        DFSearch dfs = makeDfs(cp, firstFail(succ));
 
 
         dfs.onSolution(() ->
@@ -82,7 +79,7 @@ public class TSP {
         long t0 = System.currentTimeMillis();
         SearchStatistics stats = dfs.optimize(obj);
 
-        System.out.println("time:"+(System.currentTimeMillis()-t0));
+        System.out.println("time:" + (System.currentTimeMillis() - t0));
 
         System.out.println(stats);
 

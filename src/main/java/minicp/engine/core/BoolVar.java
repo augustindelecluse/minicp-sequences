@@ -16,8 +16,6 @@
 package minicp.engine.core;
 
 
-import minicp.util.InconsistencyException;
-
 public interface BoolVar extends IntVar {
 
     public boolean isTrue();

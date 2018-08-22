@@ -54,12 +54,13 @@ public class ThetaTree {
 
     }
 
-    private Node [] nodes;
+    private Node[] nodes;
     private int isize; //number of internal nodes
     private int size;
 
     /**
      * Create a theta-tree with a number the least number leaf-nodes >= size
+     *
      * @param size the number of activities that can be inserted in the leaf nodes
      */
     public ThetaTree(int size) {
@@ -71,7 +72,7 @@ public class ThetaTree {
             isize <<= 1; //shift the pattern to the left by 1 (i.e. multiplies by 2)
         }
         //number of nodes in a complete  binary tree with isize leaf nodes is (isize*2)-1
-        nodes = new Node[(isize << 2) -1];
+        nodes = new Node[(isize << 2) - 1];
         for (int i = 0; i < nodes.length; i++) {
             nodes[i] = new Node();
         }
@@ -82,13 +83,14 @@ public class ThetaTree {
      * Remove all the information in the theta-tree
      */
     public void reset() {
-        for (Node n: nodes) {
+        for (Node n : nodes) {
             n.reset();
         }
     }
 
     /**
      * Insert activity in leaf nodes at position pos
+     *
      * @param pos index of the leaf nodes (assumed to start at 0 from left to right)
      * @param ect earliest completion time
      * @param dur duration
@@ -104,6 +106,7 @@ public class ThetaTree {
 
     /**
      * Remove activity at position pos such that it has no impact on the earliest completion time computation
+     *
      * @param pos index of the leaf nodes (assumed to start at 0 from left to right)
      */
     public void remove(int pos) {
@@ -119,6 +122,7 @@ public class ThetaTree {
 
     /**
      * The earliest completion time of the activities present in the theta-tree
+     *
      * @return
      */
     public int getECT() {

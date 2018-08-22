@@ -16,16 +16,22 @@
 package minicp.state;
 
 public class StateLazySparseSet {
-    private StateManager     sm;
-    private StateSparseSet lazy;
+    private StateManager sm;
 
-    private StateInt min;
-    private StateInt max;
-    private int n;
-    private int ofs;
+    private StateSparseSet sparse;
+    private StateInterval interval;
+
+
+    private StateBool intervalRep;
+    private boolean switched = false;
+
+    private boolean isInterval() {
+        return intervalRep.getValue();
+    }
 
     /**
      * Creates a StateSparseSet containing the elements {ofs,...,ofs + n - 1}.
+     *
      * @param sm
      * @param n
      * @param ofs
@@ -33,138 +39,165 @@ public class StateLazySparseSet {
 
     public StateLazySparseSet(StateManager sm, int n, int ofs) {
         this.sm = sm;
-        this.lazy = null;
-        this.n = n;
-        this.ofs = ofs;
-        min = sm.makeStateInt(0);
-        max = sm.makeStateInt(n-1);
+        interval = new StateInterval(sm, ofs, ofs + n - 1);
+        intervalRep = sm.makeStateBool(true);
+
+        // optimization to avoid trashing with the creation of sparse rep
+        sm.onRestore(() -> {
+            if (switched && isInterval()) buildSparse();
+        });
     }
+
+    private void buildSparse() {
+        sparse = new StateSparseSet(sm, getMax() - getMin() + 1, getMin());
+        intervalRep.setValue(false);
+        switched = true;
+    }
+
     /**
      * @return true if the set is empty
      */
     public boolean isEmpty() {
-        return lazy==null ? min.getValue() > max.getValue() : lazy.isEmpty();
+        return isInterval() ? interval.isEmpty() : sparse.isEmpty();
     }
+
     /**
      * @return the size of the set
      */
     public int getSize() {
-        return lazy==null ? max.getValue() - min.getValue() + 1 : lazy.getSize();
+        return isInterval() ? interval.getSize() : sparse.getSize();
     }
+
     /**
      * @return the minimum value in the set
      */
     public int getMin() {
-        if (lazy==null) {
-            return min.getValue();
-        } else return lazy.getMin();
+        if (isInterval()) {
+            return interval.getMin();
+        } else {
+            return sparse.getMin();
+        }
     }
+
     /**
      * @return the maximum value in the set
      */
     public int getMax() {
-        if (lazy==null)
-            return max.getValue();
-        else return lazy.getMax();
+        if (isInterval()) {
+            return interval.getMax();
+        } else {
+            return sparse.getMax();
+        }
     }
+
     /**
      * Check if the value val is in the set
+     *
      * @param val the original value to check.
      * @return true <-> (val-ofs) IN S
      */
     public boolean contains(int val) {
-        if (lazy==null)
-            return min.getValue() <= val && val <= max.getValue();
-        else return lazy.contains(val);
+        if (isInterval()) {
+            return interval.contains(val);
+        } else {
+            return sparse.contains(val);
+        }
     }
+
     /**
      * set the first values of <code>dest</code> to the ones
      * present in the set
+     *
      * @param dest, an array large enough dest.length >= getSize()
      * @return the size of the set
      */
-    public int fillArray(int [] dest) {
-        if (lazy==null) {
+    public int fillArray(int[] dest) {
+        if (isInterval()) {
             int s = getSize();
             int from = getMin();
-            for(int i=0;i < s;i++)
-                dest[i] = from+i;
+            for (int i = 0; i < s; i++)
+                dest[i] = from + i;
             return s;
-        } else return lazy.fillArray(dest);
+        } else return sparse.fillArray(dest);
     }
 
     /**
      * Remove val from the set
+     *
      * @param val
      * @return true if val was in the set, false otherwise
      */
     public boolean remove(int val) {
-        if (lazy==null) {
-            if (val < min.getValue() || val > max.getValue())
+        if (isInterval()) {
+            if (!interval.contains(val)) {
                 return false;
-            if (val == min.getValue()) {
-                min.increment();
+            } else if (val == interval.getMin()) {
+                interval.removeBelow(val + 1);
                 return true;
-            } else if (val == max.getValue()) {
-                max.decrement();
+            } else if (val == interval.getMax()) {
+                interval.removeAbove(val - 1);
                 return true;
-            } else {  // punching a hole!
-                StateSparseSet lazySet = new StateSparseSet(sm,n,ofs);
-                lazySet.removeAbove(getMax());
-                lazySet.removeBelow(getMin());
-                boolean rv = lazySet.remove(val);
-                lazy = lazySet;
-                return rv;
+            } else {
+                buildSparse();
+                return sparse.remove(val);
             }
-        } else return lazy.remove(val);
+        } else return sparse.remove(val);
     }
+
     /**
      * Removes all the element from the set except v
+     *
      * @param v is an element in the set
      */
     public void removeAllBut(int v) {
-        if (lazy==null) {
-            min.setValue(v);
-            max.setValue(v);
-        } else
-            lazy.removeAllBut(v);
+        if (isInterval()) {
+            interval.removeAllBut(v);
+        } else {
+            sparse.removeAllBut(v);
+        }
     }
+
     /**
      * Remove all the values in the set
      */
     public void removeAll() {
-        if (lazy==null)
-            min.setValue(max.getValue()+1);
-        else lazy.removeAll();
+        if (isInterval()) {
+            interval.removeAll();
+        } else {
+            sparse.removeAll();
+        }
     }
+
     /**
      * Remove all the values < value in the set
+     *
      * @param value
      */
     public void removeBelow(int value) {
-        if (lazy==null)
-            min.setValue(value);
-        else
-            lazy.removeBelow(value);
+        if (isInterval()) {
+            interval.removeBelow(value);
+        } else {
+            sparse.removeBelow(value);
+        }
     }
 
     /**
      * Remove all the values > value in the set
      */
     public void removeAbove(int value) {
-        if (lazy==null)
-            max.setValue(value);
-        else lazy.removeAbove(value);
+        if (isInterval()) {
+            interval.removeAbove(value);
+        } else {
+            sparse.removeAbove(value);
+        }
     }
 
-    @Override public String toString() {
-        if (lazy == null) {
-            StringBuilder b = new StringBuilder();
-            b.append("{").append(getMin());
-            b.append("..").append(getMax()).append("}");
-            return b.toString();
+    @Override
+    public String toString() {
+        if (isInterval()) {
+            return interval.toString();
         } else {
-            return lazy.toString();
+            return sparse.toString();
         }
     }
 }

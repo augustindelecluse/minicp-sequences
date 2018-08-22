@@ -16,7 +16,9 @@
 package minicp.engine.constraints;
 
 
+import minicp.engine.constraints.Profile.Rectangle;
 import minicp.util.NotImplementedException;
+import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -24,40 +26,37 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 
-import minicp.engine.constraints.Profile.Rectangle;
-
-
 public class ProfileTest {
 
 
-    private boolean checkProfile(Rectangle ... rectangles) {
+    private boolean checkProfile(Rectangle... rectangles) {
         Profile p = new Profile(rectangles);
-        int [] discreteProfile_p = discreteProfile(p.profileRectangles);
-        int [] discreteProfile_r = discreteProfile(rectangles);
-        if (!Arrays.equals(discreteProfile_p,discreteProfile_r)) {
+        int[] discreteProfile_p = discreteProfile(p.profileRectangles);
+        int[] discreteProfile_r = discreteProfile(rectangles);
+        if (!Arrays.equals(discreteProfile_p, discreteProfile_r)) {
             System.out.println("not same profile");
             return false;
         }
 
-        for (int i = 0; i < p.profileRectangles.length-1; i++) {
-            if (p.profileRectangles[i].end != p.profileRectangles[i+1].start) {
+        for (int i = 0; i < p.profileRectangles.length - 1; i++) {
+            if (p.profileRectangles[i].end != p.profileRectangles[i + 1].start) {
                 System.out.println("not continuous rectangles");
                 return false;
             }
         }
-        return p.size() <= 2* rectangles.length+2;
+        return p.size() <= 2 * rectangles.length + 2;
     }
 
 
-    private int[] discreteProfile(Rectangle ... rectangles) {
+    private int[] discreteProfile(Rectangle... rectangles) {
         int min = Arrays.stream(rectangles).filter(r -> r.height > 0).map(r -> r.start).min(Integer::compare).get();
         int max = Arrays.stream(rectangles).filter(r -> r.height > 0).map(r -> r.end).max(Integer::compare).get();
-        int[] heights = new int[max-min];
+        int[] heights = new int[max - min];
         // discrete profileRectangles of rectangles
-        for (Rectangle r: rectangles) {
+        for (Rectangle r : rectangles) {
             if (r.height > 0) {
                 for (int i = r.start; i < r.end; i++) {
-                    heights[i-min] += r.height;
+                    heights[i - min] += r.height;
                 }
             }
         }
@@ -65,18 +64,17 @@ public class ProfileTest {
     }
 
 
-
     @Test
     public void testProfile1() {
         try {
 
-                Profile.Rectangle r1 = new Profile.Rectangle(7,11,3);
-                Profile.Rectangle r2 = new Profile.Rectangle(2,10,1);
-                Profile.Rectangle r3 = new Profile.Rectangle(3,4,2);
-                assert(checkProfile(r1,r2,r3));
+            Profile.Rectangle r1 = new Profile.Rectangle(7, 11, 3);
+            Profile.Rectangle r2 = new Profile.Rectangle(2, 10, 1);
+            Profile.Rectangle r3 = new Profile.Rectangle(3, 4, 2);
+            assert (checkProfile(r1, r2, r3));
 
         } catch (NotImplementedException e) {
-            e.print();
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -85,13 +83,13 @@ public class ProfileTest {
     public void testProfile2() {
         try {
 
-            Profile.Rectangle r1 = new Profile.Rectangle(1,10,3);
-            Profile.Rectangle r2 = new Profile.Rectangle(1,10,1);
-            Profile.Rectangle r3 = new Profile.Rectangle(1,10,2);
-            assert(checkProfile(r1,r2,r3));
+            Profile.Rectangle r1 = new Profile.Rectangle(1, 10, 3);
+            Profile.Rectangle r2 = new Profile.Rectangle(1, 10, 1);
+            Profile.Rectangle r3 = new Profile.Rectangle(1, 10, 2);
+            assert (checkProfile(r1, r2, r3));
 
         } catch (NotImplementedException e) {
-            e.print();
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -114,10 +112,9 @@ public class ProfileTest {
             }
 
         } catch (NotImplementedException e) {
-            e.print();
+            NotImplementedExceptionAssume.fail(e);
         }
     }
-
 
 
 }

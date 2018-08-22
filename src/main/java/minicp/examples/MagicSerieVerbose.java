@@ -48,7 +48,7 @@ public class MagicSerieVerbose {
         long t0 = System.currentTimeMillis();
         DFSearch dfs = makeDfs(cp, () -> {
             int idx = -1; // index of the first variable that is not bound
-            for (int k: pos)
+            for (int k : pos)
                 if (s[k].getSize() > 1) {
                     idx = k;
                     break;

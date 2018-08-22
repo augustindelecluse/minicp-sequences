@@ -18,13 +18,13 @@ public class NQueens {
         Model model = new Model(n + "n-queens problem");
         IntVar[] q = new IntVar[n];
 
-        for(int i = 0; i < n; i++){
-            q[i] = model.intVar("Q_"+i, 1, n,false);
+        for (int i = 0; i < n; i++) {
+            q[i] = model.intVar("Q_" + i, 1, n, false);
         }
 
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                model.arithm(q[i],"!=",q[j]).post();
+                model.arithm(q[i], "!=", q[j]).post();
                 model.arithm(q[i], "!=", q[j], "-", j - i).post();
                 model.arithm(q[i], "!=", q[j], "+", j - i).post();
             }

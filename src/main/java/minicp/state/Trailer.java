@@ -1,7 +1,10 @@
 package minicp.state;
 
+
 import minicp.util.Procedure;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 public class Trailer implements StateManager {
@@ -18,9 +21,23 @@ public class Trailer implements StateManager {
     private Backup current;
     private long magic = 0L;
 
+    private List<Procedure> onRestoreListeners;
+
     public Trailer() {
         prior = new Stack<Backup>();
         current = new Backup();
+        onRestoreListeners = new LinkedList<Procedure>();
+    }
+
+    private void notifyRestore() {
+        for (Procedure l: onRestoreListeners) {
+            l.call();
+        }
+    }
+
+    @Override
+    public void onRestore(Procedure listener) {
+        onRestoreListeners.add(listener);
     }
 
     public long getMagic() { return magic;}
@@ -34,39 +51,42 @@ public class Trailer implements StateManager {
         return prior.size() - 1;
     }
 
-
     @Override
-    public void save() {
+    public void saveState() {
         prior.add(current);
         current = new Backup();
         magic++;
     }
 
+
     @Override
-    public void restore() {
-        prior.pop().restore();
+    public void restoreState() {
+        current.restore();
+        current = prior.pop();
         magic++;
+        notifyRestore();
     }
 
     @Override
     public void withNewState(Procedure body) {
         final int level = getLevel();
-        save();
+        saveState();
         body.call();
-        restoreUntil(level);
+        restoreStateUntil(level);
     }
 
     @Override
-    public void restoreAll() {
+    public void restoreAllState() {
         while (!prior.isEmpty())
-            restore();
+            restoreState();
     }
 
     @Override
-    public void restoreUntil(int level) {
+    public void restoreStateUntil(int level) {
         while (getLevel() > level)
-            restore();
+            restoreState();
     }
+
 
     @Override
     public StateInt makeStateInt(int initValue) {

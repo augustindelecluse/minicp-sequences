@@ -20,17 +20,17 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+public class StateBoolTest extends StateManagerTest {
 
-public class  ReversibleBoolTest {
 
     @Test
-    public void testReversibleBool() {
-        StateManager trail = new Trailer();
+    public void testStateBool() {
+        StateManager sm = stateFactory.get();
 
-        StateBool b1 = trail.makeStateBool(true);
-        StateBool b2 = trail.makeStateBool(false);
+        StateBool b1 = sm.makeStateBool(true);
+        StateBool b2 = sm.makeStateBool(false);
 
-        trail.save();
+        sm.saveState();
 
         b1.setValue(true);
         b1.setValue(false);
@@ -39,13 +39,12 @@ public class  ReversibleBoolTest {
         b2.setValue(false);
         b2.setValue(true);
 
-        trail.restore();
+        sm.restoreState();
 
         assertTrue(b1.getValue());
         assertFalse(b2.getValue());
 
     }
-
 
 
 }

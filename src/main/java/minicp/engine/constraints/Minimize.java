@@ -16,17 +16,18 @@
 package minicp.engine.constraints;
 
 import minicp.engine.core.IntVar;
-import minicp.engine.core.Solver;
 import minicp.search.Objective;
 import minicp.util.InconsistencyException;
 
 public class Minimize implements Objective {
     public int bound = Integer.MAX_VALUE;
     private final IntVar x;
+
     public Minimize(IntVar x) {
         this.x = x;
         x.getSolver().onFixPoint(() -> x.removeAbove(bound));
     }
+
     public void tighten() {
         if (!x.isBound()) throw new RuntimeException("objective not bound");
         this.bound = x.getMax() - 1;

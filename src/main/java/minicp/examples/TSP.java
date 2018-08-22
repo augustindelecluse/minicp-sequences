@@ -22,10 +22,8 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
 
-import java.util.Random;
-
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
-import static minicp.cp.BranchingScheme.*;
 
 public class TSP {
     public static void main(String[] args) {
@@ -87,7 +85,7 @@ public class TSP {
 
         //DFSearch dfs = makeDfs(cp, firstFail(succ));
 
-        DFSearch dfs = makeDfs(cp,firstFail(succ));
+        DFSearch dfs = makeDfs(cp, firstFail(succ));
 
         /*
         dfs.onSolution(() ->
@@ -113,7 +111,7 @@ public class TSP {
             for (int i = 0; i < n; i++) {
                 succBest[i] = succ[i].getMin();
             }
-            System.out.println("objective:"+totalDist.getMin());
+            System.out.println("objective:" + totalDist.getMin());
         });
 
         dfs.optimize(obj);

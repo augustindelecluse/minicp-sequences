@@ -15,22 +15,23 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.SearchStatistics;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
+import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Assume;
 import org.junit.Test;
 
 import java.util.Random;
 
-import static minicp.cp.Factory.*;
 import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
-public class ShortTableTest {
-
+public class ShortTableTest extends SolverTest {
 
 
     private int[][] randomTuples(Random rand, int arity, int nTuples, int minvalue, int maxvalue) {
@@ -44,51 +45,49 @@ public class ShortTableTest {
     @Test
     public void simpleTest0() {
         try {
-            try {
-                Solver cp = makeSolver();
-                IntVar[] x = makeIntVarArray(cp, 2, 1);
-                int[][] table = new int[][]{{0, 0}};
-                cp.post(new ShortTableCT(x, table,-1));
 
-            } catch (InconsistencyException e) {
-                fail("should not fail");
-            }
+            Solver cp = solverFactory.get();
+            IntVar[] x = makeIntVarArray(cp, 2, 1);
+            int[][] table = new int[][]{{0, 0}};
+            cp.post(new ShortTableCT(x, table, -1));
+
+        } catch (InconsistencyException e) {
+            fail("should not fail");
         } catch (NotImplementedException e) {
             Assume.assumeNoException(e);
         }
     }
 
 
-
     @Test
     public void simpleTest3() {
+
         try {
-            try {
-                Solver cp = makeSolver();
-                IntVar[] x = makeIntVarArray(cp, 3, 12);
-                int[][] table = new int[][]{{0, 0, 2},
-                                            {3, 5, 7},
-                                            {6, 9, 10},
-                                            {1, 2, 3}};
-                cp.post(new ShortTableCT(x, table,0));
+            Solver cp = solverFactory.get();
+            IntVar[] x = makeIntVarArray(cp, 3, 12);
+            int[][] table = new int[][]{{0, 0, 2},
+                    {3, 5, 7},
+                    {6, 9, 10},
+                    {1, 2, 3}};
+            cp.post(new ShortTableCT(x, table, 0));
 
-                assertEquals(12, x[0].getSize());
-                assertEquals(12, x[1].getSize());
-                assertEquals(4, x[2].getSize());
+            assertEquals(12, x[0].getSize());
+            assertEquals(12, x[1].getSize());
+            assertEquals(4, x[2].getSize());
 
-                assertEquals(0,x[0].getMin());
-                assertEquals(11,x[0].getMax());
-                assertEquals(0,x[1].getMin());
-                assertEquals(11,x[1].getMax());
-                assertEquals(2,x[2].getMin());
-                assertEquals(10,x[2].getMax());
+            assertEquals(0, x[0].getMin());
+            assertEquals(11, x[0].getMax());
+            assertEquals(0, x[1].getMin());
+            assertEquals(11, x[1].getMax());
+            assertEquals(2, x[2].getMin());
+            assertEquals(10, x[2].getMax());
 
 
-            } catch (InconsistencyException e) {
-                fail("should not fail");
-            }
+        } catch (InconsistencyException e) {
+            fail("should not fail");
+
         } catch (NotImplementedException e) {
-            // pass
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -116,7 +115,7 @@ public class ShortTableTest {
         SearchStatistics statsAlgo;
 
         try {
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar[] x = makeIntVarArray(cp, 5, 9);
             cp.post(allDifferent(x));
             cp.post(new ShortTableDecomp(new IntVar[]{x[0], x[1], x[2]}, t1, star));
@@ -128,7 +127,7 @@ public class ShortTableTest {
         }
 
         try {
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar[] x = makeIntVarArray(cp, 5, 9);
             cp.post(allDifferent(x));
             cp.post(new ShortTableCT(new IntVar[]{x[0], x[1], x[2]}, t1, star));

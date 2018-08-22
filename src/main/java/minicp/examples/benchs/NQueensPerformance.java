@@ -42,19 +42,19 @@ public class NQueensPerformance {
         long t0 = System.currentTimeMillis();
 
 
-        DFSearch dfs = makeDfs(cp,() -> {
-                IntVar qs = selectMin(q,
-                                      qi -> qi.getSize() > 1,
-                                      qi -> qi.getSize());
-                if (qs==null)
-                    return EMPTY;
-                else {
-                    int v = qs.getMin();
-                    return branch(() -> equal(qs, v),
-                                  () -> notEqual(qs, v));
-                }
-            });
-        
+        DFSearch dfs = makeDfs(cp, () -> {
+            IntVar qs = selectMin(q,
+                    qi -> qi.getSize() > 1,
+                    qi -> qi.getSize());
+            if (qs == null)
+                return EMPTY;
+            else {
+                int v = qs.getMin();
+                return branch(() -> equal(qs, v),
+                        () -> notEqual(qs, v));
+            }
+        });
+
         dfs.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(q))
         );

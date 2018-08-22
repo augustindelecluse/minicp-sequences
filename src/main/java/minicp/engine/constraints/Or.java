@@ -19,32 +19,32 @@ import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.state.StateInt;
 
-import static minicp.util.InconsistencyException.*;
+import static minicp.util.InconsistencyException.INCONSISTENCY;
 
 public class Or extends AbstractConstraint { // x1 or x2 or ... xn
 
-    private final BoolVar [] x;
+    private final BoolVar[] x;
     private final int n;
-    private StateInt wL ; // watched literal left
-    private StateInt wR ; // watched literal right
+    private StateInt wL; // watched literal left
+    private StateInt wR; // watched literal right
 
 
-    public Or(BoolVar [] x) {
+    public Or(BoolVar[] x) {
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
         wL = cp.getStateManager().makeStateInt(0);
-        wR = cp.getStateManager().makeStateInt(n-1);
+        wR = cp.getStateManager().makeStateInt(n - 1);
     }
 
     @Override
-    public void post()  {
+    public void post() {
         propagate();
     }
 
 
     @Override
-    public void propagate()  {
+    public void propagate() {
         // update watched literals
         int i = wL.getValue();
         while (i < n && x[i].isBound()) {
@@ -67,15 +67,13 @@ public class Or extends AbstractConstraint { // x1 or x2 or ... xn
 
         if (wL.getValue() > wR.getValue()) {
             throw INCONSISTENCY;
-        }
-        else if (wL.getValue() == wR.getValue()) { // only one unassigned var
+        } else if (wL.getValue() == wR.getValue()) { // only one unassigned var
             x[wL.getValue()].assign(true);
             setActive(false);
-        }
-        else {
-            assert(wL.getValue() != wR.getValue());
-            assert(!x[wL.getValue()].isBound());
-            assert(!x[wR.getValue()].isBound());
+        } else {
+            assert (wL.getValue() != wR.getValue());
+            assert (!x[wL.getValue()].isBound());
+            assert (!x[wR.getValue()].isBound());
             x[wL.getValue()].propagateOnBind(this);
             x[wR.getValue()].propagateOnBind(this);
         }

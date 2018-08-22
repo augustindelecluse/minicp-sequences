@@ -17,7 +17,6 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
-import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
 
 public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
@@ -38,7 +37,7 @@ public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
         if (b.isTrue()) {
             x.removeAbove(c);
         } else if (b.isFalse()) {
-            x.removeBelow(c+1);
+            x.removeBelow(c + 1);
         } else if (x.getMax() <= c) {
             b.assign(1);
         } else if (x.getMin() > c) {
@@ -50,7 +49,7 @@ public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
                     x.removeAbove(c);
 
                 } else {
-                    x.removeBelow(c+1);
+                    x.removeBelow(c + 1);
                 }
             });
             x.whenBoundsChange(() -> {

@@ -36,15 +36,15 @@ public class QAPDiscrepancy {
 
         int n = reader.getInt();
         // Weights
-        int [][] w = new int[n][n];
-        for (int i = 0; i < n ; i++) {
+        int[][] w = new int[n][n];
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 w[i][j] = reader.getInt();
             }
         }
         // Distance
-        int [][] d = new int[n][n];
-        for (int i = 0; i < n ; i++) {
+        int[][] d = new int[n][n];
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 d[i][j] = reader.getInt();
             }
@@ -58,13 +58,11 @@ public class QAPDiscrepancy {
         cp.post(allDifferent(x));
 
 
-
-
         // build the objective function
-        IntVar[] weightedDist = new IntVar[n*n];
-        for (int k=0,i = 0; i < n; i++) {
+        IntVar[] weightedDist = new IntVar[n * n];
+        for (int k = 0, i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                weightedDist[k] = mul(element(d,x[i],x[j]),w[i][j]);
+                weightedDist[k] = mul(element(d, x[i], x[j]), w[i][j]);
                 k++;
             }
         }
@@ -74,11 +72,9 @@ public class QAPDiscrepancy {
         Objective obj = cp.minimize(totCost);
         // Iterative Discrepancy Search
         for (int dL = 0; dL < x.length; dL++) {
-            DFSearch dfs = makeDfs(cp,limitedDiscrepancy(firstFail(x),dL));
+            DFSearch dfs = makeDfs(cp, limitedDiscrepancy(firstFail(x), dL));
             SearchStatistics stats = dfs.optimize(obj);
         }
-
-
 
 
     }

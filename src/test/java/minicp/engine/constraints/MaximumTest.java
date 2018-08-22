@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
@@ -26,24 +27,24 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static minicp.cp.Factory.*;
 import static minicp.cp.BranchingScheme.and;
 import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.Factory.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 
-public class MaximumTest {
+public class MaximumTest extends SolverTest {
 
     @Test
     public void maximumTest1() {
 
         try {
 
-            Solver cp = makeSolver();
-            IntVar[] x = makeIntVarArray(cp,3, 10);
+            Solver cp = solverFactory.get();
+            IntVar[] x = makeIntVarArray(cp, 3, 10);
             IntVar y = makeIntVar(cp, -5, 20);
-            cp.post(new Maximum(x,y));
+            cp.post(new Maximum(x, y));
 
             assertEquals(9, y.getMax());
             assertEquals(0, y.getMin());
@@ -76,6 +77,8 @@ public class MaximumTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -84,11 +87,11 @@ public class MaximumTest {
 
         try {
 
-            Solver cp = makeSolver();
-            IntVar x1 = makeIntVar(cp,0,0);
-            IntVar x2 = makeIntVar(cp,1,1);
-            IntVar x3 = makeIntVar(cp,2,2);
-            IntVar y = maximum(x1,x2,x3);
+            Solver cp = solverFactory.get();
+            IntVar x1 = makeIntVar(cp, 0, 0);
+            IntVar x2 = makeIntVar(cp, 1, 1);
+            IntVar x3 = makeIntVar(cp, 2, 2);
+            IntVar y = maximum(x1, x2, x3);
 
 
             assertEquals(2, y.getMax());
@@ -96,6 +99,8 @@ public class MaximumTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -104,11 +109,11 @@ public class MaximumTest {
 
         try {
 
-            Solver cp = makeSolver();
-            IntVar x1 = makeIntVar(cp,0,10);
-            IntVar x2 = makeIntVar(cp,0,10);
-            IntVar x3 = makeIntVar(cp,-5,50);
-            IntVar y = maximum(x1,x2,x3);
+            Solver cp = solverFactory.get();
+            IntVar x1 = makeIntVar(cp, 0, 10);
+            IntVar x2 = makeIntVar(cp, 0, 10);
+            IntVar x3 = makeIntVar(cp, -5, 50);
+            IntVar y = maximum(x1, x2, x3);
 
             y.removeAbove(5);
             cp.fixPoint();
@@ -120,6 +125,8 @@ public class MaximumTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
     }
 
@@ -128,7 +135,7 @@ public class MaximumTest {
     public void maximumTest4() {
         try {
             try {
-                Solver cp = makeSolver();
+                Solver cp = solverFactory.get();
                 IntVar[] x = makeIntVarArray(cp, 4, 5);
                 IntVar y = makeIntVar(cp, -5, 20);
 
@@ -145,8 +152,6 @@ public class MaximumTest {
 
                 SearchStatistics stats = dfs.solve();
 
-
-
                 assertEquals(625, stats.nSolutions);
 
             } catch (InconsistencyException e) {
@@ -156,8 +161,6 @@ public class MaximumTest {
             NotImplementedExceptionAssume.fail(e);
         }
     }
-
-
 
 
 }

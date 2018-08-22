@@ -19,6 +19,7 @@ public interface IntVar {
 
     /**
      * Return the solver in which this variable was created
+     *
      * @return the solver in which this variable was created
      */
     Solver getSolver();
@@ -26,6 +27,7 @@ public interface IntVar {
     /**
      * Ask that the closure is called whenever the domain
      * of this variable is reduced to a single value
+     *
      * @param f
      */
     void whenBind(ConstraintClosure.Filtering f);
@@ -33,6 +35,7 @@ public interface IntVar {
     /**
      * Ask that the closure is called whenever
      * the max or min value of the domain of this variable changes
+     *
      * @param f
      */
     void whenBoundsChange(ConstraintClosure.Filtering f);
@@ -40,6 +43,7 @@ public interface IntVar {
     /**
      * Ask that the closure is called whenever the domain change
      * of this variable changes
+     *
      * @param f
      */
     void whenDomainChange(ConstraintClosure.Filtering f);
@@ -47,6 +51,7 @@ public interface IntVar {
     /**
      * Ask that c.propagate() is called whenever the domain change
      * of this variable changes
+     *
      * @param c
      */
     void propagateOnDomainChange(Constraint c);
@@ -54,6 +59,7 @@ public interface IntVar {
     /**
      * Ask that c.propagate() is called whenever the domain
      * of this variable is reduced to a single value
+     *
      * @param c
      */
     void propagateOnBind(Constraint c);
@@ -61,6 +67,7 @@ public interface IntVar {
     /**
      * Ask that c.propagate() is called whenever
      * the max or min value of the domain of this variable changes
+     *
      * @param c
      */
     void propagateOnBoundChange(Constraint c);
@@ -68,32 +75,37 @@ public interface IntVar {
 
     /**
      * Return the minimum of the domain of the variable
+     *
      * @return the minimum of the domain of the variable
      */
     int getMin();
 
     /**
      * Return the maximum of the domain of the variable
+     *
      * @return the maximum of the domain of the variable
      */
     int getMax();
 
     /**
      * Return the size of the domain of the variable
+     *
      * @return the size of the domain of the variable
      */
     int getSize();
 
     /**
      * Copy the values of the domain
+     *
      * @param dest, an array large enough dest.length >= getSize()
      * @return the size of the domain and dest[0,...,getSize-1] contains
-     *         the values in the domain in an arbitrary order
+     * the values in the domain in an arbitrary order
      */
-    int fillArray(int [] dest);
+    int fillArray(int[] dest);
 
     /**
      * Return true if the domain of the variable has a single value
+     *
      * @return true if the domain of the variable has a single value
      */
     boolean isBound();
@@ -103,8 +115,10 @@ public interface IntVar {
      * @return true iff the value v is the domain
      */
     boolean contains(int v);
+
     /**
      * Remove the value v from the domain
+     *
      * @param v
      */
     void remove(int v);
@@ -112,12 +126,14 @@ public interface IntVar {
     /**
      * Assign the value v i.e.
      * remove every value different from v
+     *
      * @param v
      */
     void assign(int v);
 
     /**
      * Remove all the values < va
+     *
      * @param v
      * @return the new minimum
      */
@@ -125,6 +141,7 @@ public interface IntVar {
 
     /**
      * Remove all the values > v
+     *
      * @param v
      * @return the new maximum
      */

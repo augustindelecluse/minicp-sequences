@@ -20,6 +20,7 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
+
 import java.util.Arrays;
 
 import static minicp.cp.BranchingScheme.*;
@@ -31,30 +32,30 @@ public class NQueens {
         IntVar[] q = Factory.makeIntVarArray(cp, n, n);
 
 
-        for(int i=0;i < n;i++)
-            for(int j=i+1;j < n;j++) {
-                cp.post(Factory.notEqual(q[i],q[j]));
-                cp.post(Factory.notEqual(q[i],q[j],j-i));
-                cp.post(Factory.notEqual(q[i],q[j],i-j));
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++) {
+                cp.post(Factory.notEqual(q[i], q[j]));
+                cp.post(Factory.notEqual(q[i], q[j], j - i));
+                cp.post(Factory.notEqual(q[i], q[j], i - j));
             }
 
 
         cp.post(Factory.allDifferentAC(q));
-        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(n, i -> Factory.minus(q[i],i))));
-        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(n, i -> Factory.plus(q[i],i))));
+        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(n, i -> Factory.minus(q[i], i))));
+        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(n, i -> Factory.plus(q[i], i))));
 
 
-        DFSearch search = Factory.makeDfs(cp,() -> {
-                IntVar qs = selectMin(q,
-                                      qi -> qi.getSize() > 1,
-                                      qi -> qi.getSize());
-                if (qs==null) return EMPTY;
-                else {
-                    int v = qs.getMin();
-                    return branch(() -> Factory.equal(qs, v),
-                                  () -> Factory.notEqual(qs, v));
-                }
-            });
+        DFSearch search = Factory.makeDfs(cp, () -> {
+            IntVar qs = selectMin(q,
+                    qi -> qi.getSize() > 1,
+                    qi -> qi.getSize());
+            if (qs == null) return EMPTY;
+            else {
+                int v = qs.getMin();
+                return branch(() -> Factory.equal(qs, v),
+                        () -> Factory.notEqual(qs, v));
+            }
+        });
 
         search.onSolution(() ->
                 System.out.println("solution:" + Arrays.toString(q))

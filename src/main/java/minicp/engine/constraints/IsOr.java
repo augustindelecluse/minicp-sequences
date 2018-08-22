@@ -45,7 +45,7 @@ public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
     }
 
     @Override
-    public void post()  {
+    public void post() {
         b.propagateOnBind(this);
         for (BoolVar xi : x) {
             xi.propagateOnBind(this);

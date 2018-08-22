@@ -18,7 +18,7 @@ package minicp.engine.core;
 public class BoolVarImpl extends IntVarImpl implements BoolVar {
 
     public BoolVarImpl(Solver cp) {
-        super(cp,0,1);
+        super(cp, 0, 1);
     }
 
     @Override

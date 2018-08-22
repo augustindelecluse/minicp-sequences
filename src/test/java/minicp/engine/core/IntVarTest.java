@@ -15,57 +15,61 @@
 
 package minicp.engine.core;
 
+import minicp.engine.SolverTest;
 import minicp.util.InconsistencyException;
 import minicp.util.NotImplementedException;
 import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.*;
 import static minicp.cp.Factory.*;
+import static org.junit.Assert.*;
 
 
-public class IntVarTest {
+public class IntVarTest extends SolverTest {
 
     public boolean propagateCalled = false;
 
     @Test
     public void testIntVar() {
-        Solver cp  = makeSolver();
+        Solver cp = solverFactory.get();
 
-        IntVar x = makeIntVar(cp,10);
-        IntVar y = makeIntVar(cp,10);
+        IntVar x = makeIntVar(cp, 10);
+        IntVar y = makeIntVar(cp, 10);
 
-        cp.getStateManager().save();
+        cp.getStateManager().saveState();
 
 
         try {
 
-        assertFalse(x.isBound());
-        x.remove(5);
-        assertEquals(9,x.getSize());
-        x.assign(7);
-        assertEquals(1,x.getSize());
-        assertTrue(x.isBound());
-        assertEquals(7,x.getMin());
-        assertEquals(7,x.getMax());
+            assertFalse(x.isBound());
+            x.remove(5);
+            assertEquals(9, x.getSize());
+            x.assign(7);
+            assertEquals(1, x.getSize());
+            assertTrue(x.isBound());
+            assertEquals(7, x.getMin());
+            assertEquals(7, x.getMax());
 
-        } catch(InconsistencyException e) { fail("should not fail here");}
+        } catch (InconsistencyException e) {
+            fail("should not fail here");
+        }
 
         try {
             x.assign(8);
-            fail( "should have failed" );
-        } catch (InconsistencyException expectedException) {}
+            fail("should have failed");
+        } catch (InconsistencyException expectedException) {
+        }
 
 
-
-        cp.getStateManager().restore();
-        cp.getStateManager().save();
+        cp.getStateManager().restoreState();
+        cp.getStateManager().saveState();
 
         assertFalse(x.isBound());
-        assertEquals(10,x.getSize());
+        assertEquals(10, x.getSize());
 
         for (int i = 0; i < 10; i++) {
             assertTrue(x.contains(i));
@@ -77,14 +81,14 @@ public class IntVarTest {
     @Test
     public void onDomainChangeOnBind() {
         propagateCalled = false;
-        Solver cp  = makeSolver();
+        Solver cp = solverFactory.get();
 
-        IntVar x = makeIntVar(cp,10);
-        IntVar y = makeIntVar(cp,10);
+        IntVar x = makeIntVar(cp, 10);
+        IntVar y = makeIntVar(cp, 10);
 
         Constraint cons = new AbstractConstraint(cp) {
             @Override
-            public void post()  {
+            public void post() {
                 x.whenBind(() -> propagateCalled = true);
                 y.whenDomainChange(() -> propagateCalled = true);
             }
@@ -116,11 +120,11 @@ public class IntVarTest {
 
         try {
 
-            Solver cp  = makeSolver();
+            Solver cp = solverFactory.get();
 
-            IntVar x = makeIntVar(cp,-10,10);
+            IntVar x = makeIntVar(cp, -10, 10);
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
 
 
             try {
@@ -130,23 +134,26 @@ public class IntVarTest {
                 x.remove(-10);
 
 
-                assertEquals(19,x.getSize());
+                assertEquals(19, x.getSize());
                 x.assign(-4);
-                assertEquals(1,x.getSize());
+                assertEquals(1, x.getSize());
                 assertTrue(x.isBound());
-                assertEquals(-4,x.getMin());
+                assertEquals(-4, x.getMin());
 
-            } catch(InconsistencyException e) { fail("should not fail here");}
+            } catch (InconsistencyException e) {
+                fail("should not fail here");
+            }
 
             try {
                 x.assign(8);
-                fail( "should have failed" );
-            } catch (InconsistencyException expectedException) {}
+                fail("should have failed");
+            } catch (InconsistencyException expectedException) {
+            }
 
 
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
-            assertEquals(21,x.getSize());
+            assertEquals(21, x.getSize());
 
             for (int i = -10; i < 10; i++) {
                 assertTrue(x.contains(i));
@@ -160,19 +167,18 @@ public class IntVarTest {
     }
 
 
-
     @Test
     public void arbitrarySetDomains() {
 
         try {
 
-            Solver cp  = makeSolver();
+            Solver cp = solverFactory.get();
 
-            Set<Integer> dom = new HashSet<>(Arrays.asList(-7,-10,6,9,10,12));
+            Set<Integer> dom = new HashSet<>(Arrays.asList(-7, -10, 6, 9, 10, 12));
 
-            IntVar x = makeIntVar(cp,dom);
+            IntVar x = makeIntVar(cp, dom);
 
-            cp.getStateManager().save();
+            cp.getStateManager().saveState();
 
             try {
 
@@ -183,21 +189,24 @@ public class IntVarTest {
                 }
 
                 x.assign(-7);
-            } catch(InconsistencyException e) { fail("should not fail here");}
+            } catch (InconsistencyException e) {
+                fail("should not fail here");
+            }
 
             try {
                 x.assign(-10);
-                fail( "should have failed" );
-            } catch (InconsistencyException expectedException) {}
+                fail("should have failed");
+            } catch (InconsistencyException expectedException) {
+            }
 
 
-            cp.getStateManager().restore();
+            cp.getStateManager().restoreState();
 
             for (int i = -15; i < 15; i++) {
                 if (dom.contains(i)) assertTrue(x.contains(i));
                 else assertFalse(x.contains(i));
             }
-            assertEquals(6,x.getSize());
+            assertEquals(6, x.getSize());
 
 
         } catch (NotImplementedException e) {
@@ -209,7 +218,7 @@ public class IntVarTest {
     @Test
     public void onBoundChange() {
 
-        Solver cp = makeSolver();
+        Solver cp = solverFactory.get();
 
         IntVar x = makeIntVar(cp, 10);
         IntVar y = makeIntVar(cp, 10);
@@ -218,7 +227,7 @@ public class IntVarTest {
 
             @Override
             public void post() {
-                x.whenBind(() -> propagateCalled  = true);
+                x.whenBind(() -> propagateCalled = true);
                 y.whenDomainChange(() -> propagateCalled = true);
             }
         };
@@ -250,19 +259,18 @@ public class IntVarTest {
     }
 
 
-
     @Test
     public void removeAbove() {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
 
             IntVar x = makeIntVar(cp, 10);
 
             Constraint cons = new AbstractConstraint(cp) {
                 @Override
-                public void post()  {
+                public void post() {
                     x.propagateOnBoundChange(this);
                 }
 
@@ -278,7 +286,7 @@ public class IntVarTest {
                 cp.fixPoint();
                 assertFalse(propagateCalled);
                 x.removeAbove(8);
-                assertEquals(7,x.getMax());
+                assertEquals(7, x.getMax());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
 
@@ -296,12 +304,12 @@ public class IntVarTest {
 
         try {
 
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
             IntVar x = makeIntVar(cp, 10);
 
             Constraint cons = new AbstractConstraint(cp) {
                 @Override
-                public void post()  {
+                public void post() {
                     x.propagateOnBoundChange(this);
                 }
 
@@ -317,13 +325,13 @@ public class IntVarTest {
                 cp.fixPoint();
                 assertFalse(propagateCalled);
                 x.removeBelow(3);
-                assertEquals(4,x.getMin());
+                assertEquals(4, x.getMin());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
                 propagateCalled = false;
 
                 x.removeBelow(5);
-                assertEquals(5,x.getMin());
+                assertEquals(5, x.getMin());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
                 propagateCalled = false;
@@ -343,7 +351,7 @@ public class IntVarTest {
     public void fillArray() {
 
         try {
-            Solver cp = makeSolver();
+            Solver cp = solverFactory.get();
 
             IntVar x = plus(mul(minus(makeIntVar(cp, 5)), 3), 5); // D(x)= {-7,-4,-1,2,5}
             int[] values = new int[10];
@@ -360,7 +368,6 @@ public class IntVarTest {
             e.print();
         }
     }
-
 
 
 }

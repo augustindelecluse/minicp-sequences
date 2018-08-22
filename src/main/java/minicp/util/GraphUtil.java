@@ -1,10 +1,8 @@
 package minicp.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public class GraphUtil {
     public static interface Graph {
@@ -62,21 +60,25 @@ public class GraphUtil {
         Arrays.fill(visited, 0);
         for (int i = 0; i < graph.n(); i++) {
             if (visited[i] == 0) {
-                dfsNode(graph, (suffix, b) -> {if(suffix) firstOrder.push(b);}, visited, i);
+                dfsNode(graph, (suffix, b) -> {
+                    if (suffix) firstOrder.push(b);
+                }, visited, i);
             }
         }
 
         //Reverse the order, and do the dfs of the transposed graph
         Arrays.fill(visited, 0);
-        int [] scc = new int[graph.n()];
+        int[] scc = new int[graph.n()];
         Counter cpt = new Counter();
         Graph tranposed = GraphUtil.transpose(graph);
 
         while (!firstOrder.empty()) {
             int next = firstOrder.pop();
-            if(visited[next] == 0) {
+            if (visited[next] == 0) {
                 cpt.incr();
-                dfsNode(tranposed, (suffix, x) -> {if(!suffix) scc[x] = cpt.getValue();}, visited, next);
+                dfsNode(tranposed, (suffix, x) -> {
+                    if (!suffix) scc[x] = cpt.getValue();
+                }, visited, next);
             }
         }
         return scc;
@@ -92,7 +94,7 @@ public class GraphUtil {
         visited[start] = 1; //seen
         while (!todo.isEmpty()) {
             int cur = todo.peek();
-            if(visited[cur] == 1) {
+            if (visited[cur] == 1) {
                 action.accept(false, cur);
                 for (int next : graph.out(cur)) {
                     if (visited[next] == 0) {
@@ -101,8 +103,7 @@ public class GraphUtil {
                     }
                 }
                 visited[cur] = 2; //visited
-            }
-            else if(visited[cur] == 2) {
+            } else if (visited[cur] == 2) {
                 action.accept(true, cur);
                 visited[cur] = 3; //closed
                 todo.pop();

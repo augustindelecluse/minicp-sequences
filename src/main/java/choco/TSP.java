@@ -1,16 +1,9 @@
 package choco;
 
-import minicp.engine.constraints.Circuit;
-import minicp.engine.constraints.Element1D;
-import minicp.search.DFSearch;
-import minicp.search.Objective;
-import minicp.util.InputReader;
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.Solver;
 import org.chocosolver.solver.constraints.Constraint;
 import org.chocosolver.solver.constraints.Propagator;
-import org.chocosolver.solver.constraints.extension.Tuples;
-import org.chocosolver.solver.constraints.nary.circuit.CircuitConf;
 import org.chocosolver.solver.constraints.nary.circuit.PropNoSubtour;
 import org.chocosolver.solver.search.strategy.Search;
 import org.chocosolver.solver.search.strategy.selectors.values.IntDomainMin;
@@ -21,15 +14,9 @@ import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.util.tools.ArrayUtils;
 
 import java.util.Arrays;
-import java.util.Random;
-
-import static minicp.cp.BranchingScheme.firstFail;
-import static minicp.cp.Factory.*;
-import static minicp.cp.Factory.equal;
 
 public class TSP {
     public static void main(String[] args) {
-
 
 
         // instance gr17 https://people.sc.fsu.edu/~jburkardt/datasets/tsp/gr17_d.txt
@@ -58,23 +45,23 @@ public class TSP {
         IntVar[] succ = new IntVar[n];
         IntVar[] dist = new IntVar[n];
         for (int i = 0; i < n; i++) {
-            succ[i] = model.intVar("succ_" + i, 0, n - 1,false);
-            dist[i] = model.intVar("dist_" + i, 0, 1000,false);
+            succ[i] = model.intVar("succ_" + i, 0, n - 1, false);
+            dist[i] = model.intVar("dist_" + i, 0, 1000, false);
         }
 
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 model.arithm(succ[i], "!=", succ[j]).post();
             }
-            model.element(dist[i],distanceMatrix[i],succ[i]).post();
+            model.element(dist[i], distanceMatrix[i], succ[i]).post();
         }
 
-        (new Constraint("circuit",new Propagator[]{new PropNoSubtour(succ,0)})).post();
+        (new Constraint("circuit", new Propagator[]{new PropNoSubtour(succ, 0)})).post();
 
 
-        IntVar totDist = model.intVar("totDist_" , 0, 1000000,false);
+        IntVar totDist = model.intVar("totDist_", 0, 1000000, false);
 
-        model.sum(dist,"=",totDist).post();
+        model.sum(dist, "=", totDist).post();
 
         Solver solver = model.getSolver();
         solver.setSearch(Search.intVarSearch(
@@ -88,7 +75,7 @@ public class TSP {
 
         solver.showShortStatistics();
         model.setObjective(false, totDist);
-        while(solver.solve()) {
+        while (solver.solve()) {
             System.out.println("solution");
             System.out.println(Arrays.toString(succ));
             System.out.println(totDist);

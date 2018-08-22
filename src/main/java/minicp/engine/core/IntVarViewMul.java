@@ -25,7 +25,7 @@ public class IntVarViewMul implements IntVar {
     private final IntVar x;
 
     public IntVarViewMul(IntVar x, int a) {
-        assert(a > 0);
+        assert (a > 0);
         this.a = a;
         this.x = x;
     }
@@ -36,13 +36,19 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
-    public void whenBind(ConstraintClosure.Filtering f) { x.whenBind(f); }
+    public void whenBind(ConstraintClosure.Filtering f) {
+        x.whenBind(f);
+    }
 
     @Override
-    public void whenBoundsChange(ConstraintClosure.Filtering f) { x.whenBoundsChange(f); }
+    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+        x.whenBoundsChange(f);
+    }
 
     @Override
-    public void whenDomainChange(ConstraintClosure.Filtering f) { x.whenDomainChange(f); }
+    public void whenDomainChange(ConstraintClosure.Filtering f) {
+        x.whenDomainChange(f);
+    }
 
     @Override
     public void propagateOnDomainChange(Constraint c) {
@@ -82,7 +88,7 @@ public class IntVarViewMul implements IntVar {
     public int fillArray(int[] dest) {
         int s = x.fillArray(dest);
         for (int i = 0; i < s; i++) {
-           dest[i] *= a;
+            dest[i] *= a;
         }
         return s;
     }
@@ -98,14 +104,14 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
-    public void remove(int v)  {
+    public void remove(int v) {
         if (v % a == 0) {
             x.remove(v / a);
         }
     }
 
     @Override
-    public void assign(int v)  {
+    public void assign(int v) {
         if (v % a == 0) {
             x.assign(v / a);
         } else {
@@ -114,11 +120,12 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
-    public void removeBelow(int v)  {
-         x.removeBelow(ceilDiv(v, a));
+    public void removeBelow(int v) {
+        x.removeBelow(ceilDiv(v, a));
     }
+
     @Override
-    public void removeAbove(int v)  {
+    public void removeAbove(int v) {
         x.removeAbove(floorDiv(v, a));
     }
 

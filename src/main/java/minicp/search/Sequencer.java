@@ -14,20 +14,25 @@
  */
 
 package minicp.search;
-import minicp.util.Procedure;
-import java.util.function.Supplier;
+
 import minicp.cp.BranchingScheme;
+import minicp.util.Procedure;
+
+import java.util.function.Supplier;
 
 public class Sequencer implements Supplier<Procedure[]> {
     private Supplier<Procedure[]>[] choices;
+
     public Sequencer(Supplier<Procedure[]>... choices) {
         this.choices = choices;
     }
-    @Override public Procedure[] get() {
+
+    @Override
+    public Procedure[] get() {
         for (int i = 0; i < choices.length; i++) {
             Procedure[] alts = choices[i].get();
-            if (alts.length != 0) 
-                return alts;            
+            if (alts.length != 0)
+                return alts;
         }
         return BranchingScheme.EMPTY;
     }

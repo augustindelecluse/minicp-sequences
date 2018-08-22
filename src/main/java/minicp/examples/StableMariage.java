@@ -15,7 +15,6 @@
 
 package minicp.examples;
 
-import minicp.cp.Factory;
 import minicp.engine.constraints.Element1D;
 import minicp.engine.constraints.Element1DVar;
 import minicp.engine.core.BoolVar;
@@ -25,10 +24,10 @@ import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 
 import java.util.Arrays;
-import java.util.stream.*;
 
+import static minicp.cp.BranchingScheme.and;
+import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
-import static minicp.cp.BranchingScheme.*;
 
 /**
  * Stable Marriage problem:
@@ -96,25 +95,24 @@ public class StableMariage {
         Solver cp = makeSolver();
 
         // wife[m] is the woman chosen for man m
-        IntVar [] wife = makeIntVarArray(cp,n,n);
+        IntVar[] wife = makeIntVarArray(cp, n, n);
         // husband[w] is the man chosen for woman w
-        IntVar [] husband = makeIntVarArray(cp,n,n);
+        IntVar[] husband = makeIntVarArray(cp, n, n);
 
         // wifePref[m] is the preference for the woman chosen for man m
-        IntVar [] wifePref = makeIntVarArray(cp,n,n+1);
+        IntVar[] wifePref = makeIntVarArray(cp, n, n + 1);
         // husbandPref[w] is the preference for the man chosen for woman w
-        IntVar [] husbandPref = makeIntVarArray(cp,n,n+1);
-
+        IntVar[] husbandPref = makeIntVarArray(cp, n, n + 1);
 
 
         for (int m = 0; m < n; m++) {
             // the husband of the wife of man m is m
             // TODO: model this with Element1DVar
-            cp.post(new Element1DVar(husband,wife[m],makeIntVar(cp,m,m)));
+            cp.post(new Element1DVar(husband, wife[m], makeIntVar(cp, m, m)));
 
             //
             // TODO: model this with Element1D: rankWomen[m][wife[m]] == wifeFref[m]
-            cp.post(new Element1D(rankWomen[m],wife[m],wifePref[m]));
+            cp.post(new Element1D(rankWomen[m], wife[m], wifePref[m]));
 
 
         }
@@ -122,11 +120,11 @@ public class StableMariage {
         for (int w = 0; w < n; w++) {
             // the wife of the husband of woman i is i
             // TODO: model this with Element1DVar
-            cp.post(new Element1DVar(wife,husband[w],makeIntVar(cp,w,w)));
+            cp.post(new Element1DVar(wife, husband[w], makeIntVar(cp, w, w)));
 
 
             // TODO: model this with Element1D: rankMen[w][husband[w]] == husbandPref[w]
-            cp.post(new Element1D(rankMen[w],husband[w],husbandPref[w]));
+            cp.post(new Element1D(rankMen[w], husband[w], husbandPref[w]));
         }
 
         for (int m = 0; m < n; m++) {
@@ -134,23 +132,23 @@ public class StableMariage {
                 // if m prefers w than his wife, the opposite is not true i.e. w prefers her own husband than m
                 // (wifePref[m] > rankWomen[m][w]) => (husbandPref[w] < rankMen[w][m])
 
-                BoolVar mPrefersW = isLarger(wifePref[m],rankWomen[m][w]);
-                BoolVar wDont = isLess(husbandPref[w],rankMen[w][m]);
-                cp.post(implies(mPrefersW,wDont));
+                BoolVar mPrefersW = isLarger(wifePref[m], rankWomen[m][w]);
+                BoolVar wDont = isLess(husbandPref[w], rankMen[w][m]);
+                cp.post(implies(mPrefersW, wDont));
 
                 // if w prefers m than her husband, the opposite is not true i.e. m prefers his own woman than w
                 // (husbandPref[w] > rankMen[w][m]) => (wifePref[m] < rankWomen[m][w])
                 // TODO: model this constraint
 
-                BoolVar wPrefersM = isLarger(husbandPref[w],rankMen[w][m]);
-                BoolVar mDont = isLess(wifePref[m],rankWomen[m][w]);
-                cp.post(implies(wPrefersM,mDont));
+                BoolVar wPrefersM = isLarger(husbandPref[w], rankMen[w][m]);
+                BoolVar mDont = isLess(wifePref[m], rankWomen[m][w]);
+                cp.post(implies(wPrefersM, mDont));
 
             }
         }
 
 
-        DFSearch dfs = makeDfs(cp,and(firstFail(wife), firstFail(husband)));
+        DFSearch dfs = makeDfs(cp, and(firstFail(wife), firstFail(husband)));
         //IntVar[] av = Stream.concat(Arrays.stream(wife),Arrays.stream(husband)).toArray(IntVar[]::new);
         //DFSearch dfs = makeDfs(cp,firstFail(av));
 
@@ -167,14 +165,13 @@ public class StableMariage {
     }
 
     /**
-     *
      * @param b1
      * @param b2
      * @return b equiv (b1 => b2) (logical implication)
      */
     public static BoolVar implies(BoolVar b1, BoolVar b2) {
-        IntVar not_b1 = plus(minus(b1),1);
-        return isLargerOrEqual(sum(not_b1,b2),1);
+        IntVar not_b1 = plus(minus(b1), 1);
+        return isLargerOrEqual(sum(not_b1, b2), 1);
     }
 }
 

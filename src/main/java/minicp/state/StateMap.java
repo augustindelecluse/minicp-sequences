@@ -16,7 +16,8 @@
 package minicp.state;
 
 
-public interface StateMap<K,V> {
+public interface StateMap<K, V> {
     public void put(K k, V v);
+
     public V get(K k);
 }
