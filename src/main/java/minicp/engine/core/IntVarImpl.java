@@ -29,7 +29,7 @@ public class IntVarImpl implements IntVar {
     private StateStack<Constraint> onBind;
     private StateStack<Constraint> onBounds;
 
-    protected DomainListener domListener = new DomainListener() {
+    private DomainListener domListener = new DomainListener() {
         @Override
         public void empty() {
             throw InconsistencyException.INCONSISTENCY; // Integer Vars cannot be empty

@@ -71,9 +71,9 @@ public class LimitedDiscrepancyBranchingTest {
 
         SearchStatistics stats = dfs.solve();
 
-        assertEquals(11, stats.nSolutions);
-        assertEquals(0, stats.nFailures);
-        assertEquals(24, stats.nNodes); // root node does not count
+        assertEquals(11,stats.numberOfSolutions());
+        assertEquals(0, stats.numberOfFailures());
+        assertEquals(24, stats.numberOfNodes()); // root node does not count
     }
 
 

@@ -18,10 +18,10 @@ package minicp.search;
 
 public class SearchStatistics {
 
-    protected int nFailures = 0;
-    protected int nNodes = 0;
-    protected int nSolutions = 0;
-    protected boolean completed = false;
+    private int nFailures = 0;
+    private int nNodes = 0;
+    private int nSolutions = 0;
+    private boolean completed = false;
 
     public String toString() {
         return "\n\t#choice: " + nNodes +
@@ -29,6 +29,11 @@ public class SearchStatistics {
                 "\n\t#sols : " + nSolutions +
                 "\n\tcompleted : " + completed + "\n";
     }
+
+    public void incrFailures() { nFailures++; }
+    public void incrNodes() { nNodes++; }
+    public void incrSolutions() { nSolutions++; }
+    public void setCompleted() { completed = true; }
 
     public int numberOfFailures() { return nFailures; }
     public int numberOfNodes() { return nNodes; }

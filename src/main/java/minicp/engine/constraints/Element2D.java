@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.stream.IntStream;
 
 public class Element2D extends AbstractConstraint {
-    private final int[][] T;
+    private final int[][] matrix;
     private final IntVar x, y, z;
     private int n, m;
     private final StateInt[] nRowsSup;
@@ -52,31 +52,31 @@ public class Element2D extends AbstractConstraint {
     }
 
     /**
-     * T[x][y] = z
+     * matrix[x][y] = z
      *
-     * @param T
+     * @param m
      * @param x
      * @param y
      * @param z
      */
-    public Element2D(int[][] T, IntVar x, IntVar y, IntVar z) {
+    public Element2D(int[][] mat, IntVar x, IntVar y, IntVar z) {
         super(x.getSolver());
-        this.T = T;
+        this.matrix = mat;
         this.x = x;
         this.y = y;
         this.z = z;
-        n = T.length;
-        m = T[0].length;
+        n = matrix.length;
+        this.m = matrix[0].length;
         this.xyz = new ArrayList<Triple>();
-        for (int i = 0; i < T.length; i++)
-            for (int j = 0; j < T[i].length; j++)
-                xyz.add(new Triple(i, j, T[i][j]));
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[i].length; j++)
+                xyz.add(new Triple(i, j, matrix[i][j]));
         Collections.sort(xyz);
         StateManager sm = cp.getStateManager();
         low = sm.makeStateInt(0);
         up = sm.makeStateInt(xyz.size() - 1);
-        nColsSup = IntStream.range(0, n).mapToObj(i -> sm.makeStateInt(m)).toArray(StateInt[]::new);
-        nRowsSup = IntStream.range(0, m).mapToObj(i -> sm.makeStateInt(n)).toArray(StateInt[]::new);
+        nColsSup = IntStream.range(0, n).mapToObj(i -> sm.makeStateInt(this.m)).toArray(StateInt[]::new);
+        nRowsSup = IntStream.range(0, this.m).mapToObj(i -> sm.makeStateInt(n)).toArray(StateInt[]::new);
     }
 
     @Override

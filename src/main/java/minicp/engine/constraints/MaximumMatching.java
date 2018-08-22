@@ -92,9 +92,9 @@ public class MaximumMatching {
     private void findInitialMatching() { //returns the size of the maximum matching
         sizeMatching = 0;
         for (int k = 0; k < x.length; k++) {
-            int mx = x[k].getMin();
-            int Mx = x[k].getMax();
-            for (int i = mx; i <= Mx; i++)
+            int minv = x[k].getMin();
+            int maxv = x[k].getMax();
+            for (int i = minv; i <= maxv; i++)
                 if (valMatch[i - min] < 0) // unmatched
                     if (x[k].contains(i)) {
                         match[k] = i;
@@ -139,8 +139,7 @@ public class MaximumMatching {
         return false;
     }
 
-    private boolean findAlternatingPathFromVal
-            (int v) {
+    private boolean findAlternatingPathFromVal(int v) {
         if (valSeen[v - min] != magic) {
             valSeen[v - min] = magic;
             if (valMatch[v - min] == -1)

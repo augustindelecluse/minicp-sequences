@@ -34,7 +34,7 @@ public class AllDifferentAC extends AbstractConstraint {
     private ArrayList<Integer>[] in;
     private ArrayList<Integer>[] out;
     private int nNodes;
-    Graph g = new Graph() {
+    private Graph g = new Graph() {
         @Override
         public int n() {
             return nNodes;
@@ -52,7 +52,7 @@ public class AllDifferentAC extends AbstractConstraint {
     };
 
     private int[] match;
-    boolean[] matched;
+    private boolean[] matched;
 
     private int minVal;
     private int maxVal;

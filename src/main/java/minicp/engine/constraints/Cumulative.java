@@ -79,10 +79,10 @@ public class Cumulative extends AbstractConstraint {
             if (!start[i].isBound()) {
                 int j = profile.rectangleIndex(start[i].getMin());
                 int t = start[i].getMin();
-                while (j < profile.size() &&
-                        profile.get(j).start < Math.min(t + duration[i], start[i].getMax())) {
-                    if (capa - demand[i] <
-                            profile.get(j).height) {
+                while (j < profile.size()
+                        && profile.get(j).start < Math.min(t + duration[i], start[i].getMax())) {
+                    if (capa - demand[i]
+                          <  profile.get(j).height) {
                         t = Math.min(profile.get(j).end, start[i].getMax());
                     }
                     j++;

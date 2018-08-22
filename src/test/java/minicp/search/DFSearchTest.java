@@ -28,6 +28,7 @@ import java.util.Arrays;
 import static minicp.cp.BranchingScheme.EMPTY;
 import static minicp.cp.BranchingScheme.branch;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class DFSearchTest extends StateManagerTest {
@@ -62,9 +63,9 @@ public class DFSearchTest extends StateManagerTest {
 
         SearchStatistics stats = dfs.solve();
 
-        assert (stats.nSolutions == 8);
-        assert (stats.nFailures == 0);
-        assert (stats.nNodes == (8 + 4 + 2));
+        assertEquals(8,stats.numberOfSolutions());
+        assertEquals (0,stats.numberOfFailures());
+        assertEquals (8 + 4 + 2,stats.numberOfNodes());
     }
 
 
@@ -96,9 +97,9 @@ public class DFSearchTest extends StateManagerTest {
         });
 
 
-        SearchStatistics stats = dfs.solve(stat -> stat.nSolutions >= 1);
+        SearchStatistics stats = dfs.solve(stat -> stat.numberOfSolutions() >= 1);
 
-        assert (stats.nSolutions == 1);
+        assertEquals (1,stats.numberOfSolutions());
     }
 
 
@@ -137,9 +138,9 @@ public class DFSearchTest extends StateManagerTest {
 
 
         assertEquals(16, nSols.getValue());
-        assertEquals(16, stats.nSolutions);
-        assertEquals(0, stats.nFailures);
-        assertEquals((16 + 8 + 4 + 2), stats.nNodes);
+        assertEquals(16, stats.numberOfSolutions());
+        assertEquals(0, stats.numberOfFailures());
+        assertEquals((16 + 8 + 4 + 2), stats.numberOfNodes());
 
     }
 
@@ -177,10 +178,10 @@ public class DFSearchTest extends StateManagerTest {
 
 
         // stop search after 2 solutions
-        SearchStatistics stats = dfs.solve(stat -> stat.nFailures >= 3);
+        SearchStatistics stats = dfs.solve(stat -> stat.numberOfFailures() >= 3);
 
-        assert (stats.nSolutions == 0);
-        assert (stats.nFailures == 3);
+        assertEquals (0,stats.numberOfSolutions());
+        assertEquals (3,stats.numberOfFailures());
 
     }
 
@@ -210,8 +211,8 @@ public class DFSearchTest extends StateManagerTest {
         });
         try {
             // stop search after 1 solutions (only left most branch)
-            SearchStatistics stats = dfs.solve(stat -> stat.nSolutions >= 1);
-            assert (stats.nSolutions == 1);
+            SearchStatistics stats = dfs.solve(stat -> stat.numberOfSolutions() >= 1);
+            assertEquals (1,stats.numberOfSolutions());
         } catch (NotImplementedException e) {
             e.print();
         }

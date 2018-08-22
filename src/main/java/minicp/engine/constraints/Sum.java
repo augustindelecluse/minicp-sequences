@@ -75,7 +75,7 @@ public class Sum extends AbstractConstraint {
             sumMax += x[idx].getMax();
             if (x[idx].isBound()) {
                 sumBounds.setValue(sumBounds.getValue() + x[idx].getMin());
-                unBounds[i] = unBounds[nU - 1];// Swap the variables
+                unBounds[i] = unBounds[nU - 1]; // Swap the variables
                 unBounds[nU - 1] = idx;
                 nU--;
             }

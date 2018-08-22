@@ -20,7 +20,7 @@ import minicp.search.Objective;
 import minicp.util.InconsistencyException;
 
 public class Minimize implements Objective {
-    public int bound = Integer.MAX_VALUE;
+    private int bound = Integer.MAX_VALUE;
     private final IntVar x;
 
     public Minimize(IntVar x) {

@@ -20,12 +20,12 @@ import minicp.util.Procedure;
 
 public interface SearchObserver {
 
-    public void notifySolution();
+    void notifySolution();
 
-    public void onSolution(Procedure listener);
+    void onSolution(Procedure listener);
 
-    public void notifyFailure();
+    void notifyFailure();
 
-    public void onFailure(Procedure listener);
+    void onFailure(Procedure listener);
 
 }

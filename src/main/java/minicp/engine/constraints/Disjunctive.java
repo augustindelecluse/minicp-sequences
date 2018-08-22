@@ -123,9 +123,13 @@ public class Disjunctive extends AbstractConstraint {
     @Override
     public void propagate() {
         overLoadChecker();
-        while (detectablePrecedence()) {
+        boolean fixed = false;
+        while (!fixed) {
+            fixed = true;
+            overLoadChecker();
+            fixed =  fixed || !detectablePrecedence();
+            fixed =  fixed || !notLast();
         }
-        //while (notLast()) {}
 
     }
 
@@ -196,22 +200,22 @@ public class Disjunctive extends AbstractConstraint {
         int idxj = 0;
         int j = permLst[idxj];
         thetaTree.reset();
-        for (int act_i : permLct) {
-            while (idxj < start.length && end[act_i].getMax() > start[permLst[idxj]].getMax()) {
+        for (int acti : permLct) {
+            while (idxj < start.length && end[acti].getMax() > start[permLst[idxj]].getMax()) {
                 j = permLst[idxj];
                 inserted[j] = true;
                 thetaTree.insert(rankEst[j], end[j].getMin(), duration[j]);
                 idxj++;
             }
-            if (inserted[act_i]) {
-                thetaTree.remove(rankEst[act_i]);
-                if (thetaTree.getECT() > start[act_i].getMax()) {
-                    endMax[act_i] = start[j].getMax();
+            if (inserted[acti]) {
+                thetaTree.remove(rankEst[acti]);
+                if (thetaTree.getECT() > start[acti].getMax()) {
+                    endMax[acti] = start[j].getMax();
                 }
-                thetaTree.insert(rankEst[act_i], end[act_i].getMin(), duration[act_i]);
+                thetaTree.insert(rankEst[acti], end[acti].getMin(), duration[acti]);
             } else {
-                if (thetaTree.getECT() > start[act_i].getMax()) {
-                    endMax[act_i] = start[j].getMax();
+                if (thetaTree.getECT() > start[acti].getMax()) {
+                    endMax[acti] = start[j].getMax();
                 }
             }
         }

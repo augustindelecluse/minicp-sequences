@@ -5,7 +5,7 @@ import minicp.state.StateBool;
 import java.util.Queue;
 
 public abstract class AbstractConstraint implements Constraint {
-    final protected Solver cp;
+    protected final Solver cp;
     private boolean scheduled = false;
     private final StateBool active;
 

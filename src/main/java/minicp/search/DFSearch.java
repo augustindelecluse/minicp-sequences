@@ -49,7 +49,7 @@ public class DFSearch {
         sm.withNewState(() -> {
             try {
                 dfs(statistics, limit);
-                statistics.completed = true;
+                statistics.setCompleted();
             } catch (StopSearchException ignored) {
             } catch (StackOverflowError e) {
                 throw new NotImplementedException("dfs with explicit stack needed to pass this test");
@@ -108,14 +108,14 @@ public class DFSearch {
     private void expandNode(Stack<Procedure> alternatives, SearchStatistics statistics) {
         Procedure[] alts = branching.get();
         if (alts.length == 0) {
-            statistics.nSolutions++;
+            statistics.incrSolutions();
             searchObserver.notifySolution();
         } else {
             for (int i = alts.length - 1; i >= 0; i--) {
                 Procedure a = alts[i];
                 alternatives.push(() -> sm.restoreState());
                 alternatives.push(() -> {
-                    statistics.nNodes++;
+                    statistics.incrNodes();
                     a.call();
                     expandNode(alternatives, statistics);
                 });
@@ -133,7 +133,7 @@ public class DFSearch {
             try {
                 alternatives.pop().call();
             } catch (InconsistencyException e) {
-                statistics.nFailures++;
+                statistics.incrFailures();
                 searchObserver.notifyFailure();
             }
         }
@@ -145,17 +145,17 @@ public class DFSearch {
             throw new StopSearchException();
         Procedure[] branches = branching.get();
         if (branches.length == 0) {
-            statistics.nSolutions++;
+            statistics.incrSolutions();
             searchObserver.notifySolution();
         } else {
             for (Procedure b : branches) {
                 sm.withNewState(() -> {
                     try {
-                        statistics.nNodes++;
+                        statistics.incrNodes();
                         b.call();
                         dfs(statistics, limit);
                     } catch (InconsistencyException e) {
-                        statistics.nFailures++;
+                        statistics.incrFailures();
                         searchObserver.notifyFailure();
                     }
                 });

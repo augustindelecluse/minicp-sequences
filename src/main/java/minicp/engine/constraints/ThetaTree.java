@@ -97,11 +97,11 @@ public class ThetaTree {
      */
     public void insert(int pos, int ect, int dur) {
         //the last size nodes are the leaf nodes so the first one is isize (the number of internal nodes)
-        int curr_pos = isize + pos;
-        Node node = nodes[curr_pos];
+        int currPos = isize + pos;
+        Node node = nodes[currPos];
         node.setECT(ect);
         node.setSUMP(dur);
-        reCompute(getFather(curr_pos));
+        reCompute(getFather(currPos));
     }
 
     /**

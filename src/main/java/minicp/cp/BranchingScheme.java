@@ -27,7 +27,12 @@ import java.util.function.Supplier;
 import static minicp.cp.Factory.equal;
 import static minicp.cp.Factory.notEqual;
 
-public class BranchingScheme {
+public final class BranchingScheme {
+
+    private BranchingScheme() {
+        throw new UnsupportedOperationException();
+    }
+
     public static final Procedure[] EMPTY = new Procedure[0];
 
     public static Procedure[] branch(Procedure... branches) {

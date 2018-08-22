@@ -46,17 +46,17 @@ public class Eternity {
         int m = reader.getInt();
 
         int[][] pieces = new int[n * m][4];
-        int max_ = 0;
+        int maxTmp = 0;
 
         for (int i = 0; i < n * m; i++) {
             for (int j = 0; j < 4; j++) {
                 pieces[i][j] = reader.getInt();
-                if (pieces[i][j] > max_)
-                    max_ = pieces[i][j];
+                if (pieces[i][j] > maxTmp)
+                    maxTmp = pieces[i][j];
             }
             System.out.println(Arrays.toString(pieces[i]));
         }
-        final int max = max_;
+        final int max = maxTmp;
 
         // ------------------------
 

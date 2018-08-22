@@ -58,13 +58,13 @@ public class JobShop {
             System.out.println(nJobs + " " + nMachines);
             int[][] duration = new int[nJobs][nMachines];
             int[][] machine = new int[nJobs][nMachines];
-            int H = 0;
+            int horizon = 0;
             for (int i = 0; i < nJobs; i++) {
                 tokenizer = new StringTokenizer(in.readLine());
                 for (int j = 0; j < nMachines; j++) {
                     machine[i][j] = Integer.parseInt(tokenizer.nextToken());
                     duration[i][j] = Integer.parseInt(tokenizer.nextToken());
-                    H += duration[i][j];
+                    horizon += duration[i][j];
                 }
             }
 
@@ -84,7 +84,7 @@ public class JobShop {
 
                 for (int j = 0; j < nMachines; j++) {
 
-                    start[i][j] = makeIntVar(cp, 0, H);
+                    start[i][j] = makeIntVar(cp, 0, horizon);
                     end[i][j] = plus(start[i][j], duration[i][j]);
                     int m = machine[i][j];
                     startOnMachine[m].add(start[i][j]);

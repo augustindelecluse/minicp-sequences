@@ -29,7 +29,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
-public class Factory {
+public final class Factory {
 
     private Factory() {
         throw new UnsupportedOperationException();

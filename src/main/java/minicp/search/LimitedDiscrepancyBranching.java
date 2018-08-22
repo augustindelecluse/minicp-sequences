@@ -55,17 +55,17 @@ public class LimitedDiscrepancyBranching implements Supplier<Procedure[]> {
 
         if (k == 0) return BranchingScheme.EMPTY;
 
-        Procedure[] branches_k = new Procedure[k];
+        Procedure[] kFirstBranches = new Procedure[k];
         for (int i = 0; i < k; i++) {
             int bi = i;
             int d = curD + bi; // branch index
-            branches_k[i] = () -> {
+            kFirstBranches[i] = () -> {
                 curD = d; // update discrepancy
                 branches[bi].call();
             };
         }
 
-        return branches_k;
+        return kFirstBranches;
 
     }
 }
