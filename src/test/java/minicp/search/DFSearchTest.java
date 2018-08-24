@@ -46,15 +46,15 @@ public class DFSearchTest extends StateManagerTest {
         int[] values = new int[3];
 
         DFSearch dfs = new DFSearch(sm, () -> {
-            if (i.getValue() >= values.length)
+            if (i.value() >= values.length)
                 return EMPTY;
             else return branch(
                     () -> { // left branch
-                        values[i.getValue()] = 0;
+                        values[i.value()] = 0;
                         i.increment();
                     },
                     () -> { // right branch
-                        values[i.getValue()] = 1;
+                        values[i.value()] = 1;
                         i.increment();
                     }
             );
@@ -77,15 +77,15 @@ public class DFSearchTest extends StateManagerTest {
         int[] values = new int[3];
 
         DFSearch dfs = new DFSearch(sm, () -> {
-            if (i.getValue() >= values.length)
+            if (i.value() >= values.length)
                 return EMPTY;
             else return branch(
                     () -> { // left branch
-                        values[i.getValue()] = 1;
+                        values[i.value()] = 1;
                         i.increment();
                     },
                     () -> { // right branch
-                        values[i.getValue()] = 0;
+                        values[i.value()] = 0;
                         i.increment();
                     }
             );
@@ -113,17 +113,17 @@ public class DFSearchTest extends StateManagerTest {
 
 
         DFSearch dfs = new DFSearch(sm, () -> {
-            if (i.getValue() >= values.length)
+            if (i.value() >= values.length)
                 return EMPTY;
             else return branch(
                     () -> {
                         // left branch
-                        values[i.getValue()] = false;
+                        values[i.value()] = false;
                         i.increment();
                     },
                     () -> {
                         // right branch
-                        values[i.getValue()] = true;
+                        values[i.value()] = true;
                         i.increment();
                     }
             );
@@ -153,19 +153,19 @@ public class DFSearchTest extends StateManagerTest {
         boolean[] values = new boolean[4];
 
         DFSearch dfs = new DFSearch(sm, () -> {
-            if (i.getValue() >= values.length) {
+            if (i.value() >= values.length) {
                 return branch(() -> {
                     throw new InconsistencyException();
                 });
             } else return branch(
                     () -> {
                         // left branch
-                        values[i.getValue()] = false;
+                        values[i.value()] = false;
                         i.increment();
                     },
                     () -> {
                         // right branch
-                        values[i.getValue()] = true;
+                        values[i.value()] = true;
                         i.increment();
                     }
             );
@@ -194,17 +194,17 @@ public class DFSearchTest extends StateManagerTest {
         boolean[] values = new boolean[10000];
 
         DFSearch dfs = new DFSearch(sm, () -> {
-            if (i.getValue() >= values.length) {
+            if (i.value() >= values.length) {
                 return EMPTY;
             } else return branch(
                     () -> {
                         // left branch
-                        values[i.getValue()] = false;
+                        values[i.value()] = false;
                         i.increment();
                     },
                     () -> {
                         // right branch
-                        values[i.getValue()] = true;
+                        values[i.value()] = true;
                         i.increment();
                     }
             );

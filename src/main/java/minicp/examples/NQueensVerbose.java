@@ -49,11 +49,11 @@ public class NQueensVerbose {
 
 
         DFSearch dfs = makeDfs(cp, () -> {
-                    IntVar qi = Arrays.stream(q).reduce(null, (a, b) -> b.getSize() > 1 && a == null ? b : a);
+                    IntVar qi = Arrays.stream(q).reduce(null, (a, b) -> b.size() > 1 && a == null ? b : a);
                     if (qi == null) {
                         return new Procedure[0];
                     } else {
-                        int v = qi.getMin();
+                        int v = qi.min();
                         Procedure left = () -> equal(qi, v);
                         Procedure right = () -> notEqual(qi, v);
                         return new Procedure[]{left, right};

@@ -44,8 +44,8 @@ public class TableCT extends AbstractConstraint {
         // Allocate supportedByVarVal
         supports = new BitSet[x.length][];
         for (int i = 0; i < x.length; i++) {
-            this.x[i] = minus(x[i], x[i].getMin()); // map the variables domain to start at 0
-            supports[i] = new BitSet[x[i].getMax() - x[i].getMin() + 1];
+            this.x[i] = minus(x[i], x[i].min()); // map the variables domain to start at 0
+            supports[i] = new BitSet[x[i].max() - x[i].min() + 1];
             for (int j = 0; j < supports[i].length; j++)
                 supports[i][j] = new BitSet();
         }
@@ -54,7 +54,7 @@ public class TableCT extends AbstractConstraint {
         for (int i = 0; i < table.length; i++) { //i is the index of the tuple (in table)
             for (int j = 0; j < x.length; j++) { //j is the index of the current variable (in x)
                 if (x[j].contains(table[i][j])) {
-                    supports[j][table[i][j] - x[j].getMin()].set(i);
+                    supports[j][table[i][j] - x[j].min()].set(i);
                 }
             }
         }
@@ -81,13 +81,13 @@ public class TableCT extends AbstractConstraint {
         supportedTuples.flip(0, table.length);
 
         // TODO 1: compute supportedTuples as
-        // supportedTuples = (supports[0][x[0].getMin()] | ... | supports[0][x[0].getMax()] ) & ... &
-        //                   (supports[x.length][x[0].getMin()] | ... | supports[x.length][x[0].getMax()] )
+        // supportedTuples = (supports[0][x[0].min()] | ... | supports[0][x[0].max()] ) & ... &
+        //                   (supports[x.length][x[0].min()] | ... | supports[x.length][x[0].max()] )
         //
 
         for (int i = 0; i < x.length; i++) {
             BitSet supporti = new BitSet();
-            for (int v = x[i].getMin(); v <= x[i].getMax(); v++) {
+            for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
                     // TODO
                     //
@@ -99,9 +99,9 @@ public class TableCT extends AbstractConstraint {
 
         // TODO 2
         for (int i = 0; i < x.length; i++) {
-            for (int v = x[i].getMin(); v <= x[i].getMax(); v++) {
+            for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
-                    // TODO 2 the condition for removing the value v from x[i] is to check if
+                    // TODO 2 the condition for removing the setValue v from x[i] is to check if
                     // there is no intersection between supportedTuples and the support[i][v]
                     if (!supports[i][v].intersects(supportedTuples)) {
                         x[i].remove(v);

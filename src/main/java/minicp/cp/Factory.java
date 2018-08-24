@@ -66,7 +66,7 @@ public final class Factory {
     }
 
     public static IntVar abs(IntVar x) {
-        IntVar r = makeIntVar(x.getSolver(), 0, x.getMax());
+        IntVar r = makeIntVar(x.getSolver(), 0, x.max());
         x.getSolver().post(new Absolute(x, r));
         return r;
     }
@@ -132,8 +132,8 @@ public final class Factory {
 
     public static IntVar maximum(IntVar... x) {
         Solver cp = x[0].getSolver();
-        int min = Arrays.stream(x).mapToInt(IntVar::getMin).min().getAsInt();
-        int max = Arrays.stream(x).mapToInt(IntVar::getMax).max().getAsInt();
+        int min = Arrays.stream(x).mapToInt(IntVar::min).min().getAsInt();
+        int max = Arrays.stream(x).mapToInt(IntVar::max).max().getAsInt();
         IntVar y = makeIntVar(cp, min, max);
         cp.post(new Maximum(x, y));
         return y;
@@ -231,8 +231,8 @@ public final class Factory {
         int sumMin = 0;
         int sumMax = 0;
         for (int i = 0; i < x.length; i++) {
-            sumMin += x[i].getMin();
-            sumMax += x[i].getMax();
+            sumMin += x[i].min();
+            sumMax += x[i].max();
         }
         Solver cp = x[0].getSolver();
         IntVar s = makeIntVar(cp, sumMin, sumMax);

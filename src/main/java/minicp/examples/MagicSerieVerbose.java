@@ -49,7 +49,7 @@ public class MagicSerieVerbose {
         DFSearch dfs = makeDfs(cp, () -> {
             int idx = -1; // index of the first variable that is not bound
             for (int k : pos)
-                if (s[k].getSize() > 1) {
+                if (s[k].size() > 1) {
                     idx = k;
                     break;
                 }
@@ -57,7 +57,7 @@ public class MagicSerieVerbose {
                 return new Procedure[0];
             else {
                 IntVar si = s[idx];
-                int v = si.getMin();
+                int v = si.min();
                 Procedure left = () -> equal(si, v);
                 Procedure right = () -> notEqual(si, v);
                 return new Procedure[]{left, right};

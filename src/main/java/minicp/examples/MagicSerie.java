@@ -46,11 +46,11 @@ public class MagicSerie {
         long t0 = System.currentTimeMillis();
         DFSearch dfs = makeDfs(cp, () -> {
             IntVar sv = selectMin(s,
-                    si -> si.getSize() > 1,
-                    si -> -si.getSize());
+                    si -> si.size() > 1,
+                    si -> -si.size());
             if (sv == null) return EMPTY;
             else {
-                int v = sv.getMin();
+                int v = sv.min();
                 return branch(() -> equal(sv, v),
                         () -> notEqual(sv, v));
             }

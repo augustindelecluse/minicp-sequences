@@ -62,18 +62,18 @@ public class IntVarViewOffset implements IntVar {
     }
 
     @Override
-    public int getMin() {
-        return x.getMin() + o;
+    public int min() {
+        return x.min() + o;
     }
 
     @Override
-    public int getMax() {
-        return x.getMax() + o;
+    public int max() {
+        return x.max() + o;
     }
 
     @Override
-    public int getSize() {
-        return x.getSize();
+    public int size() {
+        return x.size();
     }
 
     @Override
@@ -119,13 +119,13 @@ public class IntVarViewOffset implements IntVar {
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("{");
-        for (int i = getMin(); i <= getMax() - 1; i++) {
+        for (int i = min(); i <= max() - 1; i++) {
             if (contains((i))) {
                 b.append(i);
                 b.append(',');
             }
         }
-        if (getSize() > 0) b.append(getMax());
+        if (size() > 0) b.append(max());
         b.append("}");
         return b.toString();
 

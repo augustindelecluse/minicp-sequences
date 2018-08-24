@@ -47,7 +47,7 @@ public class IsEqualTest extends SolverTest {
             SearchStatistics stats = search.solve();
 
             search.onSolution(() ->
-                    assertEquals(-2 == x.getMin(), b.isTrue())
+                    assertEquals(-2 == x.min(), b.isTrue())
             );
 
             assertEquals(12, stats.numberOfSolutions());
@@ -69,7 +69,7 @@ public class IsEqualTest extends SolverTest {
 
             cp.getStateManager().saveState();
             equal(b, 1);
-            assertEquals(-2, x.getMin());
+            assertEquals(-2, x.min());
             cp.getStateManager().restoreState();
 
             cp.getStateManager().saveState();
@@ -121,7 +121,7 @@ public class IsEqualTest extends SolverTest {
             cp.getStateManager().saveState();
             equal(b, 1);
             cp.post(new IsEqual(b, x, -2));
-            assertEquals(-2, x.getMin());
+            assertEquals(-2, x.min());
             cp.getStateManager().restoreState();
 
             cp.getStateManager().saveState();

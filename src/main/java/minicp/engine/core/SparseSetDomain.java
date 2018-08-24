@@ -33,15 +33,15 @@ public class SparseSetDomain implements IntDomain {
     }
 
     public int getMin() {
-        return domain.getMin();
+        return domain.min();
     }
 
     public int getMax() {
-        return domain.getMax();
+        return domain.max();
     }
 
     public int getSize() {
-        return domain.getSize();
+        return domain.size();
     }
 
     public boolean contains(int v) {
@@ -49,7 +49,7 @@ public class SparseSetDomain implements IntDomain {
     }
 
     public boolean isBound() {
-        return domain.getSize() == 1;
+        return domain.size() == 1;
     }
 
     public void remove(int v, DomainListener x) {
@@ -57,22 +57,22 @@ public class SparseSetDomain implements IntDomain {
             boolean maxChanged = getMax() == v;
             boolean minChanged = getMin() == v;
             domain.remove(v);
-            if (domain.getSize() == 0)
+            if (domain.size() == 0)
                 x.empty();
             x.change();
             if (maxChanged) x.removeAbove();
             if (minChanged) x.removeBelow();
-            if (domain.getSize() == 1) x.bind();
+            if (domain.size() == 1) x.bind();
         }
     }
 
     public void removeAllBut(int v, DomainListener x) {
         if (domain.contains(v)) {
-            if (domain.getSize() != 1) {
+            if (domain.size() != 1) {
                 boolean maxChanged = getMax() != v;
                 boolean minChanged = getMin() != v;
                 domain.removeAllBut(v);
-                if (domain.getSize() == 0)
+                if (domain.size() == 0)
                     x.empty();
                 x.bind();
                 x.change();
@@ -86,9 +86,9 @@ public class SparseSetDomain implements IntDomain {
     }
 
     public void removeBelow(int value, DomainListener x) {
-        if (domain.getMin() < value) {
+        if (domain.min() < value) {
             domain.removeBelow(value);
-            switch (domain.getSize()) {
+            switch (domain.size()) {
                 case 0:
                     x.empty();
                     break;
@@ -103,9 +103,9 @@ public class SparseSetDomain implements IntDomain {
     }
 
     public void removeAbove(int value, DomainListener x) {
-        if (domain.getMax() > value) {
+        if (domain.max() > value) {
             domain.removeAbove(value);
-            switch (domain.getSize()) {
+            switch (domain.size()) {
                 case 0:
                     x.empty();
                     break;

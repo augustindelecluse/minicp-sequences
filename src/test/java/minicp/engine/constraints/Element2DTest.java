@@ -51,35 +51,35 @@ public class Element2DTest extends SolverTest {
 
             cp.post(new Element2D(T, x, y, z));
 
-            assertEquals(0, x.getMin());
-            assertEquals(0, y.getMin());
-            assertEquals(3, x.getMax());
-            assertEquals(4, y.getMax());
-            assertEquals(2, z.getMin());
-            assertEquals(9, z.getMax());
+            assertEquals(0, x.min());
+            assertEquals(0, y.min());
+            assertEquals(3, x.max());
+            assertEquals(4, y.max());
+            assertEquals(2, z.min());
+            assertEquals(9, z.max());
 
             z.removeAbove(7);
             cp.fixPoint();
 
-            assertEquals(1, y.getMin());
+            assertEquals(1, y.min());
 
             x.remove(0);
             cp.fixPoint();
 
-            assertEquals(6, z.getMax());
-            assertEquals(3, x.getMax());
+            assertEquals(6, z.max());
+            assertEquals(3, x.max());
 
             y.remove(4);
             cp.fixPoint();
 
-            assertEquals(5, z.getMax());
-            assertEquals(2, z.getMin());
+            assertEquals(5, z.max());
+            assertEquals(2, z.min());
 
             y.remove(2);
             cp.fixPoint();
 
-            assertEquals(4, z.getMax());
-            assertEquals(2, z.getMin());
+            assertEquals(4, z.max());
+            assertEquals(2, z.min());
 
 
         } catch (InconsistencyException e) {
@@ -108,7 +108,7 @@ public class Element2DTest extends SolverTest {
 
             DFSearch dfs = makeDfs(cp, firstFail(x, y, z));
             dfs.onSolution(() ->
-                    assertEquals(T[x.getMin()][y.getMin()], z.getMin())
+                    assertEquals(T[x.min()][y.min()], z.min())
             );
             SearchStatistics stats = dfs.solve();
 

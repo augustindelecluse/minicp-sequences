@@ -145,19 +145,19 @@ public class Eternity {
             for (int i = 0; i < n; i++) {
                 String line = "   ";
                 for (int j = 0; j < m; j++) {
-                    line += u[i][j].getMin() + "   ";
+                    line += u[i][j].min() + "   ";
                 }
                 System.out.println(line);
                 line = " ";
                 for (int j = 0; j < m; j++) {
-                    line += l[i][j].getMin() + "   ";
+                    line += l[i][j].min() + "   ";
                 }
-                line += r[i][m - 1].getMin();
+                line += r[i][m - 1].min();
                 System.out.println(line);
             }
             String line = "   ";
             for (int j = 0; j < m; j++) {
-                line += d[n - 1][j].getMin() + "   ";
+                line += d[n - 1][j].min() + "   ";
             }
             System.out.println(line);
 

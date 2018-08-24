@@ -43,15 +43,15 @@ public class LimitedDiscrepancyBranchingTest {
         int[] values = new int[4];
 
         Supplier<Procedure[]> bs = () -> {
-            if (i.getValue() >= values.length)
+            if (i.value() >= values.length)
                 return BranchingScheme.EMPTY;
             else return BranchingScheme.branch(
                     () -> { // left branch
-                        values[i.getValue()] = 0;
+                        values[i.value()] = 0;
                         i.increment();
                     },
                     () -> { // right branch
-                        values[i.getValue()] = 1;
+                        values[i.value()] = 1;
                         i.increment();
                     });
         };

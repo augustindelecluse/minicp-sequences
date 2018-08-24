@@ -52,12 +52,12 @@ public class NQueensPerformance {
 
         DFSearch dfs = makeDfs(cp, () -> {
             IntVar qs = selectMin(q,
-                    qi -> qi.getSize() > 1,
-                    qi -> qi.getSize());
+                    qi -> qi.size() > 1,
+                    qi -> qi.size());
             if (qs == null)
                 return EMPTY;
             else {
-                int v = qs.getMin();
+                int v = qs.min();
                 return branch(() -> equal(qs, v),
                         () -> notEqual(qs, v));
             }

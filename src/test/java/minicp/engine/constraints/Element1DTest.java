@@ -46,24 +46,24 @@ public class Element1DTest extends SolverTest {
 
             cp.post(new Element1D(T, y, z));
 
-            assertEquals(0, y.getMin());
-            assertEquals(4, y.getMax());
+            assertEquals(0, y.min());
+            assertEquals(4, y.max());
 
 
-            assertEquals(5, z.getMin());
-            assertEquals(9, z.getMax());
+            assertEquals(5, z.min());
+            assertEquals(9, z.max());
 
             z.removeAbove(7);
             cp.fixPoint();
 
-            assertEquals(2, y.getMin());
+            assertEquals(2, y.min());
 
 
             y.remove(3);
             cp.fixPoint();
 
-            assertEquals(7, z.getMax());
-            assertEquals(6, z.getMin());
+            assertEquals(7, z.max());
+            assertEquals(6, z.min());
 
 
         } catch (InconsistencyException e) {
@@ -88,7 +88,7 @@ public class Element1DTest extends SolverTest {
 
             DFSearch dfs = makeDfs(cp, firstFail(y, z));
             dfs.onSolution(() ->
-                    assertEquals(T[y.getMin()], z.getMin())
+                    assertEquals(T[y.min()], z.min())
             );
             SearchStatistics stats = dfs.solve();
 
@@ -120,8 +120,8 @@ public class Element1DTest extends SolverTest {
 
             cp.fixPoint();
 
-            assertEquals(6, z.getMin());
-            assertEquals(8, z.getMax());
+            assertEquals(6, z.min());
+            assertEquals(8, z.max());
         } catch (InconsistencyException e) {
             fail("should not fail");
         } catch (NotImplementedException e) {

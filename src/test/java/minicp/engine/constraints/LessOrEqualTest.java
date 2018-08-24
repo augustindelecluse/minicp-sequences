@@ -40,18 +40,18 @@ public class LessOrEqualTest extends SolverTest {
 
             cp.post(new LessOrEqual(x, y));
 
-            assertEquals(-5, y.getMin());
+            assertEquals(-5, y.min());
 
             y.removeAbove(3);
             cp.fixPoint();
 
-            assertEquals(9, x.getSize());
-            assertEquals(3, x.getMax());
+            assertEquals(9, x.size());
+            assertEquals(3, x.max());
 
             x.removeBelow(-4);
             cp.fixPoint();
 
-            assertEquals(-4, y.getMin());
+            assertEquals(-4, y.min());
 
 
         } catch (InconsistencyException e) {

@@ -40,19 +40,19 @@ public class AbsoluteTest extends SolverTest {
 
             cp.post(new Absolute(x, y));
 
-            assertEquals(0, y.getMin());
-            assertEquals(5, y.getMax());
-            assertEquals(11, x.getSize());
+            assertEquals(0, y.min());
+            assertEquals(5, y.max());
+            assertEquals(11, x.size());
 
             x.removeAbove(-2);
             cp.fixPoint();
 
-            assertEquals(2, y.getMin());
+            assertEquals(2, y.min());
 
             x.removeBelow(-4);
             cp.fixPoint();
 
-            assertEquals(4, y.getMax());
+            assertEquals(4, y.max());
 
         } catch (InconsistencyException e) {
             fail("should not fail");
@@ -74,8 +74,8 @@ public class AbsoluteTest extends SolverTest {
             cp.post(new Absolute(x, y));
 
 
-            assertEquals(1, y.getMin());
-            assertEquals(4, y.getMax());
+            assertEquals(1, y.min());
+            assertEquals(4, y.max());
 
         } catch (InconsistencyException e) {
             fail("should not fail");
@@ -96,7 +96,7 @@ public class AbsoluteTest extends SolverTest {
 
             assertTrue(x.isBound());
             assertTrue(y.isBound());
-            assertEquals(-4, x.getMax());
+            assertEquals(-4, x.max());
 
 
         } catch (InconsistencyException e) {
@@ -117,7 +117,7 @@ public class AbsoluteTest extends SolverTest {
 
             assertTrue(x.isBound());
             assertTrue(y.isBound());
-            assertEquals(7, y.getMax());
+            assertEquals(7, y.max());
 
 
         } catch (InconsistencyException e) {
@@ -136,8 +136,8 @@ public class AbsoluteTest extends SolverTest {
 
             cp.post(new Absolute(x, y));
 
-            assertEquals(7, x.getMax());
-            assertEquals(-5, x.getMin());
+            assertEquals(7, x.max());
+            assertEquals(-5, x.min());
 
             notEqual(y, 0);
             cp.fixPoint();
@@ -145,12 +145,12 @@ public class AbsoluteTest extends SolverTest {
             x.removeAbove(4);
             cp.fixPoint();
 
-            assertEquals(5, y.getMax());
+            assertEquals(5, y.max());
 
             x.removeAbove(-2);
             cp.fixPoint();
 
-            assertEquals(2, y.getMin());
+            assertEquals(2, y.min());
 
             y.removeBelow(5);
             cp.fixPoint();

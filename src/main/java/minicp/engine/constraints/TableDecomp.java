@@ -45,7 +45,7 @@ public class TableDecomp extends AbstractConstraint {
     @Override
     public void propagate() {
         for (int i = 0; i < x.length; i++) {
-            for (int v = x[i].getMin(); v <= x[i].getMax(); v++) {
+            for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
                     boolean valueIsSupported = false;
                     for (int tupleIdx = 0; tupleIdx < table.length && !valueIsSupported; tupleIdx++) {

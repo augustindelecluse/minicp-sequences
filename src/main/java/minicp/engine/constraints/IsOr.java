@@ -63,7 +63,7 @@ public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
             }
             setActive(false);
         } else {
-            int nU = nUnBounds.getValue();
+            int nU = nUnBounds.value();
             for (int i = nU - 1; i >= 0; i--) {
                 int idx = unBounds[i];
                 BoolVar y = x[idx];

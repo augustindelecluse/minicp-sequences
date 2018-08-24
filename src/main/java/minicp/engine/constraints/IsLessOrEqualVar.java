@@ -59,10 +59,10 @@ public class IsLessOrEqualVar extends AbstractConstraint { // b <=> x <= y
             cp.post(grC, false);
             setActive(false);
         } else {
-            if (x.getMax() <= y.getMin()) {
+            if (x.max() <= y.min()) {
                 b.assign(1);
                 setActive(false);
-            } else if (x.getMin() > y.getMax()) {
+            } else if (x.min() > y.max()) {
                 b.assign(0);
                 setActive(false);
             }

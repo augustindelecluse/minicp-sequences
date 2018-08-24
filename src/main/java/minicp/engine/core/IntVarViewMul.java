@@ -66,22 +66,22 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
-    public int getMin() {
+    public int min() {
         if (a >= 0)
-            return a * x.getMin();
-        else return a * x.getMax();
+            return a * x.min();
+        else return a * x.max();
     }
 
     @Override
-    public int getMax() {
+    public int max() {
         if (a >= 0)
-            return a * x.getMax();
-        else return a * x.getMin();
+            return a * x.max();
+        else return a * x.min();
     }
 
     @Override
-    public int getSize() {
-        return x.getSize();
+    public int size() {
+        return x.size();
     }
 
     @Override
@@ -144,13 +144,13 @@ public class IntVarViewMul implements IntVar {
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("{");
-        for (int i = getMin(); i <= getMax() - 1; i++) {
+        for (int i = min(); i <= max() - 1; i++) {
             if (contains((i))) {
                 b.append(i);
                 b.append(',');
             }
         }
-        if (getSize() > 0) b.append(getMax());
+        if (size() > 0) b.append(max());
         b.append("}");
         return b.toString();
 

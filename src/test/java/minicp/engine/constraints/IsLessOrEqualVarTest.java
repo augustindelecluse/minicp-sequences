@@ -51,7 +51,7 @@ public class IsLessOrEqualVarTest extends SolverTest {
             SearchStatistics stats = search.solve();
 
             search.onSolution(() ->
-                    assertTrue(x.getMin() <= y.getMin() && b.isTrue() || x.getMin() > y.getMin() && b.isFalse())
+                    assertTrue(x.min() <= y.min() && b.isTrue() || x.min() > y.min() && b.isFalse())
             );
 
             assertEquals(36, stats.numberOfSolutions());
@@ -77,12 +77,12 @@ public class IsLessOrEqualVarTest extends SolverTest {
 
             cp.getStateManager().saveState();
             equal(b, 1);
-            assertEquals(3, x.getMax());
+            assertEquals(3, x.max());
             cp.getStateManager().restoreState();
 
             cp.getStateManager().saveState();
             equal(b, 0);
-            assertEquals(-3, x.getMin());
+            assertEquals(-3, x.min());
             cp.getStateManager().restoreState();
 
         } catch (InconsistencyException e) {
@@ -124,13 +124,13 @@ public class IsLessOrEqualVarTest extends SolverTest {
             cp.getStateManager().saveState();
             equal(b, 1);
             cp.post(new IsLessOrEqual(b, x, -2));
-            assertEquals(-2, x.getMax());
+            assertEquals(-2, x.max());
             cp.getStateManager().restoreState();
 
             cp.getStateManager().saveState();
             equal(b, 0);
             cp.post(new IsLessOrEqual(b, x, -2));
-            assertEquals(-1, x.getMin());
+            assertEquals(-1, x.min());
             cp.getStateManager().restoreState();
 
 

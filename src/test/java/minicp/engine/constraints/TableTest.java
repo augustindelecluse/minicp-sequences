@@ -80,16 +80,16 @@ public class TableTest extends SolverTest {
                     {1, 2, 3}};
             cp.post(new TableCT(x, table));
 
-            assertEquals(4, x[0].getSize());
-            assertEquals(4, x[1].getSize());
-            assertEquals(4, x[2].getSize());
+            assertEquals(4, x[0].size());
+            assertEquals(4, x[1].size());
+            assertEquals(4, x[2].size());
 
-            assertEquals(0, x[0].getMin());
-            assertEquals(6, x[0].getMax());
-            assertEquals(0, x[1].getMin());
-            assertEquals(9, x[1].getMax());
-            assertEquals(2, x[2].getMin());
-            assertEquals(10, x[2].getMax());
+            assertEquals(0, x[0].min());
+            assertEquals(6, x[0].max());
+            assertEquals(0, x[1].min());
+            assertEquals(9, x[1].max());
+            assertEquals(2, x[2].min());
+            assertEquals(10, x[2].max());
 
 
         } catch (InconsistencyException e) {

@@ -100,8 +100,8 @@ public class Element2D extends AbstractConstraint {
 
     @Override
     public void propagate() {
-        int l = low.getValue(), u = up.getValue();
-        int zMin = z.getMin(), zMax = z.getMax();
+        int l = low.value(), u = up.value();
+        int zMin = z.min(), zMax = z.max();
 
         while (xyz.get(l).z < zMin || !x.contains(xyz.get(l).x) || !y.contains(xyz.get(l).y)) {
             updateSupports(l++);

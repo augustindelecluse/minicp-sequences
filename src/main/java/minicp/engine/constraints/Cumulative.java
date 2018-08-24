@@ -77,13 +77,13 @@ public class Cumulative extends AbstractConstraint {
 
         for (int i = 0; i < start.length; i++) {
             if (!start[i].isBound()) {
-                int j = profile.rectangleIndex(start[i].getMin());
-                int t = start[i].getMin();
+                int j = profile.rectangleIndex(start[i].min());
+                int t = start[i].min();
                 while (j < profile.size()
-                        && profile.get(j).start < Math.min(t + duration[i], start[i].getMax())) {
+                        && profile.get(j).start < Math.min(t + duration[i], start[i].max())) {
                     if (capa - demand[i]
                           <  profile.get(j).height) {
-                        t = Math.min(profile.get(j).end, start[i].getMax());
+                        t = Math.min(profile.get(j).end, start[i].max());
                     }
                     j++;
                 }
@@ -95,9 +95,9 @@ public class Cumulative extends AbstractConstraint {
     public Profile buildProfile() {
         ArrayList<Rectangle> mandatoryParts = new ArrayList<Rectangle>();
         for (int i = 0; i < start.length; i++) {
-            if (end[i].getMin() > start[i].getMax()) {
-                int s = start[i].getMax();
-                int e = end[i].getMin();
+            if (end[i].min() > start[i].max()) {
+                int s = start[i].max();
+                int e = end[i].min();
                 int d = demand[i];
                 mandatoryParts.add(new Rectangle(s, e, d));
             }

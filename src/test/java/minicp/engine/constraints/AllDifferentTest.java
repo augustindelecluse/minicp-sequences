@@ -40,8 +40,8 @@ public class AllDifferentTest extends SolverTest {
             cp.post(allDifferent(x));
             equal(x[0], 0);
             for (int i = 1; i < x.length; i++) {
-                assertEquals(4, x[i].getSize());
-                assertEquals(1, x[i].getMin());
+                assertEquals(4, x[i].size());
+                assertEquals(1, x[i].min());
             }
 
         } catch (InconsistencyException e) {

@@ -23,12 +23,12 @@ public class BoolVarImpl extends IntVarImpl implements BoolVar {
 
     @Override
     public boolean isTrue() {
-        return getMin() == 1;
+        return min() == 1;
     }
 
     @Override
     public boolean isFalse() {
-        return getMax() == 0;
+        return max() == 0;
     }
 
     @Override

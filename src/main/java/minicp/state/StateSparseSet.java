@@ -71,7 +71,7 @@ public class StateSparseSet {
      */
 
     public int[] toArray() {
-        int[] res = new int[getSize()];
+        int[] res = new int[size()];
         fillArray(res);
         return res;
     }
@@ -80,11 +80,11 @@ public class StateSparseSet {
      * set the first values of <code>dest</code> to the ones
      * present in the set
      *
-     * @param dest, an array large enough dest.length >= getSize()
+     * @param dest, an array large enough dest.length >= size()
      * @return the size of the set
      */
     public int fillArray(int[] dest) {
-        int s = size.getValue();
+        int s = size.value();
         for (int i = 0; i < s; i++)
             dest[i] = values[i] + ofs;
         return s;
@@ -94,32 +94,32 @@ public class StateSparseSet {
      * @return true if the set is empty
      */
     public boolean isEmpty() {
-        return size.getValue() == 0;
+        return size.value() == 0;
     }
 
     /**
      * @return the size of the set
      */
-    public int getSize() {
-        return size.getValue();
+    public int size() {
+        return size.value();
     }
 
     /**
-     * @return the minimum value in the set
+     * @return the minimum setValue in the set
      */
-    public int getMin() {
+    public int min() {
         if (isEmpty())
             throw new NoSuchElementException();
-        return min.getValue() + ofs;
+        return min.value() + ofs;
     }
 
     /**
-     * @return the maximum value in the set
+     * @return the maximum setValue in the set
      */
-    public int getMax() {
+    public int max() {
         if (isEmpty())
             throw new NoSuchElementException();
-        else return max.getValue() + ofs;
+        else return max.value() + ofs;
     }
 
     private void updateBoundsValRemoved(int val) {
@@ -128,10 +128,10 @@ public class StateSparseSet {
     }
 
     private void updateMaxValRemoved(int val) {
-        if (!isEmpty() && max.getValue() == val) {
+        if (!isEmpty() && max.value() == val) {
             assert (!internalContains(val));
             //the maximum was removed, search the new one
-            for (int v = val - 1; v >= min.getValue(); v--) {
+            for (int v = val - 1; v >= min.value(); v--) {
                 if (internalContains(v)) {
                     max.setValue(v);
                     return;
@@ -141,10 +141,10 @@ public class StateSparseSet {
     }
 
     private void updateMinValRemoved(int val) {
-        if (!isEmpty() && min.getValue() == val) {
+        if (!isEmpty() && min.value() == val) {
             assert (!internalContains(val));
             //the minimum was removed, search the new one
-            for (int v = val + 1; v <= max.getValue(); v++) {
+            for (int v = val + 1; v <= max.value(); v++) {
                 if (internalContains(v)) {
                     min.setValue(v);
                     return;
@@ -161,10 +161,10 @@ public class StateSparseSet {
      */
     public boolean remove(int val) {
         if (!contains(val))
-            return false; //the value has already been removed
+            return false; //the setValue has already been removed
         val -= ofs;
         assert (checkVal(val));
-        int s = getSize();
+        int s = size();
         exchangePositions(val, values[s - 1]);
         size.decrement();
         updateBoundsValRemoved(val);
@@ -172,22 +172,22 @@ public class StateSparseSet {
     }
 
     /**
-     * This method operates on the shifted value (one cannot shift now).
+     * This method operates on the shifted setValue (one cannot shift now).
      *
-     * @param val the value to lookup for membership
+     * @param val the setValue to lookup for membership
      * @return true <-> val IN S
      */
     private boolean internalContains(int val) {
         if (val < 0 || val >= n)
             return false;
         else
-            return indexes[val] < getSize();
+            return indexes[val] < size();
     }
 
     /**
-     * Check if the value val is in the set
+     * Check if the setValue val is in the set
      *
-     * @param val the original value to check.
+     * @param val the original setValue to check.
      * @return true <-> (val-ofs) IN S
      */
     public boolean contains(int val) {
@@ -195,7 +195,7 @@ public class StateSparseSet {
         if (val < 0 || val >= n)
             return false;
         else
-            return indexes[val] < getSize();
+            return indexes[val] < size();
     }
 
     /**
@@ -204,7 +204,7 @@ public class StateSparseSet {
      * @param v is an element in the set
      */
     public void removeAllBut(int v) {
-        // we only have to put in first position this value and set the size to 1
+        // we only have to put in first position this setValue and set the size to 1
         assert (contains(v));
         v -= ofs;
         assert (checkVal(v));
@@ -227,28 +227,28 @@ public class StateSparseSet {
     }
 
     /**
-     * Remove all the values < value in the set
+     * Remove all the values < setValue in the set
      *
      * @param value
      */
     public void removeBelow(int value) {
-        if (getMax() < value) {
+        if (max() < value) {
             removeAll();
         } else {
-            for (int v = getMin(); v < value; v++) {
+            for (int v = min(); v < value; v++) {
                 remove(v);
             }
         }
     }
 
     /**
-     * Remove all the values > value in the set
+     * Remove all the values > setValue in the set
      */
     public void removeAbove(int value) {
-        if (getMin() > value) {
+        if (min() > value) {
             removeAll();
         } else {
-            int max = getMax();
+            int max = max();
             for (int v = value + 1; v <= max; v++) {
                 remove(v);
             }
@@ -260,11 +260,11 @@ public class StateSparseSet {
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("{");
-        for (int i = 0; i < getSize() - 1; i++) {
+        for (int i = 0; i < size() - 1; i++) {
             b.append(values[i] + ofs);
             b.append(',');
         }
-        if (getSize() > 0) b.append(values[getSize() - 1] + ofs);
+        if (size() > 0) b.append(values[size() - 1] + ofs);
         b.append("}");
         return b.toString();
     }

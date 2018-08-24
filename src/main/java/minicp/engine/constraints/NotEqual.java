@@ -36,9 +36,9 @@ public class NotEqual extends AbstractConstraint {
     @Override
     public void post() {
         if (y.isBound())
-            x.remove(y.getMin() + c);
+            x.remove(y.min() + c);
         else if (x.isBound())
-            y.remove(x.getMin() - c);
+            y.remove(x.min() - c);
         else {
             x.propagateOnBind(this);
             y.propagateOnBind(this);
@@ -48,8 +48,8 @@ public class NotEqual extends AbstractConstraint {
     @Override
     public void propagate() {
         if (y.isBound())
-            x.remove(y.getMin() + c);
-        else y.remove(x.getMin() - c);
+            x.remove(y.min() + c);
+        else y.remove(x.min() - c);
         setActive(false);
     }
 }

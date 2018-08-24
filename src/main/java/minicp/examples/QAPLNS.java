@@ -87,9 +87,9 @@ public class QAPLNS {
         dfs.onSolution(() -> {
             // Update the current best solution
             for (int i = 0; i < n; i++) {
-                xBest[i] = x[i].getMin();
+                xBest[i] = x[i].min();
             }
-            System.out.println("objective:" + totCost.getMin());
+            System.out.println("objective:" + totCost.min());
         });
 
 

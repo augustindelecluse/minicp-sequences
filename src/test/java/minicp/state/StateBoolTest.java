@@ -41,8 +41,8 @@ public class StateBoolTest extends StateManagerTest {
 
         sm.restoreState();
 
-        assertTrue(b1.getValue());
-        assertFalse(b2.getValue());
+        assertTrue(b1.value());
+        assertFalse(b2.value());
 
     }
 

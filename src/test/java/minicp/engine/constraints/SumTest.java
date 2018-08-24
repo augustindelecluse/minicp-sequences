@@ -41,8 +41,8 @@ public class SumTest extends SolverTest {
             IntVar[] x = new IntVar[]{makeIntVar(cp, 0, 5), makeIntVar(cp, 1, 5), makeIntVar(cp, 0, 5)};
             cp.post(new Sum(x, y));
 
-            assertEquals(1, y.getMin());
-            assertEquals(15, y.getMax());
+            assertEquals(1, y.min());
+            assertEquals(15, y.max());
 
         } catch (InconsistencyException e) {
             fail("should not fail");
@@ -60,9 +60,9 @@ public class SumTest extends SolverTest {
             IntVar y = makeIntVar(cp, 0, 100);
             cp.post(new Sum(x, y));
 
-            assertEquals(-3, x[0].getMin());
-            assertEquals(0, y.getMin());
-            assertEquals(8, y.getMax());
+            assertEquals(-3, x[0].min());
+            assertEquals(0, y.min());
+            assertEquals(8, y.max());
 
         } catch (InconsistencyException e) {
             fail("should not fail");
@@ -87,10 +87,10 @@ public class SumTest extends SolverTest {
             // 1-5 + 1 + 0-1 = 5
             cp.fixPoint();
 
-            assertEquals(4, x[0].getMax());
-            assertEquals(3, x[0].getMin());
-            assertEquals(1, x[2].getMax());
-            assertEquals(0, x[2].getMin());
+            assertEquals(4, x[0].max());
+            assertEquals(3, x[0].min());
+            assertEquals(1, x[2].max());
+            assertEquals(0, x[2].min());
 
 
         } catch (InconsistencyException e) {
@@ -110,9 +110,9 @@ public class SumTest extends SolverTest {
             IntVar[] x = new IntVar[]{makeIntVar(cp, 0, 5), makeIntVar(cp, 0, 2), makeIntVar(cp, 0, 1)};
             cp.post(new Sum(x, 0));
 
-            assertEquals(0, x[0].getMax());
-            assertEquals(0, x[1].getMax());
-            assertEquals(0, x[2].getMax());
+            assertEquals(0, x[0].max());
+            assertEquals(0, x[1].max());
+            assertEquals(0, x[2].max());
 
 
         } catch (InconsistencyException e) {
@@ -130,9 +130,9 @@ public class SumTest extends SolverTest {
             IntVar[] x = new IntVar[]{makeIntVar(cp, -5, 0), makeIntVar(cp, -5, 0), makeIntVar(cp, -3, 0)};
             cp.post(new Sum(x, 0));
 
-            assertEquals(0, x[0].getMin());
-            assertEquals(0, x[1].getMin());
-            assertEquals(0, x[2].getMin());
+            assertEquals(0, x[0].min());
+            assertEquals(0, x[1].min());
+            assertEquals(0, x[2].min());
 
 
         } catch (InconsistencyException e) {
@@ -149,15 +149,15 @@ public class SumTest extends SolverTest {
             Solver cp = solverFactory.get();
             IntVar[] x = new IntVar[]{makeIntVar(cp, -5, 0), makeIntVar(cp, -5, 0), makeIntVar(cp, -3, 3)};
             cp.post(new Sum(x, 0));
-            assertEquals(-3, x[0].getMin());
-            assertEquals(-3, x[1].getMin());
+            assertEquals(-3, x[0].min());
+            assertEquals(-3, x[1].min());
 
             x[2].removeAbove(0);
             cp.fixPoint();
 
-            assertEquals(0, x[0].getMin());
-            assertEquals(0, x[1].getMin());
-            assertEquals(0, x[2].getMin());
+            assertEquals(0, x[0].min());
+            assertEquals(0, x[1].min());
+            assertEquals(0, x[2].min());
 
 
         } catch (InconsistencyException e) {
@@ -174,8 +174,8 @@ public class SumTest extends SolverTest {
             Solver cp = solverFactory.get();
             IntVar[] x = new IntVar[]{makeIntVar(cp, -5, 0), makeIntVar(cp, -5, 0), makeIntVar(cp, -3, 3)};
             cp.post(new Sum(x, 0));
-            assertEquals(-3, x[0].getMin());
-            assertEquals(-3, x[1].getMin());
+            assertEquals(-3, x[0].min());
+            assertEquals(-3, x[1].min());
 
             x[2].remove(1);
             x[2].remove(2);
@@ -184,9 +184,9 @@ public class SumTest extends SolverTest {
             x[2].remove(5);
             cp.fixPoint();
 
-            assertEquals(0, x[0].getMin());
-            assertEquals(0, x[1].getMin());
-            assertEquals(0, x[2].getMin());
+            assertEquals(0, x[0].min());
+            assertEquals(0, x[1].min());
+            assertEquals(0, x[2].min());
 
         } catch (InconsistencyException e) {
             fail("should not fail");

@@ -31,50 +31,50 @@ public class StateInterval {
      * @return true if the set is empty
      */
     public boolean isEmpty() {
-        return min.getValue() > max.getValue();
+        return min.value() > max.value();
     }
 
     /**
      * @return the size of the set
      */
-    public int getSize() {
-        return Math.max(max.getValue() - min.getValue() + 1, 0);
+    public int size() {
+        return Math.max(max.value() - min.value() + 1, 0);
     }
 
     /**
-     * @return the minimum value in the set
+     * @return the minimum setValue in the set
      */
-    public int getMin() {
-        return min.getValue();
+    public int min() {
+        return min.value();
     }
 
     /**
-     * @return the maximum value in the set
+     * @return the maximum setValue in the set
      */
-    public int getMax() {
-        return max.getValue();
+    public int max() {
+        return max.value();
     }
 
     /**
-     * Check if the value val is in the set
+     * Check if the setValue val is in the set
      *
-     * @param val the original value to check.
+     * @param val the original setValue to check.
      * @return true <-> (val-ofs) IN S
      */
     public boolean contains(int val) {
-        return min.getValue() <= val && val <= max.getValue();
+        return min.value() <= val && val <= max.value();
     }
 
     /**
      * set the first values of <code>dest</code> to the ones
      * present in the set
      *
-     * @param dest, an array large enough dest.length >= getSize()
+     * @param dest, an array large enough dest.length >= size()
      * @return the size of the set
      */
     public int fillArray(int[] dest) {
-        int s = getSize();
-        int from = getMin();
+        int s = size();
+        int from = min();
         for (int i = 0; i < s; i++)
             dest[i] = from + i;
         return s;
@@ -97,11 +97,11 @@ public class StateInterval {
      * Remove all the values in the set
      */
     public void removeAll() {
-        min.setValue(max.getValue() + 1);
+        min.setValue(max.value() + 1);
     }
 
     /**
-     * Remove all the values < value in the set
+     * Remove all the values < setValue in the set
      *
      * @param value
      */
@@ -110,7 +110,7 @@ public class StateInterval {
     }
 
     /**
-     * Remove all the values > value in the set
+     * Remove all the values > setValue in the set
      */
     public void removeAbove(int value) {
         max.setValue(value);
@@ -119,8 +119,8 @@ public class StateInterval {
     @Override
     public String toString() {
         StringBuilder b = new StringBuilder();
-        b.append("{").append(getMin());
-        b.append("..").append(getMax()).append("}");
+        b.append("{").append(min());
+        b.append("..").append(max()).append("}");
         return b.toString();
     }
 }

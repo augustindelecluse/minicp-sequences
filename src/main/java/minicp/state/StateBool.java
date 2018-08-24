@@ -20,6 +20,6 @@ public interface StateBool {
 
     public void setValue(boolean v);
 
-    public boolean getValue();
+    public boolean value();
 
 }

@@ -57,7 +57,7 @@ public class MiniCPTest extends SolverTest {
         DFSearch dfs = makeDfs(cp, () -> {
             int sel = -1;
             for (int i = 0; i < values.length; i++)
-                if (values[i].getSize() > 1 && sel == -1)
+                if (values[i].size() > 1 && sel == -1)
                     sel = i;
             final int i = sel;
             if (i == -1)

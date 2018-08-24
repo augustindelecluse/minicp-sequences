@@ -21,7 +21,7 @@ public class Element1DVar extends AbstractConstraint {
         this.array = array;
         this.y = y;
         this.z = z;
-        yValues = new int[y.getSize()];
+        yValues = new int[y.size()];
     }
 
     @Override
@@ -40,27 +40,27 @@ public class Element1DVar extends AbstractConstraint {
 
     @Override
     public void propagate() {
-        zMin = z.getMin();
-        zMax = z.getMax();
+        zMin = z.min();
+        zMax = z.max();
         if (y.isBound()) equalityPropagate();
         else {
             filterY();
             if (y.isBound())
                 equalityPropagate();
             else {
-                z.removeBelow(supMin.getMin());
-                z.removeAbove(supMax.getMax());
+                z.removeBelow(supMin.min());
+                z.removeAbove(supMax.max());
             }
         }
     }
 
     private void equalityPropagate() {
-        int id = y.getMin();
+        int id = y.min();
         IntVar tVar = array[id];
         tVar.removeBelow(zMin);
         tVar.removeAbove(zMax);
-        z.removeBelow(tVar.getMin());
-        z.removeAbove(tVar.getMax());
+        z.removeBelow(tVar.min());
+        z.removeAbove(tVar.max());
     }
 
     private void filterY() {
@@ -72,8 +72,8 @@ public class Element1DVar extends AbstractConstraint {
             i -= 1;
             int id = yValues[i];
             IntVar tVar = array[id];
-            int tMin = tVar.getMin();
-            int tMax = tVar.getMax();
+            int tMin = tVar.min();
+            int tMax = tVar.max();
             if (tMax < zMin || tMin > zMax) {
                 y.remove(id);
             } else {

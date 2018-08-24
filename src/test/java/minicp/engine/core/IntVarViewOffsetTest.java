@@ -34,9 +34,9 @@ public class IntVarViewOffsetTest extends SolverTest {
 
         IntVar x = plus(makeIntVar(cp, -3, 4), 3); // domain is {0,1,2,3,4,5,6,7}
 
-        assertEquals(0, x.getMin());
-        assertEquals(7, x.getMax());
-        assertEquals(8, x.getSize());
+        assertEquals(0, x.min());
+        assertEquals(7, x.max());
+        assertEquals(8, x.size());
 
         cp.getStateManager().saveState();
 
@@ -50,14 +50,14 @@ public class IntVarViewOffsetTest extends SolverTest {
             x.remove(3);
             assertTrue(x.contains(1));
             assertTrue(x.contains(2));
-            assertEquals(6, x.getSize());
+            assertEquals(6, x.size());
             x.removeAbove(6);
-            assertEquals(6, x.getMax());
+            assertEquals(6, x.max());
             x.removeBelow(3);
-            assertEquals(4, x.getMin());
+            assertEquals(4, x.min());
             x.assign(5);
             assertTrue(x.isBound());
-            assertEquals(5, x.getMax());
+            assertEquals(5, x.max());
 
 
         } catch (InconsistencyException e) {
@@ -73,7 +73,7 @@ public class IntVarViewOffsetTest extends SolverTest {
 
         cp.getStateManager().restoreState();
 
-        assertEquals(8, x.getSize());
+        assertEquals(8, x.size());
         assertFalse(x.contains(-1));
 
     }

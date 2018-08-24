@@ -39,7 +39,7 @@ public class IsEqual extends AbstractConstraint { // b <=> x == c
         } else if (b.isFalse()) {
             x.remove(c);
         } else if (x.isBound()) {
-            b.assign(x.getMin() == c);
+            b.assign(x.min() == c);
         } else if (!x.contains(c)) {
             b.assign(0);
         } else {
@@ -51,7 +51,7 @@ public class IsEqual extends AbstractConstraint { // b <=> x == c
                 }
             });
             x.whenBind(() ->
-                b.assign(x.getMin() == c)
+                b.assign(x.min() == c)
             );
             x.whenDomainChange(() -> {
                 if (!x.contains(c))

@@ -26,7 +26,7 @@ public class CopyBool implements Storage, StateBool {
     }
 
     @Override
-    public boolean getValue() {
+    public boolean value() {
         return v;
     }
 

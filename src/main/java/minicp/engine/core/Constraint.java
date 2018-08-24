@@ -28,7 +28,7 @@ public interface Constraint {
     void setScheduled(boolean scheduled);
 
     /**
-     * @return the last value given to setScheduled
+     * @return the last setValue given to setScheduled
      */
     boolean isScheduled();
 
@@ -41,7 +41,7 @@ public interface Constraint {
     void setActive(boolean active);
 
     /**
-     * @return the last value passed in argument of setActive
+     * @return the last setValue passed in argument of setActive
      */
     boolean isActive();
 

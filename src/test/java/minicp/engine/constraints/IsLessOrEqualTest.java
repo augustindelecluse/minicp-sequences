@@ -47,7 +47,7 @@ public class IsLessOrEqualTest extends SolverTest {
             DFSearch search = makeDfs(cp, firstFail(x));
 
             search.onSolution(() ->
-                    assertTrue(x.getMin() <= 3 && b.isTrue() || x.getMin() > 3 && b.isFalse())
+                    assertTrue(x.min() <= 3 && b.isTrue() || x.min() > 3 && b.isFalse())
             );
 
             SearchStatistics stats = search.solve();
@@ -76,12 +76,12 @@ public class IsLessOrEqualTest extends SolverTest {
 
             cp.getStateManager().saveState();
             equal(b, 1);
-            assertEquals(-2, x.getMax());
+            assertEquals(-2, x.max());
             cp.getStateManager().restoreState();
 
             cp.getStateManager().saveState();
             equal(b, 0);
-            assertEquals(-1, x.getMin());
+            assertEquals(-1, x.min());
             cp.getStateManager().restoreState();
 
         } catch (InconsistencyException e) {
@@ -127,13 +127,13 @@ public class IsLessOrEqualTest extends SolverTest {
             cp.getStateManager().saveState();
             equal(b, 1);
             cp.post(new IsLessOrEqual(b, x, -2));
-            assertEquals(-2, x.getMax());
+            assertEquals(-2, x.max());
             cp.getStateManager().restoreState();
 
             cp.getStateManager().saveState();
             equal(b, 0);
             cp.post(new IsLessOrEqual(b, x, -2));
-            assertEquals(-1, x.getMin());
+            assertEquals(-1, x.min());
             cp.getStateManager().restoreState();
 
 

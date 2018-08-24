@@ -54,22 +54,22 @@ public class Maximum extends AbstractConstraint {
         int nSupport = 0;
         int supportIdx = -1;
         for (int i = 0; i < x.length; i++) {
-            x[i].removeAbove(y.getMax());
+            x[i].removeAbove(y.max());
 
-            if (x[i].getMax() > max) {
-                max = x[i].getMax();
+            if (x[i].max() > max) {
+                max = x[i].max();
             }
-            if (x[i].getMin() > min) {
-                min = x[i].getMin();
+            if (x[i].min() > min) {
+                min = x[i].min();
             }
 
-            if (x[i].getMax() >= y.getMin()) {
+            if (x[i].max() >= y.min()) {
                 nSupport += 1;
                 supportIdx = i;
             }
         }
         if (nSupport == 1) {
-            x[supportIdx].removeBelow(y.getMin());
+            x[supportIdx].removeBelow(y.min());
         }
         y.removeAbove(max);
         y.removeBelow(min);

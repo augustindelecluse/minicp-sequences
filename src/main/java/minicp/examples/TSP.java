@@ -77,9 +77,9 @@ public class TSP {
         dfs.onSolution(() -> {
             // Update the current best solution
             for (int i = 0; i < n; i++) {
-                succBest[i] = succ[i].getMin();
+                succBest[i] = succ[i].min();
             }
-            System.out.println("objective:" + totalDist.getMin());
+            System.out.println("objective:" + totalDist.min());
         });
 
         dfs.optimize(obj);

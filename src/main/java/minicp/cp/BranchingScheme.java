@@ -52,12 +52,12 @@ public final class BranchingScheme {
     public static Supplier<Procedure[]> firstFail(IntVar... x) {
         return () -> {
             IntVar xs = selectMin(x,
-                    xi -> xi.getSize() > 1,
-                    xi -> xi.getSize());
+                    xi -> xi.size() > 1,
+                    xi -> xi.size());
             if (xs == null)
                 return EMPTY;
             else {
-                int v = xs.getMin();
+                int v = xs.min();
                 return branch(() -> equal(xs, v),
                         () -> notEqual(xs, v));
             }

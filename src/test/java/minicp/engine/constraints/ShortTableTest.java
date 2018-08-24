@@ -71,16 +71,16 @@ public class ShortTableTest extends SolverTest {
                     {1, 2, 3}};
             cp.post(new ShortTableCT(x, table, 0));
 
-            assertEquals(12, x[0].getSize());
-            assertEquals(12, x[1].getSize());
-            assertEquals(4, x[2].getSize());
+            assertEquals(12, x[0].size());
+            assertEquals(12, x[1].size());
+            assertEquals(4, x[2].size());
 
-            assertEquals(0, x[0].getMin());
-            assertEquals(11, x[0].getMax());
-            assertEquals(0, x[1].getMin());
-            assertEquals(11, x[1].getMax());
-            assertEquals(2, x[2].getMin());
-            assertEquals(10, x[2].getMax());
+            assertEquals(0, x[0].min());
+            assertEquals(11, x[0].max());
+            assertEquals(0, x[1].min());
+            assertEquals(11, x[1].max());
+            assertEquals(2, x[2].min());
+            assertEquals(10, x[2].max());
 
 
         } catch (InconsistencyException e) {

@@ -116,7 +116,7 @@ public class CircuitTest extends SolverTest {
             dfs.onSolution(() -> {
                         int[] sol = new int[x.length];
                         for (int i = 0; i < x.length; i++) {
-                            sol[i] = x[i].getMin();
+                            sol[i] = x[i].min();
                         }
                         assertTrue("Solution is not an hamiltonian Circuit", checkHamiltonian(sol));
                     }

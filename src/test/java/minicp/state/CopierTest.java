@@ -61,9 +61,9 @@ public class CopierTest {
 
         assertEquals(2, copier.storeSize());
 
-        assertEquals(5, a.getValue());
-        assertEquals(5, b.getValue());
-        assertEquals(5, c.getValue());
+        assertEquals(5, a.value());
+        assertEquals(5, b.value());
+        assertEquals(5, c.value());
 
 
         a.setValue(10);
@@ -80,15 +80,15 @@ public class CopierTest {
         assertEquals(2, copier.storeSize());
 
 
-        assertEquals(10, a.getValue());
-        assertEquals(16, b.getValue());
-        assertEquals(5, c.getValue());
+        assertEquals(10, a.value());
+        assertEquals(16, b.value());
+        assertEquals(5, c.value());
 
         copier.restoreAllState();
 
-        assertEquals(5, a.getValue());
-        assertEquals(5, b.getValue());
-        assertEquals(5, c.getValue());
+        assertEquals(5, a.value());
+        assertEquals(5, b.value());
+        assertEquals(5, c.value());
 
         assertEquals(2, copier.storeSize());
 

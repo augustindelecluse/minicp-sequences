@@ -76,7 +76,7 @@ public class IntVarImpl implements IntVar {
      * @param max >= min
      */
     public IntVarImpl(Solver cp, int min, int max) {
-        if (min > max) throw new InvalidParameterException("at least one value in the domain");
+        if (min > max) throw new InvalidParameterException("at least one setValue in the domain");
         this.cp = cp;
         cp.registerVar(this);
         domain = new SparseSetDomain(cp.getStateManager(), min, max);
@@ -98,8 +98,8 @@ public class IntVarImpl implements IntVar {
      */
     public IntVarImpl(Solver cp, Set<Integer> values) {
         this(cp, values.stream().min(Integer::compare).get(), values.stream().max(Integer::compare).get());
-        if (values.isEmpty()) throw new InvalidParameterException("at least one value in the domain");
-        for (int i = getMin(); i <= getMax(); i++) {
+        if (values.isEmpty()) throw new InvalidParameterException("at least one setValue in the domain");
+        for (int i = min(); i <= max(); i++) {
             if (!values.contains(i)) {
                 try {
                     this.remove(i);
@@ -161,17 +161,17 @@ public class IntVarImpl implements IntVar {
     }
 
     @Override
-    public int getMin() {
+    public int min() {
         return domain.getMin();
     }
 
     @Override
-    public int getMax() {
+    public int max() {
         return domain.getMax();
     }
 
     @Override
-    public int getSize() {
+    public int size() {
         return domain.getSize();
     }
 

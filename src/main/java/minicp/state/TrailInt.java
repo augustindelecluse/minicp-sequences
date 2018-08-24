@@ -59,16 +59,16 @@ public class TrailInt implements StateInt {
 
     @Override
     public int increment() {
-        return setValue(getValue() + 1);
+        return setValue(value() + 1);
     }
 
     @Override
     public int decrement() {
-        return setValue(getValue() - 1);
+        return setValue(value() - 1);
     }
 
     @Override
-    public int getValue() {
+    public int value() {
         return this.v;
     }
 

@@ -67,14 +67,14 @@ public class Sum extends AbstractConstraint {
     @Override
     public void propagate() {
         // Filter the unbound vars and update the partial sum
-        int nU = nUnBounds.getValue();
-        int sumMin = sumBounds.getValue(), sumMax = sumBounds.getValue();
+        int nU = nUnBounds.value();
+        int sumMin = sumBounds.value(), sumMax = sumBounds.value();
         for (int i = nU - 1; i >= 0; i--) {
             int idx = unBounds[i];
-            sumMin += x[idx].getMin(); // Update partial sum
-            sumMax += x[idx].getMax();
+            sumMin += x[idx].min(); // Update partial sum
+            sumMax += x[idx].max();
             if (x[idx].isBound()) {
-                sumBounds.setValue(sumBounds.getValue() + x[idx].getMin());
+                sumBounds.setValue(sumBounds.value() + x[idx].min());
                 unBounds[i] = unBounds[nU - 1]; // Swap the variables
                 unBounds[nU - 1] = idx;
                 nU--;
@@ -85,8 +85,8 @@ public class Sum extends AbstractConstraint {
             throw new InconsistencyException();
         for (int i = nU - 1; i >= 0; i--) {
             int idx = unBounds[i];
-            x[idx].removeAbove(-(sumMin - x[idx].getMin()));
-            x[idx].removeBelow(-(sumMax - x[idx].getMax()));
+            x[idx].removeAbove(-(sumMin - x[idx].min()));
+            x[idx].removeBelow(-(sumMax - x[idx].max()));
         }
     }
 }

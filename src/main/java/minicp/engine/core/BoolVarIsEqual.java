@@ -24,7 +24,7 @@ public class BoolVarIsEqual extends IntVarImpl implements BoolVar {
 
         if (!x.contains(v)) {
             assign(false);
-        } else if (x.isBound() && x.getMin() == v) {
+        } else if (x.isBound() && x.min() == v) {
             assign(true);
         } else {
 
@@ -40,7 +40,7 @@ public class BoolVarIsEqual extends IntVarImpl implements BoolVar {
             });
 
             x.whenBind(() -> {
-                if (x.getMin() == v) {
+                if (x.min() == v) {
                     assign(true);
                 } else {
                     assign(false);
@@ -53,12 +53,12 @@ public class BoolVarIsEqual extends IntVarImpl implements BoolVar {
 
     @Override
     public boolean isTrue() {
-        return getMin() == 1;
+        return min() == 1;
     }
 
     @Override
     public boolean isFalse() {
-        return getMax() == 0;
+        return max() == 0;
     }
 
     @Override

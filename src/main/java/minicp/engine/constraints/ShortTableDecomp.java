@@ -30,7 +30,7 @@ public class ShortTableDecomp extends AbstractConstraint {
      *
      * @param x     variables to constraint. x.length must be > 0.
      * @param table array of valid solutions (second dimension must be of same size as the array x)
-     * @param star  the symbol representing "any" value in the table
+     * @param star  the symbol representing "any" setValue in the table
      */
     public ShortTableDecomp(IntVar[] x, int[][] table, int star) {
         super(x[0].getSolver());
@@ -49,7 +49,7 @@ public class ShortTableDecomp extends AbstractConstraint {
     @Override
     public void propagate() {
         for (int i = 0; i < x.length; i++) {
-            for (int v = x[i].getMin(); v <= x[i].getMax(); v++) {
+            for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
                     boolean valueIsSupported = false;
                     for (int tupleIdx = 0; tupleIdx < table.length && !valueIsSupported; tupleIdx++) {

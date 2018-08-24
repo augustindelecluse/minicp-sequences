@@ -15,7 +15,7 @@ public abstract class AbstractConstraint implements Constraint {
     }
 
     public void schedule(Queue<Constraint> q) {
-        if (active.getValue() && !scheduled) {
+        if (active.value() && !scheduled) {
             scheduled = true;
             q.add(this);
         }
@@ -23,7 +23,7 @@ public abstract class AbstractConstraint implements Constraint {
 
     public void process() {
         scheduled = false;
-        if (active.getValue())
+        if (active.value())
             propagate();
     }
 
@@ -46,6 +46,6 @@ public abstract class AbstractConstraint implements Constraint {
     }
 
     public boolean isActive() {
-        return active.getValue();
+        return active.value();
     }
 }

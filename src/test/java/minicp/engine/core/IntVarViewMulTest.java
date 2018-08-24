@@ -34,9 +34,9 @@ public class IntVarViewMulTest extends SolverTest {
 
         IntVar x = mul(mul(makeIntVar(cp, -3, 4), -3), -1); // domain is {-9,-6,-3,0,3,6,9,12}
 
-        assertEquals(-9, x.getMin());
-        assertEquals(12, x.getMax());
-        assertEquals(8, x.getSize());
+        assertEquals(-9, x.min());
+        assertEquals(12, x.max());
+        assertEquals(8, x.size());
 
         cp.getStateManager().saveState();
 
@@ -50,14 +50,14 @@ public class IntVarViewMulTest extends SolverTest {
             x.remove(2);
             assertTrue(x.contains(0));
             assertTrue(x.contains(3));
-            assertEquals(7, x.getSize());
+            assertEquals(7, x.size());
             x.removeAbove(7);
-            assertEquals(6, x.getMax());
+            assertEquals(6, x.max());
             x.removeBelow(-8);
-            assertEquals(-3, x.getMin());
+            assertEquals(-3, x.min());
             x.assign(3);
             assertTrue(x.isBound());
-            assertEquals(3, x.getMax());
+            assertEquals(3, x.max());
 
 
         } catch (InconsistencyException e) {
@@ -73,7 +73,7 @@ public class IntVarViewMulTest extends SolverTest {
 
         cp.getStateManager().restoreState();
 
-        assertEquals(8, x.getSize());
+        assertEquals(8, x.size());
         assertFalse(x.contains(-1));
 
     }

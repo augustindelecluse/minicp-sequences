@@ -43,7 +43,7 @@ public class CopyInt implements Storage, StateInt {
     }
 
     @Override
-    public int getValue() {
+    public int value() {
         return v;
     }
 

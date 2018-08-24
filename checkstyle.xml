@@ -24,7 +24,7 @@
         If you set the basedir property below, then all reported file
         names will be relative to the specified directory. See
         http://checkstyle.sourceforge.net/5.x/config.html#Checker
-        <property name="basedir" value="${basedir}"/>
+        <property name="basedir" setValue="${basedir}"/>
     -->
 
     <property name="fileExtensions" value="java, properties, xml"/>
@@ -61,8 +61,8 @@
     <!-- Checks for Headers                                -->
     <!-- See http://checkstyle.sf.net/config_header.html   -->
     <!-- <module name="Header"> -->
-    <!--   <property name="headerFile" value="${checkstyle.header.file}"/> -->
-    <!--   <property name="fileExtensions" value="java"/> -->
+    <!--   <property name="headerFile" setValue="${checkstyle.header.file}"/> -->
+    <!--   <property name="fileExtensions" setValue="java"/> -->
     <!-- </module> -->
 
     <module name="TreeWalker">

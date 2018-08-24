@@ -126,7 +126,7 @@ public class XCSP implements XCallbacks2 {
 
         /*if (flags.contains(Types.TypeFlag.UNCLEAN_TUPLES)) {
             // You have possibly to clean tuples here, in order to remove invalid tuples.
-            // A tuple is invalid if it contains a value $a$ for a variable $x$, not present in $dom(x)$
+            // A tuple is invalid if it contains a setValue $a$ for a variable $x$, not present in $dom(x)$
             // Note that most of the time, tuples are already cleaned by the parser
         }*/
 
@@ -703,9 +703,9 @@ public class XCSP implements XCallbacks2 {
                 sol.append(x.id()).append(" ");
             sol.append("\n\t</list>\n\t<values>\n\t\t");
             for (IntVar x : minicpVars)
-                sol.append(x.getMin()).append(" ");
+                sol.append(x.min()).append(" ");
             sol.append("\n\t</values>\n</instantiation>");
-            onSolution.accept(sol.toString(), realObjective.map(IntVar::getMin).orElse(Integer.MAX_VALUE));
+            onSolution.accept(sol.toString(), realObjective.map(IntVar::min).orElse(Integer.MAX_VALUE));
         });
 
         return search.solve(shouldStop::apply);

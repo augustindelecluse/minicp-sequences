@@ -46,8 +46,8 @@ public class CumulativeDecomposition extends AbstractConstraint {
     @Override
     public void post() {
 
-        int min = Arrays.stream(start).map(s -> s.getMin()).min(Integer::compare).get();
-        int max = Arrays.stream(end).map(e -> e.getMax()).max(Integer::compare).get();
+        int min = Arrays.stream(start).map(s -> s.min()).min(Integer::compare).get();
+        int max = Arrays.stream(end).map(e -> e.max()).max(Integer::compare).get();
 
         for (int t = min; t < max; t++) {
 

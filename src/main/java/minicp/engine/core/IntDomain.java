@@ -38,8 +38,8 @@ public interface IntDomain {
     /**
      * Copy the values of the domain
      *
-     * @param dest, an array large enough dest.length >= getSize()
-     * @return the size of the domain and dest[0,...,getSize-1] contains
+     * @param dest, an array large enough dest.length >= size()
+     * @return the size of the domain and dest[0,...,size-1] contains
      * the values in the domain in an arbitrary order
      */
     int fillArray(int[] dest);

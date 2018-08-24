@@ -59,26 +59,26 @@ public class StateSparseSetTest extends StateManagerTest {
         set.remove(1);
         set.remove(0);
 
-        assertTrue(set.getMin() == 2);
+        assertTrue(set.min() == 2);
 
         set.remove(8);
         set.remove(9);
 
         assertTrue(toSet(set.toArray()).equals(toSet(new int[]{2, 3, 4, 5, 6, 7})));
-        assertTrue(set.getMax() == 7);
+        assertTrue(set.max() == 7);
 
         sm.restoreState();
         sm.saveState();
 
-        assertEquals(10, set.getSize());
+        assertEquals(10, set.size());
 
         for (int i = 0; i < 10; i++) {
             assertTrue(set.contains(i));
         }
         assertFalse(set.contains(10));
 
-        assertTrue(set.getMin() == 0);
-        assertTrue(set.getMax() == 9);
+        assertTrue(set.min() == 0);
+        assertTrue(set.max() == 9);
 
         set.removeAllBut(2);
 
@@ -92,7 +92,7 @@ public class StateSparseSetTest extends StateManagerTest {
         sm.restoreState();
         sm.saveState();
 
-        assertEquals(10, set.getSize());
+        assertEquals(10, set.size());
 
     }
 
@@ -123,14 +123,14 @@ public class StateSparseSetTest extends StateManagerTest {
             set.remove(0);
             set.remove(1);
 
-            assertEquals(2, set.getMin());
-            assertEquals(9, set.getMax());
+            assertEquals(2, set.min());
+            assertEquals(9, set.max());
 
             sm.saveState();
 
             set.removeAllBut(7);
-            assertEquals(7, set.getMin());
-            assertEquals(7, set.getMax());
+            assertEquals(7, set.min());
+            assertEquals(7, set.max());
 
 
             sm.restoreState();
@@ -163,15 +163,15 @@ public class StateSparseSetTest extends StateManagerTest {
         set.removeBelow(5);
 
 
-        assertEquals(5, set.getMin());
-        assertEquals(9, set.getMax());
+        assertEquals(5, set.min());
+        assertEquals(9, set.max());
 
         sm.saveState();
 
         set.remove(7);
         set.removeBelow(7);
 
-        assertEquals(8, set.getMin());
+        assertEquals(8, set.min());
 
         sm.restoreState();
         sm.restoreState();
@@ -203,14 +203,14 @@ public class StateSparseSetTest extends StateManagerTest {
 
             set.removeAbove(7);
 
-            assertEquals(0, set.getMin());
-            assertEquals(7, set.getMax());
+            assertEquals(0, set.min());
+            assertEquals(7, set.max());
 
             sm.saveState();
 
             set.removeAbove(2);
 
-            assertEquals(0, set.getMax());
+            assertEquals(0, set.max());
 
             sm.restoreState();
             sm.restoreState();

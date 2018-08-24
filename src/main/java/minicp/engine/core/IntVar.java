@@ -26,7 +26,7 @@ public interface IntVar {
 
     /**
      * Ask that the closure is called whenever the domain
-     * of this variable is reduced to a single value
+     * of this variable is reduced to a single setValue
      *
      * @param f
      */
@@ -34,7 +34,7 @@ public interface IntVar {
 
     /**
      * Ask that the closure is called whenever
-     * the max or min value of the domain of this variable changes
+     * the max or min setValue of the domain of this variable changes
      *
      * @param f
      */
@@ -58,7 +58,7 @@ public interface IntVar {
 
     /**
      * Ask that c.propagate() is called whenever the domain
-     * of this variable is reduced to a single value
+     * of this variable is reduced to a single setValue
      *
      * @param c
      */
@@ -66,7 +66,7 @@ public interface IntVar {
 
     /**
      * Ask that c.propagate() is called whenever
-     * the max or min value of the domain of this variable changes
+     * the max or min setValue of the domain of this variable changes
      *
      * @param c
      */
@@ -78,54 +78,54 @@ public interface IntVar {
      *
      * @return the minimum of the domain of the variable
      */
-    int getMin();
+    int min();
 
     /**
      * Return the maximum of the domain of the variable
      *
      * @return the maximum of the domain of the variable
      */
-    int getMax();
+    int max();
 
     /**
      * Return the size of the domain of the variable
      *
      * @return the size of the domain of the variable
      */
-    int getSize();
+    int size();
 
     /**
      * Copy the values of the domain
      *
-     * @param dest, an array large enough dest.length >= getSize()
-     * @return the size of the domain and dest[0,...,getSize-1] contains
+     * @param dest, an array large enough dest.length >= size()
+     * @return the size of the domain and dest[0,...,size-1] contains
      * the values in the domain in an arbitrary order
      */
     int fillArray(int[] dest);
 
     /**
-     * Return true if the domain of the variable has a single value
+     * Return true if the domain of the variable has a single setValue
      *
-     * @return true if the domain of the variable has a single value
+     * @return true if the domain of the variable has a single setValue
      */
     boolean isBound();
 
     /**
      * @param v
-     * @return true iff the value v is the domain
+     * @return true iff the setValue v is the domain
      */
     boolean contains(int v);
 
     /**
-     * Remove the value v from the domain
+     * Remove the setValue v from the domain
      *
      * @param v
      */
     void remove(int v);
 
     /**
-     * Assign the value v i.e.
-     * remove every value different from v
+     * Assign the setValue v i.e.
+     * remove every setValue different from v
      *
      * @param v
      */

@@ -49,7 +49,7 @@ public interface StateManager {
     /**
      * Creates a Stateful integer (restorable)
      *
-     * @param initValue the initial value
+     * @param initValue the initial setValue
      * @return a reference to the integer.
      */
     StateInt makeStateInt(int initValue);
@@ -57,7 +57,7 @@ public interface StateManager {
     /**
      * Creates a Stateful boolean (restorable)
      *
-     * @param initValue the initial value
+     * @param initValue the initial setValue
      * @return a reference to the boolean.
      */
     StateBool makeStateBool(boolean initValue);

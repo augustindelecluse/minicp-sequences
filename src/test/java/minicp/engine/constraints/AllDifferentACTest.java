@@ -46,8 +46,8 @@ public class AllDifferentACTest extends SolverTest {
             cp.post(new AllDifferentAC(x));
             equal(x[0], 0);
             for (int i = 1; i < x.length; i++) {
-                assertEquals(4, x[i].getSize());
-                assertEquals(1, x[i].getMin());
+                assertEquals(4, x[i].size());
+                assertEquals(1, x[i].min());
             }
 
         } catch (InconsistencyException e) {
@@ -96,8 +96,8 @@ public class AllDifferentACTest extends SolverTest {
 
             cp.post(new AllDifferentAC(x));
 
-            assertEquals(x[2].getMin(), 3);
-            assertEquals(x[2].getSize(), 2);
+            assertEquals(x[2].min(), 3);
+            assertEquals(x[2].size(), 2);
 
         } catch (InconsistencyException e) {
             fail("should not fail");
@@ -125,12 +125,12 @@ public class AllDifferentACTest extends SolverTest {
 
             cp.post(new AllDifferentAC(x));
 
-            assertEquals(x[0].getSize(), 2);
-            assertEquals(x[2].getSize(), 2);
-            assertEquals(x[4].getMin(), 6);
-            assertEquals(x[7].getMin(), 9);
-            assertEquals(x[8].getMin(), 7);
-            assertEquals(x[8].getMax(), 8);
+            assertEquals(x[0].size(), 2);
+            assertEquals(x[2].size(), 2);
+            assertEquals(x[4].min(), 6);
+            assertEquals(x[7].min(), 9);
+            assertEquals(x[8].min(), 7);
+            assertEquals(x[8].max(), 8);
 
         } catch (InconsistencyException e) {
             fail("should not fail");
@@ -159,12 +159,12 @@ public class AllDifferentACTest extends SolverTest {
 
             DFSearch dfs = makeDfs(cp, () -> {
                 IntVar xs = selectMin(x,
-                        xi -> xi.getSize() > 1,
-                        xi -> (float) -xi.getSize());
+                        xi -> xi.size() > 1,
+                        xi -> (float) -xi.size());
                 if (xs == null)
                     return EMPTY;
                 else {
-                    int v = xs.getMin();
+                    int v = xs.min();
                     return branch(
                             () -> {
                                 equal(xs, v);

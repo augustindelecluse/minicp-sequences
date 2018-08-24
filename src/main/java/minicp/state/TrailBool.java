@@ -60,7 +60,7 @@ public class TrailBool implements StateBool {
     }
 
     @Override
-    public boolean getValue() {
+    public boolean value() {
         return this.v;
     }
 

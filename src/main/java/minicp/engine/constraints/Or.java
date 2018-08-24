@@ -46,7 +46,7 @@ public class Or extends AbstractConstraint { // x1 or x2 or ... xn
     @Override
     public void propagate() {
         // update watched literals
-        int i = wL.getValue();
+        int i = wL.value();
         while (i < n && x[i].isBound()) {
             if (x[i].isTrue()) {
                 setActive(false);
@@ -55,8 +55,8 @@ public class Or extends AbstractConstraint { // x1 or x2 or ... xn
             i += 1;
         }
         wL.setValue(i);
-        i = wR.getValue();
-        while (i >= 0 && x[i].isBound() && i >= wL.getValue()) {
+        i = wR.value();
+        while (i >= 0 && x[i].isBound() && i >= wL.value()) {
             if (x[i].isTrue()) {
                 setActive(false);
                 return;
@@ -65,17 +65,17 @@ public class Or extends AbstractConstraint { // x1 or x2 or ... xn
         }
         wR.setValue(i);
 
-        if (wL.getValue() > wR.getValue()) {
+        if (wL.value() > wR.value()) {
             throw INCONSISTENCY;
-        } else if (wL.getValue() == wR.getValue()) { // only one unassigned var
-            x[wL.getValue()].assign(true);
+        } else if (wL.value() == wR.value()) { // only one unassigned var
+            x[wL.value()].assign(true);
             setActive(false);
         } else {
-            assert (wL.getValue() != wR.getValue());
-            assert (!x[wL.getValue()].isBound());
-            assert (!x[wR.getValue()].isBound());
-            x[wL.getValue()].propagateOnBind(this);
-            x[wR.getValue()].propagateOnBind(this);
+            assert (wL.value() != wR.value());
+            assert (!x[wL.value()].isBound());
+            assert (!x[wR.value()].isBound());
+            x[wL.value()].propagateOnBind(this);
+            x[wR.value()].propagateOnBind(this);
         }
     }
 }

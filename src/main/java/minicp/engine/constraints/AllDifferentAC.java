@@ -90,8 +90,8 @@ public class AllDifferentAC extends AbstractConstraint {
         minVal = Integer.MAX_VALUE;
         maxVal = Integer.MIN_VALUE;
         for (int i = 0; i < nVar; i++) {
-            minVal = Math.min(minVal, x[i].getMin());
-            maxVal = Math.max(maxVal, x[i].getMax());
+            minVal = Math.min(minVal, x[i].min());
+            maxVal = Math.max(maxVal, x[i].max());
         }
         nVal = maxVal - minVal + 1;
     }
@@ -111,7 +111,7 @@ public class AllDifferentAC extends AbstractConstraint {
             matched[match[i] - minVal] = true;
         }
         for (int i = 0; i < nVar; i++) {
-            for (int v = x[i].getMin(); v <= x[i].getMax(); v++) {
+            for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v) && match[i] != v) {
                     in[v - minVal + nVar].add(i);
                     out[i].add(v - minVal + nVar);

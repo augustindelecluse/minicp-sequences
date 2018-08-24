@@ -47,12 +47,12 @@ public class IntVarTest extends SolverTest {
 
             assertFalse(x.isBound());
             x.remove(5);
-            assertEquals(9, x.getSize());
+            assertEquals(9, x.size());
             x.assign(7);
-            assertEquals(1, x.getSize());
+            assertEquals(1, x.size());
             assertTrue(x.isBound());
-            assertEquals(7, x.getMin());
-            assertEquals(7, x.getMax());
+            assertEquals(7, x.min());
+            assertEquals(7, x.max());
 
         } catch (InconsistencyException e) {
             fail("should not fail here");
@@ -69,7 +69,7 @@ public class IntVarTest extends SolverTest {
         cp.getStateManager().saveState();
 
         assertFalse(x.isBound());
-        assertEquals(10, x.getSize());
+        assertEquals(10, x.size());
 
         for (int i = 0; i < 10; i++) {
             assertTrue(x.contains(i));
@@ -134,11 +134,11 @@ public class IntVarTest extends SolverTest {
                 x.remove(-10);
 
 
-                assertEquals(19, x.getSize());
+                assertEquals(19, x.size());
                 x.assign(-4);
-                assertEquals(1, x.getSize());
+                assertEquals(1, x.size());
                 assertTrue(x.isBound());
-                assertEquals(-4, x.getMin());
+                assertEquals(-4, x.min());
 
             } catch (InconsistencyException e) {
                 fail("should not fail here");
@@ -153,7 +153,7 @@ public class IntVarTest extends SolverTest {
 
             cp.getStateManager().restoreState();
 
-            assertEquals(21, x.getSize());
+            assertEquals(21, x.size());
 
             for (int i = -10; i < 10; i++) {
                 assertTrue(x.contains(i));
@@ -206,7 +206,7 @@ public class IntVarTest extends SolverTest {
                 if (dom.contains(i)) assertTrue(x.contains(i));
                 else assertFalse(x.contains(i));
             }
-            assertEquals(6, x.getSize());
+            assertEquals(6, x.size());
 
 
         } catch (NotImplementedException e) {
@@ -286,7 +286,7 @@ public class IntVarTest extends SolverTest {
                 cp.fixPoint();
                 assertFalse(propagateCalled);
                 x.removeAbove(8);
-                assertEquals(7, x.getMax());
+                assertEquals(7, x.max());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
 
@@ -325,13 +325,13 @@ public class IntVarTest extends SolverTest {
                 cp.fixPoint();
                 assertFalse(propagateCalled);
                 x.removeBelow(3);
-                assertEquals(4, x.getMin());
+                assertEquals(4, x.min());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
                 propagateCalled = false;
 
                 x.removeBelow(5);
-                assertEquals(5, x.getMin());
+                assertEquals(5, x.min());
                 cp.fixPoint();
                 assertTrue(propagateCalled);
                 propagateCalled = false;

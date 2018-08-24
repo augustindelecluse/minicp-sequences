@@ -33,41 +33,41 @@ public class Absolute extends AbstractConstraint {
         // y = |x|
 
         if (x.isBound()) {
-            y.assign(Math.abs(x.getMin()));
+            y.assign(Math.abs(x.min()));
             setActive(false);
         } else if (y.isBound()) { // y is bound
             // y = |x|
-            if (!x.contains(-y.getMin())) {
-                x.assign(y.getMin());
-            } else if (!x.contains(y.getMin())) {
-                x.assign(-y.getMin());
+            if (!x.contains(-y.min())) {
+                x.assign(y.min());
+            } else if (!x.contains(y.min())) {
+                x.assign(-y.min());
             } else {
                 // x can be (y or -y)
                 // remove everything except y and -y from x
-                for (int v = x.getMin(); v <= x.getMax(); v++) {
-                    if (v != y.getMin() && v != -y.getMin()) {
+                for (int v = x.min(); v <= x.max(); v++) {
+                    if (v != y.min() && v != -y.min()) {
                         x.remove(v);
                     }
                 }
             }
             setActive(false);
-        } else if (x.getMin() >= 0) {
-            y.removeBelow(x.getMin());
-            y.removeAbove(x.getMax());
-            x.removeBelow(y.getMin());
-            x.removeAbove(y.getMax());
-        } else if (x.getMax() <= 0) {
-            y.removeBelow(-x.getMax());
-            y.removeAbove(-x.getMin());
-            x.removeBelow(-y.getMax());
-            x.removeAbove(-y.getMin());
+        } else if (x.min() >= 0) {
+            y.removeBelow(x.min());
+            y.removeAbove(x.max());
+            x.removeBelow(y.min());
+            x.removeAbove(y.max());
+        } else if (x.max() <= 0) {
+            y.removeBelow(-x.max());
+            y.removeAbove(-x.min());
+            x.removeBelow(-y.max());
+            x.removeAbove(-y.min());
         } else {
-            int maxAbs = Math.max(x.getMax(), -x.getMin());
+            int maxAbs = Math.max(x.max(), -x.min());
             y.removeAbove(maxAbs);
-            x.removeAbove(y.getMax());
-            x.removeBelow(-y.getMax());
-            while (!x.contains(y.getMin()) & !x.contains(-y.getMin())) {
-                y.remove(y.getMin());
+            x.removeAbove(y.max());
+            x.removeBelow(-y.max());
+            while (!x.contains(y.min()) & !x.contains(-y.min())) {
+                y.remove(y.min());
             }
         }
     }

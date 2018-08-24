@@ -38,9 +38,9 @@ public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
             x.removeAbove(c);
         } else if (b.isFalse()) {
             x.removeBelow(c + 1);
-        } else if (x.getMax() <= c) {
+        } else if (x.max() <= c) {
             b.assign(1);
-        } else if (x.getMin() > c) {
+        } else if (x.min() > c) {
             b.assign(0);
         } else {
             b.whenBind(() -> {
@@ -53,10 +53,10 @@ public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
                 }
             });
             x.whenBoundsChange(() -> {
-                if (x.getMax() <= c) {
+                if (x.max() <= c) {
                     // should deactivate the constraint as it is entailed
                     b.assign(1);
-                } else if (x.getMin() > c) {
+                } else if (x.min() > c) {
                     // should deactivate the constraint as it is entailed
                     b.assign(0);
                 }

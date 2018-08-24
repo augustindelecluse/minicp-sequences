@@ -126,7 +126,7 @@ public class DisjunctiveTest extends SolverTest {
 
         try {
             cp.post(new Disjunctive(new IntVar[]{s1, s2}, new int[]{d1, d2}));
-            assertEquals(10, s2.getMin());
+            assertEquals(10, s2.min());
         } catch (InconsistencyException e) {
             assert (false);
         } catch (NotImplementedException e) {
@@ -169,7 +169,7 @@ public class DisjunctiveTest extends SolverTest {
 
         try {
             cp.post(new Disjunctive(new IntVar[]{sA, sB, sC}, new int[]{d1, d2, d3}));
-            Assume.assumeTrue("not last should set est(C)=10", sC.getMin() == 10);
+            Assume.assumeTrue("not last should set est(C)=10", sC.min() == 10);
         } catch (InconsistencyException e) {
             assert (false);
         } catch (NotImplementedException e) {
@@ -189,7 +189,7 @@ public class DisjunctiveTest extends SolverTest {
 
         try {
             cp.post(new Disjunctive(new IntVar[]{sA, sB, sC}, new int[]{d1, d2, d3}));
-            Assume.assumeTrue("not last should set lst(C)=6", sC.getMax() == 6);
+            Assume.assumeTrue("not last should set lst(C)=6", sC.max() == 6);
         } catch (InconsistencyException e) {
             assert (false);
         } catch (NotImplementedException e) {

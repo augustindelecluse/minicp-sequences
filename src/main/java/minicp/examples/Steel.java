@@ -137,14 +137,14 @@ public class Steel {
             DFSearch dfs = makeDfs(cp,
                     () -> {
                         IntVar xs = selectMin(x,
-                                xi -> xi.getSize() > 1,
-                                xi -> xi.getSize());
+                                xi -> xi.size() > 1,
+                                xi -> xi.size());
                         if (xs == null) return EMPTY;
                         else {
                             int maxUsed = -1;
                             for (IntVar x_ : x)
-                                if (x_.isBound() && x_.getMin() > maxUsed)
-                                    maxUsed = x_.getMin();
+                                if (x_.isBound() && x_.min() > maxUsed)
+                                    maxUsed = x_.min();
                             Procedure[] branches = new Procedure[maxUsed + 2];
                             for (int i = 0; i <= maxUsed + 1; i++) {
                                 final int slab = i;
@@ -163,7 +163,7 @@ public class Steel {
                     colorsInSlab[j] = new HashSet<>();
                 }
                 for (int i = 0; i < nOrder; i++) {
-                    colorsInSlab[x[i].getMin()].add(c[i]);
+                    colorsInSlab[x[i].min()].add(c[i]);
                 }
                 for (int j = 0; j < nSlab; j++) {
                     if (colorsInSlab[j].size() > 2) {

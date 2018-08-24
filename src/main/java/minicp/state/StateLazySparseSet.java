@@ -26,7 +26,7 @@ public class StateLazySparseSet {
     private boolean switched = false;
 
     private boolean isInterval() {
-        return intervalRep.getValue();
+        return intervalRep.value();
     }
 
     /**
@@ -49,7 +49,7 @@ public class StateLazySparseSet {
     }
 
     private void buildSparse() {
-        sparse = new StateSparseSet(sm, getMax() - getMin() + 1, getMin());
+        sparse = new StateSparseSet(sm, max() - min() + 1, min());
         intervalRep.setValue(false);
         switched = true;
     }
@@ -64,36 +64,36 @@ public class StateLazySparseSet {
     /**
      * @return the size of the set
      */
-    public int getSize() {
-        return isInterval() ? interval.getSize() : sparse.getSize();
+    public int size() {
+        return isInterval() ? interval.size() : sparse.size();
     }
 
     /**
-     * @return the minimum value in the set
+     * @return the minimum setValue in the set
      */
-    public int getMin() {
+    public int min() {
         if (isInterval()) {
-            return interval.getMin();
+            return interval.min();
         } else {
-            return sparse.getMin();
+            return sparse.min();
         }
     }
 
     /**
-     * @return the maximum value in the set
+     * @return the maximum setValue in the set
      */
-    public int getMax() {
+    public int max() {
         if (isInterval()) {
-            return interval.getMax();
+            return interval.max();
         } else {
-            return sparse.getMax();
+            return sparse.max();
         }
     }
 
     /**
-     * Check if the value val is in the set
+     * Check if the setValue val is in the set
      *
-     * @param val the original value to check.
+     * @param val the original setValue to check.
      * @return true <-> (val-ofs) IN S
      */
     public boolean contains(int val) {
@@ -108,13 +108,13 @@ public class StateLazySparseSet {
      * set the first values of <code>dest</code> to the ones
      * present in the set
      *
-     * @param dest, an array large enough dest.length >= getSize()
+     * @param dest, an array large enough dest.length >= size()
      * @return the size of the set
      */
     public int fillArray(int[] dest) {
         if (isInterval()) {
-            int s = getSize();
-            int from = getMin();
+            int s = size();
+            int from = min();
             for (int i = 0; i < s; i++)
                 dest[i] = from + i;
             return s;
@@ -131,10 +131,10 @@ public class StateLazySparseSet {
         if (isInterval()) {
             if (!interval.contains(val)) {
                 return false;
-            } else if (val == interval.getMin()) {
+            } else if (val == interval.min()) {
                 interval.removeBelow(val + 1);
                 return true;
-            } else if (val == interval.getMax()) {
+            } else if (val == interval.max()) {
                 interval.removeAbove(val - 1);
                 return true;
             } else {
@@ -169,7 +169,7 @@ public class StateLazySparseSet {
     }
 
     /**
-     * Remove all the values < value in the set
+     * Remove all the values < setValue in the set
      *
      * @param value
      */
@@ -182,7 +182,7 @@ public class StateLazySparseSet {
     }
 
     /**
-     * Remove all the values > value in the set
+     * Remove all the values > setValue in the set
      */
     public void removeAbove(int value) {
         if (isInterval()) {

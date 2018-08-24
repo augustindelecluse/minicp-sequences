@@ -71,7 +71,7 @@ public class QAP {
 
         DFSearch dfs = makeDfs(cp, firstFail(x));
 
-        dfs.onSolution(() -> System.out.println("objective:" + totCost.getMin()));
+        dfs.onSolution(() -> System.out.println("objective:" + totCost.min()));
 
 
         long t0 = System.currentTimeMillis();

@@ -38,9 +38,9 @@ public class LessOrEqual extends AbstractConstraint { // x <= y
 
     @Override
     public void propagate() {
-        x.removeAbove(y.getMax());
-        y.removeBelow(x.getMin());
-        if (x.getMax() <= y.getMin())
+        x.removeAbove(y.max());
+        y.removeBelow(x.min());
+        if (x.max() <= y.min())
             setActive(false);
     }
 }

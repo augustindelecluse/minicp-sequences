@@ -78,7 +78,7 @@ public class CumulativeTest extends SolverTest {
             cp.post(new Cumulative(s, d, r, 1));
             equal(s[0], 0);
 
-            assertEquals(5, s[1].getMin());
+            assertEquals(5, s[1].min());
 
         } catch (InconsistencyException e) {
             assert (false);
@@ -103,7 +103,7 @@ public class CumulativeTest extends SolverTest {
 
             equal(s[0], 5);
 
-            assertEquals(0, s[1].getMax());
+            assertEquals(0, s[1].max());
 
         } catch (InconsistencyException e) {
             assert (false);
@@ -132,7 +132,7 @@ public class CumulativeTest extends SolverTest {
 
             search.onSolution(() -> {
                 Rectangle[] rects = IntStream.range(0, s.length).mapToObj(i -> {
-                    int start = s[i].getMin();
+                    int start = s[i].min();
                     int end = start + d[i];
                     int height = r[i];
                     return new Profile.Rectangle(start, end, height);

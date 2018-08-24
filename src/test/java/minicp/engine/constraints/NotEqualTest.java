@@ -41,7 +41,7 @@ public class NotEqualTest extends SolverTest {
             equal(x, 6);
 
             assertFalse(y.contains(6));
-            assertEquals(9, y.getSize());
+            assertEquals(9, y.size());
 
         } catch (InconsistencyException e) {
             assert (false);

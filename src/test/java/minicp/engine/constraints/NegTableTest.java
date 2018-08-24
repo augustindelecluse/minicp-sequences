@@ -66,11 +66,11 @@ public class NegTableTest extends SolverTest {
 
     public int[][] toPositive(IntVar x, IntVar y, IntVar z, int[][] negTable) {
         ArrayList<int[]> posTableList = new ArrayList<>();
-        for (int i = x.getMin(); i <= x.getMax(); i++) {
+        for (int i = x.min(); i <= x.max(); i++) {
             if (x.contains(i)) {
-                for (int j = y.getMin(); j <= y.getMax(); j++) {
+                for (int j = y.min(); j <= y.max(); j++) {
                     if (y.contains(j)) {
-                        for (int k = z.getMin(); k <= z.getMax(); k++) {
+                        for (int k = z.min(); k <= z.max(); k++) {
                             if (z.contains(k)) {
                                 boolean add = true;
                                 for (int ind = 0; ind < negTable.length && add; ind++) {
@@ -105,9 +105,9 @@ public class NegTableTest extends SolverTest {
                         {0, 0, 1}};
                 cp.post(new NegTableCT(x, table));
                 //cp.post(new TableCT(x, toPositive(x[0],x[1],x[2],table)));
-                assertEquals(1, x[0].getMin());
-                assertEquals(1, x[1].getMin());
-                assertEquals(1, x[2].getMin());
+                assertEquals(1, x[0].min());
+                assertEquals(1, x[1].min());
+                assertEquals(1, x[2].min());
 
             } catch (InconsistencyException e) {
                 fail("should not fail");

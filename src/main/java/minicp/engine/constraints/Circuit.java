@@ -71,14 +71,14 @@ public class Circuit extends AbstractConstraint {
 
 
     private void bind(int i) {
-        int j = x[i].getMin();
-        int origi = orig[i].getValue();
-        int destj = dest[j].getValue();
+        int j = x[i].min();
+        int origi = orig[i].value();
+        int destj = dest[j].value();
         // orig[i] *-> i -> j *-> dest[j]
         dest[origi].setValue(destj);
         orig[destj].setValue(origi);
-        int length = lengthToDest[origi].getValue()
-                + lengthToDest[j].getValue() + 1;
+        int length = lengthToDest[origi].value()
+                + lengthToDest[j].value() + 1;
         lengthToDest[origi].setValue(length);
 
         if (length < x.length - 1) {

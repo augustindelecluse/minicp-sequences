@@ -46,15 +46,15 @@ public class MaximumTest extends SolverTest {
             IntVar y = makeIntVar(cp, -5, 20);
             cp.post(new Maximum(x, y));
 
-            assertEquals(9, y.getMax());
-            assertEquals(0, y.getMin());
+            assertEquals(9, y.max());
+            assertEquals(0, y.min());
 
             y.removeAbove(8);
             cp.fixPoint();
 
-            assertEquals(8, x[0].getMax());
-            assertEquals(8, x[1].getMax());
-            assertEquals(8, x[2].getMax());
+            assertEquals(8, x[0].max());
+            assertEquals(8, x[1].max());
+            assertEquals(8, x[2].max());
 
             y.removeBelow(5);
             x[0].removeAbove(2);
@@ -62,8 +62,8 @@ public class MaximumTest extends SolverTest {
             x[2].removeBelow(6);
             cp.fixPoint();
 
-            assertEquals(8, y.getMax());
-            assertEquals(6, y.getMin());
+            assertEquals(8, y.max());
+            assertEquals(6, y.min());
 
             y.removeBelow(7);
             x[1].removeAbove(6);
@@ -72,7 +72,7 @@ public class MaximumTest extends SolverTest {
             // x1 = 6
             // x2 = 6..8
             // y = 7..8
-            assertEquals(7, x[2].getMin());
+            assertEquals(7, x[2].min());
 
 
         } catch (InconsistencyException e) {
@@ -94,7 +94,7 @@ public class MaximumTest extends SolverTest {
             IntVar y = maximum(x1, x2, x3);
 
 
-            assertEquals(2, y.getMax());
+            assertEquals(2, y.max());
 
 
         } catch (InconsistencyException e) {
@@ -118,9 +118,9 @@ public class MaximumTest extends SolverTest {
             y.removeAbove(5);
             cp.fixPoint();
 
-            assertEquals(5, x1.getMax());
-            assertEquals(5, x2.getMax());
-            assertEquals(5, x3.getMax());
+            assertEquals(5, x1.max());
+            assertEquals(5, x2.max());
+            assertEquals(5, x3.max());
 
 
         } catch (InconsistencyException e) {
@@ -145,9 +145,9 @@ public class MaximumTest extends SolverTest {
                 // 5*5*5*5 // 625
 
                 dfs.onSolution(() -> {
-                    int max = Arrays.stream(x).mapToInt(xi -> xi.getMax()).max().getAsInt();
-                    assertEquals(y.getMin(), max);
-                    assertEquals(y.getMax(), max);
+                    int max = Arrays.stream(x).mapToInt(xi -> xi.max()).max().getAsInt();
+                    assertEquals(y.min(), max);
+                    assertEquals(y.max(), max);
                 });
 
                 SearchStatistics stats = dfs.solve();
