@@ -20,8 +20,8 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import org.junit.Assume;
 import org.junit.Test;
 

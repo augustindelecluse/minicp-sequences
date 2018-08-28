@@ -15,7 +15,7 @@
 
 package minicp.engine.core;
 
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 
 public class BoolVarIsEqual extends IntVarImpl implements BoolVar {
 

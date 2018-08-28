@@ -8,24 +8,27 @@
  * See the GNU Lesser General Public License  for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * aint with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
+ * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.util;
+package minicp.util.exception;
 
-public class Entry implements Comparable<Entry> {
-    public final int key;
-    public final int value;
 
-    public Entry(int key, int value) {
-        this.key = key;
-        this.value = value;
+public class NotImplementedException extends UnsupportedOperationException {
+    public NotImplementedException(String message) {
+        super(message);
     }
 
-    @Override
-    public int compareTo(Entry other) {
-        return (key < other.key) ? -1 : ((key == other.key) ? 0 : 1);
+    public NotImplementedException() {
+        super();
     }
+
+    public void print() {
+        System.err.println(this + " " + (getStackTrace()[0].toString()));
+        //printStackTrace();
+    }
+
+
 }

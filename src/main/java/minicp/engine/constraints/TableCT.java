@@ -22,6 +22,12 @@ import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
+/**
+ * Implementation of Compact Table algorithm described in
+ * <p><i>Compact-Table: Efficiently Filtering Table Constraints with Reversible Sparse Bit-Sets</i>
+ * Jordan Demeulenaere, Renaud Hartert, Christophe Lecoutre, Guillaume Perez, Laurent Perron, Jean-Charles Régin, Pierre Schaus
+ * <p>See <a href="https://www.info.ucl.ac.be/~pschaus/assets/publi/cp2016-compacttable.pdf">The article.</a>
+ */
 public class TableCT extends AbstractConstraint {
     private IntVar[] x; //variables
     private int[][] table; //the table
@@ -30,11 +36,19 @@ public class TableCT extends AbstractConstraint {
 
     /**
      * Table constraint.
-     * Assignment of x_0=v_0, x_1=v_1,... only valid if there exists a
-     * row (v_0, v_1, ...) in the table.
+     * <p>The table constraint ensures that
+     * {@code x} is a row from the given table.
+     * More exactly, there exist some row <i>i</i>
+     * such that
+     * {@code x[0]==table[i][0], x[1]==table[i][1], etc}.
      *
-     * @param x     variables to constraint. x.length must be > 0.
-     * @param table array of valid solutions (second dimension must be of same size as the array x)
+     * <p>This constraint is sometimes called <i>in extension</i> constraint
+     * as the user enumerates the set of solutions that can be taken
+     * by the variables.
+     *
+     * @param x  the non empty set of variables to constraint
+     * @param table the possible set of solutions for x.
+     *              The second dimension must be of the same size as the array x.
      */
     public TableCT(IntVar[] x, int[][] table) {
         super(x[0].getSolver());

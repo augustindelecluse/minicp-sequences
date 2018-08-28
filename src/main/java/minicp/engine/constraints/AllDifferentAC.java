@@ -19,7 +19,7 @@ import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 import minicp.util.GraphUtil;
 import minicp.util.GraphUtil.Graph;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 
 import java.util.ArrayList;
 import java.util.Arrays;

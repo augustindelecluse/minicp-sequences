@@ -20,7 +20,7 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
 import minicp.search.SearchStatistics;
-import minicp.util.InputReader;
+import minicp.util.io.InputReader;
 
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.BranchingScheme.limitedDiscrepancy;

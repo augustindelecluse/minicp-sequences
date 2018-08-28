@@ -15,7 +15,7 @@
 
 package minicp.state;
 
-import minicp.util.NotImplementedException;
+import minicp.util.exception.NotImplementedException;
 import org.junit.Test;
 
 import java.util.Set;

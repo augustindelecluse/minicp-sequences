@@ -21,7 +21,7 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
-import minicp.util.InputReader;
+import minicp.util.io.InputReader;
 
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;

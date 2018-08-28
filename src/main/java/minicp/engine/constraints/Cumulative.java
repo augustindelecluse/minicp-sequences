@@ -20,7 +20,7 @@ import minicp.cp.Factory;
 import minicp.engine.constraints.Profile.Rectangle;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 
 import java.util.ArrayList;
 

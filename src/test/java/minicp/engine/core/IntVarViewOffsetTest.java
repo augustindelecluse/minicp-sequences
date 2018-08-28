@@ -16,7 +16,7 @@
 package minicp.engine.core;
 
 import minicp.engine.SolverTest;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 import org.junit.Test;
 
 import static minicp.cp.Factory.makeIntVar;

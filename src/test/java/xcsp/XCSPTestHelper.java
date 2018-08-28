@@ -1,7 +1,7 @@
 package xcsp;
 
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import org.junit.Assume;
 import org.junit.Test;
 

@@ -15,6 +15,8 @@
 
 package minicp.engine.core;
 
+import minicp.util.exception.InconsistencyException;
+
 public interface IntVar {
 
     /**
@@ -49,85 +51,95 @@ public interface IntVar {
     void whenDomainChange(ConstraintClosure.Filtering f);
 
     /**
-     * Ask that c.propagate() is called whenever the domain change
-     * of this variable changes
+     * Asks that {@link Constraint#propagate()} is called whenever the domain
+     * of this variable changes.
+     * We say that a <i>change</i> event occurs.
      *
-     * @param c
+     * @param c the constraint for which the {@link Constraint#propagate()}
+     *          method should be called on change events of this variable.
      */
     void propagateOnDomainChange(Constraint c);
 
     /**
-     * Ask that c.propagate() is called whenever the domain
-     * of this variable is reduced to a single setValue
+     * Asks that {@link Constraint#propagate()} is called whenever the domain
+     * of this variable is reduced to a singleton.
+     * In such a state the variable is bind and we say that a <i>bind</i> event occurs.
      *
-     * @param c
+     * @param c the constraint for which the {@link Constraint#propagate()}
+     *          method should be called on bind events of this variable.
      */
     void propagateOnBind(Constraint c);
 
     /**
-     * Ask that c.propagate() is called whenever
-     * the max or min setValue of the domain of this variable changes
+     * Asks that {@link Constraint#propagate()} is called whenever the
+     * bound (maximum or minimum values) of the domain
+     * of this variable is changes.
+     * We say that a <i>bound change</i> event occurs in this case.
      *
-     * @param c
+     * @param c the constraint for which the {@link Constraint#propagate()}
+     *          method should be called on bound change events of this variable.
      */
     void propagateOnBoundChange(Constraint c);
 
 
     /**
-     * Return the minimum of the domain of the variable
+     * Returns the minimum of the domain of the variable
      *
      * @return the minimum of the domain of the variable
      */
     int min();
 
     /**
-     * Return the maximum of the domain of the variable
+     * Returns the maximum of the domain of the variable
      *
      * @return the maximum of the domain of the variable
      */
     int max();
 
     /**
-     * Return the size of the domain of the variable
+     * Returns the size of the domain of the variable
      *
      * @return the size of the domain of the variable
      */
     int size();
 
     /**
-     * Copy the values of the domain
+     * Copy the values of the domain in an array in arbitrary order.
      *
-     * @param dest, an array large enough dest.length >= size()
-     * @return the size of the domain and dest[0,...,size-1] contains
-     * the values in the domain in an arbitrary order
+     * @param dest, an array large enough to contain the current domain
+     * @return the size of the domain and {@code dest[0],...,dest[size-1]}
+     *         now contains the values in the domain in an arbitrary order
      */
     int fillArray(int[] dest);
 
     /**
-     * Return true if the domain of the variable has a single setValue
+     * Returns true if the domain of the variable has a single value.
      *
-     * @return true if the domain of the variable has a single setValue
+     * @return true if the domain of the variable is a singleton.
      */
     boolean isBound();
 
     /**
-     * @param v
-     * @return true iff the setValue v is the domain
+     * Returns true if the domain contains the specified value.
+     * @param v the value whose presence in the domain is to be tested
+     * @return true if the domain contains the specified value
      */
     boolean contains(int v);
 
     /**
-     * Remove the setValue v from the domain
-     *
-     * @param v
+     * Removes the specified value.
+     * @param v the value to remove
+     * @exception InconsistencyException
+     *            is thrown if the domain becomes empty
      */
     void remove(int v);
 
     /**
-     * Assign the setValue v i.e.
-     * remove every setValue different from v
+     * Assigns the specified value
      *
      * @param v
+     * @exception InconsistencyException
+     *            is thrown if the domain becomes empty
      */
     void assign(int v);
 

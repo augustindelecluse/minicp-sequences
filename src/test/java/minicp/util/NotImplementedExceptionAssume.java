@@ -15,6 +15,7 @@
 
 package minicp.util;
 
+import minicp.util.exception.NotImplementedException;
 import org.junit.Assert;
 import org.junit.Assume;
 

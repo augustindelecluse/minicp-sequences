@@ -14,7 +14,7 @@
  */
 
 
-package minicp.util;
+package minicp.util.io;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

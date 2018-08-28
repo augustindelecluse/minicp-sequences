@@ -18,12 +18,12 @@ package minicp.search;
 import minicp.state.StateInt;
 import minicp.state.StateManager;
 import minicp.state.StateManagerTest;
-import minicp.util.Counter;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static minicp.cp.BranchingScheme.EMPTY;
 import static minicp.cp.BranchingScheme.branch;
@@ -109,7 +109,7 @@ public class DFSearchTest extends StateManagerTest {
         StateInt i = sm.makeStateInt(0);
         boolean[] values = new boolean[4];
 
-        Counter nSols = new Counter();
+        AtomicInteger nSols = new AtomicInteger(0);
 
 
         DFSearch dfs = new DFSearch(sm, () -> {
@@ -130,14 +130,14 @@ public class DFSearchTest extends StateManagerTest {
         });
 
         dfs.onSolution(() -> {
-            nSols.incr();
+            nSols.incrementAndGet();
         });
 
 
         SearchStatistics stats = dfs.solve();
 
 
-        assertEquals(16, nSols.getValue());
+        assertEquals(16, nSols.get());
         assertEquals(16, stats.numberOfSolutions());
         assertEquals(0, stats.numberOfFailures());
         assertEquals((16 + 8 + 4 + 2), stats.numberOfNodes());
@@ -171,10 +171,7 @@ public class DFSearchTest extends StateManagerTest {
             );
         });
 
-        Counter nFails = new Counter();
-        r.onFailure(() -> {
-            nFails.incr();
-        });
+
 
 
         // stop search after 2 solutions

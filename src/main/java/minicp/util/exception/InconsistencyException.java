@@ -13,7 +13,7 @@
  * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.util;
+package minicp.util.exception;
 
 
 public class InconsistencyException extends RuntimeException {

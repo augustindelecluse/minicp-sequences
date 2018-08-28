@@ -18,7 +18,7 @@ package minicp.engine.constraints;
 import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 import org.junit.Test;
 
 import static minicp.cp.Factory.*;

@@ -18,8 +18,8 @@ package minicp.engine.constraints;
 import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 

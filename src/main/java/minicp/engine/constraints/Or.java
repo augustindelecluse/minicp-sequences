@@ -19,7 +19,7 @@ import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.state.StateInt;
 
-import static minicp.util.InconsistencyException.INCONSISTENCY;
+import static minicp.util.exception.InconsistencyException.INCONSISTENCY;
 
 public class Or extends AbstractConstraint { // x1 or x2 or ... xn
 

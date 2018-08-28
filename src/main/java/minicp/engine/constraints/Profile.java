@@ -16,12 +16,25 @@
 
 package minicp.engine.constraints;
 
-import minicp.util.Entry;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Profile {
+
+    private static class Entry implements Comparable<Entry> {
+        public final int key;
+        public final int value;
+
+        public Entry(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public int compareTo(Entry other) {
+            return (key < other.key) ? -1 : ((key == other.key) ? 0 : 1);
+        }
+    }
 
     public static class Rectangle {
 

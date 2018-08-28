@@ -14,8 +14,15 @@
  */
 package minicp.util;
 
+/**
+ * The void function with no argument does not exist in {@link java.util.function},
+ * therefore this interface is used in {@link minicp}.
+ */
 @FunctionalInterface
 public interface Procedure {
+    /**
+     * Calls the procedure
+     */
     void call();
 }
 

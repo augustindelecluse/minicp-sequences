@@ -19,7 +19,7 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
-import minicp.util.InputReader;
+import minicp.util.io.InputReader;
 
 import java.util.Random;
 import java.util.stream.IntStream;

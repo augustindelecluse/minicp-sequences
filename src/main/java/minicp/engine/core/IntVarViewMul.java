@@ -17,7 +17,7 @@
 package minicp.engine.core;
 
 
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 
 public class IntVarViewMul implements IntVar {
 

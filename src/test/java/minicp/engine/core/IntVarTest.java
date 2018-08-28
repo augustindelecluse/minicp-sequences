@@ -16,8 +16,8 @@
 package minicp.engine.core;
 
 import minicp.engine.SolverTest;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import org.junit.Test;
 
 import java.util.Arrays;

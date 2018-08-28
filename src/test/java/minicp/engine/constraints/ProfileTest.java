@@ -17,7 +17,7 @@ package minicp.engine.constraints;
 
 
 import minicp.engine.constraints.Profile.Rectangle;
-import minicp.util.NotImplementedException;
+import minicp.util.exception.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 

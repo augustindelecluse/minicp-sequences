@@ -7,9 +7,8 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
-import minicp.util.Box;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import org.xcsp.checker.SolutionChecker;
 import org.xcsp.common.Condition;
 import org.xcsp.common.Constants;
@@ -22,6 +21,7 @@ import org.xcsp.parser.entries.XVariables.XVarSymbolic;
 import java.io.ByteArrayInputStream;
 import java.security.InvalidParameterException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -649,7 +649,7 @@ public class XCSP implements XCallbacks2 {
     }
 
     public String solve(int nSolution, int timeOut) {
-        Box<String> lastSolution = new Box<String>("");
+        AtomicReference<String> lastSolution = new AtomicReference<>("");
         Long t0 = System.currentTimeMillis();
 
         solve((solution, value) -> {

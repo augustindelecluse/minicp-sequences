@@ -5,7 +5,7 @@ import minicp.engine.constraints.Minimize;
 import minicp.search.Objective;
 import minicp.state.StateManager;
 import minicp.state.StateStack;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 import minicp.util.Procedure;
 
 import java.util.ArrayDeque;

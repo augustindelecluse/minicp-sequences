@@ -37,10 +37,10 @@ public class MagicSerie {
 
         for (int i = 0; i < n; i++) {
             final int fi = i;
-            cp.post(sum(Factory.makeIntVarArray(0, n - 1, j -> isEqual(s[j], fi)), s[i]));
+            cp.post(sum(Factory.makeIntVarArray(n, j -> isEqual(s[j], fi)), s[i]));
         }
         cp.post(sum(s, n));
-        cp.post(sum(Factory.makeIntVarArray(0, n - 1, i -> mul(s[i], i)), n));
+        cp.post(sum(Factory.makeIntVarArray(n, i -> mul(s[i], i)), n));
         //cp.post(sum(makeIntVarArray(0,n-1,i -> mul(s[i],i-1)),0));
 
         long t0 = System.currentTimeMillis();

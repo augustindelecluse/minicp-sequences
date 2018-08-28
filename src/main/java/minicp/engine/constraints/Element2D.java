@@ -19,7 +19,7 @@ import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 import minicp.state.StateInt;
 import minicp.state.StateManager;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 
 import java.util.ArrayList;
 import java.util.Collections;

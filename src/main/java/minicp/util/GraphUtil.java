@@ -2,33 +2,45 @@ package minicp.util;
 
 import java.util.Arrays;
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
+/**
+ * Algorithms and Graph interface
+ */
 public class GraphUtil {
+
+    /**
+     * Directed graph API
+     */
     public static interface Graph {
         /**
-         * @return the number of nodes in this graph. They are indexed from 0 to n-1.
+         * Returns the number of nodes in this graph.
+         * @return the number of nodes in this graph.
+         *         Nodes are identified from 0 to {@link #n()}-1.
          */
         int n();
 
         /**
-         * @param idx the node to consider
-         * @return the nodes ids that have an edge going from then to node idx
+         * Returns the incoming node indexes in the specified node
+         * @param id the identifier of the specified node
+         * @return the identifiers of the nodes pointing to the specified node
          */
-        Iterable<Integer> in(int idx);
+        Iterable<Integer> in(int id);
 
         /**
-         * @param idx the node to consider
-         * @return the nodes ids that have an edge going from node idx to them.
+         * Returns the outgoing node indexes from the specified node
+         * @param id the identifier of the specified node
+         * @return the identifiers of the nodes originating from the specified node
          */
-        Iterable<Integer> out(int idx);
+        Iterable<Integer> out(int id);
     }
 
     /**
-     * Transpose the graph
+     * Transpose the graph i.e. every edge is reversed.
      *
-     * @param graph
-     * @return
+     * @param graph a Graph
+     * @return a new graph such that every edge is reversed
      */
     public static Graph transpose(Graph graph) {
         return new Graph() {
@@ -50,8 +62,11 @@ public class GraphUtil {
     }
 
     /**
-     * Returns the SCC of the graph
-     * For at each index, an integer representing the scc id of the node
+     * Computes the strongly connected components of the graph
+     * @param graph the input graph on which to compute the strongly
+     *              connected components
+     * @return for each node id, an id of the strongly connected
+     *          components it belongs to
      */
     public static int[] stronglyConnectedComponents(Graph graph) {
         //Compute the suffix order
@@ -69,15 +84,15 @@ public class GraphUtil {
         //Reverse the order, and do the dfs of the transposed graph
         Arrays.fill(visited, 0);
         int[] scc = new int[graph.n()];
-        Counter cpt = new Counter();
+        AtomicInteger cpt = new AtomicInteger(0);
         Graph tranposed = GraphUtil.transpose(graph);
 
         while (!firstOrder.empty()) {
             int next = firstOrder.pop();
             if (visited[next] == 0) {
-                cpt.incr();
+                cpt.incrementAndGet();
                 dfsNode(tranposed, (suffix, x) -> {
-                    if (!suffix) scc[x] = cpt.getValue();
+                    if (!suffix) scc[x] = cpt.get();
                 }, visited, next);
             }
         }

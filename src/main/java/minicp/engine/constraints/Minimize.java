@@ -17,7 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.IntVar;
 import minicp.search.Objective;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 
 public class Minimize implements Objective {
     private int bound = Integer.MAX_VALUE;
