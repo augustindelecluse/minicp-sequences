@@ -23,68 +23,78 @@ public class SparseSetDomain implements IntDomain {
     private StateLazySparseSet domain;
     //private StateSparseSet domain;
 
-    public int fillArray(int[] dest) {
-        return domain.fillArray(dest);
-    }
 
     public SparseSetDomain(StateManager sm, int min, int max) {
         //domain = new StateSparseSet(sm, max - min + 1,min);
         domain = new StateLazySparseSet(sm, max - min + 1, min);
     }
 
-    public int getMin() {
+    @Override
+    public int fillArray(int[] dest) {
+        return domain.fillArray(dest);
+    }
+
+    @Override
+    public int min() {
         return domain.min();
     }
 
-    public int getMax() {
+    @Override
+    public int max() {
         return domain.max();
     }
 
-    public int getSize() {
+    @Override
+    public int size() {
         return domain.size();
     }
 
+    @Override
     public boolean contains(int v) {
         return domain.contains(v);
     }
 
+    @Override
     public boolean isBound() {
         return domain.size() == 1;
     }
 
-    public void remove(int v, DomainListener x) {
+    @Override
+    public void remove(int v, DomainListener l) {
         if (domain.contains(v)) {
-            boolean maxChanged = getMax() == v;
-            boolean minChanged = getMin() == v;
+            boolean maxChanged = max() == v;
+            boolean minChanged = min() == v;
             domain.remove(v);
             if (domain.size() == 0)
-                x.empty();
-            x.change();
-            if (maxChanged) x.removeAbove();
-            if (minChanged) x.removeBelow();
-            if (domain.size() == 1) x.bind();
+                l.empty();
+            l.change();
+            if (maxChanged) l.changeMax();
+            if (minChanged) l.changeMin();
+            if (domain.size() == 1) l.bind();
         }
     }
 
-    public void removeAllBut(int v, DomainListener x) {
+    @Override
+    public void removeAllBut(int v, DomainListener l) {
         if (domain.contains(v)) {
             if (domain.size() != 1) {
-                boolean maxChanged = getMax() != v;
-                boolean minChanged = getMin() != v;
+                boolean maxChanged = max() != v;
+                boolean minChanged = min() != v;
                 domain.removeAllBut(v);
                 if (domain.size() == 0)
-                    x.empty();
-                x.bind();
-                x.change();
-                if (maxChanged) x.removeAbove();
-                if (minChanged) x.removeBelow();
+                    l.empty();
+                l.bind();
+                l.change();
+                if (maxChanged) l.changeMax();
+                if (minChanged) l.changeMin();
             }
         } else {
             domain.removeAll();
-            x.empty();
+            l.empty();
         }
     }
 
+    @Override
     public void removeBelow(int value, DomainListener x) {
         if (domain.min() < value) {
             domain.removeBelow(value);
@@ -95,13 +105,14 @@ public class SparseSetDomain implements IntDomain {
                 case 1:
                     x.bind();
                 default:
-                    x.removeBelow();
+                    x.changeMin();
                     x.change();
                     break;
             }
         }
     }
 
+    @Override
     public void removeAbove(int value, DomainListener x) {
         if (domain.max() > value) {
             domain.removeAbove(value);
@@ -112,20 +123,21 @@ public class SparseSetDomain implements IntDomain {
                 case 1:
                     x.bind();
                 default:
-                    x.removeAbove();
+                    x.changeMax();
                     x.change();
                     break;
             }
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("{");
-        for (int i = getMin(); i <= getMax() - 1; i++)
+        for (int i = min(); i <= max() - 1; i++)
             if (contains((i)))
                 b.append(i).append(',');
-        if (getSize() > 0) b.append(getMax());
+        if (size() > 0) b.append(max());
         b.append("}");
         return b.toString();
     }

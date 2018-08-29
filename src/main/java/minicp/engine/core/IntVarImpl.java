@@ -46,12 +46,12 @@ public class IntVarImpl implements IntVar {
         }
 
         @Override
-        public void removeBelow() {
+        public void changeMin() {
             scheduleAll(onBounds);
         }
 
         @Override
-        public void removeAbove() {
+        public void changeMax() {
             scheduleAll(onBounds);
         }
     };
@@ -109,7 +109,7 @@ public class IntVarImpl implements IntVar {
     }
 
     public boolean isBound() {
-        return domain.getSize() == 1;
+        return domain.size() == 1;
     }
 
     @Override
@@ -161,17 +161,17 @@ public class IntVarImpl implements IntVar {
 
     @Override
     public int min() {
-        return domain.getMin();
+        return domain.min();
     }
 
     @Override
     public int max() {
-        return domain.getMax();
+        return domain.max();
     }
 
     @Override
     public int size() {
-        return domain.getSize();
+        return domain.size();
     }
 
     @Override

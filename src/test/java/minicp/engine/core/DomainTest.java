@@ -45,12 +45,12 @@ public class DomainTest extends SolverTest {
         }
 
         @Override
-        public void removeBelow() {
+        public void changeMin() {
             nRemoveBelow++;
         }
 
         @Override
-        public void removeAbove() {
+        public void changeMax() {
             nRemoveAbove++;
         }
     }

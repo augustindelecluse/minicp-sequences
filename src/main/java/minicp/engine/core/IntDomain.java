@@ -17,11 +17,11 @@ package minicp.engine.core;
 
 public interface IntDomain {
 
-    int getMin();
+    int min();
 
-    int getMax();
+    int max();
 
-    int getSize();
+    int size();
 
     boolean contains(int v);
 

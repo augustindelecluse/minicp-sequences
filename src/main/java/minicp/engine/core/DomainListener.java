@@ -23,7 +23,7 @@ public interface DomainListener {
 
     void change();
 
-    void removeBelow();
+    void changeMin();
 
-    void removeAbove();
+    void changeMax();
 }
