@@ -16,16 +16,14 @@
 package minicp.engine.core;
 
 
+import minicp.util.Procedure;
+
 public class ConstraintClosure extends AbstractConstraint {
 
-    @FunctionalInterface
-    public interface Filtering {
-        void call();
-    }
 
-    private final Filtering filtering;
+    private final Procedure filtering;
 
-    public ConstraintClosure(Solver cp, Filtering filtering) {
+    public ConstraintClosure(Solver cp, Procedure filtering) {
         super(cp);
         this.filtering = filtering;
     }

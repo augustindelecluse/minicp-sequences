@@ -16,6 +16,8 @@
 
 package minicp.engine.core;
 
+import minicp.util.Procedure;
+
 public class IntVarViewOpposite implements IntVar {
 
     private final IntVar x;
@@ -30,17 +32,17 @@ public class IntVarViewOpposite implements IntVar {
     }
 
     @Override
-    public void whenBind(ConstraintClosure.Filtering f) {
+    public void whenBind(Procedure f) {
         x.whenBind(f);
     }
 
     @Override
-    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+    public void whenBoundsChange(Procedure f) {
         x.whenBoundsChange(f);
     }
 
     @Override
-    public void whenDomainChange(ConstraintClosure.Filtering f) {
+    public void whenDomainChange(Procedure f) {
         x.whenDomainChange(f);
     }
 

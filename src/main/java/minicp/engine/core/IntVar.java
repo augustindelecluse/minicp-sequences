@@ -15,40 +15,41 @@
 
 package minicp.engine.core;
 
+import minicp.util.Procedure;
 import minicp.util.exception.InconsistencyException;
 
 public interface IntVar {
 
     /**
-     * Return the solver in which this variable was created
+     * Returns the solver in which this variable was created.
      *
      * @return the solver in which this variable was created
      */
     Solver getSolver();
 
     /**
-     * Ask that the closure is called whenever the domain
+     * Asks that the closure is called whenever the domain
      * of this variable is reduced to a single setValue
      *
-     * @param f
+     * @param f the closure
      */
-    void whenBind(ConstraintClosure.Filtering f);
+    void whenBind(Procedure f);
 
     /**
      * Ask that the closure is called whenever
      * the max or min setValue of the domain of this variable changes
      *
-     * @param f
+     * @param f the closure
      */
-    void whenBoundsChange(ConstraintClosure.Filtering f);
+    void whenBoundsChange(Procedure f);
 
     /**
      * Ask that the closure is called whenever the domain change
      * of this variable changes
      *
-     * @param f
+     * @param f the closure
      */
-    void whenDomainChange(ConstraintClosure.Filtering f);
+    void whenDomainChange(Procedure f);
 
     /**
      * Asks that {@link Constraint#propagate()} is called whenever the domain

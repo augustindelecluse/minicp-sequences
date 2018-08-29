@@ -17,13 +17,29 @@
 package minicp.engine.core;
 
 public interface DomainListener {
+
+    /**
+     * Called whenever the domain becomes empty.
+     */
     void empty();
 
+    /**
+     * Called whenever the domain becomes a single value.
+     */
     void bind();
 
+    /**
+     * Called whenever the domain loses a value.
+     */
     void change();
 
+    /**
+     * Called whenever the maximum value of the domain is lost.
+     */
     void changeMin();
 
+    /**
+     * Called whenever the minmum value of the domain is lost.
+     */
     void changeMax();
 }

@@ -16,6 +16,7 @@
 package minicp.engine.core;
 
 import minicp.state.StateStack;
+import minicp.util.Procedure;
 import minicp.util.exception.InconsistencyException;
 
 import java.security.InvalidParameterException;
@@ -118,21 +119,21 @@ public class IntVarImpl implements IntVar {
     }
 
     @Override
-    public void whenBind(ConstraintClosure.Filtering f) {
+    public void whenBind(Procedure f) {
         onBind.push(constraintClosure(f));
     }
 
     @Override
-    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+    public void whenBoundsChange(Procedure f) {
         onBounds.push(constraintClosure(f));
     }
 
     @Override
-    public void whenDomainChange(ConstraintClosure.Filtering f) {
+    public void whenDomainChange(Procedure f) {
         onDomain.push(constraintClosure(f));
     }
 
-    private Constraint constraintClosure(ConstraintClosure.Filtering f) {
+    private Constraint constraintClosure(Procedure f) {
         Constraint c = new ConstraintClosure(cp, f);
         getSolver().post(c, false);
         return c;

@@ -17,6 +17,7 @@
 package minicp.engine.core;
 
 
+import minicp.util.Procedure;
 import minicp.util.exception.InconsistencyException;
 
 public class IntVarViewMul implements IntVar {
@@ -36,17 +37,17 @@ public class IntVarViewMul implements IntVar {
     }
 
     @Override
-    public void whenBind(ConstraintClosure.Filtering f) {
+    public void whenBind(Procedure f) {
         x.whenBind(f);
     }
 
     @Override
-    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+    public void whenBoundsChange(Procedure f) {
         x.whenBoundsChange(f);
     }
 
     @Override
-    public void whenDomainChange(ConstraintClosure.Filtering f) {
+    public void whenDomainChange(Procedure f) {
         x.whenDomainChange(f);
     }
 
