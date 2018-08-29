@@ -20,25 +20,71 @@ import minicp.state.StateManager;
 import minicp.util.Procedure;
 
 public interface Solver {
+
+    /**
+     * Post the constraint, that is call {@link Constraint#post()} and
+     * computes the fix-point.
+     * A {@link minicp.util.exception.InconsistencyException} is thrown
+     * if by posting the constraint it is proven that there is no solution.
+     * @param c the constraint to be posted
+     */
     void post(Constraint c);
 
+    /**
+     * Schedule the constraint to be propagated by the fix-point
+     * @param c the constraint to be scheduled
+     */
     void schedule(Constraint c);
 
+    /**
+     * Post the constraint that is call {@link Constraint#post()}
+     * and optionally computes the fix-point.
+     * A {@link minicp.util.exception.InconsistencyException} is thrown
+     * if by posting the constraint it is proven that there is no solution.
+     * @param c the constraint to be posted
+     * @param enforceFixPoint is one wants to compute the fix-point after
+     */
     void post(Constraint c, boolean enforceFixPoint);
 
+    /**
+     * Computes the fix-point with all the scheduled constraints.
+     */
     void fixPoint();
 
+    /**
+     * Returns the state manager in charge of the global
+     * state of the solver
+     * @return the state manager
+     */
     StateManager getStateManager();
 
+    /**
+     * Adds a listener called whenever the fix-point
+     * @param listener
+     */
     void onFixPoint(Procedure listener);
 
+    /**
+     * Creates a minimization objective on the given variable
+     * @param x the variable to minimize
+     * @return an objective that can minimize x
+     * @see minicp.search.DFSearch#optimize(Objective)
+     */
     Objective minimize(IntVar x);
 
+    /**
+     * Creates a maximization objective on the given variable
+     * @param x the variable to maximize
+     * @return an objective that can maximize x
+     * @see minicp.search.DFSearch#optimize(Objective)
+     */
     Objective maximize(IntVar x);
 
-    // ugly
+    /**
+     * Forces the boolean variable to be true and then
+     * computes the fix-point.
+     * @param b the variable that must be set to true
+     */
     void post(BoolVar b);
-
-    int registerVar(IntVar x);
 }
 

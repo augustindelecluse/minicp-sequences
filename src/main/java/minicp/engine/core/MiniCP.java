@@ -28,6 +28,7 @@ public class MiniCP implements Solver {
         vars = new StateStack<>(sm);
     }
 
+    @Override
     public StateManager getStateManager() {
         return sm;
     }
@@ -42,11 +43,7 @@ public class MiniCP implements Solver {
         */
     }
 
-    public int registerVar(IntVar x) {
-        vars.push(x);
-        return vars.size() - 1;
-    }
-
+    @Override
     public void onFixPoint(Procedure listener) {
         fixPointListeners.add(listener);
     }
@@ -55,6 +52,7 @@ public class MiniCP implements Solver {
         fixPointListeners.forEach(s -> s.call());
     }
 
+    @Override
     public void fixPoint() {
         notifyFixPoint();
         try {
@@ -75,23 +73,28 @@ public class MiniCP implements Solver {
         }
     }
 
+    @Override
     public Objective minimize(IntVar x) {
         return new Minimize(x);
     }
 
+    @Override
     public Objective maximize(IntVar x) {
         return minimize(Factory.minus(x));
     }
 
+    @Override
     public void post(Constraint c) {
         post(c, true);
     }
 
+    @Override
     public void post(Constraint c, boolean enforceFixPoint) {
         c.post();
         if (enforceFixPoint) fixPoint();
     }
 
+    @Override
     public void post(BoolVar b) {
         b.assign(true);
         fixPoint();
