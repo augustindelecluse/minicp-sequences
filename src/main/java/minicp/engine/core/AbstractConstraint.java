@@ -21,12 +21,6 @@ public abstract class AbstractConstraint implements Constraint {
         }
     }
 
-    public void process() {
-        scheduled = false;
-        if (active.value())
-            propagate();
-    }
-
     public void post() {
     }
 

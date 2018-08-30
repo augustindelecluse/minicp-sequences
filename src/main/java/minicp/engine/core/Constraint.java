@@ -1,47 +1,59 @@
 package minicp.engine.core;
 
+import minicp.state.StateManager;
+
 import java.util.Queue;
 
 public interface Constraint {
 
     void schedule(Queue<Constraint> q);
 
-    void process();
-
     /**
-     * Initialize the constraint when it is posted to the solver.
+     * Initializes the constraint when it is posted to the solver.
      */
     void post();
 
     /**
-     * Propagate the constraint
+     * Propagates the constraint.
      */
     void propagate();
 
     /**
-     * Called by the solver when the constraint
-     * is enqueued in the propagation queue
+     * Set the status of the constraint as
+     * scheduled to be propagated by the fix-point.
+     * This method Called by the solver when the constraint
+     * is enqueued in the propagation queue and is not
+     * intended to be called by the user.
      *
-     * @param scheduled is true when the constraint is enqueued in the propagation queue,
-     *                  false when dequeued,
+     * @param scheduled a value that is true when the constraint
+     *                  is enqueued in the propagation queue,
+     *                  false when dequeued
+     * @see Solver#fixPoint()
      */
     void setScheduled(boolean scheduled);
 
     /**
-     * @return the last setValue given to setScheduled
+     * Returns the schedule status in the fix-point.
+     * @return the last {@link #setScheduled(boolean)} given to setScheduled
      */
     boolean isScheduled();
 
     /**
-     * Typically called by the Constraint to ask that it should not be scheduled any more.
-     * For instance in case it is subsumed
+     * Activates or deactivates the constraint such that it is not scheduled any more.
+     * <p>Typically called by the Constraint to let the solver know
+     * it should not be scheduled any more when it is subsumed.
+     * <p>By default the constraint is active.
+     * @param active the status to be set,
+     *               this state is reversible and unset
+     *               on state restoration {@link StateManager#restoreState()}
      *
-     * @param active
      */
     void setActive(boolean active);
 
     /**
-     * @return the last setValue passed in argument of setActive
+     * Returns the active status of the constraint.
+     * @return the last setValue passed to {{@link #setActive(boolean)}
+     *         in this state frame {@link StateManager#restoreState()}.
      */
     boolean isActive();
 

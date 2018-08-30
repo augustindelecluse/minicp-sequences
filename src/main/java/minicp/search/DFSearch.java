@@ -20,6 +20,8 @@ import minicp.util.exception.InconsistencyException;
 import minicp.util.exception.NotImplementedException;
 import minicp.util.Procedure;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -27,22 +29,30 @@ import java.util.function.Supplier;
 public class DFSearch {
 
     private Supplier<Procedure[]> branching;
-    private SearchObserver searchObserver;
     private StateManager sm;
+
+    private List<Procedure> solutionListeners = new LinkedList<Procedure>();
+    private List<Procedure> failureListeners = new LinkedList<Procedure>();
 
     public DFSearch(StateManager sm, Supplier<Procedure[]> branching) {
         this.sm = sm;
-        this.searchObserver = new AbstractSearcher() {
-        };
         this.branching = branching;
     }
 
     public void onSolution(Procedure listener) {
-        searchObserver.onSolution(listener);
+        solutionListeners.add(listener);
     }
 
     public void onFailure(Procedure listener) {
-        searchObserver.onFailure(listener);
+        failureListeners.add(listener);
+    }
+
+    public void notifySolution() {
+        solutionListeners.forEach(s -> s.call());
+    }
+
+    public void notifyFailure() {
+        failureListeners.forEach(s -> s.call());
     }
 
     private SearchStatistics solve(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
@@ -109,7 +119,7 @@ public class DFSearch {
         Procedure[] alts = branching.get();
         if (alts.length == 0) {
             statistics.incrSolutions();
-            searchObserver.notifySolution();
+            notifySolution();
         } else {
             for (int i = alts.length - 1; i >= 0; i--) {
                 Procedure a = alts[i];
@@ -134,7 +144,7 @@ public class DFSearch {
                 alternatives.pop().call();
             } catch (InconsistencyException e) {
                 statistics.incrFailures();
-                searchObserver.notifyFailure();
+                notifyFailure();
             }
         }
 
@@ -146,7 +156,7 @@ public class DFSearch {
         Procedure[] branches = branching.get();
         if (branches.length == 0) {
             statistics.incrSolutions();
-            searchObserver.notifySolution();
+            notifySolution();
         } else {
             for (Procedure b : branches) {
                 sm.withNewState(() -> {
@@ -156,7 +166,7 @@ public class DFSearch {
                         dfs(statistics, limit);
                     } catch (InconsistencyException e) {
                         statistics.incrFailures();
-                        searchObserver.notifyFailure();
+                        notifyFailure();
                     }
                 });
             }

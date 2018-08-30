@@ -30,14 +30,10 @@ import static org.junit.Assert.assertEquals;
 
 public class LimitedDiscrepancyBranchingTest {
 
-    public static SearchObserver makeSearchObserver() {
-        return new AbstractSearcher() {
-        };
-    }
+
 
     @Test
     public void testExample1() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = new Trailer();
         StateInt i = sm.makeStateInt(0);
         int[] values = new int[4];

@@ -15,13 +15,32 @@
 
 package minicp.engine.core;
 
+import minicp.util.exception.InconsistencyException;
 
+/**
+ * Boolean variable, that can be used as a 0-1 IntVar.
+ * <p>0 corresponds to false, and 1 corresponds to true
+ */
 public interface BoolVar extends IntVar {
 
+    /**
+     * Tests if the variable is bound to true
+     * @return true if the variable is bound to true (value 1)
+     */
     boolean isTrue();
 
+    /**
+     * Tests if the variable is bound to false
+     * @return true if the variable is bound to false (value 0)
+     */
     boolean isFalse();
 
+    /**
+     * Assigns the variable
+     * @param b the value to assign to this boolean variable
+     * @exception InconsistencyException
+     *            is thrown if the value is not in the domain
+     */
     void assign(boolean b);
 
 }

@@ -140,7 +140,7 @@ public interface IntVar {
      *
      * @param v
      * @exception InconsistencyException
-     *            is thrown if the domain becomes empty
+     *            is thrown if the value is not in the domain
      */
     void assign(int v);
 

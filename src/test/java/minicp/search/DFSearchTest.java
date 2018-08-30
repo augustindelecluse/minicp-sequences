@@ -33,14 +33,10 @@ import static org.junit.Assert.assertTrue;
 
 public class DFSearchTest extends StateManagerTest {
 
-    public static SearchObserver makeSearchObserver() {
-        return new AbstractSearcher() {
-        };
-    }
+
 
     @Test
     public void testExample1() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         int[] values = new int[3];
@@ -71,7 +67,6 @@ public class DFSearchTest extends StateManagerTest {
 
     @Test
     public void testExample3() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         int[] values = new int[3];
@@ -92,7 +87,7 @@ public class DFSearchTest extends StateManagerTest {
         });
 
 
-        r.onSolution(() -> {
+        dfs.onSolution(() -> {
             assert (Arrays.stream(values).allMatch(v -> v == 1));
         });
 
@@ -146,7 +141,6 @@ public class DFSearchTest extends StateManagerTest {
 
     @Test
     public void testDFSSearchLimit() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = stateFactory.get();
 
         StateInt i = sm.makeStateInt(0);
@@ -185,7 +179,6 @@ public class DFSearchTest extends StateManagerTest {
 
     @Test
     public void testDeepDFS() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         boolean[] values = new boolean[10000];

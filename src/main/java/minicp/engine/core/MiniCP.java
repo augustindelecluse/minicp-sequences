@@ -57,13 +57,7 @@ public class MiniCP implements Solver {
         notifyFixPoint();
         try {
             while (!propagationQueue.isEmpty()) {
-                propagationQueue.remove().process();
-                /*
-                Constraint c = propagationQueue.remove();
-                c.setScheduled(false);
-                if (c.isActive())
-                    c.propagate();
-                */
+                propagate(propagationQueue.remove());
             }
         } catch (InconsistencyException e) {
             // empty the queue and unset the scheduled status
@@ -71,6 +65,12 @@ public class MiniCP implements Solver {
                 propagationQueue.remove().setScheduled(false);
             throw e;
         }
+    }
+
+    private void propagate(Constraint c) {
+        c.setScheduled(false);
+        if (c.isActive())
+            c.propagate();
     }
 
     @Override
