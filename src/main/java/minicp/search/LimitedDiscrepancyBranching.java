@@ -22,20 +22,29 @@ import minicp.util.Procedure;
 import java.util.function.Supplier;
 
 /**
- * Branching wrapper that ensures that
- * that the alternatives created are always within the
- * discrepancy limit
+ * Branching combinator
+ * that ensures that that the alternatives created are always within the
+ * discrepancy limit.
+ * The discrepancy of an alternative generated
+ * for a given node is the distance from the left most alternative.
+ * The discrepancy of a node is the sum of the discrepancy of its ancestors.
  */
-
 public class LimitedDiscrepancyBranching implements Supplier<Procedure[]> {
 
     private int curD;
     private final int maxD;
     private final Supplier<Procedure[]> bs;
 
-    public LimitedDiscrepancyBranching(Supplier<Procedure[]> bs, int maxDiscrepancy) {
+    /**
+     * Creates a discprepancy combinator on a given branching.
+     *
+     * @param branching the branching on which to apply the discrepancy combinator
+     * @param maxDiscrepancy the maximum discrepancy limit. Any node exceeding
+     *                       that limit is pruned.
+     */
+    public LimitedDiscrepancyBranching(Supplier<Procedure[]> branching, int maxDiscrepancy) {
         if (maxDiscrepancy < 0) throw new IllegalArgumentException("max discrepancy should be >= 0");
-        this.bs = bs;
+        this.bs = branching;
         this.maxD = maxDiscrepancy;
     }
 

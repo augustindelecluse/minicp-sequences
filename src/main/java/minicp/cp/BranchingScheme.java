@@ -33,6 +33,7 @@ public final class BranchingScheme {
         throw new UnsupportedOperationException();
     }
 
+
     public static final Procedure[] EMPTY = new Procedure[0];
 
     public static Procedure[] branch(Procedure... branches) {

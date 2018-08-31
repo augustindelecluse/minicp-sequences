@@ -15,7 +15,12 @@
 
 package minicp.search;
 
-
+/**
+ * Statistics collected during the
+ * depth first search.
+ *
+ * @see DFSearch
+ */
 public class SearchStatistics {
 
     private int nFailures = 0;

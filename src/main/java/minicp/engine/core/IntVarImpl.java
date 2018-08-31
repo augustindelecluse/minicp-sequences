@@ -58,23 +58,23 @@ public class IntVarImpl implements IntVar {
     };
 
     /**
-     * Create a variable with the elements {0,...,n-1}
-     * as initial domain
+     * Creates a variable with the elements {@code {0,...,n-1}}
+     * as initial domain.
      *
-     * @param cp
-     * @param n  > 0
+     * @param cp the solver in which the variable is created
+     * @param n  the number of values with {@code n > 0}
      */
     public IntVarImpl(Solver cp, int n) {
         this(cp, 0, n - 1);
     }
 
     /**
-     * Create a variable with the elements {min,...,max}
-     * as initial domain
+     * Creates a variable with the elements {@code {min,...,max}}
+     * as initial domain.
      *
-     * @param cp
-     * @param min
-     * @param max >= min
+     * @param cp the solver in which the variable is created
+     * @param min the minimum value of the domain
+     * @param max the maximum value of the domain with {@code max >= min}
      */
     public IntVarImpl(Solver cp, int min, int max) {
         if (min > max) throw new InvalidParameterException("at least one setValue in the domain");
@@ -85,16 +85,13 @@ public class IntVarImpl implements IntVar {
         onBounds = new StateStack<>(cp.getStateManager());
     }
 
-    public Solver getSolver() {
-        return cp;
-    }
 
 
     /**
-     * Create a variable with values as initial domain
+     * Creates a variable with a given set of values as initial domain.
      *
-     * @param cp
-     * @param values
+     * @param cp the solver in which the variable is created
+     * @param values the initial values in the domain, it must be nonempty
      */
     public IntVarImpl(Solver cp, Set<Integer> values) {
         this(cp, values.stream().min(Integer::compare).get(), values.stream().max(Integer::compare).get());
@@ -109,6 +106,12 @@ public class IntVarImpl implements IntVar {
         }
     }
 
+    @Override
+    public Solver getSolver() {
+        return cp;
+    }
+
+    @Override
     public boolean isBound() {
         return domain.size() == 1;
     }

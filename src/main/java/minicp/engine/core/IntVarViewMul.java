@@ -20,6 +20,9 @@ package minicp.engine.core;
 import minicp.util.Procedure;
 import minicp.util.exception.InconsistencyException;
 
+/**
+ * A view on a variable of type {@code a*x}
+ */
 public class IntVarViewMul implements IntVar {
 
     private final int a;

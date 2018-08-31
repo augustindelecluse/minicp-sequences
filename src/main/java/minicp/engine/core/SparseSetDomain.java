@@ -15,18 +15,19 @@
 
 package minicp.engine.core;
 
-import minicp.state.StateLazySparseSet;
 import minicp.state.StateManager;
+import minicp.state.StateSparseSet;
 
 
+/**
+ * Immplementation of a domain with a sparse-set
+ */
 public class SparseSetDomain implements IntDomain {
-    private StateLazySparseSet domain;
-    //private StateSparseSet domain;
+    private StateSparseSet domain;
 
 
     public SparseSetDomain(StateManager sm, int min, int max) {
-        //domain = new StateSparseSet(sm, max - min + 1,min);
-        domain = new StateLazySparseSet(sm, max - min + 1, min);
+        domain = new StateSparseSet(sm, max - min + 1,min);
     }
 
     @Override
@@ -95,36 +96,36 @@ public class SparseSetDomain implements IntDomain {
     }
 
     @Override
-    public void removeBelow(int value, DomainListener x) {
+    public void removeBelow(int value, DomainListener l) {
         if (domain.min() < value) {
             domain.removeBelow(value);
             switch (domain.size()) {
                 case 0:
-                    x.empty();
+                    l.empty();
                     break;
                 case 1:
-                    x.bind();
+                    l.bind();
                 default:
-                    x.changeMin();
-                    x.change();
+                    l.changeMin();
+                    l.change();
                     break;
             }
         }
     }
 
     @Override
-    public void removeAbove(int value, DomainListener x) {
+    public void removeAbove(int value, DomainListener l) {
         if (domain.max() > value) {
             domain.removeAbove(value);
             switch (domain.size()) {
                 case 0:
-                    x.empty();
+                    l.empty();
                     break;
                 case 1:
-                    x.bind();
+                    l.bind();
                 default:
-                    x.changeMax();
-                    x.change();
+                    l.changeMax();
+                    l.change();
                     break;
             }
         }

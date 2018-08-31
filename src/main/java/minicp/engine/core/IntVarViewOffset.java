@@ -18,6 +18,9 @@ package minicp.engine.core;
 
 import minicp.util.Procedure;
 
+/**
+ * A view on a variable of type {@code x+o}
+ */
 public class IntVarViewOffset implements IntVar {
 
     private final IntVar x;

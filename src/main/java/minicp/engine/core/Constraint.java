@@ -4,6 +4,10 @@ import minicp.state.StateManager;
 
 import java.util.Queue;
 
+/**
+ * Interface implemented by every Constraint
+ * @see AbstractConstraint
+ */
 public interface Constraint {
 
     void schedule(Queue<Constraint> q);

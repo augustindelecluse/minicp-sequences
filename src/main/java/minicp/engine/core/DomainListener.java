@@ -16,6 +16,10 @@
 
 package minicp.engine.core;
 
+/**
+ * Domain listeners are passed as argument
+ * to the {@link IntDomain} modifier methods.
+ */
 public interface DomainListener {
 
     /**

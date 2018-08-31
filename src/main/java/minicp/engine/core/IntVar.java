@@ -36,7 +36,7 @@ public interface IntVar {
     void whenBind(Procedure f);
 
     /**
-     * Ask that the closure is called whenever
+     * Asks that the closure is called whenever
      * the max or min setValue of the domain of this variable changes
      *
      * @param f the closure
@@ -44,7 +44,7 @@ public interface IntVar {
     void whenBoundsChange(Procedure f);
 
     /**
-     * Ask that the closure is called whenever the domain change
+     * Asks that the closure is called whenever the domain change
      * of this variable changes
      *
      * @param f the closure
@@ -105,11 +105,11 @@ public interface IntVar {
     int size();
 
     /**
-     * Copy the values of the domain in an array in arbitrary order.
+     * Copies the values of the domain into an array.
      *
-     * @param dest, an array large enough to contain the current domain
-     * @return the size of the domain and {@code dest[0],...,dest[size-1]}
-     *         now contains the values in the domain in an arbitrary order
+     * @param dest an array large enough {@code dest.length >= size()}
+     * @return the size of the domain and {@code dest[0,...,size-1]} contains
+     *         the values in the domain in an arbitrary order
      */
     int fillArray(int[] dest);
 
@@ -138,25 +138,27 @@ public interface IntVar {
     /**
      * Assigns the specified value
      *
-     * @param v
+     * @param v the value to assign.
      * @exception InconsistencyException
      *            is thrown if the value is not in the domain
      */
     void assign(int v);
 
     /**
-     * Remove all the values < va
+     * Remove all the values less than a given value
      *
-     * @param v
-     * @return the new minimum
+     * @param v the value such that all the values less than v are removed
+     * @exception InconsistencyException
+     *            is thrown if the domain becomes empty
      */
     void removeBelow(int v);
 
     /**
-     * Remove all the values > v
+     * Remove all the values above a given value
      *
-     * @param v
-     * @return the new maximum
+     * @param v the value such that all the values larger than v are removed
+     * @exception InconsistencyException
+     *            is thrown if the domain becomes empty
      */
     void removeAbove(int v);
 }

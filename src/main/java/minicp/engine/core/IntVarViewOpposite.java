@@ -18,6 +18,9 @@ package minicp.engine.core;
 
 import minicp.util.Procedure;
 
+/**
+ * A view on a variable of type {@code -x}
+ */
 public class IntVarViewOpposite implements IntVar {
 
     private final IntVar x;
