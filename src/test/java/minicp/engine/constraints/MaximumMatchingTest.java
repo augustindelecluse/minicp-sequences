@@ -18,7 +18,9 @@ package minicp.engine.constraints;
 import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
+import minicp.util.NotImplementedExceptionAssume;
 import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -73,6 +75,8 @@ public class MaximumMatchingTest extends SolverTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
 
     }
@@ -107,6 +111,8 @@ public class MaximumMatchingTest extends SolverTest {
 
         } catch (InconsistencyException e) {
             fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
 
     }

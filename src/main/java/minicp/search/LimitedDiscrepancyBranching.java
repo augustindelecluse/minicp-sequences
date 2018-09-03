@@ -18,6 +18,7 @@ package minicp.search;
 
 import minicp.cp.BranchingScheme;
 import minicp.util.Procedure;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.function.Supplier;
 
@@ -56,8 +57,9 @@ public class LimitedDiscrepancyBranching implements Supplier<Procedure[]> {
         // such that the call method of the wrapped alternatives
         // augment the curD depending on its position
         // +0 for alts[0], ..., +i for alts[i]
-        //throw new NotImplementedException();
 
+        // STUDENT throw new NotImplementedException();
+        // BEGIN STRIP
         Procedure[] branches = bs.get();
 
         int k = Math.min(maxD - curD + 1, branches.length);
@@ -75,6 +77,6 @@ public class LimitedDiscrepancyBranching implements Supplier<Procedure[]> {
         }
 
         return kFirstBranches;
-
+        // END STRIP
     }
 }

@@ -21,6 +21,7 @@ import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -33,6 +34,8 @@ public class Disjunctive extends AbstractConstraint {
     private final int[] duration;
     private final IntVar[] end;
 
+    // STUDENT
+    // BEGIN STRIP
     private final Integer[] permEst;
     private final int[] rankEst;
     private final int[] startMin;
@@ -46,6 +49,7 @@ public class Disjunctive extends AbstractConstraint {
     private final ThetaTree thetaTree;
 
     private final boolean postMirror;
+    // END STRIP
 
     public Disjunctive(IntVar[] start, int[] duration) {
         this(start, duration, true);
@@ -53,10 +57,13 @@ public class Disjunctive extends AbstractConstraint {
 
     private Disjunctive(IntVar[] start, int[] duration, boolean postMirror) {
         super(start[0].getSolver());
-        this.postMirror = postMirror;
         this.start = start;
         this.duration = duration;
         this.end = Factory.makeIntVarArray(start.length, i -> plus(start[i], duration[i]));
+
+        // STUDENT
+        // BEGIN STRIP
+        this.postMirror = postMirror;
         permEst = new Integer[start.length];
         rankEst = new int[start.length];
         permLct = new Integer[start.length];
@@ -74,6 +81,7 @@ public class Disjunctive extends AbstractConstraint {
 
         startMin = new int[start.length];
         endMax = new int[start.length];
+        // END STRIP
     }
 
 
@@ -88,7 +96,9 @@ public class Disjunctive extends AbstractConstraint {
 
 
         // TODO 1: replace by  posting  binary decomposition using IsLessOrEqualVar
-
+        // TODO 2: add the mirror filtering as done in the Cumulative Constraint
+        // STUDENT throw new NotImplementedException("Disjunctive");
+        // BEGIN STRIP
         for (int i = 0; i < start.length; i++) {
             start[i].propagateOnBoundChange(this);
         }
@@ -116,13 +126,23 @@ public class Disjunctive extends AbstractConstraint {
 
             propagate();
         }
+        // END STRIP
 
-        // TODO 2: replace by adding propagation OverLoadCheck, NotFirst-NotLast, Detectable Precedences, Edge Finding ...
     }
 
     @Override
     public void propagate() {
-        overLoadChecker();
+
+        // HINT: for the TODO 1-4 you'll need the ThetaTree data-structure
+
+        // TODO 3: add the OverLoadCheck algorithms
+
+        // TODO 4: add the Detectable Precedences algorithm
+
+        // TODO 5: add the Not-Last algorithm
+
+        // TODO 6 (optional, for a bonus): implement the Lambda-Theta tree and implement the Edge-Finding        overLoadChecker();
+
         boolean fixed = false;
         while (!fixed) {
             fixed = true;
@@ -132,7 +152,8 @@ public class Disjunctive extends AbstractConstraint {
         }
 
     }
-
+    // STUDENT
+    // BEGIN STRIP
     private void update() {
         Arrays.sort(permEst, Comparator.comparingInt(i -> start[i].min()));
         for (int i = 0; i < start.length; i++) {
@@ -141,9 +162,11 @@ public class Disjunctive extends AbstractConstraint {
             endMax[i] = end[i].max();
         }
     }
-
+    // END STRIP
 
     private void overLoadChecker() {
+        // STUDENT throw new NotImplementedException("Disjunctive");
+        // BEGIN STRIP
         update();
         Arrays.sort(permLct, Comparator.comparingInt(i -> end[i].max()));
         thetaTree.reset();
@@ -154,10 +177,15 @@ public class Disjunctive extends AbstractConstraint {
                 throw new InconsistencyException();
             }
         }
+        // END STRIP
     }
 
-
+    /**
+     * @return true if one domain was changed by the detectable precedence algo
+     */
     private boolean detectablePrecedence() {
+        // STUDENT throw new NotImplementedException("Disjunctive");
+        // BEGIN STRIP
         update();
         boolean changed = false;
         Arrays.sort(permLst, Comparator.comparingInt(i -> start[i].max()));
@@ -187,11 +215,15 @@ public class Disjunctive extends AbstractConstraint {
             start[i].removeBelow(startMin[i]);
         }
         return changed;
-
+        // END STRIP
     }
 
-
+    /**
+     * @return true if one domain was changed by the not-last algo
+     */
     private boolean notLast() {
+        // STUDENT throw new NotImplementedException("Disjunctive");
+        // BEGIN STRIP
         update();
         boolean changed = false;
         Arrays.sort(permLst, Comparator.comparingInt(i -> start[i].max()));
@@ -225,7 +257,7 @@ public class Disjunctive extends AbstractConstraint {
             end[i].removeAbove(endMax[i]);
         }
         return changed;
-
+        // END STRIP
     }
 
 

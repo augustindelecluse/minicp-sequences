@@ -20,11 +20,15 @@ import minicp.cp.Factory;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.Arrays;
 
 import static minicp.cp.Factory.*;
 
+/**
+ * Cumulative constraint with sum decomposition (very slow).
+ */
 public class CumulativeDecomposition extends AbstractConstraint {
 
     private final IntVar[] start;
@@ -33,7 +37,16 @@ public class CumulativeDecomposition extends AbstractConstraint {
     private final int[] demand;
     private final int capa;
 
-
+    /**
+     * Creates a cumulative constraint with a decomposition into sum constraint.
+     * At any time-point t, the sum of the demands
+     * of the activities overlapping t do not overlap the capacity.
+     *
+     * @param start the start time of each activities
+     * @param duration the duration of each activities (non negative)
+     * @param demand the demand of each activities, non negative
+     * @param capa the capacity of the constraint
+     */
     public CumulativeDecomposition(IntVar[] start, int[] duration, int[] demand, int capa) {
         super(start[0].getSolver());
         this.start = start;
@@ -54,16 +67,22 @@ public class CumulativeDecomposition extends AbstractConstraint {
             BoolVar[] overlaps = new BoolVar[start.length];
             for (int i = 0; i < start.length; i++) {
                 overlaps[i] = makeBoolVar(cp);
+                // TODO
+                // post the constraints to enforce
+                // that overlaps[i] is true iff start[i] <= t && t < start[i] + duration[i]
+                // hint: use IsLessOrEqual, introduce BoolVar, use views minus, plus, etc.
+                //       logical constraints (such as logical and can be modeled with sum)
+
+                // STUDENT throw new NotImplementedException("CumulativeDecomp");
+                // BEGIN STRIP
                 BoolVar startsBefore = makeBoolVar(cp);
                 BoolVar endsAfter = makeBoolVar(cp);
-
                 cp.post(new IsLessOrEqual(startsBefore, start[i], t));
-
                 cp.post(new IsLessOrEqual(endsAfter, minus(plus(start[i], duration[i] - 1)), -t));
-
                 final int capa = -2;
                 // overlaps = endsAfter & startsBefore
                 cp.post(new IsLessOrEqual(overlaps[i], minus(sum(new IntVar[]{startsBefore, endsAfter})), capa));
+                // END STRIP
             }
 
             IntVar[] overlapHeights = Factory.makeIntVarArray(start.length, i -> mul(overlaps[i], demand[i]));

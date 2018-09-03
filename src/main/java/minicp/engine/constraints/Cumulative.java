@@ -29,7 +29,7 @@ import static minicp.cp.Factory.minus;
 import static minicp.cp.Factory.plus;
 
 /**
- * Cumulative constraint
+ * Cumulative constraint with time-table filtering
  */
 public class Cumulative extends AbstractConstraint {
 
@@ -42,9 +42,9 @@ public class Cumulative extends AbstractConstraint {
 
 
     /**
-     * Creates a cumulative constraint.
+     * Creates a cumulative constraint with a time-table filtering.
      * At any time-point t, the sum of the demands
-     * of the activities overlapping t do not overlap the capacity
+     * of the activities overlapping t do not overlap the capacity.
      *
      * @param start the start time of each activities
      * @param duration the duration of each activities (non negative)

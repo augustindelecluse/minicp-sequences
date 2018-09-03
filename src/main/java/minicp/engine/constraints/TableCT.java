@@ -17,7 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.BitSet;
 

@@ -19,7 +19,9 @@ import minicp.cp.BranchingScheme;
 import minicp.state.StateInt;
 import minicp.state.StateManager;
 import minicp.state.Trailer;
+import minicp.util.NotImplementedExceptionAssume;
 import minicp.util.Procedure;
+import minicp.util.exception.NotImplementedException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,45 +33,48 @@ import static org.junit.Assert.assertEquals;
 public class LimitedDiscrepancyBranchingTest {
 
 
-
     @Test
     public void testExample1() {
-        StateManager sm = new Trailer();
-        StateInt i = sm.makeStateInt(0);
-        int[] values = new int[4];
+        try {
+            StateManager sm = new Trailer();
+            StateInt i = sm.makeStateInt(0);
+            int[] values = new int[4];
 
-        Supplier<Procedure[]> bs = () -> {
-            if (i.value() >= values.length)
-                return BranchingScheme.EMPTY;
-            else return BranchingScheme.branch(
-                    () -> { // left branch
-                        values[i.value()] = 0;
-                        i.increment();
-                    },
-                    () -> { // right branch
-                        values[i.value()] = 1;
-                        i.increment();
-                    });
-        };
+            Supplier<Procedure[]> bs = () -> {
+                if (i.value() >= values.length)
+                    return BranchingScheme.EMPTY;
+                else return BranchingScheme.branch(
+                        () -> { // left branch
+                            values[i.value()] = 0;
+                            i.increment();
+                        },
+                        () -> { // right branch
+                            values[i.value()] = 1;
+                            i.increment();
+                        });
+            };
 
-        LimitedDiscrepancyBranching bsDiscrepancy =
-                new LimitedDiscrepancyBranching(bs, 2);
+            LimitedDiscrepancyBranching bsDiscrepancy =
+                    new LimitedDiscrepancyBranching(bs, 2);
 
-        DFSearch dfs = new DFSearch(sm, bsDiscrepancy);
+            DFSearch dfs = new DFSearch(sm, bsDiscrepancy);
 
-        dfs.onSolution(() -> {
-            int n1 = 0;
-            for (int k = 0; k < values.length; k++) {
-                n1 += values[k];
-            }
-            Assert.assertTrue(n1 <= 2);
-        });
+            dfs.onSolution(() -> {
+                int n1 = 0;
+                for (int k = 0; k < values.length; k++) {
+                    n1 += values[k];
+                }
+                Assert.assertTrue(n1 <= 2);
+            });
 
-        SearchStatistics stats = dfs.solve();
+            SearchStatistics stats = dfs.solve();
 
-        assertEquals(11,stats.numberOfSolutions());
-        assertEquals(0, stats.numberOfFailures());
-        assertEquals(24, stats.numberOfNodes()); // root node does not count
+            assertEquals(11, stats.numberOfSolutions());
+            assertEquals(0, stats.numberOfFailures());
+            assertEquals(24, stats.numberOfNodes()); // root node does not count
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
     }
 
 

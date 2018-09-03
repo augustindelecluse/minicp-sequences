@@ -18,6 +18,7 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.state.StateInt;
+import minicp.util.exception.NotImplementedException;
 
 public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
 
@@ -54,6 +55,9 @@ public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
 
     @Override
     public void propagate() {
+        // TODO Implement the constraint as efficiently as possible and make sure you pass all the tests
+        // STUDENT throw new NotImplementedException();
+        // BEGIN STRIP
         if (b.isTrue()) {
             setActive(false);
             cp.post(or, false);
@@ -85,6 +89,6 @@ public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
             }
             nUnBounds.setValue(nU);
         }
-
+        // END STRIP
     }
 }

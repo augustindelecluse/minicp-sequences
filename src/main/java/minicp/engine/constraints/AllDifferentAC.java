@@ -20,13 +20,23 @@ import minicp.engine.core.IntVar;
 import minicp.util.GraphUtil;
 import minicp.util.GraphUtil.Graph;
 import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Arc Consistent AllDifferent Constraint
+ *
+ * Algorithm described in
+ * "A filtering algorithm for constraints of difference in CSPs" J-C. Régin, AAAI-94
+ */
 public class AllDifferentAC extends AbstractConstraint {
 
     private IntVar[] x;
+
+    private final MaximumMatching maximumMatching;
+
     private final int nVar;
     private int nVal;
 
@@ -57,13 +67,11 @@ public class AllDifferentAC extends AbstractConstraint {
     private int minVal;
     private int maxVal;
 
-    private final MaximumMatching maximumMatching;
-
     public AllDifferentAC(IntVar... x) {
         super(x[0].getSolver());
+        this.x = x;
         maximumMatching = new MaximumMatching(x);
         match = new int[x.length];
-        this.x = x;
         this.nVar = x.length;
     }
 
@@ -82,7 +90,6 @@ public class AllDifferentAC extends AbstractConstraint {
             in[i] = new ArrayList<>();
             out[i] = new ArrayList<>();
         }
-
         propagate();
     }
 
@@ -104,6 +111,9 @@ public class AllDifferentAC extends AbstractConstraint {
             in[i].clear();
             out[i].clear();
         }
+        // TODO continue the implementation for representing the residual graph
+        // STUDENT throw new NotImplementedException("AllDifferentAC");
+        // BEGIN STRIP
         Arrays.fill(matched, 0, nVal, false);
         for (int i = 0; i < x.length; i++) {
             in[i].add(match[i] - minVal + x.length);
@@ -127,11 +137,19 @@ public class AllDifferentAC extends AbstractConstraint {
                 out[sink].add(v - minVal + nVar);
             }
         }
+        // END STRIP
     }
 
 
     @Override
     public void propagate() {
+        // TODO Implement the filtering
+        // hint: use maximumMatching.compute(match) to update the maximum matching
+        //       use updateRange() to update the range of values
+        //       use updateGraph() to update the residual graph
+        //       use  GraphUtil.stronglyConnectedComponents to compute SCC's
+        // STUDENT throw new NotImplementedException("AllDifferentAC");
+        // BEGIN STRIP
         int size = maximumMatching.compute(match);
         if (size < x.length) {
             throw new InconsistencyException();
@@ -146,5 +164,6 @@ public class AllDifferentAC extends AbstractConstraint {
                 }
             }
         }
+        // END STRIP
     }
 }

@@ -890,8 +890,6 @@ activity (if needed) to the earliest slot when it can be executed without violat
         }
 
 
-
-
 Check that your implementation passes the tests `CumulativeTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/CumulativeTest.java?at=master>`_.
 
 
@@ -1050,7 +1048,8 @@ The two main algorithmic building blocks are provided.
   contains a static method with signature `public static int[] stronglyConnectedComponents(Graph graph)` to compute strongly connected
   components. The returned array gives from each node, the connected component id.
 
-One of the main difficulty of this exercise is to implement the `Graph` interface.
+One of the main difficulty of this exercise is to implement the `Graph` interface
+to represent the residual graph of the maximum matching.
 
 .. code-block:: java
 
@@ -1065,6 +1064,7 @@ One of the main difficulty of this exercise is to implement the `Graph` interfac
         Iterable<Integer> out(int idx);
     }
 
+It uses an adjacency list that is updated in the method `updateGraph()`.
 We advise you to use a dense representation with node ids as illustrated on the black nodes of the example (step2: directed graph).
 
 
@@ -1072,6 +1072,16 @@ Once your code passes the tests, you can experiment your new constraint on all t
 to measure the pruning gain on the number of nodes (NQueens, Eternity, TSP, QAP, etc).
 
 .. [REGIN94] Régin, J.-C. (1994). A filtering algorithm for constraints of difference in CSPs, AAAI-94
+
+
+
+Discrepancy Limited Search (optional)
+=================================================================
+
+Implement ``LimitedDiscrepancyBranching``, a branching that can wrap any branching
+to limit the discrepancy of the branching.
+
+Test your implementation in `LimitedDiscrepancyBranchingTest.java. <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/search/LimitedDiscrepancyBranchingTest.java?at=master>`_
 
 
 Conflict based search strategy
@@ -1087,13 +1097,6 @@ Conflict Ordering Search [COS2015]_
 .. [COS2015] Gay, S., Hartert, R., Lecoutre, C., & Schaus, P. (2015). Conflict ordering search for scheduling problems. In International conference on principles and practice of constraint programming (pp. 140-148). Springer.
 
 
-Discrepancy Limited Search (optional)
-=================================================================
-
-Implement ``DiscrepancyBranching``, a branching that can wrap any branching
-to limit the discrepancy of the branching.
-
-
 Restarts (optional)
 ========================
 
@@ -1101,7 +1104,7 @@ TODO
 
 
 AllDifferent Forward Checking (optional)
-=================================
+=========================================
 
 Implement a dedicated algorithm for the all-different.
 Whenever a variable is bound to a value, this value is removed from the domain of other variables.
