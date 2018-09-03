@@ -19,9 +19,13 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 import minicp.state.StateInt;
+import minicp.util.exception.NotImplementedException;
 
 import static minicp.cp.Factory.allDifferent;
 
+/**
+ * Hamiltonian Circuit Constraint with a successor model
+ */
 public class Circuit extends AbstractConstraint {
 
     private final IntVar[] x;
@@ -53,6 +57,10 @@ public class Circuit extends AbstractConstraint {
     @Override
     public void post() {
         cp.post(allDifferent(x));
+        // TODO
+        // Hint: use x[i].whenBind(...) to call the bind
+        // STUDENT throw new NotImplementedException("Circuit");
+        // BEGIN STRIP
         if (x.length == 1) {
             x[0].assign(0);
             return;
@@ -67,10 +75,14 @@ public class Circuit extends AbstractConstraint {
                 x[i].whenBind(() -> bind(fi));
             }
         }
+        // END STRIP
     }
 
 
     private void bind(int i) {
+        // TODO
+        // STUDENT throw new NotImplementedException("Circuit");
+        // BEGIN STRIP
         int j = x[i].min();
         int origi = orig[i].value();
         int destj = dest[j].value();
@@ -85,6 +97,6 @@ public class Circuit extends AbstractConstraint {
             // avoid inner loops
             x[destj].remove(origi); // avoid inner loops
         }
-
+        // END STRIP
     }
 }

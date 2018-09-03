@@ -2,17 +2,21 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.NotImplementedException;
 
+/**
+ * Absolute value constraint
+ */
 public class Absolute extends AbstractConstraint {
 
     private final IntVar x;
     private final IntVar y;
 
     /**
-     * Build a constraint y = |x|
+     * Creates the absolute value constraint {@code y = |x|}.
      *
-     * @param x
-     * @param y
+     * @param x the input variable such that its absolut value is equal to y
+     * @param y the variable that represents the absolute value of x
      */
     public Absolute(IntVar x, IntVar y) {
         super(x.getSolver());
@@ -21,17 +25,23 @@ public class Absolute extends AbstractConstraint {
     }
 
     public void post() {
+        // TODO
+        // STUDENT throw new NotImplementedException("Absolute");
+        // BEGIN STRIP
         y.removeBelow(0);
         x.propagateOnBoundChange(this);
         y.propagateOnBoundChange(this);
         propagate();
         //we can do more propagation with val remove
+        // END STRIP
     }
 
     @Override
     public void propagate() {
         // y = |x|
-
+        // TODO
+        // STUDENT throw new NotImplementedException("Absolute");
+        // BEGIN STRIP
         if (x.isBound()) {
             y.assign(Math.abs(x.min()));
             setActive(false);
@@ -70,6 +80,7 @@ public class Absolute extends AbstractConstraint {
                 y.remove(y.min());
             }
         }
+        // END STRIP
     }
 
 }

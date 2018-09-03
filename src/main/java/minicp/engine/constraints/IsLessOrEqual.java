@@ -18,6 +18,7 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.NotImplementedException;
 
 public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
 
@@ -34,6 +35,9 @@ public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
 
     @Override
     public void post() {
+        // TODO
+        // STUDENT throw new NotImplementedException("IsLessOrEqual");
+        // BEGIN STRIP
         if (b.isTrue()) {
             x.removeAbove(c);
         } else if (b.isFalse()) {
@@ -62,5 +66,6 @@ public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
                 }
             });
         }
+        // END STRIP
     }
 }

@@ -18,16 +18,21 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.NotImplementedException;
 
+/**
+ * Maximum Constraint
+ */
 public class Maximum extends AbstractConstraint {
 
     private final IntVar[] x;
     private final IntVar y;
 
     /**
-     * y = maximum(x[0],x[1],...,x[n])
+     * Creates the maximum constraint y = maximum(x[0],x[1],...,x[n])?
      *
-     * @param x
+     * @param x the variable on which the maximum is to be found
+     * @param y the variable that is equal to the maximum on x
      */
     public Maximum(IntVar[] x, IntVar y) {
         super(x[0].getSolver());
@@ -39,11 +44,15 @@ public class Maximum extends AbstractConstraint {
 
     @Override
     public void post() {
+        // TODO
+        // STUDENT throw new NotImplementedException("Maximum");
+        // BEGIN STRIP
         for (IntVar xi : x) {
             xi.propagateOnBoundChange(this);
         }
         y.propagateOnBoundChange(this);
         propagate();
+        // END STRIP
     }
 
 

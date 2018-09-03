@@ -18,6 +18,7 @@ package minicp.engine.core;
 import minicp.state.StateStack;
 import minicp.util.Procedure;
 import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 
 import java.security.InvalidParameterException;
 import java.util.Set;
@@ -94,6 +95,8 @@ public class IntVarImpl implements IntVar {
      * @param values the initial values in the domain, it must be nonempty
      */
     public IntVarImpl(Solver cp, Set<Integer> values) {
+        // STUDENT throw new NotImplementedException();
+        // BEGIN STRIP
         this(cp, values.stream().min(Integer::compare).get(), values.stream().max(Integer::compare).get());
         if (values.isEmpty()) throw new InvalidParameterException("at least one setValue in the domain");
         for (int i = min(); i <= max(); i++) {
@@ -104,6 +107,7 @@ public class IntVarImpl implements IntVar {
                 }
             }
         }
+        // END STRIP
     }
 
     @Override
@@ -180,7 +184,10 @@ public class IntVarImpl implements IntVar {
 
     @Override
     public int fillArray(int[] dest) {
+        // STUDENT throw new NotImplementedException();
+        // BEGIN STRIP
         return domain.fillArray(dest);
+        // END STRIP
     }
 
     @Override

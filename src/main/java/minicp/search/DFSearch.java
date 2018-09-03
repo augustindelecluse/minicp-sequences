@@ -213,6 +213,35 @@ public class DFSearch {
         return statistics;
     }
 
+
+    private void dfs(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
+        if (limit.test(statistics))
+            throw new StopSearchException();
+        Procedure[] branches = branching.get();
+        if (branches.length == 0) {
+            statistics.incrSolutions();
+            notifySolution();
+        } else {
+            for (Procedure b : branches) {
+                sm.withNewState(() -> {
+                    try {
+                        statistics.incrNodes();
+                        b.call();
+                        dfs(statistics, limit);
+                    } catch (InconsistencyException e) {
+                        statistics.incrFailures();
+                        notifyFailure();
+                    }
+                });
+            }
+        }
+    }
+
+    // STUDENT
+
+    // BEGIN STRIP
+
+    // solution to DFS with explicit stack
     private void expandNode(Stack<Procedure> alternatives, SearchStatistics statistics) {
         Procedure[] alts = branching.get();
         if (alts.length == 0) {
@@ -245,29 +274,7 @@ public class DFSearch {
                 notifyFailure();
             }
         }
-
     }
 
-    private void dfs(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
-        if (limit.test(statistics))
-            throw new StopSearchException();
-        Procedure[] branches = branching.get();
-        if (branches.length == 0) {
-            statistics.incrSolutions();
-            notifySolution();
-        } else {
-            for (Procedure b : branches) {
-                sm.withNewState(() -> {
-                    try {
-                        statistics.incrNodes();
-                        b.call();
-                        dfs(statistics, limit);
-                    } catch (InconsistencyException e) {
-                        statistics.incrFailures();
-                        notifyFailure();
-                    }
-                });
-            }
-        }
-    }
+    // END STRIP
 }

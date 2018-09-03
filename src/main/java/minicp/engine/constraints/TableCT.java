@@ -17,6 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.BitSet;
 
@@ -84,11 +85,6 @@ public class TableCT extends AbstractConstraint {
     @Override
     public void propagate() {
 
-        // For each var, compute the tuples supported by the var
-        // Intersection of the tuples supported by each var is the list of supported tuples
-        // Then check if each var/val supports a tuples. If not, remove the val.
-        // TODO
-        //
 
         // Bit-set of tuple indices all set to 0
         BitSet supportedTuples = new BitSet(table.length);
@@ -99,17 +95,18 @@ public class TableCT extends AbstractConstraint {
         //                   (supports[x.length][x[0].min()] | ... | supports[x.length][x[0].max()] )
         //
 
+        // STUDENT // This should be displayed instead of the actual code
+        // BEGIN STRIP
         for (int i = 0; i < x.length; i++) {
             BitSet supporti = new BitSet();
             for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
-                    // TODO
-                    //
                     supporti.or(supports[i][v]);
                 }
             }
             supportedTuples.and(supporti);
         }
+        // END STRIP
 
         // TODO 2
         for (int i = 0; i < x.length; i++) {
@@ -117,9 +114,12 @@ public class TableCT extends AbstractConstraint {
                 if (x[i].contains(v)) {
                     // TODO 2 the condition for removing the setValue v from x[i] is to check if
                     // there is no intersection between supportedTuples and the support[i][v]
+                    // STUDENT throw new NotImplementedException();
+                    // BEGIN STRIP
                     if (!supports[i][v].intersects(supportedTuples)) {
                         x[i].remove(v);
                     }
+                    // END STRIP
                 }
             }
         }

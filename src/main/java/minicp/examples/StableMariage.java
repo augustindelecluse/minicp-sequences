@@ -90,23 +90,32 @@ public class StableMariage {
         for (int m = 0; m < n; m++) {
             // the husband of the wife of man m is m
             // TODO: model this with Element1DVar
+            // STUDENT
+            // BEGIN STRIP
             cp.post(new Element1DVar(husband, wife[m], makeIntVar(cp, m, m)));
+            // END STRIP
 
-            //
             // TODO: model this with Element1D: rankWomen[m][wife[m]] == wifeFref[m]
+            // STUDENT
+            // BEGIN STRIP
             cp.post(new Element1D(rankWomen[m], wife[m], wifePref[m]));
-
+            // END STRIP
 
         }
 
         for (int w = 0; w < n; w++) {
             // the wife of the husband of woman i is i
             // TODO: model this with Element1DVar
+            // STUDENT
+            // BEGIN STRIP
             cp.post(new Element1DVar(wife, husband[w], makeIntVar(cp, w, w)));
-
+            // END STRIP
 
             // TODO: model this with Element1D: rankMen[w][husband[w]] == husbandPref[w]
+            // STUDENT
+            // BEGIN STRIP
             cp.post(new Element1D(rankMen[w], husband[w], husbandPref[w]));
+            // END STRIP
         }
 
         for (int m = 0; m < n; m++) {
@@ -121,18 +130,18 @@ public class StableMariage {
                 // if w prefers m than her husband, the opposite is not true i.e. m prefers his own woman than w
                 // (husbandPref[w] > rankMen[w][m]) => (wifePref[m] < rankWomen[m][w])
                 // TODO: model this constraint
-
+                // STUDENT
+                // BEGIN STRIP
                 BoolVar wPrefersM = isLarger(husbandPref[w], rankMen[w][m]);
                 BoolVar mDont = isLess(wifePref[m], rankWomen[m][w]);
                 cp.post(implies(wPrefersM, mDont));
+                // END STRIP
 
             }
         }
 
 
         DFSearch dfs = makeDfs(cp, and(firstFail(wife), firstFail(husband)));
-        //IntVar[] av = Stream.concat(Arrays.stream(wife),Arrays.stream(husband)).toArray(IntVar[]::new);
-        //DFSearch dfs = makeDfs(cp,firstFail(av));
 
         dfs.onSolution(() -> {
                     System.out.println(Arrays.toString(wife));

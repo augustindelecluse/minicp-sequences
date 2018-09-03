@@ -17,25 +17,44 @@
 package minicp.engine.constraints;
 
 import minicp.cp.Factory;
+import minicp.engine.core.AbstractConstraint;
+import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.NotImplementedException;
 
-public class Element1D extends Element2D {
+/**
+ *
+ * Element Constraint modeling {@code array[y] = z}
+ *
+ */
+public class Element1D extends AbstractConstraint {
 
-    private static int[][] to2d(int[] t) {
-        int[][] t2 = new int[1][t.length];
-        System.arraycopy(t, 0, t2[0], 0, t.length);
-        return t2;
-    }
+    private final int [] t;
+    private final IntVar y;
+    private final IntVar z;
 
     /**
-     * T[y] = z
+     * Creates an element constraint {@code array[y] = z}
      *
-     * @param array
-     * @param y
-     * @param z
+     * @param array the array to index
+     * @param y the index variable
+     * @param z the result variable
      */
     public Element1D(int[] array, IntVar y, IntVar z) {
-        super(to2d(array), Factory.makeIntVar(y.getSolver(), 0, 0), y, z);
+        super(y.getSolver());
+        this.t = array;
+        this.y = y;
+        this.z = z;
     }
 
+    @Override
+    public void post() {
+        // STUDENT throw new NotImplementedException("Element1D");
+        // BEGIN STRIP
+        int[][] t2 = new int[1][t.length];
+        System.arraycopy(t, 0, t2[0], 0, t.length);
+        Constraint c = new Element2D(t2, Factory.makeIntVar(cp,0,0),y,z);
+        cp.post(c,false);
+        // END STRIP
+    }
 }

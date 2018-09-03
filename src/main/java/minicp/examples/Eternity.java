@@ -65,10 +65,19 @@ public class Eternity {
 
         // ------------------------
 
+        // TODO: create the table where each line correspond to one possible rotation of a piece
+        // For instance if the line piece[6] = [2,3,5,1]
+        // the four lines created in the table are
+        // [6,2,3,5,1] // rotation of 0°
+        // [6,3,5,1,2] // rotation of 90°
+        // [6,5,1,2,3] // rotation of 180°
+        // [6,1,2,3,5] // rotation of 270°
+
         // Table with makeIntVarArray pieces and for each their 4 possible rotations
 
         int[][] table = new int[4 * n * m][5];
-
+        // STUDENT
+        // BEGIN STRIP
         for (int i = 0; i < pieces.length; i++) {
             for (int r = 0; r < 4; r++) {
                 table[i * 4 + r][0] = i;
@@ -78,9 +87,17 @@ public class Eternity {
                 table[i * 4 + r][4] = pieces[i][(r + 3) % 4];
             }
         }
-
+        // END STRIP
 
         Solver cp = makeSolver();
+
+        //   |         |
+        // - +---------+- -
+        //   |    u    |
+        //   | l  i  r |
+        //   |    d    |
+        // - +---------+- -
+        //   |         |
 
 
         IntVar[][] id = new IntVar[n][m]; // id
@@ -112,10 +129,21 @@ public class Eternity {
 
         // The constraints of the problem
 
-        // makeIntVarArray the pieces placed are different
+        // TODO: State the constraints of the problem
+
+        // Constraint1: all the pieces placed are different
+
+        // Constraint2: all the pieces placed are valid ones i.e. one of the given mxn pieces possibly rotated
+
+        // Constraint3: place "0" one all external side of the border (gray color)
+
+        // STUDENT
+        // BEGIN STRIP
+
+        // all the the pieces placed are different
         cp.post(allDifferent(flatten(id)));
 
-        // makeIntVarArray the pieces placed are valid one (one of the given mxn piece possibly rotated)
+        // make the pieces placed are valid ones (one of the given mxn piece possibly rotated)
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 //cp.post(new TableCT(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
@@ -132,16 +160,21 @@ public class Eternity {
             equal(u[0][j], 0);
             equal(d[n - 1][j], 0);
         }
+        // END STRIP
 
 
         // The search using the and combinator
 
         DFSearch dfs = makeDfs(cp,
+                /* TODO: continue, are you branching on all the variables ? */
+                // STUDENT and(firstFail(flatten((id))), firstFail(flatten(u)))
+                // BEGIN STRIP
                 and(firstFail(flatten(id)),
                         firstFail(flatten(u)),
                         firstFail(flatten(r)),
                         firstFail(flatten(d)),
                         firstFail(flatten(l)))
+                // END STRIP
         );
 
 
