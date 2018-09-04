@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 
@@ -84,9 +84,8 @@ public class Cumulative extends AbstractConstraint {
     public void propagate() {
         Profile profile = buildProfile();
         // TODO 2: check that the profile is not exceeding the capa otherwise throw an INCONSISTENCY
-
         for (int i = 0; i < profile.size(); i++) {
-            // STUDENT throw new InconsistencyException();
+            // STUDENT throw new NotImplementedException("Cumulative");
             // BEGIN STRIP
             if (profile.get(i).height > capa) {
                 throw InconsistencyException.INCONSISTENCY;
@@ -125,7 +124,7 @@ public class Cumulative extends AbstractConstraint {
         ArrayList<Rectangle> mandatoryParts = new ArrayList<Rectangle>();
         for (int i = 0; i < start.length; i++) {
             // TODO 1: add mandatory part of activity i if any
-            // STUDENT throw new InconsistencyException();
+            // STUDENT throw new NotImplementedException("Cumulative");
             // BEGIN STRIP
             if (end[i].min() > start[i].max()) {
                 int s = start[i].max();

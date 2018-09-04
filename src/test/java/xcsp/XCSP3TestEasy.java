@@ -13,22 +13,15 @@
  * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.util.exception;
+package xcsp;
 
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
-public class NotImplementedException extends UnsupportedOperationException {
-    public NotImplementedException(String message) {
-        super(message);
-    }
+@RunWith(Parameterized.class)
+public class XCSP3TestEasy extends XCSP3TestHelper{
+    public XCSP3TestEasy(String path) { super(path); }
 
-    public NotImplementedException() {
-        super();
-    }
-
-    public void print() {
-        System.err.println(this + " " + (getStackTrace()[0].toString()));
-        //printStackTrace();
-    }
-
-
+    @Parameterized.Parameters
+    public static Object[] data() { return dataFromFolder("data/xcsp3/easy-first-solution"); }
 }

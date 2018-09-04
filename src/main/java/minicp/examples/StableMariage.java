@@ -37,7 +37,7 @@ import static minicp.cp.Factory.*;
  * marry the men and women together such that there are no two people of opposite sex
  * who would both rather have each other than their current partners.
  * If there are no such people, makeIntVarArray the marriages are "stable".
- * Wikipedia: http://en.wikipedia.org/wiki/Stable_marriage_problem
+ * <a href="http://en.wikipedia.org/wiki/Stable_marriage_problem">Wikipedia</a>.
  */
 public class StableMariage {
 

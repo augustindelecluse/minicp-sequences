@@ -10,13 +10,19 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.state;
 
 import java.util.NoSuchElementException;
 
+/**
+ * Set implemented using a sparse-set data structure
+ * that can be saved and restored through
+ * the {@link StateManager#saveState()} / {@link StateManager#restoreState()}
+ * methods.
+ */
 public class StateSparseSet {
 
     private int[] values;
@@ -69,7 +75,6 @@ public class StateSparseSet {
     /**
      * @return an array representation of values present in the set
      */
-
     public int[] toArray() {
         int[] res = new int[size()];
         fillArray(res);
@@ -77,10 +82,10 @@ public class StateSparseSet {
     }
 
     /**
-     * set the first values of <code>dest</code> to the ones
-     * present in the set
+     * Sets the first values of <code>dest</code> to the ones
+     * present in the set.
      *
-     * @param dest, an array large enough dest.length >= size()
+     * @param dest, an array large enough {@code dest.length >= size()}
      * @return the size of the set
      */
     public int fillArray(int[] dest) {
@@ -91,6 +96,8 @@ public class StateSparseSet {
     }
 
     /**
+     * Checks if the set is empty
+     *
      * @return true if the set is empty
      */
     public boolean isEmpty() {
@@ -98,6 +105,8 @@ public class StateSparseSet {
     }
 
     /**
+     * Returns the size of the set.
+     *
      * @return the size of the set
      */
     public int size() {
@@ -105,7 +114,9 @@ public class StateSparseSet {
     }
 
     /**
-     * @return the minimum setValue in the set
+     * Returns the minimum value in the set.
+     *
+     * @return the minimum value in the set
      */
     public int min() {
         if (isEmpty())
@@ -114,7 +125,9 @@ public class StateSparseSet {
     }
 
     /**
-     * @return the maximum setValue in the set
+     * Returns the maximum value in the set.
+     *
+     * @return the maximum value in the set
      */
     public int max() {
         if (isEmpty())
@@ -154,9 +167,9 @@ public class StateSparseSet {
     }
 
     /**
-     * Remove val from the set
+     * Removes the given value from the set.
      *
-     * @param val
+     * @param val the value to remove.
      * @return true if val was in the set, false otherwise
      */
     public boolean remove(int val) {
@@ -185,10 +198,10 @@ public class StateSparseSet {
     }
 
     /**
-     * Check if the setValue val is in the set
+     * Check if a value is in the set
      *
-     * @param val the original setValue to check.
-     * @return true <-> (val-ofs) IN S
+     * @param val the value to check
+     * @return true if val is in the set
      */
     public boolean contains(int val) {
         val -= ofs;
@@ -220,16 +233,16 @@ public class StateSparseSet {
     }
 
     /**
-     * Remove all the values in the set
+     * Removes all the values in the set
      */
     public void removeAll() {
         size.setValue(0);
     }
 
     /**
-     * Remove all the values < setValue in the set
+     * Remove all the values less than the given value from the set
      *
-     * @param value
+     * @param value a value such that all the ones smaller are removed
      */
     public void removeBelow(int value) {
         if (max() < value) {
@@ -242,7 +255,9 @@ public class StateSparseSet {
     }
 
     /**
-     * Remove all the values > setValue in the set
+     * Remove all the values larger than the given value from the set
+     *
+     * @param value a value such that all the ones greater are removed
      */
     public void removeAbove(int value) {
         if (min() > value) {

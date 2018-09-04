@@ -36,7 +36,6 @@ import static minicp.cp.BranchingScheme.*;
 import static minicp.cp.Factory.*;
 
 /**
- * Problem described in http://www.csplib.org/Problems/prob038/
  * Steel is produced by casting molten iron into slabs.
  * A steel mill can produce a finite number of slab sizes.
  * An order has two properties, a colour corresponding to the route required through the steel mill and a weight.
@@ -45,6 +44,7 @@ import static minicp.cp.Factory.*;
  * This assignment is subject to two further constraints:
  * - Capacity constraints: The total weight of orders assigned to a slab cannot exceed the slab capacity.
  * - Colour constraints: Each slab can contain at most p of k total colours (p is usually 2).
+ * <a href="http://www.csplib.org/Problems/prob038/">CSPLib</a>
  */
 public class Steel {
 

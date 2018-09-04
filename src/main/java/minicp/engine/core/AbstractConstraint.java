@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.core;
@@ -20,6 +20,10 @@ import minicp.state.StateBool;
 import java.util.Queue;
 
 public abstract class AbstractConstraint implements Constraint {
+
+    /**
+     * The solver in which the constraint is created
+     */
     protected final Solver cp;
     private boolean scheduled = false;
     private final StateBool active;

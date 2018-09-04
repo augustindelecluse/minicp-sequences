@@ -10,12 +10,21 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.state;
 
+/**
+ * A sparse-set that lazily switch
+ * from an dense interval representation
+ * to a sparse-set representation
+ * when a hole is created in the interval.
+ */
 public class StateLazySparseSet {
+
+    // STUDENT
+    // BEGIN STRIP
     private StateManager sm;
 
     private StateSparseSet sparse;
@@ -200,4 +209,6 @@ public class StateLazySparseSet {
             return sparse.toString();
         }
     }
+
+    // END STRIP
 }

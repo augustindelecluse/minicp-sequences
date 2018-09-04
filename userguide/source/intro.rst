@@ -97,9 +97,9 @@ If you use find mini-cp useful for your research or teaching you can cite:
 	
 	@Misc{minicp,
 	  author = "{Laurent Michel, Pierre Schaus, Pascal Van Hentenryck}",
-	  title = "{Mini-CP: A Minimalist Open-Source Solver to teach Constraint Programming",
-	  year = {2017},
-	  note = {Available from \texttt{www.info.ucl.ac.be/~pschaus/minicp}},
+	  title = "{MiniCP}: A Lightweight Solver for Constraint Programming",
+	  year = {2018},
+	  note = {Available from \texttt{https://minicp.bitbucket.io}},
 	}
 
 

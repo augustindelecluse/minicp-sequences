@@ -32,8 +32,8 @@ import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
 /**
- * JobShop Problem
- * https://en.wikipedia.org/wiki/Job_shop_scheduling
+ * The JobShop Problem.
+ * <a href="https://en.wikipedia.org/wiki/Job_shop_scheduling">Wikipedia.</a>
  */
 public class JobShop {
 

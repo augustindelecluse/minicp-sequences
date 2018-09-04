@@ -30,10 +30,11 @@ import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
 /**
- *  <a href="https://en.wikipedia.org/wiki/Eternity_II_puzzle">Eternity II</a>
+ *
  *  The Eternity II puzzle is an edge-matching puzzle which
  *  involves placing 256 square puzzle pieces into a 16 by 16 grid,
- *  constrained by the requirement to match adjacent edges
+ *  constrained by the requirement to match adjacent edges.
+ *  <a href="https://en.wikipedia.org/wiki/Eternity_II_puzzle">Wikipedia.</a>
  */
 public class Eternity {
 

@@ -10,25 +10,40 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.state;
 
 
+import minicp.util.exception.NotImplementedException;
+
 import java.util.IdentityHashMap;
 import java.util.Map;
 
+/**
+ * Implementation of {@link StateMap} with trail strategy
+ * @see Trailer
+ * @see StateManager#makeStateMap()
+ */
 public class TrailMap<K, V> implements StateMap<K, V> {
 
+    // STUDENT
+    // BEGIN STRIP
     Trailer trail;
     Map<K, V> map = new IdentityHashMap<>();
+    // END STRIP
 
     protected TrailMap(Trailer trail) {
+        // STUDENT throw new NotImplementedException("TrailMap");
+        // BEGIN STRIP
         this.trail = trail;
+        // END STRIP
     }
 
     public void put(K k, V v) {
+        // STUDENT throw new NotImplementedException("TrailMap");
+        // BEGIN STRIP
         if (!map.containsKey(k)) {
             trail.pushState(new StateEntry() {
                 @Override
@@ -46,10 +61,13 @@ public class TrailMap<K, V> implements StateMap<K, V> {
             });
         }
         map.put(k, v);
-
+        // END STRIP
     }
 
     public V get(K k) {
+        // STUDENT throw new NotImplementedException("TrailMap");
+        // BEGIN STRIP
         return map.get(k);
+        // END STRIP
     }
 }

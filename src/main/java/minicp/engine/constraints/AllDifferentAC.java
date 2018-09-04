@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
@@ -93,7 +93,7 @@ public class AllDifferentAC extends AbstractConstraint {
         propagate();
     }
 
-    public void updateRange() {
+    private void updateRange() {
         minVal = Integer.MAX_VALUE;
         maxVal = Integer.MIN_VALUE;
         for (int i = 0; i < nVar; i++) {
@@ -104,7 +104,7 @@ public class AllDifferentAC extends AbstractConstraint {
     }
 
 
-    public void updateGraph() {
+    private void updateGraph() {
         nNodes = nVar + nVal + 1;
         int sink = nNodes - 1;
         for (int i = 0; i < nNodes; i++) {

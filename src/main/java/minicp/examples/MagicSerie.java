@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.examples;
@@ -26,7 +26,10 @@ import java.util.Arrays;
 import static minicp.cp.BranchingScheme.*;
 import static minicp.cp.Factory.*;
 
-
+/**
+ * The Magic Series problem.
+ * <a href="http://csplib.org/Problems/prob019/">CSPLib</a>.
+ */
 public class MagicSerie {
     public static void main(String[] args) {
 

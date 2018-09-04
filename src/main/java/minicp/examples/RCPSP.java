@@ -27,9 +27,10 @@ import minicp.util.io.InputReader;
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
+
 /**
- * Resource Constrained Project Scheduling Problem (RCPSP)
- * http://www.om-db.wi.tum.de/psplib/library.html
+ * Resource Constrained Project Scheduling Problem.
+ * <a href="http://www.om-db.wi.tum.de/psplib/library.html">PSPLIB</a>.
  */
 public class RCPSP {
 
