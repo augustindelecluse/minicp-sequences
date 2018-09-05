@@ -28,7 +28,7 @@ public class ShortTableDecomp extends AbstractConstraint {
      * Table constraint. Assignment of x_0=v_0, x_1=v_1,... only valid if there exists a
      * row (v_0|*,v_1|*, ...) in the table.
      *
-     * @param x     variables to constraint. x.length must be > 0.
+     * @param x     variables to constraint, a non empty array
      * @param table array of valid solutions (second dimension must be of same size as the array x)
      * @param star  the symbol representing "any" setValue in the table
      */

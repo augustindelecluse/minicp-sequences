@@ -19,6 +19,11 @@ package minicp.engine.constraints;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Representation of a cumulated Profile
+ * data structure as a contiguous sequence of {@link Rectangle}
+ * built from a set of {@link Rectangle} using a sweep-line algorithm.
+ */
 public class Profile {
 
     private static class Entry implements Comparable<Entry> {
@@ -59,6 +64,12 @@ public class Profile {
 
     private final Rectangle[] profileRectangles;
 
+    /**
+     * Get the cumulated Profile from the rectangles passed in argument
+     * to the constructor.
+     *
+     * @return the cumulated profile is a contiguous sequence of {@link Rectangle}
+     */
     public Rectangle[] rectangles() {
         return profileRectangles;
     }
@@ -94,8 +105,10 @@ public class Profile {
     }
 
     /**
-     * @param t
-     * @return the rectangle r of the profileRectangles such that r.solve <= t and r.end > t
+     * Retrieves the rectangle index of the profile that overlaps a given time.
+     *
+     * @param t the time at which we want to retrieve the overlapping rectangle
+     * @return the rectangle index r of the profile such that {@code r.start <= t} and {@code r.end > t}
      */
     public int rectangleIndex(int t) {
         for (int i = 0; i < profileRectangles.length; i++) {
@@ -106,15 +119,18 @@ public class Profile {
     }
 
     /**
-     * @return the number of rectangles in the profileRectangles
+     * Return the number of rectangles in the profile.
+     *
+     * @return the number of rectangles in the profile
      */
     public int size() {
         return profileRectangles.length;
     }
 
     /**
-     * @param i
-     * @return the i_th rectangle of the profileRectangles
+     * @param i the rectangle index
+     * @return the rectangle of the profile at index i
+     * @see #rectangleIndex(int)
      */
     public Rectangle get(int i) {
         return profileRectangles[i];
