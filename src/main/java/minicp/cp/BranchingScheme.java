@@ -94,6 +94,8 @@ public final class BranchingScheme {
      * @param x the array on which the minimum value is searched
      * @param p the predicate that filters the element eligible for selection
      * @param f the evaluation function that returns a comparable when applied on an element of x
+     * @param <T> the type of the elements in x, for instance {@link IntVar}
+     * @param <N> the type on which the minimum is computed, for instance {@link Integer}
      * @return the minimum element in x that satisfies the predicate p
      *         or null if no element satisfies the predicate.
      */

@@ -39,13 +39,14 @@ public class StateLazySparseSet {
     }
 
     /**
-     * Creates a StateSparseSet containing the elements {ofs,...,ofs + n - 1}.
+     * Creates a set containing the elements {@code {ofs,ofs+1,...,ofs+n-1}}.
      *
-     * @param sm
-     * @param n
-     * @param ofs
+     * @param sm the state manager that will save and restore the set when
+     *        {@link StateManager#saveState()} / {@link StateManager#restoreState()}
+     *           mehtods are called
+     * @param n  the number of elements in the set
+     * @param ofs the minimum value in the set containing {@code {ofs,ofs+1,...,ofs+n-1}}
      */
-
     public StateLazySparseSet(StateManager sm, int n, int ofs) {
         this.sm = sm;
         interval = new StateInterval(sm, ofs, ofs + n - 1);
@@ -78,7 +79,9 @@ public class StateLazySparseSet {
     }
 
     /**
-     * @return the minimum setValue in the set
+     * Returns the minimum value in the set.
+     *
+     * @return the minimum value in the set
      */
     public int min() {
         if (isInterval()) {
@@ -89,7 +92,9 @@ public class StateLazySparseSet {
     }
 
     /**
-     * @return the maximum setValue in the set
+     * Returns the maximum value in the set.
+     *
+     * @return the maximum value in the set
      */
     public int max() {
         if (isInterval()) {
@@ -100,10 +105,10 @@ public class StateLazySparseSet {
     }
 
     /**
-     * Check if the setValue val is in the set
+     * Checks if a value is in the set.
      *
-     * @param val the original setValue to check.
-     * @return true <-> (val-ofs) IN S
+     * @param val the value to check
+     * @return true if val is in the set
      */
     public boolean contains(int val) {
         if (isInterval()) {
@@ -114,10 +119,10 @@ public class StateLazySparseSet {
     }
 
     /**
-     * set the first values of <code>dest</code> to the ones
-     * present in the set
+     * Sets the first values of <code>dest</code> to the ones
+     * present in the set.
      *
-     * @param dest, an array large enough dest.length >= size()
+     * @param dest, an array large enough {@code dest.length >= size()}
      * @return the size of the set
      */
     public int fillArray(int[] dest) {
@@ -131,9 +136,9 @@ public class StateLazySparseSet {
     }
 
     /**
-     * Remove val from the set
+     * Removes the given value from the set.
      *
-     * @param val
+     * @param val the value to remove.
      * @return true if val was in the set, false otherwise
      */
     public boolean remove(int val) {
@@ -154,7 +159,7 @@ public class StateLazySparseSet {
     }
 
     /**
-     * Removes all the element from the set except v
+     * Removes all the element from the set except the given value.
      *
      * @param v is an element in the set
      */
@@ -167,7 +172,7 @@ public class StateLazySparseSet {
     }
 
     /**
-     * Remove all the values in the set
+     * Removes all the values in the set.
      */
     public void removeAll() {
         if (isInterval()) {
@@ -178,9 +183,9 @@ public class StateLazySparseSet {
     }
 
     /**
-     * Remove all the values < setValue in the set
+     * Remove all the values less than the given value from the set
      *
-     * @param value
+     * @param value a value such that all the ones smaller are removed
      */
     public void removeBelow(int value) {
         if (isInterval()) {
@@ -191,7 +196,9 @@ public class StateLazySparseSet {
     }
 
     /**
-     * Remove all the values > setValue in the set
+     * Remove all the values larger than the given value from the set
+     *
+     * @param value a value such that all the ones greater are removed
      */
     public void removeAbove(int value) {
         if (isInterval()) {

@@ -34,10 +34,13 @@ public class StateSparseSet {
     private int n;
 
     /**
-     * Creates a StateSparseSet containing the elements {0,...,n-1}.
+     * Creates a set containing the elements {@code {ofs,ofs+1,...,ofs+n-1}}.
      *
-     * @param sm
-     * @param n  > 0
+     * @param sm the state manager that will save and restore the set when
+     *        {@link StateManager#saveState()} / {@link StateManager#restoreState()}
+     *           mehtods are called
+     * @param n  the number of elements in the set
+     * @param ofs the minimum value in the set containing {@code {ofs,ofs+1,...,ofs+n-1}}
      */
     public StateSparseSet(StateManager sm, int n, int ofs) {
         this.n = n;
@@ -73,7 +76,9 @@ public class StateSparseSet {
     }
 
     /**
-     * @return an array representation of values present in the set
+     * Returns an array with the values present in the set.
+     *
+     * @return an array representation of the values present in the set
      */
     public int[] toArray() {
         int[] res = new int[size()];
@@ -185,10 +190,10 @@ public class StateSparseSet {
     }
 
     /**
-     * This method operates on the shifted setValue (one cannot shift now).
+     * This method operates on the shifted value (one cannot shift now).
      *
      * @param val the setValue to lookup for membership
-     * @return true <-> val IN S
+     * @return true if val is in the set, false otherwise
      */
     private boolean internalContains(int val) {
         if (val < 0 || val >= n)
@@ -198,7 +203,7 @@ public class StateSparseSet {
     }
 
     /**
-     * Check if a value is in the set
+     * Checks if a value is in the set.
      *
      * @param val the value to check
      * @return true if val is in the set
@@ -212,7 +217,7 @@ public class StateSparseSet {
     }
 
     /**
-     * Removes all the element from the set except v
+     * Removes all the element from the set except the given value.
      *
      * @param v is an element in the set
      */
@@ -233,7 +238,7 @@ public class StateSparseSet {
     }
 
     /**
-     * Removes all the values in the set
+     * Removes all the values in the set.
      */
     public void removeAll() {
         size.setValue(0);

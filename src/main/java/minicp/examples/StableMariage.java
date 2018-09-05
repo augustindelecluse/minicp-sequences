@@ -156,11 +156,13 @@ public class StableMariage {
     }
 
     /**
-     * @param b1
-     * @param b2
-     * @return b equiv (b1 => b2) (logical implication)
+     * Model the reified logical implication constraint
+     * @param b1 left hand side of the implication
+     * @param b2 right hand side of the implication
+     * @return a boolean variable that is true if and only if
+     *         the relation "b1 implies b2" is true, false otehrwise.
      */
-    public static BoolVar implies(BoolVar b1, BoolVar b2) {
+    private static BoolVar implies(BoolVar b1, BoolVar b2) {
         IntVar not_b1 = plus(minus(b1), 1);
         return isLargerOrEqual(sum(not_b1, b2), 1);
     }

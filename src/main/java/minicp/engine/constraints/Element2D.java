@@ -25,6 +25,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.IntStream;
 
+
+/**
+ *
+ * Element Constraint modeling {@code matrix[x][y] = z}
+ *
+ */
 public class Element2D extends AbstractConstraint {
     private final int[][] matrix;
     private final IntVar x, y, z;
@@ -52,12 +58,12 @@ public class Element2D extends AbstractConstraint {
     }
 
     /**
-     * matrix[x][y] = z
+     * Creates an element constraint {@code mat[x][y] = z}
      *
-     * @param m
-     * @param x
-     * @param y
-     * @param z
+     * @param mat the 2d array representing a matrix to index
+     * @param x the first dimension index variable
+     * @param y the second dimention index variable
+     * @param z the result variable
      */
     public Element2D(int[][] mat, IntVar x, IntVar y, IntVar z) {
         super(x.getSolver());

@@ -35,7 +35,7 @@ public class ShortTableCT extends AbstractConstraint {
 
     /**
      * Create a Table constraint with short tuples.
-     * <p> </p>Assignment of {@code x_0=v_0, x_1=v_1,...} only valid if there exists a
+     * <p>Assignment of {@code x_0=v_0, x_1=v_1,...} only valid if there exists a
      * row {@code (v_0|*,v_1|*, ...)} in the table.
      *
      * @param x     the variables to constraint. x must be non empty.

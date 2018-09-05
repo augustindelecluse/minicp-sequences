@@ -90,7 +90,7 @@ public class StateInterval {
      * Sets the first values of <code>dest</code> to the ones
      * present in the interval.
      *
-     * @param dest, an array large enough dest.length >= size()
+     * @param dest, an array large enough {@code dest.length >= size()}
      * @return the size of the set
      */
     public int fillArray(int[] dest) {

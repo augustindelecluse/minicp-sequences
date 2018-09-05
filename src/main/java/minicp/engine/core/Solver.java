@@ -22,22 +22,24 @@ import minicp.util.Procedure;
 public interface Solver {
 
     /**
-     * Post the constraint, that is call {@link Constraint#post()} and
+     * Posts the constraint, that is call {@link Constraint#post()} and
      * computes the fix-point.
      * A {@link minicp.util.exception.InconsistencyException} is thrown
      * if by posting the constraint it is proven that there is no solution.
+     *
      * @param c the constraint to be posted
      */
     void post(Constraint c);
 
     /**
-     * Schedule the constraint to be propagated by the fix-point
+     * Schedules the constraint to be propagated by the fix-point.
+     *
      * @param c the constraint to be scheduled
      */
     void schedule(Constraint c);
 
     /**
-     * Post the constraint that is call {@link Constraint#post()}
+     * Posts the constraint that is call {@link Constraint#post()}
      * and optionally computes the fix-point.
      * A {@link minicp.util.exception.InconsistencyException} is thrown
      * if by posting the constraint it is proven that there is no solution.
@@ -53,19 +55,22 @@ public interface Solver {
 
     /**
      * Returns the state manager in charge of the global
-     * state of the solver
+     * state of the solver.
+     *
      * @return the state manager
      */
     StateManager getStateManager();
 
     /**
-     * Adds a listener called whenever the fix-point
-     * @param listener
+     * Adds a listener called whenever the fix-point.
+     *
+     * @param listener the listener that is called whenever the fix-point is started
      */
     void onFixPoint(Procedure listener);
 
     /**
-     * Creates a minimization objective on the given variable
+     * Creates a minimization objective on the given variable.
+     *
      * @param x the variable to minimize
      * @return an objective that can minimize x
      * @see minicp.search.DFSearch#optimize(Objective)
@@ -73,7 +78,8 @@ public interface Solver {
     Objective minimize(IntVar x);
 
     /**
-     * Creates a maximization objective on the given variable
+     * Creates a maximization objective on the given variable.
+     *
      * @param x the variable to maximize
      * @return an objective that can maximize x
      * @see minicp.search.DFSearch#optimize(Objective)
@@ -83,6 +89,7 @@ public interface Solver {
     /**
      * Forces the boolean variable to be true and then
      * computes the fix-point.
+     *
      * @param b the variable that must be set to true
      */
     void post(BoolVar b);

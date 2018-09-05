@@ -38,7 +38,7 @@ public class NegTableCT extends AbstractConstraint {
 
     /**
      * Negative Table constraint.
-     * <p> </p>Assignment of {@code x_0=v_0, x_1=v_1,...} only valid if there does not
+     * <p>Assignment of {@code x_0=v_0, x_1=v_1,...} only valid if there does not
      * exists a row {@code (v_0, v_1, ...)} in the table.
      * The table represents the infeasible assignments for the variables.
      *

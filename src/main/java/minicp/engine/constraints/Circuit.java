@@ -34,10 +34,11 @@ public class Circuit extends AbstractConstraint {
     private final StateInt[] lengthToDest;
 
     /**
-     * x represents an Hamiltonian circuit on the cities {0..x.length-1}
-     * where x[i] is the city visited after city i
+     * Creates an Hamiltonian Circuit Constraint
+     * with a successor model.
      *
-     * @param x
+     * @param x the variables representing the successor array that is
+     *          {@code x[i]} is the city visited after city i
      */
     public Circuit(IntVar[] x) {
         super(x[0].getSolver());

@@ -18,6 +18,7 @@ package minicp.cp;
 import minicp.engine.constraints.*;
 import minicp.engine.core.*;
 import minicp.search.DFSearch;
+import minicp.search.Objective;
 import minicp.state.Copier;
 import minicp.state.Trailer;
 import minicp.util.exception.InconsistencyException;
@@ -148,6 +149,7 @@ public final class Factory {
      * Creates an array of variables with specified lambda function
      *
      * @param n the number of variables to create
+     * @param body the function that given the index i in the array creates/map the corresponding {@link IntVar}
      * @return an array of n variables
      *         with variable at index <i>i</i> generated as {@code body.get(i)}
      */
@@ -160,12 +162,6 @@ public final class Factory {
 
     /**
      * Creates a Depth First Search with custom branching heuristic
-     * @param cp the solver that will be used for the search
-     * @param branching a generator that is called at each node of the depth first search
-     *                 tree to generate an array of {@link Procedure} objects
-     *                 that will be used to commit to child nodes.
-     *                 It should return {@link BranchingScheme#EMPTY} whenever the current state
-     *                  is a solution.
      * <pre>
      * // Example of binary search: At each node it selects
      * // the first free variable qi from the array q,
@@ -184,6 +180,17 @@ public final class Factory {
      * });
      * }
      * </pre>
+     *
+     * @param cp the solver that will be used for the search
+     * @param branching a generator that is called at each node of the depth first search
+     *                 tree to generate an array of {@link Procedure} objects
+     *                 that will be used to commit to child nodes.
+     *                 It should return {@link BranchingScheme#EMPTY} whenever the current state
+     *                  is a solution.
+     * @return the depth first search object ready to execute with
+     *         {@link DFSearch#solve()} or
+     *         {@link DFSearch#optimize(Objective)}
+     *         using the given branching scheme
      * @see BranchingScheme#firstFail(IntVar...)
      * @see BranchingScheme#branch(Procedure...)
      */
