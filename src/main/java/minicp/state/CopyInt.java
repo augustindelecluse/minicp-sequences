@@ -23,9 +23,7 @@ public class CopyInt implements Storage, StateInt {
         public CopyIntStateEntry(int v) {
             this.v = v;
         }
-
-        @Override
-        public void restore() {
+        @Override public void restore() {
             CopyInt.this.v = v;
         }
     }

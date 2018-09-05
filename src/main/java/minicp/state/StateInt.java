@@ -18,7 +18,7 @@ package minicp.state;
 
 public interface StateInt {
     int setValue(int v);
-
+    
     int value();
 
     int increment();
