@@ -187,6 +187,7 @@ public final class Factory {
      *                 that will be used to commit to child nodes.
      *                 It should return {@link BranchingScheme#EMPTY} whenever the current state
      *                  is a solution.
+     *
      * @return the depth first search object ready to execute with
      *         {@link DFSearch#solve()} or
      *         {@link DFSearch#optimize(Objective)}
@@ -202,6 +203,7 @@ public final class Factory {
 
     /**
      * A variable that is a view of {@code x*a}.
+     *
      * @param x a variable
      * @param a a constant to multiply x with
      * @return a variable that is a view of {@code x*a}
@@ -218,6 +220,7 @@ public final class Factory {
 
     /**
      * A variable that is a view of {@code -x}.
+     *
      * @param x a variable
      * @return a variable that is a view of {@code -x}
      */
@@ -227,6 +230,7 @@ public final class Factory {
 
     /**
      * A variable that is a view of {@code x+v}.
+     *
      * @param x a variable
      * @param v a value
      * @return a variable that is a view of {@code x+v}
@@ -237,6 +241,7 @@ public final class Factory {
 
     /**
      * A variable that is a view of {@code x-v}.
+     *
      * @param x a variable
      * @param v a value
      * @return a variable that is a view of {@code x-v}
@@ -249,6 +254,7 @@ public final class Factory {
      * Computes a variable that is the absolute value of the given variable.
      * This relation is enforced by the {@link Absolute} constraint
      * posted by calling this method.
+     *
      * @param x a variable
      * @return a variable that represents the absolute value of x
      */
@@ -262,6 +268,7 @@ public final class Factory {
      * Computes a variable that is the maximum of a set of variables.
      * This relation is enforced by the {@link Maximum} constraint
      * posted by calling this method.
+     *
      * @param x the variables on which to compute the maximum
      * @return a variable that represents the maximum on x
      * @see Factory#minimum(IntVar...)
@@ -279,6 +286,7 @@ public final class Factory {
      * Computes a variable that is the minimum of a set of variables.
      * This relation is enforced by the {@link Maximum} constraint
      * posted by calling this method.
+     *
      * @param x the variables on which to compute the minimum
      * @return a variable that represents the minimum on x
      * @see Factory#maximum(IntVar...) (IntVar...)
@@ -291,6 +299,7 @@ public final class Factory {
     /**
      * Forces the variable to be equal to some given value and
      * computes the fix point.
+     *
      * @param x the variable to be assigned to v
      * @param v the value that must be assigned to x
      */
@@ -302,6 +311,7 @@ public final class Factory {
     /**
      * Forces the variable to be less or equal to some given value and
      * computes the fix point.
+     *
      * @param x the variable that is constrained bo be less or equal to v
      * @param v the value that must be the upper bound on x
      */
@@ -313,6 +323,7 @@ public final class Factory {
     /**
      * Forces the variable to be different to some given value and
      * computes the fix point.
+     *
      * @param x the variable that is constrained bo be different from v
      * @param v the value that must be different from x
      */
@@ -325,6 +336,7 @@ public final class Factory {
     /**
      * Returns a constraint imposing that the two different variables
      * must take different values.
+     *
      * @param x a variable
      * @param y a variable
      * @return a constraint so that {@code x != y}
@@ -336,7 +348,8 @@ public final class Factory {
     /**
      * Returns a constraint imposing that the
      * the first variable differs from the second
-     * one minus a constant value
+     * one minus a constant value.
+     *
      * @param x a variable
      * @param y a variable
      * @param c a constant
@@ -351,9 +364,11 @@ public final class Factory {
      * whether one variable is equal to the given constant.
      * This relation is enforced by the {@link IsEqual} constraint
      * posted by calling this method.
+     *
      * @param x the variable
      * @param c the constant
      * @return a boolean variable that is true if and only if x takes the value c
+     * @see IsEqual
      */
     public static BoolVar isEqual(IntVar x, final int c) {
         BoolVar b = makeBoolVar(x.getSolver());
@@ -371,6 +386,7 @@ public final class Factory {
      * whether one variable is less or equal to the given constant.
      * This relation is enforced by the {@link IsLessOrEqual} constraint
      * posted by calling this method.
+     *
      * @param x the variable
      * @param c the constant
      * @return a boolean variable that is true if and only if
@@ -388,6 +404,7 @@ public final class Factory {
      * whether one variable is less than the given constant.
      * This relation is enforced by the {@link IsLessOrEqual} constraint
      * posted by calling this method.
+     *
      * @param x the variable
      * @param c the constant
      * @return a boolean variable that is true if and only if
@@ -402,6 +419,7 @@ public final class Factory {
      * whether one variable is larger or equal to the given constant.
      * This relation is enforced by the {@link IsLessOrEqual} constraint
      * posted by calling this method.
+     *
      * @param x the variable
      * @param c the constant
      * @return a boolean variable that is true if and only if
@@ -416,6 +434,7 @@ public final class Factory {
      * whether one variable is larger than the given constant.
      * This relation is enforced by the {@link IsLessOrEqual} constraint
      * posted by calling this method.
+     *
      * @param x the variable
      * @param c the constant
      * @return a boolean variable that is true if and only if
@@ -428,6 +447,7 @@ public final class Factory {
     /**
      * Returns a constraint imposing that the
      * a first variable is less or equal to a second one.
+     *
      * @param x a variable
      * @param y a variable
      * @return a constraint so that {@code x <= y}
@@ -439,6 +459,7 @@ public final class Factory {
     /**
      * Returns a constraint imposing that the
      * a first variable is larger or equal to a second one.
+     *
      * @param x a variable
      * @param y a variable
      * @return a constraint so that {@code x >= y}
@@ -453,6 +474,7 @@ public final class Factory {
      * specified by the given index variable
      * This relation is enforced by the {@link Element1D} constraint
      * posted by calling this method.
+     *
      * @param array the array of values
      * @param y the variable
      * @return a variable equal to {@code array[y]}
@@ -470,6 +492,7 @@ public final class Factory {
      * specified by the two given row and column index variables
      * This relation is enforced by the {@link Element2D} constraint
      * posted by calling this method.
+     *
      * @param matrix the n x m 2D array of values
      * @param x the row variable with domain included in 0..n-1
      * @param y the column variable with domain included in 0..m-1
@@ -494,6 +517,7 @@ public final class Factory {
      * the sum of a given set of variables.
      * This relation is enforced by the {@link Sum} constraint
      * posted by calling this method.
+     *
      * @param x the n variables to sum
      * @return a variable equal to {@code x[0]+x[1]+...+x[n-1]}
      */
@@ -512,6 +536,7 @@ public final class Factory {
 
     /**
      * Returns a sum constraint.
+     *
      * @param x an array of variables
      * @param y a variable
      * @return a constraint so that {@code y = x[0]+x[1]+...+x[n-1]}
@@ -522,6 +547,7 @@ public final class Factory {
 
     /**
      * Returns a sum constraint.
+     *
      * @param x an array of variables
      * @param y a constant
      * @return a constraint so that {@code y = x[0]+x[1]+...+x[n-1]}
@@ -532,6 +558,7 @@ public final class Factory {
 
     /**
      * Returns a binary decomposition of the allDifferent constraint.
+     *
      * @param x an array of variables
      * @return a constraint so that {@code x[i] != x[j] for all i < j}
      */
@@ -541,7 +568,8 @@ public final class Factory {
 
     /**
      * Returns an allDifferent constraint that enforces
-     * global arc consistency
+     * global arc consistency.
+     * 
      * @param x an array of variables
      * @return a constraint so that {@code x[i] != x[j] for all i < j}
      */

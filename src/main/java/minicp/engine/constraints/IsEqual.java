@@ -19,46 +19,32 @@ import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 
+
+/**
+ * Reified equality constraint
+ * @see minicp.cp.Factory#isEqual(IntVar, int)
+ */
 public class IsEqual extends AbstractConstraint { // b <=> x == c
 
     private final BoolVar b;
     private final IntVar x;
     private final int c;
 
+    /**
+     * Returns a boolean variable representing
+     * whether one variable is equal to the given constant.
+     * @param x the variable
+     * @param c the constant
+     * @param b the boolean variable that is set to true
+     *          if and only if x takes the value c
+     * @see minicp.cp.Factory#isEqual(IntVar, int)
+     */
     public IsEqual(BoolVar b, IntVar x, int c) {
         super(b.getSolver());
         this.b = b;
         this.x = x;
         this.c = c;
     }
-    /*
-    @Override
-    public void post() {
-        if (b.isTrue()) {
-            x.assign(c);
-        } else if (b.isFalse()) {
-            x.remove(c);
-        } else if (x.isBound()) {
-            b.assign(x.min() == c);
-        } else if (!x.contains(c)) {
-            b.assign(0);
-        } else {
-            b.whenBind(() -> {
-                if (b.isTrue()) x.assign(c);
-                else {
-                    // should deactivate the constraint as it is entailed
-                    x.remove(c);
-                }
-            });
-            x.whenBind(() ->
-                b.assign(x.min() == c)
-            );
-            x.whenDomainChange(() -> {
-                if (!x.contains(c))
-                    b.assign(0);
-            });
-        }
-    }*/
 
     @Override
     public void post() {

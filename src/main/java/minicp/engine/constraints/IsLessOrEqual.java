@@ -20,12 +20,25 @@ import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
 import minicp.util.exception.NotImplementedException;
 
+/**
+ * Reified less or equal constraint.
+ */
 public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
 
     private final BoolVar b;
     private final IntVar x;
     private final int c;
 
+    /**
+     * Creates a constraint that
+     * link a boolean variable representing
+     * whether one variable is less or equal to the given constant.
+     * @param b a boolean variable that is true if and only if
+     *         x takes a value less or equal to c
+     * @param x the variable
+     * @param c the constant
+     * @see minicp.cp.Factory#isLessOrEqual(IntVar, int)
+     */
     public IsLessOrEqual(BoolVar b, IntVar x, int c) {
         super(b.getSolver());
         this.b = b;

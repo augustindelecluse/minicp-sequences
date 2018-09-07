@@ -28,6 +28,10 @@ import java.util.Comparator;
 
 import static minicp.cp.Factory.*;
 
+/**
+ * Disjunctive Scheduling Constraint:
+ * Any two pairs of activities cannot overlap in time.
+ */
 public class Disjunctive extends AbstractConstraint {
 
     private final IntVar[] start;
@@ -51,9 +55,18 @@ public class Disjunctive extends AbstractConstraint {
     private final boolean postMirror;
     // END STRIP
 
+    /**
+     * Creates a disjunctive constraint that enforces
+     * that for any two pair i,j of activities we have
+     * {@code start[i]+duration[i] <= start[j] or start[j]+duration[j] <= start[i]}.
+     *
+     * @param start the start times of the activities
+     * @param duration the durations of the activities
+     */
     public Disjunctive(IntVar[] start, int[] duration) {
         this(start, duration, true);
     }
+
 
     private Disjunctive(IntVar[] start, int[] duration, boolean postMirror) {
         super(start[0].getSolver());
