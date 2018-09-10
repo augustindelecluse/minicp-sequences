@@ -22,7 +22,7 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
-import minicp.util.InputReader;
+import minicp.util.io.InputReader;
 
 import java.util.Arrays;
 
@@ -37,7 +37,7 @@ import static minicp.cp.Factory.*;
  * marry the men and women together such that there are no two people of opposite sex
  * who would both rather have each other than their current partners.
  * If there are no such people, makeIntVarArray the marriages are "stable".
- * Wikipedia: http://en.wikipedia.org/wiki/Stable_marriage_problem
+ * <a href="http://en.wikipedia.org/wiki/Stable_marriage_problem">Wikipedia</a>.
  */
 public class StableMariage {
 
@@ -90,23 +90,32 @@ public class StableMariage {
         for (int m = 0; m < n; m++) {
             // the husband of the wife of man m is m
             // TODO: model this with Element1DVar
+            // STUDENT
+            // BEGIN STRIP
             cp.post(new Element1DVar(husband, wife[m], makeIntVar(cp, m, m)));
+            // END STRIP
 
-            //
             // TODO: model this with Element1D: rankWomen[m][wife[m]] == wifeFref[m]
+            // STUDENT
+            // BEGIN STRIP
             cp.post(new Element1D(rankWomen[m], wife[m], wifePref[m]));
-
+            // END STRIP
 
         }
 
         for (int w = 0; w < n; w++) {
             // the wife of the husband of woman i is i
             // TODO: model this with Element1DVar
+            // STUDENT
+            // BEGIN STRIP
             cp.post(new Element1DVar(wife, husband[w], makeIntVar(cp, w, w)));
-
+            // END STRIP
 
             // TODO: model this with Element1D: rankMen[w][husband[w]] == husbandPref[w]
+            // STUDENT
+            // BEGIN STRIP
             cp.post(new Element1D(rankMen[w], husband[w], husbandPref[w]));
+            // END STRIP
         }
 
         for (int m = 0; m < n; m++) {
@@ -121,18 +130,18 @@ public class StableMariage {
                 // if w prefers m than her husband, the opposite is not true i.e. m prefers his own woman than w
                 // (husbandPref[w] > rankMen[w][m]) => (wifePref[m] < rankWomen[m][w])
                 // TODO: model this constraint
-
+                // STUDENT
+                // BEGIN STRIP
                 BoolVar wPrefersM = isLarger(husbandPref[w], rankMen[w][m]);
                 BoolVar mDont = isLess(wifePref[m], rankWomen[m][w]);
                 cp.post(implies(wPrefersM, mDont));
+                // END STRIP
 
             }
         }
 
 
         DFSearch dfs = makeDfs(cp, and(firstFail(wife), firstFail(husband)));
-        //IntVar[] av = Stream.concat(Arrays.stream(wife),Arrays.stream(husband)).toArray(IntVar[]::new);
-        //DFSearch dfs = makeDfs(cp,firstFail(av));
 
         dfs.onSolution(() -> {
                     System.out.println(Arrays.toString(wife));
@@ -147,11 +156,13 @@ public class StableMariage {
     }
 
     /**
-     * @param b1
-     * @param b2
-     * @return b equiv (b1 => b2) (logical implication)
+     * Model the reified logical implication constraint
+     * @param b1 left hand side of the implication
+     * @param b2 right hand side of the implication
+     * @return a boolean variable that is true if and only if
+     *         the relation "b1 implies b2" is true, false otehrwise.
      */
-    public static BoolVar implies(BoolVar b1, BoolVar b2) {
+    private static BoolVar implies(BoolVar b1, BoolVar b2) {
         IntVar not_b1 = plus(minus(b1), 1);
         return isLargerOrEqual(sum(not_b1, b2), 1);
     }

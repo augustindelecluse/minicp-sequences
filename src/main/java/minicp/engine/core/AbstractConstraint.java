@@ -1,3 +1,18 @@
+/*
+ * mini-cp is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License  v3
+ * as published by the Free Software Foundation.
+ *
+ * mini-cp is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY.
+ * See the GNU Lesser General Public License  for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
+ *
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ */
+
 package minicp.engine.core;
 
 import minicp.state.StateBool;
@@ -5,6 +20,10 @@ import minicp.state.StateBool;
 import java.util.Queue;
 
 public abstract class AbstractConstraint implements Constraint {
+
+    /**
+     * The solver in which the constraint is created
+     */
     protected final Solver cp;
     private boolean scheduled = false;
     private final StateBool active;
@@ -19,12 +38,6 @@ public abstract class AbstractConstraint implements Constraint {
             scheduled = true;
             q.add(this);
         }
-    }
-
-    public void process() {
-        scheduled = false;
-        if (active.value())
-            propagate();
     }
 
     public void post() {

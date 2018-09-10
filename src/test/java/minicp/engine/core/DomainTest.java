@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.core;
@@ -45,12 +45,12 @@ public class DomainTest extends SolverTest {
         }
 
         @Override
-        public void removeBelow() {
+        public void changeMin() {
             nRemoveBelow++;
         }
 
         @Override
-        public void removeAbove() {
+        public void changeMax() {
             nRemoveAbove++;
         }
     }

@@ -10,13 +10,15 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.core;
 
 import minicp.state.StateStack;
-import minicp.util.InconsistencyException;
+import minicp.util.Procedure;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 
 import java.security.InvalidParameterException;
 import java.util.Set;
@@ -46,57 +48,55 @@ public class IntVarImpl implements IntVar {
         }
 
         @Override
-        public void removeBelow() {
+        public void changeMin() {
             scheduleAll(onBounds);
         }
 
         @Override
-        public void removeAbove() {
+        public void changeMax() {
             scheduleAll(onBounds);
         }
     };
 
     /**
-     * Create a variable with the elements {0,...,n-1}
-     * as initial domain
+     * Creates a variable with the elements {@code {0,...,n-1}}
+     * as initial domain.
      *
-     * @param cp
-     * @param n  > 0
+     * @param cp the solver in which the variable is created
+     * @param n  the number of values with {@code n > 0}
      */
     public IntVarImpl(Solver cp, int n) {
         this(cp, 0, n - 1);
     }
 
     /**
-     * Create a variable with the elements {min,...,max}
-     * as initial domain
+     * Creates a variable with the elements {@code {min,...,max}}
+     * as initial domain.
      *
-     * @param cp
-     * @param min
-     * @param max >= min
+     * @param cp the solver in which the variable is created
+     * @param min the minimum value of the domain
+     * @param max the maximum value of the domain with {@code max >= min}
      */
     public IntVarImpl(Solver cp, int min, int max) {
         if (min > max) throw new InvalidParameterException("at least one setValue in the domain");
         this.cp = cp;
-        cp.registerVar(this);
         domain = new SparseSetDomain(cp.getStateManager(), min, max);
         onDomain = new StateStack<>(cp.getStateManager());
         onBind = new StateStack<>(cp.getStateManager());
         onBounds = new StateStack<>(cp.getStateManager());
     }
 
-    public Solver getSolver() {
-        return cp;
-    }
 
 
     /**
-     * Create a variable with values as initial domain
+     * Creates a variable with a given set of values as initial domain.
      *
-     * @param cp
-     * @param values
+     * @param cp the solver in which the variable is created
+     * @param values the initial values in the domain, it must be nonempty
      */
     public IntVarImpl(Solver cp, Set<Integer> values) {
+        // STUDENT throw new NotImplementedException();
+        // BEGIN STRIP
         this(cp, values.stream().min(Integer::compare).get(), values.stream().max(Integer::compare).get());
         if (values.isEmpty()) throw new InvalidParameterException("at least one setValue in the domain");
         for (int i = min(); i <= max(); i++) {
@@ -107,10 +107,17 @@ public class IntVarImpl implements IntVar {
                 }
             }
         }
+        // END STRIP
     }
 
+    @Override
+    public Solver getSolver() {
+        return cp;
+    }
+
+    @Override
     public boolean isBound() {
-        return domain.getSize() == 1;
+        return domain.size() == 1;
     }
 
     @Override
@@ -119,21 +126,21 @@ public class IntVarImpl implements IntVar {
     }
 
     @Override
-    public void whenBind(ConstraintClosure.Filtering f) {
+    public void whenBind(Procedure f) {
         onBind.push(constraintClosure(f));
     }
 
     @Override
-    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+    public void whenBoundsChange(Procedure f) {
         onBounds.push(constraintClosure(f));
     }
 
     @Override
-    public void whenDomainChange(ConstraintClosure.Filtering f) {
+    public void whenDomainChange(Procedure f) {
         onDomain.push(constraintClosure(f));
     }
 
-    private Constraint constraintClosure(ConstraintClosure.Filtering f) {
+    private Constraint constraintClosure(Procedure f) {
         Constraint c = new ConstraintClosure(cp, f);
         getSolver().post(c, false);
         return c;
@@ -162,22 +169,25 @@ public class IntVarImpl implements IntVar {
 
     @Override
     public int min() {
-        return domain.getMin();
+        return domain.min();
     }
 
     @Override
     public int max() {
-        return domain.getMax();
+        return domain.max();
     }
 
     @Override
     public int size() {
-        return domain.getSize();
+        return domain.size();
     }
 
     @Override
     public int fillArray(int[] dest) {
+        // STUDENT throw new NotImplementedException();
+        // BEGIN STRIP
         return domain.fillArray(dest);
+        // END STRIP
     }
 
     @Override

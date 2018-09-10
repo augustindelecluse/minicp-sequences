@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
@@ -18,9 +18,13 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.state.StateInt;
+import minicp.util.exception.NotImplementedException;
 
-import static minicp.util.InconsistencyException.INCONSISTENCY;
+import static minicp.util.exception.InconsistencyException.INCONSISTENCY;
 
+/**
+ * Logical or constraint {@code  x1 or x2 or ... xn}
+ */
 public class Or extends AbstractConstraint { // x1 or x2 or ... xn
 
     private final BoolVar[] x;
@@ -29,6 +33,12 @@ public class Or extends AbstractConstraint { // x1 or x2 or ... xn
     private StateInt wR; // watched literal right
 
 
+    /**
+     * Creates a logical or constraint: at least one variable is true:
+     * {@code  x1 or x2 or ... xn}
+     *
+     * @param x the variables in the scope of the constraint
+     */
     public Or(BoolVar[] x) {
         super(x[0].getSolver());
         this.x = x;
@@ -46,6 +56,9 @@ public class Or extends AbstractConstraint { // x1 or x2 or ... xn
     @Override
     public void propagate() {
         // update watched literals
+        // TODO: implement the filtering using watched literal technique and make sure you pass all the tests
+        // STUDENT throw new NotImplementedException("Or");
+        // BEGIN STRIP
         int i = wL.value();
         while (i < n && x[i].isBound()) {
             if (x[i].isTrue()) {
@@ -77,5 +90,6 @@ public class Or extends AbstractConstraint { // x1 or x2 or ... xn
             x[wL.value()].propagateOnBind(this);
             x[wR.value()].propagateOnBind(this);
         }
+        // END STRIP
     }
 }

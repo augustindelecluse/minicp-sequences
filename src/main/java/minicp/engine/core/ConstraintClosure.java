@@ -10,22 +10,20 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.core;
 
 
+import minicp.util.Procedure;
+
 public class ConstraintClosure extends AbstractConstraint {
 
-    @FunctionalInterface
-    public interface Filtering {
-        void call();
-    }
 
-    private final Filtering filtering;
+    private final Procedure filtering;
 
-    public ConstraintClosure(Solver cp, Filtering filtering) {
+    public ConstraintClosure(Solver cp, Procedure filtering) {
         super(cp);
         this.filtering = filtering;
     }

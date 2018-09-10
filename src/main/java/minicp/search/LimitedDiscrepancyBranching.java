@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.search;
@@ -18,24 +18,34 @@ package minicp.search;
 
 import minicp.cp.BranchingScheme;
 import minicp.util.Procedure;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.function.Supplier;
 
 /**
- * Branching wrapper that ensures that
- * that the alternatives created are always within the
- * discrepancy limit
+ * Branching combinator
+ * that ensures that that the alternatives created are always within the
+ * discrepancy limit.
+ * The discrepancy of an alternative generated
+ * for a given node is the distance from the left most alternative.
+ * The discrepancy of a node is the sum of the discrepancy of its ancestors.
  */
-
 public class LimitedDiscrepancyBranching implements Supplier<Procedure[]> {
 
     private int curD;
     private final int maxD;
     private final Supplier<Procedure[]> bs;
 
-    public LimitedDiscrepancyBranching(Supplier<Procedure[]> bs, int maxDiscrepancy) {
+    /**
+     * Creates a discprepancy combinator on a given branching.
+     *
+     * @param branching the branching on which to apply the discrepancy combinator
+     * @param maxDiscrepancy the maximum discrepancy limit. Any node exceeding
+     *                       that limit is pruned.
+     */
+    public LimitedDiscrepancyBranching(Supplier<Procedure[]> branching, int maxDiscrepancy) {
         if (maxDiscrepancy < 0) throw new IllegalArgumentException("max discrepancy should be >= 0");
-        this.bs = bs;
+        this.bs = branching;
         this.maxD = maxDiscrepancy;
     }
 
@@ -47,8 +57,9 @@ public class LimitedDiscrepancyBranching implements Supplier<Procedure[]> {
         // such that the call method of the wrapped alternatives
         // augment the curD depending on its position
         // +0 for alts[0], ..., +i for alts[i]
-        //throw new NotImplementedException();
 
+        // STUDENT throw new NotImplementedException();
+        // BEGIN STRIP
         Procedure[] branches = bs.get();
 
         int k = Math.min(maxD - curD + 1, branches.length);
@@ -66,6 +77,6 @@ public class LimitedDiscrepancyBranching implements Supplier<Procedure[]> {
         }
 
         return kFirstBranches;
-
+        // END STRIP
     }
 }

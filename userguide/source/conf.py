@@ -27,7 +27,7 @@ import sys, os
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 
 import javalink
-extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinx.ext.mathjax', 'sphinx.ext.viewcode', 'javalink']
+extensions = ['sphinx.ext.todo', 'sphinx.ext.imgmath', 'sphinx.ext.viewcode', 'javalink']
 
 
 
@@ -45,7 +45,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'mini-cp User-Guide'
-copyright = u'2017, Laurent Michel, Pierre Schaus, Pascal Van Hentenryck'
+copyright = u'2018, Laurent Michel, Pierre Schaus, Pascal Van Hentenryck'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -133,7 +133,7 @@ html_favicon = "_static/favicon.ico"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static','../../target/scala-2.10/api']
+html_static_path = ['_static','../../target/site/apidocs/']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -260,11 +260,11 @@ texinfo_documents = [
 javalink_classpath = [
     javalink.find_rt_jar(),
     #'/Users/pschaus/Documents/IdeaProjects/minicp/target/scala-2.10/classes/'
-    '../../target/scala-2.10/classes/'
+    '../../target/classes/'
 ]
 
 javalink_docroots = [
     'http://docs.oracle.com/javase/7/docs/api/',
     #{'root': './api','base': './api'}
-        {'root': '../../target/scala-2.10/api/', 'base': './_static/'}
+        {'root': '../../target/site/apidocs/', 'base': './_static/'}
 ]

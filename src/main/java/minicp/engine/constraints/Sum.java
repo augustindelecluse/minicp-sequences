@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
@@ -20,7 +20,7 @@ import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.IntVarImpl;
 import minicp.state.StateInt;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -32,21 +32,38 @@ public class Sum extends AbstractConstraint {
     private IntVar[] x;
     private int n;
 
+    /**
+     * Creates a sum constraint.
+     * <p> This constraint holds iff
+     * {@code x[0]+x[1]+...+x[x.length-1] == y}.
+     *
+     * @param x the non empty left hand side of the sum
+     * @param y the right hand side of the sum
+     */
     public Sum(IntVar[] x, IntVar y) {
         this(Arrays.copyOf(x, x.length + 1));
         this.x[x.length] = Factory.minus(y);
     }
 
+    /**
+     * Creates a sum constraint.
+     * <p> This constraint holds iff
+     * {@code x[0]+x[1]+...+x[x.length-1] == y}.
+     *
+     * @param x the non empty left hand side of the sum
+     * @param y the right hand side of the sum
+     */
     public Sum(IntVar[] x, int y) {
         this(Arrays.copyOf(x, x.length + 1));
         this.x[x.length] = new IntVarImpl(cp, -y, -y);
     }
 
     /**
-     * Create a sum constraint that holds iff
-     * x[0]+x[1]+...+x[x.length-1] = 0
+     * Creates a sum constraint.
+     * <p> This constraint holds iff
+     * {@code x[0]+x[1]+...+x[x.length-1] == 0}.
      *
-     * @param x
+     * @param x the non empty set of variables that should sum to zero
      */
     public Sum(IntVar[] x) {
         super(x[0].getSolver());

@@ -10,11 +10,15 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.search;
 
+/**
+ * Exception that is thrown to stop
+ * the execution of {@link DFSearch#solve()}, {@link DFSearch#optimize(Objective)}
+ */
 public class StopSearchException extends RuntimeException {
     private static final long serialVersionUID = 2079205745523222197L;
 }

@@ -10,20 +10,40 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 
 package minicp.engine.core;
 
+/**
+ * Domain listeners are passed as argument
+ * to the {@link IntDomain} modifier methods.
+ */
 public interface DomainListener {
+
+    /**
+     * Called whenever the domain becomes empty.
+     */
     void empty();
 
+    /**
+     * Called whenever the domain becomes a single value.
+     */
     void bind();
 
+    /**
+     * Called whenever the domain loses a value.
+     */
     void change();
 
-    void removeBelow();
+    /**
+     * Called whenever the maximum value of the domain is lost.
+     */
+    void changeMin();
 
-    void removeAbove();
+    /**
+     * Called whenever the minmum value of the domain is lost.
+     */
+    void changeMax();
 }

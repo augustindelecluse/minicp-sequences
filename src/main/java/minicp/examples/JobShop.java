@@ -21,7 +21,7 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
 import minicp.search.SearchStatistics;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -32,8 +32,8 @@ import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
 /**
- * JobShop Problem
- * https://en.wikipedia.org/wiki/Job_shop_scheduling
+ * The JobShop Problem.
+ * <a href="https://en.wikipedia.org/wiki/Job_shop_scheduling">Wikipedia.</a>
  */
 public class JobShop {
 

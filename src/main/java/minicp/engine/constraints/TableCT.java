@@ -10,18 +10,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
+/**
+ * Implementation of Compact Table algorithm described in
+ * <p><i>Compact-Table: Efficiently Filtering Table Constraints with Reversible Sparse Bit-Sets</i>
+ * Jordan Demeulenaere, Renaud Hartert, Christophe Lecoutre, Guillaume Perez, Laurent Perron, Jean-Charles Régin, Pierre Schaus
+ * <p>See <a href="https://www.info.ucl.ac.be/~pschaus/assets/publi/cp2016-compacttable.pdf">The article.</a>
+ */
 public class TableCT extends AbstractConstraint {
     private IntVar[] x; //variables
     private int[][] table; //the table
@@ -30,11 +37,19 @@ public class TableCT extends AbstractConstraint {
 
     /**
      * Table constraint.
-     * Assignment of x_0=v_0, x_1=v_1,... only valid if there exists a
-     * row (v_0, v_1, ...) in the table.
+     * <p>The table constraint ensures that
+     * {@code x} is a row from the given table.
+     * More exactly, there exist some row <i>i</i>
+     * such that
+     * {@code x[0]==table[i][0], x[1]==table[i][1], etc}.
      *
-     * @param x     variables to constraint. x.length must be > 0.
-     * @param table array of valid solutions (second dimension must be of same size as the array x)
+     * <p>This constraint is sometimes called <i>in extension</i> constraint
+     * as the user enumerates the set of solutions that can be taken
+     * by the variables.
+     *
+     * @param x  the non empty set of variables to constraint
+     * @param table the possible set of solutions for x.
+     *              The second dimension must be of the same size as the array x.
      */
     public TableCT(IntVar[] x, int[][] table) {
         super(x[0].getSolver());
@@ -70,11 +85,6 @@ public class TableCT extends AbstractConstraint {
     @Override
     public void propagate() {
 
-        // For each var, compute the tuples supported by the var
-        // Intersection of the tuples supported by each var is the list of supported tuples
-        // Then check if each var/val supports a tuples. If not, remove the val.
-        // TODO
-        //
 
         // Bit-set of tuple indices all set to 0
         BitSet supportedTuples = new BitSet(table.length);
@@ -85,17 +95,18 @@ public class TableCT extends AbstractConstraint {
         //                   (supports[x.length][x[0].min()] | ... | supports[x.length][x[0].max()] )
         //
 
+        // STUDENT // This should be displayed instead of the actual code
+        // BEGIN STRIP
         for (int i = 0; i < x.length; i++) {
             BitSet supporti = new BitSet();
             for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
-                    // TODO
-                    //
                     supporti.or(supports[i][v]);
                 }
             }
             supportedTuples.and(supporti);
         }
+        // END STRIP
 
         // TODO 2
         for (int i = 0; i < x.length; i++) {
@@ -103,9 +114,12 @@ public class TableCT extends AbstractConstraint {
                 if (x[i].contains(v)) {
                     // TODO 2 the condition for removing the setValue v from x[i] is to check if
                     // there is no intersection between supportedTuples and the support[i][v]
+                    // STUDENT throw new NotImplementedException();
+                    // BEGIN STRIP
                     if (!supports[i][v].intersects(supportedTuples)) {
                         x[i].remove(v);
                     }
+                    // END STRIP
                 }
             }
         }

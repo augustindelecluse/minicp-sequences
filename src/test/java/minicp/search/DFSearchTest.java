@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.search;
@@ -18,12 +18,13 @@ package minicp.search;
 import minicp.state.StateInt;
 import minicp.state.StateManager;
 import minicp.state.StateManagerTest;
-import minicp.util.Counter;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
+import minicp.util.NotImplementedExceptionAssume;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static minicp.cp.BranchingScheme.EMPTY;
 import static minicp.cp.BranchingScheme.branch;
@@ -33,14 +34,10 @@ import static org.junit.Assert.assertTrue;
 
 public class DFSearchTest extends StateManagerTest {
 
-    public static SearchObserver makeSearchObserver() {
-        return new AbstractSearcher() {
-        };
-    }
+
 
     @Test
     public void testExample1() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         int[] values = new int[3];
@@ -71,7 +68,6 @@ public class DFSearchTest extends StateManagerTest {
 
     @Test
     public void testExample3() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         int[] values = new int[3];
@@ -92,7 +88,7 @@ public class DFSearchTest extends StateManagerTest {
         });
 
 
-        r.onSolution(() -> {
+        dfs.onSolution(() -> {
             assert (Arrays.stream(values).allMatch(v -> v == 1));
         });
 
@@ -109,7 +105,7 @@ public class DFSearchTest extends StateManagerTest {
         StateInt i = sm.makeStateInt(0);
         boolean[] values = new boolean[4];
 
-        Counter nSols = new Counter();
+        AtomicInteger nSols = new AtomicInteger(0);
 
 
         DFSearch dfs = new DFSearch(sm, () -> {
@@ -130,14 +126,14 @@ public class DFSearchTest extends StateManagerTest {
         });
 
         dfs.onSolution(() -> {
-            nSols.incr();
+            nSols.incrementAndGet();
         });
 
 
         SearchStatistics stats = dfs.solve();
 
 
-        assertEquals(16, nSols.getValue());
+        assertEquals(16, nSols.get());
         assertEquals(16, stats.numberOfSolutions());
         assertEquals(0, stats.numberOfFailures());
         assertEquals((16 + 8 + 4 + 2), stats.numberOfNodes());
@@ -146,7 +142,6 @@ public class DFSearchTest extends StateManagerTest {
 
     @Test
     public void testDFSSearchLimit() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = stateFactory.get();
 
         StateInt i = sm.makeStateInt(0);
@@ -171,10 +166,7 @@ public class DFSearchTest extends StateManagerTest {
             );
         });
 
-        Counter nFails = new Counter();
-        r.onFailure(() -> {
-            nFails.incr();
-        });
+
 
 
         // stop search after 2 solutions
@@ -188,7 +180,6 @@ public class DFSearchTest extends StateManagerTest {
 
     @Test
     public void testDeepDFS() {
-        SearchObserver r = makeSearchObserver();
         StateManager sm = stateFactory.get();
         StateInt i = sm.makeStateInt(0);
         boolean[] values = new boolean[10000];
@@ -214,7 +205,7 @@ public class DFSearchTest extends StateManagerTest {
             SearchStatistics stats = dfs.solve(stat -> stat.numberOfSolutions() >= 1);
             assertEquals (1,stats.numberOfSolutions());
         } catch (NotImplementedException e) {
-            e.print();
+            NotImplementedExceptionAssume.fail(e);
         }
 
     }

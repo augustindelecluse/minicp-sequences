@@ -23,8 +23,8 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
 import minicp.search.SearchStatistics;
-import minicp.util.InconsistencyException;
-import minicp.util.InputReader;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.io.InputReader;
 import minicp.util.Procedure;
 
 import java.util.ArrayList;
@@ -35,7 +35,17 @@ import java.util.stream.IntStream;
 import static minicp.cp.BranchingScheme.*;
 import static minicp.cp.Factory.*;
 
-
+/**
+ * Steel is produced by casting molten iron into slabs.
+ * A steel mill can produce a finite number of slab sizes.
+ * An order has two properties, a colour corresponding to the route required through the steel mill and a weight.
+ * Given d input orders, the problem is to assign the orders to slabs, the number and size of which are also to be determined,
+ * such that the total weight of steel produced is minimised.
+ * This assignment is subject to two further constraints:
+ * - Capacity constraints: The total weight of orders assigned to a slab cannot exceed the slab capacity.
+ * - Colour constraints: Each slab can contain at most p of k total colours (p is usually 2).
+ * <a href="http://www.csplib.org/Problems/prob038/">CSPLib</a>
+ */
 public class Steel {
 
 
@@ -98,13 +108,17 @@ public class Steel {
                         if (c[i] == col) inSlabWithColor.add(inSlab[j][i]);
                     }
 
-                    // TODO: model that presence[col] is true iff at least one order with color col is placed in slab j
-
+                    // TODO 2: model that presence[col] is true iff at least one order with color col is placed in slab j
+                    // STUDENT
+                    // BEGIN STRIP
                     cp.post(new IsOr((BoolVar) presence[col], inSlabWithColor.toArray(new BoolVar[0])));
-
+                    // END STRIP
                 }
-                // TODO: restrict the number of colors present in slab j to be <= 2
+                // TODO 3: restrict the number of colors present in slab j to be <= 2
+                // STUDENT
+                // BEGIN STRIP
                 lessOrEqual(sum(presence), 2);
+                // END STRIP
             }
 
 
@@ -117,23 +131,28 @@ public class Steel {
                 cp.post(sum(wj, l[j]));
             }
 
-            // TODO: add the redundant constraint that the sum of the loads is equal to the sum of elements
+            // TODO 4: add the redundant constraint that the sum of the loads is equal to the sum of elements
+            // STUDENT
+            // BEGIN STRIP
             cp.post(sum(l, IntStream.of(w).sum()));
-            System.out.println("total weights of items:" + IntStream.of(w).sum());
+            // END STRIP
 
-
-            // TODO: model the objective function using element constraint + a sum constraint
+            // TODO 5: model the objective function using element constraint + a sum constraint
+            IntVar totLoss = null;
+            // STUDENT
+            // BEGIN STRIP
             IntVar[] losses = Factory.makeIntVarArray(nSlab, j -> element(loss, l[j]));
-            IntVar totLoss = sum(losses);
+            totLoss = sum(losses);
+            // END STRIP
 
             Objective obj = cp.minimize(totLoss);
 
-            //DFSearch dfs = makeDfs(cp,firstFail(x));
 
+            // TODO 6 add static symmetry breaking constraint
 
-            // TODO add static symmetry breaking constraint
-
-            // TODO implement a dynamic symmetry breaking during search
+            // TODO 7 implement a dynamic symmetry breaking during search
+            // STUDENT DFSearch dfs = makeDfs(cp,firstFail(x));
+            // BEGIN STRIP
             DFSearch dfs = makeDfs(cp,
                     () -> {
                         IntVar xs = selectMin(x,
@@ -153,10 +172,10 @@ public class Steel {
                             return branch(branches);
                         }
                     });
-
+            // END STRIP
             dfs.onSolution(() -> {
                 System.out.println("---");
-                System.out.println(totLoss);
+                //System.out.println(totLoss);
 
                 Set<Integer>[] colorsInSlab = new Set[nSlab];
                 for (int j = 0; j < nSlab; j++) {

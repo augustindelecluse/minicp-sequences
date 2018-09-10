@@ -18,7 +18,7 @@ package minicp.engine.constraints;
 /**
  * Data Structure described in
  * Global Constraints in Scheduling, 2008 Petr Vilim, PhD thesis
- * http://vilim.eu/petr/disertace.pdf
+ * See <a href="http://vilim.eu/petr/disertace.pdf">The thesis.</a>
  */
 public class ThetaTree {
 
@@ -59,9 +59,15 @@ public class ThetaTree {
     private int size;
 
     /**
-     * Create a theta-tree with a number the least number leaf-nodes >= size
+     * Creates a theta-tree able to store
+     * the specified number of activities, each identified
+     * as a number between 0 and size-1.
+     * The activities inserted in a theta tree are assumed
+     * to be of increasing earliest start time.
+     * That is activity identified as i must possibly start earlier than
+     * activity i+1.
      *
-     * @param size the number of activities that can be inserted in the leaf nodes
+     * @param size the number of activities that can possibly be inserted in the tree
      */
     public ThetaTree(int size) {
         // http://en.wikipedia.org/wiki/Binary_heap#Adding_to_the_heap
@@ -80,7 +86,7 @@ public class ThetaTree {
     }
 
     /**
-     * Remove all the information in the theta-tree
+     * Remove all the activities from this theta-tree
      */
     public void reset() {
         for (Node n : nodes) {
@@ -89,9 +95,11 @@ public class ThetaTree {
     }
 
     /**
-     * Insert activity in leaf nodes at position pos
+     * Insert activity in leaf nodes at given position
+     * such that it is taken into account for the {@link #getECT()}
+     * computation.
      *
-     * @param pos index of the leaf nodes (assumed to start at 0 from left to right)
+     * @param pos the index of the leaf node (assumed to start at 0 from left to right)
      * @param ect earliest completion time
      * @param dur duration
      */
@@ -105,9 +113,10 @@ public class ThetaTree {
     }
 
     /**
-     * Remove activity at position pos such that it has no impact on the earliest completion time computation
+     * Remove activity at given position that it has no impact
+     * on the earliest completion time computation
      *
-     * @param pos index of the leaf nodes (assumed to start at 0 from left to right)
+     * @param pos the index of the leaf nodes, assumed to start at 0 from left to right
      */
     public void remove(int pos) {
         int curr_pos = isize + pos;
@@ -122,8 +131,7 @@ public class ThetaTree {
 
     /**
      * The earliest completion time of the activities present in the theta-tree
-     *
-     * @return
+     * @return the earliest completion time of the activities present in the theta-tree
      */
     public int getECT() {
         return getECT(0);

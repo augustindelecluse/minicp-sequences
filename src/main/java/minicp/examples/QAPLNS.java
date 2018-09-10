@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.examples;
@@ -19,7 +19,7 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
-import minicp.util.InputReader;
+import minicp.util.io.InputReader;
 
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -27,6 +27,17 @@ import java.util.stream.IntStream;
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
+/**
+ * The Quadratic Assignment problem.
+ * There are a set of n facilities and a set of n locations.
+ * For each pair of locations, a distance is specified and for
+ * each pair of facilities a weight or flow is specified
+ * (e.g., the amount of supplies transported between the two facilities).
+ * The problem is to assign all facilities to different locations
+ * with the goal of minimizing the sum of the distances multiplied
+ * by the corresponding flows.
+ * <a href="https://en.wikipedia.org/wiki/Quadratic_assignment_problem">Wikipedia</a>.
+ */
 public class QAPLNS {
 
     public static void main(String[] args) {

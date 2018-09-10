@@ -10,18 +10,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
+/**
+ * Table constraint with short tuples (having {@code *} entries)
+ */
 public class ShortTableCT extends AbstractConstraint {
 
     private final IntVar[] x; //variables
@@ -30,12 +34,13 @@ public class ShortTableCT extends AbstractConstraint {
     private BitSet[][] supports;
 
     /**
-     * Table constraint. Assignment of x_0=v_0, x_1=v_1,... only valid if there exists a
-     * row (v_0|*,v_1|*, ...) in the table.
+     * Create a Table constraint with short tuples.
+     * <p>Assignment of {@code x_0=v_0, x_1=v_1,...} only valid if there exists a
+     * row {@code (v_0|*,v_1|*, ...)} in the table.
      *
-     * @param x     variables to constraint. x.length must be > 0.
-     * @param table array of valid solutions (second dimension must be of same size as the array x)
-     * @param star  the symbol representing "any" setValue in the table
+     * @param x     the variables to constraint. x must be non empty.
+     * @param table the array of valid solutions (second dimension must be of same size as the array x)
+     * @param star  the {@code *} symbol representing "any" value in the table
      */
     public ShortTableCT(IntVar[] x, int[][] table, int star) {
         super(x[0].getSolver());
@@ -52,6 +57,9 @@ public class ShortTableCT extends AbstractConstraint {
         }
 
         // Set values in supportedByVarVal, which contains all the tuples supported by each var-val pair
+        // TODO: compute the supports (be careful, take into account the star value)
+        // STUDENT throw new NotImplementedException("ShortTableCT");
+        // BEGIN STRIP
         for (int i = 0; i < table.length; i++) { //i is the index of the tuple (in table)
             for (int j = 0; j < x.length; j++) { //j is the index of the current variable (in x)
                 if (table[i][j] == star) {
@@ -63,6 +71,7 @@ public class ShortTableCT extends AbstractConstraint {
                 }
             }
         }
+        // END STRIP
     }
 
     @Override
@@ -74,47 +83,32 @@ public class ShortTableCT extends AbstractConstraint {
 
     @Override
     public void propagate() {
-
-        // For each var, compute the tuples supported by the var
-        // Intersection of the tuples supported by each var is the list of supported tuples
-        // Then check if each var/val supports a tuples. If not, remove the val.
-        // TODO
-        //
-
+        // TODO: implement the filtering
+        // STUDENT throw new NotImplementedException("ShortTableCT");
+        // BEGIN STRIP
         // Bit-set of tuple indices all set to 0
         BitSet supportedTuples = new BitSet(table.length);
         supportedTuples.flip(0, table.length);
-
-        // TODO 1: compute supportedTuples as
-        // supportedTuples = (supports[0][x[0].min()] | ... | supports[0][x[0].max()] ) & ... &
-        //                   (supports[x.length][x[0].min()] | ... | supports[x.length][x[0].max()] )
-        //
 
         for (int i = 0; i < x.length; i++) {
             BitSet supporti = new BitSet();
             for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
-                    // TODO
-                    //
                     supporti.or(supports[i][v]);
                 }
             }
             supportedTuples.and(supporti);
         }
 
-
-        // TODO 2
         for (int i = 0; i < x.length; i++) {
             for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
-                    // TODO 2 the condition for removing the setValue v from x[i] is to check if
-                    // there is no intersection between supportedTuples and the support[i][v]
                     if (!supports[i][v].intersects(supportedTuples)) {
                         x[i].remove(v);
                     }
                 }
             }
         }
-        //throw new NotImplementedException("TableCT");
+        // END STRIP
     }
 }

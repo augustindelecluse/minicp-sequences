@@ -10,18 +10,29 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.state;
 
 import java.util.ArrayList;
 
+/**
+ * Generic Stack that can be saved and restored through
+ * the {@link StateManager#saveState()} / {@link StateManager#restoreState()}
+ * methods.
+ */
 public class StateStack<E> {
 
     StateInt size;
     ArrayList<E> stack;
 
+    /**
+     * Creates a restorable stack.
+     * @param sm the state manager that saves/restores the stack
+     *         when {@link StateManager#saveState()} / {@link StateManager#restoreState()}
+     *         methods are called.
+     */
     public StateStack(StateManager sm) {
         size = sm.makeStateInt(0);
         stack = new ArrayList<E>();

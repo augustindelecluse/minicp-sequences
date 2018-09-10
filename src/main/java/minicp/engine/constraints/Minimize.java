@@ -10,14 +10,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
 
 import minicp.engine.core.IntVar;
 import minicp.search.Objective;
-import minicp.util.InconsistencyException;
+import minicp.util.exception.InconsistencyException;
 
 public class Minimize implements Objective {
     private int bound = Integer.MAX_VALUE;

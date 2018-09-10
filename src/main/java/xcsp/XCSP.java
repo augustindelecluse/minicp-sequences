@@ -1,3 +1,18 @@
+/*
+ * mini-cp is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License  v3
+ * as published by the Free Software Foundation.
+ *
+ * mini-cp is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY.
+ * See the GNU Lesser General Public License  for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
+ *
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ */
+
 package xcsp;
 
 import minicp.cp.Factory;
@@ -7,9 +22,8 @@ import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
-import minicp.util.Box;
-import minicp.util.InconsistencyException;
-import minicp.util.NotImplementedException;
+import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import org.xcsp.checker.SolutionChecker;
 import org.xcsp.common.Condition;
 import org.xcsp.common.Constants;
@@ -22,6 +36,7 @@ import org.xcsp.parser.entries.XVariables.XVarSymbolic;
 import java.io.ByteArrayInputStream;
 import java.security.InvalidParameterException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -649,7 +664,7 @@ public class XCSP implements XCallbacks2 {
     }
 
     public String solve(int nSolution, int timeOut) {
-        Box<String> lastSolution = new Box<String>("");
+        AtomicReference<String> lastSolution = new AtomicReference<>("");
         Long t0 = System.currentTimeMillis();
 
         solve((solution, value) -> {
@@ -678,7 +693,6 @@ public class XCSP implements XCallbacks2 {
         IntVar[] vars = mapVar.entrySet().stream().sorted(new EntryComparator()).map(Map.Entry::getValue).toArray(IntVar[]::new);
         DFSearch search;
         if (decisionVars.isEmpty()) {
-            System.out.println("here");
             search = makeDfs(minicp, firstFail(vars));
         } else {
             search = makeDfs(minicp, and(firstFail(decisionVars.toArray(new IntVar[0])), firstFail(vars)));

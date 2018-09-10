@@ -9,7 +9,7 @@ About
 
 `Pierre Schaus <http://www.info.ucl.ac.be/~pschaus/>`_ is Professor at UCLouvain.
 
-`Pascal Van Hentenryck <http://pascalvanhentenryck.engin.umich.edu>`_ is Professor at the University of Michigan.
+`Pascal Van Hentenryck <http://pwp.gatech.edu/pascal-van-hentenryck/>`_ is Professor at Georgia Tech.
 
 
 

@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 
@@ -19,9 +19,13 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 import minicp.state.StateInt;
+import minicp.util.exception.NotImplementedException;
 
 import static minicp.cp.Factory.allDifferent;
 
+/**
+ * Hamiltonian Circuit Constraint with a successor model
+ */
 public class Circuit extends AbstractConstraint {
 
     private final IntVar[] x;
@@ -30,10 +34,11 @@ public class Circuit extends AbstractConstraint {
     private final StateInt[] lengthToDest;
 
     /**
-     * x represents an Hamiltonian circuit on the cities {0..x.length-1}
-     * where x[i] is the city visited after city i
+     * Creates an Hamiltonian Circuit Constraint
+     * with a successor model.
      *
-     * @param x
+     * @param x the variables representing the successor array that is
+     *          {@code x[i]} is the city visited after city i
      */
     public Circuit(IntVar[] x) {
         super(x[0].getSolver());
@@ -53,6 +58,10 @@ public class Circuit extends AbstractConstraint {
     @Override
     public void post() {
         cp.post(allDifferent(x));
+        // TODO
+        // Hint: use x[i].whenBind(...) to call the bind
+        // STUDENT throw new NotImplementedException("Circuit");
+        // BEGIN STRIP
         if (x.length == 1) {
             x[0].assign(0);
             return;
@@ -67,10 +76,14 @@ public class Circuit extends AbstractConstraint {
                 x[i].whenBind(() -> bind(fi));
             }
         }
+        // END STRIP
     }
 
 
     private void bind(int i) {
+        // TODO
+        // STUDENT throw new NotImplementedException("Circuit");
+        // BEGIN STRIP
         int j = x[i].min();
         int origi = orig[i].value();
         int destj = dest[j].value();
@@ -85,6 +98,6 @@ public class Circuit extends AbstractConstraint {
             // avoid inner loops
             x[destj].remove(origi); // avoid inner loops
         }
-
+        // END STRIP
     }
 }

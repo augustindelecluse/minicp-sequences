@@ -23,16 +23,25 @@ public class TableDecomp extends AbstractConstraint {
     private final int[][] table;
 
     /**
-     * Table constraint. Assignment of x_0=v_0, x_1=v_1,... only valid if there exists a
-     * row (v_0, v_1, ...) in the table.
+     * Decomposition of a table constraint.
+     * <p>The table constraint ensures that
+     * {@code x} is a row from the given table.
+     * More exactly, there exist some row <i>i</i>
+     * such that
+     * {@code x[0]==table[i][0], x[1]==table[i][1], etc}.
+     * <p>This constraint is sometimes called <i>in extension</i> constraint
+     * as the user enumerates the set of solutions that can be taken
+     * by the variables.
      *
-     * @param x     variables to constraint. x.length must be > 0.
-     * @param table array of valid solutions (second dimension must be of same size as the array x)
+     * @param x  the non empty set of variables to constraint
+     * @param table the possible set of solutions for x.
+     *              The second dimension must be of the same size as the array x.
      */
     public TableDecomp(IntVar[] x, int[][] table) {
         super(x[0].getSolver());
         this.x = x;
         this.table = table;
+        Math.ulp(2.2);
     }
 
     @Override

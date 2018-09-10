@@ -21,14 +21,16 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
 import minicp.search.SearchStatistics;
-import minicp.util.InputReader;
+import minicp.util.exception.NotImplementedException;
+import minicp.util.io.InputReader;
 
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 
+
 /**
- * Resource Constrained Project Scheduling Problem (RCPSP)
- * http://www.om-db.wi.tum.de/psplib/library.html
+ * Resource Constrained Project Scheduling Problem.
+ * <a href="http://www.om-db.wi.tum.de/psplib/library.html">PSPLIB</a>.
  */
 public class RCPSP {
 
@@ -81,10 +83,23 @@ public class RCPSP {
             end[i] = plus(start[i], duration[i]);
         }
 
+        // TODO 1: add the cumulative constraint to model the resource
+        // capa[r] is the capacity of resource r
+        // consumption[r] is the consumption for each activity on the resource [r]
+        // duration is the duration of each activity
+
+        // TODO 2: add the precedence constraints
+        // successors[i] is the sucessors of activity i
+
+        // TODO 3: minimize the makespan
+
+        // TODO 4: implement the search
+
+        // STUDENT
+        // BEGIN STRIP
         for (int r = 0; r < nResources; r++) {
             cp.post(new Cumulative(start, duration, consumption[r], capa[r]));
         }
-
         for (int i = 0; i < nActivities; i++) {
             for (int k : successors[i]) {
                 // activity i must precede activity k
@@ -106,7 +121,6 @@ public class RCPSP {
         SearchStatistics stats = dfs.optimize(obj);
 
         System.out.format("Statistics: %s\n", stats);
-
-
+        // END STRIP
     }
 }

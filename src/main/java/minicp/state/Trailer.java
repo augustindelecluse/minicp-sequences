@@ -1,3 +1,18 @@
+/*
+ * mini-cp is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License  v3
+ * as published by the Free Software Foundation.
+ *
+ * mini-cp is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY.
+ * See the GNU Lesser General Public License  for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
+ *
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ */
+
 package minicp.state;
 
 
@@ -7,6 +22,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * StateManager that will lazily store
+ * the state of state object
+ * at each {@link #saveState()} call.
+ * Only the one that effectively change are stored
+ * and at most once between any to call to {@link #saveState()}.
+ * This can be seen as an optimized version of {@link Copier}.
+ */
 public class Trailer implements StateManager {
 
     class Backup extends Stack<StateEntry> {

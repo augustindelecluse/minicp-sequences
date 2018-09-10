@@ -10,13 +10,20 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.state;
 
 import minicp.util.Procedure;
 
+/**
+ * The StateManager exposes
+ * all the mechanisms and data-structures
+ * needed to implement a depth-first-search
+ * with reversible states.
+ *
+ */
 public interface StateManager {
 
     /**
@@ -40,10 +47,28 @@ public interface StateManager {
      */
     void restoreAllState();
 
+    /**
+     * Restores the state up the the given level.
+     *
+     * @param level the level, a non negative number between 0 and {@link #getLevel()}
+     */
     void restoreStateUntil(int level);
 
+    /**
+     * Add a listener that is notified each time the {@link #restoreState()}
+     * is called.
+     *
+     * @param listener the listener to be notified
+     */
     void onRestore(Procedure listener);
 
+    /**
+     * Returns the current level.
+     * It is increased at each {@link #saveState()}
+     * and decreased at each {@link #restoreState()}.
+     * It is initially equal to -1.
+     * @return the level
+     */
     int getLevel();
 
     /**

@@ -10,12 +10,17 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 
 package minicp.engine.core;
 
+import minicp.util.Procedure;
+
+/**
+ * A view on a variable of type {@code x+o}
+ */
 public class IntVarViewOffset implements IntVar {
 
     private final IntVar x;
@@ -32,17 +37,17 @@ public class IntVarViewOffset implements IntVar {
     }
 
     @Override
-    public void whenBind(ConstraintClosure.Filtering f) {
+    public void whenBind(Procedure f) {
         x.whenBind(f);
     }
 
     @Override
-    public void whenBoundsChange(ConstraintClosure.Filtering f) {
+    public void whenBoundsChange(Procedure f) {
         x.whenBoundsChange(f);
     }
 
     @Override
-    public void whenDomainChange(ConstraintClosure.Filtering f) {
+    public void whenDomainChange(Procedure f) {
         x.whenDomainChange(f);
     }
 

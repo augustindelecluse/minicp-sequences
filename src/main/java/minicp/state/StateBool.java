@@ -10,16 +10,32 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.state;
 
-
+/**
+ * Object that wraps a boolean value
+ * that can be saved and restored through
+ * the {@link StateManager#saveState()} / {@link StateManager#restoreState()}
+ * methods.
+ *
+ * @see StateManager#makeStateBool(boolean) for the creation.
+ */
 public interface StateBool {
 
+    /**
+     * Sets the value
+     * @param v the value to set
+     */
     public void setValue(boolean v);
 
+    /**
+     * Retrieves the value
+     *
+     * @return the value
+     */
     public boolean value();
 
 }

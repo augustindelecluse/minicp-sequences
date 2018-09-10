@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2017. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
@@ -18,12 +18,16 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
+/**
+ * Negative table constraint
+ */
 public class NegTableCT extends AbstractConstraint {
 
     private Solver cp;
@@ -33,12 +37,13 @@ public class NegTableCT extends AbstractConstraint {
     private BitSet[][] conflicts;
 
     /**
-     * Table constraint.
-     * Assignment of x_0=v_0, x_1=v_1,... only valid if there exists a
-     * row (v_0, v_1, ...) in the table.
+     * Negative Table constraint.
+     * <p>Assignment of {@code x_0=v_0, x_1=v_1,...} only valid if there does not
+     * exists a row {@code (v_0, v_1, ...)} in the table.
+     * The table represents the infeasible assignments for the variables.
      *
-     * @param x     variables to constraint. x.length must be > 0.
-     * @param table array of valid solutions (second dimension must be of same size as the array x)
+     * @param x the variables to constraint. x is not empty.
+     * @param table the array of invalid solutions (second dimension must be of same size as the array x)
      */
     public NegTableCT(IntVar[] x, int[][] table) {
         super(x[0].getSolver());
@@ -87,35 +92,28 @@ public class NegTableCT extends AbstractConstraint {
 
     @Override
     public void post() {
+        // TODO
+        // STUDENT throw new NotImplementedException("NegTableCT");
+        // BEGIN STRIP
         for (IntVar var : x)
             var.propagateOnDomainChange(this);
         propagate();
+        // END STRIP
     }
 
     @Override
     public void propagate() {
-
-        // For each var, compute the tuples supported by the var
-        // Intersection of the tuples supported by each var is the list of supported tuples
-        // Then check if each var/val supports a tuples. If not, remove the val.
         // TODO
-        //
-
+        // STUDENT throw new NotImplementedException("NegTableCT");
+        // BEGIN STRIP
         // Bit-set of tuple indices all set to 0
         BitSet menacing = new BitSet(table.length);
         menacing.flip(0, table.length);
-
-        // TODO 1: compute supportedTuples as
-        // supportedTuples = (supports[0][x[0].min()] | ... | supports[0][x[0].max()] ) & ... &
-        //                   (supports[x.length][x[0].min()] | ... | supports[x.length][x[0].max()] )
-        //
 
         for (int i = 0; i < x.length; i++) {
             BitSet conflictsi = new BitSet();
             for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
-                    // TODO
-                    //
                     conflictsi.or(conflicts[i][v]);
                 }
             }
@@ -127,14 +125,11 @@ public class NegTableCT extends AbstractConstraint {
             prodDomains *= x[i].size();
         }
 
-        // TODO 2
         for (int i = 0; i < x.length; i++) {
             int prodDomainsi = (int) (prodDomains / x[i].size());
             for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
-                    // TODO 2 the condition for removing the setValue v from x[i] is to check if
-                    // there is no intersection between supportedTuples and the support[i][v]
-                    BitSet menacingIntersect = (BitSet) menacing.clone();
+                     BitSet menacingIntersect = (BitSet) menacing.clone();
                     menacingIntersect.and(conflicts[i][v]);
                     if (menacingIntersect.cardinality() >= prodDomainsi) {
                         x[i].remove(v);
@@ -142,7 +137,6 @@ public class NegTableCT extends AbstractConstraint {
                 }
             }
         }
-
-        //throw new NotImplementedException("TableCT");
+        // END STRIP
     }
 }
