@@ -24,12 +24,17 @@ Mini-CP is voluntarily missing many features that you would find in a commercial
 The implementation, although inspired by state-of-the-art solvers is not focused on efficiency but rather on readability to convey the concepts as clearly as possible.
 Mini-CP is small (<1500 LOC excluding tests) and well tested.
 
+
+Java-Doc
+=======================================
+
+The `Javavadoc API <_static/apidocs/index.html>`_.
+
  
 Install mini-cp
 =======================================
 
-Minicp is available from bitbucket_.
-The `Javavadoc API <_static/apidocs/index.html>`_.
+Minicp source-code is available from bitbucket_.
 
 **Using an IDE**
 
@@ -69,7 +74,7 @@ Some other useful commands
     $mvn javadoc:javadoc # creates javadoc in target/site/apidocs/index.html
 
 
-.. _bitbucket: https://bitbucket.org/pschaus/minicp
+.. _bitbucket: https://bitbucket.org/minicp/minicp
 .. _IntelliJ: https://www.jetbrains.com/idea/
 .. _Eclipse: https://www.eclipse.org
 .. _maven: https://maven.apache.org
