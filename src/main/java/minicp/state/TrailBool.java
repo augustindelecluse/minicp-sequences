@@ -22,14 +22,14 @@ package minicp.state;
  */
 public class TrailBool implements StateBool {
 
-    final StateEntry restoreTrue = new StateEntry() {
+    private final StateEntry restoreTrue = new StateEntry() {
         @Override
         public void restore() {
             v = true;
         }
     };
 
-    final StateEntry restoreFalse = new StateEntry() {
+    private final StateEntry restoreFalse = new StateEntry() {
         @Override
         public void restore() {
             v = false;

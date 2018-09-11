@@ -66,7 +66,7 @@ public class CumulativeDecomposition extends AbstractConstraint {
 
             BoolVar[] overlaps = new BoolVar[start.length];
             for (int i = 0; i < start.length; i++) {
-                overlaps[i] = makeBoolVar(cp);
+                overlaps[i] = makeBoolVar(getSolver());
                 // TODO
                 // post the constraints to enforce
                 // that overlaps[i] is true iff start[i] <= t && t < start[i] + duration[i]
@@ -75,13 +75,13 @@ public class CumulativeDecomposition extends AbstractConstraint {
 
                 // STUDENT throw new NotImplementedException("CumulativeDecomp");
                 // BEGIN STRIP
-                BoolVar startsBefore = makeBoolVar(cp);
-                BoolVar endsAfter = makeBoolVar(cp);
-                cp.post(new IsLessOrEqual(startsBefore, start[i], t));
-                cp.post(new IsLessOrEqual(endsAfter, minus(plus(start[i], duration[i] - 1)), -t));
+                BoolVar startsBefore = makeBoolVar(getSolver());
+                BoolVar endsAfter = makeBoolVar(getSolver());
+                getSolver().post(new IsLessOrEqual(startsBefore, start[i], t));
+                getSolver().post(new IsLessOrEqual(endsAfter, minus(plus(start[i], duration[i] - 1)), -t));
                 final int capa = -2;
                 // overlaps = endsAfter & startsBefore
-                cp.post(new IsLessOrEqual(overlaps[i], minus(sum(new IntVar[]{startsBefore, endsAfter})), capa));
+                getSolver().post(new IsLessOrEqual(overlaps[i], minus(sum(new IntVar[]{startsBefore, endsAfter})), capa));
                 // END STRIP
             }
 

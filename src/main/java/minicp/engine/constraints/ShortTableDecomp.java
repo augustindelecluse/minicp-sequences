@@ -18,6 +18,9 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 
+/**
+ * Decomposition of table constraint with short tuples (having {@code *} entries)
+ */
 public class ShortTableDecomp extends AbstractConstraint {
 
     private final IntVar[] x;

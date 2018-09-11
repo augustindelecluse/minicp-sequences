@@ -43,12 +43,6 @@ public class NQueens {
                 cp.post(Factory.notEqual(q[i], q[j], i - j));
             }
 
-
-        cp.post(Factory.allDifferentAC(q));
-        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(n, i -> Factory.minus(q[i], i))));
-        cp.post(Factory.allDifferentAC(Factory.makeIntVarArray(n, i -> Factory.plus(q[i], i))));
-
-
         DFSearch search = Factory.makeDfs(cp, () -> {
             IntVar qs = selectMin(q,
                     qi -> qi.size() > 1,

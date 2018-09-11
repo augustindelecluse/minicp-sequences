@@ -43,8 +43,8 @@ public class Or extends AbstractConstraint { // x1 or x2 or ... xn
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
-        wL = cp.getStateManager().makeStateInt(0);
-        wR = cp.getStateManager().makeStateInt(n - 1);
+        wL = getSolver().getStateManager().makeStateInt(0);
+        wR = getSolver().getStateManager().makeStateInt(n - 1);
     }
 
     @Override

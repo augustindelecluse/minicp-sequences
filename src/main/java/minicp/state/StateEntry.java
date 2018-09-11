@@ -20,5 +20,5 @@ package minicp.state;
  * stored by a StateManager to revert some state
  */
 public interface StateEntry {
-    public void restore();
+    void restore();
 }

@@ -28,7 +28,7 @@ public class GraphUtil {
     /**
      * Directed graph API
      */
-    public static interface Graph {
+    public interface Graph {
         /**
          * Returns the number of nodes in this graph.
          * @return the number of nodes in this graph.

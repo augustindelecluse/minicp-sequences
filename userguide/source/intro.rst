@@ -6,7 +6,6 @@
 Preface
 ************
 
-
 This document is made for anyone who wants to learn
 constraint programming using using mini-cp as a support.
 
@@ -30,7 +29,7 @@ Install mini-cp
 =======================================
 
 Minicp is available from bitbucket_.
-The `Javavadoc API <_static/index.html>`_.
+The `Javavadoc API <_static/apidocs/index.html>`_.
 
 **Using an IDE**
 
@@ -40,7 +39,7 @@ From IntelliJ_ you can simply import the project.
 
 .. code-block:: none
 
-    Open > (select pom.xml in the minicp directory)
+    Open > (select pom.xml in the minicp directory and open as new project)
 
 
 From Eclipse_ you can simply import the project.
@@ -57,9 +56,17 @@ Using maven_ command line you can do you can do:
 
 .. code-block:: none
 
-    $mvn compile
-    $mvn test
+    $mvn compile # compile all the project
+    $mvn test # run all the test suite
 
+Some other useful commands
+
+.. code-block:: none
+
+    $mvn checkstyle:checktyle # generates a report in target/site/checkstyle.html
+    $mvn finbugs:gui # opens a gui with potential source of bugs in your code
+    $mvn jacoco:report # creates a cover report in target/site/jacoco/index.html
+    $mvn javadoc:javadoc # creates javadoc in target/site/apidocs/index.html
 
 
 .. _bitbucket: https://bitbucket.org/pschaus/minicp

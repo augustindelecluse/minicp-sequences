@@ -29,13 +29,13 @@ public interface StateBool {
      * Sets the value
      * @param v the value to set
      */
-    public void setValue(boolean v);
+    void setValue(boolean v);
 
     /**
      * Retrieves the value
      *
      * @return the value
      */
-    public boolean value();
+    boolean value();
 
 }

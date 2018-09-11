@@ -569,7 +569,7 @@ public final class Factory {
     /**
      * Returns an allDifferent constraint that enforces
      * global arc consistency.
-     * 
+     *
      * @param x an array of variables
      * @return a constraint so that {@code x[i] != x[j] for all i < j}
      */

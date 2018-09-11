@@ -19,12 +19,16 @@ import minicp.state.StateBool;
 
 import java.util.Queue;
 
+/**
+ * Abstract class the most of the constraints
+ * should extend.
+ */
 public abstract class AbstractConstraint implements Constraint {
 
     /**
      * The solver in which the constraint is created
      */
-    protected final Solver cp;
+    private final Solver cp;
     private boolean scheduled = false;
     private final StateBool active;
 
@@ -33,14 +37,11 @@ public abstract class AbstractConstraint implements Constraint {
         active = cp.getStateManager().makeStateBool(true);
     }
 
-    public void schedule(Queue<Constraint> q) {
-        if (active.value() && !scheduled) {
-            scheduled = true;
-            q.add(this);
-        }
+    public void post() {
     }
 
-    public void post() {
+    public Solver getSolver() {
+        return cp;
     }
 
     public void propagate() {

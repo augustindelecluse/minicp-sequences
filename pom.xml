@@ -12,6 +12,7 @@
         <url>http://minicp.bitbucket.io</url>
     </organization>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <argLine>-XX:MaxPermSize=512m</argLine>
@@ -136,6 +137,37 @@
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
                     <propertiesLocation>${basedir}/checkstyle.properties</propertiesLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>findbugs-maven-plugin</artifactId>
+                            <outputDirectory>${project.build.directory}/findbugs</outputDirectory>
+                            <configuration>
+                                <!--
+                                    Enables analysis which takes more memory but finds more bugs.
+                                    If you run out of memory, changes the value of the effort element
+                                    to 'low'.
+                                -->
+                                <effort>Max</effort>
+                                <!-- Reports all bugs (other values are medium and max) -->
+                                <threshold>Low</threshold>
+                                <xmlOutput>true</xmlOutput>
+                                <htmlOutput>true</htmlOutput>
+                            </configuration>
+                        </plugin>
+
+                    </reportPlugins>
                 </configuration>
             </plugin>
         </plugins>

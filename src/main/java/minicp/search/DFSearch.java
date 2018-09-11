@@ -160,7 +160,6 @@ public class DFSearch {
      * @return an object with the statistics on the search
      */
     public SearchStatistics optimize(Objective obj) {
-        SearchStatistics statistics = new SearchStatistics();
         return optimize(obj, stats -> false);
     }
 

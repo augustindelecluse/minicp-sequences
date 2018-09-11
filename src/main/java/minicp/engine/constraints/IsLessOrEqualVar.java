@@ -75,10 +75,10 @@ public class IsLessOrEqualVar extends AbstractConstraint {
         // STUDENT throw new NotImplementedException();
         // BEGIN STRIP
         if (b.isTrue()) {
-            cp.post(lEqC, false);
+            getSolver().post(lEqC, false);
             setActive(false);
         } else if (b.isFalse()) {
-            cp.post(grC, false);
+            getSolver().post(grC, false);
             setActive(false);
         } else {
             if (x.max() <= y.min()) {

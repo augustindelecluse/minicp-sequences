@@ -26,7 +26,7 @@ public class CopyBool implements Storage, StateBool {
     class CopyBoolStateEntry implements StateEntry {
         private final boolean v;
 
-        public CopyBoolStateEntry(boolean v) {
+        CopyBoolStateEntry(boolean v) {
             this.v = v;
         }
 
@@ -37,7 +37,7 @@ public class CopyBool implements Storage, StateBool {
 
     private boolean v;
 
-    public CopyBool(boolean initial) {
+    CopyBool(boolean initial) {
         v = initial;
     }
 

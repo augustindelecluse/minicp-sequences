@@ -22,7 +22,7 @@ package minicp.engine.constraints;
  */
 public class ThetaTree {
 
-    private class Node {
+    private static class Node {
 
         private int sump;
         private int ect;
@@ -119,10 +119,10 @@ public class ThetaTree {
      * @param pos the index of the leaf nodes, assumed to start at 0 from left to right
      */
     public void remove(int pos) {
-        int curr_pos = isize + pos;
-        Node node = nodes[curr_pos];
+        int currPos = isize + pos;
+        Node node = nodes[currPos];
         node.reset();
-        reCompute(getFather(curr_pos));
+        reCompute(getFather(currPos));
     }
 
     private int getECT(int pos) {

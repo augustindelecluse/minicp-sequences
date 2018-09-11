@@ -32,6 +32,7 @@ import java.util.stream.IntStream;
  *
  */
 public class Element2D extends AbstractConstraint {
+
     private final int[][] matrix;
     private final IntVar x, y, z;
     private int n, m;
@@ -42,8 +43,8 @@ public class Element2D extends AbstractConstraint {
     private final StateInt up;
     private final ArrayList<Triple> xyz;
 
-    private class Triple implements Comparable<Triple> {
-        protected final int x, y, z;
+    private final static class Triple implements Comparable<Triple> {
+        private final int x, y, z;
 
         private Triple(int x, int y, int z) {
             this.x = x;
@@ -78,7 +79,7 @@ public class Element2D extends AbstractConstraint {
             for (int j = 0; j < matrix[i].length; j++)
                 xyz.add(new Triple(i, j, matrix[i][j]));
         Collections.sort(xyz);
-        StateManager sm = cp.getStateManager();
+        StateManager sm = getSolver().getStateManager();
         low = sm.makeStateInt(0);
         up = sm.makeStateInt(xyz.size() - 1);
         nColsSup = IntStream.range(0, n).mapToObj(i -> sm.makeStateInt(this.m)).toArray(StateInt[]::new);

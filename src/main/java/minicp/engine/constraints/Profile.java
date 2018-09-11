@@ -26,11 +26,11 @@ import java.util.Arrays;
  */
 public class Profile {
 
-    private static class Entry implements Comparable<Entry> {
-        public final int key;
-        public final int value;
+    private static final class Entry implements Comparable<Entry> {
+        private final int key;
+        private final int value;
 
-        public Entry(int key, int value) {
+        private Entry(int key, int value) {
             this.key = key;
             this.value = value;
         }
@@ -41,12 +41,12 @@ public class Profile {
         }
     }
 
-    public static class Rectangle {
+    static class Rectangle {
 
-        final int start;
-        final long dur;
-        final int height;
-        final int end;
+        private final int start;
+        private final long dur;
+        private final int height;
+        private final int end;
 
         Rectangle(int start, int end, int height) {
             assert (end > start);
@@ -54,6 +54,22 @@ public class Profile {
             this.end = end;
             this.dur = ((long) end) - start;
             this.height = height;
+        }
+
+        int start() {
+            return start;
+        }
+
+        long dur() {
+            return dur;
+        }
+
+        int height() {
+            return height;
+        }
+
+        int end() {
+            return end;
         }
 
         @Override

@@ -105,7 +105,7 @@ public class Disjunctive extends AbstractConstraint {
         for (int i = 0; i < start.length; i++) {
             demands[i] = 1;
         }
-        cp.post(new Cumulative(start, duration, demands, 1), false);
+        getSolver().post(new Cumulative(start, duration, demands, 1), false);
 
 
         // TODO 1: replace by  posting  binary decomposition using IsLessOrEqualVar
@@ -122,12 +122,12 @@ public class Disjunctive extends AbstractConstraint {
                 IntVar endi = plus(start[i], duration[i]);
                 for (int j = i + 1; j < start.length; j++) {
                     IntVar endj = plus(start[j], duration[j]);
-                    BoolVar iBeforej = makeBoolVar(cp);
-                    BoolVar jBeforei = makeBoolVar(cp);
+                    BoolVar iBeforej = makeBoolVar(getSolver());
+                    BoolVar jBeforei = makeBoolVar(getSolver());
 
-                    cp.post(new IsLessOrEqualVar(iBeforej, endi, start[j]));
-                    cp.post(new IsLessOrEqualVar(jBeforei, endj, start[i]));
-                    cp.post(new NotEqual(iBeforej, jBeforei), false);
+                    getSolver().post(new IsLessOrEqualVar(iBeforej, endi, start[j]));
+                    getSolver().post(new IsLessOrEqualVar(jBeforei, endj, start[i]));
+                    getSolver().post(new NotEqual(iBeforej, jBeforei), false);
 
                     // TODO i before j or j before i
                 }
@@ -135,7 +135,7 @@ public class Disjunctive extends AbstractConstraint {
 
 
             IntVar[] startMirror = Factory.makeIntVarArray(start.length, i -> minus(end[i]));
-            cp.post(new Disjunctive(startMirror, duration, false), false);
+            getSolver().post(new Disjunctive(startMirror, duration, false), false);
 
             propagate();
         }

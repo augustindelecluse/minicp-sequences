@@ -56,7 +56,7 @@ public class XCSP implements XCallbacks2 {
 
     private final Set<IntVar> decisionVars = new LinkedHashSet<>();
 
-    public final Solver minicp = makeSolver();
+    private final Solver minicp = makeSolver();
 
     private Optional<IntVar> objectiveMinimize = Optional.empty();
     private Optional<IntVar> realObjective = Optional.empty();
@@ -96,9 +96,9 @@ public class XCSP implements XCallbacks2 {
 
     @Override
     public void buildVarInteger(XVarInteger x, int minValue, int maxValue) {
-        IntVar x_ = makeIntVar(minicp, minValue, maxValue);
-        mapVar.put(x, x_);
-        minicpVars.add(x_);
+        IntVar minicpVar = makeIntVar(minicp, minValue, maxValue);
+        mapVar.put(x, minicpVar);
+        minicpVars.add(minicpVar);
         xVars.add(x);
     }
 
@@ -106,9 +106,9 @@ public class XCSP implements XCallbacks2 {
     public void buildVarInteger(XVarInteger x, int[] values) {
         Set<Integer> vals = new LinkedHashSet<>();
         for (int v : values) vals.add(v);
-        IntVar x_ = makeIntVar(minicp, vals);
-        mapVar.put(x, x_);
-        minicpVars.add(x_);
+        IntVar minicpVar = makeIntVar(minicp, vals);
+        mapVar.put(x, minicpVar);
+        minicpVars.add(minicpVar);
         xVars.add(x);
     }
 
@@ -233,7 +233,7 @@ public class XCSP implements XCallbacks2 {
     }
 
 
-    private void _buildCrtWithCondition(String id, IntVar expr, Condition operator) {
+    private void buildCrtWithCondition(String id, IntVar expr, Condition operator) {
         if (hasFailed)
             return;
 
@@ -368,15 +368,15 @@ public class XCSP implements XCallbacks2 {
     }
 
     @Override
-    public void buildCtrPrimitive(String id, XVarInteger x_, Types.TypeArithmeticOperator aop, XVarInteger y_, Types.TypeConditionOperatorRel op, int k) {
+    public void buildCtrPrimitive(String id, XVarInteger x, Types.TypeArithmeticOperator aop, XVarInteger y, Types.TypeConditionOperatorRel op, int k) {
         if (hasFailed)
             return;
 
-        IntVar x = mapVar.get(x_);
-        IntVar y = mapVar.get(y_);
+        IntVar minicpX = mapVar.get(x);
+        IntVar minicpY = mapVar.get(y);
 
         try {
-            IntVar r = arithmeticOperatorConstraintVar(x, aop, y);
+            IntVar r = arithmeticOperatorConstraintVar(minicpX, aop, minicpY);
             relConstraintVal(r, op, k);
         } catch (InconsistencyException e) {
             hasFailed = true;
@@ -468,7 +468,7 @@ public class XCSP implements XCallbacks2 {
 
         try {
             IntVar s = sum(Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new));
-            _buildCrtWithCondition(id, s, condition);
+            buildCrtWithCondition(id, s, condition);
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -485,7 +485,7 @@ public class XCSP implements XCallbacks2 {
                 wx[i] = mul(mapVar.get(list[i]), coeffs[i]);
             }
             IntVar s = sum(wx);
-            _buildCrtWithCondition(id, s, condition);
+            buildCrtWithCondition(id, s, condition);
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -635,7 +635,7 @@ public class XCSP implements XCallbacks2 {
         try {
             IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
             IntVar s = Factory.maximum(xs);
-            _buildCrtWithCondition(id, s, condition);
+            buildCrtWithCondition(id, s, condition);
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
@@ -650,13 +650,13 @@ public class XCSP implements XCallbacks2 {
         try {
             IntVar[] xs = Arrays.stream(list).map(mapVar::get).toArray(IntVar[]::new);
             IntVar s = Factory.minimum(xs);
-            _buildCrtWithCondition(id, s, condition);
+            buildCrtWithCondition(id, s, condition);
         } catch (InconsistencyException e) {
             hasFailed = true;
         }
     }
 
-    class EntryComparator implements Comparator<Map.Entry<XVarInteger, IntVar>> {
+    static class EntryComparator implements Comparator<Map.Entry<XVarInteger, IntVar>> {
         @Override
         public int compare(Map.Entry<XVarInteger, IntVar> o1, Map.Entry<XVarInteger, IntVar> o2) {
             return o1.getKey().id.compareTo(o2.getKey().id);

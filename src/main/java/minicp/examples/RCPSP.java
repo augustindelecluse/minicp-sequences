@@ -54,11 +54,11 @@ public class RCPSP {
         int[][] successors = new int[nActivities][];
 
 
-        int H = 0;
+        int horizon = 0;
         for (int i = 0; i < nActivities; i++) {
             // durations, demand for each resource, successors
             duration[i] = reader.getInt();
-            H += duration[i];
+            horizon += duration[i];
             for (int r = 0; r < nResources; r++) {
                 consumption[r][i] = reader.getInt();
             }
@@ -75,7 +75,7 @@ public class RCPSP {
 
         Solver cp = makeSolver();
 
-        IntVar[] start = makeIntVarArray(cp, nActivities, H);
+        IntVar[] start = makeIntVarArray(cp, nActivities, horizon);
         IntVar[] end = new IntVar[nActivities];
 
 
