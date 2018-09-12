@@ -34,6 +34,11 @@ The `Javavadoc API <_static/apidocs/index.html>`_.
 Install mini-cp
 =======================================
 
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/VF_vkCnOp88?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
 Minicp source-code is available from bitbucket_.
 
 **Using an IDE**
@@ -62,16 +67,16 @@ Using maven_ command line you can do you can do:
 .. code-block:: none
 
     $mvn compile # compile all the project
-    $mvn test # run all the test suite
+    $mvn test    # run all the test suite
 
 Some other useful commands
 
 .. code-block:: none
 
-    $mvn checkstyle:checktyle # generates a report in target/site/checkstyle.html
-    $mvn finbugs:gui # opens a gui with potential source of bugs in your code
-    $mvn jacoco:report # creates a cover report in target/site/jacoco/index.html
-    $mvn javadoc:javadoc # creates javadoc in target/site/apidocs/index.html
+    $mvn checkstyle:checktyle   # generates a report in target/site/checkstyle.html
+    $mvn findbugs:gui           # opens a gui with potential source of bugs in your code
+    $mvn jacoco:report          # creates a cover report in target/site/jacoco/index.html
+    $mvn javadoc:javadoc        # creates javadoc in target/site/apidocs/index.html
 
 
 .. _bitbucket: https://bitbucket.org/minicp/minicp
