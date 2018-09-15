@@ -37,7 +37,7 @@ public class MagicSquare {
     public static void main(String[] args) {
 
         int n = 6;
-        int M = n * (n * n + 1) / 2;
+        int sumResult = n * (n * n + 1) / 2;
 
         Solver cp = Factory.makeSolver();
         IntVar[][] x = new IntVar[n][n];
@@ -60,7 +60,7 @@ public class MagicSquare {
 
         // Sum on lines
         for (int i = 0; i < n; i++) {
-            cp.post(sum(x[i], M));
+            cp.post(sum(x[i], sumResult));
         }
 
         // Sum on columns
@@ -68,7 +68,7 @@ public class MagicSquare {
             IntVar[] column = new IntVar[n];
             for (int i = 0; i < x.length; i++)
                 column[i] = x[i][j];
-            cp.post(sum(column, M));
+            cp.post(sum(column, sumResult));
         }
 
         // Sum on diagonals
@@ -78,8 +78,8 @@ public class MagicSquare {
             diagonalLeft[i] = x[i][i];
             diagonalRight[i] = x[n - i - 1][i];
         }
-        cp.post(sum(diagonalLeft, M));
-        cp.post(sum(diagonalRight, M));
+        cp.post(sum(diagonalLeft, sumResult));
+        cp.post(sum(diagonalRight, sumResult));
 
         DFSearch dfs = makeDfs(cp, firstFail(xFlat));
 

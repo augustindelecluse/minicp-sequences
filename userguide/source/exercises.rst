@@ -13,6 +13,11 @@ If you don't test each feature independently you take the risk to
 loose a lot of time finding very difficult bugs.
 
 
+*We ask you not to publish your solutions on a public repository.
+The instructors interested to get the source-code of
+the solutions can contact us.*
+
+
 Learning Outcomes
 =======================================
 
@@ -32,7 +37,7 @@ Be able to
 Less or equal reified constraint
 =================================
 
-Implement `IsLessOrEqual.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/IsLessOrEqual.java?at=master>`_
+Implement `IsLessOrEqual.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/IsLessOrEqual.java?at=master>`_
 
 This is a reified constraint for `b iff x <= c`
 that is boolean variable `b` is set true if and only if `x` variable is less or equal to value `c`.
@@ -53,7 +58,7 @@ but is violated for
     b = false, x = 2, c = 4
 
 
-Check that your implementation passes the tests `IsLessOrEqualTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/IsEqualTest.java?at=master>`_
+Check that your implementation passes the tests `IsLessOrEqualTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/IsEqualTest.java?at=master>`_
 
 
 
@@ -63,7 +68,7 @@ DFS Explicit Stack
 
 The search algorithm of mini-cp is *depth-first-search*.
 It is implemented using a recursive method in the class
-`DFSSearch.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/search/DFSearch.java?at=master>`_.
+`DFSSearch.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/search/DFSearch.java?at=master>`_.
 To avoid any `stack-overflow` exception due to too a deep recursion in Java
 we ask you to reimplement the depth-first-search with an explicit stack
 of instead of relying on the recursion call stack.
@@ -143,7 +148,7 @@ as illustrated on the next figure showing the stack after the root node expansio
     
     
     
-Check that your implementation passes the tests `DFSearchTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/search/DFSearchTest.java?at=master>`_
+Check that your implementation passes the tests `DFSearchTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/search/DFSearchTest.java?at=master>`_
 
 
 Remark (optional): It is actually possible to reduce the number of operations on the trail 
@@ -155,7 +160,7 @@ The sequence of operations becomes `push->push->A->push->D->pop->E->pop->push->B
 Domain with an arbitrary set of values
 =================================================================================
 
-Implement the missing constructor in `IntVarImpl.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/core/IntVarImpl.java?at=master>`_
+Implement the missing constructor in `IntVarImpl.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/core/IntVarImpl.java?at=master>`_
 
 
 .. code-block:: java
@@ -167,14 +172,14 @@ Implement the missing constructor in `IntVarImpl.java <https://bitbucket.org/psc
 
 This exercise is straightforward: just create a dense domain then remove the values not present in the set.
 
-Check that your implementation passes the tests `IntVarTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/core/IntVarTest.java?at=master>`_
+Check that your implementation passes the tests `IntVarTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/core/IntVarTest.java?at=master>`_
 
 
 Implement a domain iterator
 ======================================
 
 Many filtering algorithms require to iterate over the values of a domain.
-The `fillArray` method from `ReversibleSparseSet.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/minicp/reversible/ReversibleSparseSet.java?at=master>`_
+The `fillArray` method from `ReversibleSparseSet.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/minicp/reversible/ReversibleSparseSet.java?at=master>`_
 allows to fill an array with all the values present in the sparse-set relying on the very efficient 'System.arraycopy'.
 
 .. code-block:: java
@@ -204,14 +209,14 @@ safely iterate over this `dest` array and modifying the domain at the same time.
 
 To do:
 
-* Implement `public int fillArray(int [] dest)` in `IntVarImpl.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/core/IntVarImpl.java?at=master>`_.
-* Check that your implementation passes the tests `IntVarTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/core/IntVarTest.java?at=master>`_ add also add more tests.
+* Implement `public int fillArray(int [] dest)` in `IntVarImpl.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/core/IntVarImpl.java?at=master>`_.
+* Check that your implementation passes the tests `IntVarTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/core/IntVarTest.java?at=master>`_ add also add more tests.
 
 
 Implement a Custom Search
 =================================
 
-Modify the Quadratic Assignment Model `QAP.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/QAP.java?at=master>`_
+Modify the Quadratic Assignment Model `QAP.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/QAP.java?at=master>`_
 to implement a custom search strategy. A skeleton for a custom search is the following one:
 
 
@@ -241,7 +246,7 @@ to implement a custom search strategy. A skeleton for a custom search is the fol
 Experiment and modify LNS
 =================================================================
 
-Experiment the Quadratic Assignment Model with LNS `QAPLNS.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/QAPLNS.java?at=master>`_
+Experiment the Quadratic Assignment Model with LNS `QAPLNS.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/QAPLNS.java?at=master>`_
 
 * Does it converge faster to good solutions than the standard DFS ? Use the larger instance with 25 facilities.
 * What is the impact of the percentage of variables relaxed (experiment with 5, 10 and 20%) ?
@@ -255,7 +260,7 @@ Element constraint
 =================================
 
 
-Implement `Element1D.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Element1D.java?at=master>`_
+Implement `Element1D.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Element1D.java?at=master>`_
 
 
 An element constraint is to index an array `T` by an index variable `x` and link the result with a variable `z`.
@@ -277,7 +282,7 @@ but is violated for
     x = 3, z = 3
 
 
-Check that your implementation passes the tests `Element1DTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/Element1DTest.java?at=master>`_
+Check that your implementation passes the tests `Element1DTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/Element1DTest.java?at=master>`_
 
 
 Two possibilities:
@@ -356,9 +361,9 @@ and the red link is deleted.
 This filtering was introduced in [TSP1998]_ for solving the TSP with CP.
 
 
-Implement `Circuit.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Circuit.java?at=master>`_.
+Implement `Circuit.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Circuit.java?at=master>`_.
 
-Check that your implementation passes the tests `CircuitTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/CircuitTest.java?at=master>`_.
+Check that your implementation passes the tests `CircuitTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/CircuitTest.java?at=master>`_.
 
 
 .. [TSP1998] Pesant, G., Gendreau, M., Potvin, J. Y., & Rousseau, J. M. (1998). An exact constraint logic programming algorithm for the traveling salesman problem with time windows. Transportation Science, 32(1), 12-29.
@@ -367,7 +372,7 @@ Check that your implementation passes the tests `CircuitTest.java <https://bitbu
 Custom search strategy
 =================================
 
-Modify `TSP.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/TSP.java?at=master>`_
+Modify `TSP.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/TSP.java?at=master>`_
 to implement a custom search strategy.
 A skeleton is the following one:
 
@@ -417,18 +422,18 @@ By how much did you reduce the computation time ?
 LNS
 =================================================================
 
-Modify further `TSP.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/TSP.java?at=master>`_
+Modify further `TSP.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/TSP.java?at=master>`_
 to implement a LNS search.
 Use the larger 17x17 distance matrix for this exercise.
 
 What you should do:
 
 
-* Record the assignment of the current best solution. Hint: use the `onSolution` call-back on the `DFSearch`object.
+* Record the assignment of the current best solution. Hint: use the `onSolution` call-back on the `DFSearch` object.
 * Implement a restart strategy fixing randomly '10%' of the variables to their value in the current best solution.
 * Each restart has a failure limit of 100 backtracks.
 
-An example of LNS search is given in  `QAPLNS.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/QAPLNS.java?at=master>`_.
+An example of LNS search is given in  `QAPLNS.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/QAPLNS.java?at=master>`_.
 You can simply copy/paste/modify this implementation for the TSP.
 
 
@@ -484,11 +489,8 @@ CT works in two steps:
   domain, the value `v` can be removed if it's not used by any supported tuple.
 
 
-
-
-
 Your task is to terminate the implementation in
-`TableCT.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/TableCT.java?at=master>`_.
+`TableCT.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/TableCT.java?at=master>`_.
 
 
 `TableCT` maintains for each pair
@@ -555,8 +557,11 @@ You "simply" have to compute, for each call to `propagate()`:
 * You can now intersect the set of globally supported tuples with each variable/value pair in `supports`.
   If the value supports no tuple (i.e. the intersection is empty) then it can be removed.
 
-Make sure you pass all the tests `TableTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/TableTest.java?at=master>`_.
+Make sure you pass all the tests `TableTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/TableTest.java?at=master>`_.
 
+
+
+.. [CT2016] Demeulenaere, J., Hartert, R., Lecoutre, C., Perez, G., Perron, L., Régin, J. C., & Schaus, P. (2016, September). Compact-table: Efficiently filtering table constraints with reversible sparse bit-sets. In International Conference on Principles and Practice of Constraint Programming (pp. 207-223). Springer.
 
 Sequencer Combinator
 ======================
@@ -580,7 +585,7 @@ This can be achieved as follows
     makeDfs(and(firstFail(x),firstFail(y)))
 
 
-The `and` factory method creates a  `Sequencer.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/search/Sequencer.java?at=master>`_.
+The `and` factory method creates a  `Sequencer.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/search/Sequencer.java?at=master>`_.
 You must complete its implementation.
 
 Eternity Problem
@@ -589,7 +594,7 @@ Eternity Problem
 Fill in all the gaps in order to solve the Eternity II problem.
 
 Your task is to terminate the implementation in
-`Eternity.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/Eternity.java?at=master>`_.
+`Eternity.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/Eternity.java?at=master>`_.
 
 * Create the table 
 * Model the problem using table constraints
@@ -599,7 +604,7 @@ Your task is to terminate the implementation in
 Element constraint with array of variables
 ==================================================
 
-Implement `Element1DVar.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Element1DVar.java?at=master>`_
+Implement `Element1DVar.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Element1DVar.java?at=master>`_
 
 
 We have already seen the element constraint to index an array of integers `T` by an index variable `x` and link the result with a variable `z`: `T[x]=z`.
@@ -613,20 +618,20 @@ Two directions of implementation are
 2. The hybrid domain-bound consistent one, assuming the domain of `z` is a full range but not the domain of `x` in which you can create holes (you can start with this one, easier than the full domain consistent one).
 
 
-Check that your implementation passes the tests `Element1DVarTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/Element1DVarTest.java?at=master>`_
+Check that your implementation passes the tests `Element1DVarTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/Element1DVarTest.java?at=master>`_
 Those tests are not checking that the filtering is domain-consistent. Write additional tests to check the domain consistency.
 
 The stable mariage problem
 ===========================
 
-Complete the partial model `StableMariage.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/StableMariage.java?at=master>`_
+Complete the partial model `StableMariage.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/StableMariage.java?at=master>`_
 This model makes use of the `Element1DVar` constraint you have just implemented and is also a good example of manipulation of logical and reified constraints.
 Check that you discover the 6 solutions.
 
 The absolute value constraint
 ==============================
 
-Implement `Absolute.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Absolute.java?at=master>`_
+Implement `Absolute.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Absolute.java?at=master>`_
 
 
 Again you will realize that several directions of implementation are possible
@@ -635,47 +640,47 @@ Again you will realize that several directions of implementation are possible
 2. An hybrid domain-bound consistent one
 
 
-Check that your implementation passes the tests `AbsoluteTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/AbsoluteTest.java?at=master>`_
+Check that your implementation passes the tests `AbsoluteTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/AbsoluteTest.java?at=master>`_
 
 
 The maximum constraint
 ==============================
 
-Implement `Maximum.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Maximum.java?at=master>`_
+Implement `Maximum.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Maximum.java?at=master>`_
 
 
 Implement a bound-consistent filtering algorithm
 
 
-Check that your implementation passes the tests `MaximumTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/MaximumTest.java?at=master>`_
+Check that your implementation passes the tests `MaximumTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/MaximumTest.java?at=master>`_
 
 
 Compact table algorithm for table constraints with short tuples
 ==================================================================
 
-Implement `ShortTableCT.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/ShortTableCT.java?at=master>`_
+Implement `ShortTableCT.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/ShortTableCT.java?at=master>`_
 
 
 Of course you should get a strong inspiration from the 
-`TableCT.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/TableCT.java?at=master>`_
+`TableCT.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/TableCT.java?at=master>`_
 implementation you did in a previous exercise.
 
 
 
-Check that your implementation passes the tests `ShortTableTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/ShortTableTest.java?at=master>`_
+Check that your implementation passes the tests `ShortTableTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/ShortTableTest.java?at=master>`_
 
 
 Compact table algorithm for negative table constraints
 ==================================================================
 
-Implement `NegTableCT.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/NegTableCT.java?at=master>`_
+Implement `NegTableCT.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/NegTableCT.java?at=master>`_
 
 
 Of course you should get a strong inspiration from the 
-`TableCT.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/TableCT.java?at=master>`_
+`TableCT.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/TableCT.java?at=master>`_
 implementation you did in a previous exercise.
 
-Check that your implementation passes the tests `NegTableTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/NegTableTest.java?at=master>`_
+Check that your implementation passes the tests `NegTableTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/NegTableTest.java?at=master>`_
 
 
 
@@ -726,7 +731,7 @@ It corresponds to the instantiation of the Cumulative constraint:
 
 
 
-Implement `CumulativeDecomp.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/CumulativeDecomp.java?at=master>`_.
+Implement `CumulativeDecomp.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/CumulativeDecomp.java?at=master>`_.
 This is a decomposition or reformulation of the cumulative constraint
 in terms of simple arithmetic and logical constraints as
 used in the above equation to describe its semantic.
@@ -773,7 +778,7 @@ sure `overlaps` has the intended meaning.
         }
 
 
-Check that your implementation passes the tests `CumulativeDecompTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/CumulativeDecompTest.java?at=master>`_.
+Check that your implementation passes the tests `CumulativeDecompTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/CumulativeDecompTest.java?at=master>`_.
 
 
 
@@ -808,7 +813,7 @@ The earliest time  is 7.
 **Profiles**
 
 
-We provide a class `Profile.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Profile.java?at=master>`_
+We provide a class `Profile.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Profile.java?at=master>`_
 that is able to build efficiently a resource profile given an array of rectangles in input.
 A rectangle has three attributes: `start`, `end`, `height` as shown next:
 
@@ -819,7 +824,7 @@ A rectangle has three attributes: `start`, `end`, `height` as shown next:
 
 A profile is nothing else than a sequence of rectangles.
 An example of profile is given next. It is built from three input rectangles provided to the constructor
-of `Profile.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Profile.java?at=master>`_.
+of `Profile.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Profile.java?at=master>`_.
 The profile consists in 7 contiguous rectangles.
 The first rectangle `R0` starts at `Integer.MIN_VALUE` with a height of zero
 and the last rectangle `R6` ends in `Integer.MAX_VALUE` also with a height of zero.
@@ -834,9 +839,9 @@ the property that any time point falls on one rectangle of the profile.
 
 
 Make sure you understand how to build and manipulate
-`Profile.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Profile.java?at=master>`_.
+`Profile.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Profile.java?at=master>`_.
 
-Have a quick look at `ProfileTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/ProfileTest.java?at=master>`_
+Have a quick look at `ProfileTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/ProfileTest.java?at=master>`_
 for some examples of profile construction.
 
 
@@ -844,7 +849,7 @@ for some examples of profile construction.
 
 
 
-Implement `Cumulative.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Cumulative.java?at=master>`_.
+Implement `Cumulative.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Cumulative.java?at=master>`_.
 You have three TODO tasks:
 
 1. Build the optimistic profile from the mandatory parts.
@@ -890,7 +895,7 @@ activity (if needed) to the earliest slot when it can be executed without violat
         }
 
 
-Check that your implementation passes the tests `CumulativeTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/CumulativeTest.java?at=master>`_.
+Check that your implementation passes the tests `CumulativeTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/CumulativeTest.java?at=master>`_.
 
 
 .. [TT2015] Gay, S., Hartert, R., & Schaus, P. (2015, August). Simple and scalable time-table filtering for the cumulative constraint. In International Conference on Principles and Practice of Constraint Programming (pp. 149-157). Springer.
@@ -898,7 +903,7 @@ Check that your implementation passes the tests `CumulativeTest.java <https://bi
 
 
 The Resource-Constrained Project Scheduling Problem (RCPSP)
-=======================================================
+================================================================
 
 A set of activities must be executed on a set of resources.
 
@@ -906,7 +911,7 @@ A set of activities must be executed on a set of resources.
 Fill in all the gaps in order to solve the RCPSP problem.
 
 Your task is to terminate the implementation in
-`RCPSP.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/RCPSP.java?at=master>`_.
+`RCPSP.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/RCPSP.java?at=master>`_.
 
 * Create the cumulative constraint
 * Post the precedence constraint
@@ -924,34 +929,34 @@ The JobShop Problem and disjunctive resource
 
 Your task is to make the disjunctive constraint more efficient than using the cumulative constraint with unary capacity.
 
-* Implement the constraint `IsLessOrEqualVar.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/IsLessOrEqualVar.java?at=master>`_
+* Implement the constraint `IsLessOrEqualVar.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/IsLessOrEqualVar.java?at=master>`_
   for the reification `b iff x <= y`.
   This one will be useful implementing the decomposition for the disjunctive constraint..
-* Test your implementation in `IsLessOrEqualVarTest.java. <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/IsLessOrEqualVarTest.java?at=master>`_
-* Implement the decompostion with reified constraint for the `Disjunctive.java. <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_ `
+* Test your implementation in `IsLessOrEqualVarTest.java. <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/IsLessOrEqualVarTest.java?at=master>`_
+* Implement the decompostion with reified constraint for the `Disjunctive.java. <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_ `
 * Test if (as expected) this decomposition prunes more than the formulation with the TimeTable filtering for the cumulative constraint.
-  Observe on the `JobShop.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/JobShop.java?at=master>`_ problem if the number of backtracks is reduced with the decomposition instead of the formulation with the cumulative.
+  Observe on the `JobShop.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/JobShop.java?at=master>`_ problem if the number of backtracks is reduced with the decomposition instead of the formulation with the cumulative.
   Test for instance on the small instance `data/jobshop/sascha/jobshop-4-4-2` with 4 jobs, 4 machines, 16 activities.
-* Read and make sure you understand the implementation  `ThetaTree.java. <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/ThetaTree.java?at=master>`_
-  Some unit-tests are implemented in `ThetaTreeTest.java. <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/ThetaTreeTest.java?at=master>`_
+* Read and make sure you understand the implementation  `ThetaTree.java. <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/ThetaTree.java?at=master>`_
+  Some unit-tests are implemented in `ThetaTreeTest.java. <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/ThetaTreeTest.java?at=master>`_
   To make sure you understand it, add a unit-test with 4 activities and compare the results with a manual computation.
 * The overlad-checker, detectable precedences, not-first, edge-finding only filter one side of the activities.
-  To get the symmetrical filtering implement the mirroring activities trick similarly to `Cumulative.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Cumulative.java?at=master>`_.
-* Implement the overload-checker in `Disjunctive.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_
+  To get the symmetrical filtering implement the mirroring activities trick similarly to `Cumulative.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Cumulative.java?at=master>`_.
+* Implement the overload-checker in `Disjunctive.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_
 * The overload-checker should already make a big difference to prune the search tree. Make sure that larger-job-shop instances are now accessible for instance the `data/jobshop/sascha/jobshop-6-6-0` should now become easy to solve.
-* Implement the detectable-precedence in `Disjunctive.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_
-* Implement the not-first-not last in `Disjunctive.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_
-* Make sure you pass the tests `DisjunctiveTest.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/DisjunctiveTest.java?at=master>`_
-* (optional for a bonus) Implement the edge-finding in `Disjunctive.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_ (you will also need to implement the ThetaLambdaTree data-structure).
+* Implement the detectable-precedence in `Disjunctive.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_
+* Implement the not-first-not last in `Disjunctive.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_
+* Make sure you pass the tests `DisjunctiveTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/DisjunctiveTest.java?at=master>`_
+* (optional for a bonus) Implement the edge-finding in `Disjunctive.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Disjunctive.java?at=master>`_ (you will also need to implement the ThetaLambdaTree data-structure).
 
 
 The logical or constraint and watched literals
 =======================================================
 
 
-* Implement the constraint `Or.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Or.java?at=master>`_
+* Implement the constraint `Or.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/Or.java?at=master>`_
   for modeling the logical clause constraint: `(x[0] or x[1] or x[2] ... x[n-1])`.
-* Test your implementation in `OrTest.java. <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/OrTest.java?at=master>`_
+* Test your implementation in `OrTest.java. <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/OrTest.java?at=master>`_
 * The implementation should use the watched literals technique.
 
 
@@ -982,9 +987,9 @@ The logical reified or constraint
 =======================================================
 
 
-* Implement the constraint `IsOr.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/IsOr.java?at=master>`_
+* Implement the constraint `IsOr.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/IsOr.java?at=master>`_
   for modeling the logical clause constraint: `b iff (x[0] or x[1] or x[2] ... x[n-1])`.
-* Test your implementation in `IsOrTest.java. <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/IsOrTest.java?at=master>`_
+* Test your implementation in `IsOrTest.java. <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/IsOrTest.java?at=master>`_
 * In case `b` is true, you can post your previous `Or` constraint
 (create it once and forall and post it when needed to avoid creating objects during search that would trigger Garbage Collection).
 
@@ -992,7 +997,7 @@ The logical reified or constraint
 Steel Mill Slab Problem: Modeling, redundant constraints and symmetry breaking
 ======================================================================================
 
-A number of TODO must be completed in `Steel.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/examples/Steel.java?at=master>`_
+A number of TODO must be completed in `Steel.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/examples/Steel.java?at=master>`_
 that will gradually improve the performance for solving this problem optimally.
 
 1. Model the objective function computing the total loss to be minimized. You should use element constraints to compute the loss
@@ -1023,8 +1028,8 @@ The objective here is to implement the filtering algorithm described in  [REGIN9
 to remove every impossible value for the `AllDifferent` constraint (Arc-Consistency).
 More precisely you must:
 
-* Implement the constraint `AllDifferentAC.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/AllDifferentAC.java?at=master>`_.
-* Test your implementation in `AllDifferentACTest.java. <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/engine/constraints/AllDifferentACTest.java?at=master>`_
+* Implement the constraint `AllDifferentAC.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/AllDifferentAC.java?at=master>`_.
+* Test your implementation in `AllDifferentACTest.java. <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/AllDifferentACTest.java?at=master>`_
 
 
 Régin's algorithm proceeds in four steps described in the following figure.
@@ -1041,10 +1046,10 @@ Régin's algorithm proceeds in four steps described in the following figure.
 
 The two main algorithmic building blocks are provided.
 
-* `MaximumMatching.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/engine/constraints/MaximumMatching.java?at=master>`_
+* `MaximumMatching.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/MaximumMatching.java?at=master>`_
   is a class that computes a maximum matching given an array of variables. Instantiate this class once and for all in the constructor
   then you should simply call `compute` in the `propagate` method.
-* `GraphUtil.java <https://bitbucket.org/pschaus/minicp/src/HEAD/src/main/java/minicp/util/GraphUtil.java?at=master>`_
+* `GraphUtil.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/util/GraphUtil.java?at=master>`_
   contains a static method with signature `public static int[] stronglyConnectedComponents(Graph graph)` to compute strongly connected
   components. The returned array gives from each node, the connected component id.
 
@@ -1081,7 +1086,7 @@ Discrepancy Limited Search (optional)
 Implement ``LimitedDiscrepancyBranching``, a branching that can wrap any branching
 to limit the discrepancy of the branching.
 
-Test your implementation in `LimitedDiscrepancyBranchingTest.java. <https://bitbucket.org/pschaus/minicp/src/HEAD/src/test/java/minicp/search/LimitedDiscrepancyBranchingTest.java?at=master>`_
+Test your implementation in `LimitedDiscrepancyBranchingTest.java. <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/search/LimitedDiscrepancyBranchingTest.java?at=master>`_
 
 
 Conflict based search strategy

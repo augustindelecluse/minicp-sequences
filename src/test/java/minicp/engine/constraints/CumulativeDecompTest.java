@@ -152,14 +152,14 @@ public class CumulativeDecompTest extends SolverTest {
 
 
     private static int[] discreteProfile(Rectangle... rectangles) {
-        int min = Arrays.stream(rectangles).filter(r -> r.height > 0).map(r -> r.start).min(Integer::compare).get();
-        int max = Arrays.stream(rectangles).filter(r -> r.height > 0).map(r -> r.end).max(Integer::compare).get();
+        int min = Arrays.stream(rectangles).filter(r -> r.height() > 0).map(r -> r.start()).min(Integer::compare).get();
+        int max = Arrays.stream(rectangles).filter(r -> r.height() > 0).map(r -> r.end()).max(Integer::compare).get();
         int[] heights = new int[max - min];
         // discrete profileRectangles of rectangles
         for (Rectangle r : rectangles) {
-            if (r.height > 0) {
-                for (int i = r.start; i < r.end; i++) {
-                    heights[i - min] += r.height;
+            if (r.height() > 0) {
+                for (int i = r.start(); i < r.end(); i++) {
+                    heights[i - min] += r.height();
                 }
             }
         }

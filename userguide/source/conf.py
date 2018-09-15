@@ -26,9 +26,7 @@ import sys, os
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 
-import javalink
-extensions = ['sphinx.ext.todo', 'sphinx.ext.imgmath', 'sphinx.ext.viewcode', 'javalink']
-
+extensions = ['sphinx.ext.todo', 'sphinx.ext.imgmath', 'sphinx.ext.viewcode']
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -133,7 +131,7 @@ html_favicon = "_static/favicon.ico"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static','../../target/site/apidocs/']
+html_static_path = ['_static/apidocs','../../target/site/apidocs/']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -255,16 +253,3 @@ texinfo_documents = [
 #texinfo_show_urls = 'footnote'
 
 
-# -- Options for java link ------------------------------------------------
-
-javalink_classpath = [
-    javalink.find_rt_jar(),
-    #'/Users/pschaus/Documents/IdeaProjects/minicp/target/scala-2.10/classes/'
-    '../../target/classes/'
-]
-
-javalink_docroots = [
-    'http://docs.oracle.com/javase/7/docs/api/',
-    #{'root': './api','base': './api'}
-        {'root': '../../target/site/apidocs/', 'base': './_static/'}
-]

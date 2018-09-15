@@ -23,6 +23,10 @@ import minicp.util.exception.NotImplementedException;
 import java.security.InvalidParameterException;
 import java.util.Set;
 
+/**
+ * Implementation of a variable
+ * with a {@link SparseSetDomain}.
+ */
 public class IntVarImpl implements IntVar {
 
     private Solver cp;

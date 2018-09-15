@@ -30,7 +30,6 @@ import static minicp.cp.Factory.minus;
  */
 public class NegTableCT extends AbstractConstraint {
 
-    private Solver cp;
     private IntVar[] x; //variables
     private int[][] table; //the table
     //supports[i][v] is the set of tuples supported by x[i]=v
@@ -57,7 +56,7 @@ public class NegTableCT extends AbstractConstraint {
             if (!duplicate[i]) {
                 tableList.add(table[i]);
                 for (int j = i + 1; j < table.length; j++) {
-                    if (i != j & !duplicate[j]) {
+                    if (i != j && !duplicate[j]) {
                         boolean same = true;
                         for (int k = 0; k < x.length; k++) {
                             same &= table[i][k] == table[j][k];

@@ -32,7 +32,7 @@ public class CopyMap<K, V> implements Storage, StateMap<K, V> {
     class CopyMapStateEntry implements StateEntry {
         private final Map<K, V> map;
 
-        public CopyMapStateEntry(Map<K, V> map) {
+        CopyMapStateEntry(Map<K, V> map) {
             this.map = map;
         }
 
@@ -42,7 +42,7 @@ public class CopyMap<K, V> implements Storage, StateMap<K, V> {
     }
     // END STRIP
 
-    protected Map<K, V> map;
+    private Map<K, V> map;
 
     protected CopyMap() {
         // STUDENT throw new NotImplementedException("CopyMap");

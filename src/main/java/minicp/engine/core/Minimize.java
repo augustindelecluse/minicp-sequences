@@ -13,12 +13,14 @@
  * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.engine.constraints;
+package minicp.engine.core;
 
-import minicp.engine.core.IntVar;
 import minicp.search.Objective;
 import minicp.util.exception.InconsistencyException;
 
+/**
+ * Minimization objective function
+ */
 public class Minimize implements Objective {
     private int bound = Integer.MAX_VALUE;
     private final IntVar x;

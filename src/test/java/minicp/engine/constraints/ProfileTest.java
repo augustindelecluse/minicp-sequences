@@ -39,7 +39,7 @@ public class ProfileTest {
         }
         Rectangle [] rects = p.rectangles();
         for (int i = 0; i < rects.length - 1; i++) {
-            if (rects[i].end != rects[i + 1].start) {
+            if (rects[i].end() != rects[i + 1].start()) {
                 System.out.println("not continuous rectangles");
                 return false;
             }
@@ -49,14 +49,14 @@ public class ProfileTest {
 
 
     private int[] discreteProfile(Rectangle... rectangles) {
-        int min = Arrays.stream(rectangles).filter(r -> r.height > 0).map(r -> r.start).min(Integer::compare).get();
-        int max = Arrays.stream(rectangles).filter(r -> r.height > 0).map(r -> r.end).max(Integer::compare).get();
+        int min = Arrays.stream(rectangles).filter(r -> r.height() > 0).map(r -> r.start()).min(Integer::compare).get();
+        int max = Arrays.stream(rectangles).filter(r -> r.height() > 0).map(r -> r.end()).max(Integer::compare).get();
         int[] heights = new int[max - min];
         // discrete profileRectangles of rectangles
         for (Rectangle r : rectangles) {
-            if (r.height > 0) {
-                for (int i = r.start; i < r.end; i++) {
-                    heights[i - min] += r.height;
+            if (r.height() > 0) {
+                for (int i = r.start(); i < r.end(); i++) {
+                    heights[i - min] += r.height();
                 }
             }
         }

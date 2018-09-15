@@ -20,14 +20,14 @@ import minicp.state.StateSparseSet;
 
 
 /**
- * Immplementation of a domain with a sparse-set
+ * Implementation of a domain with a sparse-set
  */
 public class SparseSetDomain implements IntDomain {
     private StateSparseSet domain;
 
 
     public SparseSetDomain(StateManager sm, int min, int max) {
-        domain = new StateSparseSet(sm, max - min + 1,min);
+        domain = new StateSparseSet(sm, max - min + 1, min);
     }
 
     @Override

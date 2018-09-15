@@ -161,9 +161,9 @@ public class Steel {
                         if (xs == null) return EMPTY;
                         else {
                             int maxUsed = -1;
-                            for (IntVar x_ : x)
-                                if (x_.isBound() && x_.min() > maxUsed)
-                                    maxUsed = x_.min();
+                            for (IntVar xi : x)
+                                if (xi.isBound() && xi.min() > maxUsed)
+                                    maxUsed = xi.min();
                             Procedure[] branches = new Procedure[maxUsed + 2];
                             for (int i = 0; i <= maxUsed + 1; i++) {
                                 final int slab = i;

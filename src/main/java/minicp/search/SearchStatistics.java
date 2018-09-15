@@ -29,20 +29,42 @@ public class SearchStatistics {
     private boolean completed = false;
 
     public String toString() {
-        return "\n\t#choice: " + nNodes +
-                "\n\t#fail: " + nFailures +
-                "\n\t#sols : " + nSolutions +
-                "\n\tcompleted : " + completed + "\n";
+        return "\n\t#choice: " + nNodes
+                + "\n\t#fail: " + nFailures
+                + "\n\t#sols : " + nSolutions
+                + "\n\tcompleted : " + completed + "\n";
     }
 
-    public void incrFailures() { nFailures++; }
-    public void incrNodes() { nNodes++; }
-    public void incrSolutions() { nSolutions++; }
-    public void setCompleted() { completed = true; }
+    public void incrFailures() {
+        nFailures++;
+    }
 
-    public int numberOfFailures() { return nFailures; }
-    public int numberOfNodes() { return nNodes; }
-    public int numberOfSolutions() { return nSolutions; }
-    public boolean isCompleted() { return completed; }
+    public void incrNodes() {
+        nNodes++;
+    }
+
+    public void incrSolutions() {
+        nSolutions++;
+    }
+
+    public void setCompleted() {
+        completed = true;
+    }
+
+    public int numberOfFailures() {
+        return nFailures;
+    }
+
+    public int numberOfNodes() {
+        return nNodes;
+    }
+
+    public int numberOfSolutions() {
+        return nSolutions;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
 
 }

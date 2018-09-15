@@ -25,6 +25,9 @@ import minicp.util.exception.InconsistencyException;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+/**
+ * Sum Constraint
+ */
 public class Sum extends AbstractConstraint {
     private int[] unBounds;
     private StateInt nUnBounds;
@@ -55,7 +58,7 @@ public class Sum extends AbstractConstraint {
      */
     public Sum(IntVar[] x, int y) {
         this(Arrays.copyOf(x, x.length + 1));
-        this.x[x.length] = new IntVarImpl(cp, -y, -y);
+        this.x[x.length] = Factory.makeIntVar(getSolver(), -y, -y);
     }
 
     /**
@@ -69,8 +72,8 @@ public class Sum extends AbstractConstraint {
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
-        nUnBounds = cp.getStateManager().makeStateInt(n);
-        sumBounds = cp.getStateManager().makeStateInt(0);
+        nUnBounds = getSolver().getStateManager().makeStateInt(n);
+        sumBounds = getSolver().getStateManager().makeStateInt(0);
         unBounds = IntStream.range(0, n).toArray();
     }
 

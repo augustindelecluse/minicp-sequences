@@ -74,7 +74,7 @@ public class Cumulative extends AbstractConstraint {
 
         if (postMirror) {
             IntVar[] startMirror = Factory.makeIntVarArray(start.length, i -> minus(end[i]));
-            cp.post(new Cumulative(startMirror, duration, demand, capa, false), false);
+            getSolver().post(new Cumulative(startMirror, duration, demand, capa, false), false);
         }
 
         propagate();
@@ -87,7 +87,7 @@ public class Cumulative extends AbstractConstraint {
         for (int i = 0; i < profile.size(); i++) {
             // STUDENT throw new NotImplementedException("Cumulative");
             // BEGIN STRIP
-            if (profile.get(i).height > capa) {
+            if (profile.get(i).height() > capa) {
                 throw InconsistencyException.INCONSISTENCY;
             }
             // END STRIP
@@ -107,10 +107,10 @@ public class Cumulative extends AbstractConstraint {
                 // BEGIN STRIP
                 int t = start[i].min();
                 while (j < profile.size()
-                        && profile.get(j).start < Math.min(t + duration[i], start[i].max())) {
+                        && profile.get(j).start() < Math.min(t + duration[i], start[i].max())) {
                     if (capa - demand[i]
-                          <  profile.get(j).height) {
-                        t = Math.min(profile.get(j).end, start[i].max());
+                          <  profile.get(j).height()) {
+                        t = Math.min(profile.get(j).end(), start[i].max());
                     }
                     j++;
                 }

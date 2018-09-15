@@ -50,7 +50,7 @@ public class InputReader {
                         throw new RuntimeException("End of file");
                     }
                     tokenizer = new StringTokenizer(line);
-                } while (line != null && !tokenizer.hasMoreTokens());
+                } while (!tokenizer.hasMoreTokens());
 
             } catch (IOException e) {
                 throw new RuntimeException(e.toString());
@@ -60,7 +60,7 @@ public class InputReader {
     }
 
     public int[][] getMatrix(int n, int m) throws RuntimeException {
-        int [][] matrix = new int[n][m];
+        int[][] matrix = new int[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 matrix[i][j] = getInt();
@@ -68,7 +68,6 @@ public class InputReader {
         }
         return matrix;
     }
-
 
 
     public Integer[] getIntLine() throws RuntimeException {
@@ -82,7 +81,7 @@ public class InputReader {
                         throw new RuntimeException("End of file");
                     }
                     tokenizer = new StringTokenizer(line);
-                } while (line != null && !tokenizer.hasMoreTokens());
+                } while (!tokenizer.hasMoreTokens());
 
             } catch (IOException e) {
                 throw new RuntimeException(e.toString());
@@ -106,7 +105,7 @@ public class InputReader {
                         throw new RuntimeException("End of file");
                     }
                     tokenizer = new StringTokenizer(in.readLine());
-                } while (line != null && !tokenizer.hasMoreTokens());
+                } while (!tokenizer.hasMoreTokens());
 
             } catch (IOException e) {
                 throw new RuntimeException(e.toString());

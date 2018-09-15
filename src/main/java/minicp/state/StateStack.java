@@ -24,8 +24,8 @@ import java.util.ArrayList;
  */
 public class StateStack<E> {
 
-    StateInt size;
-    ArrayList<E> stack;
+    private StateInt size;
+    private ArrayList<E> stack;
 
     /**
      * Creates a restorable stack.

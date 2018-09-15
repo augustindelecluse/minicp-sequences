@@ -20,6 +20,9 @@ import minicp.engine.core.BoolVar;
 import minicp.state.StateInt;
 import minicp.util.exception.NotImplementedException;
 
+/**
+ * Reified logical or constraint
+ */
 public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
 
     private final BoolVar b;
@@ -31,6 +34,14 @@ public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
 
     private final Or or;
 
+    /**
+     * Creates a constraint such that
+     * the boolean b is true if and only if
+     * at least variable in x is true.
+     *
+     * @param b the boolean that is true if at least one variable in x is true
+     * @param x an non empty array of variables
+     */
     public IsOr(BoolVar b, BoolVar[] x) {
         super(b.getSolver());
         this.b = b;
@@ -38,7 +49,7 @@ public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
         this.n = x.length;
         or = new Or(x);
 
-        nUnBounds = cp.getStateManager().makeStateInt(n);
+        nUnBounds = getSolver().getStateManager().makeStateInt(n);
         unBounds = new int[n];
         for (int i = 0; i < n; i++) {
             unBounds[i] = i;
@@ -60,7 +71,7 @@ public class IsOr extends AbstractConstraint { // b <=> x1 or x2 or ... xn
         // BEGIN STRIP
         if (b.isTrue()) {
             setActive(false);
-            cp.post(or, false);
+            getSolver().post(or, false);
         } else if (b.isFalse()) {
             for (BoolVar xi : x) {
                 xi.assign(false);

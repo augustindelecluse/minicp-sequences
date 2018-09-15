@@ -29,7 +29,7 @@ import minicp.util.exception.NotImplementedException;
  */
 public class Element1D extends AbstractConstraint {
 
-    private final int [] t;
+    private final int[] t;
     private final IntVar y;
     private final IntVar z;
 
@@ -53,8 +53,8 @@ public class Element1D extends AbstractConstraint {
         // BEGIN STRIP
         int[][] t2 = new int[1][t.length];
         System.arraycopy(t, 0, t2[0], 0, t.length);
-        Constraint c = new Element2D(t2, Factory.makeIntVar(cp,0,0),y,z);
-        cp.post(c,false);
+        Constraint c = new Element2D(t2, Factory.makeIntVar(getSolver(), 0, 0), y, z);
+        getSolver().post(c, false);
         // END STRIP
     }
 }

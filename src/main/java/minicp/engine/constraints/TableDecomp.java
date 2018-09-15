@@ -41,7 +41,6 @@ public class TableDecomp extends AbstractConstraint {
         super(x[0].getSolver());
         this.x = x;
         this.table = table;
-        Math.ulp(2.2);
     }
 
     @Override

@@ -25,8 +25,6 @@ import java.util.Queue;
  */
 public interface Constraint {
 
-    void schedule(Queue<Constraint> q);
-
     /**
      * Initializes the constraint when it is posted to the solver.
      */

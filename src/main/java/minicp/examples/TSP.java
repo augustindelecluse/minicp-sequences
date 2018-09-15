@@ -39,7 +39,7 @@ public class TSP {
 
         int n = reader.getInt();
 
-        int[][] distanceMatrix = reader.getMatrix(n,n);
+        int[][] distanceMatrix = reader.getMatrix(n, n);
 
         Solver cp = makeSolver(false);
         IntVar[] succ = makeIntVarArray(cp, n, n);

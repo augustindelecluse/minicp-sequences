@@ -91,7 +91,7 @@ public class Absolute extends AbstractConstraint {
             y.removeAbove(maxAbs);
             x.removeAbove(y.max());
             x.removeBelow(-y.max());
-            while (!x.contains(y.min()) & !x.contains(-y.min())) {
+            while (!x.contains(y.min()) && !x.contains(-y.min())) {
                 y.remove(y.min());
             }
         }

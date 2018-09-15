@@ -32,8 +32,10 @@ import java.util.Stack;
  */
 public class Trailer implements StateManager {
 
-    class Backup extends Stack<StateEntry> {
-        Backup() {}
+    static class Backup extends Stack<StateEntry> {
+        Backup() {
+        }
+
         void restore() {
             for (StateEntry se : this)
                 se.restore();
@@ -53,7 +55,7 @@ public class Trailer implements StateManager {
     }
 
     private void notifyRestore() {
-        for (Procedure l: onRestoreListeners) {
+        for (Procedure l : onRestoreListeners) {
             l.call();
         }
     }
@@ -63,7 +65,9 @@ public class Trailer implements StateManager {
         onRestoreListeners.add(listener);
     }
 
-    public long getMagic() { return magic;}
+    public long getMagic() {
+        return magic;
+    }
 
     public void pushState(StateEntry entry) {
         current.push(entry);
@@ -113,12 +117,12 @@ public class Trailer implements StateManager {
 
     @Override
     public StateInt makeStateInt(int initValue) {
-        return new TrailInt(this,initValue);
+        return new TrailInt(this, initValue);
     }
 
     @Override
     public StateBool makeStateBool(boolean initValue) {
-        return new TrailBool(this,initValue);
+        return new TrailBool(this, initValue);
     }
 
     @Override

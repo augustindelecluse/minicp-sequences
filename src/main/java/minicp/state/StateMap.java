@@ -35,7 +35,7 @@ public interface StateMap<K, V> {
      * @param k the key
      * @param v the value
      */
-    public void put(K k, V v);
+    void put(K k, V v);
 
     /**
      * Retrieves the value for a given key.
@@ -43,5 +43,5 @@ public interface StateMap<K, V> {
      * @param k the key
      * @return the value v if the entry (k,v) was previously put, null otherwise
      */
-    public V get(K k);
+    V get(K k);
 }

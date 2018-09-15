@@ -25,7 +25,7 @@ public class TrailInt implements StateInt {
     class StateEntryInt implements StateEntry {
         private final int v;
 
-        public StateEntryInt(int v) {
+        StateEntryInt(int v) {
             this.v = v;
         }
 

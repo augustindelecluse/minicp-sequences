@@ -48,16 +48,16 @@ public class Circuit extends AbstractConstraint {
         orig = new StateInt[x.length];
         lengthToDest = new StateInt[x.length];
         for (int i = 0; i < x.length; i++) {
-            dest[i] = cp.getStateManager().makeStateInt(i);
-            orig[i] = cp.getStateManager().makeStateInt(i);
-            lengthToDest[i] = cp.getStateManager().makeStateInt(0);
+            dest[i] = getSolver().getStateManager().makeStateInt(i);
+            orig[i] = getSolver().getStateManager().makeStateInt(i);
+            lengthToDest[i] = getSolver().getStateManager().makeStateInt(0);
         }
     }
 
 
     @Override
     public void post() {
-        cp.post(allDifferent(x));
+        getSolver().post(allDifferent(x));
         // TODO
         // Hint: use x[i].whenBind(...) to call the bind
         // STUDENT throw new NotImplementedException("Circuit");

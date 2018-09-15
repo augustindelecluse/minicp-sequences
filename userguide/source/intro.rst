@@ -6,7 +6,6 @@
 Preface
 ************
 
-
 This document is made for anyone who wants to learn
 constraint programming using using mini-cp as a support.
 
@@ -25,12 +24,22 @@ Mini-CP is voluntarily missing many features that you would find in a commercial
 The implementation, although inspired by state-of-the-art solvers is not focused on efficiency but rather on readability to convey the concepts as clearly as possible.
 Mini-CP is small (<1500 LOC excluding tests) and well tested.
 
+
+Java-Doc
+=======================================
+
+The `Javavadoc API <_static/apidocs/index.html>`_.
+
  
 Install mini-cp
 =======================================
 
-Minicp is available from bitbucket_.
-The `Javavadoc API <_static/index.html>`_.
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/VF_vkCnOp88?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+Minicp source-code is available from bitbucket_.
 
 **Using an IDE**
 
@@ -40,7 +49,7 @@ From IntelliJ_ you can simply import the project.
 
 .. code-block:: none
 
-    Open > (select pom.xml in the minicp directory)
+    Open > (select pom.xml in the minicp directory and open as new project)
 
 
 From Eclipse_ you can simply import the project.
@@ -57,12 +66,20 @@ Using maven_ command line you can do you can do:
 
 .. code-block:: none
 
-    $mvn compile
-    $mvn test
+    $mvn compile # compile all the project
+    $mvn test    # run all the test suite
+
+Some other useful commands
+
+.. code-block:: none
+
+    $mvn checkstyle:checktyle   # generates a report in target/site/checkstyle.html
+    $mvn findbugs:gui           # opens a gui with potential source of bugs in your code
+    $mvn jacoco:report          # creates a cover report in target/site/jacoco/index.html
+    $mvn javadoc:javadoc        # creates javadoc in target/site/apidocs/index.html
 
 
-
-.. _bitbucket: https://bitbucket.org/pschaus/minicp
+.. _bitbucket: https://bitbucket.org/minicp/minicp
 .. _IntelliJ: https://www.jetbrains.com/idea/
 .. _Eclipse: https://www.eclipse.org
 .. _maven: https://maven.apache.org

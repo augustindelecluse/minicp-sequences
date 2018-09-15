@@ -30,8 +30,8 @@ public class TrailMap<K, V> implements StateMap<K, V> {
 
     // STUDENT
     // BEGIN STRIP
-    Trailer trail;
-    Map<K, V> map = new IdentityHashMap<>();
+    private Trailer trail;
+    private Map<K, V> map = new IdentityHashMap<>();
     // END STRIP
 
     protected TrailMap(Trailer trail) {

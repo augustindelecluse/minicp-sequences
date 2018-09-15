@@ -18,10 +18,21 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 
+/**
+ * Not Equal constraint between two variables
+ */
 public class NotEqual extends AbstractConstraint {
     private final IntVar x, y;
     private final int c;
 
+    /**
+     * Creates a constraint such
+     * that {@code x != y + c}
+     * @param x the left member
+     * @param y the right memer
+     * @param c the offset value on y
+     * @see minicp.cp.Factory#notEqual(IntVar, IntVar, int)
+     */
     public NotEqual(IntVar x, IntVar y, int c) { // x != y + c
         super(x.getSolver());
         this.x = x;
@@ -29,6 +40,13 @@ public class NotEqual extends AbstractConstraint {
         this.c = c;
     }
 
+    /**
+     * Creates a constraint such
+     * that {@code x != y}
+     * @param x the left member
+     * @param y the right memer
+     * @see minicp.cp.Factory#notEqual(IntVar, IntVar)
+     */
     public NotEqual(IntVar x, IntVar y) { // x != y
         this(x, y, 0);
     }

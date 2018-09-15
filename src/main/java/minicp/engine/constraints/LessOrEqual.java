@@ -18,6 +18,9 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 
+/**
+ * Less or equal constraint between two variables
+ */
 public class LessOrEqual extends AbstractConstraint { // x <= y
 
     private final IntVar x;

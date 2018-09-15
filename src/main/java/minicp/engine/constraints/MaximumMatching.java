@@ -17,6 +17,10 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.IntVar;
 
+/**
+ * Compute and Maintain a Maximum Matching
+ * in the variable-value graph
+ */
 public class MaximumMatching {
 
     public static final int NONE = -Integer.MIN_VALUE;
@@ -122,9 +126,9 @@ public class MaximumMatching {
     private boolean findAlternatingPathFromVar(int i) {
         if (varSeen[i] != magic) {
             varSeen[i] = magic;
-            int mx = x[i].min();
-            int Mx = x[i].max();
-            for (int v = mx; v <= Mx; v++) {
+            int xMin = x[i].min();
+            int xMax = x[i].max();
+            for (int v = xMin; v <= xMax; v++) {
                 if (match[i] != v) {
                     if (x[i].contains(v)) {
                         if (findAlternatingPathFromVal(v)) {

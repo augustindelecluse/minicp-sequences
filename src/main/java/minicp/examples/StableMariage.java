@@ -49,8 +49,8 @@ public class StableMariage {
         // for each man, what is his ranking for the women (lower is better)
         InputReader reader = new InputReader("data/stable_mariage.txt");
         int n = reader.getInt();
-        int[][] rankWomen = reader.getMatrix(n,n);
-        int[][] rankMen = reader.getMatrix(n,n);
+        int[][] rankWomen = reader.getMatrix(n, n);
+        int[][] rankMen = reader.getMatrix(n, n);
 
         // you should get six solutions:
         /*
@@ -163,8 +163,8 @@ public class StableMariage {
      *         the relation "b1 implies b2" is true, false otehrwise.
      */
     private static BoolVar implies(BoolVar b1, BoolVar b2) {
-        IntVar not_b1 = plus(minus(b1), 1);
-        return isLargerOrEqual(sum(not_b1, b2), 1);
+        IntVar notB1 = plus(minus(b1), 1);
+        return isLargerOrEqual(sum(notB1, b2), 1);
     }
 }
 

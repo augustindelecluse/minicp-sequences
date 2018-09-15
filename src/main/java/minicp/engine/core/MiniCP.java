@@ -16,7 +16,6 @@
 package minicp.engine.core;
 
 import minicp.cp.Factory;
-import minicp.engine.constraints.Minimize;
 import minicp.search.Objective;
 import minicp.state.StateManager;
 import minicp.state.StateStack;
@@ -49,13 +48,10 @@ public class MiniCP implements Solver {
     }
 
     public void schedule(Constraint c) {
-        c.schedule(propagationQueue);
-        /*
         if (c.isActive() && !c.isScheduled()) {
             c.setScheduled(true);
             propagationQueue.add(c);
         }
-        */
     }
 
     @Override
