@@ -4,9 +4,9 @@
    :linenothreshold: 4
 
 
-########
-Mini-CP: A Minimalist Open-Source Solver to teach Constraint Programming
-########
+#####################################################
+Mini-CP: A lightweight Constraint Programming Solver
+#####################################################
 
 .. toctree::
    :maxdepth: 3
