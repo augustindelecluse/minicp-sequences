@@ -90,7 +90,6 @@ public class Trailer implements StateManager {
     public void restoreState() {
         current.restore();
         current = prior.pop();
-        magic++;
         notifyRestore();
     }
 
