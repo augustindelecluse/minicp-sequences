@@ -16,19 +16,19 @@ You are also welcome to report any mistake or bug.
 
 What is mini-cp
 =======================================
-The success minisat solver has largely contributed to the dissemination of (CDCL) SAT solvers. 
-Minisat has a neat and minimalist architecture that is well documented. 
+The success the MiniSAT solver has largely contributed to the dissemination of (CDCL) SAT solvers.
+The MiniSAT solver has a neat and minimalist architecture that is well documented.
 We believe the CP community is currently missing such a solver that would permit new-comers to demystify the internals of CP technology. 
 We introduce Mini-CP a white-box bottom-up teaching framework for CP implemented in Java. 
 Mini-CP is voluntarily missing many features that you would find in a commercial or complete open-source solver. 
 The implementation, although inspired by state-of-the-art solvers is not focused on efficiency but rather on readability to convey the concepts as clearly as possible.
-Mini-CP is small (<1500 LOC excluding tests) and well tested.
+Mini-CP is small and well tested.
 
 
 Java-Doc
 =======================================
 
-The `Javavadoc API <_static/apidocs/index.html>`_.
+The `Javavadoc API <https://minicp.bitbucket.io/apidocs/>`_.
 
  
 Install mini-cp
