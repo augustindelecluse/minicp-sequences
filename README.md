@@ -34,21 +34,25 @@ Installing Maven
 
 1. Unpack the archive where you would like to store the binaries, e.g.:
  - Unix-based operating systems (Linux, Solaris and Mac OS X)
-   > tar zxvf apache-maven-3.x.y.tar.gz   
-   
+   ```
+   tar zxvf apache-maven-3.x.y.tar.gz 
+   ```  
  - Windows
-   > unzip apache-maven-3.x.y.zip
-   
-2. A directory called "apache-maven-3.x.y" will be created.
+   ```
+   unzip apache-maven-3.x.y.zip
+   ```
+2. A directory called `apache-maven-3.x.y` will be created.
 3. Add the bin directory to your PATH, e.g.:
  - Unix-based operating systems (Linux, Solaris and Mac OS X)
-   > export PATH=/usr/local/apache-maven-3.x.y/bin:$PATH
-   
+   ```
+   export PATH=/usr/local/apache-maven-3.x.y/bin:$PATH
+   ```
  - Windows
-   > set PATH="c:\program files\apache-maven-3.x.y\bin";%PATH%
-   
-4. Make sure JAVA_HOME is set to the location of your JDK
-5. Run "mvn --version" to verify that it is correctly installed.
+   ```
+   set PATH="c:\program files\apache-maven-3.x.y\bin";%PATH%
+   ```
+4. Make sure `JAVA_HOME` is set to the location of your JDK
+5. Run `mvn --version` to verify that it is correctly installed.
 
 
 For complete documentation, see https://maven.apache.org/download.html#Installation
@@ -68,7 +72,7 @@ Using an IntelliJ idea editor
 --------------------------------------------------
 
 We recommend IntelliJ idea https://www.jetbrains.com/idea/download
-Simply do > File | Open Project (Alt + F + O) and specify the path to pom.xml
+Simply do > `File | Open Project (Alt + F + O)` and specify the path to `pom.xml`
 as explained here
 https://blog.jetbrains.com/idea/2008/03/opening-maven-projects-is-easy-as-pie/
 
