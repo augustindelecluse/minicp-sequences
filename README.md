@@ -16,20 +16,18 @@ can be found at www.bitbucket.org
 System Requirements
 -------------------
 
-JDK:
+* JDK:
  1.8 or above (this is to execute Maven - it still allows you to build against 1.3
  and prior JDK's).
-Memory:
+* Memory:
  No minimum requirement.
-Disk:
+* Disk:
  Approximately 10MB is required for the Maven installation itself. In addition to
  that, additional disk space will be used for your local Maven repository. The size
  of your local repository will vary depending on usage but expect at least 500MB.
-Operating System:
- Windows:
-   Windows 2000 or above.
- Unix based systems (Linux, Solaris and Mac OS X) and others:
-   No minimum requirement.
+* Operating System:
+ * Windows: Windows 2000 or above.
+ * Unix based systems (Linux, Solaris and Mac OS X) and others: No minimum requirement.
 
 Installing Maven
 ----------------
@@ -37,18 +35,24 @@ Installing Maven
 1) Unpack the archive where you would like to store the binaries, e.g.:
 
  Unix-based operating systems (Linux, Solaris and Mac OS X)
-   tar zxvf apache-maven-3.x.y.tar.gz
+ 
+   > tar zxvf apache-maven-3.x.y.tar.gz
+   
  Windows
-   unzip apache-maven-3.x.y.zip
+   
+   > unzip apache-maven-3.x.y.zip
 
 2) A directory called "apache-maven-3.x.y" will be created.
 
 3) Add the bin directory to your PATH, e.g.:
 
  Unix-based operating systems (Linux, Solaris and Mac OS X)
-   export PATH=/usr/local/apache-maven-3.x.y/bin:$PATH
+   
+   > export PATH=/usr/local/apache-maven-3.x.y/bin:$PATH
+   
  Windows
-   set PATH="c:\program files\apache-maven-3.x.y\bin";%PATH%
+   
+   > set PATH="c:\program files\apache-maven-3.x.y\bin";%PATH%
 
 4) Make sure JAVA_HOME is set to the location of your JDK
 
@@ -60,13 +64,16 @@ For complete documentation, see https://maven.apache.org/download.html#Installat
 CMD to Execute a model and running the test suite
 --------------------------------------------------
 
-> cd minicp/
-> mvn compile                                               # compile all the project
-> mvn exec:java -Dexec.mainClass="minicp.examples.NQueens"  # execute the n-queens model
-> mvn test                                                 # run all the test suite
+```
+ cd minicp/
+ mvn compile                                              # compile all the project
+ mvn exec:java -Dexec.mainClass="minicp.examples.NQueens" # execute the n-queens model
+ mvn test                                                 # run all the test suite
+```
 
 Using an IntelliJ idea editor
 --------------------------------------------------
+
 We recommend IntelliJ idea https://www.jetbrains.com/idea/download
 Simply do > File | Open Project (Alt + F + O) and specify the path to pom.xml
 as explained here
@@ -75,11 +82,12 @@ https://blog.jetbrains.com/idea/2008/03/opening-maven-projects-is-easy-as-pie/
 Content
 -------------
 
+```
 ./src/main/java/ contains the implementation of mini-cp
 ./src/main/java/minicp/examples/ contains some models
 ./src/test/java/ contains the test suite
 ./data/ contains the input instances used by some examples
-
+```
 
 
 
