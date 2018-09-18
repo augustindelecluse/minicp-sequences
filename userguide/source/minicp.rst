@@ -14,7 +14,7 @@ Slides and teaching material
 
 Slides 
 
-* `Tutorial <http://tinyurl.com/y8n4knhx>`_ given at CPAIOR17
+* `Tutorial <https://www.icloud.com/keynote/0E4e7B5uJ0FLuubA0pUqVp_0Q#minicp>`_ given at CPAIOR17
 
 Slides from the course INGI2365 given by Pierre Schaus  @UCLouvain: 
 
