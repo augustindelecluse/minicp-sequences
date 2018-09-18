@@ -26,36 +26,24 @@ System Requirements
  that, additional disk space will be used for your local Maven repository. The size
  of your local repository will vary depending on usage but expect at least 500MB.
 * Operating System:
- * Windows: Windows 2000 or above.
- * Unix based systems (Linux, Solaris and Mac OS X) and others: No minimum requirement.
+ - Windows: Windows 2000 or above.
+ - Unix based systems (Linux, Solaris and Mac OS X) and others: No minimum requirement.
 
 Installing Maven
 ----------------
 
 1. Unpack the archive where you would like to store the binaries, e.g.:
-
  - Unix-based operating systems (Linux, Solaris and Mac OS X)
- 
-   > tar zxvf apache-maven-3.x.y.tar.gz
-   
+   > tar zxvf apache-maven-3.x.y.tar.gz   
  - Windows
-   
    > unzip apache-maven-3.x.y.zip
-
 2. A directory called "apache-maven-3.x.y" will be created.
-
 3. Add the bin directory to your PATH, e.g.:
-
  - Unix-based operating systems (Linux, Solaris and Mac OS X)
-   
    > export PATH=/usr/local/apache-maven-3.x.y/bin:$PATH
-   
  - Windows
-   
    > set PATH="c:\program files\apache-maven-3.x.y\bin";%PATH%
-
 4. Make sure JAVA_HOME is set to the location of your JDK
-
 5. Run "mvn --version" to verify that it is correctly installed.
 
 
