@@ -7,7 +7,7 @@
 # README #
 
 * MiniCP technical documentation, exercises etc 
-can be found at www.bitbucket.org
+can be found at www.minicp.org
 * MiniCP is a Java project build with maven https://maven.apache.org
 
 
@@ -72,6 +72,7 @@ Using an IntelliJ idea editor
 --------------------------------------------------
 
 We recommend IntelliJ idea https://www.jetbrains.com/idea/download
+
 Simply do > `File | Open Project (Alt + F + O)` and specify the path to `pom.xml`
 as explained here
 https://blog.jetbrains.com/idea/2008/03/opening-maven-projects-is-easy-as-pie/
