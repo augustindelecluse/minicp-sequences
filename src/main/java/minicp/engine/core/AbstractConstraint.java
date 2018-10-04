@@ -15,9 +15,7 @@
 
 package minicp.engine.core;
 
-import minicp.state.StateBool;
-
-import java.util.Queue;
+import minicp.state.StateRef;
 
 /**
  * Abstract class the most of the constraints
@@ -30,11 +28,11 @@ public abstract class AbstractConstraint implements Constraint {
      */
     private final Solver cp;
     private boolean scheduled = false;
-    private final StateBool active;
+    private final StateRef<Boolean> active;
 
     public AbstractConstraint(Solver cp) {
         this.cp = cp;
-        active = cp.getStateManager().makeStateBool(true);
+        active = cp.getStateManager().makeStateRef(true);
     }
 
     public void post() {

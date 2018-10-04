@@ -113,19 +113,19 @@ public class Trailer implements StateManager {
             restoreState();
     }
 
-
     @Override
-    public StateInt makeStateInt(int initValue) {
-        return new TrailInt(this, initValue);
+    public <T> StateRef<T> makeStateRef(T initValue) {
+        return new TrailRef<>(this,initValue);
     }
 
     @Override
-    public StateBool makeStateBool(boolean initValue) {
-        return new TrailBool(this, initValue);
+    public StateInt makeStateInt(int initValue) {
+        return new TrailInt(this,initValue);
     }
 
     @Override
     public StateMap makeStateMap() {
         return new TrailMap(this);
     }
+
 }

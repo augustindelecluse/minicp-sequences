@@ -15,58 +15,61 @@
 
 package minicp.state;
 
+
 /**
- * Implementation of {@link StateBool} with trail strategy
+ * Implementation of {@link StateRef} with trail strategy
  * @see Trailer
- * @see StateManager#makeStateBool(boolean)
+ * @see StateManager#makeStateRef(Object)
  */
-public class TrailBool implements StateBool {
+public class TrailRef<T> implements StateRef<T> {
 
-    private final StateEntry restoreTrue = new StateEntry() {
+    class TrailStateEntry implements StateEntry {
+        private final T v;
+
+        TrailStateEntry(T v) {
+            this.v = v;
+        }
+
         @Override
         public void restore() {
-            v = true;
+            TrailRef.this.v = v;
         }
-    };
+    }
 
-    private final StateEntry restoreFalse = new StateEntry() {
-        @Override
-        public void restore() {
-            v = false;
-        }
-    };
-
-    private boolean v;
     private Trailer trail;
-    private long lastMagic;
+    private T v;
+    private long lastMagic = -1L;
 
-    protected TrailBool(Trailer context, boolean initial) {
-        this.trail = context;
+    protected TrailRef(Trailer trail, T initial) {
+        this.trail = trail;
         v = initial;
-        lastMagic = context.getMagic() - 1;
+        lastMagic = trail.getMagic() - 1;
     }
 
     private void trail() {
-        long contextMagic = trail.getMagic();
-        if (lastMagic != contextMagic) {
-            lastMagic = contextMagic;
-            if (v) trail.pushState(restoreTrue);
-            else trail.pushState(restoreFalse);
+        long trailMagic = trail.getMagic();
+        if (lastMagic != trailMagic) {
+            lastMagic = trailMagic;
+            trail.pushState(new TrailStateEntry(v));
         }
     }
 
     @Override
-    public void setValue(boolean v) {
+    public T setValue(T v) {
         if (v != this.v) {
             trail();
             this.v = v;
         }
-    }
-
-    @Override
-    public boolean value() {
         return this.v;
     }
 
+    @Override
+    public T value() {
+        return this.v;
+    }
 
+    @Override
+    public String toString() {
+        return "" + v;
+    }
 }

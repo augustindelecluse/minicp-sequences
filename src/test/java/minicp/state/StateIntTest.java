@@ -53,16 +53,16 @@ public class StateIntTest extends StateManagerTest {
         // and remove the state of that level
         sm.restoreState();
 
-        assertEquals(11, a.value());
-        assertEquals(13, b.value());
+        assertEquals(Integer.valueOf(11), a.value());
+        assertEquals(Integer.valueOf(13), b.value());
         assertEquals(0, sm.getLevel());
 
         // Restore the state recorded at the top level 0: a=7, b=13
         // and remove the state of that level
         sm.restoreState();
 
-        assertEquals(7, a.value());
-        assertEquals(13, b.value());
+        assertEquals(Integer.valueOf(7), a.value());
+        assertEquals(Integer.valueOf(13), b.value());
         assertEquals(-1, sm.getLevel());
 
     }
@@ -98,8 +98,8 @@ public class StateIntTest extends StateManagerTest {
     public void testPopAll() {
         StateManager sm = stateFactory.get();
 
-        StateInt a = sm.makeStateInt(5);
-        StateInt b = sm.makeStateInt(5);
+        StateRef<Integer> a = sm.makeStateRef(5);
+        StateRef<Integer> b = sm.makeStateRef(5);
 
         sm.saveState();
 
@@ -112,7 +112,7 @@ public class StateIntTest extends StateManagerTest {
         a.setValue(5);
         b.setValue(10);
 
-        StateInt c = sm.makeStateInt(5);
+        StateRef<Integer> c = sm.makeStateRef(5);
 
         sm.saveState();
 
@@ -123,9 +123,9 @@ public class StateIntTest extends StateManagerTest {
         sm.restoreAllState();
         sm.saveState();
 
-        assertEquals(5, a.value());
-        assertEquals(5, b.value());
-        assertEquals(5, c.value());
+        assertEquals(Integer.valueOf(5), a.value());
+        assertEquals(Integer.valueOf(5), b.value());
+        assertEquals(Integer.valueOf(5), c.value());
 
 
         a.setValue(10);
@@ -140,15 +140,15 @@ public class StateIntTest extends StateManagerTest {
         sm.restoreState();
 
 
-        assertEquals(10, a.value());
-        assertEquals(16, b.value());
-        assertEquals(5, c.value());
+        assertEquals(Integer.valueOf(10), a.value());
+        assertEquals(Integer.valueOf(16), b.value());
+        assertEquals(Integer.valueOf(5), c.value());
 
         sm.restoreAllState();
 
-        assertEquals(5, a.value());
-        assertEquals(5, b.value());
-        assertEquals(5, c.value());
+        assertEquals(Integer.valueOf(5), a.value());
+        assertEquals(Integer.valueOf(5), b.value());
+        assertEquals(Integer.valueOf(5), c.value());
 
     }
 
@@ -195,9 +195,9 @@ public class StateIntTest extends StateManagerTest {
         sm.saveState(); // level 1
 
         //assertEquals(1,sm.getLevel());
-        assertEquals(5, a.value());
-        assertEquals(10, b.value());
-        assertEquals(5, c.value());
+        assertEquals(Integer.valueOf(5), a.value());
+        assertEquals(Integer.valueOf(10), b.value());
+        assertEquals(Integer.valueOf(5), c.value());
 
         a.setValue(8);
         b.setValue(10);
@@ -207,9 +207,9 @@ public class StateIntTest extends StateManagerTest {
         sm.restoreStateUntil(0);
 
         //assertEquals(0,sm.getLevel());
-        assertEquals(5, a.value());
-        assertEquals(10, b.value());
-        assertEquals(5, c.value());
+        assertEquals(Integer.valueOf(5), a.value());
+        assertEquals(Integer.valueOf(10), b.value());
+        assertEquals(Integer.valueOf(5), c.value());
 
 
     }
@@ -248,7 +248,7 @@ public class StateIntTest extends StateManagerTest {
         sm.saveState(); // level 1
 
         //assertEquals(1,sm.getLevel());
-        assertEquals(6, a.value());
+        assertEquals(Integer.valueOf(6), a.value());
 
 
         a.setValue(8);
@@ -256,7 +256,7 @@ public class StateIntTest extends StateManagerTest {
         sm.restoreStateUntil(0);
 
         //assertEquals(0,sm.getLevel());
-        assertEquals(6, a.value());
+        assertEquals(Integer.valueOf(6), a.value());
 
 
     }

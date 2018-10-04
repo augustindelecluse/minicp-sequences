@@ -13,18 +13,3 @@
  * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
-package minicp.state;
-
-
-/**
- * Implementation of {@link StateInt} with trail strategy
- * @see Trailer
- * @see StateManager#makeStateInt(int)
- */
-public class TrailInt extends TrailRef<Integer> implements StateInt {
-
-    protected TrailInt(Trailer trail, int initial) {
-        super(trail, initial);
-    }
-
-}

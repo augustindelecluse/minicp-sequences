@@ -20,55 +20,10 @@ package minicp.state;
  * @see Copier
  * @see StateManager#makeStateInt(int)
  */
-public class CopyInt implements Storage, StateInt {
-
-    class CopyIntStateEntry implements StateEntry {
-        private final int v;
-
-        CopyIntStateEntry(int v) {
-            this.v = v;
-        }
-        @Override public void restore() {
-            CopyInt.this.v = v;
-        }
-    }
-
-    private int v;
+public class CopyInt extends CopyRef<Integer> implements StateInt {
 
     protected CopyInt(int initial) {
-        v = initial;
+        super(initial);
     }
 
-    @Override
-    public int setValue(int v) {
-        this.v = v;
-        return v;
-    }
-
-    @Override
-    public int value() {
-        return v;
-    }
-
-    @Override
-    public int increment() {
-        v += 1;
-        return v;
-    }
-
-    @Override
-    public int decrement() {
-        v -= 1;
-        return v;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(v);
-    }
-
-    @Override
-    public StateEntry save() {
-        return new CopyIntStateEntry(v);
-    }
 }

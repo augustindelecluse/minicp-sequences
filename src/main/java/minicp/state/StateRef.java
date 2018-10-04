@@ -16,26 +16,29 @@
 package minicp.state;
 
 /**
- * Object that wraps a boolean value
+ * Object that wraps a reference
  * that can be saved and restored through
  * the {@link StateManager#saveState()} / {@link StateManager#restoreState()}
  * methods.
  *
- * @see StateManager#makeStateBool(boolean) for the creation.
+ * @see StateManager#makeStateRef(Object)  for the creation.
  */
-public interface StateBool {
+public interface StateRef<T> {
 
     /**
-     * Sets the value
+     * Set the value
      * @param v the value to set
+     * @return the new value that was set
      */
-    void setValue(boolean v);
+    T setValue(T v);
 
     /**
      * Retrieves the value
-     *
      * @return the value
      */
-    boolean value();
+    T value();
 
+
+    @Override
+    String toString();
 }
