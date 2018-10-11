@@ -160,7 +160,7 @@ public class AllDifferentACTest extends SolverTest {
             DFSearch dfs = makeDfs(cp, () -> {
                 IntVar xs = selectMin(x,
                         xi -> xi.size() > 1,
-                        xi -> (float) -xi.size());
+                        xi -> -xi.size());
                 if (xs == null)
                     return EMPTY;
                 else {

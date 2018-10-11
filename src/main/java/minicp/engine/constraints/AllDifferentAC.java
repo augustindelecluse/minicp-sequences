@@ -158,13 +158,10 @@ public class AllDifferentAC extends AbstractConstraint {
         updateGraph();
         int[] scc = GraphUtil.stronglyConnectedComponents(g);
         for (int i = 0; i < nVar; i++) {
-            for (int v = x[i].min(); v <= x[i].max(); v++) {
-                if (x[i].contains(v)) {
+            for (int v = minVal; v <= maxVal; v++) {
                     if (match[i] != v && scc[i] != scc[v - minVal + nVar]) {
                         x[i].remove(v);
                     }
-                }
-
             }
         }
         // END STRIP

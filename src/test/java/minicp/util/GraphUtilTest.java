@@ -19,6 +19,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Random;
 
 import static minicp.util.GraphUtil.Graph;
 import static minicp.util.GraphUtil.pathExists;
@@ -135,6 +137,59 @@ public class GraphUtilTest {
                 }
             }
         }
+    }
+
+
+    @Test
+    public void randomTestSCC() {
+        for (int i = 0; i < 10; i++) {
+            Graph g = randomGraph(20,10);
+            int [] scc = stronglyConnectedComponents(g);
+            for (int start = 0; start < g.n(); start++) {
+                for (int end = 0; end < g.n(); end++) {
+                    if (start != end) {
+                        assertEquals(scc[start] == scc[end], pathExists(g, start, end) && pathExists(g, end, start));
+                    }
+                }
+            }
+
+        }
+    }
+
+    private static Graph randomGraph(int n, int proba) {
+        Random r = new Random();
+        LinkedList<Integer>[] outList = new LinkedList[n];
+        for (int i = 0; i < n; i++) {
+            outList[i] = new LinkedList<>();
+            for (int j = 0; j < n; j++) {
+                if (j != i && r.nextInt(100) < proba) {
+                    outList[i].add(j);
+                }
+            }
+        }
+        Integer[][] out = new Integer[n][];
+        for (int i = 0; i < n; i++) {
+            out[i] = outList[i].toArray(new Integer[0]);
+        }
+        Integer[][] in = inFromOut(out);
+
+
+        return new Graph() {
+            @Override
+            public int n() {
+                return n;
+            }
+
+            @Override
+            public Iterable<Integer> in(int id) {
+                return Arrays.asList(in[id]);
+            }
+
+            @Override
+            public Iterable<Integer> out(int id) {
+                return Arrays.asList(out[id]);
+            }
+        };
     }
 
 
