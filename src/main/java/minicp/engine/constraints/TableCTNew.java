@@ -17,10 +17,9 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
+import minicp.state.StateSparseBitSet;
 import minicp.util.exception.InconsistencyException;
-import minicp.util.exception.NotImplementedException;
 
-import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
 
@@ -30,14 +29,14 @@ import static minicp.cp.Factory.minus;
  * Jordan Demeulenaere, Renaud Hartert, Christophe Lecoutre, Guillaume Perez, Laurent Perron, Jean-Charles Régin, Pierre Schaus
  * <p>See <a href="https://www.info.ucl.ac.be/~pschaus/assets/publi/cp2016-compacttable.pdf">The article.</a>
  */
-public class TableCT extends AbstractConstraint {
+public class TableCTNew extends AbstractConstraint {
     private IntVar[] x; //variables
     private int[][] table; //the table
-    //supports[i][v] is the set of tuples supported by x[i]=v
-    private BitSet[][] supports;
 
-    private BitSet supportedTuples;
-    private BitSet tmpSupport;
+    private StateSparseBitSet validTuples;
+    private StateSparseBitSet.BitSet collected;
+    //supports[i][v] is the set of tuples supported by x[i]=v
+    private StateSparseBitSet.BitSet[][] supports;
 
     /**
      * Table constraint.
@@ -55,18 +54,21 @@ public class TableCT extends AbstractConstraint {
      * @param table the possible set of solutions for x.
      *              The second dimension must be of the same size as the array x.
      */
-    public TableCT(IntVar[] x, int[][] table) {
+    public TableCTNew(IntVar[] x, int[][] table) {
         super(x[0].getSolver());
         this.x = new IntVar[x.length];
         this.table = table;
 
+        validTuples = new StateSparseBitSet(x[0].getSolver().getStateManager(),table.length);
+        collected = validTuples.new BitSet();
+
         // Allocate supportedByVarVal
-        supports = new BitSet[x.length][];
+        supports = new StateSparseBitSet.BitSet[x.length][];
         for (int i = 0; i < x.length; i++) {
             this.x[i] = minus(x[i], x[i].min()); // map the variables domain to start at 0
-            supports[i] = new BitSet[x[i].max() - x[i].min() + 1];
+            supports[i] = new StateSparseBitSet.BitSet[x[i].max() - x[i].min() + 1];
             for (int j = 0; j < supports[i].length; j++)
-                supports[i][j] = new BitSet();
+                supports[i][j] = validTuples.new BitSet();
         }
 
         // Set values in supportedByVarVal, which contains all the tuples supported by each var-val pair
@@ -77,9 +79,6 @@ public class TableCT extends AbstractConstraint {
                 }
             }
         }
-
-        supportedTuples = new BitSet(table.length);
-        tmpSupport = new BitSet(table.length);
     }
 
     @Override
@@ -89,14 +88,12 @@ public class TableCT extends AbstractConstraint {
         propagate();
     }
 
-
-
     @Override
     public void propagate() {
 
 
-        // Bit-set of tuple indices all set to 1
-        supportedTuples.set(0, table.length);
+        // Bit-set of tuple indices all set to 0
+        collected.clear();
 
         // TODO 1: compute supportedTuples as
         // supportedTuples = (supports[0][x[0].min()] | ... | supports[0][x[0].max()] ) & ... &
@@ -106,14 +103,17 @@ public class TableCT extends AbstractConstraint {
         // STUDENT // This should be displayed instead of the actual code
         // BEGIN STRIP
         for (int i = 0; i < x.length; i++) {
-            tmpSupport.clear();
+            collected.clear();
             for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
-                    tmpSupport.or(supports[i][v]);
+                    collected.union(supports[i][v]);
                 }
             }
-            supportedTuples.and(tmpSupport);
-            if (supportedTuples.isEmpty()) throw InconsistencyException.INCONSISTENCY;
+            validTuples.intersect(collected);
+            if (validTuples.isEmpty()) {
+                throw InconsistencyException.INCONSISTENCY;
+            }
+            // if empty, fail
         }
         // END STRIP
 
@@ -125,7 +125,7 @@ public class TableCT extends AbstractConstraint {
                     // there is no intersection between supportedTuples and the support[i][v]
                     // STUDENT throw new NotImplementedException();
                     // BEGIN STRIP
-                    if (!supports[i][v].intersects(supportedTuples)) {
+                    if (validTuples.hasEmptyIntersection(supports[i][v])) {
                         x[i].remove(v);
                     }
                     // END STRIP

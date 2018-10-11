@@ -16,6 +16,8 @@
 package minicp.examples;
 
 import minicp.cp.Factory;
+import minicp.engine.constraints.TableCT;
+import minicp.engine.constraints.TableCTNew;
 import minicp.engine.constraints.TableDecomp;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -148,7 +150,9 @@ public class Eternity {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 //cp.post(new TableCT(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
-                cp.post(new TableDecomp(new IntVar[]{id[i][j], u[i][j], r[i][j], d[i][j], l[i][j]}, table));
+                cp.post(new TableCT(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
+                //cp.post(new TableCTNew(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
+                //cp.post(new TableDecomp(new IntVar[]{id[i][j], u[i][j], r[i][j], d[i][j], l[i][j]}, table));
             }
         }
 
@@ -180,6 +184,7 @@ public class Eternity {
 
 
         dfs.onSolution(() -> {
+            System.out.println("----------------");
             // Pretty Print
             for (int i = 0; i < n; i++) {
                 String line = "   ";
@@ -202,11 +207,13 @@ public class Eternity {
 
         });
 
-
-        SearchStatistics stats = dfs.solve(statistics -> statistics.numberOfSolutions() == 1);
+        long t0 = System.currentTimeMillis();
+        SearchStatistics stats = dfs.solve(statistics -> statistics.numberOfSolutions() == 5);
 
         System.out.format("#Solutions: %s\n", stats.numberOfSolutions());
         System.out.format("Statistics: %s\n", stats);
+        System.out.format("time: %s\n", System.currentTimeMillis()-t0);
+
 
     }
 }
