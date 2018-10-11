@@ -221,4 +221,30 @@ public class AllDifferentACTest extends SolverTest {
     }
 
 
+    @Test
+    public void allDifferentTest8() {
+        try {
+            Solver cp = solverFactory.get();
+            IntVar[] x = new IntVar[]{
+                    makeIVar(cp, 0,2,3,5),
+                    makeIVar(cp, 4),
+                    makeIVar(cp, -1,1),
+                    makeIVar(cp, -4,-2,0,2,3),
+                    makeIVar(cp, -1)};
+            int[] matching = new int[x.length];
+
+            cp.post(new AllDifferentAC(x));
+
+            assertTrue(!x[2].contains(-1));
+
+        } catch (InconsistencyException e) {
+            fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
+    }
+
+
+
+
 }

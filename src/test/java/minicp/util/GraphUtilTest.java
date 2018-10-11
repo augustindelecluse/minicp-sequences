@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static minicp.util.GraphUtil.Graph;
+import static minicp.util.GraphUtil.pathExists;
 import static minicp.util.GraphUtil.stronglyConnectedComponents;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -29,7 +30,7 @@ public class GraphUtilTest {
 
 
     @Test
-    public void simpleTest0() {
+    public void simpleTestSCC0() {
 
         Integer[][] out = new Integer[][]{{1}, {2}, {0}, {}, {7}, {4}, {4}, {6, 8}, {7}};
         Integer[][] in = inFromOut(out);
@@ -68,7 +69,7 @@ public class GraphUtilTest {
     }
 
     @Test
-    public void simpleTest1() {
+    public void simpleTestSCC1() {
 
         Integer[][] out = new Integer[][]{{1}, {2}, {0}, {}, {7}, {4}, {}, {8}, {7}};
         Integer[][] in = inFromOut(out);
@@ -101,6 +102,39 @@ public class GraphUtilTest {
 
         assertEquals(scc[7], scc[8]);
 
+    }
+
+    @Test
+    public void simpleTestSCC2() {
+
+        Integer[][] out = new Integer[][]{{11, 12, 14}, {}, {8}, {7, 9, 11, 12}, {}, {3}, {15}, {15}, {4}, {0}, {2}, {15}, {15},{1},{15},{5, 8, 9, 10, 13}};
+        Integer[][] in = inFromOut(out);
+        Graph g = new Graph() {
+            @Override
+            public int n() {
+                return out.length;
+            }
+
+            @Override
+            public Iterable<Integer> in(int idx) {
+                return Arrays.asList(in[idx]);
+            }
+
+            @Override
+            public Iterable<Integer> out(int idx) {
+                return Arrays.asList(out[idx]);
+            }
+        };
+
+        int[] scc = stronglyConnectedComponents(g);
+
+        for (int start = 0; start < g.n(); start++) {
+            for (int end = 0; end < g.n(); end++) {
+                if (start != end) {
+                    assertEquals(scc[start] == scc[end], pathExists(g, start, end) && pathExists(g, end, start));
+                }
+            }
+        }
     }
 
 

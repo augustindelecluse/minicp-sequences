@@ -140,4 +140,18 @@ public class GraphUtil {
             }
         }
     }
+
+    /**
+     * Checks if a path exists between start and end
+     * @param graph
+     * @param start a node id from the graph
+     * @param end a node id from the graph
+     * @return true if a directed path from start to end exists, false otherwise
+     */
+    public static boolean pathExists(Graph graph, int start, int end) {
+        int[] visited = new int[graph.n()];
+        Arrays.fill(visited, 0);
+        dfsNode(graph,(v,n) -> {},visited,start);
+        return visited[end] != 0;
+    }
 }

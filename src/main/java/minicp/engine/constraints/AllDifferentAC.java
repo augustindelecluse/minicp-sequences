@@ -107,9 +107,9 @@ public class AllDifferentAC extends AbstractConstraint {
     private void updateGraph() {
         nNodes = nVar + nVal + 1;
         int sink = nNodes - 1;
-        for (int i = 0; i < nNodes; i++) {
-            in[i].clear();
-            out[i].clear();
+        for (int j = 0; j < nNodes; j++) {
+            in[j].clear();
+            out[j].clear();
         }
         // TODO continue the implementation for representing the residual graph
         // STUDENT throw new NotImplementedException("AllDifferentAC");
@@ -158,10 +158,13 @@ public class AllDifferentAC extends AbstractConstraint {
         updateGraph();
         int[] scc = GraphUtil.stronglyConnectedComponents(g);
         for (int i = 0; i < nVar; i++) {
-            for (int v = minVal; v <= maxVal; v++) {
-                if (match[i] != v && scc[i] != scc[v - minVal + nVar]) {
-                    x[i].remove(v);
+            for (int v = x[i].min(); v <= x[i].max(); v++) {
+                if (x[i].contains(v)) {
+                    if (match[i] != v && scc[i] != scc[v - minVal + nVar]) {
+                        x[i].remove(v);
+                    }
                 }
+
             }
         }
         // END STRIP
