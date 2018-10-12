@@ -118,9 +118,9 @@ public class GraphUtil {
         Stack<Integer> todo = new Stack<>();
         todo.add(start);
 
+        // unseen = 0
         // seen = 1
-        // visited = 2
-        // closed = 3
+        // closed = 2
         while (!todo.isEmpty()) {
             int cur = todo.peek();
             if (visited[cur] == 0) {
@@ -131,10 +131,9 @@ public class GraphUtil {
                         todo.add(next);
                     }
                 }
-                visited[cur] = 2; //visited
-            } else if (visited[cur] == 2) {
+            } else if (visited[cur] == 1) {
                 action.accept(true, cur);
-                visited[cur] = 3; //closed
+                visited[cur] = 2; //closed
                 todo.pop();
             }
             else
