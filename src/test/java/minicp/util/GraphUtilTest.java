@@ -130,13 +130,7 @@ public class GraphUtilTest {
 
         int[] scc = stronglyConnectedComponents(g);
 
-        for (int start = 0; start < g.n(); start++) {
-            for (int end = 0; end < g.n(); end++) {
-                if (start != end) {
-                    assertEquals(scc[start] == scc[end], pathExists(g, start, end) && pathExists(g, end, start));
-                }
-            }
-        }
+        checkScc(g, scc);
     }
 
 
@@ -145,14 +139,7 @@ public class GraphUtilTest {
         for (int i = 0; i < 10; i++) {
             Graph g = randomGraph(20,10);
             int [] scc = stronglyConnectedComponents(g);
-            for (int start = 0; start < g.n(); start++) {
-                for (int end = 0; end < g.n(); end++) {
-                    if (start != end) {
-                        assertEquals(scc[start] == scc[end], pathExists(g, start, end) && pathExists(g, end, start));
-                    }
-                }
-            }
-
+            checkScc(g, scc);
         }
     }
 
@@ -192,8 +179,57 @@ public class GraphUtilTest {
         };
     }
 
+    @Test
+    public void randomTestSCC2() {
+        int nNodes = 15;
+        int nTests = 1000;
+        double ratioIncr = 0.05;
+        Random rand = new Random(10);
+        for(int test = 0; test < nTests; test++) {
+            Integer[][] out = new Integer[nNodes][];
+            for(int i = 0; i < nNodes; i++) {
+                LinkedList<Integer> nei = new LinkedList<>();
+                for(int j = 0; j < nNodes; j++)
+                    if(rand.nextDouble() < ratioIncr*test)
+                        nei.push(j);
+                out[i] = (Integer[])nei.toArray(new Integer[0]);
+            }
+            Integer[][] in = inFromOut(out);
 
-    public static Integer[][] inFromOut(Integer[][] out) {
+            Graph g = new Graph() {
+                @Override
+                public int n() {
+                    return out.length;
+                }
+
+                @Override
+                public Iterable<Integer> in(int idx) {
+                    return Arrays.asList(in[idx]);
+                }
+
+                @Override
+                public Iterable<Integer> out(int idx) {
+                    return Arrays.asList(out[idx]);
+                }
+            };
+
+            int[] scc = stronglyConnectedComponents(g);
+
+            checkScc(g, scc);
+        }
+    }
+
+    private static void checkScc(Graph g, int[] scc) {
+        for (int start = 0; start < g.n(); start++) {
+            for (int end = 0; end < g.n(); end++) {
+                if (start != end) {
+                    assertEquals(scc[start] == scc[end], pathExists(g, start, end) && pathExists(g, end, start));
+                }
+            }
+        }
+    }
+
+    private static Integer[][] inFromOut(Integer[][] out) {
         ArrayList<Integer>[] in = new ArrayList[out.length];
         for (int i = 0; i < out.length; i++) {
             in[i] = new ArrayList<Integer>();

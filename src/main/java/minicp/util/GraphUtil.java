@@ -124,7 +124,7 @@ public class GraphUtil {
         while (!todo.isEmpty()) {
             int cur = todo.peek();
             if (visited[cur] == 0) {
-                visited[start] = 1; //seen
+                visited[cur] = 1; //seen
                 action.accept(false, cur);
                 for (int next : graph.out(cur)) {
                     if (visited[next] == 0) {
