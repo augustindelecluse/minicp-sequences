@@ -327,11 +327,11 @@ public final class Factory {
      * @param x the variable that is constrained bo be different from v
      * @param v the value that must be different from x
      */
-    public static void notEqual(IntVar x, int v) {
+    public static Constraint notEqual(IntVar x, int v) {
         x.remove(v);
         x.getSolver().fixPoint();
+        return new True(x.getSolver());
     }
-
 
     /**
      * Returns a constraint imposing that the two different variables
@@ -345,6 +345,12 @@ public final class Factory {
         return new NotEqual(x, y);
     }
 
+    public static Constraint equal(IntVar x,IntVar y) {
+        return new Equal(x,y,0);
+    }
+    public static Constraint equal(IntVar x, IntVar y,int c) {
+        return new Equal(x, y,c);
+    }
     /**
      * Returns a constraint imposing that the
      * the first variable differs from the second
@@ -554,6 +560,18 @@ public final class Factory {
      */
     public static Constraint sum(IntVar[] x, int y) {
         return new Sum(x, y);
+    }
+
+    /**
+     * Returns a sum constraint.
+     *
+     * Uses a _parameter pack_ to automatically bundle a list of IntVar as an array
+     * @param y the target value for the sum (a constant)
+     * @param x a parameter pack of IntVar representing an array of variables
+     * @return a constraint so that {@code y = x[0] + ... + x[n-1]}
+     */
+    public static Constraint sum(int y,IntVar... x) {
+        return new Sum(x,y);
     }
 
     /**

@@ -17,8 +17,6 @@ package minicp.engine.core;
 
 import minicp.state.StateBool;
 
-import java.util.Queue;
-
 /**
  * Abstract class the most of the constraints
  * should extend.
