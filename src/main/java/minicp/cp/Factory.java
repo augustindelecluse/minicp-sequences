@@ -585,14 +585,15 @@ public final class Factory {
 
     /**
      * Returns a sum constraint.
-     *
+     * <p>
      * Uses a _parameter pack_ to automatically bundle a list of IntVar as an array
+     *
      * @param y the target value for the sum (a constant)
      * @param x a parameter pack of IntVar representing an array of variables
      * @return a constraint so that {@code y = x[0] + ... + x[n-1]}
      */
-    public static Constraint sum(int y,IntVar... x) {
-        return new Sum(x,y);
+    public static Constraint sum(int y, IntVar... x) {
+        return new Sum(x, y);
     }
 
     /**
