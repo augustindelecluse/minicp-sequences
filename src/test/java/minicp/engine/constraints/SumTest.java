@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import minicp.cp.Factory;
 import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -24,6 +25,9 @@ import minicp.util.exception.InconsistencyException;
 import minicp.util.exception.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.makeDfs;
@@ -258,5 +262,27 @@ public class SumTest extends SolverTest {
         assertTrue(failed);
     }
 
+    private static IntVar makeIVar(Solver cp, Integer... values) {
+        return makeIntVar(cp, new HashSet<>(Arrays.asList(values)));
+    }
+
+
+    @Test
+    public void sum11() {
+        Solver cp = solverFactory.get();
+
+
+        IntVar x = makeIntVar(cp, new HashSet<>(Arrays.asList(-2147483645,-2147483639,-2147483637)));
+        IntVar y = makeIntVar(cp, new HashSet<>(Arrays.asList(-2147483645,-2147483638)));
+        cp.post(Factory.sum(new IntVar[] {x},y));
+
+        boolean failed = false;
+        try {
+            cp.post(Factory.sum(new IntVar[] {x},y));
+        } catch (InconsistencyException e) {
+            failed = true;
+        }
+        assertFalse(failed);
+    }
 
 }
