@@ -28,7 +28,7 @@ public class StateSparseBitSet {
 
     /* Variables used to store value of the bitset */
     private int nWords;
-    private StateRef<Long>[] words;
+    private State<Long>[] words;
 
     /* Variables used to make set sparse */
     private int[] nonZeroIdx;
@@ -107,7 +107,7 @@ public class StateSparseBitSet {
     public StateSparseBitSet(StateManager sm, int n) {
         nWords = (n + 63) >>> 6; // divided by 64
         //System.out.println("nwords:"+nWords);
-        words = new StateRef[nWords];
+        words = new State[nWords];
         Arrays.setAll(words, i -> sm.makeStateRef(Long.valueOf(0xFFFFFFFFFFFFFFFFL)));
         nonZeroIdx = new int[nWords];
         Arrays.setAll(nonZeroIdx, i -> i);
@@ -121,7 +121,7 @@ public class StateSparseBitSet {
      */
     public void intersect(BitSet bs) {
         for (int i = nNonZero.value() - 1; i >= 0; i--) {
-            StateRef<Long> w = words[nonZeroIdx[i]];
+            State<Long> w = words[nonZeroIdx[i]];
             long wn = w.value() & bs.words[nonZeroIdx[i]];
             if (wn == 0L) {
                 nNonZero.decrement();
@@ -141,7 +141,7 @@ public class StateSparseBitSet {
     public boolean hasEmptyIntersection(BitSet bs) {
         //System.out.println("nonNonZero:"+nNonZero.value());
         for (int i = nNonZero.value() - 1; i >= 0; i--) {
-            StateRef<Long> w = words[nonZeroIdx[i]];
+            State<Long> w = words[nonZeroIdx[i]];
             //System.out.println("intersectino word" + nonZeroIdx[i] +" = "+(w.value() & bs.words[nonZeroIdx[i]]));
             if ((w.value() & bs.words[nonZeroIdx[i]]) != 0L) {
                 return false;

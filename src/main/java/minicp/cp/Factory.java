@@ -297,41 +297,55 @@ public final class Factory {
     }
 
     /**
-     * Forces the variable to be equal to some given value and
-     * computes the fix point.
+     * Returns a constraint imposing that the variable is
+     * equal to some given value.
      *
      * @param x the variable to be assigned to v
      * @param v the value that must be assigned to x
+     * @return a constraint so that {@code x = v}
      */
-    public static void equal(IntVar x, int v) {
-        x.assign(v);
-        x.getSolver().fixPoint();
+    public static Constraint equal(IntVar x, int v) {
+        return new AbstractConstraint(x.getSolver()) {
+            @Override
+            public void post() {
+                x.assign(v);
+            }
+        };
     }
 
     /**
-     * Forces the variable to be less or equal to some given value and
-     * computes the fix point.
+     * Returns a constraint imposing that the variable less or
+     * equal to some given value.
      *
      * @param x the variable that is constrained bo be less or equal to v
      * @param v the value that must be the upper bound on x
+     * @return a constraint so that {@code x <= v}
      */
-    public static void lessOrEqual(IntVar x, int v) {
-        x.removeAbove(v);
-        x.getSolver().fixPoint();
+    public static Constraint lessOrEqual(IntVar x, int v) {
+        return new AbstractConstraint(x.getSolver()) {
+            @Override
+            public void post() {
+                x.removeAbove(v);
+            }
+        };
     }
 
     /**
-     * Forces the variable to be different to some given value and
-     * computes the fix point.
+     * Returns a constraint imposing that the variable is different
+     * from some given value.
      *
      * @param x the variable that is constrained bo be different from v
      * @param v the value that must be different from x
+     * @return a constraint so that {@code x != y}
      */
-    public static void notEqual(IntVar x, int v) {
-        x.remove(v);
-        x.getSolver().fixPoint();
+    public static Constraint notEqual(IntVar x, int v) {
+        return new AbstractConstraint(x.getSolver()) {
+            @Override
+            public void post() {
+                x.remove(v);
+            }
+        };
     }
-
 
     /**
      * Returns a constraint imposing that the two different variables
@@ -343,6 +357,19 @@ public final class Factory {
      */
     public static Constraint notEqual(IntVar x, IntVar y) {
         return new NotEqual(x, y);
+    }
+
+
+    /**
+     * Returns a constraint imposing that the two different variables
+     * must take the value.
+     *
+     * @param x a variable
+     * @param y a variable
+     * @return a constraint so that {@code x = y}
+     */
+    public static Constraint equal(IntVar x, IntVar y) {
+        return new Equal(x, y);
     }
 
     /**
@@ -553,6 +580,19 @@ public final class Factory {
      * @return a constraint so that {@code y = x[0]+x[1]+...+x[n-1]}
      */
     public static Constraint sum(IntVar[] x, int y) {
+        return new Sum(x, y);
+    }
+
+    /**
+     * Returns a sum constraint.
+     * <p>
+     * Uses a _parameter pack_ to automatically bundle a list of IntVar as an array
+     *
+     * @param y the target value for the sum (a constant)
+     * @param x a parameter pack of IntVar representing an array of variables
+     * @return a constraint so that {@code y = x[0] + ... + x[n-1]}
+     */
+    public static Constraint sum(int y, IntVar... x) {
         return new Sum(x, y);
     }
 

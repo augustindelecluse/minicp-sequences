@@ -114,8 +114,8 @@ public class Trailer implements StateManager {
     }
 
     @Override
-    public <T> StateRef<T> makeStateRef(T initValue) {
-        return new TrailRef<>(this,initValue);
+    public <T> State<T> makeStateRef(T initValue) {
+        return new Trail<>(this,initValue);
     }
 
     @Override

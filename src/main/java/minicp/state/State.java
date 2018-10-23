@@ -17,13 +17,13 @@ package minicp.state;
 
 /**
  * Object that wraps a reference
- * that can be saved and restored through
+ * and can be saved and restored through
  * the {@link StateManager#saveState()} / {@link StateManager#restoreState()}
  * methods.
  *
  * @see StateManager#makeStateRef(Object)  for the creation.
  */
-public interface StateRef<T> {
+public interface State<T> {
 
     /**
      * Set the value

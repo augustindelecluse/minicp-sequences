@@ -27,8 +27,8 @@ public class StateBoolTest extends StateManagerTest {
     public void testStateBool() {
         StateManager sm = stateFactory.get();
 
-        StateRef<Boolean> b1 = sm.makeStateRef(true);
-        StateRef<Boolean> b2 = sm.makeStateRef(false);
+        State<Boolean> b1 = sm.makeStateRef(true);
+        State<Boolean> b2 = sm.makeStateRef(false);
 
         sm.saveState();
 

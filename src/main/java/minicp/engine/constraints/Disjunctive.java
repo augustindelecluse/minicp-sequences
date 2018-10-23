@@ -145,7 +145,6 @@ public class Disjunctive extends AbstractConstraint {
 
     @Override
     public void propagate() {
-
         // HINT: for the TODO 1-4 you'll need the ThetaTree data-structure
 
         // TODO 3: add the OverLoadCheck algorithms
@@ -160,8 +159,8 @@ public class Disjunctive extends AbstractConstraint {
         while (!fixed) {
             fixed = true;
             overLoadChecker();
-            fixed =  fixed || !detectablePrecedence();
-            fixed =  fixed || !notLast();
+            fixed =  fixed && !detectablePrecedence();
+            fixed =  fixed && !notLast();
         }
 
     }

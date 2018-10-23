@@ -98,8 +98,8 @@ public class StateIntTest extends StateManagerTest {
     public void testPopAll() {
         StateManager sm = stateFactory.get();
 
-        StateRef<Integer> a = sm.makeStateRef(5);
-        StateRef<Integer> b = sm.makeStateRef(5);
+        State<Integer> a = sm.makeStateRef(5);
+        State<Integer> b = sm.makeStateRef(5);
 
         sm.saveState();
 
@@ -112,7 +112,7 @@ public class StateIntTest extends StateManagerTest {
         a.setValue(5);
         b.setValue(10);
 
-        StateRef<Integer> c = sm.makeStateRef(5);
+        State<Integer> c = sm.makeStateRef(5);
 
         sm.saveState();
 

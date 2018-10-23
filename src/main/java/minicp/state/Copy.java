@@ -15,61 +15,49 @@
 
 package minicp.state;
 
-
 /**
- * Implementation of {@link StateRef} with trail strategy
- * @see Trailer
+ * Implementation of {@link State} with copy strategy
+ * @see Copier
  * @see StateManager#makeStateRef(Object)
  */
-public class TrailRef<T> implements StateRef<T> {
+public class Copy<T> implements Storage, State<T> {
 
-    class TrailStateEntry implements StateEntry {
+    class CopyStateEntry implements StateEntry {
         private final T v;
 
-        TrailStateEntry(T v) {
+        CopyStateEntry(T v) {
             this.v = v;
         }
-
-        @Override
-        public void restore() {
-            TrailRef.this.v = v;
+        @Override public void restore() {
+            Copy.this.v = v;
         }
     }
 
-    private Trailer trail;
     private T v;
-    private long lastMagic = -1L;
 
-    protected TrailRef(Trailer trail, T initial) {
-        this.trail = trail;
+    protected Copy(T initial) {
         v = initial;
-        lastMagic = trail.getMagic() - 1;
-    }
-
-    private void trail() {
-        long trailMagic = trail.getMagic();
-        if (lastMagic != trailMagic) {
-            lastMagic = trailMagic;
-            trail.pushState(new TrailStateEntry(v));
-        }
     }
 
     @Override
     public T setValue(T v) {
-        if (v != this.v) {
-            trail();
-            this.v = v;
-        }
-        return this.v;
+        this.v = v;
+        return v;
     }
 
     @Override
     public T value() {
-        return this.v;
+        return v;
     }
+
 
     @Override
     public String toString() {
-        return "" + v;
+        return String.valueOf(v);
+    }
+
+    @Override
+    public StateEntry save() {
+        return new CopyStateEntry(v);
     }
 }

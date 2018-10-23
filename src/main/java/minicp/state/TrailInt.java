@@ -21,7 +21,7 @@ package minicp.state;
  * @see Trailer
  * @see StateManager#makeStateInt(int)
  */
-public class TrailInt extends TrailRef<Integer> implements StateInt {
+public class TrailInt extends Trail<Integer> implements StateInt {
 
     protected TrailInt(Trailer trail, int initial) {
         super(trail, initial);

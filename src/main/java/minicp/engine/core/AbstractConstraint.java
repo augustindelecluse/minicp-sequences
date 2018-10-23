@@ -15,7 +15,11 @@
 
 package minicp.engine.core;
 
-import minicp.state.StateRef;
+<<<<<<< HEAD
+import minicp.state.State;
+=======
+import minicp.state.StateBool;
+>>>>>>> master
 
 /**
  * Abstract class the most of the constraints
@@ -28,7 +32,7 @@ public abstract class AbstractConstraint implements Constraint {
      */
     private final Solver cp;
     private boolean scheduled = false;
-    private final StateRef<Boolean> active;
+    private final State<Boolean> active;
 
     public AbstractConstraint(Solver cp) {
         this.cp = cp;

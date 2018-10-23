@@ -117,7 +117,7 @@ public class Steel {
                 // TODO 3: restrict the number of colors present in slab j to be <= 2
                 // STUDENT
                 // BEGIN STRIP
-                lessOrEqual(sum(presence), 2);
+                cp.post(lessOrEqual(sum(presence), 2));
                 // END STRIP
             }
 
@@ -167,7 +167,7 @@ public class Steel {
                             Procedure[] branches = new Procedure[maxUsed + 2];
                             for (int i = 0; i <= maxUsed + 1; i++) {
                                 final int slab = i;
-                                branches[i] = () -> equal(xs, slab);
+                                branches[i] = () -> cp.post(equal(xs, slab));
                             }
                             return branch(branches);
                         }

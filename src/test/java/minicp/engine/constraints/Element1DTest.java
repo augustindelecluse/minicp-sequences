@@ -25,6 +25,9 @@ import minicp.util.exception.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.makeDfs;
 import static minicp.cp.Factory.makeIntVar;
@@ -32,6 +35,7 @@ import static org.junit.Assert.*;
 
 
 public class Element1DTest extends SolverTest {
+
 
     @Test
     public void element1dTest1() {
@@ -155,5 +159,6 @@ public class Element1DTest extends SolverTest {
             NotImplementedExceptionAssume.fail(e);
         }
     }
+
 
 }

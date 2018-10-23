@@ -38,7 +38,7 @@ public class AllDifferentTest extends SolverTest {
 
         try {
             cp.post(allDifferent(x));
-            equal(x[0], 0);
+            cp.post(equal(x[0], 0));
             for (int i = 1; i < x.length; i++) {
                 assertEquals(4, x[i].size());
                 assertEquals(1, x[i].min());

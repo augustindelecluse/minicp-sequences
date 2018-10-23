@@ -75,9 +75,9 @@ public interface StateManager {
      * Creates a Stateful reference (restorable)
      *
      * @param initValue the initial setValue
-     * @return a StateRef object wrapping the initValue
+     * @return a State object wrapping the initValue
      */
-    <T> StateRef<T> makeStateRef(T initValue);
+    <T> State<T> makeStateRef(T initValue);
 
     /**
      * Creates a Stateful integer (restorable)

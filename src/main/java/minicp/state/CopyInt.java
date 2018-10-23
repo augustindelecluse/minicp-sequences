@@ -20,7 +20,7 @@ package minicp.state;
  * @see Copier
  * @see StateManager#makeStateInt(int)
  */
-public class CopyInt extends CopyRef<Integer> implements StateInt {
+public class CopyInt extends Copy<Integer> implements StateInt {
 
     protected CopyInt(int initial) {
         super(initial);

@@ -44,7 +44,7 @@ public class AllDifferentACTest extends SolverTest {
 
         try {
             cp.post(new AllDifferentAC(x));
-            equal(x[0], 0);
+            cp.post(equal(x[0], 0));
             for (int i = 1; i < x.length; i++) {
                 assertEquals(4, x[i].size());
                 assertEquals(1, x[i].min());
@@ -160,17 +160,17 @@ public class AllDifferentACTest extends SolverTest {
             DFSearch dfs = makeDfs(cp, () -> {
                 IntVar xs = selectMin(x,
                         xi -> xi.size() > 1,
-                        xi -> (float) -xi.size());
+                        xi -> -xi.size());
                 if (xs == null)
                     return EMPTY;
                 else {
                     int v = xs.min();
                     return branch(
                             () -> {
-                                equal(xs, v);
+                                cp.post(equal(xs, v));
                             },
                             () -> {
-                                notEqual(xs, v);
+                                cp.post(notEqual(xs, v));
                             });
                 }
             });
@@ -219,6 +219,32 @@ public class AllDifferentACTest extends SolverTest {
             NotImplementedExceptionAssume.fail(e);
         }
     }
+
+
+    @Test
+    public void allDifferentTest8() {
+        try {
+            Solver cp = solverFactory.get();
+            IntVar[] x = new IntVar[]{
+                    makeIVar(cp, 0,2,3,5),
+                    makeIVar(cp, 4),
+                    makeIVar(cp, -1,1),
+                    makeIVar(cp, -4,-2,0,2,3),
+                    makeIVar(cp, -1)};
+            int[] matching = new int[x.length];
+
+            cp.post(new AllDifferentAC(x));
+
+            assertTrue(!x[2].contains(-1));
+
+        } catch (InconsistencyException e) {
+            fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
+    }
+
+
 
 
 }

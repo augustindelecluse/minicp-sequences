@@ -31,13 +31,15 @@ public class GraphUtil {
     public interface Graph {
         /**
          * Returns the number of nodes in this graph.
+         *
          * @return the number of nodes in this graph.
-         *         Nodes are identified from 0 to {@link #n()}-1.
+         * Nodes are identified from 0 to {@link #n()}-1.
          */
         int n();
 
         /**
          * Returns the incoming node indexes in the specified node
+         *
          * @param id the identifier of the specified node
          * @return the identifiers of the nodes pointing to the specified node
          */
@@ -45,6 +47,7 @@ public class GraphUtil {
 
         /**
          * Returns the outgoing node indexes from the specified node
+         *
          * @param id the identifier of the specified node
          * @return the identifiers of the nodes originating from the specified node
          */
@@ -78,10 +81,11 @@ public class GraphUtil {
 
     /**
      * Computes the strongly connected components of the graph
+     *
      * @param graph the input graph on which to compute the strongly
      *              connected components
      * @return for each node id, an id of the strongly connected
-     *          components it belongs to
+     * components it belongs to
      */
     public static int[] stronglyConnectedComponents(Graph graph) {
         //Compute the suffix order
@@ -118,26 +122,41 @@ public class GraphUtil {
         Stack<Integer> todo = new Stack<>();
         todo.add(start);
 
+        // unseen = 0
         // seen = 1
-        // visited = 2
-        // closed = 3
-        visited[start] = 1; //seen
+        // closed = 2
         while (!todo.isEmpty()) {
             int cur = todo.peek();
-            if (visited[cur] == 1) {
+            if (visited[cur] == 0) {
+                visited[cur] = 1; //seen
                 action.accept(false, cur);
                 for (int next : graph.out(cur)) {
                     if (visited[next] == 0) {
                         todo.add(next);
-                        visited[next] = 1; //seen
                     }
                 }
-                visited[cur] = 2; //visited
-            } else if (visited[cur] == 2) {
+            } else if (visited[cur] == 1) {
                 action.accept(true, cur);
-                visited[cur] = 3; //closed
+                visited[cur] = 2; //closed
                 todo.pop();
-            }
+            } else
+                todo.pop();
         }
+    }
+
+    /**
+     * Checks if a path exists between start and end
+     *
+     * @param graph
+     * @param start a node id from the graph
+     * @param end   a node id from the graph
+     * @return true if a directed path from start to end exists, false otherwise
+     */
+    public static boolean pathExists(Graph graph, int start, int end) {
+        int[] visited = new int[graph.n()];
+        Arrays.fill(visited, 0);
+        dfsNode(graph, (v, n) -> {
+        }, visited, start);
+        return visited[end] != 0;
     }
 }

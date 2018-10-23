@@ -23,7 +23,7 @@ package minicp.state;
  *
  * @see StateManager#makeStateInt(int) for the creation.
  */
-public interface StateInt extends StateRef<Integer> {
+public interface StateInt extends State<Integer> {
 
     /**
      * Increments the value

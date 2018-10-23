@@ -111,8 +111,8 @@ public class Copier implements StateManager {
     }
 
     @Override
-    public <T> StateRef<T> makeStateRef(T initValue) {
-        CopyRef r = new CopyRef(initValue);
+    public <T> State<T> makeStateRef(T initValue) {
+        Copy r = new Copy(initValue);
         store.add(r);
         return r;
     }

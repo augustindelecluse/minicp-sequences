@@ -18,7 +18,6 @@ package minicp.engine.constraints;
 import minicp.cp.Factory;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
-import minicp.engine.core.IntVarImpl;
 import minicp.state.StateInt;
 import minicp.util.exception.InconsistencyException;
 

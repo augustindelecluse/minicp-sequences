@@ -31,7 +31,7 @@ public class StateLazySparseSet {
     private StateInterval interval;
 
 
-    private StateRef<Boolean> intervalRep;
+    private State<Boolean> intervalRep;
     private boolean switched = false;
 
     private boolean isInterval() {

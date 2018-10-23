@@ -22,6 +22,7 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
 import minicp.util.io.InputReader;
+import minicp.search.SearchStatistics;
 
 import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
@@ -86,7 +87,9 @@ public class TSP {
             System.out.println("objective:" + totalDist.min());
         });
 
-        dfs.optimize(obj);
+        SearchStatistics stats = dfs.optimize(obj);
+        System.out.println(stats);
+
         /*
         int nRestarts = 1000;
         int failureLimit = 100;
