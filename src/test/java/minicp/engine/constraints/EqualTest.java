@@ -17,6 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.SolverTest;
 import minicp.engine.core.BoolVar;
+import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
@@ -30,61 +31,53 @@ import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
 
-public class OrTest extends SolverTest {
+public class EqualTest extends SolverTest {
 
-    @Test
-    public void or1() {
-        try {
-
-            Solver cp = solverFactory.get();
-            BoolVar[] x = new BoolVar[]{makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp)};
-            cp.post(new Or(x));
-
-            for (BoolVar xi : x) {
-                assertTrue(!xi.isBound());
+    private static boolean equalDom(IntVar x, IntVar y) {
+        for (int v = x.min(); v < x.max(); v++) {
+            if (x.contains(v) && !y.contains(v)) {
+                return false;
             }
-
-            cp.post(equal(x[1], 0));
-            cp.post(equal(x[2], 0));
-            cp.post(equal(x[3], 0));
-            assertTrue(x[0].isTrue());
-
-        } catch (InconsistencyException e) {
-            fail("should not fail");
-        } catch (NotImplementedException e) {
-            NotImplementedExceptionAssume.fail(e);
         }
-
+        for (int v = y.min(); v < y.max(); v++) {
+            if (y.contains(v) && !x.contains(v)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Test
-    public void or2() {
+    public void equal1() {
         try {
 
             Solver cp = solverFactory.get();
-            BoolVar[] x = new BoolVar[]{makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp)};
-            cp.post(new Or(x));
+            IntVar x = makeIntVar(cp,0,10);
+            IntVar y = makeIntVar(cp,0,10);
 
+            cp.post(equal(x,y));
 
-            DFSearch dfs = makeDfs(cp, firstFail(x));
+            x.removeAbove(7);
+            cp.fixPoint();
 
-            dfs.onSolution(() -> {
-                        int nTrue = 0;
-                        for (BoolVar xi : x) {
-                            if (xi.isTrue()) nTrue++;
-                        }
-                        assertTrue(nTrue > 0);
+            assertTrue(equalDom(x,y));
 
-                    }
-            );
+            y.removeAbove(6);
+            cp.fixPoint();
 
-            SearchStatistics stats = dfs.solve();
+            x.remove(3);
+            cp.fixPoint();
 
-            assertEquals(15, stats.numberOfSolutions());
+            assertTrue(equalDom(x,y));
+
+            x.assign(1);
+            cp.fixPoint();
+
+            assertTrue(equalDom(x,y));
+
 
         } catch (InconsistencyException e) {
             fail("should not fail");
-
         } catch (NotImplementedException e) {
             NotImplementedExceptionAssume.fail(e);
         }

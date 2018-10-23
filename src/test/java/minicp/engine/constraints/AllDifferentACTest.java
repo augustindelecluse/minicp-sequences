@@ -44,7 +44,7 @@ public class AllDifferentACTest extends SolverTest {
 
         try {
             cp.post(new AllDifferentAC(x));
-            equal(x[0], 0);
+            cp.post(equal(x[0], 0));
             for (int i = 1; i < x.length; i++) {
                 assertEquals(4, x[i].size());
                 assertEquals(1, x[i].min());
@@ -167,10 +167,10 @@ public class AllDifferentACTest extends SolverTest {
                     int v = xs.min();
                     return branch(
                             () -> {
-                                equal(xs, v);
+                                cp.post(equal(xs, v));
                             },
                             () -> {
-                                notEqual(xs, v);
+                                cp.post(notEqual(xs, v));
                             });
                 }
             });

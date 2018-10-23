@@ -37,27 +37,31 @@ import static minicp.cp.Factory.*;
  * Leading digits can't be zero
  */
 public class SMoney {
+
     enum Letters {
-        S(0),E(1),N(2),D(3),M(4),O(5),R(6),Y(7);
+        S(0), E(1), N(2), D(3), M(4), O(5), R(6), Y(7);
         public final int val;
-        private Letters(int v) { val = v;}
+
+        Letters(int v) {
+            val = v;
+        }
     };
 
     public static void main(String[] args) {
         Solver cp = Factory.makeSolver(false);
-        IntVar[] values = Factory.makeIntVarArray(cp, Y.val+1,0 ,9);
-        IntVar[] carry  = Factory.makeIntVarArray(cp,4,0,1);
-        
+        IntVar[] values = Factory.makeIntVarArray(cp, Y.val + 1, 0, 9);
+        IntVar[] carry = Factory.makeIntVarArray(cp, 4, 0, 1);
+
         cp.post(allDifferent(values));
-        cp.post(notEqual(values[S.val],0));
-        cp.post(notEqual(values[M.val],0));
-        cp.post(equal(values[M.val],carry[3]));
-        cp.post(sum(0,carry[2],values[S.val],values[M.val],minus(values[O.val]),mul(carry[3],-10)));
-        cp.post(sum(0,carry[1],values[E.val],values[O.val],minus(values[N.val]),mul(carry[2],-10)));
-        cp.post(sum(0,carry[0],values[N.val],values[R.val],minus(values[E.val]),mul(carry[1],-10)));
-        cp.post(sum(0,values[D.val],values[E.val],minus(values[Y.val]),mul(carry[0],-10)));
-        
-        
+        cp.post(notEqual(values[S.val], 0));
+        cp.post(notEqual(values[M.val], 0));
+        cp.post(equal(values[M.val], carry[3]));
+        cp.post(equal(sum(carry[2], values[S.val], values[M.val], minus(values[O.val]), mul(carry[3], -10)), 0));
+        cp.post(equal(sum(carry[1], values[E.val], values[O.val], minus(values[N.val]), mul(carry[2], -10)), 0));
+        cp.post(equal(sum(carry[0], values[N.val], values[R.val], minus(values[E.val]), mul(carry[1], -10)), 0));
+        cp.post(equal(sum(values[D.val], values[E.val], minus(values[Y.val]), mul(carry[0], -10)), 0));
+
+
         DFSearch search = Factory.makeDfs(cp, firstFail(values));
 
         search.onSolution(() ->

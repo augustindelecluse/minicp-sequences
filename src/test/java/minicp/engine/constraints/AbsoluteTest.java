@@ -23,6 +23,7 @@ import minicp.util.exception.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
+import static minicp.cp.Factory.lessOrEqual;
 import static minicp.cp.Factory.makeIntVar;
 import static minicp.cp.Factory.notEqual;
 import static org.junit.Assert.*;
@@ -67,9 +68,9 @@ public class AbsoluteTest extends SolverTest {
             Solver cp = solverFactory.get();
             IntVar x = makeIntVar(cp, -5, 5);
             IntVar y = makeIntVar(cp, -10, 10);
-            notEqual(x, 0);
-            notEqual(x, 5);
-            notEqual(x, -5);
+            cp.post(notEqual(x, 0));
+            cp.post(notEqual(x, 5));
+            cp.post(notEqual(x, -5));
 
             cp.post(new Absolute(x, y));
 
@@ -139,15 +140,13 @@ public class AbsoluteTest extends SolverTest {
             assertEquals(7, x.max());
             assertEquals(-5, x.min());
 
-            notEqual(y, 0);
-            cp.fixPoint();
+            cp.post(notEqual(y, 0));
 
-            x.removeAbove(4);
-            cp.fixPoint();
+            cp.post(lessOrEqual(x,4));
 
             assertEquals(5, y.max());
 
-            x.removeAbove(-2);
+            cp.post(lessOrEqual(x,-2));
             cp.fixPoint();
 
             assertEquals(2, y.min());

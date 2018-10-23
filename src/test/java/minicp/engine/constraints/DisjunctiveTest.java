@@ -189,6 +189,7 @@ public class DisjunctiveTest extends SolverTest {
 
         try {
             cp.post(new Disjunctive(new IntVar[]{sA, sB, sC}, new int[]{d1, d2, d3}));
+            System.out.println(sC.max());
             Assume.assumeTrue("not last should set lst(C)=6", sC.max() == 6);
         } catch (InconsistencyException e) {
             assert (false);

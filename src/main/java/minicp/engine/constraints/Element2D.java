@@ -43,7 +43,7 @@ public class Element2D extends AbstractConstraint {
     private final StateInt up;
     private final ArrayList<Triple> xyz;
 
-    private final static class Triple implements Comparable<Triple> {
+    private static final class Triple implements Comparable<Triple> {
         private final int x, y, z;
 
         private Triple(int x, int y, int z) {

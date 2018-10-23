@@ -154,12 +154,12 @@ public class Eternity {
 
         // 0 on the border
         for (int i = 0; i < n; i++) {
-            equal(l[i][0], 0);
-            equal(r[i][m - 1], 0);
+            cp.post(equal(l[i][0], 0));
+            cp.post(equal(r[i][m - 1], 0));
         }
         for (int j = 0; j < m; j++) {
-            equal(u[0][j], 0);
-            equal(d[n - 1][j], 0);
+            cp.post(equal(u[0][j], 0));
+            cp.post(equal(d[n - 1][j], 0));
         }
         // END STRIP
 
