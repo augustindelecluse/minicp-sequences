@@ -44,7 +44,7 @@ public class StateSparseSetTest extends StateManagerTest {
         }
 
         set.intersect(b1); // set is now [0..59] U [130..255]
-        System.out.println(set);
+        //System.out.println(set);
 
         assertTrue(!set.hasEmptyIntersection(b1));
         assertTrue(set.hasEmptyIntersection(b2));
@@ -52,7 +52,7 @@ public class StateSparseSetTest extends StateManagerTest {
         sm.saveState();
 
         set.intersect(b3); // set is now empty
-        System.out.println(set);
+        //System.out.println(set);
 
         assertTrue(set.hasEmptyIntersection(b1));
         assertTrue(set.hasEmptyIntersection(b2));
@@ -62,9 +62,9 @@ public class StateSparseSetTest extends StateManagerTest {
 
         assertTrue(!set.hasEmptyIntersection(b1));
 
-        System.out.println("------------test for empty intersection with b2");
+        //System.out.println("------------test for empty intersection with b2");
 
-        System.out.println(set);
+        //System.out.println(set);
 
         assertTrue(set.hasEmptyIntersection(b2));
 
