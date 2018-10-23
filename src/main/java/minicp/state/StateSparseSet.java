@@ -269,7 +269,7 @@ public class StateSparseSet {
             removeAll();
         } else {
             int max = max();
-            for (int v = value + 1; v <= max; v++) {
+            for (int v = max; v > value; v--) {
                 remove(v);
             }
         }

@@ -15,11 +15,9 @@
 
 package minicp.engine.core;
 
-<<<<<<< HEAD
+
 import minicp.state.State;
-=======
-import minicp.state.StateBool;
->>>>>>> master
+
 
 /**
  * Abstract class the most of the constraints

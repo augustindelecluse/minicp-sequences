@@ -103,7 +103,7 @@ public class IntVarImpl implements IntVar {
         // BEGIN STRIP
         this(cp, values.stream().min(Integer::compare).get(), values.stream().max(Integer::compare).get());
         if (values.isEmpty()) throw new InvalidParameterException("at least one setValue in the domain");
-        for (int i = min(); i <= max(); i++) {
+        for (int i = min()+1; i < max(); i++) {
             if (!values.contains(i)) {
                 try {
                     this.remove(i);

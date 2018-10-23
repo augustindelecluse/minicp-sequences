@@ -271,10 +271,25 @@ public class SumTest extends SolverTest {
     public void sum11() {
         Solver cp = solverFactory.get();
 
-
+        // -45,-39,-37 = -45,-38
         IntVar x = makeIntVar(cp, new HashSet<>(Arrays.asList(-2147483645,-2147483639,-2147483637)));
         IntVar y = makeIntVar(cp, new HashSet<>(Arrays.asList(-2147483645,-2147483638)));
-        cp.post(Factory.sum(new IntVar[] {x},y));
+
+        boolean failed = false;
+        try {
+            cp.post(Factory.sum(new IntVar[] {x},y));
+        } catch (InconsistencyException e) {
+            failed = true;
+        }
+        assertFalse(failed);
+    }
+
+    @Test
+    public void sum12() {
+        Solver cp = solverFactory.get();
+
+        IntVar x = makeIntVar(cp, new HashSet<>(Arrays.asList(-45,-39,-37)));
+        IntVar y = makeIntVar(cp, new HashSet<>(Arrays.asList(-45,-3)));
 
         boolean failed = false;
         try {

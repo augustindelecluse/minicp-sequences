@@ -18,6 +18,7 @@ package minicp.engine.constraints;
 import minicp.cp.Factory;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
+import minicp.state.State;
 import minicp.state.StateInt;
 import minicp.util.exception.InconsistencyException;
 
@@ -28,10 +29,12 @@ import java.util.stream.IntStream;
  * Sum Constraint
  */
 public class Sum extends AbstractConstraint {
+
     private int[] unBounds;
     private StateInt nUnBounds;
-    private StateInt sumBounds;
+    private State<Long> sumBounds;
     private IntVar[] x;
+    private int[] min,max;
     private int n;
 
     /**
@@ -71,8 +74,10 @@ public class Sum extends AbstractConstraint {
         super(x[0].getSolver());
         this.x = x;
         this.n = x.length;
+        min = new int[x.length];
+        max = new int[x.length];
         nUnBounds = getSolver().getStateManager().makeStateInt(n);
-        sumBounds = getSolver().getStateManager().makeStateInt(0);
+        sumBounds = getSolver().getStateManager().makeStateRef(Long.valueOf(0));
         unBounds = IntStream.range(0, n).toArray();
     }
 
@@ -87,11 +92,13 @@ public class Sum extends AbstractConstraint {
     public void propagate() {
         // Filter the unbound vars and update the partial sum
         int nU = nUnBounds.value();
-        int sumMin = sumBounds.value(), sumMax = sumBounds.value();
+        long sumMin = sumBounds.value(), sumMax = sumBounds.value();
         for (int i = nU - 1; i >= 0; i--) {
             int idx = unBounds[i];
-            sumMin += x[idx].min(); // Update partial sum
-            sumMax += x[idx].max();
+            min[idx] = x[idx].min();
+            max[idx] = x[idx].max();
+            sumMin += min[idx]; // Update partial sum
+            sumMax += max[idx];
             if (x[idx].isBound()) {
                 sumBounds.setValue(sumBounds.value() + x[idx].min());
                 unBounds[i] = unBounds[nU - 1]; // Swap the variables
@@ -100,12 +107,14 @@ public class Sum extends AbstractConstraint {
             }
         }
         nUnBounds.setValue(nU);
-        if (sumMin > 0 || sumMax < 0)
+        if (sumMin > 0 || sumMax < 0) {
             throw new InconsistencyException();
+        }
+
         for (int i = nU - 1; i >= 0; i--) {
             int idx = unBounds[i];
-            x[idx].removeAbove(-(sumMin - x[idx].min()));
-            x[idx].removeBelow(-(sumMax - x[idx].max()));
+            x[idx].removeAbove(-((int) (sumMin - min[idx])));
+            x[idx].removeBelow(-((int) (sumMax - max[idx])));
         }
     }
 }
