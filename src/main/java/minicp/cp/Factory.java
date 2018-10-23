@@ -23,6 +23,7 @@ import minicp.state.Copier;
 import minicp.state.Trailer;
 import minicp.util.exception.InconsistencyException;
 import minicp.util.Procedure;
+import minicp.util.exception.IntOverFlowException;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -549,14 +550,17 @@ public final class Factory {
      * @return a variable equal to {@code x[0]+x[1]+...+x[n-1]}
      */
     public static IntVar sum(IntVar... x) {
-        int sumMin = 0;
-        int sumMax = 0;
+        long sumMin = 0;
+        long sumMax = 0;
         for (int i = 0; i < x.length; i++) {
             sumMin += x[i].min();
             sumMax += x[i].max();
         }
+        if (sumMin < (long) Integer.MIN_VALUE || sumMax > (long) Integer.MAX_VALUE) {
+            throw new IntOverFlowException();
+        }
         Solver cp = x[0].getSolver();
-        IntVar s = makeIntVar(cp, sumMin, sumMax);
+        IntVar s = makeIntVar(cp, (int) sumMin, (int) sumMax);
         cp.post(new Sum(x, s));
         return s;
     }

@@ -22,14 +22,17 @@ import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.SearchStatistics;
 import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.IntOverFlowException;
 import minicp.util.exception.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
 import static minicp.cp.BranchingScheme.firstFail;
+import static minicp.cp.Factory.lessOrEqual;
 import static minicp.cp.Factory.makeDfs;
 import static minicp.cp.Factory.makeIntVar;
 import static org.junit.Assert.*;
@@ -299,5 +302,22 @@ public class SumTest extends SolverTest {
         }
         assertFalse(failed);
     }
+
+    @Test(expected = IntOverFlowException.class)
+    public void sum13OverFlow() {
+        Solver cp = solverFactory.get();
+
+        IntVar x0 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872433,-463872431,-463872430,-463872429)));
+        IntVar x1 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872438,-463872437,-463872430)));
+        IntVar x2 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872432,-463872429)));
+        IntVar x3 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872435,-463872434,-463872432,-463872431,-463872430,-463872429)));
+        IntVar x4 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872437,-463872436,-463872435,-463872432,-463872431,-463872430,-463872429)));
+
+
+        cp.post(lessOrEqual(Factory.sum(x0,x1,x2,x3,x4),0));
+
+    }
+
+
 
 }
