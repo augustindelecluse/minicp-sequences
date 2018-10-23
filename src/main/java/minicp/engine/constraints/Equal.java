@@ -27,30 +27,39 @@ public class Equal extends AbstractConstraint {
         else if (x.isBound())
             y.assign(x.min());
         else {
-            x.removeBelow(y.min());
-            x.removeAbove(y.max());
-            y.removeBelow(x.min());
-            y.removeAbove(x.max());
-            final int lx = x.min(), ux = x.max();
-            for (int k = lx; k <= ux; k++)
+            boundsIntersect();
+            for (int k = x.min(); k <= x.max(); k++)
                 if (!x.contains(k))
                     y.remove(k);
-            final int ly = y.min(), uy = y.max();
-            for (int k = ly; k <= uy; k++)
+            for (int k = y.min(); k <= y.max(); k++)
                 if (!y.contains(k))
                     x.remove(k);
             x.whenDomainChange(() -> {
-                if (x.isBound()) y.assign(x.min());
-                for (int k = y.min(); k <= y.max(); k++)
-                    if (!x.contains(k))
-                        y.remove(k);
+                boundsIntersect();
+                if (x.isBound())
+                    y.assign(x.min());
+                else
+                    for (int k = x.min(); k <= x.max(); k++)
+                        if (!x.contains(k))
+                            y.remove(k);
             });
             y.whenDomainChange(() -> {
-                if (y.isBound()) x.assign(x.min());
-                for (int k = x.min(); k <= x.max(); k++)
-                    if (!y.contains(k))
-                        x.remove(k);
+                boundsIntersect();
+                if (y.isBound())
+                    x.assign(x.min());
+                else
+                    for (int k = y.min(); k <= y.max(); k++)
+                        if (!y.contains(k))
+                            x.remove(k);
             });
         }
+    }
+    private void boundsIntersect() {
+        int newMin = Math.max(x.min(),y.min());
+        int newMax = Math.min(x.max(),y.max());
+        x.removeBelow(newMin);
+        x.removeAbove(newMax);
+        y.removeBelow(newMin);
+        y.removeAbove(newMax);
     }
 }
