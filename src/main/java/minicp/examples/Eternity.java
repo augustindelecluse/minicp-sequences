@@ -17,7 +17,6 @@ package minicp.examples;
 
 import minicp.cp.Factory;
 import minicp.engine.constraints.TableCT;
-import minicp.engine.constraints.TableCTNew;
 import minicp.engine.constraints.TableDecomp;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -151,7 +150,6 @@ public class Eternity {
             for (int j = 0; j < m; j++) {
                 //cp.post(new TableCT(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
                 cp.post(new TableCT(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
-                //cp.post(new TableCTNew(new IntVar[]{id[i][j],u[i][j],r[i][j],d[i][j],l[i][j]},table));
                 //cp.post(new TableDecomp(new IntVar[]{id[i][j], u[i][j], r[i][j], d[i][j], l[i][j]}, table));
             }
         }
