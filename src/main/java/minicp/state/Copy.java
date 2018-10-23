@@ -15,44 +15,49 @@
 
 package minicp.state;
 
-
 /**
- * Implementation of {@link StateBool} with copy strategy
+ * Implementation of {@link State} with copy strategy
  * @see Copier
- * @see StateManager#makeStateBool(boolean)
+ * @see StateManager#makeStateRef(Object)
  */
-public class CopyBool implements Storage, StateBool {
+public class Copy<T> implements Storage, State<T> {
 
-    class CopyBoolStateEntry implements StateEntry {
-        private final boolean v;
+    class CopyStateEntry implements StateEntry {
+        private final T v;
 
-        CopyBoolStateEntry(boolean v) {
+        CopyStateEntry(T v) {
             this.v = v;
         }
-
-        public void restore() {
-            CopyBool.this.v = v;
+        @Override public void restore() {
+            Copy.this.v = v;
         }
     }
 
-    private boolean v;
+    private T v;
 
-    CopyBool(boolean initial) {
+    protected Copy(T initial) {
         v = initial;
     }
 
     @Override
-    public void setValue(boolean v) {
+    public T setValue(T v) {
         this.v = v;
-    }
-
-    @Override
-    public boolean value() {
         return v;
     }
 
     @Override
+    public T value() {
+        return v;
+    }
+
+
+    @Override
+    public String toString() {
+        return String.valueOf(v);
+    }
+
+    @Override
     public StateEntry save() {
-        return new CopyBoolStateEntry(v);
+        return new CopyStateEntry(v);
     }
 }

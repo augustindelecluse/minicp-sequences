@@ -23,33 +23,22 @@ package minicp.state;
  *
  * @see StateManager#makeStateInt(int) for the creation.
  */
-public interface StateInt {
-
-    /**
-     * Set the value
-     * @param v the value to set
-     * @return the new value that was set
-     */
-    int setValue(int v);
-
-    /**
-     * Retrieves the value
-     * @return the value
-     */
-    int value();
+public interface StateInt extends State<Integer> {
 
     /**
      * Increments the value
      * @return the new value
      */
-    int increment();
+    default int increment() {
+        return setValue(value() + 1);
+    }
 
     /**
      * Decrements the value
      * @return the new value
      */
-    int decrement();
+    default int decrement() {
+        return setValue(value() - 1);
+    }
 
-    @Override
-    String toString();
 }

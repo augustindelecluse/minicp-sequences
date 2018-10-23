@@ -17,6 +17,7 @@ package minicp.engine.constraints;
 
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.InconsistencyException;
 import minicp.util.exception.NotImplementedException;
 
 import java.util.BitSet;
@@ -34,6 +35,9 @@ public class TableCT extends AbstractConstraint {
     private int[][] table; //the table
     //supports[i][v] is the set of tuples supported by x[i]=v
     private BitSet[][] supports;
+
+    private BitSet supportedTuples;
+    private BitSet tmpSupport;
 
     /**
      * Table constraint.
@@ -73,6 +77,9 @@ public class TableCT extends AbstractConstraint {
                 }
             }
         }
+
+        supportedTuples = new BitSet(table.length);
+        tmpSupport = new BitSet(table.length);
     }
 
     @Override
@@ -82,13 +89,14 @@ public class TableCT extends AbstractConstraint {
         propagate();
     }
 
+
+
     @Override
     public void propagate() {
 
 
-        // Bit-set of tuple indices all set to 0
-        BitSet supportedTuples = new BitSet(table.length);
-        supportedTuples.flip(0, table.length);
+        // Bit-set of tuple indices all set to 1
+        supportedTuples.set(0, table.length);
 
         // TODO 1: compute supportedTuples as
         // supportedTuples = (supports[0][x[0].min()] | ... | supports[0][x[0].max()] ) & ... &
@@ -98,13 +106,14 @@ public class TableCT extends AbstractConstraint {
         // STUDENT // This should be displayed instead of the actual code
         // BEGIN STRIP
         for (int i = 0; i < x.length; i++) {
-            BitSet supporti = new BitSet();
+            tmpSupport.clear();
             for (int v = x[i].min(); v <= x[i].max(); v++) {
                 if (x[i].contains(v)) {
-                    supporti.or(supports[i][v]);
+                    tmpSupport.or(supports[i][v]);
                 }
             }
-            supportedTuples.and(supporti);
+            supportedTuples.and(tmpSupport);
+            if (supportedTuples.isEmpty()) throw InconsistencyException.INCONSISTENCY;
         }
         // END STRIP
 

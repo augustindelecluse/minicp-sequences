@@ -111,15 +111,15 @@ public class Copier implements StateManager {
     }
 
     @Override
-    public StateInt makeStateInt(int initValue) {
-        CopyInt s = new CopyInt(initValue);
-        store.add(s);
-        return s;
+    public <T> State<T> makeStateRef(T initValue) {
+        Copy r = new Copy(initValue);
+        store.add(r);
+        return r;
     }
 
     @Override
-    public StateBool makeStateBool(boolean initValue) {
-        CopyBool s = new CopyBool(initValue);
+    public StateInt makeStateInt(int initValue) {
+        CopyInt s = new CopyInt(initValue);
         store.add(s);
         return s;
     }
@@ -130,4 +130,6 @@ public class Copier implements StateManager {
         store.add(s);
         return s;
     }
+
+
 }

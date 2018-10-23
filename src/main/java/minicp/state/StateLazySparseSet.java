@@ -31,7 +31,7 @@ public class StateLazySparseSet {
     private StateInterval interval;
 
 
-    private StateBool intervalRep;
+    private State<Boolean> intervalRep;
     private boolean switched = false;
 
     private boolean isInterval() {
@@ -50,7 +50,7 @@ public class StateLazySparseSet {
     public StateLazySparseSet(StateManager sm, int n, int ofs) {
         this.sm = sm;
         interval = new StateInterval(sm, ofs, ofs + n - 1);
-        intervalRep = sm.makeStateBool(true);
+        intervalRep = sm.makeStateRef(true);
 
         // optimization to avoid trashing with the creation of sparse rep
         sm.onRestore(() -> {
