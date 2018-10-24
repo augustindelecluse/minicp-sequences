@@ -25,6 +25,8 @@ import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Assume;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
 
 import static minicp.cp.BranchingScheme.firstFail;
@@ -144,5 +146,40 @@ public class ShortTableTest extends SolverTest {
             assertEquals(statsDecomp.numberOfFailures(), statsAlgo.numberOfFailures());
             assertEquals(statsDecomp.numberOfNodes(), statsAlgo.numberOfNodes());
         }
+    }
+
+    /**
+     * The table should accept all values of x0 and x1. However, it prunes off
+     * some values of x1.
+     */
+    @Test
+    public void minicpReplayShortTableCtIsStrongerThanAc() {
+        final int     star  = 2147483647;
+
+        // This table should accept all values.
+        final int[][] table = {
+                {2147483647, 2147483647}
+        };
+
+        Solver cp = solverFactory.get();
+
+        final IntVar  x0    = makeIntVar(cp,new HashSet<>(Arrays.asList(0)));
+        final IntVar  x1    = makeIntVar(cp,new HashSet<>(Arrays.asList(-1,2)));
+
+
+        System.out.println(x0);
+        System.out.println(x1);
+
+
+        cp.post(new ShortTableCT(new IntVar[]{x0, x1}, table, star));
+
+        System.out.println(x0);
+        System.out.println(x1);
+
+        //cp.fixPoint();
+
+        //
+        String actual = "x0="+ x0 + " x1=" + x1;
+        //Assert.assertEquals("x0={0} x1={-1, 2}", actual);
     }
 }

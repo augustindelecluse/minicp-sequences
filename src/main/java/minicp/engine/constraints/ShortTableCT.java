@@ -19,6 +19,7 @@ import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.IntVar;
 import minicp.util.exception.NotImplementedException;
 
+import java.util.Arrays;
 import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
@@ -32,6 +33,7 @@ public class ShortTableCT extends AbstractConstraint {
     private final int[][] table; //the table
     //supports[i][v] is the set of tuples supported by x[i]=v
     private BitSet[][] supports;
+    private int[] dom; // domain iterator
 
     /**
      * Create a Table constraint with short tuples.
@@ -46,6 +48,7 @@ public class ShortTableCT extends AbstractConstraint {
         super(x[0].getSolver());
         this.x = x;
         this.table = table;
+        dom = new int[Arrays.stream(x).map(var -> var.size()).max(Integer::compare).get()];
 
         // Allocate supportedByVarVal
         supports = new BitSet[x.length][];
@@ -64,9 +67,11 @@ public class ShortTableCT extends AbstractConstraint {
             for (int j = 0; j < x.length; j++) { //j is the index of the current variable (in x)
                 if (table[i][j] == star) {
                     for (int v = 0; v < x[j].size(); v++) {
+                        System.out.println("var"+j+" set support value"+v);
                         supports[j][v].set(i);
                     }
                 } else if (x[j].contains(table[i][j])) {
+                    System.out.println("here");
                     supports[j][table[i][j] - x[j].min()].set(i);
                 }
             }
@@ -92,23 +97,23 @@ public class ShortTableCT extends AbstractConstraint {
 
         for (int i = 0; i < x.length; i++) {
             BitSet supporti = new BitSet();
-            for (int v = x[i].min(); v <= x[i].max(); v++) {
-                if (x[i].contains(v)) {
-                    supporti.or(supports[i][v]);
-                }
+            int nVal = x[i].fillArray(dom);
+            for (int v = 0; v < nVal; v++) {
+                supporti.or(supports[i][dom[v]]);
             }
             supportedTuples.and(supporti);
         }
 
         for (int i = 0; i < x.length; i++) {
-            for (int v = x[i].min(); v <= x[i].max(); v++) {
-                if (x[i].contains(v)) {
-                    if (!supports[i][v].intersects(supportedTuples)) {
-                        x[i].remove(v);
-                    }
+            int nVal = x[i].fillArray(dom);
+            for (int v = 0; v < nVal; v++) {
+                if (!supports[i][dom[v]].intersects(supportedTuples)) {
+                    System.out.println("remove:"+dom[v]);
+                    x[i].remove(dom[v]);
                 }
             }
         }
         // END STRIP
+
     }
 }

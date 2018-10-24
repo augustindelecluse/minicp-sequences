@@ -85,4 +85,30 @@ public class EqualTest extends SolverTest {
     }
 
 
+    @Test
+    public void equal2() {
+        try {
+
+            Solver cp = solverFactory.get();
+            IntVar x = makeIntVar(cp,Integer.MAX_VALUE-20,Integer.MAX_VALUE);
+            IntVar y = makeIntVar(cp,Integer.MAX_VALUE-10,Integer.MAX_VALUE);
+
+            cp.post(notEqual(x,Integer.MAX_VALUE-5));
+
+            cp.post(equal(x,y));
+
+            cp.post(equal(x,Integer.MAX_VALUE));
+
+            assertEquals(y.min(), Integer.MAX_VALUE);
+
+
+        } catch (InconsistencyException e) {
+            fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
+
+    }
+
+
 }
