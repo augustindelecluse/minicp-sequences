@@ -20,6 +20,7 @@ import minicp.engine.core.IntVar;
 import minicp.util.exception.InconsistencyException;
 import minicp.util.exception.NotImplementedException;
 
+import java.util.Arrays;
 import java.util.BitSet;
 
 import static minicp.cp.Factory.minus;
@@ -38,6 +39,8 @@ public class TableCT extends AbstractConstraint {
 
     private BitSet supportedTuples;
     private BitSet tmpSupport;
+
+    private int[] dom; // domain iterator
 
     /**
      * Table constraint.
@@ -59,6 +62,7 @@ public class TableCT extends AbstractConstraint {
         super(x[0].getSolver());
         this.x = new IntVar[x.length];
         this.table = table;
+        dom = new int[Arrays.stream(x).map(var -> var.size()).max(Integer::compare).get()];
 
         // Allocate supportedByVarVal
         supports = new BitSet[x.length][];
@@ -107,10 +111,9 @@ public class TableCT extends AbstractConstraint {
         // BEGIN STRIP
         for (int i = 0; i < x.length; i++) {
             tmpSupport.clear();
-            for (int v = x[i].min(); v <= x[i].max(); v++) {
-                if (x[i].contains(v)) {
-                    tmpSupport.or(supports[i][v]);
-                }
+            int nVal = x[i].fillArray(dom);
+            for (int v = 0; v < nVal; v++) {
+                    tmpSupport.or(supports[i][dom[v]]);
             }
             supportedTuples.and(tmpSupport);
             if (supportedTuples.isEmpty()) throw InconsistencyException.INCONSISTENCY;
@@ -119,17 +122,17 @@ public class TableCT extends AbstractConstraint {
 
         // TODO 2
         for (int i = 0; i < x.length; i++) {
-            for (int v = x[i].min(); v <= x[i].max(); v++) {
-                if (x[i].contains(v)) {
-                    // TODO 2 the condition for removing the setValue v from x[i] is to check if
-                    // there is no intersection between supportedTuples and the support[i][v]
+            int nVal = x[i].fillArray(dom);
+            for (int v = 0; v < nVal; v++) {
+                    // TODO 2 the condition for removing the setValue dom[v] from x[i] is to check if
+                    // there is no intersection between supportedTuples and the support[i][dom[v]]
                     // STUDENT throw new NotImplementedException();
                     // BEGIN STRIP
-                    if (!supports[i][v].intersects(supportedTuples)) {
-                        x[i].remove(v);
+                    if (!supports[i][dom[v]].intersects(supportedTuples)) {
+                        x[i].remove(dom[v]);
                     }
                     // END STRIP
-                }
+
             }
         }
 
