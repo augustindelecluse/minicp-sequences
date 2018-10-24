@@ -29,23 +29,23 @@ public class Equal extends AbstractConstraint {
             y.assign(x.min());
         else {
             boundsIntersect();
-            int [] domVal = new int[Math.max(x.size(),y.size())];
-            pruneEquals(y,x,domVal);
-            pruneEquals(x,y,domVal);
+            int[] domVal = new int[Math.max(x.size(), y.size())];
+            pruneEquals(y, x, domVal);
+            pruneEquals(x, y, domVal);
             x.whenDomainChange(() -> {
                 boundsIntersect();
-                pruneEquals(x,y,domVal);
+                pruneEquals(x, y, domVal);
             });
             y.whenDomainChange(() -> {
                 boundsIntersect();
-                pruneEquals(y,x,domVal);
+                pruneEquals(y, x, domVal);
             });
         }
     }
 
     // dom consistent filtering in the direction from -> to
     // every value of to has a support in from
-    private void pruneEquals(IntVar from, IntVar to, int [] domVal) {
+    private void pruneEquals(IntVar from, IntVar to, int[] domVal) {
         // dump the domain of to into domVal
         int nVal = to.fillArray(domVal);
         for (int k = 0; k < nVal; k++)
@@ -55,8 +55,8 @@ public class Equal extends AbstractConstraint {
 
     // make sure bound of variables are the same
     private void boundsIntersect() {
-        int newMin = Math.max(x.min(),y.min());
-        int newMax = Math.min(x.max(),y.max());
+        int newMin = Math.max(x.min(), y.min());
+        int newMax = Math.min(x.max(), y.max());
         x.removeBelow(newMin);
         x.removeAbove(newMax);
         y.removeBelow(newMin);

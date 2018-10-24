@@ -34,7 +34,7 @@ public class Sum extends AbstractConstraint {
     private StateInt nUnBounds;
     private State<Long> sumBounds;
     private IntVar[] x;
-    private int[] min,max;
+    private int[] min, max;
     private int n;
 
     /**

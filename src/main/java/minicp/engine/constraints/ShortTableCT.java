@@ -63,16 +63,14 @@ public class ShortTableCT extends AbstractConstraint {
         // TODO: compute the supports (be careful, take into account the star value)
         // STUDENT throw new NotImplementedException("ShortTableCT");
         // BEGIN STRIP
-        for (int i = 0; i < table.length; i++) { //i is the index of the tuple (in table)
-            for (int j = 0; j < x.length; j++) { //j is the index of the current variable (in x)
-                if (table[i][j] == star) {
-                    for (int v = 0; v < x[j].size(); v++) {
-                        System.out.println("var"+j+" set support value"+v);
-                        supports[j][v].set(i);
+        for (int t = 0; t < table.length; t++) { //i is the index of the tuple (in table)
+            for (int i = 0; i < x.length; i++) { //j is the index of the current variable (in x)
+                if (table[t][i] == star) {
+                    for (int v = 0; v < supports[i].length; v++) {
+                        supports[i][v].set(t);
                     }
-                } else if (x[j].contains(table[i][j])) {
-                    System.out.println("here");
-                    supports[j][table[i][j] - x[j].min()].set(i);
+                } else if (x[i].contains(table[t][i])) {
+                    supports[i][table[t][i] - x[i].min()].set(t);
                 }
             }
         }
@@ -108,7 +106,6 @@ public class ShortTableCT extends AbstractConstraint {
             int nVal = x[i].fillArray(dom);
             for (int v = 0; v < nVal; v++) {
                 if (!supports[i][dom[v]].intersects(supportedTuples)) {
-                    System.out.println("remove:"+dom[v]);
                     x[i].remove(dom[v]);
                 }
             }

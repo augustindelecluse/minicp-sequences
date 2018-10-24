@@ -70,10 +70,10 @@ public class TableCT extends AbstractConstraint {
         }
 
         // Set values in supportedByVarVal, which contains all the tuples supported by each var-val pair
-        for (int i = 0; i < table.length; i++) { //i is the index of the tuple (in table)
-            for (int j = 0; j < x.length; j++) { //j is the index of the current variable (in x)
-                if (x[j].contains(table[i][j])) {
-                    supports[j][table[i][j] - x[j].min()].set(i);
+        for (int t = 0; t < table.length; t++) { //i is the index of the tuple (in table)
+            for (int i = 0; i < x.length; i++) { //j is the index of the current variable (in x)
+                if (x[i].contains(table[t][i])) {
+                    supports[i][table[t][i] - x[i].min()].set(t);
                 }
             }
         }

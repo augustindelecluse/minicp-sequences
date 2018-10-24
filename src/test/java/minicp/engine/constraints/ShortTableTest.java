@@ -167,19 +167,10 @@ public class ShortTableTest extends SolverTest {
         final IntVar  x1    = makeIntVar(cp,new HashSet<>(Arrays.asList(-1,2)));
 
 
-        System.out.println(x0);
-        System.out.println(x1);
-
 
         cp.post(new ShortTableCT(new IntVar[]{x0, x1}, table, star));
 
-        System.out.println(x0);
-        System.out.println(x1);
-
-        //cp.fixPoint();
-
-        //
-        String actual = "x0="+ x0 + " x1=" + x1;
-        //Assert.assertEquals("x0={0} x1={-1, 2}", actual);
+        assertEquals(1,x0.size());
+        assertEquals(2,x1.size());
     }
 }
