@@ -46,7 +46,7 @@ public class ShortTableCT extends AbstractConstraint {
      */
     public ShortTableCT(IntVar[] x, int[][] table, int star) {
         super(x[0].getSolver());
-        this.x = x;
+        this.x = new IntVar[x.length];
         this.table = table;
         dom = new int[Arrays.stream(x).map(var -> var.size()).max(Integer::compare).get()];
 

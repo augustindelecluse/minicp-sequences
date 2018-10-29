@@ -173,4 +173,27 @@ public class ShortTableTest extends SolverTest {
         assertEquals(1,x0.size());
         assertEquals(2,x1.size());
     }
+
+    @Test
+    public void issue14() {
+        final int arity = 2;
+        final int star  = 2147483647;
+        final int[][] table = {
+                {2147483647, 2147483647} // means *, *
+        };
+
+        Solver cp = solverFactory.get();
+        IntVar x0 = makeIntVar(cp, new HashSet<>(Arrays.asList(0)));
+        IntVar x1 = makeIntVar(cp, new HashSet<>(Arrays.asList(-1, 2)));
+
+        IntVar y = makeIntVar(cp, new HashSet<>(Arrays.asList(0, 1)));
+        IntVar z = makeIntVar(cp, new HashSet<>(Arrays.asList(3)));
+
+        IntVar[] data = new IntVar[]{x0, x1};
+
+        cp.post(new ShortTableCT(data, table, star));
+        assertEquals(-1,data[1].min());
+
+
+    }
 }
