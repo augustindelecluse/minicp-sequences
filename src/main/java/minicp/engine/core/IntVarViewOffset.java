@@ -17,6 +17,9 @@
 package minicp.engine.core;
 
 import minicp.util.Procedure;
+import minicp.util.exception.IntOverFlowException;
+
+import java.security.InvalidParameterException;
 
 /**
  * A view on a variable of type {@code x+o}
@@ -27,8 +30,13 @@ public class IntVarViewOffset implements IntVar {
     private final int o;
 
     public IntVarViewOffset(IntVar x, int offset) { // y = x + o
+        if (0L + x.min() + offset <= (long) Integer.MIN_VALUE)
+            throw new IntOverFlowException("consider applying a smaller offset as the min domain on this view is <= Integer.MIN _VALUE");
+        if (0L + x.max() + offset >= (long) Integer.MAX_VALUE)
+            throw new IntOverFlowException("consider applying a smaller offset as the max domain on this view is >= Integer.MAX _VALUE");
         this.x = x;
         this.o = offset;
+
     }
 
     @Override

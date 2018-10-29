@@ -82,6 +82,7 @@ public class IntVarImpl implements IntVar {
      * @param max the maximum value of the domain with {@code max >= min}
      */
     public IntVarImpl(Solver cp, int min, int max) {
+        if (min == Integer.MIN_VALUE || max == Integer.MAX_VALUE) throw new InvalidParameterException("consider reducing the domains, Integer.MIN _VALUE and Integer.MAX_VALUE not allowed");
         if (min > max) throw new InvalidParameterException("at least one setValue in the domain");
         this.cp = cp;
         domain = new SparseSetDomain(cp.getStateManager(), min, max);

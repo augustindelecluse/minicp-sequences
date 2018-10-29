@@ -133,12 +133,13 @@ public class SparseSetDomain implements IntDomain {
 
     @Override
     public String toString() {
+        if (size() == 0) return "{}";
         StringBuilder b = new StringBuilder();
         b.append("{");
-        for (int i = min(); i <= max() - 1; i++)
+        for (int i = min(); i < max(); i++)
             if (contains((i)))
                 b.append(i).append(',');
-        if (size() > 0) b.append(max());
+        b.append(max());
         b.append("}");
         return b.toString();
     }

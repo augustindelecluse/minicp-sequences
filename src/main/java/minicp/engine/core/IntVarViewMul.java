@@ -19,6 +19,7 @@ package minicp.engine.core;
 
 import minicp.util.Procedure;
 import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.IntOverFlowException;
 
 /**
  * A view on a variable of type {@code a*x}
@@ -29,6 +30,10 @@ public class IntVarViewMul implements IntVar {
     private final IntVar x;
 
     public IntVarViewMul(IntVar x, int a) {
+        if ((1L + x.min()) * a <= (long) Integer.MIN_VALUE)
+            throw new IntOverFlowException("consider applying a smaller mul cte as the min domain on this view is <= Integer.MIN _VALUE");
+        if ((1L + x.max()) * a >= (long) Integer.MAX_VALUE)
+            throw new IntOverFlowException("consider applying a smaller mul cte as the max domain on this view is >= Integer.MAX _VALUE");
         assert (a > 0);
         this.a = a;
         this.x = x;

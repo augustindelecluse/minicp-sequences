@@ -17,10 +17,12 @@ package minicp.engine.core;
 
 import minicp.engine.SolverTest;
 import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.IntOverFlowException;
 import org.junit.Test;
 
 import static minicp.cp.Factory.makeIntVar;
 import static minicp.cp.Factory.mul;
+import static minicp.cp.Factory.plus;
 import static org.junit.Assert.*;
 
 
@@ -160,6 +162,13 @@ public class IntVarViewMulTest extends SolverTest {
             fail("should not fail");
         }
     }
+
+    @Test(expected = IntOverFlowException.class)
+    public void testOverFlow() {
+        Solver cp = solverFactory.get();
+        IntVar x = mul(makeIntVar(cp, 1000000, 1000000), 10000000);
+    }
+
 
 
 }

@@ -18,8 +18,12 @@ package minicp.util.exception;
 
 public class IntOverFlowException extends RuntimeException {
 
+    public IntOverFlowException(String message) {
+        super(message);
+    }
+
     public String toString() {
-        return "overflow on integer";
+        return "possible overflow on integer "+ super.toString();
     }
 
 

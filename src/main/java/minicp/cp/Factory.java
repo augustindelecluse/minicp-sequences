@@ -557,7 +557,7 @@ public final class Factory {
             sumMax += x[i].max();
         }
         if (sumMin < (long) Integer.MIN_VALUE || sumMax > (long) Integer.MAX_VALUE) {
-            throw new IntOverFlowException();
+            throw new IntOverFlowException("domains are too large for sum constraint and would exceed Integer bounds");
         }
         Solver cp = x[0].getSolver();
         IntVar s = makeIntVar(cp, (int) sumMin, (int) sumMax);

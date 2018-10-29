@@ -90,16 +90,16 @@ public class EqualTest extends SolverTest {
         try {
 
             Solver cp = solverFactory.get();
-            IntVar x = makeIntVar(cp,Integer.MAX_VALUE-20,Integer.MAX_VALUE);
-            IntVar y = makeIntVar(cp,Integer.MAX_VALUE-10,Integer.MAX_VALUE);
+            IntVar x = makeIntVar(cp,Integer.MAX_VALUE-20,Integer.MAX_VALUE-1);
+            IntVar y = makeIntVar(cp,Integer.MAX_VALUE-10,Integer.MAX_VALUE-1);
 
             cp.post(notEqual(x,Integer.MAX_VALUE-5));
 
             cp.post(equal(x,y));
 
-            cp.post(equal(x,Integer.MAX_VALUE));
+            cp.post(equal(x,Integer.MAX_VALUE-1));
 
-            assertEquals(y.min(), Integer.MAX_VALUE);
+            assertEquals(y.min(), Integer.MAX_VALUE-1);
 
 
         } catch (InconsistencyException e) {
