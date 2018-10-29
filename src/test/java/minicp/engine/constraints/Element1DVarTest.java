@@ -181,7 +181,7 @@ public class Element1DVarTest extends SolverTest {
         }
     }
 
-    
+
 
 
 

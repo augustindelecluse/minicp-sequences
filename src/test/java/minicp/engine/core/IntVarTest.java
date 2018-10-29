@@ -215,6 +215,24 @@ public class IntVarTest extends SolverTest {
         }
     }
 
+    @Test
+    public void arbitrarySetDomainsMaxInt() {
+
+        try {
+
+            Solver cp = solverFactory.get();
+
+            Set<Integer> dom = new HashSet<>(Arrays.asList(2147483647));
+
+
+            IntVar var1 = makeIntVar(cp, dom);
+
+
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
+    }
+
 
     @Test
     public void onBoundChange() {
