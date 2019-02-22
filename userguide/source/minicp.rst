@@ -16,7 +16,11 @@ Slides
 
 * `Tutorial <https://www.icloud.com/keynote/0E4e7B5uJ0FLuubA0pUqVp_0Q#minicp>`_ given at CPAIOR17
 
-Slides from the course INGI2365 given by Pierre Schaus  @UCLouvain: 
+Slides from the course INGI2365-2019 given by Pierre Schaus  @UCLouvain:
+
+* `Overview of CP, Filtering, Search, Consistency, Fix-point <https://www.icloud.com/keynote/0oS2SsSrew0r4aiPaPV470n4g#01-intro>`_
+
+Slides from the course INGI2365-2018 given by Pierre Schaus  @UCLouvain (need to be updated):
 
 * `Variables, Domains, Trail and search <https://www.icloud.com/keynote/0QTIjJ1gIxzkr0Eig7pDlYvIA#02-variables-domains-trail-search>`_
 * `Views, Optimization, Heuristics and Large Neighborhood Search <https://www.icloud.com/keynote/0ua695DWVE6DqpjPvqR-St7WQ#03-views-optimization-heuristics-lns-restarts>`_

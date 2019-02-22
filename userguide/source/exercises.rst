@@ -18,6 +18,8 @@ The instructors interested to get the source-code of
 the solutions can contact us.*
 
 
+
+
 Learning Outcomes
 =======================================
 
@@ -31,6 +33,13 @@ Be able to
 * Use LNS
 * Write unit-tests for constraints and models
 * Debug constraints, models, etc
+
+
+Theoretical Exercises
+=================================
+
+
+Some theoretical `quizz <https://inginious.org/course/minicp/>`_
 
 
 

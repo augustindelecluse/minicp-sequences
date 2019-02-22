@@ -58,6 +58,8 @@ public class Maximum extends AbstractConstraint {
 
     @Override
     public void propagate() {
+        // STUDENT throw new NotImplementedException("Maximum");
+        // BEGIN STRIP
         int max = Integer.MIN_VALUE;
         int min = Integer.MIN_VALUE;
         int nSupport = 0;
@@ -82,5 +84,6 @@ public class Maximum extends AbstractConstraint {
         }
         y.removeAbove(max);
         y.removeBelow(min);
+        // END STRIP
     }
 }
