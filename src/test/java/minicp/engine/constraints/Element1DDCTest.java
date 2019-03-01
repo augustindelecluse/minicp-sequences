@@ -41,7 +41,8 @@ public class Element1DDCTest extends SolverTest {
 
     @Test
     public void domainConsistencyTest() {
-
+        // STUDENT NotImplementedExceptionAssume.fail(new NotImplementedException());
+        // BEGIN STRIP
         try {
             Solver cp = solverFactory.get();
 
@@ -99,5 +100,6 @@ public class Element1DDCTest extends SolverTest {
         } catch (NotImplementedException e) {
             NotImplementedExceptionAssume.fail(e);
         }
+        // END STRIP
     }
 }
