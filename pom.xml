@@ -18,6 +18,12 @@
         <argLine>-XX:MaxPermSize=512m</argLine>
         <checkstyle.config.location>${basedir}/checkstyle.xml</checkstyle.config.location>
     </properties>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -26,25 +32,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.tap4j</groupId>
-            <artifactId>tap4j</artifactId>
-            <version>4.2.1</version>
+            <groupId>com.github.guillaumederval</groupId>
+            <artifactId>JavaGrading</artifactId>
+            <version>db2c656de171336067bd3627009578277aeca8b3</version>
+            <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.tap4j</groupId>
-            <artifactId>tap4j-ext</artifactId>
-            <version>4.2.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.xcsp/xcsp3-tools -->
         <dependency>
             <groupId>org.xcsp</groupId>
             <artifactId>xcsp3-tools</artifactId>
             <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.choco-solver</groupId>
-            <artifactId>choco-solver</artifactId>
-            <version>4.0.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -53,20 +49,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.0.0</version>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <configuration>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>org.tap4j.ext.junit.listener.TapListenerSuite</value>
-                        </property>
-                    </properties>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -118,6 +100,40 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>com.github.guillaumederval.javagrading.GradingListener</value>
+                        </property>
+
+                    </properties>
+                    <includes>
+                        <include>**/*.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>run-tests</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
             </plugin>
         </plugins>
     </build>
