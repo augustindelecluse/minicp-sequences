@@ -57,6 +57,8 @@ public class Element1DTest extends SolverTest {
             assertEquals(5, z.min());
             assertEquals(9, z.max());
 
+
+
             z.removeAbove(7);
             cp.fixPoint();
 

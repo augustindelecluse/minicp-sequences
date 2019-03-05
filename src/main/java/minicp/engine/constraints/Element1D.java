@@ -20,7 +20,13 @@ import minicp.cp.Factory;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.state.StateInt;
+import minicp.state.StateManager;
+import minicp.util.exception.InconsistencyException;
 import minicp.util.exception.NotImplementedException;
+
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  *
@@ -30,8 +36,15 @@ import minicp.util.exception.NotImplementedException;
 public class Element1D extends AbstractConstraint {
 
     private final int[] t;
+
+
+    private final Integer[] sortedPerm;
+    private final StateInt low;
+    private final StateInt up;
+
     private final IntVar y;
     private final IntVar z;
+
 
     /**
      * Creates an element constraint {@code array[y] = z}
@@ -43,6 +56,17 @@ public class Element1D extends AbstractConstraint {
     public Element1D(int[] array, IntVar y, IntVar z) {
         super(y.getSolver());
         this.t = array;
+
+        sortedPerm = new Integer[t.length];
+        for (int i = 0; i < t.length; i++) {
+            sortedPerm[i] = i;
+        }
+        Arrays.sort(sortedPerm,Comparator.comparingInt(i -> t[i]));
+
+        StateManager sm = getSolver().getStateManager();
+        low = sm.makeStateInt(0);
+        up = sm.makeStateInt(t.length - 1);
+
         this.y = y;
         this.z = z;
     }
@@ -51,10 +75,46 @@ public class Element1D extends AbstractConstraint {
     public void post() {
         // STUDENT throw new NotImplementedException("Element1D");
         // BEGIN STRIP
-        int[][] t2 = new int[1][t.length];
-        System.arraycopy(t, 0, t2[0], 0, t.length);
-        Constraint c = new Element2D(t2, Factory.makeIntVar(getSolver(), 0, 0), y, z);
-        getSolver().post(c, false);
+
+        y.removeBelow(0);
+        y.removeAbove(t.length - 1);
+        z.removeBelow(t[sortedPerm[0]]);
+        z.removeAbove(t[sortedPerm[t.length-1]]);
+
+        y.propagateOnDomainChange(this);
+        z.propagateOnBoundChange(this);
+        propagate();
+
+        // END STRIP
+    }
+
+    @Override
+    public void propagate() {
+        // STUDENT throw new NotImplementedException("Element1D");
+        // BEGIN STRIP
+
+        int l = low.value(), u = up.value();
+        int zMin = z.min(), zMax = z.max();
+
+        while (t[sortedPerm[l]] < zMin || !y.contains(sortedPerm[l])) {
+            y.remove(sortedPerm[l]);
+            l++;
+            if (l > u) {
+                throw new InconsistencyException();
+            }
+        }
+        while (t[sortedPerm[u]] > zMax || !y.contains(sortedPerm[u])) {
+            y.remove(sortedPerm[u]);
+            u--;
+            if (l > u) {
+                throw new InconsistencyException();
+            }
+        }
+        z.removeBelow(t[sortedPerm[l]]);
+        z.removeAbove(t[sortedPerm[u]]);
+        low.setValue(l);
+        up.setValue(u);
+
         // END STRIP
     }
 }
