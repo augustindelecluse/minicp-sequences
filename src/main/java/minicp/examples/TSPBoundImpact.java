@@ -98,8 +98,8 @@ public class TSPBoundImpact {
             if (xs == null)
                 return EMPTY;
             else {
-                int v = boundImpactValueSelector(xs,totalDist);// now the first solution should have objective 2561
-                // int v = xs.min(); // the first solution should have objective 4722
+                //int v = boundImpactValueSelector(xs,totalDist);// now the first solution should have objective 2561
+                int v = xs.min(); // the first solution should have objective 4722
                 return branch(() -> cp.post(equal(xs, v)),
                         () -> cp.post(notEqual(xs, v)));
             }
