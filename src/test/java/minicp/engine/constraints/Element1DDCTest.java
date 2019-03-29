@@ -40,24 +40,22 @@ import static org.junit.Assert.*;
 public class Element1DDCTest extends SolverTest {
 
     @Test
-    public void domainConsistencyTest() {
-        // STUDENT NotImplementedExceptionAssume.fail(new NotImplementedException());
-        // BEGIN STRIP
+    public void element1dTest1() {
         try {
             Solver cp = solverFactory.get();
 
             Random rand = new Random(678);
-            IntVar y = makeIntVar(cp, 0, 1);
-            IntVar z = makeIntVar(cp, 0, 15);
+            IntVar y = makeIntVar(cp, 0, 100);
+            IntVar z = makeIntVar(cp, 0, 100);
 
 
-            int[] T = new int[15];
-            for(int i = 0; i < 15; i++)
-                T[i] = rand.nextInt(15);
+            int[] T = new int[70];
+            for(int i = 0; i < 70; i++)
+                T[i] = rand.nextInt(100);
 
-            cp.post(new Element1D(T, y, z));
+            cp.post(new Element1DDomainConsistent(T, y, z));
 
-            assertTrue(y.max() < T.length);
+            assertTrue(y.max() < 70);
 
             Supplier<Procedure[]> branching = () -> {
                 if(y.isBound() && z.isBound()) {
@@ -79,27 +77,27 @@ public class Element1DDCTest extends SolverTest {
                     assertTrue(possibleValues.contains(T[possibleY[i]]));
                     possibleValues2.add(T[possibleY[i]]);
                 }
-                //assertEquals(possibleValues.size(), possibleValues2.size());
+                assertEquals(possibleValues.size(), possibleValues2.size());
 
                 if(!y.isBound() && (z.isBound() || rand.nextBoolean())) {
                     //select a random y
-                    final int val = possibleY[rand.nextInt(possibleY.length)];
+                    int val = possibleY[rand.nextInt(possibleY.length)];
                     return branch(() -> equal(y, val),
-                                  () -> notEqual(y, val));
+                            () -> notEqual(y, val));
                 }
                 else {
-                    final int val = possibleZ[rand.nextInt(possibleZ.length)];
+                    int val = possibleZ[rand.nextInt(possibleZ.length)];
                     return branch(() -> equal(z, val),
-                                  () -> notEqual(z, val));
+                            () -> notEqual(z, val));
                 }
             };
 
             DFSearch dfs = makeDfs(cp, branching);
 
             SearchStatistics stats = dfs.solve();
+            assertEquals(stats.numberOfSolutions(), T.length);
         } catch (NotImplementedException e) {
             NotImplementedExceptionAssume.fail(e);
         }
-        // END STRIP
     }
 }
