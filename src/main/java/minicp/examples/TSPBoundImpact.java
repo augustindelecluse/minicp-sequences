@@ -15,15 +15,16 @@
 
 package minicp.examples;
 
+import minicp.cp.Factory;
 import minicp.engine.constraints.Circuit;
 import minicp.engine.constraints.Element1D;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
 import minicp.search.DFSearch;
 import minicp.search.Objective;
+import minicp.search.SearchStatistics;
 import minicp.util.exception.InconsistencyException;
 import minicp.util.io.InputReader;
-import minicp.search.SearchStatistics;
 
 import static minicp.cp.BranchingScheme.*;
 import static minicp.cp.Factory.*;
@@ -32,9 +33,38 @@ import static minicp.cp.Factory.*;
  * Traveling salesman problem.
  * <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">Wikipedia</a>.
  */
-public class TSP {
+public class TSPBoundImpact {
 
 
+    /**
+     * Fages, J. G., & Prud’Homme, C. Making the first solution good! In 2017 IEEE 29th International Conference on Tools with Artificial Intelligence (ICTAI). IEEE.
+     * @param x
+     * @param obj
+     * @return the value that if assigned to v induced the least augmentation of the objective obj
+     */
+    public static int boundImpactValueSelector(IntVar x, IntVar obj) {
+        // STUDENT throw new NotImplementedException("AllDifferentAC");
+        // BEGIN STRIP
+        int val = x.min();
+        int best = Integer.MAX_VALUE;
+        for (int v = x.min(); v < x.max(); v++) {
+            if (x.contains(v)) {
+                x.getSolver().getStateManager().saveState();
+                try {
+                    x.getSolver().post(equal(x,v));
+                    if ((obj.min()) < best) {
+                        val = v;
+                        best = obj.min();
+                    }
+
+                } catch (InconsistencyException e) {
+                }
+                x.getSolver().getStateManager().restoreState();
+            }
+        }
+        return val;
+        // END STRIP
+    }
 
 
     public static void main(String[] args) {
@@ -61,7 +91,6 @@ public class TSP {
 
         Objective obj = cp.minimize(totalDist);
 
-
         DFSearch dfs = makeDfs(cp, () -> {
             IntVar xs = selectMin(succ,
                     xi -> xi.size() > 1,
@@ -69,7 +98,8 @@ public class TSP {
             if (xs == null)
                 return EMPTY;
             else {
-                int v = xs.min();
+                int v = boundImpactValueSelector(xs,totalDist);// now the first solution should have objective 2561
+                // int v = xs.min(); // the first solution should have objective 4722
                 return branch(() -> xs.getSolver().post(equal(xs, v)),
                         () -> xs.getSolver().post(notEqual(xs, v)));
             }
@@ -79,10 +109,9 @@ public class TSP {
                 System.out.println(totalDist)
         );
 
-        SearchStatistics stats = dfs.optimize(obj,s -> s.numberOfSolutions() == 1);
+        SearchStatistics stats = dfs.optimize(obj);
+
         System.out.println(stats);
-
-
 
 
     }
