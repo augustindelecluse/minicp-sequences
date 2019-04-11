@@ -145,4 +145,32 @@ public class IsLessOrEqualTest extends SolverTest {
     }
 
 
+    @Test
+    public void test5() {
+        try {
+
+            Solver cp = solverFactory.get();
+            IntVar x = makeIntVar(cp, -5, 10);
+            BoolVar b = makeBoolVar(cp);
+
+            cp.getStateManager().saveState();
+            cp.post(new IsLessOrEqual(b, x, -6));
+            assertTrue(b.isBound());
+            assertTrue(b.isFalse());
+            cp.getStateManager().restoreState();
+
+            cp.getStateManager().saveState();
+            cp.post(new IsLessOrEqual(b, x, 11));
+            assertTrue(b.isBound());
+            assertTrue(b.isTrue());
+            cp.getStateManager().restoreState();
+
+        } catch (InconsistencyException e) {
+            fail("should not fail");
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
+    }
+
+
 }
