@@ -1,11 +1,11 @@
 <instance format="XCSP3" type="COP">
   <variables>
     <array id="r" note="r[i] is the model used for the ith rack" size="[5]"> 0..2 </array>
-    <array id="c" note="c[i][j] is the number of cards of type j put in the ith rack" size="[5][4]">
-      <domain for="c[][0]"> 0..10 </domain>
-      <domain for="c[][1]"> 0..4 </domain>
-      <domain for="c[][2]"> 0..2 </domain>
-      <domain for="c[][3]"> 0 1 </domain>
+    <array id="v" note="v[i][j] is the number of cards of type j put in the ith rack" size="[5][4]">
+      <domain for="v[][0]"> 0..10 </domain>
+      <domain for="v[][1]"> 0..4 </domain>
+      <domain for="v[][2]"> 0..2 </domain>
+      <domain for="v[][3]"> 0 1 </domain>
     </array>
     <array id="rpw" note="rpw[i] is the power of the ith rack" size="[5]"> 0 150 200 </array>
     <array id="rcn" note="rcn[i] is the number of connectors of the ith rack" size="[5]"> 0 8 16 </array>
@@ -47,68 +47,68 @@
     </group>
     <block note="connector-capacity constraints">
       <sum>
-        <list> c[0][] </list>
+        <list> v[0][] </list>
         <condition> (le,rcn[0]) </condition>
       </sum>
       <sum>
-        <list> c[1][] </list>
+        <list> v[1][] </list>
         <condition> (le,rcn[1]) </condition>
       </sum>
       <sum>
-        <list> c[2][] </list>
+        <list> v[2][] </list>
         <condition> (le,rcn[2]) </condition>
       </sum>
       <sum>
-        <list> c[3][] </list>
+        <list> v[3][] </list>
         <condition> (le,rcn[3]) </condition>
       </sum>
       <sum>
-        <list> c[4][] </list>
+        <list> v[4][] </list>
         <condition> (le,rcn[4]) </condition>
       </sum>
     </block>
     <block note="power-capacity constraints">
       <sum>
-        <list> c[0][] </list>
+        <list> v[0][] </list>
         <coeffs> 20 40 50 75 </coeffs>
         <condition> (le,rpw[0]) </condition>
       </sum>
       <sum>
-        <list> c[1][] </list>
+        <list> v[1][] </list>
         <coeffs> 20 40 50 75 </coeffs>
         <condition> (le,rpw[1]) </condition>
       </sum>
       <sum>
-        <list> c[2][] </list>
+        <list> v[2][] </list>
         <coeffs> 20 40 50 75 </coeffs>
         <condition> (le,rpw[2]) </condition>
       </sum>
       <sum>
-        <list> c[3][] </list>
+        <list> v[3][] </list>
         <coeffs> 20 40 50 75 </coeffs>
         <condition> (le,rpw[3]) </condition>
       </sum>
       <sum>
-        <list> c[4][] </list>
+        <list> v[4][] </list>
         <coeffs> 20 40 50 75 </coeffs>
         <condition> (le,rpw[4]) </condition>
       </sum>
     </block>
     <block note="demand constraints">
       <sum>
-        <list> c[][0] </list>
+        <list> v[][0] </list>
         <condition> (eq,10) </condition>
       </sum>
       <sum>
-        <list> c[][1] </list>
+        <list> v[][1] </list>
         <condition> (eq,4) </condition>
       </sum>
       <sum>
-        <list> c[][2] </list>
+        <list> v[][2] </list>
         <condition> (eq,2) </condition>
       </sum>
       <sum>
-        <list> c[][3] </list>
+        <list> v[][3] </list>
         <condition> (eq,1) </condition>
       </sum>
     </block>

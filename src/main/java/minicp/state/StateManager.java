@@ -41,13 +41,6 @@ public interface StateManager {
     void restoreState();
 
     /**
-     * Restores the state as it was at level 0 (first saveState)
-     * The level is now -1.
-     * Notice that you'll probably want to saveState after this operation.
-     */
-    void restoreAllState();
-
-    /**
      * Restores the state up the the given level.
      *
      * @param level the level, a non negative number between 0 and {@link #getLevel()}

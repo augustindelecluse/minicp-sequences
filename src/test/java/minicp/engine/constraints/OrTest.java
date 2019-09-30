@@ -91,5 +91,24 @@ public class OrTest extends SolverTest {
 
     }
 
+    @Test
+    public void or3() {
+        try {
+            Solver cp = solverFactory.get();
+            BoolVar[] x = new BoolVar[]{makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp)};
+
+            for (BoolVar xi : x) {
+                xi.assign(false);
+            }
+
+            cp.post(new Or(x));
+            fail("should fail");
+
+        } catch (InconsistencyException e) {
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
+    }
+
 
 }

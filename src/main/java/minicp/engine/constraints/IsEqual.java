@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (v)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
@@ -24,26 +24,26 @@ import minicp.engine.core.IntVar;
  * Reified equality constraint
  * @see minicp.cp.Factory#isEqual(IntVar, int)
  */
-public class IsEqual extends AbstractConstraint { // b <=> x == c
+public class IsEqual extends AbstractConstraint { // b <=> x == v
 
     private final BoolVar b;
     private final IntVar x;
-    private final int c;
+    private final int v;
 
     /**
      * Returns a boolean variable representing
      * whether one variable is equal to the given constant.
      * @param x the variable
-     * @param c the constant
+     * @param v the constant
      * @param b the boolean variable that is set to true
-     *          if and only if x takes the value c
+     *          if and only if x takes the value v
      * @see minicp.cp.Factory#isEqual(IntVar, int)
      */
-    public IsEqual(BoolVar b, IntVar x, int c) {
+    public IsEqual(BoolVar b, IntVar x, int v) {
         super(b.getSolver());
         this.b = b;
         this.x = x;
-        this.c = c;
+        this.v = v;
     }
 
     @Override
@@ -58,12 +58,12 @@ public class IsEqual extends AbstractConstraint { // b <=> x == c
     @Override
     public void propagate() {
         if (b.isTrue()) {
-            x.assign(c);
+            x.assign(v);
             setActive(false);
         } else if (b.isFalse()) {
-            x.remove(c);
+            x.remove(v);
             setActive(false);
-        } else if (!x.contains(c)) {
+        } else if (!x.contains(v)) {
             b.assign(false);
             setActive(false);
         } else if (x.isBound()) {

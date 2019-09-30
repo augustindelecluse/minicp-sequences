@@ -12,22 +12,22 @@
       <domain for="d[2][1..23] d[5][1..23]"> 0..1500 </domain>
       <domain for="d[3][1..23] d[6][1..23]"> 0..1000 </domain>
     </array>
-    <array id="c" note="c[i][j] is the actual capacity requirement of industry i during time period j" size="[8][24]">
-      <domain for="c[0][2] c[0][10] c[0][16] c[7][2] c[7][10]"> 0 4000 </domain>
-      <domain for="c[0][4] c[0][18] c[2][20] c[5][1..2] c[7][4]"> 0 2000 </domain>
-      <domain for="c[0][6] c[7][6]"> 0 3800 </domain>
-      <domain for="c[0][8] c[2][3..4] c[7][8]"> 0 1000 </domain>
-      <domain for="c[0][12] c[0][22] c[4][5]"> 0 2500 </domain>
-      <domain for="c[0][14] c[4][15]"> 0 3000 </domain>
-      <domain for="c[0][20] c[2][9] c[5][20..21]"> 0 1500 </domain>
-      <domain for="c[1][12]"> 0 2600 </domain>
-      <domain for="c[2][13..15]"> 0 300 </domain>
-      <domain for="c[3][] c[7][14..23]"> 0 750 </domain>
-      <domain for="c[5][7..9]"> 0 500 </domain>
-      <domain for="c[5][12]"> 0 1700 </domain>
-      <domain for="c[5][15]"> 0 1300 </domain>
-      <domain for="c[6][0..2] c[6][4..11] c[6][13..18] c[6][20..22]"> 0 650 </domain>
-      <domain for="c[6][3] c[6][12] c[6][19]"> 0 850 </domain>
+    <array id="v" note="v[i][j] is the actual capacity requirement of industry i during time period j" size="[8][24]">
+      <domain for="v[0][2] v[0][10] v[0][16] v[7][2] v[7][10]"> 0 4000 </domain>
+      <domain for="v[0][4] v[0][18] v[2][20] v[5][1..2] v[7][4]"> 0 2000 </domain>
+      <domain for="v[0][6] v[7][6]"> 0 3800 </domain>
+      <domain for="v[0][8] v[2][3..4] v[7][8]"> 0 1000 </domain>
+      <domain for="v[0][12] v[0][22] v[4][5]"> 0 2500 </domain>
+      <domain for="v[0][14] v[4][15]"> 0 3000 </domain>
+      <domain for="v[0][20] v[2][9] v[5][20..21]"> 0 1500 </domain>
+      <domain for="v[1][12]"> 0 2600 </domain>
+      <domain for="v[2][13..15]"> 0 300 </domain>
+      <domain for="v[3][] v[7][14..23]"> 0 750 </domain>
+      <domain for="v[5][7..9]"> 0 500 </domain>
+      <domain for="v[5][12]"> 0 1700 </domain>
+      <domain for="v[5][15]"> 0 1300 </domain>
+      <domain for="v[6][0..2] v[6][4..11] v[6][13..18] v[6][20..22]"> 0 650 </domain>
+      <domain for="v[6][3] v[6][12] v[6][19]"> 0 850 </domain>
     </array>
   </variables>
   <constraints>
@@ -36,38 +36,38 @@
         <list> %... </list>
         <condition> (le,2000) </condition>
       </sum>
-      <args> d[][0] c[3][0] c[6][0] </args>
-      <args> d[][1] c[3][1] c[5..6][1] </args>
-      <args> d[][2] c[0][2] c[3][2] c[5..7][2] </args>
-      <args> d[][3] c[2..3][3] c[6][3] </args>
-      <args> d[][4] c[0][4] c[2..3][4] c[6..7][4] </args>
-      <args> d[][5] c[3..4][5] c[6][5] </args>
-      <args> d[][6] c[0][6] c[3][6] c[6..7][6] </args>
-      <args> d[][7] c[3][7] c[5..6][7] </args>
-      <args> d[][8] c[0][8] c[3][8] c[5..7][8] </args>
-      <args> d[][9] c[2..3][9] c[5..6][9] </args>
-      <args> d[][10] c[0][10] c[3][10] c[6..7][10] </args>
-      <args> d[][11] c[3][11] c[6][11] </args>
-      <args> d[][12] c[0..1][12] c[3][12] c[5..6][12] </args>
-      <args> d[][13] c[2..3][13] c[6][13] </args>
-      <args> d[][14] c[0][14] c[2..3][14] c[6..7][14] </args>
-      <args> d[][15] c[2..7][15] </args>
-      <args> d[][16] c[0][16] c[3][16] c[6..7][16] </args>
-      <args> d[][17] c[3][17] c[6..7][17] </args>
-      <args> d[][18] c[0][18] c[3][18] c[6..7][18] </args>
-      <args> d[][19] c[3][19] c[6..7][19] </args>
-      <args> d[][20] c[0][20] c[2..3][20] c[5..7][20] </args>
-      <args> d[][21] c[3][21] c[5..7][21] </args>
-      <args> d[][22] c[0][22] c[3][22] c[6..7][22] </args>
-      <args> d[][23] c[3][23] c[7][23] </args>
+      <args> d[][0] v[3][0] v[6][0] </args>
+      <args> d[][1] v[3][1] v[5..6][1] </args>
+      <args> d[][2] v[0][2] v[3][2] v[5..7][2] </args>
+      <args> d[][3] v[2..3][3] v[6][3] </args>
+      <args> d[][4] v[0][4] v[2..3][4] v[6..7][4] </args>
+      <args> d[][5] v[3..4][5] v[6][5] </args>
+      <args> d[][6] v[0][6] v[3][6] v[6..7][6] </args>
+      <args> d[][7] v[3][7] v[5..6][7] </args>
+      <args> d[][8] v[0][8] v[3][8] v[5..7][8] </args>
+      <args> d[][9] v[2..3][9] v[5..6][9] </args>
+      <args> d[][10] v[0][10] v[3][10] v[6..7][10] </args>
+      <args> d[][11] v[3][11] v[6][11] </args>
+      <args> d[][12] v[0..1][12] v[3][12] v[5..6][12] </args>
+      <args> d[][13] v[2..3][13] v[6][13] </args>
+      <args> d[][14] v[0][14] v[2..3][14] v[6..7][14] </args>
+      <args> d[][15] v[2..7][15] </args>
+      <args> d[][16] v[0][16] v[3][16] v[6..7][16] </args>
+      <args> d[][17] v[3][17] v[6..7][17] </args>
+      <args> d[][18] v[0][18] v[3][18] v[6..7][18] </args>
+      <args> d[][19] v[3][19] v[6..7][19] </args>
+      <args> d[][20] v[0][20] v[2..3][20] v[5..7][20] </args>
+      <args> d[][21] v[3][21] v[5..7][21] </args>
+      <args> d[][22] v[0][22] v[3][22] v[6..7][22] </args>
+      <args> d[][23] v[3][23] v[7][23] </args>
     </group>
     <block note="Managing scheduled discharge flows at period 0">
       <sum>
-        <list> b[3][0] c[3][0] </list>
+        <list> b[3][0] v[3][0] </list>
         <condition> (eq,750) </condition>
       </sum>
       <sum>
-        <list> b[6][0] c[6][0] </list>
+        <list> b[6][0] v[6][0] </list>
         <condition> (eq,650) </condition>
       </sum>
     </block>
@@ -179,11 +179,11 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,4000) </condition>
         </sum>
-        <args> b[0][2] b[0][1] d[0][2] c[0][2] </args>
-        <args> b[0][10] b[0][9] d[0][10] c[0][10] </args>
-        <args> b[0][16] b[0][15] d[0][16] c[0][16] </args>
-        <args> b[7][2] b[7][1] d[7][2] c[7][2] </args>
-        <args> b[7][10] b[7][9] d[7][10] c[7][10] </args>
+        <args> b[0][2] b[0][1] d[0][2] v[0][2] </args>
+        <args> b[0][10] b[0][9] d[0][10] v[0][10] </args>
+        <args> b[0][16] b[0][15] d[0][16] v[0][16] </args>
+        <args> b[7][2] b[7][1] d[7][2] v[7][2] </args>
+        <args> b[7][10] b[7][9] d[7][10] v[7][10] </args>
       </group>
       <group>
         <sum>
@@ -191,12 +191,12 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,2000) </condition>
         </sum>
-        <args> b[0][4] b[0][3] d[0][4] c[0][4] </args>
-        <args> b[0][18] b[0][17] d[0][18] c[0][18] </args>
-        <args> b[2][20] b[2][19] d[2][20] c[2][20] </args>
-        <args> b[5][1] b[5][0] d[5][1] c[5][1] </args>
-        <args> b[5][2] b[5][1] d[5][2] c[5][2] </args>
-        <args> b[7][4] b[7][3] d[7][4] c[7][4] </args>
+        <args> b[0][4] b[0][3] d[0][4] v[0][4] </args>
+        <args> b[0][18] b[0][17] d[0][18] v[0][18] </args>
+        <args> b[2][20] b[2][19] d[2][20] v[2][20] </args>
+        <args> b[5][1] b[5][0] d[5][1] v[5][1] </args>
+        <args> b[5][2] b[5][1] d[5][2] v[5][2] </args>
+        <args> b[7][4] b[7][3] d[7][4] v[7][4] </args>
       </group>
       <group>
         <sum>
@@ -204,8 +204,8 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,3800) </condition>
         </sum>
-        <args> b[0][6] b[0][5] d[0][6] c[0][6] </args>
-        <args> b[7][6] b[7][5] d[7][6] c[7][6] </args>
+        <args> b[0][6] b[0][5] d[0][6] v[0][6] </args>
+        <args> b[7][6] b[7][5] d[7][6] v[7][6] </args>
       </group>
       <group>
         <sum>
@@ -213,10 +213,10 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,1000) </condition>
         </sum>
-        <args> b[0][8] b[0][7] d[0][8] c[0][8] </args>
-        <args> b[2][3] b[2][2] d[2][3] c[2][3] </args>
-        <args> b[2][4] b[2][3] d[2][4] c[2][4] </args>
-        <args> b[7][8] b[7][7] d[7][8] c[7][8] </args>
+        <args> b[0][8] b[0][7] d[0][8] v[0][8] </args>
+        <args> b[2][3] b[2][2] d[2][3] v[2][3] </args>
+        <args> b[2][4] b[2][3] d[2][4] v[2][4] </args>
+        <args> b[7][8] b[7][7] d[7][8] v[7][8] </args>
       </group>
       <group>
         <sum>
@@ -224,9 +224,9 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,2500) </condition>
         </sum>
-        <args> b[0][12] b[0][11] d[0][12] c[0][12] </args>
-        <args> b[0][22] b[0][21] d[0][22] c[0][22] </args>
-        <args> b[4][5] b[4][4] d[4][5] c[4][5] </args>
+        <args> b[0][12] b[0][11] d[0][12] v[0][12] </args>
+        <args> b[0][22] b[0][21] d[0][22] v[0][22] </args>
+        <args> b[4][5] b[4][4] d[4][5] v[4][5] </args>
       </group>
       <group>
         <sum>
@@ -234,8 +234,8 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,3000) </condition>
         </sum>
-        <args> b[0][14] b[0][13] d[0][14] c[0][14] </args>
-        <args> b[4][15] b[4][14] d[4][15] c[4][15] </args>
+        <args> b[0][14] b[0][13] d[0][14] v[0][14] </args>
+        <args> b[4][15] b[4][14] d[4][15] v[4][15] </args>
       </group>
       <group>
         <sum>
@@ -243,13 +243,13 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,1500) </condition>
         </sum>
-        <args> b[0][20] b[0][19] d[0][20] c[0][20] </args>
-        <args> b[2][9] b[2][8] d[2][9] c[2][9] </args>
-        <args> b[5][20] b[5][19] d[5][20] c[5][20] </args>
-        <args> b[5][21] b[5][20] d[5][21] c[5][21] </args>
+        <args> b[0][20] b[0][19] d[0][20] v[0][20] </args>
+        <args> b[2][9] b[2][8] d[2][9] v[2][9] </args>
+        <args> b[5][20] b[5][19] d[5][20] v[5][20] </args>
+        <args> b[5][21] b[5][20] d[5][21] v[5][21] </args>
       </group>
       <sum>
-        <list> b[1][12] b[1][11] d[1][12] c[1][12] </list>
+        <list> b[1][12] b[1][11] d[1][12] v[1][12] </list>
         <coeffs> 1 -1 1 1 </coeffs>
         <condition> (eq,2600) </condition>
       </sum>
@@ -259,9 +259,9 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,300) </condition>
         </sum>
-        <args> b[2][13] b[2][12] d[2][13] c[2][13] </args>
-        <args> b[2][14] b[2][13] d[2][14] c[2][14] </args>
-        <args> b[2][15] b[2][14] d[2][15] c[2][15] </args>
+        <args> b[2][13] b[2][12] d[2][13] v[2][13] </args>
+        <args> b[2][14] b[2][13] d[2][14] v[2][14] </args>
+        <args> b[2][15] b[2][14] d[2][15] v[2][15] </args>
       </group>
       <group>
         <sum>
@@ -269,39 +269,39 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,750) </condition>
         </sum>
-        <args> b[3][1] b[3][0] d[3][1] c[3][1] </args>
-        <args> b[3][2] b[3][1] d[3][2] c[3][2] </args>
-        <args> b[3][3] b[3][2] d[3][3] c[3][3] </args>
-        <args> b[3][4] b[3][3] d[3][4] c[3][4] </args>
-        <args> b[3][5] b[3][4] d[3][5] c[3][5] </args>
-        <args> b[3][6] b[3][5] d[3][6] c[3][6] </args>
-        <args> b[3][7] b[3][6] d[3][7] c[3][7] </args>
-        <args> b[3][8] b[3][7] d[3][8] c[3][8] </args>
-        <args> b[3][9] b[3][8] d[3][9] c[3][9] </args>
-        <args> b[3][10] b[3][9] d[3][10] c[3][10] </args>
-        <args> b[3][11] b[3][10] d[3][11] c[3][11] </args>
-        <args> b[3][12] b[3][11] d[3][12] c[3][12] </args>
-        <args> b[3][13] b[3][12] d[3][13] c[3][13] </args>
-        <args> b[3][14] b[3][13] d[3][14] c[3][14] </args>
-        <args> b[3][15] b[3][14] d[3][15] c[3][15] </args>
-        <args> b[3][16] b[3][15] d[3][16] c[3][16] </args>
-        <args> b[3][17] b[3][16] d[3][17] c[3][17] </args>
-        <args> b[3][18] b[3][17] d[3][18] c[3][18] </args>
-        <args> b[3][19] b[3][18] d[3][19] c[3][19] </args>
-        <args> b[3][20] b[3][19] d[3][20] c[3][20] </args>
-        <args> b[3][21] b[3][20] d[3][21] c[3][21] </args>
-        <args> b[3][22] b[3][21] d[3][22] c[3][22] </args>
-        <args> b[3][23] b[3][22] d[3][23] c[3][23] </args>
-        <args> b[7][14] b[7][13] d[7][14] c[7][14] </args>
-        <args> b[7][15] b[7][14] d[7][15] c[7][15] </args>
-        <args> b[7][16] b[7][15] d[7][16] c[7][16] </args>
-        <args> b[7][17] b[7][16] d[7][17] c[7][17] </args>
-        <args> b[7][18] b[7][17] d[7][18] c[7][18] </args>
-        <args> b[7][19] b[7][18] d[7][19] c[7][19] </args>
-        <args> b[7][20] b[7][19] d[7][20] c[7][20] </args>
-        <args> b[7][21] b[7][20] d[7][21] c[7][21] </args>
-        <args> b[7][22] b[7][21] d[7][22] c[7][22] </args>
-        <args> b[7][23] b[7][22] d[7][23] c[7][23] </args>
+        <args> b[3][1] b[3][0] d[3][1] v[3][1] </args>
+        <args> b[3][2] b[3][1] d[3][2] v[3][2] </args>
+        <args> b[3][3] b[3][2] d[3][3] v[3][3] </args>
+        <args> b[3][4] b[3][3] d[3][4] v[3][4] </args>
+        <args> b[3][5] b[3][4] d[3][5] v[3][5] </args>
+        <args> b[3][6] b[3][5] d[3][6] v[3][6] </args>
+        <args> b[3][7] b[3][6] d[3][7] v[3][7] </args>
+        <args> b[3][8] b[3][7] d[3][8] v[3][8] </args>
+        <args> b[3][9] b[3][8] d[3][9] v[3][9] </args>
+        <args> b[3][10] b[3][9] d[3][10] v[3][10] </args>
+        <args> b[3][11] b[3][10] d[3][11] v[3][11] </args>
+        <args> b[3][12] b[3][11] d[3][12] v[3][12] </args>
+        <args> b[3][13] b[3][12] d[3][13] v[3][13] </args>
+        <args> b[3][14] b[3][13] d[3][14] v[3][14] </args>
+        <args> b[3][15] b[3][14] d[3][15] v[3][15] </args>
+        <args> b[3][16] b[3][15] d[3][16] v[3][16] </args>
+        <args> b[3][17] b[3][16] d[3][17] v[3][17] </args>
+        <args> b[3][18] b[3][17] d[3][18] v[3][18] </args>
+        <args> b[3][19] b[3][18] d[3][19] v[3][19] </args>
+        <args> b[3][20] b[3][19] d[3][20] v[3][20] </args>
+        <args> b[3][21] b[3][20] d[3][21] v[3][21] </args>
+        <args> b[3][22] b[3][21] d[3][22] v[3][22] </args>
+        <args> b[3][23] b[3][22] d[3][23] v[3][23] </args>
+        <args> b[7][14] b[7][13] d[7][14] v[7][14] </args>
+        <args> b[7][15] b[7][14] d[7][15] v[7][15] </args>
+        <args> b[7][16] b[7][15] d[7][16] v[7][16] </args>
+        <args> b[7][17] b[7][16] d[7][17] v[7][17] </args>
+        <args> b[7][18] b[7][17] d[7][18] v[7][18] </args>
+        <args> b[7][19] b[7][18] d[7][19] v[7][19] </args>
+        <args> b[7][20] b[7][19] d[7][20] v[7][20] </args>
+        <args> b[7][21] b[7][20] d[7][21] v[7][21] </args>
+        <args> b[7][22] b[7][21] d[7][22] v[7][22] </args>
+        <args> b[7][23] b[7][22] d[7][23] v[7][23] </args>
       </group>
       <group>
         <sum>
@@ -309,17 +309,17 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,500) </condition>
         </sum>
-        <args> b[5][7] b[5][6] d[5][7] c[5][7] </args>
-        <args> b[5][8] b[5][7] d[5][8] c[5][8] </args>
-        <args> b[5][9] b[5][8] d[5][9] c[5][9] </args>
+        <args> b[5][7] b[5][6] d[5][7] v[5][7] </args>
+        <args> b[5][8] b[5][7] d[5][8] v[5][8] </args>
+        <args> b[5][9] b[5][8] d[5][9] v[5][9] </args>
       </group>
       <sum>
-        <list> b[5][12] b[5][11] d[5][12] c[5][12] </list>
+        <list> b[5][12] b[5][11] d[5][12] v[5][12] </list>
         <coeffs> 1 -1 1 1 </coeffs>
         <condition> (eq,1700) </condition>
       </sum>
       <sum>
-        <list> b[5][15] b[5][14] d[5][15] c[5][15] </list>
+        <list> b[5][15] b[5][14] d[5][15] v[5][15] </list>
         <coeffs> 1 -1 1 1 </coeffs>
         <condition> (eq,1300) </condition>
       </sum>
@@ -329,25 +329,25 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,650) </condition>
         </sum>
-        <args> b[6][1] b[6][0] d[6][1] c[6][1] </args>
-        <args> b[6][2] b[6][1] d[6][2] c[6][2] </args>
-        <args> b[6][4] b[6][3] d[6][4] c[6][4] </args>
-        <args> b[6][5] b[6][4] d[6][5] c[6][5] </args>
-        <args> b[6][6] b[6][5] d[6][6] c[6][6] </args>
-        <args> b[6][7] b[6][6] d[6][7] c[6][7] </args>
-        <args> b[6][8] b[6][7] d[6][8] c[6][8] </args>
-        <args> b[6][9] b[6][8] d[6][9] c[6][9] </args>
-        <args> b[6][10] b[6][9] d[6][10] c[6][10] </args>
-        <args> b[6][11] b[6][10] d[6][11] c[6][11] </args>
-        <args> b[6][13] b[6][12] d[6][13] c[6][13] </args>
-        <args> b[6][14] b[6][13] d[6][14] c[6][14] </args>
-        <args> b[6][15] b[6][14] d[6][15] c[6][15] </args>
-        <args> b[6][16] b[6][15] d[6][16] c[6][16] </args>
-        <args> b[6][17] b[6][16] d[6][17] c[6][17] </args>
-        <args> b[6][18] b[6][17] d[6][18] c[6][18] </args>
-        <args> b[6][20] b[6][19] d[6][20] c[6][20] </args>
-        <args> b[6][21] b[6][20] d[6][21] c[6][21] </args>
-        <args> b[6][22] b[6][21] d[6][22] c[6][22] </args>
+        <args> b[6][1] b[6][0] d[6][1] v[6][1] </args>
+        <args> b[6][2] b[6][1] d[6][2] v[6][2] </args>
+        <args> b[6][4] b[6][3] d[6][4] v[6][4] </args>
+        <args> b[6][5] b[6][4] d[6][5] v[6][5] </args>
+        <args> b[6][6] b[6][5] d[6][6] v[6][6] </args>
+        <args> b[6][7] b[6][6] d[6][7] v[6][7] </args>
+        <args> b[6][8] b[6][7] d[6][8] v[6][8] </args>
+        <args> b[6][9] b[6][8] d[6][9] v[6][9] </args>
+        <args> b[6][10] b[6][9] d[6][10] v[6][10] </args>
+        <args> b[6][11] b[6][10] d[6][11] v[6][11] </args>
+        <args> b[6][13] b[6][12] d[6][13] v[6][13] </args>
+        <args> b[6][14] b[6][13] d[6][14] v[6][14] </args>
+        <args> b[6][15] b[6][14] d[6][15] v[6][15] </args>
+        <args> b[6][16] b[6][15] d[6][16] v[6][16] </args>
+        <args> b[6][17] b[6][16] d[6][17] v[6][17] </args>
+        <args> b[6][18] b[6][17] d[6][18] v[6][18] </args>
+        <args> b[6][20] b[6][19] d[6][20] v[6][20] </args>
+        <args> b[6][21] b[6][20] d[6][21] v[6][21] </args>
+        <args> b[6][22] b[6][21] d[6][22] v[6][22] </args>
       </group>
       <group>
         <sum>
@@ -355,9 +355,9 @@
           <coeffs> 1 -1 1 1 </coeffs>
           <condition> (eq,850) </condition>
         </sum>
-        <args> b[6][3] b[6][2] d[6][3] c[6][3] </args>
-        <args> b[6][12] b[6][11] d[6][12] c[6][12] </args>
-        <args> b[6][19] b[6][18] d[6][19] c[6][19] </args>
+        <args> b[6][3] b[6][2] d[6][3] v[6][3] </args>
+        <args> b[6][12] b[6][11] d[6][12] v[6][12] </args>
+        <args> b[6][19] b[6][18] d[6][19] v[6][19] </args>
       </group>
     </block>
     <block note="Ensuring compatibility between stored and discharge flows">
@@ -578,35 +578,35 @@
     </block>
     <block note="Spanning constraints">
       <extension>
-        <list> c[2][13..15] </list>
+        <list> v[2][13..15] </list>
         <supports> (0,0,0)(300,300,300) </supports>
       </extension>
       <extension>
-        <list> c[3][] </list>
+        <list> v[3][] </list>
         <supports> (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)(750,750,750,750,750,750,750,750,750,750,750,750,750,750,750,750,750,750,750,750,750,750,750,750) </supports>
       </extension>
       <extension>
-        <list> c[5][7..9] </list>
+        <list> v[5][7..9] </list>
         <supports> (0,0,0)(500,500,500) </supports>
       </extension>
       <extension>
-        <list> c[6][0..22] </list>
+        <list> v[6][0..22] </list>
         <supports> (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)(650,650,650,850,650,650,650,650,650,650,650,650,850,650,650,650,650,650,650,850,650,650,650) </supports>
       </extension>
       <extension>
-        <list> c[7][14..23] </list>
+        <list> v[7][14..23] </list>
         <supports> (0,0,0,0,0,0,0,0,0,0)(750,750,750,750,750,750,750,750,750,750) </supports>
       </extension>
       <extension>
-        <list> c[2][3] c[2][4] </list>
+        <list> v[2][3] v[2][4] </list>
         <supports> (0,0)(1000,1000) </supports>
       </extension>
       <extension>
-        <list> c[5][1] c[5][2] </list>
+        <list> v[5][1] v[5][2] </list>
         <supports> (0,0)(2000,2000) </supports>
       </extension>
       <extension>
-        <list> c[5][20] c[5][21] </list>
+        <list> v[5][20] v[5][21] </list>
         <supports> (0,0)(1500,1500) </supports>
       </extension>
     </block>

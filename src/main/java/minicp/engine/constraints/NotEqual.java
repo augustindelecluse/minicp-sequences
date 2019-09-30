@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (v)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
@@ -23,21 +23,21 @@ import minicp.engine.core.IntVar;
  */
 public class NotEqual extends AbstractConstraint {
     private final IntVar x, y;
-    private final int c;
+    private final int v;
 
     /**
      * Creates a constraint such
-     * that {@code x != y + c}
+     * that {@code x != y + v}
      * @param x the left member
      * @param y the right memer
-     * @param c the offset value on y
+     * @param v the offset value on y
      * @see minicp.cp.Factory#notEqual(IntVar, IntVar, int)
      */
-    public NotEqual(IntVar x, IntVar y, int c) { // x != y + c
+    public NotEqual(IntVar x, IntVar y, int v) { // x != y + v
         super(x.getSolver());
         this.x = x;
         this.y = y;
-        this.c = c;
+        this.v = v;
     }
 
     /**
@@ -54,9 +54,9 @@ public class NotEqual extends AbstractConstraint {
     @Override
     public void post() {
         if (y.isBound())
-            x.remove(y.min() + c);
+            x.remove(y.min() + v);
         else if (x.isBound())
-            y.remove(x.min() - c);
+            y.remove(x.min() - v);
         else {
             x.propagateOnBind(this);
             y.propagateOnBind(this);
@@ -66,8 +66,8 @@ public class NotEqual extends AbstractConstraint {
     @Override
     public void propagate() {
         if (y.isBound())
-            x.remove(y.min() + c);
-        else y.remove(x.min() - c);
+            x.remove(y.min() + v);
+        else y.remove(x.min() - v);
         setActive(false);
     }
 }

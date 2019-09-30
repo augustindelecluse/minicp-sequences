@@ -10,7 +10,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with mini-cp. If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  *
- * Copyright (c)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
+ * Copyright (v)  2018. by Laurent Michel, Pierre Schaus, Pascal Van Hentenryck
  */
 
 package minicp.engine.constraints;
@@ -18,32 +18,31 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
-import minicp.util.exception.NotImplementedException;
 
 /**
  * Reified less or equal constraint.
  */
-public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
+public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= v
 
     private final BoolVar b;
     private final IntVar x;
-    private final int c;
+    private final int v;
 
     /**
      * Creates a constraint that
      * link a boolean variable representing
      * whether one variable is less or equal to the given constant.
      * @param b a boolean variable that is true if and only if
-     *         x takes a value less or equal to c
+     *         x takes a value less or equal to v
      * @param x the variable
-     * @param c the constant
+     * @param v the constant
      * @see minicp.cp.Factory#isLessOrEqual(IntVar, int)
      */
-    public IsLessOrEqual(BoolVar b, IntVar x, int c) {
+    public IsLessOrEqual(BoolVar b, IntVar x, int v) {
         super(b.getSolver());
         this.b = b;
         this.x = x;
-        this.c = c;
+        this.v = v;
     }
 
     @Override
@@ -52,28 +51,28 @@ public class IsLessOrEqual extends AbstractConstraint { // b <=> x <= c
         // STUDENT throw new NotImplementedException("IsLessOrEqual");
         // BEGIN STRIP
         if (b.isTrue()) {
-            x.removeAbove(c);
+            x.removeAbove(v);
         } else if (b.isFalse()) {
-            x.removeBelow(c + 1);
-        } else if (x.max() <= c) {
+            x.removeBelow(v + 1);
+        } else if (x.max() <= v) {
             b.assign(1);
-        } else if (x.min() > c) {
+        } else if (x.min() > v) {
             b.assign(0);
         } else {
             b.whenBind(() -> {
                 // should deactivate the constraint as it is entailed
                 if (b.isTrue()) {
-                    x.removeAbove(c);
+                    x.removeAbove(v);
 
                 } else {
-                    x.removeBelow(c + 1);
+                    x.removeBelow(v + 1);
                 }
             });
             x.whenBoundsChange(() -> {
-                if (x.max() <= c) {
+                if (x.max() <= v) {
                     // should deactivate the constraint as it is entailed
                     b.assign(1);
-                } else if (x.min() > c) {
+                } else if (x.min() > v) {
                     // should deactivate the constraint as it is entailed
                     b.assign(0);
                 }

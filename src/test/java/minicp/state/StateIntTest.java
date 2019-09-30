@@ -94,64 +94,6 @@ public class StateIntTest extends StateManagerTest {
 
     }
 
-    @Test
-    public void testPopAll() {
-        StateManager sm = stateFactory.get();
-
-        State<Integer> a = sm.makeStateRef(5);
-        State<Integer> b = sm.makeStateRef(5);
-
-        sm.saveState();
-
-        a.setValue(7);
-        b.setValue(13);
-        a.setValue(13);
-
-        sm.saveState();
-
-        a.setValue(5);
-        b.setValue(10);
-
-        State<Integer> c = sm.makeStateRef(5);
-
-        sm.saveState();
-
-        a.setValue(8);
-        b.setValue(1);
-        c.setValue(10);
-
-        sm.restoreAllState();
-        sm.saveState();
-
-        assertEquals(Integer.valueOf(5), a.value());
-        assertEquals(Integer.valueOf(5), b.value());
-        assertEquals(Integer.valueOf(5), c.value());
-
-
-        a.setValue(10);
-        b.setValue(13);
-        b.setValue(16);
-
-        sm.saveState();
-
-        a.setValue(8);
-        b.setValue(10);
-
-        sm.restoreState();
-
-
-        assertEquals(Integer.valueOf(10), a.value());
-        assertEquals(Integer.valueOf(16), b.value());
-        assertEquals(Integer.valueOf(5), c.value());
-
-        sm.restoreAllState();
-
-        assertEquals(Integer.valueOf(5), a.value());
-        assertEquals(Integer.valueOf(5), b.value());
-        assertEquals(Integer.valueOf(5), c.value());
-
-    }
-
 
     @Test
     public void testPopUntill() {

@@ -48,23 +48,23 @@ Less or equal reified constraint
 
 Implement `IsLessOrEqual.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/main/java/minicp/engine/constraints/IsLessOrEqual.java?at=master>`_
 
-This is a reified constraint for `b iff x <= c`
-that is boolean variable `b` is set true if and only if `x` variable is less or equal to value `c`.
+This is a reified constraint for `b iff x <= v`
+that is boolean variable `b` is set true if and only if `x` variable is less or equal to value `v`.
 
 For example the constraint holds for
 
 .. code-block:: java
 
-    b = true , x = 4, c = 5
-    b = false, x = 4, c = 2
+    b = true , x = 4, v = 5
+    b = false, x = 4, v = 2
 
 
 but is violated for
 
 .. code-block:: java
 
-    b = true , x = 5, c = 4
-    b = false, x = 2, c = 4
+    b = true , x = 5, v = 4
+    b = false, x = 2, v = 4
 
 
 Check that your implementation passes the tests `IsLessOrEqualTest.java <https://bitbucket.org/minicp/minicp/src/HEAD/src/test/java/minicp/engine/constraints/IsEqualTest.java?at=master>`_

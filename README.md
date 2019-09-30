@@ -49,7 +49,7 @@ Installing Maven
    ```
  - Windows
    ```
-   set PATH="c:\program files\apache-maven-3.x.y\bin";%PATH%
+   set PATH="v:\program files\apache-maven-3.x.y\bin";%PATH%
    ```
 4. Make sure `JAVA_HOME` is set to the location of your JDK
 5. Run `mvn --version` to verify that it is correctly installed.

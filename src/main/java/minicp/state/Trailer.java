@@ -102,12 +102,6 @@ public class Trailer implements StateManager {
     }
 
     @Override
-    public void restoreAllState() {
-        while (!prior.isEmpty())
-            restoreState();
-    }
-
-    @Override
     public void restoreStateUntil(int level) {
         while (getLevel() > level)
             restoreState();
