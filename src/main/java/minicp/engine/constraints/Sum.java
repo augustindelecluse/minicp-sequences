@@ -30,9 +30,9 @@ import java.util.stream.IntStream;
  */
 public class Sum extends AbstractConstraint {
 
-    private int[] unBounds;
-    private StateInt nUnBounds;
-    private State<Long> sumBounds;
+    private int[] free;
+    private StateInt nFrees;
+    private State<Long> sumFixed;
     private IntVar[] x;
     private int[] min, max;
     private int n;
@@ -76,9 +76,9 @@ public class Sum extends AbstractConstraint {
         this.n = x.length;
         min = new int[x.length];
         max = new int[x.length];
-        nUnBounds = getSolver().getStateManager().makeStateInt(n);
-        sumBounds = getSolver().getStateManager().makeStateRef(Long.valueOf(0));
-        unBounds = IntStream.range(0, n).toArray();
+        nFrees = getSolver().getStateManager().makeStateInt(n);
+        sumFixed = getSolver().getStateManager().makeStateRef(Long.valueOf(0));
+        free = IntStream.range(0, n).toArray();
     }
 
     @Override
@@ -91,28 +91,28 @@ public class Sum extends AbstractConstraint {
     @Override
     public void propagate() {
         // Filter the unbound vars and update the partial sum
-        int nU = nUnBounds.value();
-        long sumMin = sumBounds.value(), sumMax = sumBounds.value();
+        int nU = nFrees.value();
+        long sumMin = sumFixed.value(), sumMax = sumFixed.value();
         for (int i = nU - 1; i >= 0; i--) {
-            int idx = unBounds[i];
+            int idx = free[i];
             min[idx] = x[idx].min();
             max[idx] = x[idx].max();
             sumMin += min[idx]; // Update partial sum
             sumMax += max[idx];
             if (x[idx].isBound()) {
-                sumBounds.setValue(sumBounds.value() + x[idx].min());
-                unBounds[i] = unBounds[nU - 1]; // Swap the variables
-                unBounds[nU - 1] = idx;
+                sumFixed.setValue(sumFixed.value() + x[idx].min());
+                free[i] = free[nU - 1]; // Swap the variables
+                free[nU - 1] = idx;
                 nU--;
             }
         }
-        nUnBounds.setValue(nU);
+        nFrees.setValue(nU);
         if (sumMin > 0 || sumMax < 0) {
             throw new InconsistencyException();
         }
 
         for (int i = nU - 1; i >= 0; i--) {
-            int idx = unBounds[i];
+            int idx = free[i];
             x[idx].removeAbove(-((int) (sumMin - min[idx])));
             x[idx].removeBelow(-((int) (sumMax - max[idx])));
         }

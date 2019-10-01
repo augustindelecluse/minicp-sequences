@@ -618,6 +618,6 @@ public final class Factory {
      * @return a constraint so that {@code x[i] != x[j] for all i < j}
      */
     public static Constraint allDifferentAC(IntVar[] x) {
-        return new AllDifferentAC(x);
+        return new AllDifferentDC(x);
     }
 }

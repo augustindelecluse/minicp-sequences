@@ -31,7 +31,7 @@ import java.util.Arrays;
  * Algorithm described in
  * "A filtering algorithm for constraints of difference in CSPs" J-C. Régin, AAAI-94
  */
-public class AllDifferentAC extends AbstractConstraint {
+public class AllDifferentDC extends AbstractConstraint {
 
     private IntVar[] x;
 
@@ -67,7 +67,7 @@ public class AllDifferentAC extends AbstractConstraint {
     private int minVal;
     private int maxVal;
 
-    public AllDifferentAC(IntVar... x) {
+    public AllDifferentDC(IntVar... x) {
         super(x[0].getSolver());
         this.x = x;
         maximumMatching = new MaximumMatching(x);
@@ -112,7 +112,7 @@ public class AllDifferentAC extends AbstractConstraint {
             out[j].clear();
         }
         // TODO continue the implementation for representing the residual graph
-        // STUDENT throw new NotImplementedException("AllDifferentAC");
+        // STUDENT throw new NotImplementedException("AllDifferentDC");
         // BEGIN STRIP
         Arrays.fill(matched, 0, nVal, false);
         for (int i = 0; i < x.length; i++) {
@@ -148,7 +148,7 @@ public class AllDifferentAC extends AbstractConstraint {
         //       use updateRange() to update the range of values
         //       use updateGraph() to update the residual graph
         //       use  GraphUtil.stronglyConnectedComponents to compute SCC's
-        // STUDENT throw new NotImplementedException("AllDifferentAC");
+        // STUDENT throw new NotImplementedException("AllDifferentDC");
         // BEGIN STRIP
         int size = maximumMatching.compute(match);
         if (size < x.length) {

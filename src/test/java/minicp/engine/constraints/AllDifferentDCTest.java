@@ -33,7 +33,7 @@ import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
 
-public class AllDifferentACTest extends SolverTest {
+public class AllDifferentDCTest extends SolverTest {
 
     @Test
     public void allDifferentTest1() {
@@ -43,7 +43,7 @@ public class AllDifferentACTest extends SolverTest {
         IntVar[] x = makeIntVarArray(cp, 5, 5);
 
         try {
-            cp.post(new AllDifferentAC(x));
+            cp.post(new AllDifferentDC(x));
             cp.post(equal(x[0], 0));
             for (int i = 1; i < x.length; i++) {
                 assertEquals(4, x[i].size());
@@ -66,7 +66,7 @@ public class AllDifferentACTest extends SolverTest {
         IntVar[] x = makeIntVarArray(cp, 5, 5);
 
         try {
-            cp.post(new AllDifferentAC(x));
+            cp.post(new AllDifferentDC(x));
 
             SearchStatistics stats = makeDfs(cp, firstFail(x)).solve();
             assertEquals(120, stats.numberOfSolutions());
@@ -94,7 +94,7 @@ public class AllDifferentACTest extends SolverTest {
                     makeIVar(cp, 1, 2, 3, 4)};
             int[] matching = new int[x.length];
 
-            cp.post(new AllDifferentAC(x));
+            cp.post(new AllDifferentDC(x));
 
             assertEquals(x[2].min(), 3);
             assertEquals(x[2].size(), 2);
@@ -123,7 +123,7 @@ public class AllDifferentACTest extends SolverTest {
                     makeIVar(cp, 6, 7, 8)};
             int[] matching = new int[x.length];
 
-            cp.post(new AllDifferentAC(x));
+            cp.post(new AllDifferentDC(x));
 
             assertEquals(x[0].size(), 2);
             assertEquals(x[2].size(), 2);
@@ -155,7 +155,7 @@ public class AllDifferentACTest extends SolverTest {
                     makeIVar(cp, 6, 7, 8)};
             int[] matching = new int[x.length];
 
-            cp.post(new AllDifferentAC(x));
+            cp.post(new AllDifferentDC(x));
 
             DFSearch dfs = makeDfs(cp, () -> {
                 IntVar xs = selectMin(x,
@@ -205,7 +205,7 @@ public class AllDifferentACTest extends SolverTest {
                     makeIVar(cp, 5, 6, 7)};
             int[] matching = new int[x.length];
 
-            cp.post(new AllDifferentAC(x));
+            cp.post(new AllDifferentDC(x));
 
             assertTrue(!x[4].contains(3));
             assertTrue(!x[4].contains(4));
@@ -233,7 +233,7 @@ public class AllDifferentACTest extends SolverTest {
                     makeIVar(cp, -1)};
             int[] matching = new int[x.length];
 
-            cp.post(new AllDifferentAC(x));
+            cp.post(new AllDifferentDC(x));
 
             assertTrue(!x[2].contains(-1));
 
