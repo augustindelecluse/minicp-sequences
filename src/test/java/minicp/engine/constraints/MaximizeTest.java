@@ -45,12 +45,11 @@ public class MaximizeTest {
                 DFSearch dfs = makeDfs(cp, () -> y.isBound() ? EMPTY :
                         branch(() -> cp.post(equal(y, y.min())),
                                 () -> cp.post(notEqual(y, y.min()))));
-
                 Objective obj = cp.maximize(y);
 
                 SearchStatistics stats = dfs.solve();
 
-                assertEquals(11,stats.numberOfSolutions());
+                assertEquals(11, stats.numberOfSolutions());
 
 
             } catch (InconsistencyException e) {

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# mini-cp documentation build configuration file, created by
+# Mini-CP documentation build configuration file, created by
 # sphinx-quickstart on Wed Nov 21 16:00:37 2012.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -42,7 +42,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'mini-cp User-Guide'
+project = u'Mini-CP User-Guide'
 copyright = u'2018, Laurent Michel, Pierre Schaus, Pascal Van Hentenryck'
 
 # The version info for the project you're documenting, acts as replacement for

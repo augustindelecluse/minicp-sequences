@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import com.github.guillaumederval.javagrading.GradeClass;
 import minicp.engine.SolverTest;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
@@ -33,7 +34,7 @@ import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 import static org.junit.Assert.assertEquals;
 
-
+@GradeClass(totalValue = 1, defaultCpuTimeout = 1000)
 public class DisjunctiveTest extends SolverTest {
 
 

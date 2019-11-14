@@ -15,6 +15,8 @@
 
 package minicp.engine.constraints;
 
+import com.github.guillaumederval.javagrading.Grade;
+import com.github.guillaumederval.javagrading.GradeClass;
 import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -33,6 +35,7 @@ import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
+@GradeClass(totalValue = 1, defaultCpuTimeout = 1000)
 public class ShortTableTest extends SolverTest {
 
 
@@ -94,6 +97,7 @@ public class ShortTableTest extends SolverTest {
     }
 
     @Test
+    @Grade(value = 1, cpuTimeout = 5000)
     public void randomTest() {
         Random rand = new Random(67292);
 
@@ -154,7 +158,7 @@ public class ShortTableTest extends SolverTest {
      */
     @Test
     public void minicpReplayShortTableCtIsStrongerThanAc() {
-        final int     star  = 2147483647;
+        final int star = 2147483647;
 
         // This table should accept all values.
         final int[][] table = {
@@ -163,15 +167,14 @@ public class ShortTableTest extends SolverTest {
 
         Solver cp = solverFactory.get();
 
-        final IntVar  x0    = makeIntVar(cp,new HashSet<>(Arrays.asList(0)));
-        final IntVar  x1    = makeIntVar(cp,new HashSet<>(Arrays.asList(-1,2)));
-
+        final IntVar x0 = makeIntVar(cp, new HashSet<>(Arrays.asList(0)));
+        final IntVar x1 = makeIntVar(cp, new HashSet<>(Arrays.asList(-1, 2)));
 
 
         cp.post(new ShortTableCT(new IntVar[]{x0, x1}, table, star));
 
-        assertEquals(1,x0.size());
-        assertEquals(2,x1.size());
+        assertEquals(1, x0.size());
+        assertEquals(2, x1.size());
     }
 
     @Test(expected = InconsistencyException.class)
@@ -221,8 +224,4 @@ public class ShortTableTest extends SolverTest {
             NotImplementedExceptionAssume.fail(e);
         }
     }
-
-
-
-
 }

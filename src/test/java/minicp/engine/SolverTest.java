@@ -16,6 +16,7 @@
 package minicp.engine;
 
 
+import com.github.guillaumederval.javagrading.GradingRunnerWithParametersFactory;
 import minicp.engine.core.MiniCP;
 import minicp.engine.core.Solver;
 import minicp.state.Copier;
@@ -26,6 +27,7 @@ import org.junit.runners.Parameterized;
 import java.util.function.Supplier;
 
 @RunWith(Parameterized.class)
+@Parameterized.UseParametersRunnerFactory(GradingRunnerWithParametersFactory.class)
 public abstract class SolverTest {
 
     @Parameterized.Parameters

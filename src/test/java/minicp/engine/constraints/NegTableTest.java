@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import com.github.guillaumederval.javagrading.GradeClass;
 import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -32,6 +33,7 @@ import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
+//@GradeClass(totalValue = 1, defaultCpuTimeout = 1000)
 public class NegTableTest extends SolverTest {
 
     private int[][] randomTuples(Random rand, int arity, int nTuples, int minvalue, int maxvalue, boolean noDuplicates) {

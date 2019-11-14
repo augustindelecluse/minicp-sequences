@@ -15,6 +15,10 @@
 
 package minicp.engine.constraints;
 
+import minicp.engine.SolverTest;
+import minicp.util.NotImplementedExceptionAssume;
+import minicp.util.exception.NotImplementedException;
+import org.junit.Test;
 import com.github.guillaumederval.javagrading.GradeClass;
 import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
@@ -50,7 +54,7 @@ public class Element1DDCTest extends SolverTest {
 
 
             int[] T = new int[70];
-            for(int i = 0; i < 70; i++)
+            for (int i = 0; i < 70; i++)
                 T[i] = rand.nextInt(100);
 
             cp.post(new Element1DDomainConsistent(T, y, z));
@@ -58,7 +62,7 @@ public class Element1DDCTest extends SolverTest {
             assertTrue(y.max() < 70);
 
             Supplier<Procedure[]> branching = () -> {
-                if(y.isBound() && z.isBound()) {
+                if (y.isBound() && z.isBound()) {
                     assertEquals(T[y.min()], z.min());
                     return EMPTY;
                 }
@@ -70,25 +74,24 @@ public class Element1DDCTest extends SolverTest {
 
                 HashSet<Integer> possibleValues = new HashSet<>();
                 HashSet<Integer> possibleValues2 = new HashSet<>();
-                for(int i = 0; i < possibleZ.length; i++)
+                for (int i = 0; i < possibleZ.length; i++)
                     possibleValues.add(possibleZ[i]);
 
-                for(int i = 0; i < possibleY.length; i++) {
+                for (int i = 0; i < possibleY.length; i++) {
                     assertTrue(possibleValues.contains(T[possibleY[i]]));
                     possibleValues2.add(T[possibleY[i]]);
                 }
                 assertEquals(possibleValues.size(), possibleValues2.size());
 
-                if(!y.isBound() && (z.isBound() || rand.nextBoolean())) {
+                if (!y.isBound() && (z.isBound() || rand.nextBoolean())) {
                     //select a random y
                     int val = possibleY[rand.nextInt(possibleY.length)];
-                    return branch(() -> equal(y, val),
-                            () -> notEqual(y, val));
-                }
-                else {
+                    return branch(() -> cp.post(equal(y, val)),
+                            () -> cp.post(notEqual(y, val)));
+                } else {
                     int val = possibleZ[rand.nextInt(possibleZ.length)];
-                    return branch(() -> equal(z, val),
-                            () -> notEqual(z, val));
+                    return branch(() -> cp.post(equal(z, val)),
+                            () -> cp.post(notEqual(z, val)));
                 }
             };
 

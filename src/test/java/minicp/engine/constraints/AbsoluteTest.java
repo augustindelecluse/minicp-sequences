@@ -15,6 +15,8 @@
 
 package minicp.engine.constraints;
 
+import com.github.guillaumederval.javagrading.Grade;
+import com.github.guillaumederval.javagrading.GradeClass;
 import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -23,14 +25,11 @@ import minicp.util.exception.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
-import static minicp.cp.Factory.lessOrEqual;
-import static minicp.cp.Factory.makeIntVar;
-import static minicp.cp.Factory.notEqual;
+import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
+@GradeClass(totalValue = 1, defaultCpuTimeout = 1000)
 public class AbsoluteTest extends SolverTest {
-
-
     @Test
     public void simpleTest0() {
 
@@ -68,6 +67,7 @@ public class AbsoluteTest extends SolverTest {
             Solver cp = solverFactory.get();
             IntVar x = makeIntVar(cp, -5, 5);
             IntVar y = makeIntVar(cp, -10, 10);
+
             cp.post(notEqual(x, 0));
             cp.post(notEqual(x, 5));
             cp.post(notEqual(x, -5));
@@ -147,7 +147,6 @@ public class AbsoluteTest extends SolverTest {
             assertEquals(5, y.max());
 
             cp.post(lessOrEqual(x,-2));
-            cp.fixPoint();
 
             assertEquals(2, y.min());
 

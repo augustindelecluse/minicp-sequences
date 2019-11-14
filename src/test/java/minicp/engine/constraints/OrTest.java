@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import com.github.guillaumederval.javagrading.GradeClass;
 import minicp.engine.SolverTest;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.Solver;
@@ -29,7 +30,7 @@ import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.*;
 import static org.junit.Assert.*;
 
-
+@GradeClass(totalValue = 1, defaultCpuTimeout = 1000)
 public class OrTest extends SolverTest {
 
     @Test
@@ -96,14 +97,14 @@ public class OrTest extends SolverTest {
         try {
             Solver cp = solverFactory.get();
             BoolVar[] x = new BoolVar[]{makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp), makeBoolVar(cp)};
-
+            
             for (BoolVar xi : x) {
                 xi.assign(false);
             }
-
+            
             cp.post(new Or(x));
             fail("should fail");
-
+            
         } catch (InconsistencyException e) {
         } catch (NotImplementedException e) {
             NotImplementedExceptionAssume.fail(e);

@@ -15,6 +15,8 @@
 
 package minicp.search;
 
+import com.github.guillaumederval.javagrading.GradeClass;
+import com.github.guillaumederval.javagrading.GradingRunner;
 import minicp.cp.BranchingScheme;
 import minicp.state.StateInt;
 import minicp.state.StateManager;
@@ -24,12 +26,14 @@ import minicp.util.Procedure;
 import minicp.util.exception.NotImplementedException;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.function.Supplier;
 
 import static org.junit.Assert.assertEquals;
 
-
+@RunWith(GradingRunner.class)
+@GradeClass(totalValue = 1, defaultCpuTimeout = 1000)
 public class LimitedDiscrepancyBranchingTest {
 
 

@@ -15,6 +15,7 @@
 
 package minicp.engine.constraints;
 
+import com.github.guillaumederval.javagrading.GradeClass;
 import minicp.engine.SolverTest;
 import minicp.engine.core.IntVar;
 import minicp.engine.core.Solver;
@@ -25,6 +26,7 @@ import minicp.util.exception.NotImplementedException;
 import minicp.util.NotImplementedExceptionAssume;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -32,10 +34,9 @@ import static minicp.cp.BranchingScheme.firstFail;
 import static minicp.cp.Factory.makeDfs;
 import static minicp.cp.Factory.makeIntVar;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
-
+@GradeClass(totalValue = 1, defaultCpuTimeout = 1000)
 public class Element1DVarTest extends SolverTest {
 
     private static IntVar makeIVar(Solver cp, Integer... values) {
@@ -160,19 +161,19 @@ public class Element1DVarTest extends SolverTest {
         try {
 
             Solver cp = solverFactory.get();
-            IntVar x0 = makeIVar(cp, 0,1,5);
-            IntVar x1 = makeIVar(cp, -5,-4,-3,-2,0,1,5);
-            IntVar x2 = makeIVar(cp, -2,0);
+            IntVar x0 = makeIVar(cp, 0, 1, 5);
+            IntVar x1 = makeIVar(cp, -5, -4, -3, -2, 0, 1, 5);
+            IntVar x2 = makeIVar(cp, -2, 0);
 
 
             cp.post(new Element1DVar(new IntVar[]{x0}, x1, x2));
 
-            assertEquals(0,x0.min());
-            assertEquals(0,x1.min());
-            assertEquals(0,x2.min());
-            assertEquals(0,x0.max());
-            assertEquals(0,x1.max());
-            assertEquals(0,x2.max());
+            assertEquals(0, x0.min());
+            assertEquals(0, x1.min());
+            assertEquals(0, x2.min());
+            assertEquals(0, x0.max());
+            assertEquals(0, x1.max());
+            assertEquals(0, x2.max());
 
         } catch (InconsistencyException e) {
             fail("should not fail");
@@ -180,9 +181,5 @@ public class Element1DVarTest extends SolverTest {
             NotImplementedExceptionAssume.fail(e);
         }
     }
-
-
-
-
 
 }

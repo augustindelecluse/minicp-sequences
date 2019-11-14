@@ -15,6 +15,7 @@
 
 package minicp.engine.core;
 
+import com.github.guillaumederval.javagrading.Grade;
 import minicp.engine.SolverTest;
 import minicp.util.NotImplementedExceptionAssume;
 import minicp.util.exception.InconsistencyException;
@@ -169,6 +170,7 @@ public class IntVarTest extends SolverTest {
 
 
     @Test
+    @Grade(value = 0.5, cpuTimeout = 2000)
     public void arbitrarySetDomains() {
 
         try {
@@ -208,26 +210,6 @@ public class IntVarTest extends SolverTest {
                 else assertFalse(x.contains(i));
             }
             assertEquals(6, x.size());
-
-
-        } catch (NotImplementedException e) {
-            NotImplementedExceptionAssume.fail(e);
-        }
-    }
-
-    @Test
-    public void arbitrarySetDomainsMaxInt() {
-
-        try {
-
-            Solver cp = solverFactory.get();
-
-            Set<Integer> dom = new HashSet<>(Arrays.asList(2147483645));
-
-
-            IntVar var1 = makeIntVar(cp, dom);
-
-            assertEquals(2147483645,var1.max());
 
 
         } catch (NotImplementedException e) {
@@ -369,8 +351,8 @@ public class IntVarTest extends SolverTest {
 
 
     @Test
+    @Grade(value = 0.5, cpuTimeout = 1000)
     public void fillArray() {
-
         try {
             Solver cp = solverFactory.get();
 
@@ -384,6 +366,21 @@ public class IntVarTest extends SolverTest {
             HashSet<Integer> expectedDom = new HashSet<Integer>();
             Collections.addAll(expectedDom, -7, -4, -1, 2, 5);
             assertEquals(expectedDom, dom);
+
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
+    }
+
+    @Test
+    public void arbitrarySetDomainsMaxInt() {
+
+        try {
+
+            Solver cp = solverFactory.get();
+            Set<Integer> dom = new HashSet<>(Arrays.asList(2147483645));
+            IntVar var1 = makeIntVar(cp, dom);
+            assertEquals(2147483645, var1.max());
 
         } catch (NotImplementedException e) {
             NotImplementedExceptionAssume.fail(e);

@@ -20,6 +20,7 @@ import minicp.engine.core.Solver;
 import minicp.search.LimitedDiscrepancyBranching;
 import minicp.search.Sequencer;
 import minicp.util.Procedure;
+import minicp.util.exception.NotImplementedException;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -159,6 +160,38 @@ public final class BranchingScheme {
      */
     public static Supplier<Procedure[]> limitedDiscrepancy(Supplier<Procedure[]> branching, int maxDiscrepancy) {
         return new LimitedDiscrepancyBranching(branching, maxDiscrepancy);
+    }
+
+    /**
+     * Last conflict heuristic
+     * Attempts to branch first on the last variable that caused an Inconsistency
+     *
+     * Lecoutre, C., Saïs, L., Tabary, S., & Vidal, V. (2009).
+     * Reasoning from last conflict (s) in constraint programming.
+     * Artificial Intelligence, 173(18), 1592-1614.
+     *
+     * @param variableSelector returns the next variable to bind
+     * @param valueSelector given a variable, returns the value to which
+     *                      it must be assigned on the left branch (and excluded on the right)
+     */
+    public static Supplier<Procedure[]> lastConflict(Supplier<IntVar> variableSelector, Function<IntVar, Integer> valueSelector) {
+        throw new NotImplementedException();
+    }
+
+    /**
+     * Conflict Ordering Search
+     *
+     * Gay, S., Hartert, R., Lecoutre, C., & Schaus, P. (2015).
+     * Conflict ordering search for scheduling problems.
+     * In International conference on principles and practice of constraint programming (pp. 140-148).
+     * Springer.
+     *
+     * @param variableSelector returns the next variable to bind
+     * @param valueSelector given a variable, returns the value to which
+     *                      it must be assigned on the left branch (and excluded on the right)
+     */
+    public static Supplier<Procedure[]> conflictOrderingSearch(Supplier<IntVar> variableSelector, Function<IntVar, Integer> valueSelector) {
+        throw new NotImplementedException();
     }
 
 }

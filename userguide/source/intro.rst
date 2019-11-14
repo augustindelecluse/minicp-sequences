@@ -2,20 +2,20 @@
 
 
 
-************
+*******
 Preface
-************
+*******
 
 This document is made for anyone who wants to learn
-constraint programming using using mini-cp as a support.
+constraint programming using using Mini-CP as a support.
 
 This tutorial will continuously evolve.
 Don't hesitate to give us feedback or suggestion for improvement.
 You are also welcome to report any mistake or bug.
 
 
-What is mini-cp
-=======================================
+What is Mini-CP
+===============
 The success the MiniSAT solver has largely contributed to the dissemination of (CDCL) SAT solvers.
 The MiniSAT solver has a neat and minimalist architecture that is well documented.
 We believe the CP community is currently missing such a solver that would permit new-comers to demystify the internals of CP technology. 
@@ -25,21 +25,23 @@ The implementation, although inspired by state-of-the-art solvers is not focused
 Mini-CP is small and well tested.
 
 
-Java-Doc
-=======================================
+Javadoc
+=======
 
-The `Javavadoc API <https://minicp.bitbucket.io/apidocs/>`_.
+The `Javadoc API <https://minicp.bitbucket.io/apidocs/>`_.
 
- 
-Install mini-cp
-=======================================
+
+.. _install:
+
+Install Mini-CP
+===============
 
 .. raw:: html
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/VF_vkCnOp88?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
-Minicp source-code is available from bitbucket_.
+Mini-CP source-code is available from bitbucket_.
 
 **Using an IDE**
 
@@ -85,18 +87,16 @@ Some other useful commands
 .. _maven: https://maven.apache.org
 
 
-Getting Help with mini-cp
-=======================================
+Getting Help with Mini-CP
+=========================
 
-You'll get greatest chance of getting answers to your questions using the mini-cp usergroup_.
+You'll get greatest chance of getting answers to your questions using the Mini-CP usergroup_.
 
 .. _usergroup: https://groups.google.com/d/forum/mini-cp
 
-     
 
-
-Who uses mini-cp
-==============
+Who uses Mini-CP
+================
 
 If you use it for teaching or for research, please let-us know and we will add you in this list.
 
@@ -105,10 +105,10 @@ If you use it for teaching or for research, please let-us know and we will add y
 * Université de Nice `Master in CS <http://unice.fr/formation/formation-initiale/sminf1212>`_  Teacher: Arnaud Malapert and Marie Pelleau 
 
 
-Citing mini-cp
+Citing Mini-CP
 ==============
 
-If you use find mini-cp useful for your research or teaching you can cite:
+If you use find Mini-CP useful for your research or teaching you can cite:
 
 .. code-block:: latex
 	

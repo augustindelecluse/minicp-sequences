@@ -668,7 +668,7 @@ public class XCSP implements XCallbacks2 {
         Long t0 = System.currentTimeMillis();
 
         solve((solution, value) -> {
-            System.out.println("solfound " + (value == Integer.MAX_VALUE ? value : "solution"));
+            //System.out.println("solfound " + (value == Integer.MAX_VALUE ? value : "solution"));
             lastSolution.set(solution);
         }, ss -> {
             int nSols = isCOP() ? nSolution : 1;

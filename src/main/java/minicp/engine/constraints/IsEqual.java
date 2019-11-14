@@ -63,11 +63,11 @@ public class IsEqual extends AbstractConstraint { // b <=> x == v
         } else if (b.isFalse()) {
             x.remove(v);
             setActive(false);
-        } else if (x.isBound()) {
-            b.assign(true);
-            setActive(false);
         } else if (!x.contains(v)) {
             b.assign(false);
+            setActive(false);
+        } else if (x.isBound()) {
+            b.assign(true);
             setActive(false);
         }
     }

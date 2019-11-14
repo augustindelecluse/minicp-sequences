@@ -68,9 +68,9 @@ public class ProfileTest {
     public void testProfile1() {
         try {
 
-            Profile.Rectangle r1 = new Profile.Rectangle(7, 11, 3);
-            Profile.Rectangle r2 = new Profile.Rectangle(2, 10, 1);
-            Profile.Rectangle r3 = new Profile.Rectangle(3, 4, 2);
+            Rectangle r1 = new Rectangle(7, 11, 3);
+            Rectangle r2 = new Rectangle(2, 10, 1);
+            Rectangle r3 = new Rectangle(3, 4, 2);
             assert (checkProfile(r1, r2, r3));
 
         } catch (NotImplementedException e) {
@@ -83,9 +83,9 @@ public class ProfileTest {
     public void testProfile2() {
         try {
 
-            Profile.Rectangle r1 = new Profile.Rectangle(1, 10, 3);
-            Profile.Rectangle r2 = new Profile.Rectangle(1, 10, 1);
-            Profile.Rectangle r3 = new Profile.Rectangle(1, 10, 2);
+            Rectangle r1 = new Rectangle(1, 10, 3);
+            Rectangle r2 = new Rectangle(1, 10, 1);
+            Rectangle r3 = new Rectangle(1, 10, 2);
             assert (checkProfile(r1, r2, r3));
 
         } catch (NotImplementedException e) {

@@ -165,7 +165,7 @@ public class IntVarViewOffsetTest extends SolverTest {
     @Test(expected = IntOverFlowException.class)
     public void testOverFlow() {
         Solver cp = solverFactory.get();
-        IntVar x = plus(makeIntVar(cp, Integer.MAX_VALUE-5, Integer.MAX_VALUE-2), 3);
+        IntVar x = plus(makeIntVar(cp, Integer.MAX_VALUE - 5, Integer.MAX_VALUE - 2), 3);
     }
 
 

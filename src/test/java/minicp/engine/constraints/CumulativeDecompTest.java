@@ -15,6 +15,8 @@
 
 package minicp.engine.constraints;
 
+import com.github.guillaumederval.javagrading.Grade;
+import com.github.guillaumederval.javagrading.GradeClass;
 import minicp.engine.SolverTest;
 import minicp.engine.constraints.Profile.Rectangle;
 import minicp.engine.core.IntVar;
@@ -34,7 +36,7 @@ import static minicp.cp.Factory.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-
+@GradeClass(totalValue = 1, defaultCpuTimeout = 1000)
 public class CumulativeDecompTest extends SolverTest {
 
 
@@ -114,6 +116,7 @@ public class CumulativeDecompTest extends SolverTest {
 
 
     @Test
+    @Grade(value = 1, cpuTimeout = 12000)
     public void testCapaOk() {
 
         try {

@@ -50,7 +50,12 @@ public class Element1DDomainConsistent extends AbstractConstraint {
     public void post() {
         // STUDENT throw new NotImplementedException("Element1D");
         // BEGIN STRIP
-        // TODO
+        int [][] table = new int [t.length][2];
+        for (int i = 0; i < table.length; i++) {
+            table[i][0] = i;
+            table[i][1] = t[i];
+        }
+        getSolver().post(new TableCT(new IntVar[]{y,z},table));
         // END STRIP
     }
 }

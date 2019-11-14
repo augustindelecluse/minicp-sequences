@@ -185,8 +185,6 @@ public class StateIntTest extends StateManagerTest {
 
         sm.restoreStateUntil(0);
 
-        //assertEquals(0,sm.getLevel());
-
         sm.saveState(); // level 1
 
         //assertEquals(1,sm.getLevel());
@@ -197,7 +195,6 @@ public class StateIntTest extends StateManagerTest {
 
         sm.restoreStateUntil(0);
 
-        //assertEquals(0,sm.getLevel());
         assertEquals(Integer.valueOf(6), a.value());
 
 

@@ -1,40 +1,31 @@
 .. _minicp:
 
 
-************************************************************
+*************
 Learn Mini-CP
-************************************************************
+*************
 
-Technical Report
-=================================
-The complete architecture of mini-cp is described this `document <_static/mini-cp.pdf>`_.
+This tutorial is based on the course "LINGI2365 Constraint Programming" given at UCLouvain by Pierre Schaus.
 
-Slides and teaching material
-=================================
+.. toctree::
+        :maxdepth: 2
 
-Slides 
+        learning_minicp/part_1
+        learning_minicp/part_2
+        learning_minicp/part_3
+        learning_minicp/part_4
+        learning_minicp/part_5
+        learning_minicp/part_6
+        learning_minicp/part_7
+        learning_minicp/part_8
+        learning_minicp/part_9
+        learning_minicp/part_10
+        learning_minicp/part_11
 
-* `Tutorial <https://www.icloud.com/keynote/0E4e7B5uJ0FLuubA0pUqVp_0Q#minicp>`_ given at CPAIOR17
+Outcomes
+========
 
-Slides from the course INGI2365-2019 given by Pierre Schaus  @UCLouvain:
-
-* `Overview of CP, Filtering, Search, Consistency, Fix-point <https://www.icloud.com/keynote/0oS2SsSrew0r4aiPaPV470n4g#01-intro>`_
-
-Slides from the course INGI2365-2018 given by Pierre Schaus  @UCLouvain (need to be updated):
-
-* `Variables, Domains, Trail and search <https://www.icloud.com/keynote/0QTIjJ1gIxzkr0Eig7pDlYvIA#02-variables-domains-trail-search>`_
-* `Views, Optimization, Heuristics and Large Neighborhood Search <https://www.icloud.com/keynote/0ua695DWVE6DqpjPvqR-St7WQ#03-views-optimization-heuristics-lns-restarts>`_
-* `Domain and Bound Consistencies, Sum, Element(2D) and Circuit constraints, Incremental aspect of filtering algorithms <https://www.icloud.com/keynote/0-kSpTi0bzBdLi8kMJzLt4g2A#04-element-constraints>`_
-* `Table Constraints (STR2 and Compact Table), Regular and Application to Eternity Puzzle <https://www.icloud.com/keynote/0Nr2LcZGY2xQop312SgMGs37Q#05-table-constraints>`_
-* `Logical Constraints, Domain Consistent Element, Stable Mariage <https://www.icloud.com/keynote/0pRiKg20XCtBpT3prOIHuYVlw#06-stable-mariage-element-var>`_
-* `Table constraints with short-tuples and negative table constraints <https://www.icloud.com/keynote/0xQmFtdqhzCFK61lit0t2a1Zw#07-short-negative-table-constraints>`_
-* `Black-Box searches <https://www.icloud.com/keynote/0yqTbzWk8Qg7SJDNe9JLM8eug#08-black-box-search>`_
-* `Scheduling and Cumulative Constraint <https://www.icloud.com/keynote/0I01PANBy68haEqhFDRIcvK0Q#09-cumulative-scheduling>`_
-* `Scheduling and Disjunctive Constraint <https://www.icloud.com/keynote/0jR5krj0fNao6euSqBNODWPmQ#10-disjunctive-scheduling>`_
-* `Modeling, Redundant Constraint, Symmetry Breaking <https://www.icloud.com/keynote/0bduxg7nHWOfdqcedJH7dNTdA#11-modeling-bin-packing>`_
-* `Régin's Algorithms: Flow-based Domain Consistency for the AllDifferent <https://www.icloud.com/keynote/0hAlR-h7MWDv4LzVtrctvkBpQ#12-flow-based-constraints>`_
-
-Learning outcomes by studying mini-cp:
+Learning outcomes by studying Mini-CP:
 
 From a state and inference prospective, specific learning outcomes include:
 
@@ -65,9 +56,14 @@ While, from a modeling perspective, the outcomes include:
 * Design problem specific heuristics and search
 
 
-******************************
+Technical Report
+================
+
+The complete architecture of Mini-CP is described this `document <_static/mini-cp.pdf>`_.
+
+
 Mini-CP XCSP3 Mini Solver
-******************************
+=========================
 
 We provide under the form of a student project the possibility to participate to the XCSP3 MiniSolver Competition with Mini-CP.
 All the interfacing with XCSP3 tools and the parsing of XCSP3 format is done for you.
