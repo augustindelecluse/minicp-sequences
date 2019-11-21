@@ -272,49 +272,68 @@ public class SumTest extends SolverTest {
 
     @Test
     public void sum11() {
-        Solver cp = solverFactory.get();
 
-        // -45,-39,-37 = -45,-38
-        IntVar x = makeIntVar(cp, new HashSet<>(Arrays.asList(-2147483645, -2147483639, -2147483637)));
-        IntVar y = makeIntVar(cp, new HashSet<>(Arrays.asList(-2147483645, -2147483638)));
-
-        boolean failed = false;
         try {
-            cp.post(Factory.sum(new IntVar[]{x}, y));
-        } catch (InconsistencyException e) {
-            failed = true;
+            Solver cp = solverFactory.get();
+
+            IntVar x = makeIVar(cp, -2147483645, -2147483639, -2147483637);
+            IntVar y = makeIVar(cp, -2147483645, -2147483638);
+
+            boolean failed = false;
+            try {
+                cp.post(Factory.sum(new IntVar[]{x}, y));
+            } catch (InconsistencyException e) {
+                failed = true;
+            }
+            assertFalse(failed);
+
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
-        assertFalse(failed);
     }
 
     @Test
     public void sum12() {
-        Solver cp = solverFactory.get();
 
-        IntVar x = makeIntVar(cp, new HashSet<>(Arrays.asList(-45, -39, -37)));
-        IntVar y = makeIntVar(cp, new HashSet<>(Arrays.asList(-45, -3)));
-
-        boolean failed = false;
         try {
-            cp.post(Factory.sum(new IntVar[]{x}, y));
-        } catch (InconsistencyException e) {
-            failed = true;
+
+            Solver cp = solverFactory.get();
+
+            IntVar x = makeIVar(cp, -45, -39, -37);
+            IntVar y = makeIVar(cp, -45, -3);
+
+            boolean failed = false;
+            try {
+                cp.post(Factory.sum(new IntVar[]{x}, y));
+            } catch (InconsistencyException e) {
+                failed = true;
+            }
+            assertFalse(failed);
+
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
         }
-        assertFalse(failed);
     }
 
     @Test(expected = IntOverFlowException.class)
     public void sum13OverFlow() {
-        Solver cp = solverFactory.get();
 
-        IntVar x0 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872433, -463872431, -463872430, -463872429)));
-        IntVar x1 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872438, -463872437, -463872430)));
-        IntVar x2 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872432, -463872429)));
-        IntVar x3 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872435, -463872434, -463872432, -463872431, -463872430, -463872429)));
-        IntVar x4 = makeIntVar(cp, new HashSet<>(Arrays.asList(-463872437, -463872436, -463872435, -463872432, -463872431, -463872430, -463872429)));
+        try {
+
+            Solver cp = solverFactory.get();
+
+            IntVar x0 = makeIVar(cp, -463872433, -463872431, -463872430, -463872429);
+            IntVar x1 = makeIVar(cp, -463872438, -463872437, -463872430);
+            IntVar x2 = makeIVar(cp, -463872432, -463872429);
+            IntVar x3 = makeIVar(cp, -463872435, -463872434, -463872432, -463872431, -463872430, -463872429);
+            IntVar x4 = makeIVar(cp, -463872437, -463872436, -463872435, -463872432, -463872431, -463872430, -463872429);
 
 
-        cp.post(lessOrEqual(Factory.sum(x0, x1, x2, x3, x4), 0));
+            cp.post(lessOrEqual(Factory.sum(x0, x1, x2, x3, x4), 0));
+
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
 
     }
 

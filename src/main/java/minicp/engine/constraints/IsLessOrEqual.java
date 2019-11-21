@@ -18,6 +18,7 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.NotImplementedException;
 
 /**
  * Reified less or equal constraint.

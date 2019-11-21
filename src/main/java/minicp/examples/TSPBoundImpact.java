@@ -24,6 +24,7 @@ import minicp.search.DFSearch;
 import minicp.search.Objective;
 import minicp.search.SearchStatistics;
 import minicp.util.exception.InconsistencyException;
+import minicp.util.exception.NotImplementedException;
 import minicp.util.io.InputReader;
 
 import static minicp.cp.BranchingScheme.*;

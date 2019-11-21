@@ -213,7 +213,7 @@ public class DFSearch {
     }
 
 
-    private void dfs2(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
+    private void dfs(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
         if (limit.test(statistics))
             throw new StopSearchException();
         Procedure[] branches = branching.get();
@@ -261,7 +261,7 @@ public class DFSearch {
     }
 
 
-    private void dfs(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
+    private void dfs2(SearchStatistics statistics, Predicate<SearchStatistics> limit) {
         Stack<Procedure> alternatives = new Stack<Procedure>();
         expandNode(alternatives, statistics);
         while (!alternatives.isEmpty()) {

@@ -18,6 +18,8 @@ package minicp.engine.constraints;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.BoolVar;
 import minicp.state.StateInt;
+import minicp.util.exception.NotImplementedException;
+
 
 /**
  * Reified logical or constraint

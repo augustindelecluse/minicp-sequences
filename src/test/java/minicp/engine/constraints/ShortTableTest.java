@@ -158,23 +158,29 @@ public class ShortTableTest extends SolverTest {
      */
     @Test
     public void minicpReplayShortTableCtIsStrongerThanAc() {
-        final int star = 2147483647;
 
-        // This table should accept all values.
-        final int[][] table = {
-                {2147483647, 2147483647}
-        };
+        try {
+            final int star = 2147483647;
 
-        Solver cp = solverFactory.get();
+            // This table should accept all values.
+            final int[][] table = {
+                    {2147483647, 2147483647}
+            };
 
-        final IntVar x0 = makeIntVar(cp, new HashSet<>(Arrays.asList(0)));
-        final IntVar x1 = makeIntVar(cp, new HashSet<>(Arrays.asList(-1, 2)));
+            Solver cp = solverFactory.get();
+
+            final IntVar x0 = makeIntVar(cp, new HashSet<>(Arrays.asList(0)));
+            final IntVar x1 = makeIntVar(cp, new HashSet<>(Arrays.asList(-1, 2)));
 
 
-        cp.post(new ShortTableCT(new IntVar[]{x0, x1}, table, star));
+            cp.post(new ShortTableCT(new IntVar[]{x0, x1}, table, star));
 
-        assertEquals(1, x0.size());
-        assertEquals(2, x1.size());
+            assertEquals(1, x0.size());
+            assertEquals(2, x1.size());
+
+        } catch (NotImplementedException e) {
+            NotImplementedExceptionAssume.fail(e);
+        }
     }
 
     @Test(expected = InconsistencyException.class)

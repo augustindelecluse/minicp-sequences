@@ -20,6 +20,8 @@ import minicp.cp.Factory;
 import minicp.engine.core.AbstractConstraint;
 import minicp.engine.core.Constraint;
 import minicp.engine.core.IntVar;
+import minicp.util.exception.NotImplementedException;
+
 
 /**
  *
