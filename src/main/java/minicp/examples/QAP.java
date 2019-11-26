@@ -95,10 +95,13 @@ public class QAP {
         IntVar totCost = sum(weightedDist);
         Objective obj = cp.minimize(totCost);
 
+        /*
+        // TODO: discrepancy search (to be implemented as an exercise)
         for (int dL = 0; dL < x.length; dL++) {
             DFSearch dfs = makeDfs(cp, limitedDiscrepancy(firstFail(x), dL));
             dfs.optimize(obj);
         }
+        */
 
         DFSearch dfs = makeDfs(cp, firstFail(x));
 

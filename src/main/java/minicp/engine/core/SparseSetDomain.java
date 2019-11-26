@@ -15,6 +15,7 @@
 
 package minicp.engine.core;
 
+import minicp.state.StateLazySparseSet;
 import minicp.state.StateManager;
 import minicp.state.StateSparseSet;
 
@@ -23,11 +24,11 @@ import minicp.state.StateSparseSet;
  * Implementation of a domain with a sparse-set
  */
 public class SparseSetDomain implements IntDomain {
-    private StateSparseSet domain;
+    private StateLazySparseSet domain;
 
 
     public SparseSetDomain(StateManager sm, int min, int max) {
-        domain = new StateSparseSet(sm, max - min + 1, min);
+        domain = new StateLazySparseSet(sm, max - min + 1, min);
     }
 
     @Override
