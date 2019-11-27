@@ -17,6 +17,7 @@ package minicp.state;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -43,6 +44,31 @@ public class StateBoolTest extends StateManagerTest {
 
         assertTrue(b1.value());
         assertFalse(b2.value());
+
+    }
+
+    @Test
+    public void bugMagicOnRestore() {
+        StateManager sm = stateFactory.get();
+
+        State<Boolean> a = sm.makeStateRef(true);
+        // level 0, a is true
+
+        sm.saveState(); // level 1, a is true recorded
+        sm.saveState(); // level 2, a is true recorded
+
+        a.setValue(false);
+
+        sm.restoreState(); // level 1, a is true
+
+        a.setValue(false); // level 1, a is false
+
+        sm.saveState(); // level 2, a is false recorded
+
+        sm.restoreState(); // level 1 a is false
+        sm.restoreState(); // level 0 a is true
+
+        assertEquals(true, a.value());
 
     }
 
