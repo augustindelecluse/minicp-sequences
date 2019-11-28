@@ -24,7 +24,6 @@ import minicp.util.NotImplementedExceptionAssume;
 import minicp.util.exception.InconsistencyException;
 import minicp.util.exception.NotImplementedException;
 import org.junit.Test;
-import xcsp.XCSP3TestHelper;
 
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;

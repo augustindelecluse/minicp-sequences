@@ -37,11 +37,6 @@
             <version>db2c656de171336067bd3627009578277aeca8b3</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.xcsp</groupId>
-            <artifactId>xcsp3-tools</artifactId>
-            <version>1.0.0</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
